@@ -104,12 +104,12 @@
 		8ECBA7D61535F6F70009718E /* Shelby-tv */ = {
 			isa = PBXGroup;
 			children = (
-				8ECBA7DF1535F6F70009718E /* AppDelegate.h */,
-				8ECBA7E01535F6F70009718E /* AppDelegate.m */,
-				8ECBA7E21535F6F70009718E /* ViewController.h */,
-				8ECBA7E31535F6F70009718E /* ViewController.m */,
-				8ECBA7E51535F6F70009718E /* ViewController_iPhone.xib */,
-				8ECBA7E81535F6F70009718E /* ViewController_iPad.xib */,
+				8ED311081536049D002614DF /* App Delegate */,
+				8ED3110515360464002614DF /* Categories */,
+				8ED311041536045F002614DF /* Models */,
+				8ED311031536045A002614DF /* Views */,
+				8ED3110215360450002614DF /* Controllers */,
+				8ED3110615360475002614DF /* Third Party Libraries */,
 				8ECBA7D71535F6F70009718E /* Supporting Files */,
 			);
 			path = "Shelby-tv";
@@ -143,6 +143,62 @@
 				8ED310F5153601A2002614DF /* iTunesArtwork */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		8ED3110215360450002614DF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8ECBA7E21535F6F70009718E /* ViewController.h */,
+				8ECBA7E31535F6F70009718E /* ViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		8ED311031536045A002614DF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8ED3110715360490002614DF /* Xibs */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		8ED311041536045F002614DF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		8ED3110515360464002614DF /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		8ED3110615360475002614DF /* Third Party Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Third Party Libraries";
+			sourceTree = "<group>";
+		};
+		8ED3110715360490002614DF /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				8ECBA7E51535F6F70009718E /* ViewController_iPhone.xib */,
+				8ECBA7E81535F6F70009718E /* ViewController_iPad.xib */,
+			);
+			name = Xibs;
+			sourceTree = "<group>";
+		};
+		8ED311081536049D002614DF /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				8ECBA7DF1535F6F70009718E /* AppDelegate.h */,
+				8ECBA7E01535F6F70009718E /* AppDelegate.m */,
+			);
+			name = "App Delegate";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
