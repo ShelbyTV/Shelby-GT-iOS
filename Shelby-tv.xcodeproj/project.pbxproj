@@ -1,0 +1,295 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
+		8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D21535F6F70009718E /* Foundation.framework */; };
+		8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D41535F6F70009718E /* CoreGraphics.framework */; };
+		8ECBA7DB1535F6F70009718E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECBA7D91535F6F70009718E /* InfoPlist.strings */; };
+		8ECBA7DD1535F6F70009718E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECBA7DC1535F6F70009718E /* main.m */; };
+		8ECBA7E11535F6F70009718E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECBA7E01535F6F70009718E /* AppDelegate.m */; };
+		8ECBA7E41535F6F70009718E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECBA7E31535F6F70009718E /* ViewController.m */; };
+		8ECBA7E71535F6F70009718E /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ECBA7E51535F6F70009718E /* ViewController_iPhone.xib */; };
+		8ECBA7EA1535F6F70009718E /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ECBA7E81535F6F70009718E /* ViewController_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8ECBA7CC1535F6F70009718E /* Shelby-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8ECBA7D01535F6F70009718E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8ECBA7D21535F6F70009718E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8ECBA7D41535F6F70009718E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8ECBA7D81535F6F70009718E /* Shelby-tv-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Shelby-tv-Info.plist"; sourceTree = "<group>"; };
+		8ECBA7DA1535F6F70009718E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8ECBA7DC1535F6F70009718E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8ECBA7DE1535F6F70009718E /* Shelby-tv-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Shelby-tv-Prefix.pch"; sourceTree = "<group>"; };
+		8ECBA7DF1535F6F70009718E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8ECBA7E01535F6F70009718E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8ECBA7E21535F6F70009718E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		8ECBA7E31535F6F70009718E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8ECBA7E61535F6F70009718E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		8ECBA7E91535F6F70009718E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8ECBA7C91535F6F70009718E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */,
+				8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */,
+				8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8ECBA7C11535F6F70009718E = {
+			isa = PBXGroup;
+			children = (
+				8ECBA7D61535F6F70009718E /* Shelby-tv */,
+				8ECBA7CF1535F6F70009718E /* Frameworks */,
+				8ECBA7CD1535F6F70009718E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8ECBA7CD1535F6F70009718E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8ECBA7CC1535F6F70009718E /* Shelby-tv.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8ECBA7CF1535F6F70009718E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8ECBA7D01535F6F70009718E /* UIKit.framework */,
+				8ECBA7D21535F6F70009718E /* Foundation.framework */,
+				8ECBA7D41535F6F70009718E /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8ECBA7D61535F6F70009718E /* Shelby-tv */ = {
+			isa = PBXGroup;
+			children = (
+				8ECBA7DF1535F6F70009718E /* AppDelegate.h */,
+				8ECBA7E01535F6F70009718E /* AppDelegate.m */,
+				8ECBA7E21535F6F70009718E /* ViewController.h */,
+				8ECBA7E31535F6F70009718E /* ViewController.m */,
+				8ECBA7E51535F6F70009718E /* ViewController_iPhone.xib */,
+				8ECBA7E81535F6F70009718E /* ViewController_iPad.xib */,
+				8ECBA7D71535F6F70009718E /* Supporting Files */,
+			);
+			path = "Shelby-tv";
+			sourceTree = "<group>";
+		};
+		8ECBA7D71535F6F70009718E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8ECBA7D81535F6F70009718E /* Shelby-tv-Info.plist */,
+				8ECBA7D91535F6F70009718E /* InfoPlist.strings */,
+				8ECBA7DC1535F6F70009718E /* main.m */,
+				8ECBA7DE1535F6F70009718E /* Shelby-tv-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8ECBA7CB1535F6F70009718E /* Shelby-tv */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8ECBA7ED1535F6F70009718E /* Build configuration list for PBXNativeTarget "Shelby-tv" */;
+			buildPhases = (
+				8ECBA7C81535F6F70009718E /* Sources */,
+				8ECBA7C91535F6F70009718E /* Frameworks */,
+				8ECBA7CA1535F6F70009718E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Shelby-tv";
+			productName = "Shelby-tv";
+			productReference = 8ECBA7CC1535F6F70009718E /* Shelby-tv.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8ECBA7C31535F6F70009718E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 8ECBA7C61535F6F70009718E /* Build configuration list for PBXProject "Shelby-tv" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8ECBA7C11535F6F70009718E;
+			productRefGroup = 8ECBA7CD1535F6F70009718E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8ECBA7CB1535F6F70009718E /* Shelby-tv */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8ECBA7CA1535F6F70009718E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ECBA7DB1535F6F70009718E /* InfoPlist.strings in Resources */,
+				8ECBA7E71535F6F70009718E /* ViewController_iPhone.xib in Resources */,
+				8ECBA7EA1535F6F70009718E /* ViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8ECBA7C81535F6F70009718E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ECBA7DD1535F6F70009718E /* main.m in Sources */,
+				8ECBA7E11535F6F70009718E /* AppDelegate.m in Sources */,
+				8ECBA7E41535F6F70009718E /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8ECBA7D91535F6F70009718E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ECBA7DA1535F6F70009718E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8ECBA7E51535F6F70009718E /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ECBA7E61535F6F70009718E /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		8ECBA7E81535F6F70009718E /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ECBA7E91535F6F70009718E /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8ECBA7EB1535F6F70009718E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8ECBA7EC1535F6F70009718E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8ECBA7EE1535F6F70009718E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shelby-tv/Shelby-tv-Prefix.pch";
+				INFOPLIST_FILE = "Shelby-tv/Shelby-tv-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		8ECBA7EF1535F6F70009718E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shelby-tv/Shelby-tv-Prefix.pch";
+				INFOPLIST_FILE = "Shelby-tv/Shelby-tv-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8ECBA7C61535F6F70009718E /* Build configuration list for PBXProject "Shelby-tv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8ECBA7EB1535F6F70009718E /* Debug */,
+				8ECBA7EC1535F6F70009718E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8ECBA7ED1535F6F70009718E /* Build configuration list for PBXNativeTarget "Shelby-tv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8ECBA7EE1535F6F70009718E /* Debug */,
+				8ECBA7EF1535F6F70009718E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8ECBA7C31535F6F70009718E /* Project object */;
+}
