@@ -1,0 +1,6 @@
+[submodule "library/facebook-ios-sdk"]
+	path = library/facebook-ios-sdk
+	url = https://github.com/facebook/facebook-ios-sdk.git
+[submodule "library/ASPullToRefresh"]
+	path = library/ASPullToRefresh
+	url = git@github.com:ArtSabintsev/ASPullToRefresh.git
