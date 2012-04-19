@@ -10,21 +10,25 @@
 		8E7F47B3154074130041118E /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B2154074130041118E /* Twitter.framework */; };
 		8E7F47B6154074180041118E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B5154074180041118E /* Accounts.framework */; };
 		8E7F47B81540741F0041118E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B71540741F0041118E /* QuartzCore.framework */; };
-		8E7F47CD15408F370041118E /* AppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47CC15408F370041118E /* AppDelegate_iPhone.m */; };
-		8E7F47D015408F4D0041118E /* AppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47CF15408F4D0041118E /* AppDelegate_iPad.m */; };
 		8E7F47E1154092310041118E /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8E7F47D4154092310041118E /* FBDialog.bundle */; };
 		8E7F47E2154092310041118E /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47DA154092310041118E /* libfacebook_ios_sdk.a */; };
 		8E7F47E51540931D0041118E /* ASPullToRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47E41540931D0041118E /* ASPullToRefreshTableViewController.m */; };
 		8E7F47E9154093850041118E /* SocialFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47E8154093850041118E /* SocialFacade.m */; };
+		8E7F47F31540B21E0041118E /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47F11540B21E0041118E /* TimelineViewController.m */; };
+		8E7F47F41540B21E0041118E /* TimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E7F47F21540B21E0041118E /* TimelineViewController.xib */; };
+		8E7F47F81540B25A0041118E /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47F61540B25A0041118E /* FavoritesViewController.m */; };
+		8E7F47F91540B25A0041118E /* FavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E7F47F71540B25A0041118E /* FavoritesViewController.xib */; };
+		8E7F47FD1540B26E0041118E /* WatchLaterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47FB1540B26E0041118E /* WatchLaterViewController.m */; };
+		8E7F47FE1540B26E0041118E /* WatchLaterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E7F47FC1540B26E0041118E /* WatchLaterViewController.xib */; };
+		8E7F48021540B2920041118E /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F48001540B2920041118E /* SearchViewController.m */; };
+		8E7F48031540B2920041118E /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E7F48011540B2920041118E /* SearchViewController.xib */; };
+		8E7F48061540B4690041118E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F48051540B4690041118E /* Crashlytics.framework */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
 		8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D21535F6F70009718E /* Foundation.framework */; };
 		8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D41535F6F70009718E /* CoreGraphics.framework */; };
 		8ECBA7DB1535F6F70009718E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECBA7D91535F6F70009718E /* InfoPlist.strings */; };
 		8ECBA7DD1535F6F70009718E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECBA7DC1535F6F70009718E /* main.m */; };
 		8ECBA7E11535F6F70009718E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECBA7E01535F6F70009718E /* AppDelegate.m */; };
-		8ECBA7E41535F6F70009718E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECBA7E31535F6F70009718E /* ViewController.m */; };
-		8ECBA7E71535F6F70009718E /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ECBA7E51535F6F70009718E /* ViewController_iPhone.xib */; };
-		8ECBA7EA1535F6F70009718E /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ECBA7E81535F6F70009718E /* ViewController_iPad.xib */; };
 		8ED310F6153601A2002614DF /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED310EA153601A2002614DF /* Default-Landscape~ipad.png */; };
 		8ED310F7153601A2002614DF /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED310EB153601A2002614DF /* Default-Portrait~ipad.png */; };
 		8ED310F8153601A2002614DF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED310EC153601A2002614DF /* Default.png */; };
@@ -43,10 +47,6 @@
 		8E7F47B2154074130041118E /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		8E7F47B5154074180041118E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		8E7F47B71540741F0041118E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		8E7F47CB15408F370041118E /* AppDelegate_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate_iPhone.h; sourceTree = "<group>"; };
-		8E7F47CC15408F370041118E /* AppDelegate_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_iPhone.m; sourceTree = "<group>"; };
-		8E7F47CE15408F4D0041118E /* AppDelegate_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate_iPad.h; sourceTree = "<group>"; };
-		8E7F47CF15408F4D0041118E /* AppDelegate_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate_iPad.m; sourceTree = "<group>"; };
 		8E7F47D2154092310041118E /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		8E7F47D3154092310041118E /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConnect.h; sourceTree = "<group>"; };
 		8E7F47D4154092310041118E /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
@@ -66,6 +66,19 @@
 		8E7F47E41540931D0041118E /* ASPullToRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASPullToRefreshTableViewController.m; path = library/ASPullToRefresh/ASPullToRefresh/ASPullToRefreshTableViewController.m; sourceTree = SOURCE_ROOT; };
 		8E7F47E7154093850041118E /* SocialFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialFacade.h; sourceTree = "<group>"; };
 		8E7F47E8154093850041118E /* SocialFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialFacade.m; sourceTree = "<group>"; };
+		8E7F47F01540B21E0041118E /* TimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
+		8E7F47F11540B21E0041118E /* TimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
+		8E7F47F21540B21E0041118E /* TimelineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineViewController.xib; sourceTree = "<group>"; };
+		8E7F47F51540B25A0041118E /* FavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesViewController.h; sourceTree = "<group>"; };
+		8E7F47F61540B25A0041118E /* FavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesViewController.m; sourceTree = "<group>"; };
+		8E7F47F71540B25A0041118E /* FavoritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesViewController.xib; sourceTree = "<group>"; };
+		8E7F47FA1540B26E0041118E /* WatchLaterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchLaterViewController.h; path = ../WatchLaterViewController.h; sourceTree = "<group>"; };
+		8E7F47FB1540B26E0041118E /* WatchLaterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchLaterViewController.m; path = ../WatchLaterViewController.m; sourceTree = "<group>"; };
+		8E7F47FC1540B26E0041118E /* WatchLaterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WatchLaterViewController.xib; path = ../WatchLaterViewController.xib; sourceTree = "<group>"; };
+		8E7F47FF1540B2920041118E /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		8E7F48001540B2920041118E /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		8E7F48011540B2920041118E /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		8E7F48051540B4690041118E /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		8ECBA7CC1535F6F70009718E /* Shelby-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECBA7D01535F6F70009718E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8ECBA7D21535F6F70009718E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -76,10 +89,6 @@
 		8ECBA7DE1535F6F70009718E /* Shelby-tv-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Shelby-tv-Prefix.pch"; sourceTree = "<group>"; };
 		8ECBA7DF1535F6F70009718E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8ECBA7E01535F6F70009718E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8ECBA7E21535F6F70009718E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8ECBA7E31535F6F70009718E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		8ECBA7E61535F6F70009718E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
-		8ECBA7E91535F6F70009718E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		8ED310EA153601A2002614DF /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		8ED310EB153601A2002614DF /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		8ED310EC153601A2002614DF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -106,6 +115,7 @@
 				8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */,
 				8E7F47B81540741F0041118E /* QuartzCore.framework in Frameworks */,
 				8E7F47E2154092310041118E /* libfacebook_ios_sdk.a in Frameworks */,
+				8E7F48061540B4690041118E /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +184,7 @@
 		8ECBA7CF1535F6F70009718E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8E7F48051540B4690041118E /* Crashlytics.framework */,
 				8E7F47B5154074180041118E /* Accounts.framework */,
 				8ECBA7D41535F6F70009718E /* CoreGraphics.framework */,
 				8ECBA7D21535F6F70009718E /* Foundation.framework */,
@@ -231,8 +242,14 @@
 		8ED3110215360450002614DF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8ECBA7E21535F6F70009718E /* ViewController.h */,
-				8ECBA7E31535F6F70009718E /* ViewController.m */,
+				8E7F47F01540B21E0041118E /* TimelineViewController.h */,
+				8E7F47F11540B21E0041118E /* TimelineViewController.m */,
+				8E7F47F51540B25A0041118E /* FavoritesViewController.h */,
+				8E7F47F61540B25A0041118E /* FavoritesViewController.m */,
+				8E7F47FA1540B26E0041118E /* WatchLaterViewController.h */,
+				8E7F47FB1540B26E0041118E /* WatchLaterViewController.m */,
+				8E7F47FF1540B2920041118E /* SearchViewController.h */,
+				8E7F48001540B2920041118E /* SearchViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -272,8 +289,10 @@
 		8ED3110715360490002614DF /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				8ECBA7E51535F6F70009718E /* ViewController_iPhone.xib */,
-				8ECBA7E81535F6F70009718E /* ViewController_iPad.xib */,
+				8E7F47F21540B21E0041118E /* TimelineViewController.xib */,
+				8E7F47F71540B25A0041118E /* FavoritesViewController.xib */,
+				8E7F47FC1540B26E0041118E /* WatchLaterViewController.xib */,
+				8E7F48011540B2920041118E /* SearchViewController.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -283,10 +302,6 @@
 			children = (
 				8ECBA7DF1535F6F70009718E /* AppDelegate.h */,
 				8ECBA7E01535F6F70009718E /* AppDelegate.m */,
-				8E7F47CB15408F370041118E /* AppDelegate_iPhone.h */,
-				8E7F47CE15408F4D0041118E /* AppDelegate_iPad.h */,
-				8E7F47CF15408F4D0041118E /* AppDelegate_iPad.m */,
-				8E7F47CC15408F370041118E /* AppDelegate_iPhone.m */,
 			);
 			name = "App Delegate";
 			sourceTree = "<group>";
@@ -301,6 +316,7 @@
 				8ECBA7C81535F6F70009718E /* Sources */,
 				8ECBA7C91535F6F70009718E /* Frameworks */,
 				8ECBA7CA1535F6F70009718E /* Resources */,
+				8E7F48041540B4580041118E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -342,8 +358,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8ECBA7DB1535F6F70009718E /* InfoPlist.strings in Resources */,
-				8ECBA7E71535F6F70009718E /* ViewController_iPhone.xib in Resources */,
-				8ECBA7EA1535F6F70009718E /* ViewController_iPad.xib in Resources */,
 				8ED310F6153601A2002614DF /* Default-Landscape~ipad.png in Resources */,
 				8ED310F7153601A2002614DF /* Default-Portrait~ipad.png in Resources */,
 				8ED310F8153601A2002614DF /* Default.png in Resources */,
@@ -357,10 +371,30 @@
 				8ED31100153601A2002614DF /* Icon@2x.png in Resources */,
 				8ED31101153601A2002614DF /* iTunesArtwork in Resources */,
 				8E7F47E1154092310041118E /* FBDialog.bundle in Resources */,
+				8E7F47F41540B21E0041118E /* TimelineViewController.xib in Resources */,
+				8E7F47F91540B25A0041118E /* FavoritesViewController.xib in Resources */,
+				8E7F47FE1540B26E0041118E /* WatchLaterViewController.xib in Resources */,
+				8E7F48031540B2920041118E /* SearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8E7F48041540B4580041118E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 84a79b7ee6f2eca13877cd17b9b9a290790f99aa";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8ECBA7C81535F6F70009718E /* Sources */ = {
@@ -369,11 +403,12 @@
 			files = (
 				8ECBA7DD1535F6F70009718E /* main.m in Sources */,
 				8ECBA7E11535F6F70009718E /* AppDelegate.m in Sources */,
-				8ECBA7E41535F6F70009718E /* ViewController.m in Sources */,
-				8E7F47CD15408F370041118E /* AppDelegate_iPhone.m in Sources */,
-				8E7F47D015408F4D0041118E /* AppDelegate_iPad.m in Sources */,
 				8E7F47E51540931D0041118E /* ASPullToRefreshTableViewController.m in Sources */,
 				8E7F47E9154093850041118E /* SocialFacade.m in Sources */,
+				8E7F47F31540B21E0041118E /* TimelineViewController.m in Sources */,
+				8E7F47F81540B25A0041118E /* FavoritesViewController.m in Sources */,
+				8E7F47FD1540B26E0041118E /* WatchLaterViewController.m in Sources */,
+				8E7F48021540B2920041118E /* SearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,22 +421,6 @@
 				8ECBA7DA1535F6F70009718E /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		8ECBA7E51535F6F70009718E /* ViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8ECBA7E61535F6F70009718E /* en */,
-			);
-			name = ViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		8ECBA7E81535F6F70009718E /* ViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8ECBA7E91535F6F70009718E /* en */,
-			);
-			name = ViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -457,10 +476,14 @@
 		8ECBA7EE1535F6F70009718E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Shelby-tv/Shelby-tv-Prefix.pch";
 				INFOPLIST_FILE = "Shelby-tv/Shelby-tv-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Shelby-tv/Facebook iOS SDK\"",
@@ -474,10 +497,14 @@
 		8ECBA7EF1535F6F70009718E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Shelby-tv/Shelby-tv-Prefix.pch";
 				INFOPLIST_FILE = "Shelby-tv/Shelby-tv-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Shelby-tv/Facebook iOS SDK\"",

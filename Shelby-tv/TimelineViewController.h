@@ -1,13 +1,13 @@
 //
-//  AppDelegate_iPad.m
+//  TimelineViewController.h
 //  Shelby-tv
 //
 //  Created by Arthur on 4/19/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "AppDelegate_iPad.h"
+#import <UIKit/UIKit.h>
 
-@implementation AppDelegate_iPad
+@interface TimelineViewController : UIViewController
 
 @end

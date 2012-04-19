@@ -1,13 +1,13 @@
 //
-//  AppDelegate_iPhone.h
+//  WatchLaterViewController.h
 //  Shelby-tv
 //
 //  Created by Arthur on 4/19/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface AppDelegate_iPhone : NSObject
+@interface WatchLaterViewController : UIViewController
 
 @end

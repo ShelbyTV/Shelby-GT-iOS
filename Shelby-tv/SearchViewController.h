@@ -1,13 +1,13 @@
 //
-//  AppDelegate_iPhone.m
+//  SearchViewController.h
 //  Shelby-tv
 //
 //  Created by Arthur on 4/19/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "AppDelegate_iPhone.h"
+#import <UIKit/UIKit.h>
 
-@implementation AppDelegate_iPhone
+@interface SearchViewController : UIViewController
 
 @end

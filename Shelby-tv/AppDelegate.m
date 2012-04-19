@@ -6,54 +6,83 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
+// AppDelegate
 #import "AppDelegate.h"
 
-#import "ViewController.h"
+// Controllers
+#import "TimelineViewController.h"
+#import "FavoritesViewController.h"
+#import "WatchLaterViewController.h"
+#import "SearchViewController.h"
+
+// Analytics
+#import <Crashlytics/Crashlytics.h>
+
+@interface AppDelegate ()
+
+- (void)createTabBarForPad;
+- (void)createTabBarForPhone;
+- (void)analytics;
+
+@end
 
 @implementation AppDelegate
-
 @synthesize window = _window;
-@synthesize viewController = _viewController;
+@synthesize tabBarController = _tabBarController;
 
+#pragma mark - UIApplicationDelegate Methods
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Instantiate UIWindow
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    
+    // Add Analytics
+    [self analytics];
+    
+    // Create Navigation Architecture for iPhone and iPad
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
+        [self createTabBarForPhone];
     } else {
-        self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil];
+        [self createTabBarForPad];
     }
-    self.window.rootViewController = self.viewController;
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
+#pragma mark - UITabBarController Creation Methods
+- (void)createTabBarForPad
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
+- (void)createTabBarForPhone
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    TimelineViewController *timelineViewController = [[TimelineViewController alloc] initWithNibName:@"TimelineViewController" bundle:nil];
+    [timelineViewController setTitle:@"Timeline"];
+    
+    FavoritesViewController *favoritesViewController = [[FavoritesViewController alloc] initWithNibName:@"FavoritesViewController" bundle:nil];
+    [favoritesViewController setTitle:@"Favorites"];
+    
+    WatchLaterViewController *watchLaterViewController = [[WatchLaterViewController alloc] initWithNibName:@"WatchLaterViewController" bundle:nil];
+    [watchLaterViewController setTitle:@"Watch Later"];
+    
+    SearchViewController *searchViewController = [[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil];
+    [searchViewController setTitle:@"Search"];
+    
+    
+    self.tabBarController = [[UITabBarController alloc] init];
+    NSArray *tabBarArray = [NSArray arrayWithObjects:timelineViewController, favoritesViewController, watchLaterViewController, searchViewController, nil];
+    self.tabBarController.viewControllers = tabBarArray;
+    
+    self.window.rootViewController = self.tabBarController;
+    
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
+#pragma mark - Analytics Methods
+- (void)analytics
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    // Crashlytics
+    [Crashlytics startWithAPIKey:@"84a79b7ee6f2eca13877cd17b9b9a290790f99aa"];
 }
 
 @end
