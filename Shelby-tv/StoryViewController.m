@@ -1,18 +1,18 @@
 //
-//  FavoritesViewController.m
+//  StoryViewController.m
 //  Shelby-tv
 //
 //  Created by Arthur on 4/19/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "FavoritesViewController.h"
+#import "StoryViewController.h"
 
-@interface FavoritesViewController ()
+@interface StoryViewController ()
 
 @end
 
-@implementation FavoritesViewController
+@implementation StoryViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,14 +26,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

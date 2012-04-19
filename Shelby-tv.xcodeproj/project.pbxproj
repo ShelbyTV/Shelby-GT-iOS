@@ -14,15 +14,14 @@
 		8E7F47E2154092310041118E /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47DA154092310041118E /* libfacebook_ios_sdk.a */; };
 		8E7F47E51540931D0041118E /* ASPullToRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47E41540931D0041118E /* ASPullToRefreshTableViewController.m */; };
 		8E7F47E9154093850041118E /* SocialFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47E8154093850041118E /* SocialFacade.m */; };
-		8E7F47F31540B21E0041118E /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47F11540B21E0041118E /* TimelineViewController.m */; };
-		8E7F47F41540B21E0041118E /* TimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E7F47F21540B21E0041118E /* TimelineViewController.xib */; };
-		8E7F47F81540B25A0041118E /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47F61540B25A0041118E /* FavoritesViewController.m */; };
-		8E7F47F91540B25A0041118E /* FavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E7F47F71540B25A0041118E /* FavoritesViewController.xib */; };
-		8E7F47FD1540B26E0041118E /* WatchLaterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47FB1540B26E0041118E /* WatchLaterViewController.m */; };
-		8E7F47FE1540B26E0041118E /* WatchLaterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E7F47FC1540B26E0041118E /* WatchLaterViewController.xib */; };
-		8E7F48021540B2920041118E /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F48001540B2920041118E /* SearchViewController.m */; };
-		8E7F48031540B2920041118E /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E7F48011540B2920041118E /* SearchViewController.xib */; };
 		8E7F48061540B4690041118E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F48051540B4690041118E /* Crashlytics.framework */; };
+		8E8124C61540B7CD00E1EA4B /* tabBarButtonFavoritesHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8124C01540B7CD00E1EA4B /* tabBarButtonFavoritesHighlighted@2x.png */; };
+		8E8124C71540B7CD00E1EA4B /* tabBarButtonFavoritesNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8124C11540B7CD00E1EA4B /* tabBarButtonFavoritesNormal@2x.png */; };
+		8E8124C81540B7CD00E1EA4B /* tabBarButtonTimelineHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8124C21540B7CD00E1EA4B /* tabBarButtonTimelineHighlighted@2x.png */; };
+		8E8124C91540B7CD00E1EA4B /* tabBarButtonTimelineNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8124C31540B7CD00E1EA4B /* tabBarButtonTimelineNormal@2x.png */; };
+		8E8124CA1540B7CD00E1EA4B /* tabBarButtonWatchLaterHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8124C41540B7CD00E1EA4B /* tabBarButtonWatchLaterHighlighted@2x.png */; };
+		8E8124CB1540B7CD00E1EA4B /* tabBarButtonWatchLaterNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8124C51540B7CD00E1EA4B /* tabBarButtonWatchLaterNormal@2x.png */; };
+		8E8124D71540B92E00E1EA4B /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124D61540B92E00E1EA4B /* StoryViewController.m */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
 		8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D21535F6F70009718E /* Foundation.framework */; };
 		8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D41535F6F70009718E /* CoreGraphics.framework */; };
@@ -66,19 +65,15 @@
 		8E7F47E41540931D0041118E /* ASPullToRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASPullToRefreshTableViewController.m; path = library/ASPullToRefresh/ASPullToRefresh/ASPullToRefreshTableViewController.m; sourceTree = SOURCE_ROOT; };
 		8E7F47E7154093850041118E /* SocialFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialFacade.h; sourceTree = "<group>"; };
 		8E7F47E8154093850041118E /* SocialFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialFacade.m; sourceTree = "<group>"; };
-		8E7F47F01540B21E0041118E /* TimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
-		8E7F47F11540B21E0041118E /* TimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
-		8E7F47F21540B21E0041118E /* TimelineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineViewController.xib; sourceTree = "<group>"; };
-		8E7F47F51540B25A0041118E /* FavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesViewController.h; sourceTree = "<group>"; };
-		8E7F47F61540B25A0041118E /* FavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesViewController.m; sourceTree = "<group>"; };
-		8E7F47F71540B25A0041118E /* FavoritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesViewController.xib; sourceTree = "<group>"; };
-		8E7F47FA1540B26E0041118E /* WatchLaterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchLaterViewController.h; path = ../WatchLaterViewController.h; sourceTree = "<group>"; };
-		8E7F47FB1540B26E0041118E /* WatchLaterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchLaterViewController.m; path = ../WatchLaterViewController.m; sourceTree = "<group>"; };
-		8E7F47FC1540B26E0041118E /* WatchLaterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WatchLaterViewController.xib; path = ../WatchLaterViewController.xib; sourceTree = "<group>"; };
-		8E7F47FF1540B2920041118E /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
-		8E7F48001540B2920041118E /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
-		8E7F48011540B2920041118E /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		8E7F48051540B4690041118E /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		8E8124C01540B7CD00E1EA4B /* tabBarButtonFavoritesHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButtonFavoritesHighlighted@2x.png"; sourceTree = "<group>"; };
+		8E8124C11540B7CD00E1EA4B /* tabBarButtonFavoritesNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButtonFavoritesNormal@2x.png"; sourceTree = "<group>"; };
+		8E8124C21540B7CD00E1EA4B /* tabBarButtonTimelineHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButtonTimelineHighlighted@2x.png"; sourceTree = "<group>"; };
+		8E8124C31540B7CD00E1EA4B /* tabBarButtonTimelineNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButtonTimelineNormal@2x.png"; sourceTree = "<group>"; };
+		8E8124C41540B7CD00E1EA4B /* tabBarButtonWatchLaterHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButtonWatchLaterHighlighted@2x.png"; sourceTree = "<group>"; };
+		8E8124C51540B7CD00E1EA4B /* tabBarButtonWatchLaterNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButtonWatchLaterNormal@2x.png"; sourceTree = "<group>"; };
+		8E8124D51540B92E00E1EA4B /* StoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryViewController.h; sourceTree = "<group>"; };
+		8E8124D61540B92E00E1EA4B /* StoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryViewController.m; sourceTree = "<group>"; };
 		8ECBA7CC1535F6F70009718E /* Shelby-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECBA7D01535F6F70009718E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8ECBA7D21535F6F70009718E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -163,6 +158,20 @@
 			name = SocialFacade;
 			sourceTree = "<group>";
 		};
+		8E8124BF1540B7CD00E1EA4B /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				8E8124C01540B7CD00E1EA4B /* tabBarButtonFavoritesHighlighted@2x.png */,
+				8E8124C11540B7CD00E1EA4B /* tabBarButtonFavoritesNormal@2x.png */,
+				8E8124C21540B7CD00E1EA4B /* tabBarButtonTimelineHighlighted@2x.png */,
+				8E8124C31540B7CD00E1EA4B /* tabBarButtonTimelineNormal@2x.png */,
+				8E8124C41540B7CD00E1EA4B /* tabBarButtonWatchLaterHighlighted@2x.png */,
+				8E8124C51540B7CD00E1EA4B /* tabBarButtonWatchLaterNormal@2x.png */,
+			);
+			name = Images;
+			path = Resources/Images;
+			sourceTree = "<group>";
+		};
 		8ECBA7C11535F6F70009718E = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +232,7 @@
 		8ED310E81536018C002614DF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8E8124BF1540B7CD00E1EA4B /* Images */,
 				8ED310EA153601A2002614DF /* Default-Landscape~ipad.png */,
 				8ED310EB153601A2002614DF /* Default-Portrait~ipad.png */,
 				8ED310EC153601A2002614DF /* Default.png */,
@@ -242,14 +252,8 @@
 		8ED3110215360450002614DF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8E7F47F01540B21E0041118E /* TimelineViewController.h */,
-				8E7F47F11540B21E0041118E /* TimelineViewController.m */,
-				8E7F47F51540B25A0041118E /* FavoritesViewController.h */,
-				8E7F47F61540B25A0041118E /* FavoritesViewController.m */,
-				8E7F47FA1540B26E0041118E /* WatchLaterViewController.h */,
-				8E7F47FB1540B26E0041118E /* WatchLaterViewController.m */,
-				8E7F47FF1540B2920041118E /* SearchViewController.h */,
-				8E7F48001540B2920041118E /* SearchViewController.m */,
+				8E8124D51540B92E00E1EA4B /* StoryViewController.h */,
+				8E8124D61540B92E00E1EA4B /* StoryViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -289,10 +293,6 @@
 		8ED3110715360490002614DF /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				8E7F47F21540B21E0041118E /* TimelineViewController.xib */,
-				8E7F47F71540B25A0041118E /* FavoritesViewController.xib */,
-				8E7F47FC1540B26E0041118E /* WatchLaterViewController.xib */,
-				8E7F48011540B2920041118E /* SearchViewController.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -371,10 +371,12 @@
 				8ED31100153601A2002614DF /* Icon@2x.png in Resources */,
 				8ED31101153601A2002614DF /* iTunesArtwork in Resources */,
 				8E7F47E1154092310041118E /* FBDialog.bundle in Resources */,
-				8E7F47F41540B21E0041118E /* TimelineViewController.xib in Resources */,
-				8E7F47F91540B25A0041118E /* FavoritesViewController.xib in Resources */,
-				8E7F47FE1540B26E0041118E /* WatchLaterViewController.xib in Resources */,
-				8E7F48031540B2920041118E /* SearchViewController.xib in Resources */,
+				8E8124C61540B7CD00E1EA4B /* tabBarButtonFavoritesHighlighted@2x.png in Resources */,
+				8E8124C71540B7CD00E1EA4B /* tabBarButtonFavoritesNormal@2x.png in Resources */,
+				8E8124C81540B7CD00E1EA4B /* tabBarButtonTimelineHighlighted@2x.png in Resources */,
+				8E8124C91540B7CD00E1EA4B /* tabBarButtonTimelineNormal@2x.png in Resources */,
+				8E8124CA1540B7CD00E1EA4B /* tabBarButtonWatchLaterHighlighted@2x.png in Resources */,
+				8E8124CB1540B7CD00E1EA4B /* tabBarButtonWatchLaterNormal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,10 +407,7 @@
 				8ECBA7E11535F6F70009718E /* AppDelegate.m in Sources */,
 				8E7F47E51540931D0041118E /* ASPullToRefreshTableViewController.m in Sources */,
 				8E7F47E9154093850041118E /* SocialFacade.m in Sources */,
-				8E7F47F31540B21E0041118E /* TimelineViewController.m in Sources */,
-				8E7F47F81540B25A0041118E /* FavoritesViewController.m in Sources */,
-				8E7F47FD1540B26E0041118E /* WatchLaterViewController.m in Sources */,
-				8E7F48021540B2920041118E /* SearchViewController.m in Sources */,
+				8E8124D71540B92E00E1EA4B /* StoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

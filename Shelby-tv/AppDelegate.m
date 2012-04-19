@@ -10,10 +10,7 @@
 #import "AppDelegate.h"
 
 // Controllers
-#import "TimelineViewController.h"
-#import "FavoritesViewController.h"
-#import "WatchLaterViewController.h"
-#import "SearchViewController.h"
+#import "StoryViewController.h"
 
 // Analytics
 #import <Crashlytics/Crashlytics.h>
@@ -57,23 +54,31 @@
 
 - (void)createTabBarForPhone
 {
-    TimelineViewController *timelineViewController = [[TimelineViewController alloc] initWithNibName:@"TimelineViewController" bundle:nil];
+    // Create TimelineViewController
+    StoryViewController *timelineViewController = [[StoryViewController alloc] init];
+    [timelineViewController.tabBarItem setImage:[UIImage imageNamed:@"tabBarButtonTimelineNormal"]];
     [timelineViewController setTitle:@"Timeline"];
     
-    FavoritesViewController *favoritesViewController = [[FavoritesViewController alloc] initWithNibName:@"FavoritesViewController" bundle:nil];
+    // Create FavoritesViewController
+    StoryViewController *favoritesViewController = [[StoryViewController alloc] init];
+    [timelineViewController.tabBarItem setImage:[UIImage imageNamed:@"tabBarButtonFavoritesNormal"]];
     [favoritesViewController setTitle:@"Favorites"];
     
-    WatchLaterViewController *watchLaterViewController = [[WatchLaterViewController alloc] initWithNibName:@"WatchLaterViewController" bundle:nil];
+    // Create WatchLaterViewController
+    StoryViewController *watchLaterViewController = [[StoryViewController alloc] init];
+    [timelineViewController.tabBarItem setImage:[UIImage imageNamed:@"tabBarButtonWatchLaterNormal"]];
     [watchLaterViewController setTitle:@"Watch Later"];
     
-    SearchViewController *searchViewController = [[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil];
+    // Create SearchViewController
+    StoryViewController *searchViewController = [[StoryViewController alloc] init];
     [searchViewController setTitle:@"Search"];
     
-    
+    // Create UITabBarController
     self.tabBarController = [[UITabBarController alloc] init];
     NSArray *tabBarArray = [NSArray arrayWithObjects:timelineViewController, favoritesViewController, watchLaterViewController, searchViewController, nil];
     self.tabBarController.viewControllers = tabBarArray;
     
+    // Set tabBarController as window's rootViewController
     self.window.rootViewController = self.tabBarController;
     
 }

@@ -1,5 +1,5 @@
 //
-//  TimelineViewController.h
+//  StoryViewController.h
 //  Shelby-tv
 //
 //  Created by Arthur on 4/19/12.
@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASPullToRefreshTableViewController.h"
 
-@interface TimelineViewController : UIViewController
+@interface StoryViewController : ASPullToRefreshTableViewController
 
 @end
