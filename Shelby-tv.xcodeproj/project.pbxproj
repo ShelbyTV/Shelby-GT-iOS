@@ -15,13 +15,8 @@
 		8E7F47E51540931D0041118E /* ASPullToRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47E41540931D0041118E /* ASPullToRefreshTableViewController.m */; };
 		8E7F47E9154093850041118E /* SocialFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47E8154093850041118E /* SocialFacade.m */; };
 		8E7F48061540B4690041118E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F48051540B4690041118E /* Crashlytics.framework */; };
-		8E8124C61540B7CD00E1EA4B /* tabBarButtonFavoritesHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8124C01540B7CD00E1EA4B /* tabBarButtonFavoritesHighlighted@2x.png */; };
-		8E8124C71540B7CD00E1EA4B /* tabBarButtonFavoritesNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8124C11540B7CD00E1EA4B /* tabBarButtonFavoritesNormal@2x.png */; };
-		8E8124C81540B7CD00E1EA4B /* tabBarButtonTimelineHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8124C21540B7CD00E1EA4B /* tabBarButtonTimelineHighlighted@2x.png */; };
-		8E8124C91540B7CD00E1EA4B /* tabBarButtonTimelineNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8124C31540B7CD00E1EA4B /* tabBarButtonTimelineNormal@2x.png */; };
-		8E8124CA1540B7CD00E1EA4B /* tabBarButtonWatchLaterHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8124C41540B7CD00E1EA4B /* tabBarButtonWatchLaterHighlighted@2x.png */; };
-		8E8124CB1540B7CD00E1EA4B /* tabBarButtonWatchLaterNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8124C51540B7CD00E1EA4B /* tabBarButtonWatchLaterNormal@2x.png */; };
 		8E8124D71540B92E00E1EA4B /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124D61540B92E00E1EA4B /* StoryViewController.m */; };
+		8E8124DA1540BE4800E1EA4B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124D91540BE4800E1EA4B /* SettingsViewController.m */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
 		8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D21535F6F70009718E /* Foundation.framework */; };
 		8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D41535F6F70009718E /* CoreGraphics.framework */; };
@@ -66,14 +61,11 @@
 		8E7F47E7154093850041118E /* SocialFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialFacade.h; sourceTree = "<group>"; };
 		8E7F47E8154093850041118E /* SocialFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialFacade.m; sourceTree = "<group>"; };
 		8E7F48051540B4690041118E /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		8E8124C01540B7CD00E1EA4B /* tabBarButtonFavoritesHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButtonFavoritesHighlighted@2x.png"; sourceTree = "<group>"; };
-		8E8124C11540B7CD00E1EA4B /* tabBarButtonFavoritesNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButtonFavoritesNormal@2x.png"; sourceTree = "<group>"; };
-		8E8124C21540B7CD00E1EA4B /* tabBarButtonTimelineHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButtonTimelineHighlighted@2x.png"; sourceTree = "<group>"; };
-		8E8124C31540B7CD00E1EA4B /* tabBarButtonTimelineNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButtonTimelineNormal@2x.png"; sourceTree = "<group>"; };
-		8E8124C41540B7CD00E1EA4B /* tabBarButtonWatchLaterHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButtonWatchLaterHighlighted@2x.png"; sourceTree = "<group>"; };
-		8E8124C51540B7CD00E1EA4B /* tabBarButtonWatchLaterNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButtonWatchLaterNormal@2x.png"; sourceTree = "<group>"; };
 		8E8124D51540B92E00E1EA4B /* StoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryViewController.h; sourceTree = "<group>"; };
 		8E8124D61540B92E00E1EA4B /* StoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryViewController.m; sourceTree = "<group>"; };
+		8E8124D81540BE4800E1EA4B /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		8E8124D91540BE4800E1EA4B /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		8E8124DC1540C09300E1EA4B /* StoryTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTableViewManager.h; sourceTree = "<group>"; };
 		8ECBA7CC1535F6F70009718E /* Shelby-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECBA7D01535F6F70009718E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8ECBA7D21535F6F70009718E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -158,18 +150,12 @@
 			name = SocialFacade;
 			sourceTree = "<group>";
 		};
-		8E8124BF1540B7CD00E1EA4B /* Images */ = {
+		8E8124DB1540C07400E1EA4B /* Table View Managers */ = {
 			isa = PBXGroup;
 			children = (
-				8E8124C01540B7CD00E1EA4B /* tabBarButtonFavoritesHighlighted@2x.png */,
-				8E8124C11540B7CD00E1EA4B /* tabBarButtonFavoritesNormal@2x.png */,
-				8E8124C21540B7CD00E1EA4B /* tabBarButtonTimelineHighlighted@2x.png */,
-				8E8124C31540B7CD00E1EA4B /* tabBarButtonTimelineNormal@2x.png */,
-				8E8124C41540B7CD00E1EA4B /* tabBarButtonWatchLaterHighlighted@2x.png */,
-				8E8124C51540B7CD00E1EA4B /* tabBarButtonWatchLaterNormal@2x.png */,
+				8E8124DC1540C09300E1EA4B /* StoryTableViewManager.h */,
 			);
-			name = Images;
-			path = Resources/Images;
+			name = "Table View Managers";
 			sourceTree = "<group>";
 		};
 		8ECBA7C11535F6F70009718E = {
@@ -232,7 +218,6 @@
 		8ED310E81536018C002614DF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8E8124BF1540B7CD00E1EA4B /* Images */,
 				8ED310EA153601A2002614DF /* Default-Landscape~ipad.png */,
 				8ED310EB153601A2002614DF /* Default-Portrait~ipad.png */,
 				8ED310EC153601A2002614DF /* Default.png */,
@@ -252,8 +237,11 @@
 		8ED3110215360450002614DF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8E8124DB1540C07400E1EA4B /* Table View Managers */,
 				8E8124D51540B92E00E1EA4B /* StoryViewController.h */,
 				8E8124D61540B92E00E1EA4B /* StoryViewController.m */,
+				8E8124D81540BE4800E1EA4B /* SettingsViewController.h */,
+				8E8124D91540BE4800E1EA4B /* SettingsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -371,12 +359,6 @@
 				8ED31100153601A2002614DF /* Icon@2x.png in Resources */,
 				8ED31101153601A2002614DF /* iTunesArtwork in Resources */,
 				8E7F47E1154092310041118E /* FBDialog.bundle in Resources */,
-				8E8124C61540B7CD00E1EA4B /* tabBarButtonFavoritesHighlighted@2x.png in Resources */,
-				8E8124C71540B7CD00E1EA4B /* tabBarButtonFavoritesNormal@2x.png in Resources */,
-				8E8124C81540B7CD00E1EA4B /* tabBarButtonTimelineHighlighted@2x.png in Resources */,
-				8E8124C91540B7CD00E1EA4B /* tabBarButtonTimelineNormal@2x.png in Resources */,
-				8E8124CA1540B7CD00E1EA4B /* tabBarButtonWatchLaterHighlighted@2x.png in Resources */,
-				8E8124CB1540B7CD00E1EA4B /* tabBarButtonWatchLaterNormal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +390,7 @@
 				8E7F47E51540931D0041118E /* ASPullToRefreshTableViewController.m in Sources */,
 				8E7F47E9154093850041118E /* SocialFacade.m in Sources */,
 				8E8124D71540B92E00E1EA4B /* StoryViewController.m in Sources */,
+				8E8124DA1540BE4800E1EA4B /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

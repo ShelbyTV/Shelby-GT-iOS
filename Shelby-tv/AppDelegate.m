@@ -11,6 +11,7 @@
 
 // Controllers
 #import "StoryViewController.h"
+#import "SettingsViewController.h"
 
 // Analytics
 #import <Crashlytics/Crashlytics.h>
@@ -20,6 +21,7 @@
 - (void)createTabBarForPad;
 - (void)createTabBarForPhone;
 - (void)analytics;
+- (void)customization;
 
 @end
 
@@ -32,6 +34,9 @@
 {
     // Instantiate UIWindow
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // UI Customization
+    [self customization];
     
     // Add Analytics
     [self analytics];
@@ -56,26 +61,35 @@
 {
     // Create TimelineViewController
     StoryViewController *timelineViewController = [[StoryViewController alloc] init];
-    [timelineViewController.tabBarItem setImage:[UIImage imageNamed:@"tabBarButtonTimelineNormal"]];
+    [timelineViewController setStoryType:StoryTypeTimeline];
+    [timelineViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [timelineViewController setTitle:@"Timeline"];
     
     // Create FavoritesViewController
     StoryViewController *favoritesViewController = [[StoryViewController alloc] init];
-    [timelineViewController.tabBarItem setImage:[UIImage imageNamed:@"tabBarButtonFavoritesNormal"]];
+    [timelineViewController setStoryType:StoryTypeFavorites];
+    [favoritesViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [favoritesViewController setTitle:@"Favorites"];
     
     // Create WatchLaterViewController
     StoryViewController *watchLaterViewController = [[StoryViewController alloc] init];
-    [timelineViewController.tabBarItem setImage:[UIImage imageNamed:@"tabBarButtonWatchLaterNormal"]];
+    [timelineViewController setStoryType:StoryTypeWatchLater];
+    [watchLaterViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [watchLaterViewController setTitle:@"Watch Later"];
     
     // Create SearchViewController
     StoryViewController *searchViewController = [[StoryViewController alloc] init];
+    [timelineViewController setStoryType:StoryTypeSearch];
+    [searchViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [searchViewController setTitle:@"Search"];
+    
+    SettingsViewController *settingsViewController = [[SettingsViewController alloc] init];
+    [settingsViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
+    [settingsViewController setTitle:@"Settings"];
     
     // Create UITabBarController
     self.tabBarController = [[UITabBarController alloc] init];
-    NSArray *tabBarArray = [NSArray arrayWithObjects:timelineViewController, favoritesViewController, watchLaterViewController, searchViewController, nil];
+    NSArray *tabBarArray = [NSArray arrayWithObjects:timelineViewController, favoritesViewController, watchLaterViewController, searchViewController, settingsViewController, nil];
     self.tabBarController.viewControllers = tabBarArray;
     
     // Set tabBarController as window's rootViewController
@@ -83,7 +97,13 @@
     
 }
 
-#pragma mark - Analytics Methods
+
+#pragma mark - Private Methods
+- (void)customization
+{
+     [[UIApplication sharedApplication] setStatusBarStyle:UIBarStyleBlack];   
+}
+
 - (void)analytics
 {
     // Crashlytics

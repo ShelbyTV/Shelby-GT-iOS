@@ -3,7 +3,7 @@
 //  Shelby-tv
 //
 //  Created by Arthur on 4/19/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
 #import "StoryViewController.h"
@@ -13,26 +13,48 @@
 @end
 
 @implementation StoryViewController
+@synthesize storyType;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+#pragma mark - View Lifecycle Methods
+- (void)viewDidUnload
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    [super viewDidUnload];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
-- (void)viewDidUnload
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
+    [super viewDidAppear:animated];
+    
+    switch (self.storyType) {
+            
+        case StoryTypeTimeline:
+            break;
+    
+        case StoryTypeFavorites:
+            break;
+        
+        case StoryTypeWatchLater:
+            break;
+        
+        case StoryTypeSearch:
+            break;
+        
+        default:
+            break;
+   
+    }
+    
+}
+
+#pragma mark - PullToRefresh Method
+- (void)dataToRefresh
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidFinishRefreshing object:nil];   
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
