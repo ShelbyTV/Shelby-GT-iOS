@@ -2,12 +2,13 @@
 //  StoryViewController.h
 //  Shelby-tv
 //
-//  Created by Arthur on 4/19/12.
+//  Created by Arthur Ariel Sabintsev on 4/19/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "ASPullToRefreshTableViewController.h"
+#import "TableViewManagers.h"
 
 // Structure that delineates between instances of StoryTableViewController;
 typedef enum _StoryType
@@ -21,6 +22,6 @@ typedef enum _StoryType
 
 @interface StoryViewController : ASPullToRefreshTableViewController
 
-@property (assign, nonatomic) StoryType storyType;
+- (id)initWithType:(StoryType)type andTableViewManager:(StoryTableViewManager*)manager;
 
 @end

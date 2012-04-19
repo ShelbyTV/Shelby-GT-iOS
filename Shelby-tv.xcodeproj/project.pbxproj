@@ -17,6 +17,11 @@
 		8E7F48061540B4690041118E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F48051540B4690041118E /* Crashlytics.framework */; };
 		8E8124D71540B92E00E1EA4B /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124D61540B92E00E1EA4B /* StoryViewController.m */; };
 		8E8124DA1540BE4800E1EA4B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124D91540BE4800E1EA4B /* SettingsViewController.m */; };
+		8E8124DF1540C17400E1EA4B /* TimelineTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124DE1540C17400E1EA4B /* TimelineTableViewManager.m */; };
+		8E8124E21540C1A200E1EA4B /* FavoritesTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124E11540C1A200E1EA4B /* FavoritesTableViewManager.m */; };
+		8E8124E51540C1BA00E1EA4B /* WatchLaterTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124E41540C1BA00E1EA4B /* WatchLaterTableViewManager.m */; };
+		8E8124E81540C1C800E1EA4B /* SearchTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124E71540C1C800E1EA4B /* SearchTableViewManager.m */; };
+		8E8124F31540C2E800E1EA4B /* StoryTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124F21540C2E800E1EA4B /* StoryTableViewManager.m */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
 		8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D21535F6F70009718E /* Foundation.framework */; };
 		8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D41535F6F70009718E /* CoreGraphics.framework */; };
@@ -65,7 +70,17 @@
 		8E8124D61540B92E00E1EA4B /* StoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryViewController.m; sourceTree = "<group>"; };
 		8E8124D81540BE4800E1EA4B /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		8E8124D91540BE4800E1EA4B /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		8E8124DC1540C09300E1EA4B /* StoryTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTableViewManager.h; sourceTree = "<group>"; };
+		8E8124DD1540C17400E1EA4B /* TimelineTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineTableViewManager.h; sourceTree = "<group>"; };
+		8E8124DE1540C17400E1EA4B /* TimelineTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineTableViewManager.m; sourceTree = "<group>"; };
+		8E8124E01540C1A200E1EA4B /* FavoritesTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewManager.h; sourceTree = "<group>"; };
+		8E8124E11540C1A200E1EA4B /* FavoritesTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewManager.m; sourceTree = "<group>"; };
+		8E8124E31540C1BA00E1EA4B /* WatchLaterTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchLaterTableViewManager.h; sourceTree = "<group>"; };
+		8E8124E41540C1BA00E1EA4B /* WatchLaterTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchLaterTableViewManager.m; sourceTree = "<group>"; };
+		8E8124E61540C1C800E1EA4B /* SearchTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewManager.h; sourceTree = "<group>"; };
+		8E8124E71540C1C800E1EA4B /* SearchTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewManager.m; sourceTree = "<group>"; };
+		8E8124F11540C2E800E1EA4B /* StoryTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTableViewManager.h; sourceTree = "<group>"; };
+		8E8124F21540C2E800E1EA4B /* StoryTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTableViewManager.m; sourceTree = "<group>"; };
+		8E8124F41540C2F900E1EA4B /* TableViewManagers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewManagers.h; sourceTree = "<group>"; };
 		8ECBA7CC1535F6F70009718E /* Shelby-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECBA7D01535F6F70009718E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8ECBA7D21535F6F70009718E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -153,7 +168,17 @@
 		8E8124DB1540C07400E1EA4B /* Table View Managers */ = {
 			isa = PBXGroup;
 			children = (
-				8E8124DC1540C09300E1EA4B /* StoryTableViewManager.h */,
+				8E8124F41540C2F900E1EA4B /* TableViewManagers.h */,
+				8E8124F11540C2E800E1EA4B /* StoryTableViewManager.h */,
+				8E8124F21540C2E800E1EA4B /* StoryTableViewManager.m */,
+				8E8124DD1540C17400E1EA4B /* TimelineTableViewManager.h */,
+				8E8124DE1540C17400E1EA4B /* TimelineTableViewManager.m */,
+				8E8124E01540C1A200E1EA4B /* FavoritesTableViewManager.h */,
+				8E8124E11540C1A200E1EA4B /* FavoritesTableViewManager.m */,
+				8E8124E31540C1BA00E1EA4B /* WatchLaterTableViewManager.h */,
+				8E8124E41540C1BA00E1EA4B /* WatchLaterTableViewManager.m */,
+				8E8124E61540C1C800E1EA4B /* SearchTableViewManager.h */,
+				8E8124E71540C1C800E1EA4B /* SearchTableViewManager.m */,
 			);
 			name = "Table View Managers";
 			sourceTree = "<group>";
@@ -391,6 +416,11 @@
 				8E7F47E9154093850041118E /* SocialFacade.m in Sources */,
 				8E8124D71540B92E00E1EA4B /* StoryViewController.m in Sources */,
 				8E8124DA1540BE4800E1EA4B /* SettingsViewController.m in Sources */,
+				8E8124DF1540C17400E1EA4B /* TimelineTableViewManager.m in Sources */,
+				8E8124E21540C1A200E1EA4B /* FavoritesTableViewManager.m in Sources */,
+				8E8124E51540C1BA00E1EA4B /* WatchLaterTableViewManager.m in Sources */,
+				8E8124E81540C1C800E1EA4B /* SearchTableViewManager.m in Sources */,
+				8E8124F31540C2E800E1EA4B /* StoryTableViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

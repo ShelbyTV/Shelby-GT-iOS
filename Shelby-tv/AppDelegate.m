@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  Shelby-tv
 //
-//  Created by Arthur on 4/11/12.
+//  Created by Arthur Ariel Sabintsev on 4/11/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 
 // Controllers
+#import "TableViewManagers.h"
 #import "StoryViewController.h"
 #import "SettingsViewController.h"
 
@@ -60,26 +61,26 @@
 - (void)createTabBarForPhone
 {
     // Create TimelineViewController
-    StoryViewController *timelineViewController = [[StoryViewController alloc] init];
-    [timelineViewController setStoryType:StoryTypeTimeline];
+    TimelineTableViewManager *timelineTableViewManager = [[TimelineTableViewManager alloc] init];
+    StoryViewController *timelineViewController = [[StoryViewController alloc] initWithType:StoryTypeTimeline andTableViewManager:timelineTableViewManager];
     [timelineViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [timelineViewController setTitle:@"Timeline"];
     
     // Create FavoritesViewController
-    StoryViewController *favoritesViewController = [[StoryViewController alloc] init];
-    [timelineViewController setStoryType:StoryTypeFavorites];
+    FavoritesTableViewManager *favoritesTableViewManager = [[FavoritesTableViewManager alloc] init];
+    StoryViewController *favoritesViewController = [[StoryViewController alloc] initWithType:StoryTypeFavorites andTableViewManager:favoritesTableViewManager];
     [favoritesViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [favoritesViewController setTitle:@"Favorites"];
     
     // Create WatchLaterViewController
-    StoryViewController *watchLaterViewController = [[StoryViewController alloc] init];
-    [timelineViewController setStoryType:StoryTypeWatchLater];
+    WatchLaterTableViewManager *watchLaterTableViewManager = [[WatchLaterTableViewManager alloc] init];
+    StoryViewController *watchLaterViewController = [[StoryViewController alloc] initWithType:StoryTypeWatchLater andTableViewManager:watchLaterTableViewManager];
     [watchLaterViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [watchLaterViewController setTitle:@"Watch Later"];
     
     // Create SearchViewController
-    StoryViewController *searchViewController = [[StoryViewController alloc] init];
-    [timelineViewController setStoryType:StoryTypeSearch];
+    SearchTableViewManager *searchTableViewManager = [[SearchTableViewManager alloc] init];
+    StoryViewController *searchViewController = [[StoryViewController alloc] initWithType:StoryTypeSearch andTableViewManager:searchTableViewManager];
     [searchViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [searchViewController setTitle:@"Search"];
     

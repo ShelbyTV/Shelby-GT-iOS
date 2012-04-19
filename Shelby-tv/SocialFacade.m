@@ -2,7 +2,7 @@
 //  SocialFacade.m
 //  SocialFacade
 //
-//  Created by Arthur on 4/18/12.
+//  Created by Arthur Ariel Sabintsev on 4/18/12.
 //  Copyright (c) 2012 ArtSabintsev. All rights reserved.
 //
 

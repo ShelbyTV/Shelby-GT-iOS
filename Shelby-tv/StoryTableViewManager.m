@@ -1,13 +1,13 @@
 //
-//  StoryTableViewManager.h
+//  StoryTableViewManager.m
 //  Shelby-tv
 //
 //  Created by Arthur on 4/19/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "StoryTableViewManager.h"
 
-@interface StoryTableViewManager : NSObject
+@implementation StoryTableViewManager
 
 @end

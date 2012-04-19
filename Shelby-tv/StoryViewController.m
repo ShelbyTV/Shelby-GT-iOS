@@ -2,18 +2,35 @@
 //  StoryViewController.m
 //  Shelby-tv
 //
-//  Created by Arthur on 4/19/12.
+//  Created by Arthur Ariel Sabintsev on 4/19/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
 #import "StoryViewController.h"
+#import "StoryTableViewManager.h"
 
 @interface StoryViewController ()
+
+@property (assign, nonatomic) StoryType storyType;
 
 @end
 
 @implementation StoryViewController
 @synthesize storyType;
+
+#pragma mark - Initialization Method
+- (id)initWithType:(StoryType)type andTableViewManager:(StoryTableViewManager *)manager
+{
+    if ( self = [super init] ) {
+        
+        self.storyType = type;
+        self.tableView.delegate = (id)manager;
+        self.tableView.dataSource = (id)manager;
+        
+    }
+    
+    return self;
+}
 
 #pragma mark - View Lifecycle Methods
 - (void)viewDidUnload
@@ -29,26 +46,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    switch (self.storyType) {
-            
-        case StoryTypeTimeline:
-            break;
-    
-        case StoryTypeFavorites:
-            break;
-        
-        case StoryTypeWatchLater:
-            break;
-        
-        case StoryTypeSearch:
-            break;
-        
-        default:
-            break;
-   
-    }
-    
 }
 
 #pragma mark - PullToRefresh Method
