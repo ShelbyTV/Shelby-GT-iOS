@@ -12,20 +12,24 @@
 @interface StoryViewController ()
 
 @property (assign, nonatomic) StoryType storyType;
+@property (strong, nonatomic) StoryTableViewManager *storyTableViewManager;
 
 @end
 
 @implementation StoryViewController
-@synthesize storyType;
+@synthesize storyType = _storyType;
+@synthesize storyTableViewManager = _storyTableViewManager;
 
 #pragma mark - Initialization Method
 - (id)initWithType:(StoryType)type andTableViewManager:(StoryTableViewManager *)manager
 {
+    
     if ( self = [super init] ) {
         
         self.storyType = type;
-        self.tableView.delegate = (id)manager;
-        self.tableView.dataSource = (id)manager;
+        self.storyTableViewManager = manager;
+        self.tableView.delegate = (id)self.storyTableViewManager;
+        self.tableView.dataSource = (id)self.storyTableViewManager;
         
     }
     
@@ -54,6 +58,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kDidFinishRefreshing object:nil];   
 }
 
+#pragma mark - Interface Orientation Method
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
