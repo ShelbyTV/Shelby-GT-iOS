@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E664D3D1541A61A0071EC42 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E664D3C1541A61A0071EC42 /* LoginViewController.m */; };
+		8E664D401541A66A0071EC42 /* LoginViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */; };
+		8E664D421541A6770071EC42 /* LoginViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */; };
 		8E7F47B3154074130041118E /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B2154074130041118E /* Twitter.framework */; };
 		8E7F47B6154074180041118E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B5154074180041118E /* Accounts.framework */; };
 		8E7F47B81540741F0041118E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B71540741F0041118E /* QuartzCore.framework */; };
@@ -44,6 +47,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E664D3B1541A61A0071EC42 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		8E664D3C1541A61A0071EC42 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_iPhone.xib; sourceTree = "<group>"; };
+		8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_iPad.xib; sourceTree = "<group>"; };
 		8E7F47B2154074130041118E /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		8E7F47B5154074180041118E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		8E7F47B71540741F0041118E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -172,16 +179,16 @@
 			isa = PBXGroup;
 			children = (
 				8E8124F41540C2F900E1EA4B /* TableViewManagers.h */,
-				8E8124F11540C2E800E1EA4B /* StoryTableViewManager.h */,
-				8E8124F21540C2E800E1EA4B /* StoryTableViewManager.m */,
-				8E8124DD1540C17400E1EA4B /* TimelineTableViewManager.h */,
-				8E8124DE1540C17400E1EA4B /* TimelineTableViewManager.m */,
 				8E8124E01540C1A200E1EA4B /* FavoritesTableViewManager.h */,
 				8E8124E11540C1A200E1EA4B /* FavoritesTableViewManager.m */,
-				8E8124E31540C1BA00E1EA4B /* WatchLaterTableViewManager.h */,
-				8E8124E41540C1BA00E1EA4B /* WatchLaterTableViewManager.m */,
+				8E8124DD1540C17400E1EA4B /* TimelineTableViewManager.h */,
+				8E8124DE1540C17400E1EA4B /* TimelineTableViewManager.m */,
 				8E8124E61540C1C800E1EA4B /* SearchTableViewManager.h */,
 				8E8124E71540C1C800E1EA4B /* SearchTableViewManager.m */,
+				8E8124F11540C2E800E1EA4B /* StoryTableViewManager.h */,
+				8E8124F21540C2E800E1EA4B /* StoryTableViewManager.m */,
+				8E8124E31540C1BA00E1EA4B /* WatchLaterTableViewManager.h */,
+				8E8124E41540C1BA00E1EA4B /* WatchLaterTableViewManager.m */,
 			);
 			name = "Table View Managers";
 			sourceTree = "<group>";
@@ -266,10 +273,12 @@
 			isa = PBXGroup;
 			children = (
 				8E8124DB1540C07400E1EA4B /* Table View Managers */,
-				8E8124D51540B92E00E1EA4B /* StoryViewController.h */,
-				8E8124D61540B92E00E1EA4B /* StoryViewController.m */,
+				8E664D3B1541A61A0071EC42 /* LoginViewController.h */,
+				8E664D3C1541A61A0071EC42 /* LoginViewController.m */,
 				8E8124D81540BE4800E1EA4B /* SettingsViewController.h */,
 				8E8124D91540BE4800E1EA4B /* SettingsViewController.m */,
+				8E8124D51540B92E00E1EA4B /* StoryViewController.h */,
+				8E8124D61540B92E00E1EA4B /* StoryViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -309,6 +318,8 @@
 		8ED3110715360490002614DF /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */,
+				8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -388,6 +399,8 @@
 				8ED31101153601A2002614DF /* iTunesArtwork in Resources */,
 				8E7F47E1154092310041118E /* FBDialog.bundle in Resources */,
 				8E8124F91540D41E00E1EA4B /* pullToRefreshArrow@2x.png in Resources */,
+				8E664D401541A66A0071EC42 /* LoginViewController_iPhone.xib in Resources */,
+				8E664D421541A6770071EC42 /* LoginViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +438,7 @@
 				8E8124E51540C1BA00E1EA4B /* WatchLaterTableViewManager.m in Sources */,
 				8E8124E81540C1C800E1EA4B /* SearchTableViewManager.m in Sources */,
 				8E8124F31540C2E800E1EA4B /* StoryTableViewManager.m in Sources */,
+				8E664D3D1541A61A0071EC42 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ASPullToRefreshTableViewController.h"
 
-@interface StoryTableViewManager : NSObject <UITableViewDataSource, UITableViewDelegate, ASPullToRefreshScrollDelegate>
+@interface StoryTableViewManager : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) ASPullToRefreshTableViewController *refreshController;
 
