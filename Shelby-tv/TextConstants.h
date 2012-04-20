@@ -6,4 +6,10 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#define kShelbyTV       @"Shelby.tv"
+// Macros for Text
+#define kShelbyTV                                   @"Shelby.tv"
+
+// Macros for Notifications
+#define kArchitecturalElementsReferenceDictionary    @"ArchitecturalElementsReferenceDictionary"
+#define kAppDelegateNavigationController            @"AppDelegateNavigationController"
+#define kAppDelegateTabBarController                @"AppDelegateTabBarController"

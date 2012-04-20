@@ -63,7 +63,7 @@
     return YES;
 }
 
-#pragma mark - Root View Creation Methods
+#pragma mark - Creation Methods
 - (void)createRootViewForPad
 {
     
@@ -104,12 +104,18 @@
     NSArray *tabBarArray = [NSArray arrayWithObjects:timelineViewController, favoritesViewController, watchLaterViewController, searchViewController, settingsViewController, nil];
     tabBarController.viewControllers = tabBarArray;
 
-    // Create UINavigationController
+    // Create UINavigationController and navigationBar
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:tabBarController];
+    [navigationController setNavigationBarHidden:YES];
     
     // Set navigationController as window's rootViewController
     self.window.rootViewController = navigationController;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kArchitecturalElementsReferenceDictionary object:tabBarController]; 
+
+    
 }
+
 
 
 #pragma mark - Private Methods

@@ -13,12 +13,26 @@
 
 @property (assign, nonatomic) StoryType storyType;
 @property (strong, nonatomic) StoryTableViewManager *storyTableViewManager;
+@property (strong, nonatomic) UITabBarController *appDelegateTabBarController;
+@property (strong, nonatomic) UINavigationController *appDelegateNavigationController;
+
+
+- (void)createObservers;
+- (void)grabReferenceToArchitecuralElements:(NSNotification*)notification;
 
 @end
 
 @implementation StoryViewController
 @synthesize storyType = _storyType;
 @synthesize storyTableViewManager = _storyTableViewManager;
+@synthesize appDelegateTabBarController = _appDelegateTabBarController;
+@synthesize appDelegateNavigationController = _appDelegateNavigationController;
+
+#pragma mark - Memory Deallocation Method
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 #pragma mark - Initialization Method
 - (id)initWithType:(StoryType)type andTableViewManager:(StoryTableViewManager *)manager
@@ -26,12 +40,20 @@
     
     if ( self = [super init] ) {
         
+        // Set Type of StoryViewController Instance
         self.storyType = type;
+        
+        // Set TableViewManager (e.g., TableViewDataSource and TableViewDelegate) of StoryViewController instance
         self.storyTableViewManager = manager;
-        self.storyTableViewManager.refreshController = self;
-        self.refreshDelegate = (id)self.storyTableViewManager;
         self.tableView.delegate = (id)self.storyTableViewManager;
         self.tableView.dataSource = (id)self.storyTableViewManager;
+        
+        // Set Reference to ASPullToRefreshTableViewController
+        self.storyTableViewManager.refreshController = self;
+        self.refreshDelegate = (id)self.storyTableViewManager;
+
+        // Create Observers (for reference to AppDelegate's UITabBarController and UINavigationController)
+        [self createObservers];
         
     }
     
@@ -49,9 +71,16 @@
     [super viewDidLoad];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+#pragma mark - Private Methods
+- (void)createObservers
 {
-    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(grabReferenceToArchitecuralElements:) name:kArchitecturalElementsReferenceDictionary object:nil];
+}
+
+- (void)grabReferenceToArchitecuralElements:(NSNotification *)notification
+{
+    self.appDelegateTabBarController = notification.object;
+    self.appDelegateNavigationController = self.appDelegateTabBarController.navigationController;
 }
 
 #pragma mark - Interface Orientation Method
