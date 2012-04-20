@@ -22,6 +22,6 @@ typedef enum _StoryType
 
 @interface StoryViewController : ASPullToRefreshTableViewController
 
-- (id)initWithType:(StoryType)type tableViewManager:(StoryTableViewManager*)manager;
+- (id)initWithType:(StoryType)type andTableViewManager:(StoryTableViewManager*)manager;
 
 @end
