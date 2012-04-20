@@ -22,6 +22,7 @@
 		8E8124E51540C1BA00E1EA4B /* WatchLaterTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124E41540C1BA00E1EA4B /* WatchLaterTableViewManager.m */; };
 		8E8124E81540C1C800E1EA4B /* SearchTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124E71540C1C800E1EA4B /* SearchTableViewManager.m */; };
 		8E8124F31540C2E800E1EA4B /* StoryTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124F21540C2E800E1EA4B /* StoryTableViewManager.m */; };
+		8E8124F91540D41E00E1EA4B /* pullToRefreshArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8124F81540D41E00E1EA4B /* pullToRefreshArrow@2x.png */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
 		8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D21535F6F70009718E /* Foundation.framework */; };
 		8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D41535F6F70009718E /* CoreGraphics.framework */; };
@@ -81,6 +82,7 @@
 		8E8124F11540C2E800E1EA4B /* StoryTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTableViewManager.h; sourceTree = "<group>"; };
 		8E8124F21540C2E800E1EA4B /* StoryTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTableViewManager.m; sourceTree = "<group>"; };
 		8E8124F41540C2F900E1EA4B /* TableViewManagers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewManagers.h; sourceTree = "<group>"; };
+		8E8124F81540D41E00E1EA4B /* pullToRefreshArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pullToRefreshArrow@2x.png"; path = "../../../library/publicLibrary/ASPullToRefresh/ASPullToRefresh/pullToRefreshArrow@2x.png"; sourceTree = "<group>"; };
 		8ECBA7CC1535F6F70009718E /* Shelby-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECBA7D01535F6F70009718E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8ECBA7D21535F6F70009718E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,6 +152,7 @@
 		8E7F47E6154093210041118E /* ASPullToRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				8E8124F81540D41E00E1EA4B /* pullToRefreshArrow@2x.png */,
 				8E7F47E31540931D0041118E /* ASPullToRefreshTableViewController.h */,
 				8E7F47E41540931D0041118E /* ASPullToRefreshTableViewController.m */,
 			);
@@ -384,6 +387,7 @@
 				8ED31100153601A2002614DF /* Icon@2x.png in Resources */,
 				8ED31101153601A2002614DF /* iTunesArtwork in Resources */,
 				8E7F47E1154092310041118E /* FBDialog.bundle in Resources */,
+				8E8124F91540D41E00E1EA4B /* pullToRefreshArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

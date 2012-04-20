@@ -9,6 +9,7 @@
 #import "StoryTableViewManager.h"
 
 @implementation StoryTableViewManager
+@synthesize refreshController = _refreshController;
 
 #pragma mark - UITableViewDelegate Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -30,6 +31,38 @@
     // Configure the cell...
     
     return cell;
+}
+
+#pragma mark - ASPullToRefreshScrollDelegate Methods
+- (void)refreshScrollViewWillBeginDragging:(UIScrollView*)scrollView
+{
+    [self.refreshController scrollViewWillBeginDragging:scrollView];
+}
+
+- (void)refreshScrollViewDidScroll:(UIScrollView*)scrollView
+{
+    [self.refreshController scrollViewDidScroll:scrollView];
+}
+
+- (void)refreshScrollViewDidEndDragging:(UIScrollView*)scrollView willDecelerate:(BOOL)decelerate
+{
+    [self.refreshController scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+}
+
+#pragma mark - UIScrollViewDelegate Methods
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView 
+{
+    [self refreshScrollViewWillBeginDragging:scrollView];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView 
+{
+    [self refreshScrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate 
+{
+    [self refreshScrollViewDidEndDragging:scrollView willDecelerate:decelerate];
 }
 
 @end

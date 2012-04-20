@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "StoryTableViewManager.h"
 
-@interface TimelineTableViewManager : StoryTableViewManager
+@interface TimelineTableViewManager : StoryTableViewManager <ASPullToRefreshDelegate>
 
 @end

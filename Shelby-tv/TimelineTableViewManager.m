@@ -10,26 +10,10 @@
 
 @implementation TimelineTableViewManager
 
-#pragma mark - UITableViewDelegate Methods
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+#pragma mark - ASPullToRefreshDelegate Methods
+- (void)dataToRefresh
 {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 1;
-}
-
-#pragma mark - UITableViewDatasource Methods
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    
-    // Configure the cell...
-    
-    return cell;
+    [self.refreshController didFinishRefreshing];
 }
 
 @end

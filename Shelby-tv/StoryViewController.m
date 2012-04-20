@@ -28,8 +28,11 @@
         
         self.storyType = type;
         self.storyTableViewManager = manager;
+        self.storyTableViewManager.refreshController = self;
+        self.refreshDelegate = (id)self.storyTableViewManager;
         self.tableView.delegate = (id)self.storyTableViewManager;
         self.tableView.dataSource = (id)self.storyTableViewManager;
+
         
     }
     
@@ -50,12 +53,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-}
-
-#pragma mark - PullToRefresh Method
-- (void)dataToRefresh
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:kDidFinishRefreshing object:nil];   
 }
 
 #pragma mark - Interface Orientation Method
