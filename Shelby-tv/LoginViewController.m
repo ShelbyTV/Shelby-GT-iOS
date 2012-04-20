@@ -7,33 +7,69 @@
 //
 
 #import "LoginViewController.h"
+#import "SocialFacade.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () <SocialFacadeDelegate>
+
+@property (weak, nonatomic) SocialFacade *socialFacade;
+
+- (void)initializationOnLoad;
 
 @end
 
 @implementation LoginViewController
+@synthesize socialFacade = _socialFacade;
 
 #pragma mark - View Lifecycle Methods
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // Initialization
+    [self initializationOnLoad];
+
+}
+
+#pragma mark - Private Methods
+- (void)initializationOnLoad
+{
+    // Reference Social Facade Singleton
+    self.socialFacade = (SocialFacade*)[SocialFacade sharedInstance];
+    
+    // Create Observer for facebookAuthorizationStatus
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(facebookAuthorizationStatus) 
+                                                 name:SocialFacadeFacebookAuthorizationStatus 
+                                               object:nil];
+    
+}
+
 #pragma mark - Action Methods
 - (IBAction)facebookLogin:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self.socialFacade facebookLogin];
 }
 
 - (IBAction)twitterLogin:(id)sender
 {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - SocialFacadeDelegate Methods
+-(void)facebookAuthorizationStatus
+{
+    if (self.socialFacade.facebookAuthorized) {
+        
+        [self dismissModalViewControllerAnimated:YES];
+        
+    } else {
+        
+    }
 }
 
 #pragma mark - Interface Orientation Method
