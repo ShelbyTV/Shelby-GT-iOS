@@ -6,8 +6,14 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
+// LoginViewController
 #import "LoginViewController.h"
+
+// Models
 #import "SocialFacade.h"
+
+// Constants
+#import "Constants.h"
 
 @interface LoginViewController () <SocialFacadeDelegate>
 
@@ -19,6 +25,12 @@
 
 @implementation LoginViewController
 @synthesize socialFacade = _socialFacade;
+
+#pragma mark - Memory Deallocation Method
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 #pragma mark - View Lifecycle Methods
 - (void)viewDidUnload
@@ -68,6 +80,7 @@
         [self dismissModalViewControllerAnimated:YES];
         
     } else {
+        
         
     }
 }

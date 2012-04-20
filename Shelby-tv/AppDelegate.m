@@ -63,11 +63,6 @@
     return YES;
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    return ( [[[SocialFacade sharedInstance] facebook] handleOpenURL:url] ) ? YES : NO;
-}
-
 #pragma mark - Root View Creation Methods
 - (void)createRootViewForPad
 {
