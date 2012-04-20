@@ -19,7 +19,6 @@
 #define         SocialFacadeFacebookAuthorizationStatus     @"SocialFacadeFacebookAuthorizationStatus"
 #define         SocialFacadeTwitterAuthorizationStatus      @"SocialFacadeTwitterAuthorizationStatus"
 
-
 /// RequestType - Used to sort between various Social Requests ///
 typedef enum _SocialRequestType 
 {
@@ -49,10 +48,15 @@ FBRequestDelegate
 @property (assign, nonatomic) SocialRequestType socialRequestType;
 
 /// Properties utilizing NSUserDefaults ///
+// General
 @property (assign, nonatomic) BOOL previouslyLaunched;
+
+// Facebook
 @property (assign, nonatomic) BOOL facebookAuthorized;
 @property (copy, nonatomic) NSString *facebookName;
 @property (copy, nonatomic) NSString *facebookID;
+
+// Twitter
 @property (assign, nonatomic) BOOL twitterAuthorized;
 @property (copy, nonatomic) NSString *twitterName;
 @property (copy, nonatomic) NSString *twitterID;

@@ -17,7 +17,7 @@
 
 @interface LoginViewController () <SocialFacadeDelegate>
 
-@property (weak, nonatomic) SocialFacade *socialFacade;
+@property (strong, nonatomic) SocialFacade *socialFacade;
 
 - (void)initializationOnLoad;
 

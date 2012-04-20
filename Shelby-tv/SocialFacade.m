@@ -35,6 +35,7 @@ static SocialFacade *sharedInstance = nil;
 
 /// Twitter Methods ///
 - (void)twitterLogin;
+- (void)twitterLogout;
 
 @end
 
@@ -152,12 +153,6 @@ static SocialFacade *sharedInstance = nil;
     self.facebookID = nil;
 }
 
-#pragma mark - Twitter Authorization Methods
-- (void)twitterLogin
-{
-
-}
-
 #pragma mark - FBSessionDelegate Methods
 /// Method called upon succesful login ///
 - (void)fbDidLogin 
@@ -217,7 +212,7 @@ static SocialFacade *sharedInstance = nil;
     [defaults synchronize];
     
     NSLog(@"\nExtended Token: %@\nExpiration Date: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"], [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]);
-
+    
 }
 
 - (void)fbSessionInvalidated
@@ -266,6 +261,33 @@ static SocialFacade *sharedInstance = nil;
     self.socialRequestType = SocialRequestFinished;
     
 }
+
+#pragma mark - Twitter Authorization Methods
+- (void)twitterLogin
+{
+	// Create an accountStore object
+	ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+	
+	// Create an accountType object that ensures Twitter accounts are retrieved
+    ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    
+    [accountStore requestAccessToAccountsWithType:accountType withCompletionHandler:^(BOOL granted, NSError *error) {
+    
+        if ( granted ) {
+            
+        } else {
+            
+        }
+    
+    }];
+    
+}
+
+- (void)twitterLogout
+{
+    
+}
+
 
 #pragma mark - Accessor Methods
 /// First Launch Flag /// 
