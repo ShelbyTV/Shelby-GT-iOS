@@ -14,9 +14,14 @@ static SocialFacade *sharedInstance = nil;
 #define         SocialFacadePreviouslyLaunched          @"SocialFacadePreviouslyLaunched"
 
 /// Facebook Macros ///
-#define         SocialFacadeFacadebookAuthorized        @"SocialFacadeFacdebookAuthorized"
-#define         SocialFacadeFacadebookFacadeName        @"SocialFacadeFacdebookName"
-#define         SocialFacadeFacadebookFacadeID          @"SocialFacadeFacdebookID"
+#define         SocialFacadeFacebookAuthorized          @"SocialFacadeFacebookAuthorized"
+#define         SocialFacadeFacebookName                @"SocialFacadeFacebookName"
+#define         SocialFacadeFacebookID                  @"SocialFacadeFacebookID"
+
+/// Twitter Macros ///
+#define         SocialFacadeTwitterAuthorized           @"SocialFacadeFacebookAuthorized"
+#define         SocialFacadeTwitterName                 @"SocialFacadeTwitterName"
+#define         SocialFacadeTwitterID                   @"SocialFacadeTwitterID"
 
 #pragma mark - Private Declarations
 @interface SocialFacade ()
@@ -275,41 +280,78 @@ static SocialFacade *sharedInstance = nil;
     return [[NSUserDefaults standardUserDefaults] boolForKey:SocialFacadePreviouslyLaunched];
 }
 
-/// Authorization Flag /// 
+/// Facebook Authorization Flag /// 
 - (void)setFacebookAuthorized:(BOOL)facebookAuthorized
 {
     
-    [[NSUserDefaults standardUserDefaults] setBool:facebookAuthorized forKey:SocialFacadeFacadebookAuthorized];
+    [[NSUserDefaults standardUserDefaults] setBool:facebookAuthorized forKey:SocialFacadeFacebookAuthorized];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (BOOL)facebookAuthorized 
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:SocialFacadeFacadebookAuthorized];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:SocialFacadeFacebookAuthorized];
 }
 
 /// Facebook Name /// 
 - (void)setFacebookName:(NSString *)facebookName
 {
-    [[NSUserDefaults standardUserDefaults] setObject:facebookName forKey:SocialFacadeFacadebookFacadeName];
+    [[NSUserDefaults standardUserDefaults] setObject:facebookName forKey:SocialFacadeFacebookName];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSString*)facebookName
 {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeFacadebookFacadeName];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeFacebookName];
 }
 
 /// Facebook ID /// 
 - (void)setFacebookID:(NSString *)facebookID
 {
-    [[NSUserDefaults standardUserDefaults] setObject:facebookID forKey:SocialFacadeFacadebookFacadeID];
+    [[NSUserDefaults standardUserDefaults] setObject:facebookID forKey:SocialFacadeFacebookID];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSString*)facebookID
 {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeFacadebookFacadeID];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeFacebookID];
+}
+
+/// Twitter Authorization Flag /// 
+- (void)setTwitterAuthorized:(BOOL)twitterAuthorized
+{
+    
+    [[NSUserDefaults standardUserDefaults] setBool:twitterAuthorized forKey:SocialFacadeTwitterAuthorized];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)twitterAuthorized 
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:SocialFacadeTwitterAuthorized];
+}
+
+/// Twitter Name /// 
+- (void)setTwitterName:(NSString *)twitterName
+{
+    [[NSUserDefaults standardUserDefaults] setObject:twitterName forKey:SocialFacadeTwitterName];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString*)twitterName
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeTwitterName];
+}
+
+/// Twitter ID /// 
+- (void)setTwitterID:(NSString *)twitterID
+{
+    [[NSUserDefaults standardUserDefaults] setObject:twitterID forKey:SocialFacadeTwitterID];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString*)twitterID
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeTwitterID];
 }
 
 @end

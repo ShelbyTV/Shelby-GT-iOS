@@ -17,6 +17,8 @@
 
 /// NSNotificationCenter Macros ///
 #define         SocialFacadeFacebookAuthorizationStatus     @"SocialFacadeFacebookAuthorizationStatus"
+#define         SocialFacadeTwitterAuthorizationStatus      @"SocialFacadeTwitterAuthorizationStatus"
+
 
 /// RequestType - Used to sort between various Social Requests ///
 typedef enum _SocialRequestType 
@@ -31,6 +33,7 @@ typedef enum _SocialRequestType
 /// SocialFacadeDelegate - Delegate Method for Login Screens ///
 @protocol SocialFacadeDelegate <NSObject>
 - (void)facebookAuthorizationStatus;
+- (void)twitterAuthorizationStatus;
 @end
 
 @interface SocialFacade : NSObject 
@@ -50,6 +53,9 @@ FBRequestDelegate
 @property (assign, nonatomic) BOOL facebookAuthorized;
 @property (copy, nonatomic) NSString *facebookName;
 @property (copy, nonatomic) NSString *facebookID;
+@property (assign, nonatomic) BOOL twitterAuthorized;
+@property (copy, nonatomic) NSString *twitterName;
+@property (copy, nonatomic) NSString *twitterID;
 
 /// Singleton Class Method ///
 +(SocialFacade *)sharedInstance;

@@ -75,7 +75,7 @@
 #pragma mark - SocialFacadeDelegate Methods
 -(void)facebookAuthorizationStatus
 {
-    if (self.socialFacade.facebookAuthorized) {
+    if ( [self.socialFacade facebookAuthorized] ) {
         
         [self dismissModalViewControllerAnimated:YES];
         
@@ -83,6 +83,19 @@
         
         
     }
+}
+
+- (void)twitterAuthorizationStatus
+{
+    
+    if ( [self.socialFacade twitterAuthorized] ) {
+        
+        [self dismissModalViewControllerAnimated:YES];
+        
+    } else {
+        
+    }
+    
 }
 
 #pragma mark - Interface Orientation Method
