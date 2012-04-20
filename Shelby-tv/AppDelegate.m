@@ -9,26 +9,33 @@
 // AppDelegate
 #import "AppDelegate.h"
 
+// Models
+#import "SocialFacade.h"
+
 // Controllers
 #import "TableViewManagers.h"
 #import "StoryViewController.h"
 #import "SettingsViewController.h"
+#import "LoginViewController.h"
 
 // Analytics
 #import <Crashlytics/Crashlytics.h>
 
+// Constants 
+#import "Constants.h"
+
 @interface AppDelegate ()
 
-- (void)createTabBarForPad;
-- (void)createTabBarForPhone;
 - (void)analytics;
 - (void)customization;
+- (void)createRootViewForPad;
+- (void)createRootViewForPhone;
+- (void)checkUserAuthorization;
 
 @end
 
 @implementation AppDelegate
 @synthesize window = _window;
-@synthesize tabBarController = _tabBarController;
 
 #pragma mark - UIApplicationDelegate Methods
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -44,21 +51,25 @@
     
     // Create Navigation Architecture for iPhone and iPad
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        [self createTabBarForPhone];
+        [self createRootViewForPhone];
     } else {
-        [self createTabBarForPad];
+        [self createRootViewForPad];
     }
     
     [self.window makeKeyAndVisible];
+
+    [self checkUserAuthorization];
+    
     return YES;
 }
 
-#pragma mark - UITabBarController Creation Methods
-- (void)createTabBarForPad
+#pragma mark - Root View Creation Methods
+- (void)createRootViewForPad
 {
+    
 }
 
-- (void)createTabBarForPhone
+- (void)createRootViewForPhone
 {
     // Create TimelineViewController
     TimelineTableViewManager *timelineTableViewManager = [[TimelineTableViewManager alloc] init];
@@ -89,17 +100,35 @@
     [settingsViewController setTitle:@"Settings"];
     
     // Create UITabBarController
-    self.tabBarController = [[UITabBarController alloc] init];
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
     NSArray *tabBarArray = [NSArray arrayWithObjects:timelineViewController, favoritesViewController, watchLaterViewController, searchViewController, settingsViewController, nil];
-    self.tabBarController.viewControllers = tabBarArray;
+    tabBarController.viewControllers = tabBarArray;
+
+    // Create UINavigationController
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:tabBarController];
     
-    // Set tabBarController as window's rootViewController
-    self.window.rootViewController = self.tabBarController;
-    
+    // Set navigationController as window's rootViewController
+    self.window.rootViewController = navigationController;
 }
 
 
 #pragma mark - Private Methods
+- (void)checkUserAuthorization
+{
+ 
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        
+        LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController_iPhone" bundle:nil];
+        [self.window.rootViewController presentModalViewController:loginViewController animated:NO];
+    
+    } else {
+    
+        LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController_iPad" bundle:nil];
+        [self.window.rootViewController presentModalViewController:loginViewController animated:NO];
+    
+    }
+}
+
 - (void)customization
 {
      [[UIApplication sharedApplication] setStatusBarStyle:UIBarStyleBlack];   

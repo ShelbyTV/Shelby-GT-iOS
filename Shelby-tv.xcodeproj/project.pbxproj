@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E664D3D1541A61A0071EC42 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E664D3C1541A61A0071EC42 /* LoginViewController.m */; };
 		8E664D401541A66A0071EC42 /* LoginViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */; };
 		8E664D421541A6770071EC42 /* LoginViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */; };
+		8E664D541541B0120071EC42 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E664D531541B0120071EC42 /* LoginViewController.m */; };
 		8E7F47B3154074130041118E /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B2154074130041118E /* Twitter.framework */; };
 		8E7F47B6154074180041118E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B5154074180041118E /* Accounts.framework */; };
 		8E7F47B81540741F0041118E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B71540741F0041118E /* QuartzCore.framework */; };
@@ -47,10 +47,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8E664D3B1541A61A0071EC42 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		8E664D3C1541A61A0071EC42 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_iPhone.xib; sourceTree = "<group>"; };
 		8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_iPad.xib; sourceTree = "<group>"; };
+		8E664D521541B0120071EC42 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		8E664D531541B0120071EC42 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		8E664D561541B1040071EC42 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		8E664D571541B10D0071EC42 /* APIConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIConstants.h; sourceTree = "<group>"; };
 		8E7F47B2154074130041118E /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		8E7F47B5154074180041118E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		8E7F47B71540741F0041118E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -133,6 +135,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E664D551541B0C40071EC42 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				8E664D561541B1040071EC42 /* Constants.h */,
+				8E664D571541B10D0071EC42 /* APIConstants.h */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
 		8E7F47D1154092310041118E /* facebook-ios-sdk */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				8ED311081536049D002614DF /* App Delegate */,
+				8E664D551541B0C40071EC42 /* Constants */,
 				8ED3110515360464002614DF /* Categories */,
 				8ED311041536045F002614DF /* Models */,
 				8ED311031536045A002614DF /* Views */,
@@ -273,8 +285,8 @@
 			isa = PBXGroup;
 			children = (
 				8E8124DB1540C07400E1EA4B /* Table View Managers */,
-				8E664D3B1541A61A0071EC42 /* LoginViewController.h */,
-				8E664D3C1541A61A0071EC42 /* LoginViewController.m */,
+				8E664D521541B0120071EC42 /* LoginViewController.h */,
+				8E664D531541B0120071EC42 /* LoginViewController.m */,
 				8E8124D81540BE4800E1EA4B /* SettingsViewController.h */,
 				8E8124D91540BE4800E1EA4B /* SettingsViewController.m */,
 				8E8124D51540B92E00E1EA4B /* StoryViewController.h */,
@@ -438,7 +450,7 @@
 				8E8124E51540C1BA00E1EA4B /* WatchLaterTableViewManager.m in Sources */,
 				8E8124E81540C1C800E1EA4B /* SearchTableViewManager.m in Sources */,
 				8E8124F31540C2E800E1EA4B /* StoryTableViewManager.m in Sources */,
-				8E664D3D1541A61A0071EC42 /* LoginViewController.m in Sources */,
+				8E664D541541B0120071EC42 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

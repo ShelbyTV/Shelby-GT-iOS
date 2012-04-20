@@ -32,7 +32,6 @@
         self.refreshDelegate = (id)self.storyTableViewManager;
         self.tableView.delegate = (id)self.storyTableViewManager;
         self.tableView.dataSource = (id)self.storyTableViewManager;
-
         
     }
     
