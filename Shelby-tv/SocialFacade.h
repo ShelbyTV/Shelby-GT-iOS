@@ -10,6 +10,7 @@
 #import <Accounts/Accounts.h>
 #import <Twitter/Twitter.h>
 #import "FBConnect.h"
+#import "OAuthConsumer.h"
 
 /// Authorization Macros ///
 #define         SocialFacadeFacebookAPIKey                  @"349934901721555"
