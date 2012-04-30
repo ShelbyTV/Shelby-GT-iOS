@@ -10,6 +10,5 @@
 #import "YourRollsTableViewManager.h"
 #import "PeopleRollsTableViewManager.h"
 #import "PopularRollsTableViewManager.h"
-#import "GeniusRollsTableViewManager.h"
-#import "SaveTableViewManager.h"
+#import "SavesTableViewManager.h"
 #import "SearchTableViewManager.h"

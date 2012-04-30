@@ -6,23 +6,24 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import "StoryViewController.h"
-#import "StoryTableViewManager.h"
+#import "GuideViewController.h"
+#import "GuideTableViewManager.h"
 
-@interface StoryViewController ()
+@interface GuideViewController ()
 
-@property (assign, nonatomic) StoryType storyType;
-@property (strong, nonatomic) StoryTableViewManager *storyTableViewManager;
+@property (assign, nonatomic) GuideType guideType;
+@property (strong, nonatomic) GuideTableViewManager *storyTableViewManager;
 @property (strong, nonatomic) UITabBarController *appDelegateTabBarController;
 @property (strong, nonatomic) UINavigationController *appDelegateNavigationController;
 
 - (void)createObservers;
 - (void)grabReferenceToArchitecuralElements:(NSNotification*)notification;
+- (void)customizeForStoryTableViewManager;
 
 @end
 
-@implementation StoryViewController
-@synthesize storyType = _storyType;
+@implementation GuideViewController
+@synthesize guideType = _guideType;
 @synthesize storyTableViewManager = _storyTableViewManager;
 @synthesize appDelegateTabBarController = _appDelegateTabBarController;
 @synthesize appDelegateNavigationController = _appDelegateNavigationController;
@@ -34,13 +35,13 @@
 }
 
 #pragma mark - Initialization Method
-- (id)initWithType:(StoryType)type andTableViewManager:(StoryTableViewManager *)manager
+- (id)initWithGuideType:(GuideType)type andTableViewManager:(GuideTableViewManager *)manager
 {
     
     if ( self = [super init] ) {
         
         // Set Type of StoryViewController Instance
-        self.storyType = type;
+        self.guideType = type;
         
         // Set TableViewManager (e.g., TableViewDataSource and TableViewDelegate) of StoryViewController instance
         self.storyTableViewManager = manager;
@@ -68,6 +69,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Customize for instance of StoryTableViewManager
+    [self customizeForStoryTableViewManager];
 }
 
 #pragma mark - Private Methods
@@ -80,6 +84,11 @@
 {
     self.appDelegateTabBarController = notification.object;
     self.appDelegateNavigationController = self.appDelegateTabBarController.navigationController;
+}
+
+- (void)customizeForStoryTableViewManager
+{
+    
 }
 
 #pragma mark - Interface Orientation Method

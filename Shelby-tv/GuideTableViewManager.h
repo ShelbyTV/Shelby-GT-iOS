@@ -1,5 +1,5 @@
 //
-//  StoryTableViewManager.h
+//  GuideTableViewManager.h
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 4/19/12.
@@ -7,8 +7,9 @@
 //
 
 #import "ASPullToRefreshTableViewController.h"
+#import "StaticDeclarations.h"
 
-@interface StoryTableViewManager : NSObject <UITableViewDataSource, UITableViewDelegate>
+@interface GuideTableViewManager : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) ASPullToRefreshTableViewController *refreshController;
 

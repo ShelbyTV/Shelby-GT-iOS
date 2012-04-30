@@ -1,5 +1,5 @@
 //
-//  TimelineTableViewManager.m
+//  StreamTableViewManager.m
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 4/19/12.

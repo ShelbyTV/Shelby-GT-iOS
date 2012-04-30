@@ -1,14 +1,14 @@
 //
-//  StoryTableViewManager.m
+//  GuideTableViewManager.m
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 4/19/12.
 //  Copyright (c) 2012 . All rights reserved.
 //
 
-#import "StoryTableViewManager.h"
+#import "GuideTableViewManager.h"
 
-@implementation StoryTableViewManager
+@implementation GuideTableViewManager
 @synthesize refreshController = _refreshController;
 
 #pragma mark - UITableViewDelegate Methods

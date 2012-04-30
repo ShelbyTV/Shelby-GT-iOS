@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StaticDeclarations.h"
 
 @interface YouTableViewController : UITableViewController
 

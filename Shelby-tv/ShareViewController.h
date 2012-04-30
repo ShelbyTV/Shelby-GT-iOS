@@ -1,13 +1,13 @@
 //
-//  GeniusRollsTableViewManager.h
+//  ShareViewController.h
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 4/30/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import "StoryTableViewManager.h"
+#import <UIKit/UIKit.h>
 
-@interface GeniusRollsTableViewManager : StoryTableViewManager
+@interface ShareViewController : UIViewController
 
 @end

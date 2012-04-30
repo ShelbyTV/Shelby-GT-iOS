@@ -13,7 +13,7 @@
 #import "SocialFacade.h"
 
 // Constants
-#import "Constants.h"
+#import "StaticDeclarations.h"
 
 @interface LoginViewController () <SocialFacadeDelegate>
 

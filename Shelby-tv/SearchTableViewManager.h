@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import "StoryTableViewManager.h"
+#import "GuideTableViewManager.h"
 
-@interface SearchTableViewManager : StoryTableViewManager
+@interface SearchTableViewManager : GuideTableViewManager
 
 @end

@@ -1,13 +1,13 @@
 //
-//  SaveTableViewManager.h
+//  SavesTableViewManager.h
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 4/19/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import "StoryTableViewManager.h"
+#import "GuideTableViewManager.h"
 
-@interface SaveTableViewManager : StoryTableViewManager
+@interface SavesTableViewManager : GuideTableViewManager
 
 @end

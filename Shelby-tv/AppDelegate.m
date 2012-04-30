@@ -14,15 +14,16 @@
 
 // Controllers
 #import "TableViewManagers.h"
-#import "YouTableViewController.h"
-#import "StoryViewController.h"
+#import "GuideViewController.h"
+#import "RollsViewController.h"
 #import "LoginViewController.h"
+#import "YouTableViewController.h"
 
 // Analytics
 #import <Crashlytics/Crashlytics.h>
 
 // Constants 
-#import "Constants.h"
+#import "StaticDeclarations.h"
 
 @interface AppDelegate ()
 
@@ -75,25 +76,25 @@
 {
     // Create TimelineViewController
     StreamTableViewManager *streamTableViewManager = [[StreamTableViewManager alloc] init];
-    StoryViewController *streamViewController = [[StoryViewController alloc] initWithType:StoryTypeStream andTableViewManager:streamTableViewManager];
+    GuideViewController *streamViewController = [[GuideViewController alloc] initWithGuideType:GuideTypeStream andTableViewManager:streamTableViewManager];
     [streamViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [streamViewController setTitle:@"Stream"];
     
     // Create FavoritesViewController
-    YourRollsTableViewManager *yourRollsTableViewManager = [[YourRollsTableViewManager alloc] init];
-    StoryViewController *yourRollsViewController = [[StoryViewController alloc] initWithType:StoryTypeRolls andTableViewManager:yourRollsTableViewManager];
-    [yourRollsViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
-    [yourRollsViewController setTitle:@"Rolls"];
+    RollsViewController *rollsViewController = [[RollsViewController alloc] initWithNibName:@"RollsViewController" bundle:nil];
+    [rollsViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
+    [rollsViewController setRollsType:RollsTypeYour];
+    [rollsViewController setTitle:@"Rolls"];
     
     // Create WatchLaterViewController
-    SaveTableViewManager *saveTableViewManager = [[SaveTableViewManager alloc] init];
-    StoryViewController *saveViewController = [[StoryViewController alloc] initWithType:StoryTypeSave andTableViewManager:saveTableViewManager];
-    [saveViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
-    [saveViewController setTitle:@"Save"];
+    SavesTableViewManager *savesTableViewManager = [[SavesTableViewManager alloc] init];
+    GuideViewController *savesViewController = [[GuideViewController alloc] initWithGuideType:GuideTypeSaves andTableViewManager:savesTableViewManager];
+    [savesViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
+    [savesViewController setTitle:@"Save"];
     
     // Create SearchViewController
     SearchTableViewManager *searchTableViewManager = [[SearchTableViewManager alloc] init];
-    StoryViewController *searchViewController = [[StoryViewController alloc] initWithType:StoryTypeSearch andTableViewManager:searchTableViewManager];
+    GuideViewController *searchViewController = [[GuideViewController alloc] initWithGuideType:GuideTypeSearch andTableViewManager:searchTableViewManager];
     [searchViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [searchViewController setTitle:@"Search"];
     
@@ -103,12 +104,11 @@
     
     // Create UITabBarController
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    NSArray *tabBarArray = [NSArray arrayWithObjects:streamViewController, yourRollsViewController, saveViewController, searchViewController, youTableViewController, nil];
+    NSArray *tabBarArray = [NSArray arrayWithObjects:streamViewController, rollsViewController, savesViewController, searchViewController, youTableViewController, nil];
     tabBarController.viewControllers = tabBarArray;
 
     // Create UINavigationController and navigationBar
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:tabBarController];
-    [navigationController setNavigationBarHidden:YES];
     
     // Set navigationController as window's rootViewController
     self.window.rootViewController = navigationController;
@@ -120,7 +120,8 @@
 #pragma mark - Private Methods
 - (void)customization
 {
-     [[UIApplication sharedApplication] setStatusBarStyle:UIBarStyleBlack];   
+//     [[UIApplication sharedApplication] setStatusBarStyle:UIBarStyleBlack];   
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 - (void)analytics

@@ -32,10 +32,12 @@
 		8E664E241541FE490071EC42 /* OATokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E664E0E1541FE490071EC42 /* OATokenManager.m */; settings = {COMPILER_FLAGS = "-Wno-arc-performSelector-leaks"; }; };
 		8E664E251541FE490071EC42 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 8E664E101541FE490071EC42 /* README */; };
 		8E67158D154EF3540059FC1A /* YourRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E67158C154EF3540059FC1A /* YourRollsTableViewManager.m */; };
-		8E671592154F0B360059FC1A /* ShareViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E671590154F0B360059FC1A /* ShareViewControllerViewController.m */; };
+		8E671592154F0B360059FC1A /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E671590154F0B360059FC1A /* ShareViewController.m */; };
 		8E671593154F0B360059FC1A /* ShareViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E671591154F0B360059FC1A /* ShareViewControllerViewController.xib */; };
 		8E671596154F0B9E0059FC1A /* StreamTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E671595154F0B9E0059FC1A /* StreamTableViewManager.m */; };
 		8E671599154F0C3B0059FC1A /* YouTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E671598154F0C3B0059FC1A /* YouTableViewController.m */; };
+		8E6715AC154F17BB0059FC1A /* RollsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6715AA154F17BB0059FC1A /* RollsViewController.m */; };
+		8E6715AD154F17BB0059FC1A /* RollsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E6715AB154F17BB0059FC1A /* RollsViewController.xib */; };
 		8E7F47B3154074130041118E /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B2154074130041118E /* Twitter.framework */; };
 		8E7F47B6154074180041118E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B5154074180041118E /* Accounts.framework */; };
 		8E7F47B81540741F0041118E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B71540741F0041118E /* QuartzCore.framework */; };
@@ -44,14 +46,13 @@
 		8E7F47E51540931D0041118E /* ASPullToRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47E41540931D0041118E /* ASPullToRefreshTableViewController.m */; };
 		8E7F47E9154093850041118E /* SocialFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47E8154093850041118E /* SocialFacade.m */; };
 		8E7F48061540B4690041118E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F48051540B4690041118E /* Crashlytics.framework */; };
-		8E8124D71540B92E00E1EA4B /* StoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124D61540B92E00E1EA4B /* StoryViewController.m */; };
-		8E8124E51540C1BA00E1EA4B /* SaveTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124E41540C1BA00E1EA4B /* SaveTableViewManager.m */; };
+		8E8124D71540B92E00E1EA4B /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124D61540B92E00E1EA4B /* GuideViewController.m */; };
+		8E8124E51540C1BA00E1EA4B /* SavesTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124E41540C1BA00E1EA4B /* SavesTableViewManager.m */; };
 		8E8124E81540C1C800E1EA4B /* SearchTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124E71540C1C800E1EA4B /* SearchTableViewManager.m */; };
-		8E8124F31540C2E800E1EA4B /* StoryTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124F21540C2E800E1EA4B /* StoryTableViewManager.m */; };
+		8E8124F31540C2E800E1EA4B /* GuideTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */; };
 		8E8124F91540D41E00E1EA4B /* pullToRefreshArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8124F81540D41E00E1EA4B /* pullToRefreshArrow@2x.png */; };
 		8EAA320F154EF239003FC586 /* PeopleRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAA320E154EF239003FC586 /* PeopleRollsTableViewManager.m */; };
 		8EAA3212154EF271003FC586 /* PopularRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAA3211154EF271003FC586 /* PopularRollsTableViewManager.m */; };
-		8EAA3215154EF285003FC586 /* GeniusRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAA3214154EF285003FC586 /* GeniusRollsTableViewManager.m */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
 		8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D21535F6F70009718E /* Foundation.framework */; };
 		8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D41535F6F70009718E /* CoreGraphics.framework */; };
@@ -77,7 +78,7 @@
 		8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_iPad.xib; sourceTree = "<group>"; };
 		8E664D521541B0120071EC42 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		8E664D531541B0120071EC42 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		8E664D561541B1040071EC42 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		8E664D561541B1040071EC42 /* StaticDeclarations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StaticDeclarations.h; sourceTree = "<group>"; };
 		8E664D571541B10D0071EC42 /* APIConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIConstants.h; sourceTree = "<group>"; };
 		8E664D6D1541C81F0071EC42 /* TextConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextConstants.h; sourceTree = "<group>"; };
 		8E664DE61541FE490071EC42 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -122,13 +123,17 @@
 		8E664E0F1541FE490071EC42 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
 		8E664E101541FE490071EC42 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		8E67158C154EF3540059FC1A /* YourRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourRollsTableViewManager.m; sourceTree = "<group>"; };
-		8E67158F154F0B360059FC1A /* ShareViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewControllerViewController.h; sourceTree = "<group>"; };
-		8E671590154F0B360059FC1A /* ShareViewControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewControllerViewController.m; sourceTree = "<group>"; };
+		8E67158F154F0B360059FC1A /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ShareViewController.h; sourceTree = "<group>"; };
+		8E671590154F0B360059FC1A /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		8E671591154F0B360059FC1A /* ShareViewControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareViewControllerViewController.xib; sourceTree = "<group>"; };
 		8E671594154F0B9E0059FC1A /* StreamTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewManager.h; sourceTree = "<group>"; };
 		8E671595154F0B9E0059FC1A /* StreamTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamTableViewManager.m; sourceTree = "<group>"; };
 		8E671597154F0C3B0059FC1A /* YouTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTableViewController.h; sourceTree = "<group>"; };
 		8E671598154F0C3B0059FC1A /* YouTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTableViewController.m; sourceTree = "<group>"; };
+		8E6715A3154F14590059FC1A /* Structures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Structures.h; sourceTree = "<group>"; };
+		8E6715A9154F17BB0059FC1A /* RollsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RollsViewController.h; sourceTree = "<group>"; };
+		8E6715AA154F17BB0059FC1A /* RollsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RollsViewController.m; sourceTree = "<group>"; };
+		8E6715AB154F17BB0059FC1A /* RollsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RollsViewController.xib; sourceTree = "<group>"; };
 		8E7F47B2154074130041118E /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		8E7F47B5154074180041118E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		8E7F47B71540741F0041118E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -152,23 +157,21 @@
 		8E7F47E7154093850041118E /* SocialFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialFacade.h; sourceTree = "<group>"; };
 		8E7F47E8154093850041118E /* SocialFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialFacade.m; sourceTree = "<group>"; };
 		8E7F48051540B4690041118E /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		8E8124D51540B92E00E1EA4B /* StoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryViewController.h; sourceTree = "<group>"; };
-		8E8124D61540B92E00E1EA4B /* StoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryViewController.m; sourceTree = "<group>"; };
+		8E8124D51540B92E00E1EA4B /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
+		8E8124D61540B92E00E1EA4B /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
 		8E8124E01540C1A200E1EA4B /* YourRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourRollsTableViewManager.h; sourceTree = "<group>"; };
-		8E8124E31540C1BA00E1EA4B /* SaveTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveTableViewManager.h; sourceTree = "<group>"; };
-		8E8124E41540C1BA00E1EA4B /* SaveTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveTableViewManager.m; sourceTree = "<group>"; };
+		8E8124E31540C1BA00E1EA4B /* SavesTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; path = SavesTableViewManager.h; sourceTree = "<group>"; };
+		8E8124E41540C1BA00E1EA4B /* SavesTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavesTableViewManager.m; sourceTree = "<group>"; };
 		8E8124E61540C1C800E1EA4B /* SearchTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewManager.h; sourceTree = "<group>"; };
 		8E8124E71540C1C800E1EA4B /* SearchTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewManager.m; sourceTree = "<group>"; };
-		8E8124F11540C2E800E1EA4B /* StoryTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryTableViewManager.h; sourceTree = "<group>"; };
-		8E8124F21540C2E800E1EA4B /* StoryTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryTableViewManager.m; sourceTree = "<group>"; };
+		8E8124F11540C2E800E1EA4B /* GuideTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideTableViewManager.h; sourceTree = "<group>"; };
+		8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideTableViewManager.m; sourceTree = "<group>"; };
 		8E8124F41540C2F900E1EA4B /* TableViewManagers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewManagers.h; sourceTree = "<group>"; };
 		8E8124F81540D41E00E1EA4B /* pullToRefreshArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pullToRefreshArrow@2x.png"; path = "../../../library/publicLibrary/ASPullToRefresh/ASPullToRefresh/pullToRefreshArrow@2x.png"; sourceTree = "<group>"; };
 		8EAA320D154EF239003FC586 /* PeopleRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleRollsTableViewManager.h; sourceTree = "<group>"; };
 		8EAA320E154EF239003FC586 /* PeopleRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleRollsTableViewManager.m; sourceTree = "<group>"; };
 		8EAA3210154EF271003FC586 /* PopularRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularRollsTableViewManager.h; sourceTree = "<group>"; };
 		8EAA3211154EF271003FC586 /* PopularRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularRollsTableViewManager.m; sourceTree = "<group>"; };
-		8EAA3213154EF284003FC586 /* GeniusRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeniusRollsTableViewManager.h; sourceTree = "<group>"; };
-		8EAA3214154EF285003FC586 /* GeniusRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeniusRollsTableViewManager.m; sourceTree = "<group>"; };
 		8ECBA7CC1535F6F70009718E /* Shelby-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECBA7D01535F6F70009718E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8ECBA7D21535F6F70009718E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -215,9 +218,10 @@
 		8E664D551541B0C40071EC42 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				8E664D561541B1040071EC42 /* Constants.h */,
+				8E664D561541B1040071EC42 /* StaticDeclarations.h */,
 				8E664D571541B10D0071EC42 /* APIConstants.h */,
 				8E664D6D1541C81F0071EC42 /* TextConstants.h */,
+				8E6715A3154F14590059FC1A /* Structures.h */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -333,22 +337,20 @@
 			isa = PBXGroup;
 			children = (
 				8E8124F41540C2F900E1EA4B /* TableViewManagers.h */,
-				8E8124F11540C2E800E1EA4B /* StoryTableViewManager.h */,
-				8E8124F21540C2E800E1EA4B /* StoryTableViewManager.m */,
-				8EAA3213154EF284003FC586 /* GeniusRollsTableViewManager.h */,
-				8EAA3214154EF285003FC586 /* GeniusRollsTableViewManager.m */,
+				8E8124F11540C2E800E1EA4B /* GuideTableViewManager.h */,
+				8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */,
 				8EAA320D154EF239003FC586 /* PeopleRollsTableViewManager.h */,
 				8EAA320E154EF239003FC586 /* PeopleRollsTableViewManager.m */,
 				8EAA3210154EF271003FC586 /* PopularRollsTableViewManager.h */,
 				8EAA3211154EF271003FC586 /* PopularRollsTableViewManager.m */,
 				8E8124E61540C1C800E1EA4B /* SearchTableViewManager.h */,
 				8E8124E71540C1C800E1EA4B /* SearchTableViewManager.m */,
-				8E8124E31540C1BA00E1EA4B /* SaveTableViewManager.h */,
-				8E8124E41540C1BA00E1EA4B /* SaveTableViewManager.m */,
+				8E8124E31540C1BA00E1EA4B /* SavesTableViewManager.h */,
+				8E8124E41540C1BA00E1EA4B /* SavesTableViewManager.m */,
 				8E671594154F0B9E0059FC1A /* StreamTableViewManager.h */,
 				8E671595154F0B9E0059FC1A /* StreamTableViewManager.m */,
-				8E67158F154F0B360059FC1A /* ShareViewControllerViewController.h */,
-				8E671590154F0B360059FC1A /* ShareViewControllerViewController.m */,
+				8E67158F154F0B360059FC1A /* ShareViewController.h */,
+				8E671590154F0B360059FC1A /* ShareViewController.m */,
 				8E8124E01540C1A200E1EA4B /* YourRollsTableViewManager.h */,
 				8E67158C154EF3540059FC1A /* YourRollsTableViewManager.m */,
 			);
@@ -438,8 +440,10 @@
 				8E8124DB1540C07400E1EA4B /* Table View Managers */,
 				8E664D521541B0120071EC42 /* LoginViewController.h */,
 				8E664D531541B0120071EC42 /* LoginViewController.m */,
-				8E8124D51540B92E00E1EA4B /* StoryViewController.h */,
-				8E8124D61540B92E00E1EA4B /* StoryViewController.m */,
+				8E8124D51540B92E00E1EA4B /* GuideViewController.h */,
+				8E8124D61540B92E00E1EA4B /* GuideViewController.m */,
+				8E6715A9154F17BB0059FC1A /* RollsViewController.h */,
+				8E6715AA154F17BB0059FC1A /* RollsViewController.m */,
 				8E671597154F0C3B0059FC1A /* YouTableViewController.h */,
 				8E671598154F0C3B0059FC1A /* YouTableViewController.m */,
 			);
@@ -485,6 +489,7 @@
 				8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */,
 				8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */,
 				8E671591154F0B360059FC1A /* ShareViewControllerViewController.xib */,
+				8E6715AB154F17BB0059FC1A /* RollsViewController.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -571,6 +576,7 @@
 				8E664E221541FE490071EC42 /* OATestServer.rb in Resources */,
 				8E664E251541FE490071EC42 /* README in Resources */,
 				8E671593154F0B360059FC1A /* ShareViewControllerViewController.xib in Resources */,
+				8E6715AD154F17BB0059FC1A /* RollsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,10 +607,10 @@
 				8ECBA7E11535F6F70009718E /* AppDelegate.m in Sources */,
 				8E7F47E51540931D0041118E /* ASPullToRefreshTableViewController.m in Sources */,
 				8E7F47E9154093850041118E /* SocialFacade.m in Sources */,
-				8E8124D71540B92E00E1EA4B /* StoryViewController.m in Sources */,
-				8E8124E51540C1BA00E1EA4B /* SaveTableViewManager.m in Sources */,
+				8E8124D71540B92E00E1EA4B /* GuideViewController.m in Sources */,
+				8E8124E51540C1BA00E1EA4B /* SavesTableViewManager.m in Sources */,
 				8E8124E81540C1C800E1EA4B /* SearchTableViewManager.m in Sources */,
-				8E8124F31540C2E800E1EA4B /* StoryTableViewManager.m in Sources */,
+				8E8124F31540C2E800E1EA4B /* GuideTableViewManager.m in Sources */,
 				8E664D541541B0120071EC42 /* LoginViewController.m in Sources */,
 				8E664E121541FE490071EC42 /* NSMutableURLRequest+Parameters.m in Sources */,
 				8E664E131541FE490071EC42 /* NSString+URLEncoding.m in Sources */,
@@ -626,11 +632,11 @@
 				8E664E241541FE490071EC42 /* OATokenManager.m in Sources */,
 				8EAA320F154EF239003FC586 /* PeopleRollsTableViewManager.m in Sources */,
 				8EAA3212154EF271003FC586 /* PopularRollsTableViewManager.m in Sources */,
-				8EAA3215154EF285003FC586 /* GeniusRollsTableViewManager.m in Sources */,
 				8E67158D154EF3540059FC1A /* YourRollsTableViewManager.m in Sources */,
-				8E671592154F0B360059FC1A /* ShareViewControllerViewController.m in Sources */,
+				8E671592154F0B360059FC1A /* ShareViewController.m in Sources */,
 				8E671596154F0B9E0059FC1A /* StreamTableViewManager.m in Sources */,
 				8E671599154F0C3B0059FC1A /* YouTableViewController.m in Sources */,
+				8E6715AC154F17BB0059FC1A /* RollsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
