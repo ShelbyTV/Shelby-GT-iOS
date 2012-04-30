@@ -16,7 +16,6 @@
 @property (strong, nonatomic) UITabBarController *appDelegateTabBarController;
 @property (strong, nonatomic) UINavigationController *appDelegateNavigationController;
 
-
 - (void)createObservers;
 - (void)grabReferenceToArchitecuralElements:(NSNotification*)notification;
 

@@ -11,7 +11,7 @@
 #import "TableViewManagers.h"
 #import "Constants.h"
 
-// Structure that delineates between instances of StoryTableViewController;
+// Structure that distinguishes instances of StoryTableViewController;
 typedef enum _StoryType
 {
     StoryTypeStream= 0,
@@ -19,7 +19,17 @@ typedef enum _StoryType
     StoryTypeSave,
     StoryTypeSearch
     
-} StoryType;;
+} StoryType;
+
+// Structure that distinguishes types of Rolls
+typedef enum _RollType
+{
+    RollTypeYour = 0,
+    RollTypePeople,
+    RollTypePopular,
+    RollTypeGenius
+    
+} RollType;
 
 @interface StoryViewController : ASPullToRefreshTableViewController
 
