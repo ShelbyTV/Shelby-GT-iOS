@@ -1,18 +1,18 @@
 //
-//  SettingsViewController.m
+//  ShareViewControllerViewController.m
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 4/19/12.
+//  Created by Arthur Ariel Sabintsev on 4/30/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import "SettingsViewController.h"
+#import "ShareViewControllerViewController.h"
 
-@interface SettingsViewController ()
+@interface ShareViewControllerViewController ()
 
 @end
 
-@implementation SettingsViewController
+@implementation ShareViewControllerViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,13 +26,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

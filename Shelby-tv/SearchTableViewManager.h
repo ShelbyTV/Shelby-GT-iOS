@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "StoryTableViewManager.h"
 
 @interface SearchTableViewManager : StoryTableViewManager

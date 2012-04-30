@@ -1,14 +1,14 @@
 //
-//  FavoritesTableViewManager.m
+//  TimelineTableViewManager.m
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 4/19/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import "FavoritesTableViewManager.h"
+#import "StreamTableViewManager.h"
 
-@implementation FavoritesTableViewManager
+@implementation StreamTableViewManager
 
 #pragma mark - ASPullToRefreshDelegate Methods
 - (void)dataToRefresh

@@ -14,9 +14,9 @@
 // Structure that delineates between instances of StoryTableViewController;
 typedef enum _StoryType
 {
-    StoryTypeTimeline = 0,
-    StoryTypeFavorites,
-    StoryTypeWatchLater,
+    StoryTypeStream= 0,
+    StoryTypeRolls,
+    StoryTypeSave,
     StoryTypeSearch
     
 } StoryType;;
