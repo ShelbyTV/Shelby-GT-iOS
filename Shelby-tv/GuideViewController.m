@@ -12,27 +12,19 @@
 @interface GuideViewController ()
 
 @property (assign, nonatomic) GuideType guideType;
-@property (strong, nonatomic) GuideTableViewManager *storyTableViewManager;
+@property (strong, nonatomic) GuideTableViewManager *guideTableViewManager;
 @property (strong, nonatomic) UITabBarController *appDelegateTabBarController;
 @property (strong, nonatomic) UINavigationController *appDelegateNavigationController;
 
-- (void)createObservers;
-- (void)grabReferenceToArchitecuralElements:(NSNotification*)notification;
-- (void)customizeForStoryTableViewManager;
+- (void)customizeForguideTableViewManager;
 
 @end
 
 @implementation GuideViewController
 @synthesize guideType = _guideType;
-@synthesize storyTableViewManager = _storyTableViewManager;
+@synthesize guideTableViewManager = _guideTableViewManager;
 @synthesize appDelegateTabBarController = _appDelegateTabBarController;
 @synthesize appDelegateNavigationController = _appDelegateNavigationController;
-
-#pragma mark - Memory Deallocation Method
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 
 #pragma mark - Initialization Method
 - (id)initWithGuideType:(GuideType)type andTableViewManager:(GuideTableViewManager *)manager
@@ -44,16 +36,13 @@
         self.guideType = type;
         
         // Set TableViewManager (e.g., TableViewDataSource and TableViewDelegate) of StoryViewController instance
-        self.storyTableViewManager = manager;
-        self.tableView.delegate = (id)self.storyTableViewManager;
-        self.tableView.dataSource = (id)self.storyTableViewManager;
+        self.guideTableViewManager = manager;
+        self.tableView.delegate = (id)self.guideTableViewManager;
+        self.tableView.dataSource = (id)self.guideTableViewManager;
         
         // Set Reference to ASPullToRefreshTableViewController
-        self.storyTableViewManager.refreshController = self;
-        self.refreshDelegate = (id)self.storyTableViewManager;
-
-        // Create Observers (for reference to AppDelegate's UITabBarController and UINavigationController)
-        [self createObservers];
+        self.guideTableViewManager.refreshController = self;
+        self.refreshDelegate = (id)self.guideTableViewManager;
         
     }
     
@@ -70,8 +59,8 @@
 {
     [super viewDidLoad];
     
-    // Customize for instance of StoryTableViewManager
-    [self customizeForStoryTableViewManager];
+    // Customize for instance of guideTableViewManager
+    [self customizeForguideTableViewManager];
 }
 
 #pragma mark - Private Methods
@@ -80,13 +69,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(grabReferenceToArchitecuralElements:) name:kArchitecturalElementsReferenceDictionary object:nil];
 }
 
-- (void)grabReferenceToArchitecuralElements:(NSNotification *)notification
-{
-    self.appDelegateTabBarController = notification.object;
-    self.appDelegateNavigationController = self.appDelegateTabBarController.navigationController;
-}
-
-- (void)customizeForStoryTableViewManager
+- (void)customizeForguideTableViewManager
 {
     
 }

@@ -14,8 +14,6 @@
 @property (strong, nonatomic) UITabBarController *appDelegateTabBarController;
 @property (strong, nonatomic) UINavigationController *appDelegateNavigationController;
 
-- (void)createObservers;
-- (void)grabReferenceToArchitecuralElements:(NSNotification*)notification;
 - (void)customizeOnViewLoad;
 
 @end
@@ -26,26 +24,6 @@
 @synthesize guideTableViewManager = _guideTableViewManager;
 @synthesize appDelegateTabBarController = _appDelegateTabBarController;
 @synthesize appDelegateNavigationController = _appDelegateNavigationController;
-
-#pragma mark - Memory Deallocation Method
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-#pragma mark - Initialization Method
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-
-    if ( self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil] ) {
-        
-        // Create Observers (for reference to AppDelegate's UITabBarController and UINavigationController)
-        [self createObservers];
-        
-    }
-    
-    return self;
-}
 
 #pragma mark - View Lifecycle Methods
 - (void)viewDidUnload
@@ -67,19 +45,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(grabReferenceToArchitecuralElements:) name:kArchitecturalElementsReferenceDictionary object:nil];
 }
 
-- (void)grabReferenceToArchitecuralElements:(NSNotification *)notification
-{
-    self.appDelegateTabBarController = notification.object;
-    self.appDelegateNavigationController = self.appDelegateTabBarController.navigationController;
-    NSLog(@"%@", self.appDelegateNavigationController);
-}
-
 - (void)customizeOnViewLoad
 {
     
     switch (self.rollsType) {
             
         case RollsTypeYour: {
+            
+            // Set Title on navigationController's navigationBar
+            self.navigationController.navigationBar.topItem.title = @"Your Rolls";
             
             // Set TableViewManager (e.g., TableViewDataSource and TableViewDelegate) of StoryViewController instance
             self.guideTableViewManager = [[YourRollsTableViewManager alloc] init];
@@ -90,14 +64,38 @@
             self.guideTableViewManager.refreshController = self;
             self.refreshDelegate = (id)self.guideTableViewManager;
             
-            self.appDelegateNavigationController.navigationItem.title = @"Your Rolls";
-            
         } break;
             
         case RollsTypePeople:
+            
+            // Set Title on navigationController's navigationBar
+            self.navigationController.navigationBar.topItem.title = @"People's Rolls";
+            
+            // Set TableViewManager (e.g., TableViewDataSource and TableViewDelegate) of StoryViewController instance
+            self.guideTableViewManager = [[PeopleRollsTableViewManager alloc] init];
+            self.tableView.delegate = (id)self.guideTableViewManager;
+            self.tableView.dataSource = (id)self.guideTableViewManager;
+            
+            // Set Reference to ASPullToRefreshTableViewController
+            self.guideTableViewManager.refreshController = self;
+            self.refreshDelegate = (id)self.guideTableViewManager;
+            
             break;
             
         case RollsTypePopular:
+            
+            // Set Title on navigationController's navigationBar
+            self.navigationController.navigationBar.topItem.title = @"Popular Rolls";
+            
+            // Set TableViewManager (e.g., TableViewDataSource and TableViewDelegate) of StoryViewController instance
+            self.guideTableViewManager = [[PopularRollsTableViewManager alloc] init];
+            self.tableView.delegate = (id)self.guideTableViewManager;
+            self.tableView.dataSource = (id)self.guideTableViewManager;
+            
+            // Set Reference to ASPullToRefreshTableViewController
+            self.guideTableViewManager.refreshController = self;
+            self.refreshDelegate = (id)self.guideTableViewManager;
+            
             break;
             
         default:
