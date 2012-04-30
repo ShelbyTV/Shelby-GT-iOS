@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ASPullToRefreshTableViewController.h"
-#import "TableViewManagers.h"
 #import "StaticDeclarations.h"
 
-@interface RollsViewController : ASPullToRefreshTableViewController
+@interface RollsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic) RollsType rollsType;

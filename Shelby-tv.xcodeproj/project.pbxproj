@@ -123,7 +123,7 @@
 		8E664E0F1541FE490071EC42 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
 		8E664E101541FE490071EC42 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		8E67158C154EF3540059FC1A /* YourRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourRollsTableViewManager.m; sourceTree = "<group>"; };
-		8E67158F154F0B360059FC1A /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ShareViewController.h; sourceTree = "<group>"; };
+		8E67158F154F0B360059FC1A /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		8E671590154F0B360059FC1A /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		8E671591154F0B360059FC1A /* ShareViewControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareViewControllerViewController.xib; sourceTree = "<group>"; };
 		8E671594154F0B9E0059FC1A /* StreamTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewManager.h; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 		8E8124D51540B92E00E1EA4B /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
 		8E8124D61540B92E00E1EA4B /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
 		8E8124E01540C1A200E1EA4B /* YourRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourRollsTableViewManager.h; sourceTree = "<group>"; };
-		8E8124E31540C1BA00E1EA4B /* SavesTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; path = SavesTableViewManager.h; sourceTree = "<group>"; };
+		8E8124E31540C1BA00E1EA4B /* SavesTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavesTableViewManager.h; sourceTree = "<group>"; };
 		8E8124E41540C1BA00E1EA4B /* SavesTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavesTableViewManager.m; sourceTree = "<group>"; };
 		8E8124E61540C1C800E1EA4B /* SearchTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewManager.h; sourceTree = "<group>"; };
 		8E8124E71540C1C800E1EA4B /* SearchTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewManager.m; sourceTree = "<group>"; };

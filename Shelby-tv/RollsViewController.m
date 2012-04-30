@@ -7,6 +7,7 @@
 //
 
 #import "RollsViewController.h"
+#import "GuideViewController.h"
 
 @interface RollsViewController ()
 
@@ -35,61 +36,38 @@
 {
     [super viewDidLoad];
     
-    // Customize for instance of GuideTableViewManager
+    // Customize instance of GuideTableViewManager
     [self customizeOnViewLoad];
 }
 
 #pragma mark - Private Methods
 - (void)customizeOnViewLoad
 {
-    
     switch (self.rollsType) {
             
-        case RollsTypeYour: {
+        case RollsTypeYour:{
             
-            // Set Title on navigationController's navigationBar
-            self.navigationController.navigationBar.topItem.title = @"Your Rolls";
+            // Set title on navigationController's navigationBar
+            self.title = @"Your Rolls";
             
-            // Set TableViewManager (e.g., TableViewDataSource and TableViewDelegate) of StoryViewController instance
+            // Set TableViewManager (e.g., TableViewDataSource and TableViewDelegate) of GuideViewController instance
             self.guideTableViewManager = [[YourRollsTableViewManager alloc] init];
-            self.tableView.delegate = (id)self.guideTableViewManager;
-            self.tableView.dataSource = (id)self.guideTableViewManager;
-            
-            // Set Reference to ASPullToRefreshTableViewController
-            self.guideTableViewManager.refreshController = self;
-            self.refreshDelegate = (id)self.guideTableViewManager;
-            
+            GuideViewController *guideViewController = [[GuideViewController alloc] initWithGuideType:GuideTypeRolls andTableViewManager:self.guideTableViewManager];
+            self.tableView = guideViewController.tableView;
+        
         } break;
             
         case RollsTypePeople:
             
-            // Set Title on navigationController's navigationBar
-            self.navigationController.navigationBar.topItem.title = @"People's Rolls";
-            
-            // Set TableViewManager (e.g., TableViewDataSource and TableViewDelegate) of StoryViewController instance
-            self.guideTableViewManager = [[PeopleRollsTableViewManager alloc] init];
-            self.tableView.delegate = (id)self.guideTableViewManager;
-            self.tableView.dataSource = (id)self.guideTableViewManager;
-            
-            // Set Reference to ASPullToRefreshTableViewController
-            self.guideTableViewManager.refreshController = self;
-            self.refreshDelegate = (id)self.guideTableViewManager;
+            // Set title on navigationController's navigationBar
+            self.title = @"People's Rolls";
             
             break;
             
         case RollsTypePopular:
             
-            // Set Title on navigationController's navigationBar
+            // Set title on navigationController's navigationBar
             self.navigationController.navigationBar.topItem.title = @"Popular Rolls";
-            
-            // Set TableViewManager (e.g., TableViewDataSource and TableViewDelegate) of StoryViewController instance
-            self.guideTableViewManager = [[PopularRollsTableViewManager alloc] init];
-            self.tableView.delegate = (id)self.guideTableViewManager;
-            self.tableView.dataSource = (id)self.guideTableViewManager;
-            
-            // Set Reference to ASPullToRefreshTableViewController
-            self.guideTableViewManager.refreshController = self;
-            self.refreshDelegate = (id)self.guideTableViewManager;
             
             break;
             
