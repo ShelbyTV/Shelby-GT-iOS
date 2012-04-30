@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import "GuideViewController.h"
+#import "GuideTableViewController.h"
 #import "GuideTableViewManager.h"
 
-@interface GuideViewController ()
+@interface GuideTableViewController ()
 
 @property (assign, nonatomic) GuideType guideType;
 @property (strong, nonatomic) GuideTableViewManager *guideTableViewManager;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation GuideViewController
+@implementation GuideTableViewController
 @synthesize guideType = _guideType;
 @synthesize guideTableViewManager = _guideTableViewManager;
 

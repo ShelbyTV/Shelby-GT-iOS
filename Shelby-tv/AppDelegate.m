@@ -14,8 +14,8 @@
 
 // Controllers
 #import "TableViewManagers.h"
-#import "GuideViewController.h"
-#import "RollsViewController.h"
+#import "GuideTableViewController.h"
+#import "RollsTableViewController.h"
 #import "LoginViewController.h"
 #import "YouTableViewController.h"
 
@@ -76,28 +76,27 @@
 {
     // Create StreamNavigationController
     StreamTableViewManager *streamTableViewManager = [[StreamTableViewManager alloc] init];
-    GuideViewController *streamViewController = [[GuideViewController alloc] initWithGuideType:GuideTypeStream andTableViewManager:streamTableViewManager];
+    GuideTableViewController *streamViewController = [[GuideTableViewController alloc] initWithGuideType:GuideTypeStream andTableViewManager:streamTableViewManager];
     [streamViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [streamViewController setTitle:@"Stream"];
     UINavigationController *streamNavigationController = [[UINavigationController alloc] initWithRootViewController:streamViewController];
     
     // Create RollsNavigationController
-    RollsViewController *rollsViewController = [[RollsViewController alloc] initWithNibName:@"RollsViewController" bundle:nil];
-    [rollsViewController setRollsType:RollsTypeYour];
-    [rollsViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
-    [rollsViewController setTitle:@"Rolls"];
-    UINavigationController *rollsNavigationController = [[UINavigationController alloc] initWithRootViewController:rollsViewController];
+    RollsTableViewController *rollsTableViewController = [[RollsTableViewController alloc] initWithRollsType:RollsTypeYour];
+    [rollsTableViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
+    [rollsTableViewController setTitle:@"Rolls"];
+    UINavigationController *rollsNavigationController = [[UINavigationController alloc] initWithRootViewController:rollsTableViewController];
     
     // Create SavesNavigationViewController
     SavesTableViewManager *savesTableViewManager = [[SavesTableViewManager alloc] init];
-    GuideViewController *savesViewController = [[GuideViewController alloc] initWithGuideType:GuideTypeSaves andTableViewManager:savesTableViewManager];
+    GuideTableViewController *savesViewController = [[GuideTableViewController alloc] initWithGuideType:GuideTypeSaves andTableViewManager:savesTableViewManager];
     [savesViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [savesViewController setTitle:@"Saves"];
     UINavigationController *savesNavigationController = [[UINavigationController alloc] initWithRootViewController:savesViewController];
     
     // Create SearchNavigationViewController
     SearchTableViewManager *searchTableViewManager = [[SearchTableViewManager alloc] init];
-    GuideViewController *searchViewController = [[GuideViewController alloc] initWithGuideType:GuideTypeSearch andTableViewManager:searchTableViewManager];
+    GuideTableViewController *searchViewController = [[GuideTableViewController alloc] initWithGuideType:GuideTypeSearch andTableViewManager:searchTableViewManager];
     [searchViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [searchViewController setTitle:@"Search"];
     UINavigationController *searchNavigationController = [[UINavigationController alloc] initWithRootViewController:searchViewController];
