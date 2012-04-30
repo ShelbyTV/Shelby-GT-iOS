@@ -13,18 +13,14 @@
 
 @property (assign, nonatomic) GuideType guideType;
 @property (strong, nonatomic) GuideTableViewManager *guideTableViewManager;
-@property (strong, nonatomic) UITabBarController *appDelegateTabBarController;
-@property (strong, nonatomic) UINavigationController *appDelegateNavigationController;
 
-- (void)customizeForguideTableViewManager;
+- (void)customizeOnViewLoad;
 
 @end
 
 @implementation GuideViewController
 @synthesize guideType = _guideType;
 @synthesize guideTableViewManager = _guideTableViewManager;
-@synthesize appDelegateTabBarController = _appDelegateTabBarController;
-@synthesize appDelegateNavigationController = _appDelegateNavigationController;
 
 #pragma mark - Initialization Method
 - (id)initWithGuideType:(GuideType)type andTableViewManager:(GuideTableViewManager *)manager
@@ -60,18 +56,31 @@
     [super viewDidLoad];
     
     // Customize for instance of guideTableViewManager
-    [self customizeForguideTableViewManager];
+    [self customizeOnViewLoad];
 }
 
-#pragma mark - Private Methods
-- (void)createObservers
+- (void)customizeOnViewLoad
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(grabReferenceToArchitecuralElements:) name:kArchitecturalElementsReferenceDictionary object:nil];
-}
+    switch (self.guideType) {
+            
+        case GuideTypeStream: {
+            
+            
+        } break;
+            
+        case GuideTypeSaves: {
+            
+            
+        } break;
+            
+        case GuideTypeSearch: {
+            
 
-- (void)customizeForguideTableViewManager
-{
-    
+        } break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark - Interface Orientation Method

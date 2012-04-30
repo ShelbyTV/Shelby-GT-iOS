@@ -40,11 +40,6 @@
 }
 
 #pragma mark - Private Methods
-- (void)createObservers
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(grabReferenceToArchitecuralElements:) name:kArchitecturalElementsReferenceDictionary object:nil];
-}
-
 - (void)customizeOnViewLoad
 {
     

@@ -7,9 +7,4 @@
 //
 
 // Macros for Text
-#define kShelbyTV                                   @"Shelby.tv"
-
-// Macros for Notifications
-#define kArchitecturalElementsReferenceDictionary    @"ArchitecturalElementsReferenceDictionary"
-#define kAppDelegateNavigationController            @"AppDelegateNavigationController"
-#define kAppDelegateTabBarController                @"AppDelegateTabBarController"
+#define kShelbyTV                                       @"Shelby.tv"
