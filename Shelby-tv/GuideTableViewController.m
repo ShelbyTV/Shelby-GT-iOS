@@ -1,5 +1,5 @@
 //
-//  StoryViewController.m
+//  GuideTableViewController.m
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 4/19/12.
@@ -28,7 +28,7 @@
     
     if ( self = [super init] ) {
         
-        // Set Type of StoryViewController Instance
+        // Set Type of GuideTableViewController Instance
         self.guideType = type;
         
         // Set TableViewManager (e.g., TableViewDataSource and TableViewDelegate) of StoryViewController instance

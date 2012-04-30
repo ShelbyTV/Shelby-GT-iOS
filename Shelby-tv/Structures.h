@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-// Structure that distinguishes instances of StoryTableViewController;
+// Structure that distinguishes instances of GuideTableViewController;
 typedef enum _GuideType
 {
     GuideTypeStream= 0,

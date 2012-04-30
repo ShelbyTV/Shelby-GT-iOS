@@ -1,5 +1,5 @@
 //
-//  StoryViewController.h
+//  GuideTableViewController.h
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 4/19/12.
