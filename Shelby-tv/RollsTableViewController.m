@@ -20,6 +20,7 @@
 - (void)buildSegmentedControl;
 - (void)buildTableView;
 - (void)presentProperRollsType;
+- (IBAction)segmentedControllerValueDidChange:(id)sender;
 
 @end
 
@@ -35,7 +36,6 @@
     if ( self = [super init] ) {
         
         self.rollsType = type;
-        [self presentProperRollsType];
     
     }
     
@@ -46,14 +46,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Build UISegmentedControl
+    [self buildSegmentedControl];
+    
+    // Present Proper Rolls View to user
+    [self presentProperRollsType];
 }
 
 #pragma mark - Private Methods
 - (void)presentProperRollsType
 {
-    
-    // Build UISegmentedControl
-    [self buildSegmentedControl];
     
     // Perform ViewController Customization based on value of rollsType
     switch (self.rollsType) {
@@ -61,17 +64,25 @@
         case RollsTypeYour:{
             
             // Set title on navigationController's navigationBar
-            self.title = @"Your Rolls";
+            self.navigationItem.title = kYourRolls;
+            
+            // Set proper selected state for segmentedController
+            [self.segmentedController setSelectedSegmentIndex:0];
             
             // Initialize appropriate GuideTableViewManager 
             self.guideTableViewManager = [[YourRollsTableViewManager alloc] init];
+            
 
         } break;
             
         case RollsTypePeople:
             
             // Set title on navigationController's navigationBar
-            self.title = @"People's Rolls";
+            self.navigationItem.title = kPeoplesRolls;
+            
+            // Set proper selected state for segmentedController
+            [self.segmentedController setSelectedSegmentIndex:1];
+            
             
             // Initialize appropriate GuideTableViewManager 
             self.guideTableViewManager = [[PeopleRollsTableViewManager alloc] init];
@@ -81,7 +92,11 @@
         case RollsTypePopular:
             
             // Set title on navigationController's navigationBar
-            self.navigationController.navigationBar.topItem.title = @"Popular Rolls";
+            self.navigationItem.title = kPopularRolls;
+            
+            // Set proper selected state for segmentedController
+            [self.segmentedController setSelectedSegmentIndex:2];
+            
             
             // Initialize appropriate GuideTableViewManager 
             self.guideTableViewManager = [[PopularRollsTableViewManager alloc] init];
@@ -102,23 +117,22 @@
     
     // Initialize UIView to encase segmentedController
     UIView *segmentedControllerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 64.0f)];
+    [segmentedControllerView setBackgroundColor:[UIColor lightGrayColor]];
     
     // Initialize segmentedController with items and center object within segmentedControllerView's frame
-    NSArray *segmentedControllerItemsArray = [NSArray arrayWithObjects:@"Your Rolls", @"People's Rolls", @"Popular Rolls", nil];
+    NSArray *segmentedControllerItemsArray = [NSArray arrayWithObjects:kYourRolls, kPeoplesRolls, kPopularRolls, nil];
     self.segmentedController = [[UISegmentedControl alloc] initWithItems:segmentedControllerItemsArray];
     [self.segmentedController setSegmentedControlStyle:UISegmentedControlStyleBar];
-    
-    NSLog(@"\n%@: %@\n%@:%@", segmentedControllerView, NSStringFromCGRect(segmentedControllerView.frame), self.segmentedController, NSStringFromCGRect(self.segmentedController.frame));
-
+    [self.segmentedController addTarget:self action:@selector(segmentedControllerValueDidChange:) forControlEvents:UIControlEventValueChanged];
     
     [self.segmentedController setFrame:CGRectMake(segmentedControllerView.frame.size.width/2.0f - self.segmentedController.frame.size.width/2.0f, 
                                                   segmentedControllerView.frame.size.height/3.0f - self.segmentedController.frame.size.height/2.0f, 
                                                   self.segmentedController.frame.size.width, 
                                                   self.segmentedController.frame.size.height)];    
+    
+    // Add segmentedControllerView to segmentedControllerView hierarchy
     [segmentedControllerView addSubview:self.segmentedController];
 
-    NSLog(@"\n%@: %@\n%@:%@", segmentedControllerView, NSStringFromCGRect(segmentedControllerView.frame), self.segmentedController, NSStringFromCGRect(self.segmentedController.frame));
-    
     // Add segmentedControllerView to ViewController's view hierarchy
     [self.view addSubview:segmentedControllerView];
 }
@@ -135,6 +149,21 @@
     
     // Add GuideTableViewController's tablView to RollsTableViewController's view
     [self.view addSubview:self.tableView];
+}
+
+- (void)segmentedControllerValueDidChange:(id)sender
+{
+
+    if ( self.segmentedController == sender ) {
+        
+        // Set rollsType to segmentedController's selectedIndex
+        // BE SURE THAT THE SEGMENTED INDEX ITEMS ARE IN THE SAME ORDER AS THE 'RollsType' struct
+        self.rollsType = self.segmentedController.selectedSegmentIndex;
+        
+        // Present Proper Rolls Type on Value Change
+        [self presentProperRollsType];
+        
+    }
 }
 
 #pragma mark - Interface Orientation Method

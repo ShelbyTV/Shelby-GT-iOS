@@ -7,4 +7,7 @@
 //
 
 // Macros for Text
-#define kShelbyTV                                       @"Shelby.tv"
+#define kShelbyTV               @"Shelby.tv"
+#define kYourRolls              @"Your Rolls"
+#define kPeoplesRolls           @"People's Rolls"
+#define kPopularRolls           @"Popular Rolls"
