@@ -1,5 +1,5 @@
 //
-//  ShareViewController.h
+//  NewRollViewController.h
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 5/1/12.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShareViewController : UIViewController
+@interface NewRollViewController : UIViewController
 
 @end

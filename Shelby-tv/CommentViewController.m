@@ -1,18 +1,18 @@
 //
-//  ShareViewController.m
+//  CommentViewController.m
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 5/1/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "ShareViewController.h"
+#import "CommentViewController.h"
 
-@interface ShareViewController ()
+@interface CommentViewController ()
 
 @end
 
-@implementation ShareViewController
+@implementation CommentViewController
 
 #pragma mark - View Lifecycle Methods
 - (void)viewDidUnload

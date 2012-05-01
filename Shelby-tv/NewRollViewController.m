@@ -1,18 +1,18 @@
 //
-//  ShareViewController.m
+//  NewRollViewController.m
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 5/1/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "ShareViewController.h"
+#import "NewRollViewController.h"
 
-@interface ShareViewController ()
+@interface NewRollViewController ()
 
 @end
 
-@implementation ShareViewController
+@implementation NewRollViewController
 
 #pragma mark - View Lifecycle Methods
 - (void)viewDidUnload
