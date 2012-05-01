@@ -12,5 +12,6 @@
 @interface GuideTableViewManager : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) ASPullToRefreshTableViewController *refreshController;
+@property (strong, nonatomic) UINavigationController *navigationController;
 
 @end

@@ -59,6 +59,11 @@
     [self customizeOnViewLoad];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
 - (void)customizeOnViewLoad
 {
     switch (self.guideType) {

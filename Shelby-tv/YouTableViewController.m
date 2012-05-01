@@ -13,6 +13,7 @@
 @end
 
 @implementation YouTableViewController
+@synthesize navigationController = _navigationController;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

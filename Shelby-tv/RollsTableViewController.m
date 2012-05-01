@@ -25,6 +25,7 @@
 @end
 
 @implementation RollsTableViewController
+@synthesize navigationController = _navigationController;
 @synthesize segmentedController = _segmentedController;
 @synthesize tableView = _tableView;
 @synthesize rollsType = _rollsType;

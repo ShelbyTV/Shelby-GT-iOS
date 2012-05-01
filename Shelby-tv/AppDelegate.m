@@ -80,12 +80,14 @@
     [streamViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [streamViewController setTitle:@"Stream"];
     UINavigationController *streamNavigationController = [[UINavigationController alloc] initWithRootViewController:streamViewController];
+    streamTableViewManager.navigationController = streamNavigationController;
     
     // Create RollsNavigationController
     RollsTableViewController *rollsTableViewController = [[RollsTableViewController alloc] initWithRollsType:RollsTypeYour];
     [rollsTableViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [rollsTableViewController setTitle:@"Rolls"];
     UINavigationController *rollsNavigationController = [[UINavigationController alloc] initWithRootViewController:rollsTableViewController];
+    rollsTableViewController.navigationController = rollsNavigationController;
     
     // Create SavesNavigationViewController
     SavesTableViewManager *savesTableViewManager = [[SavesTableViewManager alloc] init];
@@ -93,6 +95,7 @@
     [savesViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [savesViewController setTitle:@"Saves"];
     UINavigationController *savesNavigationController = [[UINavigationController alloc] initWithRootViewController:savesViewController];
+    savesTableViewManager.navigationController = savesNavigationController;
     
     // Create SearchNavigationViewController
     SearchTableViewManager *searchTableViewManager = [[SearchTableViewManager alloc] init];
@@ -100,20 +103,24 @@
     [searchViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [searchViewController setTitle:@"Search"];
     UINavigationController *searchNavigationController = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+    searchTableViewManager.navigationController = searchNavigationController;
     
     YouTableViewController *youTableViewController = [[YouTableViewController alloc] init];
     [youTableViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
     [youTableViewController setTitle:@"You"];
     UINavigationController *youNavigationController = [[UINavigationController alloc] initWithRootViewController:youTableViewController];
+    youTableViewController.navigationController = youNavigationController;
     
     // Create UITabBarController
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    NSArray *tabBarArray = [NSArray arrayWithObjects:streamNavigationController, rollsNavigationController, savesNavigationController, searchNavigationController, youNavigationController, nil];
-    tabBarController.viewControllers = tabBarArray;
+    
+    NSArray *tabBarArrayOfNavigationControllers = [NSArray arrayWithObjects:streamNavigationController, rollsNavigationController, savesNavigationController, searchNavigationController, youNavigationController, nil];
+    
+    tabBarController.viewControllers = tabBarArrayOfNavigationControllers;
     
     // Set navigationController as window's rootViewController
     self.window.rootViewController = tabBarController;
-
+    
 }
 
 #pragma mark - Private Methods

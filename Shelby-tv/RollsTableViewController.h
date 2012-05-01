@@ -12,6 +12,8 @@
 
 @interface RollsTableViewController : UIViewController 
 
+@property (strong, nonatomic) UINavigationController *navigationController;
+
 - (id)initWithRollsType:(RollsType)type;
 
 @end

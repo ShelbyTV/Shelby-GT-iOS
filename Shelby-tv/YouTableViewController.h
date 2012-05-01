@@ -11,4 +11,6 @@
 
 @interface YouTableViewController : UITableViewController
 
+@property (strong, nonatomic) UINavigationController *navigationController;
+
 @end

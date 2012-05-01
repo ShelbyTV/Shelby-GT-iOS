@@ -10,8 +10,9 @@
 
 @implementation GuideTableViewManager
 @synthesize refreshController = _refreshController;
+@synthesize navigationController = _navigationController;
 
-#pragma mark - UITableViewDelegate Methods
+#pragma mark - UITableViewDatasource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -22,7 +23,6 @@
     return 1;
 }
 
-#pragma mark - UITableViewDatasource Methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
