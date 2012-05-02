@@ -1,9 +1,0 @@
-[submodule "library/facebook-ios-sdk"]
-	path = library/facebook-ios-sdk
-	url = https://github.com/facebook/facebook-ios-sdk.git
-[submodule "library/OAuthConsumer"]
-	path = library/OAuthConsumer
-	url = https://github.com/jimkang/oauthconsumer.git
-[submodule "library/json-framework"]
-	path = library/json-framework
-	url = https://github.com/stig/json-framework
