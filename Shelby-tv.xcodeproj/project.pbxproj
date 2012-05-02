@@ -244,7 +244,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8E4A775F15518B14003CBA2A /* src */ = {
+		8E4A775F15518B14003CBA2A /* facebook-ios-sdk */ = {
 			isa = PBXGroup;
 			children = (
 				8E4A776315518B14003CBA2A /* Facebook.h */,
@@ -261,7 +261,7 @@
 				8E4A776F15518B14003CBA2A /* FBRequest.m */,
 				8E4A779015518F59003CBA2A /* FBJSON */,
 			);
-			name = src;
+			name = "facebook-ios-sdk";
 			path = "library/facebook-ios-sdk/src";
 			sourceTree = SOURCE_ROOT;
 		};
@@ -284,6 +284,14 @@
 			);
 			path = FBJSON;
 			sourceTree = "<group>";
+		};
+		8E4A77A415519036003CBA2A /* SBJSON */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SBJSON;
+			path = "library/json-framework/Classes";
+			sourceTree = SOURCE_ROOT;
 		};
 		8E664D551541B0C40071EC42 /* Constants */ = {
 			isa = PBXGroup;
@@ -527,7 +535,8 @@
 		8ED3110615360475002614DF /* Third Party Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				8E4A775F15518B14003CBA2A /* src */,
+				8E4A77A415519036003CBA2A /* SBJSON */,
+				8E4A775F15518B14003CBA2A /* facebook-ios-sdk */,
 				8E7F47E6154093210041118E /* ASPullToRefresh */,
 				8E664DE51541FE490071EC42 /* OAuthConsumer */,
 				8E7F47EA154093890041118E /* SocialFacade */,
