@@ -1,0 +1,20 @@
+//
+//  ShelbyAPIClient.h
+//  Shelby-tv
+//
+//  Created by Arthur Ariel Sabintsev on 5/2/12.
+//  Copyright (c) 2012 Shelby.tv. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "StaticDeclarations.h"
+
+@interface ShelbyAPIClient : NSObject <NSURLConnectionDataDelegate>
+
+// Singleton Method
++ (ShelbyAPIClient*)sharedInstance;
+
+// Request Method
+- (void)performRequest:(NSURLRequest*)request ofType:(APIRequestType)type;
+
+@end

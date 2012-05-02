@@ -6,4 +6,8 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#define kAPI_Stream         @"http://api.gt.shelby.tv/v1/dashboard?auth_token=sF7waBf8jBMqsxeskPp2"
+// Macros for API Routes
+#define kAPIRequestStream       @"http://api.gt.shelby.tv/v1/dashboard?auth_token=sF7waBf8jBMqsxeskPp2"
+
+// Macros for Notificaitons
+#define kAPIRequestType         @"APIRequestType"

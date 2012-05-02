@@ -7,6 +7,7 @@
 //
 
 #import "StreamTableViewManager.h"
+#import "ShelbyAPIClient.h"
 
 // For Testing Purposes
 #import "NewRollViewController.h"
@@ -18,6 +19,8 @@
 #pragma mark - ASPullToRefreshDelegate Methods
 - (void)dataToRefresh
 {
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:kAPIRequestStream]];
+    [[ShelbyAPIClient sharedInstance] performRequest:request ofType:APIRequestTypeStreams];
     [self.refreshController didFinishRefreshing];
 }
 

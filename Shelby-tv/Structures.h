@@ -24,3 +24,12 @@ typedef enum _RollsType
     RollsTypePopular,
     
 } RollsType;
+
+// Structure that distinguishes types of Shelby API Requests
+typedef enum _APIRequestType
+{
+    
+    APIRequestTypeStreams = 0,
+    APIRequestTypeRolls
+    
+} APIRequestType;
