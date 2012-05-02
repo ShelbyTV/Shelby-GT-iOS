@@ -11,10 +11,7 @@
 
 @interface ShelbyAPIClient : NSObject <NSURLConnectionDataDelegate>
 
-// Singleton Method
-+ (ShelbyAPIClient*)sharedInstance;
-
 // Request Method
-- (void)performRequest:(NSURLRequest*)request ofType:(APIRequestType)type;
+- (id)initWithRequest:(NSURLRequest*)request ofType:(APIRequestType)type;
 
 @end

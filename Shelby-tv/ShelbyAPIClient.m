@@ -10,8 +10,6 @@
 #import "NSString+TypedefConversion.h"
 #import "SBJson.h"
 
-static ShelbyAPIClient *sharedClient = nil;
-
 @interface ShelbyAPIClient ()
 
 @property (strong, nonatomic) NSURLConnection *connection;
@@ -29,36 +27,23 @@ static ShelbyAPIClient *sharedClient = nil;
 @synthesize parsedDictionary = parsedDictionary;
 @synthesize requestType = _requestType;
 
-#pragma mark - Singleton Methods
-+ (ShelbyAPIClient*)sharedInstance
+#pragma mark - Initialization
+- (id)initWithRequest:(NSURLRequest *)request ofType:(APIRequestType)type
 {
-    if (nil == sharedClient) {
-        sharedClient = [[super allocWithZone:NULL] init];
+    if ( self == [super init] ) {
+    
+        // Reset Variables
+        [self reset];
+        
+        // Set Request Type
+        self.requestType = type;
+        
+        // Initialize Request
+        self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+
     }
-    return sharedClient;
-}
-
-+ (id)allocWithZone:(NSZone *)zone
-{
-    return [self sharedInstance];
-}
-
-- (id)copyWithZone:(NSZone *)zone
-{
+    
     return self;
-}
-
-#pragma mark - Public Methods
-- (void)performRequest:(NSURLRequest *)request ofType:(APIRequestType)type
-{
-    // Reset Variables
-    [self reset];
-    
-    // Set Request Type
-    self.requestType = type;
-    
-    // Initialize Request
-    self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
 }
 
 #pragma mark - Private Methods

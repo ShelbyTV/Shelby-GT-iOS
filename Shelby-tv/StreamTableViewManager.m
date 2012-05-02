@@ -53,8 +53,9 @@
     
     // Peeform API Request
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:kAPIRequestStream]];
-    [[ShelbyAPIClient sharedInstance] performRequest:request ofType:APIRequestTypeStreams];
 
+    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] initWithRequest:request ofType:kAPIRequestStream];
+    
 }
 
 - (void)dataReturnedFromAPI:(NSNotification*)notification
