@@ -40,7 +40,8 @@
         self.guideTableViewManager.refreshController = self;
         self.refreshDelegate = (id)self.guideTableViewManager;
         
-        [self.tableView setBackgroundColor:[UIColor darkGrayColor]];
+        // Perform initial API Request
+        [self.guideTableViewManager performAPIRequest];
         
     }
     

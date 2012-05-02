@@ -11,6 +11,18 @@
 @implementation GuideTableViewManager
 @synthesize refreshController = _refreshController;
 @synthesize navigationController = _navigationController;
+@synthesize parsedArray = _parsedArray;
+
+#pragma mark - GuideTableViewManagerDelegate methods
+- (void)performAPIRequest
+{
+    // Do nothing in GuideTableViewManager
+}
+
+- (void)dataReturnedFromAPI:(NSNotification *)notification
+{
+    // Do nothing in GuideTableViewManager
+}
 
 #pragma mark - UITableViewDatasource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

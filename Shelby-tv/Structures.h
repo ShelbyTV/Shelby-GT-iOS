@@ -9,6 +9,7 @@
 // Structure that distinguishes instances of GuideTableViewController;
 typedef enum _GuideType
 {
+    
     GuideTypeStream= 0,
     GuideTypeRolls,
     GuideTypeSaves,
@@ -19,6 +20,7 @@ typedef enum _GuideType
 // Structure that distinguishes types of Rolls
 typedef enum _RollsType
 {
+    
     RollsTypeYour = 0,
     RollsTypePeople,
     RollsTypePopular,
@@ -29,7 +31,7 @@ typedef enum _RollsType
 typedef enum _APIRequestType
 {
     
-    APIRequestTypeStreams = 0,
-    APIRequestTypeRolls
+    APIRequestTypeNone = 0,
+    APIRequestTypeStreams,
     
 } APIRequestType;

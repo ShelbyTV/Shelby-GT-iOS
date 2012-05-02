@@ -8,6 +8,6 @@
 
 #import "GuideTableViewManager.h"
 
-@interface StreamTableViewManager : GuideTableViewManager <ASPullToRefreshDelegate>
+@interface StreamTableViewManager : GuideTableViewManager <GuideTableViewManagerDelegate, ASPullToRefreshDelegate>
 
 @end

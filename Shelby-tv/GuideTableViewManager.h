@@ -8,10 +8,20 @@
 
 #import "ASPullToRefreshTableViewController.h"
 #import "StaticDeclarations.h"
+#import "ShelbyAPIClient.h"
+#import "NSString+TypedefConversion.h"
 
-@interface GuideTableViewManager : NSObject <UITableViewDataSource, UITableViewDelegate>
+@protocol GuideTableViewManagerDelegate <NSObject>
+
+- (void)performAPIRequest;
+- (void)dataReturnedFromAPI:(NSNotification*)notification;
+
+@end
+
+@interface GuideTableViewManager : NSObject <GuideTableViewManagerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) ASPullToRefreshTableViewController *refreshController;
 @property (strong, nonatomic) UINavigationController *navigationController;
+@property (strong, nonatomic) NSArray *parsedArray;
 
 @end

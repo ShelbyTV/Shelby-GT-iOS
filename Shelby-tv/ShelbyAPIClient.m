@@ -16,15 +16,17 @@ static ShelbyAPIClient *sharedClient = nil;
 
 @property (strong, nonatomic) NSURLConnection *connection;
 @property (strong, nonatomic) NSMutableData *receivedData;
-@property (strong, nonatomic) NSMutableArray *parsedData;
+@property (strong, nonatomic) NSArray *parsedArray;
 @property (assign, nonatomic) APIRequestType requestType;
+
+- (void)reset;
 
 @end
 
 @implementation ShelbyAPIClient
 @synthesize connection = _connection;
 @synthesize receivedData = _receivedData;
-@synthesize parsedData = _parsedData;
+@synthesize parsedArray = parsedArray;
 @synthesize requestType = _requestType;
 
 #pragma mark - Singleton Methods
@@ -49,11 +51,21 @@ static ShelbyAPIClient *sharedClient = nil;
 #pragma mark - Public Methods
 - (void)performRequest:(NSURLRequest *)request ofType:(APIRequestType)type
 {
+    // Reset Variables
+    [self reset];
+    
     // Set Request Type
     self.requestType = type;
     
     // Initialize Request
     self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+}
+
+#pragma mark - Private Methods
+- (void)reset
+{
+    self.requestType = APIRequestTypeNone;
+    self.parsedArray = nil;
 }
 
 #pragma mark - NSURLConnectionDataDelegate Methods
@@ -97,12 +109,11 @@ static ShelbyAPIClient *sharedClient = nil;
 {
     // Parse Data with SBJSON Parser
     SBJsonParser *parser = [[SBJsonParser alloc] init];
-    NSLog(@"%@", [parser objectWithData:self.receivedData]);
+    self.parsedArray = [parser objectWithData:self.receivedData];
     
     // Post Notification with Parsed Object
     NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
-    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:self.parsedData];
-
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:self.parsedArray];
 }
 
 @end

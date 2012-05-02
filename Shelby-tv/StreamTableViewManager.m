@@ -7,21 +7,79 @@
 //
 
 #import "StreamTableViewManager.h"
-#import "ShelbyAPIClient.h"
 
 // For Testing Purposes
 #import "NewRollViewController.h"
 #import "ShareViewController.h"
 #import "CommentViewController.h"
 
-@implementation StreamTableViewManager
+@interface StreamTableViewManager ()
 
-#pragma mark - ASPullToRefreshDelegate Methods
-- (void)dataToRefresh
+@property (assign, nonatomic) BOOL observerCreated;
+
+- (void)createAPIObservers;
+
+@end
+
+@implementation StreamTableViewManager 
+@synthesize observerCreated = _observerCreated;
+
+#pragma mark - Memory Deallocation Method
+- (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Private Methods
+- (void)createAPIObservers
+{
+    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestTypeStreams];
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(dataReturnedFromAPI:) 
+                                                 name:notificationName 
+                                               object:nil];
+    self.observerCreated = YES;
+}
+
+#pragma mark - GuideTableViewManagerDelegate Method
+- (void)performAPIRequest
+{
+
+    // Add API Observers if they don't exist
+    if ( NO == self.observerCreated ) {
+        [self createAPIObservers];
+    }
+    
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:kAPIRequestStream]];
     [[ShelbyAPIClient sharedInstance] performRequest:request ofType:APIRequestTypeStreams];
+
+}
+
+- (void)dataReturnedFromAPI:(NSNotification*)notification
+{
+    
+    // Hide PullToRefreshHeader
+    self.parsedArray = notification.object;
     [self.refreshController didFinishRefreshing];
+    
+    // Store array from NSNotification, locally
+    if ( [notification.object isKindOfClass:[NSArray class]] ) {
+        
+        self.parsedArray = notification.object;
+        NSLog(@"HERE");
+    
+    } else {
+    
+        NSLog(@"ERROR");
+    }
+
+}
+
+#pragma mark - ASPullToRefreshDelegate Method
+- (void)dataToRefresh
+{
+    // Perform API Request
+    [self performAPIRequest];
 }
 
 #pragma mark - UITableViewDatasource Methods
@@ -42,19 +100,19 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
-    switch ( indexPath.row ) {
-        case 0:
-            cell.textLabel.text = @"New Roll";
-            break;
-        case 1:
-            cell.textLabel.text = @"Share";
-            break;
-        case 2:
-            cell.textLabel.text = @"Comment";
-            break;
-        default:
-            break;
-    }
+//    switch ( indexPath.row ) {
+//        case 0:
+//            cell.textLabel.text = @"New Roll";
+//            break;
+//        case 1:
+//            cell.textLabel.text = @"Share";
+//            break;
+//        case 2:
+//            cell.textLabel.text = @"Comment";
+//            break;
+//        default:
+//            break;
+//    }
     
     return cell;
 }
