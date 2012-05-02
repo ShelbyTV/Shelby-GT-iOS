@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E4A7732155185A0003CBA2A /* pullToRefreshArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A7730155185A0003CBA2A /* pullToRefreshArrow.png */; };
+		8E4A7733155185A0003CBA2A /* pullToRefreshArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A7731155185A0003CBA2A /* pullToRefreshArrow@2x.png */; };
 		8E64B409155040C9008D7C5F /* NewRollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E64B407155040C9008D7C5F /* NewRollViewController.m */; };
 		8E64B40A155040C9008D7C5F /* NewRollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E64B408155040C9008D7C5F /* NewRollViewController.xib */; };
 		8E64B40F15504115008D7C5F /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E64B40D15504115008D7C5F /* ShareViewController.m */; };
@@ -53,7 +55,6 @@
 		8E8124E51540C1BA00E1EA4B /* SavesTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124E41540C1BA00E1EA4B /* SavesTableViewManager.m */; };
 		8E8124E81540C1C800E1EA4B /* SearchTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124E71540C1C800E1EA4B /* SearchTableViewManager.m */; };
 		8E8124F31540C2E800E1EA4B /* GuideTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */; };
-		8E8124F91540D41E00E1EA4B /* pullToRefreshArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8124F81540D41E00E1EA4B /* pullToRefreshArrow@2x.png */; };
 		8EAA320F154EF239003FC586 /* PeopleRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAA320E154EF239003FC586 /* PeopleRollsTableViewManager.m */; };
 		8EAA3212154EF271003FC586 /* PopularRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAA3211154EF271003FC586 /* PopularRollsTableViewManager.m */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
@@ -77,6 +78,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E4A7730155185A0003CBA2A /* pullToRefreshArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pullToRefreshArrow.png; path = library/ASPullToRefresh/ASPullToRefresh/pullToRefreshArrow.png; sourceTree = SOURCE_ROOT; };
+		8E4A7731155185A0003CBA2A /* pullToRefreshArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pullToRefreshArrow@2x.png"; path = "library/ASPullToRefresh/ASPullToRefresh/pullToRefreshArrow@2x.png"; sourceTree = SOURCE_ROOT; };
 		8E64B406155040C9008D7C5F /* NewRollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewRollViewController.h; sourceTree = "<group>"; };
 		8E64B407155040C9008D7C5F /* NewRollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewRollViewController.m; sourceTree = "<group>"; };
 		8E64B408155040C9008D7C5F /* NewRollViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewRollViewController.xib; sourceTree = "<group>"; };
@@ -175,7 +178,6 @@
 		8E8124F11540C2E800E1EA4B /* GuideTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideTableViewManager.h; sourceTree = "<group>"; };
 		8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideTableViewManager.m; sourceTree = "<group>"; };
 		8E8124F41540C2F900E1EA4B /* TableViewManagers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewManagers.h; sourceTree = "<group>"; };
-		8E8124F81540D41E00E1EA4B /* pullToRefreshArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pullToRefreshArrow@2x.png"; path = "../../../library/publicLibrary/ASPullToRefresh/ASPullToRefresh/pullToRefreshArrow@2x.png"; sourceTree = "<group>"; };
 		8EAA320D154EF239003FC586 /* PeopleRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleRollsTableViewManager.h; sourceTree = "<group>"; };
 		8EAA320E154EF239003FC586 /* PeopleRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleRollsTableViewManager.m; sourceTree = "<group>"; };
 		8EAA3210154EF271003FC586 /* PopularRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularRollsTableViewManager.h; sourceTree = "<group>"; };
@@ -325,7 +327,8 @@
 		8E7F47E6154093210041118E /* ASPullToRefresh */ = {
 			isa = PBXGroup;
 			children = (
-				8E8124F81540D41E00E1EA4B /* pullToRefreshArrow@2x.png */,
+				8E4A7730155185A0003CBA2A /* pullToRefreshArrow.png */,
+				8E4A7731155185A0003CBA2A /* pullToRefreshArrow@2x.png */,
 				8E7F47E31540931D0041118E /* ASPullToRefreshTableViewController.h */,
 				8E7F47E41540931D0041118E /* ASPullToRefreshTableViewController.m */,
 			);
@@ -582,7 +585,6 @@
 				8ED31100153601A2002614DF /* Icon@2x.png in Resources */,
 				8ED31101153601A2002614DF /* iTunesArtwork in Resources */,
 				8E7F47E1154092310041118E /* FBDialog.bundle in Resources */,
-				8E8124F91540D41E00E1EA4B /* pullToRefreshArrow@2x.png in Resources */,
 				8E664D401541A66A0071EC42 /* LoginViewController_iPhone.xib in Resources */,
 				8E664D421541A6770071EC42 /* LoginViewController_iPad.xib in Resources */,
 				8E664E111541FE490071EC42 /* .gitignore in Resources */,
@@ -591,6 +593,8 @@
 				8E64B40A155040C9008D7C5F /* NewRollViewController.xib in Resources */,
 				8E64B41015504115008D7C5F /* ShareViewController.xib in Resources */,
 				8E64B41515504147008D7C5F /* CommentViewController.xib in Resources */,
+				8E4A7732155185A0003CBA2A /* pullToRefreshArrow.png in Resources */,
+				8E4A7733155185A0003CBA2A /* pullToRefreshArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

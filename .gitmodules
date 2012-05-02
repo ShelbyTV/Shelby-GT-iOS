@@ -4,3 +4,6 @@
 [submodule "library/OAuthConsumer"]
 	path = library/OAuthConsumer
 	url = https://github.com/jimkang/oauthconsumer.git
+[submodule "library/json-framework"]
+	path = library/json-framework
+	url = https://github.com/stig/json-framework

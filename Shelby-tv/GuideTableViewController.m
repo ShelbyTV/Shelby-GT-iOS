@@ -40,6 +40,8 @@
         self.guideTableViewManager.refreshController = self;
         self.refreshDelegate = (id)self.guideTableViewManager;
         
+        [self.tableView setBackgroundColor:[UIColor darkGrayColor]];
+        
     }
     
     return self;

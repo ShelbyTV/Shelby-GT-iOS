@@ -79,6 +79,7 @@
 
 - (void)createRootViewForPhone
 {
+
     // Create StreamNavigationController
     StreamTableViewManager *streamTableViewManager = [[StreamTableViewManager alloc] init];
     GuideTableViewController *streamViewController = [[GuideTableViewController alloc] initWithGuideType:GuideTypeStream andTableViewManager:streamTableViewManager];
@@ -86,6 +87,8 @@
     [streamViewController setTitle:@"Stream"];
     UINavigationController *streamNavigationController = [[UINavigationController alloc] initWithRootViewController:streamViewController];
     streamTableViewManager.navigationController = streamNavigationController;
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStyleDone target:self action:nil];
+    [streamViewController.navigationItem setRightBarButtonItem:barButton];
     
     // Create RollsNavigationController
     RollsTableViewController *rollsTableViewController = [[RollsTableViewController alloc] initWithRollsType:RollsTypeYour];
