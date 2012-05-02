@@ -11,7 +11,7 @@
 @implementation GuideTableViewManager
 @synthesize refreshController = _refreshController;
 @synthesize navigationController = _navigationController;
-@synthesize parsedArray = _parsedArray;
+@synthesize parsedDictionary = _parsedDictionary;
 
 #pragma mark - GuideTableViewManagerDelegate methods
 - (void)performAPIRequest

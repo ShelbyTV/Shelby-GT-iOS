@@ -22,6 +22,6 @@
 
 @property (strong, nonatomic) ASPullToRefreshTableViewController *refreshController;
 @property (strong, nonatomic) UINavigationController *navigationController;
-@property (strong, nonatomic) NSArray *parsedArray;
+@property (strong, nonatomic) NSDictionary *parsedDictionary;
 
 @end

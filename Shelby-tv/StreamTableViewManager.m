@@ -57,16 +57,14 @@
 
 - (void)dataReturnedFromAPI:(NSNotification*)notification
 {
-    
+
     // Hide PullToRefreshHeader
-    self.parsedArray = notification.object;
     [self.refreshController didFinishRefreshing];
     
     // Store array from NSNotification, locally
-    if ( [notification.object isKindOfClass:[NSArray class]] ) {
+    if ( [notification.object isKindOfClass:[NSDictionary class]] ) {
         
-        self.parsedArray = notification.object;
-        NSLog(@"HERE");
+        self.parsedDictionary = notification.object;
     
     } else {
     
