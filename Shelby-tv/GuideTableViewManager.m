@@ -12,9 +12,10 @@
 @synthesize refreshController = _refreshController;
 @synthesize navigationController = _navigationController;
 @synthesize parsedDictionary = _parsedDictionary;
+@synthesize tableView = _tableView;
 
 #pragma mark - GuideTableViewManagerDelegate methods
-- (void)performAPIRequest
+- (void)performAPIRequestForTableView:(UITableView *)tableView
 {
     // Do nothing in GuideTableViewManager
 }

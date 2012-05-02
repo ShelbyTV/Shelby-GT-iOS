@@ -13,7 +13,7 @@
 
 @protocol GuideTableViewManagerDelegate <NSObject>
 
-- (void)performAPIRequest;
+- (void)performAPIRequestForTableView:(UITableView*)tableView;;
 - (void)dataReturnedFromAPI:(NSNotification*)notification;
 
 @end
@@ -23,5 +23,6 @@
 @property (strong, nonatomic) ASPullToRefreshTableViewController *refreshController;
 @property (strong, nonatomic) UINavigationController *navigationController;
 @property (strong, nonatomic) NSDictionary *parsedDictionary;
+@property (strong, nonatomic) UITableView *tableView;
 
 @end

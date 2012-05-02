@@ -41,7 +41,7 @@
         self.refreshDelegate = (id)self.guideTableViewManager;
         
         // Perform initial API Request
-        [self.guideTableViewManager performAPIRequest];
+        [self.guideTableViewManager performAPIRequestForTableView:self.tableView];
         
     }
     

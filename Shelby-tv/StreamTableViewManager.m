@@ -42,14 +42,16 @@
 }
 
 #pragma mark - GuideTableViewManagerDelegate Method
-- (void)performAPIRequest
+- (void)performAPIRequestForTableView:(UITableView *)tableView
 {
 
-    // Add API Observers if they don't exist
-    if ( NO == self.observerCreated ) {
-        [self createAPIObservers];
-    }
+    // Add API Observers (should ONLY occur on first call to this method)
+    if ( NO == self.observerCreated ) [self createAPIObservers];
     
+    // Reference Parent ViewController's UITableView (should ONLY occur on first call to this method)
+    if ( ![self tableView] ) self.tableView = tableView;
+    
+    // Peeform API Request
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:kAPIRequestStream]];
     [[ShelbyAPIClient sharedInstance] performRequest:request ofType:APIRequestTypeStreams];
 
@@ -58,26 +60,27 @@
 - (void)dataReturnedFromAPI:(NSNotification*)notification
 {
 
-    // Hide PullToRefreshHeader
+    // Hide ASPullToRefreshController's HeaderView
     [self.refreshController didFinishRefreshing];
     
     // Store array from NSNotification, locally
     if ( [notification.object isKindOfClass:[NSDictionary class]] ) {
         
-        self.parsedDictionary = notification.object;
-    
     } else {
     
         NSLog(@"ERROR");
     }
+    
+    // Reload tableView
+    [self.tableView reloadData];
 
 }
 
 #pragma mark - ASPullToRefreshDelegate Method
 - (void)dataToRefresh
 {
-    // Perform API Request
-    [self performAPIRequest];
+    // Perform API Request for tableView, which WILL/SHOULD/MUST exist before this method is called
+    if ( [self tableView] ) [self performAPIRequestForTableView:self.tableView];
 }
 
 #pragma mark - UITableViewDatasource Methods
