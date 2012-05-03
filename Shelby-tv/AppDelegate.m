@@ -134,7 +134,7 @@
 #pragma mark - Private Methods
 - (void)customization
 { 
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
 }
 
 - (void)analytics

@@ -50,6 +50,9 @@
 #pragma mark - Private Methods
 - (void)initializationOnLoad
 {
+    // Set Background
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"loginBackground"]];
+    
     // Reference Social Facade Singleton
     self.socialFacade = (SocialFacade*)[SocialFacade sharedInstance];
     
