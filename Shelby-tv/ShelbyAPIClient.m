@@ -17,8 +17,6 @@
 @property (strong, nonatomic) NSDictionary *parsedDictionary;
 @property (assign, nonatomic) APIRequestType requestType;
 
-- (void)reset;
-
 @end
 
 @implementation ShelbyAPIClient
@@ -27,30 +25,14 @@
 @synthesize parsedDictionary = parsedDictionary;
 @synthesize requestType = _requestType;
 
-#pragma mark - Initialization
-- (id)initWithRequest:(NSURLRequest *)request ofType:(APIRequestType)type
+#pragma mark - Public Method
+- (void)performRequest:(NSURLRequest *)request ofType:(APIRequestType)type
 {
-    if ( self == [super init] ) {
+    // Set Request Type
+    self.requestType = type;
     
-        // Reset Variables
-        [self reset];
-        
-        // Set Request Type
-        self.requestType = type;
-        
-        // Initialize Request
-        self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
-
-    }
-    
-    return self;
-}
-
-#pragma mark - Private Methods
-- (void)reset
-{
-    self.requestType = APIRequestTypeNone;
-    self.parsedDictionary = nil;
+    // Initialize Request
+    self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
 }
 
 #pragma mark - NSURLConnectionDataDelegate Methods

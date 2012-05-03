@@ -54,7 +54,8 @@
     // Peeform API Request
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:kAPIRequestStream]];
 
-    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] initWithRequest:request ofType:APIRequestTypeStream];
+    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+    [client performRequest:request ofType:APIRequestTypeStream];
     
 }
 
@@ -66,6 +67,8 @@
     
     // Store array from NSNotification, locally
     if ( [notification.object isKindOfClass:[NSDictionary class]] ) {
+        
+        self.parsedDictionary = notification.object;
         
     } else {
     
