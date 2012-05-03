@@ -109,6 +109,9 @@
 		8EE6739C1552E6F0004EA45C /* loginFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673971552E6F0004EA45C /* loginFacebook.png */; };
 		8EE6739D1552E6F0004EA45C /* loginTwitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673981552E6F0004EA45C /* loginTwitter.png */; };
 		8EE6739E1552E6F0004EA45C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673991552E6F0004EA45C /* logo.png */; };
+		8EE673A31552FCF5004EA45C /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673A01552FCF5004EA45C /* Ubuntu-B.ttf */; };
+		8EE673A41552FCF5004EA45C /* Ubuntu-M.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673A11552FCF5004EA45C /* Ubuntu-M.ttf */; };
+		8EE673A51552FCF5004EA45C /* Ubuntu-R.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673A21552FCF5004EA45C /* Ubuntu-R.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -287,6 +290,9 @@
 		8EE673971552E6F0004EA45C /* loginFacebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginFacebook.png; sourceTree = "<group>"; };
 		8EE673981552E6F0004EA45C /* loginTwitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginTwitter.png; sourceTree = "<group>"; };
 		8EE673991552E6F0004EA45C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		8EE673A01552FCF5004EA45C /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
+		8EE673A11552FCF5004EA45C /* Ubuntu-M.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-M.ttf"; sourceTree = "<group>"; };
+		8EE673A21552FCF5004EA45C /* Ubuntu-R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-R.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -560,7 +566,8 @@
 		8ED310E81536018C002614DF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8EE673841552E474004EA45C /* Images */,
+				8EE6739F1552FCF5004EA45C /* fonts */,
+				8EE673841552E474004EA45C /* images */,
 				8ED310EA153601A2002614DF /* Default-Landscape~ipad.png */,
 				8ED310EB153601A2002614DF /* Default-Portrait~ipad.png */,
 				8ED310EC153601A2002614DF /* Default.png */,
@@ -658,12 +665,12 @@
 			name = "App Delegate";
 			sourceTree = "<group>";
 		};
-		8EE673841552E474004EA45C /* Images */ = {
+		8EE673841552E474004EA45C /* images */ = {
 			isa = PBXGroup;
 			children = (
 				8EE673851552E474004EA45C /* login */,
 			);
-			name = Images;
+			name = images;
 			path = Resources/Images;
 			sourceTree = "<group>";
 		};
@@ -682,6 +689,17 @@
 				8EE6738A1552E474004EA45C /* logo@2x.png */,
 			);
 			path = login;
+			sourceTree = "<group>";
+		};
+		8EE6739F1552FCF5004EA45C /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8EE673A01552FCF5004EA45C /* Ubuntu-B.ttf */,
+				8EE673A11552FCF5004EA45C /* Ubuntu-M.ttf */,
+				8EE673A21552FCF5004EA45C /* Ubuntu-R.ttf */,
+			);
+			name = fonts;
+			path = Resources/fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -770,6 +788,9 @@
 				8EE6739C1552E6F0004EA45C /* loginFacebook.png in Resources */,
 				8EE6739D1552E6F0004EA45C /* loginTwitter.png in Resources */,
 				8EE6739E1552E6F0004EA45C /* logo.png in Resources */,
+				8EE673A31552FCF5004EA45C /* Ubuntu-B.ttf in Resources */,
+				8EE673A41552FCF5004EA45C /* Ubuntu-M.ttf in Resources */,
+				8EE673A51552FCF5004EA45C /* Ubuntu-R.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

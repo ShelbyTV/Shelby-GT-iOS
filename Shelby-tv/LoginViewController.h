@@ -10,6 +10,8 @@
 
 @interface LoginViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *sloganLabel;
+
 - (IBAction)facebookLogin:(id)sender;
 - (IBAction)twitterLogin:(id)sender;
 

@@ -24,7 +24,9 @@
 @end
 
 @implementation LoginViewController
+@synthesize sloganLabel = _sloganLabel;
 @synthesize socialFacade = _socialFacade;
+
 
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
@@ -35,6 +37,7 @@
 #pragma mark - View Lifecycle Methods
 - (void)viewDidUnload
 {
+    self.sloganLabel = nil;
     [super viewDidUnload];
 }
 
@@ -52,6 +55,10 @@
 {
     // Set Background
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"loginBackground"]];
+    
+    // Set font for sloganLavel
+    [self.sloganLabel setFont:[UIFont fontWithName:@"Ubuntu" size:10]];
+    [self.sloganLabel setTextColor:[UIColor colorWithRed:227.0f/255.0f green:227.0f/255.0f blue:227.0f/255.0f alpha:1.0]];
     
     // Reference Social Facade Singleton
     self.socialFacade = (SocialFacade*)[SocialFacade sharedInstance];

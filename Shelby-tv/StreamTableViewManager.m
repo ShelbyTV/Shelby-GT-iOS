@@ -65,7 +65,7 @@
         
         self.parsedDictionary = notification.object;
         self.parsedResultsArray = [self.parsedDictionary objectForKey:kAPIRequestResult];
-        NSLog(@"Count %d", [self.parsedResultsArray count]);
+        NSLog(@"%@", self.parsedDictionary);
         
     } else {
     
