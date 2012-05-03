@@ -79,70 +79,105 @@
 
 - (void)createRootViewForPhone
 {
+    ///* STREAM *///
     
-    // Create StreamNavigationController
+    // Create streamNavigationController, and initialize it with streamViewController
     StreamTableViewManager *streamTableViewManager = [[StreamTableViewManager alloc] init];
     GuideTableViewController *streamViewController = [[GuideTableViewController alloc] initWithGuideType:GuideTypeStream andTableViewManager:streamTableViewManager];
-    [streamViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"streamOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"streamOff"]];
-    [streamViewController setTitle:@"Stream"];
-    NSDictionary *streamDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     [UIFont fontWithName:@"Ubuntu-Bold" size:20.0f], UITextAttributeFont,
-                                     [UIColor colorWithRed:98.0f/255.0f green:188.0f/255.0f blue:86.0f/255.0f alpha:1.0f], UITextAttributeTextColor, nil];
-    [streamViewController.tabBarItem setTitleTextAttributes:streamDictionary forState:UIControlStateHighlighted];
     UINavigationController *streamNavigationController = [[UINavigationController alloc] initWithRootViewController:streamViewController];
+    
+    // Pass streamNavigationController reference to streamTableViewManager
     streamTableViewManager.navigationController = streamNavigationController;
     
-    // Create RollsNavigationController
+    // Customize tabBarItem for Stream
+    NSDictionary *streamDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      [UIFont fontWithName:@"Ubuntu-Bold" size:20.0f], UITextAttributeFont,
+                                      [UIColor colorWithRed:98.0f/255.0f green:188.0f/255.0f blue:86.0f/255.0f alpha:1.0f], UITextAttributeTextColor, nil];
+    [streamViewController.tabBarItem setTitleTextAttributes:streamDictionary forState:UIControlStateHighlighted];
+    [streamViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"streamOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"streamOff"]];
+    [streamViewController setTitle:@"Stream"];
+    
+    ///* ROLLS *///
+    
+    // Create rollsTableViewController and populate it with youRollsTableViewManager (population performed by rollsTableViewController's initWithRollsType: method)
     RollsTableViewController *rollsTableViewController = [[RollsTableViewController alloc] initWithRollsType:RollsTypeYour];
-    [rollsTableViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"rollsOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"rollsOff"]];
-    [rollsTableViewController setTitle:@"Rolls"];
+    
+    // Create rollsNavigationController
+    UINavigationController *rollsNavigationController = [[UINavigationController alloc] initWithRootViewController:rollsTableViewController];
+    
+    // Pass rollsNavigationController reference to rollsTableViewController
+    rollsTableViewController.navigationController = rollsNavigationController;
+    
+    // Customize tabBarItem for Rolls
     NSDictionary *rollsDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                      [UIFont fontWithName:@"Ubuntu-Bold" size:0.0f], UITextAttributeFont,
                                      [UIColor colorWithRed:0.0f/255.0f green:146.0f/255.0f blue:193.0f/255.0f alpha:1.0f], UITextAttributeTextColor, nil];
     [rollsTableViewController.tabBarItem setTitleTextAttributes:rollsDictionary forState:UIControlStateHighlighted];
-    UINavigationController *rollsNavigationController = [[UINavigationController alloc] initWithRootViewController:rollsTableViewController];
-    rollsTableViewController.navigationController = rollsNavigationController;
+    [rollsTableViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"rollsOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"rollsOff"]];
+    [rollsTableViewController setTitle:@"Rolls"];
     
-    // Create SavesNavigationViewController
+    
+    ///* SAVES *///
+    
+    // Create savesNavigationViewController
     SavesTableViewManager *savesTableViewManager = [[SavesTableViewManager alloc] init];
     GuideTableViewController *savesViewController = [[GuideTableViewController alloc] initWithGuideType:GuideTypeSaves andTableViewManager:savesTableViewManager];
-    [savesViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"savesOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"savesOff"]];
-    [savesViewController setTitle:@"Saves"];
+    UINavigationController *savesNavigationController = [[UINavigationController alloc] initWithRootViewController:savesViewController];
+    
+    // Pass savesNavigationController reference to savesTableViewManager
+    savesTableViewManager.navigationController = savesNavigationController;
+    
+    // Customize tabBarItem for Saves
     NSDictionary *savesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                       [UIFont fontWithName:@"Ubuntu-Bold" size:0.0f], UITextAttributeFont,
                                       [UIColor colorWithRed:141.0f/255.0f green:82.0f/255.0f blue:154.0f/255.0f alpha:1.0f], UITextAttributeTextColor, nil];
     [savesViewController.tabBarItem setTitleTextAttributes:savesDictionary forState:UIControlStateHighlighted];
-    UINavigationController *savesNavigationController = [[UINavigationController alloc] initWithRootViewController:savesViewController];
-    savesTableViewManager.navigationController = savesNavigationController;
+    [savesViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"savesOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"savesOff"]];
+    [savesViewController setTitle:@"Saves"];
+
     
-    // Create SearchNavigationViewController
+    ///* SEARCH *///
+    
+    // Create searchNavigationController
     SearchTableViewManager *searchTableViewManager = [[SearchTableViewManager alloc] init];
     GuideTableViewController *searchViewController = [[GuideTableViewController alloc] initWithGuideType:GuideTypeSearch andTableViewManager:searchTableViewManager];
-    [searchViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"searchOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"searchOff"]];
+    UINavigationController *searchNavigationController = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+    
+    // Pass searchNavigationController reference to searchTableViewManager
+    searchTableViewManager.navigationController = searchNavigationController;
+    
+    // Customize tabBarItem for Search
     NSDictionary *searchDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                       [UIFont fontWithName:@"Ubuntu-Bold" size:0.0f], UITextAttributeFont,
                                       [UIColor colorWithRed:227.0f/255.0f green:59.0f/255.0f blue:46.0f/255.0f alpha:1.0f], UITextAttributeTextColor, nil];
+    [searchViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"searchOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"searchOff"]];
     [searchViewController.tabBarItem setTitleTextAttributes:searchDictionary forState:UIControlStateHighlighted];
     [searchViewController setTitle:@"Search"];
-    UINavigationController *searchNavigationController = [[UINavigationController alloc] initWithRootViewController:searchViewController];
-    searchTableViewManager.navigationController = searchNavigationController;
     
+    
+    ///* YOU *///
+    
+    // Create youNavigationController
     YouTableViewController *youTableViewController = [[YouTableViewController alloc] init];
-    [youTableViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"youOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"youOff"]];
-    [youTableViewController setTitle:@"You"];
+    UINavigationController *youNavigationController = [[UINavigationController alloc] initWithRootViewController:youTableViewController];
+    
+    // Pass youNavigationController reference to youTableViewController
+    youTableViewController.navigationController = youNavigationController;
+    
+    // Customize tabBarItem for You
     NSDictionary *youDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                                    [UIFont fontWithName:@"Ubuntu-Bold" size:0.0f], UITextAttributeFont,
                                    [UIColor colorWithRed:239.0f/255.0f green:232.0f/255.0f blue:75.0f/255.0f alpha:1.0f], UITextAttributeTextColor, nil];
     [youTableViewController.tabBarItem setTitleTextAttributes:youDictionary forState:UIControlStateHighlighted];
-    UINavigationController *youNavigationController = [[UINavigationController alloc] initWithRootViewController:youTableViewController];
-    youTableViewController.navigationController = youNavigationController;
+    [youTableViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"youOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"youOff"]];
+    [youTableViewController setTitle:@"You"];
+    
+    ///* TAB BAR CONTROLLER*
     
     // Create UITabBarController
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    
-    NSArray *tabBarArrayOfNavigationControllers = [NSArray arrayWithObjects:streamNavigationController, rollsNavigationController, savesNavigationController, searchNavigationController, youNavigationController, nil];
-    
-    tabBarController.viewControllers = tabBarArrayOfNavigationControllers;
+    NSArray *tabBarArray = [NSArray arrayWithObjects:streamNavigationController, rollsNavigationController, savesNavigationController, searchNavigationController, youNavigationController, nil];
+    tabBarController.viewControllers = tabBarArray;
     
     // Set navigationController as window's rootViewController
     self.window.rootViewController = tabBarController;
