@@ -129,7 +129,7 @@
     self.segmentedController = [[UISegmentedControl alloc] initWithItems:segmentedControllerItemsArray];
     [self.segmentedController setSegmentedControlStyle:UISegmentedControlStyleBar];
     [self.segmentedController addTarget:self action:@selector(segmentedControllerValueDidChange:) forControlEvents:UIControlEventValueChanged];
-    
+    [self.segmentedController setTintColor:[UIColor colorWithRed:80.0f/255.0f green:80.0f/255.0f blue:80.0f/255.0f alpha:1.0f]];
     [self.segmentedController setFrame:CGRectMake(segmentedControllerView.frame.size.width/2.0f - self.segmentedController.frame.size.width/2.0f, 
                                                   segmentedControllerView.frame.size.height/3.0f - self.segmentedController.frame.size.height/2.0f, 
                                                   self.segmentedController.frame.size.width, 
