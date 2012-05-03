@@ -8,11 +8,6 @@
 
 #import "StreamTableViewManager.h"
 
-// For Testing Purposes
-#import "NewRollViewController.h"
-#import "ShareViewController.h"
-#import "CommentViewController.h"
-
 @interface StreamTableViewManager ()
 
 @property (assign, nonatomic) BOOL observerCreated;
@@ -69,6 +64,8 @@
     if ( [notification.object isKindOfClass:[NSDictionary class]] ) {
         
         self.parsedDictionary = notification.object;
+        self.parsedResultsArray = [self.parsedDictionary objectForKey:kAPIRequestResult];
+        NSLog(@"Count %d", [self.parsedResultsArray count]);
         
     } else {
     
@@ -95,7 +92,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return ( self.parsedResultsArray ) ? [self.parsedResultsArray count] : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -105,19 +102,11 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
-//    switch ( indexPath.row ) {
-//        case 0:
-//            cell.textLabel.text = @"New Roll";
-//            break;
-//        case 1:
-//            cell.textLabel.text = @"Share";
-//            break;
-//        case 2:
-//            cell.textLabel.text = @"Comment";
-//            break;
-//        default:
-//            break;
-//    }
+    if ( [self.parsedResultsArray objectAtIndex:indexPath.row] ) {
+        
+        cell.textLabel.text = [[self.parsedResultsArray objectAtIndex:indexPath.row] valueForKey:@"id"];
+        
+    }
     
     return cell;
 }
@@ -125,33 +114,7 @@
 #pragma mark - UITableViewDelegate Methods
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // For Testing Purposes
-    switch ( indexPath.row ) {
-            
-        case 0:{
-        
-            NewRollViewController *viewController = [[NewRollViewController alloc] initWithNibName:@"NewRollViewController" bundle:nil];
-            [self.navigationController pushViewController:viewController animated:YES];
-            
-        } break;
-            
-        case 1:{
-            
-            ShareViewController *viewController = [[ShareViewController alloc] initWithNibName:@"ShareViewController" bundle:nil];
-            [self.navigationController pushViewController:viewController animated:YES];
-            
-        } break;
-            
-        case 2:{
-            
-            CommentViewController *viewController = [[CommentViewController alloc] initWithNibName:@"CommentViewController" bundle:nil];
-            [self.navigationController pushViewController:viewController animated:YES];
-            
-        } break;
-            
-        default:
-            break;
-    }
+
 }
 
 @end
