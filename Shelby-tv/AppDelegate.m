@@ -83,16 +83,14 @@
     // Create StreamNavigationController
     StreamTableViewManager *streamTableViewManager = [[StreamTableViewManager alloc] init];
     GuideTableViewController *streamViewController = [[GuideTableViewController alloc] initWithGuideType:GuideTypeStream andTableViewManager:streamTableViewManager];
-    [streamViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
+    [streamViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"streamOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"streamOff"]];
     [streamViewController setTitle:@"Stream"];
     UINavigationController *streamNavigationController = [[UINavigationController alloc] initWithRootViewController:streamViewController];
     streamTableViewManager.navigationController = streamNavigationController;
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStyleDone target:self action:nil];
-    [streamViewController.navigationItem setRightBarButtonItem:barButton];
     
     // Create RollsNavigationController
     RollsTableViewController *rollsTableViewController = [[RollsTableViewController alloc] initWithRollsType:RollsTypeYour];
-    [rollsTableViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
+    [rollsTableViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"rollsOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"rollsOff"]];
     [rollsTableViewController setTitle:@"Rolls"];
     UINavigationController *rollsNavigationController = [[UINavigationController alloc] initWithRootViewController:rollsTableViewController];
     rollsTableViewController.navigationController = rollsNavigationController;
@@ -100,7 +98,7 @@
     // Create SavesNavigationViewController
     SavesTableViewManager *savesTableViewManager = [[SavesTableViewManager alloc] init];
     GuideTableViewController *savesViewController = [[GuideTableViewController alloc] initWithGuideType:GuideTypeSaves andTableViewManager:savesTableViewManager];
-    [savesViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
+    [savesViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"savesOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"savesOff"]];
     [savesViewController setTitle:@"Saves"];
     UINavigationController *savesNavigationController = [[UINavigationController alloc] initWithRootViewController:savesViewController];
     savesTableViewManager.navigationController = savesNavigationController;
@@ -108,13 +106,13 @@
     // Create SearchNavigationViewController
     SearchTableViewManager *searchTableViewManager = [[SearchTableViewManager alloc] init];
     GuideTableViewController *searchViewController = [[GuideTableViewController alloc] initWithGuideType:GuideTypeSearch andTableViewManager:searchTableViewManager];
-    [searchViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
+    [searchViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"searchOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"searchOff"]];
     [searchViewController setTitle:@"Search"];
     UINavigationController *searchNavigationController = [[UINavigationController alloc] initWithRootViewController:searchViewController];
     searchTableViewManager.navigationController = searchNavigationController;
     
     YouTableViewController *youTableViewController = [[YouTableViewController alloc] init];
-    [youTableViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@""] withFinishedUnselectedImage:[UIImage imageNamed:@""]];
+    [youTableViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"youOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"youOff"]];
     [youTableViewController setTitle:@"You"];
     UINavigationController *youNavigationController = [[UINavigationController alloc] initWithRootViewController:youTableViewController];
     youTableViewController.navigationController = youNavigationController;
