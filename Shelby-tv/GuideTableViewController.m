@@ -7,7 +7,6 @@
 //
 
 #import "GuideTableViewController.h"
-#import "GuideTableViewManager.h"
 
 @interface GuideTableViewController ()
 
@@ -72,13 +71,7 @@
 {
     
     // Customize NavigationBar Title (must happen in viewWillAppear)
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100.0f, 0.0f, 180.0f, 44.0f)];    
-    label.backgroundColor = [UIColor clearColor];
-    label.textColor = [UIColor whiteColor];
-    label.font = [UIFont fontWithName:@"Ubuntu-Bold" size:19];
-    label.textAlignment = UITextAlignmentCenter;
-    label.text = self.title;
-    [self.navigationItem setTitleView:label];
+    [self.navigationItem setTitleView:[UINavigationItem titleViewWithTitle:self.title]];
     
     // Customize GuideTableViewController for specific guideTableViewManager
     switch (self.guideType) {

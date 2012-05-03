@@ -50,6 +50,11 @@
     
     // Build UISegmentedControl
     [self buildSegmentedControl];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
     // Present Proper Rolls View to user
     [self presentProperRollsType];
@@ -65,7 +70,7 @@
         case RollsTypeYour:{
             
             // Set title on navigationController's navigationBar
-            self.navigationItem.title = kYourRolls;
+            [self.navigationItem setTitleView:[UINavigationItem titleViewWithTitle:kYourRolls]];
             
             // Set proper selected state for segmentedController
             [self.segmentedController setSelectedSegmentIndex:0];
@@ -79,7 +84,7 @@
         case RollsTypePeople:
             
             // Set title on navigationController's navigationBar
-            self.navigationItem.title = kPeoplesRolls;
+            [self.navigationItem setTitleView:[UINavigationItem titleViewWithTitle:kPeoplesRolls]];
             
             // Set proper selected state for segmentedController
             [self.segmentedController setSelectedSegmentIndex:1];
@@ -93,11 +98,10 @@
         case RollsTypePopular:
             
             // Set title on navigationController's navigationBar
-            self.navigationItem.title = kPopularRolls;
+            [self.navigationItem setTitleView:[UINavigationItem titleViewWithTitle:kPopularRolls]];
             
             // Set proper selected state for segmentedController
             [self.segmentedController setSelectedSegmentIndex:2];
-            
             
             // Initialize appropriate GuideTableViewManager 
             self.guideTableViewManager = [[PopularRollsTableViewManager alloc] init];

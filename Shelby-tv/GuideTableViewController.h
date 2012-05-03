@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+
+// Controllers
 #import "ASPullToRefreshTableViewController.h"
 #import "TableViewManagers.h"
+
+// Views
+#import "UINavigationItem+CustomTitleView.h"
+
+// Other
 #import "StaticDeclarations.h"
+
 
 @interface GuideTableViewController : ASPullToRefreshTableViewController
 

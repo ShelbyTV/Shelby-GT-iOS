@@ -112,6 +112,7 @@
 		8EE673A31552FCF5004EA45C /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673A01552FCF5004EA45C /* Ubuntu-B.ttf */; };
 		8EE673A41552FCF5004EA45C /* Ubuntu-M.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673A11552FCF5004EA45C /* Ubuntu-M.ttf */; };
 		8EE673A51552FCF5004EA45C /* Ubuntu-R.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673A21552FCF5004EA45C /* Ubuntu-R.ttf */; };
+		8EE673AC15531124004EA45C /* UINavigationItem+CustomTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE673AB15531124004EA45C /* UINavigationItem+CustomTitleView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -293,6 +294,8 @@
 		8EE673A01552FCF5004EA45C /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
 		8EE673A11552FCF5004EA45C /* Ubuntu-M.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-M.ttf"; sourceTree = "<group>"; };
 		8EE673A21552FCF5004EA45C /* Ubuntu-R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-R.ttf"; sourceTree = "<group>"; };
+		8EE673AA15531124004EA45C /* UINavigationItem+CustomTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+CustomTitleView.h"; sourceTree = "<group>"; };
+		8EE673AB15531124004EA45C /* UINavigationItem+CustomTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+CustomTitleView.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -628,6 +631,8 @@
 			children = (
 				8E3457851551BC9200FEFC9D /* NSString+TypedefConversion.h */,
 				8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */,
+				8EE673AA15531124004EA45C /* UINavigationItem+CustomTitleView.h */,
+				8EE673AB15531124004EA45C /* UINavigationItem+CustomTitleView.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -878,6 +883,7 @@
 				8E4A77E61551A224003CBA2A /* SBJsonWriter.m in Sources */,
 				8E4A77EA1551A6E2003CBA2A /* ShelbyAPIClient.m in Sources */,
 				8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */,
+				8EE673AC15531124004EA45C /* UINavigationItem+CustomTitleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
