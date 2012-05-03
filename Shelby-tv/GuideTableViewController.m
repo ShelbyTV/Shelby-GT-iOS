@@ -14,7 +14,7 @@
 @property (assign, nonatomic) GuideType guideType;
 @property (strong, nonatomic) GuideTableViewManager *guideTableViewManager;
 
-- (void)customizeOnViewLoad;
+- (void)customizeOnViewAppear;
 
 @end
 
@@ -58,17 +58,29 @@
 {
     [super viewDidLoad];
     
-    // Customize for instance of guideTableViewManager
-    [self customizeOnViewLoad];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
+    
+    [self customizeOnViewAppear];
 }
 
-- (void)customizeOnViewLoad
+
+- (void)customizeOnViewAppear
 {
+    
+    // Customize NavigationBar Title (must happen in viewWillAppear)
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100.0f, 0.0f, 180.0f, 44.0f)];    
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont fontWithName:@"Ubuntu-Bold" size:19];
+    label.textAlignment = UITextAlignmentCenter;
+    label.text = self.title;
+    [self.navigationItem setTitleView:label];
+    
+    // Customize GuideTableViewController for specific guideTableViewManager
     switch (self.guideType) {
             
         case GuideTypeStream: {
@@ -83,12 +95,13 @@
             
         case GuideTypeSearch: {
             
-
+            
         } break;
             
         default:
             break;
     }
+    
 }
 
 #pragma mark - Interface Orientation Method

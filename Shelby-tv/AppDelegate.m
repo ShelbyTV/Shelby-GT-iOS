@@ -134,7 +134,15 @@
 #pragma mark - Private Methods
 - (void)customization
 { 
+    // UIStatusBar 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+    
+    // UINavigationBar
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:119.0f/255.0f green:119.0f/255.0f blue:119.0f/255.0f alpha:1.0f]];
+    
+    // UIBarButtonItem
+    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:70.f/255.0f green:70.f/255.0f blue:70.f/255.0f alpha:1.0f]];
+
 }
 
 - (void)analytics
