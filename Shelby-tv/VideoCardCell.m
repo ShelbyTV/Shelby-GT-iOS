@@ -3,27 +3,21 @@
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 5/4/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
 #import "VideoCardCell.h"
 
 @implementation VideoCardCell
+@synthesize thumbnailImageView = _thumbnailImageView;
+@synthesize captionView = _captionView;
+@synthesize commentView = _commentView;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (void)dealloc
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    self.thumbnailImageView = nil;
+    self.captionView = nil;
+    self.captionView = nil;
 }
 
 @end

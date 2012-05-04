@@ -3,7 +3,7 @@
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 5/3/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
 #import "UINavigationItem+CustomTitleView.h"

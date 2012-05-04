@@ -27,6 +27,9 @@
     
     if ( self = [super init] ) {
         
+        // Customize tableView
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
         // Set Type of GuideTableViewController Instance
         self.guideType = type;
         

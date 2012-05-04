@@ -91,11 +91,12 @@
     
     // Customize tabBarItem for Stream
     NSDictionary *streamDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      [UIFont fontWithName:@"Ubuntu-Bold" size:20.0f], UITextAttributeFont,
+                                      [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f], UITextAttributeFont,
                                       [UIColor colorWithRed:98.0f/255.0f green:188.0f/255.0f blue:86.0f/255.0f alpha:1.0f], UITextAttributeTextColor, nil];
-    [streamViewController.tabBarItem setTitleTextAttributes:streamDictionary forState:UIControlStateHighlighted];
+    [streamViewController.tabBarItem setTitleTextAttributes:streamDictionary forState:UIControlStateSelected];
     [streamViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"streamOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"streamOff"]];
     [streamViewController setTitle:@"Stream"];
+    
     
     ///* ROLLS *///
     
@@ -110,9 +111,9 @@
     
     // Customize tabBarItem for Rolls
     NSDictionary *rollsDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     [UIFont fontWithName:@"Ubuntu-Bold" size:0.0f], UITextAttributeFont,
+                                     [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f], UITextAttributeFont,
                                      [UIColor colorWithRed:0.0f/255.0f green:146.0f/255.0f blue:193.0f/255.0f alpha:1.0f], UITextAttributeTextColor, nil];
-    [rollsTableViewController.tabBarItem setTitleTextAttributes:rollsDictionary forState:UIControlStateHighlighted];
+    [rollsTableViewController.tabBarItem setTitleTextAttributes:rollsDictionary forState:UIControlStateSelected];
     [rollsTableViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"rollsOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"rollsOff"]];
     [rollsTableViewController setTitle:@"Rolls"];
     
@@ -129,9 +130,9 @@
     
     // Customize tabBarItem for Saves
     NSDictionary *savesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      [UIFont fontWithName:@"Ubuntu-Bold" size:0.0f], UITextAttributeFont,
+                                      [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f], UITextAttributeFont,
                                       [UIColor colorWithRed:141.0f/255.0f green:82.0f/255.0f blue:154.0f/255.0f alpha:1.0f], UITextAttributeTextColor, nil];
-    [savesViewController.tabBarItem setTitleTextAttributes:savesDictionary forState:UIControlStateHighlighted];
+    [savesViewController.tabBarItem setTitleTextAttributes:savesDictionary forState:UIControlStateSelected];
     [savesViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"savesOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"savesOff"]];
     [savesViewController setTitle:@"Saves"];
 
@@ -148,10 +149,10 @@
     
     // Customize tabBarItem for Search
     NSDictionary *searchDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      [UIFont fontWithName:@"Ubuntu-Bold" size:0.0f], UITextAttributeFont,
+                                      [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f], UITextAttributeFont,
                                       [UIColor colorWithRed:227.0f/255.0f green:59.0f/255.0f blue:46.0f/255.0f alpha:1.0f], UITextAttributeTextColor, nil];
     [searchViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"searchOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"searchOff"]];
-    [searchViewController.tabBarItem setTitleTextAttributes:searchDictionary forState:UIControlStateHighlighted];
+    [searchViewController.tabBarItem setTitleTextAttributes:searchDictionary forState:UIControlStateSelected];
     [searchViewController setTitle:@"Search"];
     
     
@@ -166,9 +167,9 @@
     
     // Customize tabBarItem for You
     NSDictionary *youDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [UIFont fontWithName:@"Ubuntu-Bold" size:0.0f], UITextAttributeFont,
+                                   [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f], UITextAttributeFont,
                                    [UIColor colorWithRed:239.0f/255.0f green:232.0f/255.0f blue:75.0f/255.0f alpha:1.0f], UITextAttributeTextColor, nil];
-    [youTableViewController.tabBarItem setTitleTextAttributes:youDictionary forState:UIControlStateHighlighted];
+    [youTableViewController.tabBarItem setTitleTextAttributes:youDictionary forState:UIControlStateSelected];
     [youTableViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"youOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"youOff"]];
     [youTableViewController setTitle:@"You"];
     

@@ -7,6 +7,8 @@
 //
 
 #import "StreamTableViewManager.h"
+#import "VideoCardCell.h"
+#import "Asyncable.h"
 
 @interface StreamTableViewManager ()
 
@@ -65,7 +67,7 @@
         
         self.parsedDictionary = notification.object;
         self.parsedResultsArray = [self.parsedDictionary objectForKey:kAPIRequestResult];
-        NSLog(@"%@", self.parsedDictionary);
+//        NSLog(@"%@",[self.parsedResultsArray objectAtIndex:0]);
         
     } else {
     
@@ -100,11 +102,21 @@
     
     // For Testing Purposes
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    
+//    VideoCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    
+//    if ( nil == cell ) {
+//        
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
+        VideoCardCell *cell = (VideoCardCell*)[nib objectAtIndex:0];
+//          
+//    }
+
     if ( [self.parsedResultsArray objectAtIndex:indexPath.row] ) {
         
-        cell.textLabel.text = [[self.parsedResultsArray objectAtIndex:indexPath.row] valueForKey:@"id"];
+        NSString *imageString = [[[[self.parsedResultsArray objectAtIndex:indexPath.row] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"thumbnail_url"];
+        [cell.thumbnailImageView loadImageAsynchronouslyFromURL:imageString withLoadingImage:nil];
+        
+//        cell.textLabel.text = [[self.parsedResultsArray objectAtIndex:indexPath.row] valueForKey:@"id"];
         
     }
     
