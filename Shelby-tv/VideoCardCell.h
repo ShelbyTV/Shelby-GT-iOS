@@ -1,0 +1,13 @@
+//
+//  VideoCardCell.h
+//  Shelby-tv
+//
+//  Created by Arthur Ariel Sabintsev on 5/4/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface VideoCardCell : UITableViewCell
+
+@end
