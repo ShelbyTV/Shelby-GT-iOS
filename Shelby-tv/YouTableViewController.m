@@ -7,6 +7,7 @@
 //
 
 #import "YouTableViewController.h"
+#import "UINavigationItem+CustomTitleView.h"
 
 @interface YouTableViewController ()
 
@@ -35,6 +36,14 @@
 {
     [super viewDidLoad];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // Customize NavigationBar Title (must happen in viewWillAppear)
+    [self.navigationItem setTitleView:[UINavigationItem titleViewWithTitle:self.title]];
 }
 
 
