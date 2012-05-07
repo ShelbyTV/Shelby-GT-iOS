@@ -7,11 +7,11 @@
 //
 
 #import "VideoCardCell.h"
-#import <QuartzCore/QuartzCore.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 @interface VideoCardCell ()
 
-- (void)createGradientForView:(UIView*)view;
+- (void)createGradientForContext:(CGContextRef)context andView:(UIView*)view;
 
 @end
 
@@ -21,6 +21,7 @@
 @synthesize linksView = _linksView;
 @synthesize commentView = _commentView;
 
+#pragma mark - Memory Deallocation Methods
 - (void)dealloc
 {
     self.thumbnailImageView = nil;
@@ -32,17 +33,45 @@
 - (void)awakeFromNib
 {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    [self createGradientForView:self.captionView];
-    [self createGradientForView:self.linksView];
-    [self createGradientForView:self.commentView];
 }
 
-- (void)createGradientForView:(UIView *)view
+
+- (void)drawRect:(CGRect)rect
 {
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = view.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:51.0f/255.5f green:51.0f/255.5f blue:51.0f/255.5f alpha:1.0f] CGColor], (id)[[UIColor colorWithRed:48.0f/255.5f green:48.0f/255.5f blue:48.0f/255.5f alpha:1.0f] CGColor], nil];
-    [view.layer addSublayer:gradient];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    [self createGradientForContext:context andView:self.captionView];
+    [self createGradientForContext:context andView:self.linksView];
+    [self createGradientForContext:context andView:self.commentView]; 
+    
+}
+
+- (void)createGradientForContext:(CGContextRef)context andView:(UIView *)view
+{
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    CGColorRef topColor = [[UIColor colorWithRed:51.0f/255.5f green:51.0f/255.5f blue:51.0f/255.5f alpha:1.0f] CGColor];
+    CGColorRef bottomColor = [[UIColor colorWithRed:48.0f/255.5f green:48.0f/255.5f blue:48.0f/255.5f alpha:1.0f] CGColor];
+    CFArrayRef colorArray = (__bridge CFArrayRef)[NSArray arrayWithObjects:(__bridge id)topColor, (__bridge id)bottomColor, nil]; 
+    
+    CGFloat colorLocations[] = { 0.0f, 1.0f };
+    
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, colorArray, colorLocations);
+    
+    CGRect frame = view.frame;
+    CGPoint startPoint = CGPointMake(CGRectGetMidX(frame), CGRectGetMinY(frame));
+    CGPoint endPoint = CGPointMake(CGRectGetMidX(frame), CGRectGetMaxY(frame));
+    
+    CGContextSaveGState(context);
+    CGContextAddRect(context, frame);
+    CGContextClip(context);
+    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
+    CGContextRestoreGState(context);
+    
+    CGGradientRelease(gradient);
+    CGColorSpaceRelease(colorSpace);
+    
 }
 
 @end
