@@ -68,7 +68,7 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    return ( [[[SocialFacade sharedInstance] facebook] handleOpenURL:url] ) ? YES : NO;
+    return [[[SocialFacade sharedInstance] facebook] handleOpenURL:url];
 }
 
 #pragma mark - Creation Methods
