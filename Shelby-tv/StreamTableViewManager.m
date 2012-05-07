@@ -8,7 +8,7 @@
 
 #import "StreamTableViewManager.h"
 #import "VideoCardCell.h"
-#import "Asyncable.h"
+#import "AsynchronousFreeloader.h"
 
 @interface StreamTableViewManager ()
 
@@ -67,7 +67,6 @@
         
         self.parsedDictionary = notification.object;
         self.parsedResultsArray = [self.parsedDictionary objectForKey:kAPIRequestResult];
-//        NSLog(@"%@",[self.parsedResultsArray objectAtIndex:0]);
         
     } else {
     
@@ -119,7 +118,7 @@
     if ( [self.parsedResultsArray objectAtIndex:indexPath.row] ) {
         
         NSString *imageString = [[[[self.parsedResultsArray objectAtIndex:indexPath.row] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"thumbnail_url"];
-        [cell.thumbnailImageView loadImageAsynchronouslyFromURL:imageString withLoadingImage:nil];
+        [AsynchronousFreeloader loadImageFromLink:imageString forImageView:cell.thumbnailImageView];
 
         
     }

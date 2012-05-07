@@ -35,6 +35,7 @@
 		8E4A77E51551A224003CBA2A /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A77D81551A224003CBA2A /* SBJsonUTF8Stream.m */; };
 		8E4A77E61551A224003CBA2A /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A77DA1551A224003CBA2A /* SBJsonWriter.m */; };
 		8E4A77EA1551A6E2003CBA2A /* ShelbyAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */; };
+		8E50604415588FAB00F42933 /* AsynchronousFreeloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E50604315588FAB00F42933 /* AsynchronousFreeloader.m */; };
 		8E64B409155040C9008D7C5F /* NewRollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E64B407155040C9008D7C5F /* NewRollViewController.m */; };
 		8E64B40A155040C9008D7C5F /* NewRollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E64B408155040C9008D7C5F /* NewRollViewController.xib */; };
 		8E64B40F15504115008D7C5F /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E64B40D15504115008D7C5F /* ShareViewController.m */; };
@@ -148,10 +149,6 @@
 		8EEA705915544E2900B1B07F /* videocardTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA704C15544E2900B1B07F /* videocardTop@2x.png */; };
 		8EEA705A15544E2900B1B07F /* videoCardTwitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA704D15544E2900B1B07F /* videoCardTwitter.png */; };
 		8EEA705B15544E2900B1B07F /* videoCardTwitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA704E15544E2900B1B07F /* videoCardTwitter@2x.png */; };
-		8EEA70761554782E00B1B07F /* Asyncable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA706F1554782E00B1B07F /* Asyncable.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		8EEA70771554782E00B1B07F /* AsyncableWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA70711554782E00B1B07F /* AsyncableWorker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		8EEA70781554782E00B1B07F /* UIButton+Asyncable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA70731554782E00B1B07F /* UIButton+Asyncable.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		8EEA70791554782E00B1B07F /* UIImageView+Asyncable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA70751554782E00B1B07F /* UIImageView+Asyncable.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -211,6 +208,8 @@
 		8E4A77DA1551A224003CBA2A /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		8E4A77E81551A6E2003CBA2A /* ShelbyAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelbyAPIClient.h; sourceTree = "<group>"; };
 		8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyAPIClient.m; sourceTree = "<group>"; };
+		8E50604215588FAB00F42933 /* AsynchronousFreeloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousFreeloader.h; sourceTree = "<group>"; };
+		8E50604315588FAB00F42933 /* AsynchronousFreeloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousFreeloader.m; sourceTree = "<group>"; };
 		8E64B406155040C9008D7C5F /* NewRollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewRollViewController.h; sourceTree = "<group>"; };
 		8E64B407155040C9008D7C5F /* NewRollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewRollViewController.m; sourceTree = "<group>"; };
 		8E64B408155040C9008D7C5F /* NewRollViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewRollViewController.xib; sourceTree = "<group>"; };
@@ -371,14 +370,6 @@
 		8EEA704C15544E2900B1B07F /* videocardTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocardTop@2x.png"; sourceTree = "<group>"; };
 		8EEA704D15544E2900B1B07F /* videoCardTwitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardTwitter.png; sourceTree = "<group>"; };
 		8EEA704E15544E2900B1B07F /* videoCardTwitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardTwitter@2x.png"; sourceTree = "<group>"; };
-		8EEA706E1554782E00B1B07F /* Asyncable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asyncable.h; sourceTree = "<group>"; };
-		8EEA706F1554782E00B1B07F /* Asyncable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asyncable.m; sourceTree = "<group>"; };
-		8EEA70701554782E00B1B07F /* AsyncableWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncableWorker.h; sourceTree = "<group>"; };
-		8EEA70711554782E00B1B07F /* AsyncableWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncableWorker.m; sourceTree = "<group>"; };
-		8EEA70721554782E00B1B07F /* UIButton+Asyncable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Asyncable.h"; sourceTree = "<group>"; };
-		8EEA70731554782E00B1B07F /* UIButton+Asyncable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Asyncable.m"; sourceTree = "<group>"; };
-		8EEA70741554782E00B1B07F /* UIImageView+Asyncable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Asyncable.h"; sourceTree = "<group>"; };
-		8EEA70751554782E00B1B07F /* UIImageView+Asyncable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Asyncable.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -471,6 +462,15 @@
 				8E4A77B21551985C003CBA2A /* NSString+FBSBJSON.m */,
 			);
 			path = FBJSON;
+			sourceTree = "<group>";
+		};
+		8E50604115588FAB00F42933 /* Asynchronous Freeloader */ = {
+			isa = PBXGroup;
+			children = (
+				8E50604215588FAB00F42933 /* AsynchronousFreeloader.h */,
+				8E50604315588FAB00F42933 /* AsynchronousFreeloader.m */,
+			);
+			path = "Asynchronous Freeloader";
 			sourceTree = "<group>";
 		};
 		8E664D551541B0C40071EC42 /* Constants */ = {
@@ -725,7 +725,7 @@
 		8ED3110615360475002614DF /* Third Party Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				8EEA706D1554782E00B1B07F /* Asyncable */,
+				8E50604115588FAB00F42933 /* Asynchronous Freeloader */,
 				8E4A77A415519036003CBA2A /* SBJSON */,
 				8E4A775F15518B14003CBA2A /* facebook-ios-sdk */,
 				8E7F47E6154093210041118E /* ASPullToRefresh */,
@@ -841,21 +841,6 @@
 				8EEA704E15544E2900B1B07F /* videoCardTwitter@2x.png */,
 			);
 			path = videocard;
-			sourceTree = "<group>";
-		};
-		8EEA706D1554782E00B1B07F /* Asyncable */ = {
-			isa = PBXGroup;
-			children = (
-				8EEA706E1554782E00B1B07F /* Asyncable.h */,
-				8EEA706F1554782E00B1B07F /* Asyncable.m */,
-				8EEA70701554782E00B1B07F /* AsyncableWorker.h */,
-				8EEA70711554782E00B1B07F /* AsyncableWorker.m */,
-				8EEA70721554782E00B1B07F /* UIButton+Asyncable.h */,
-				8EEA70731554782E00B1B07F /* UIButton+Asyncable.m */,
-				8EEA70741554782E00B1B07F /* UIImageView+Asyncable.h */,
-				8EEA70751554782E00B1B07F /* UIImageView+Asyncable.m */,
-			);
-			path = Asyncable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1070,10 +1055,7 @@
 				8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */,
 				8EE673AC15531124004EA45C /* UINavigationItem+CustomTitleView.m in Sources */,
 				8EEA704015544A2200B1B07F /* VideoCardCell.m in Sources */,
-				8EEA70761554782E00B1B07F /* Asyncable.m in Sources */,
-				8EEA70771554782E00B1B07F /* AsyncableWorker.m in Sources */,
-				8EEA70781554782E00B1B07F /* UIButton+Asyncable.m in Sources */,
-				8EEA70791554782E00B1B07F /* UIImageView+Asyncable.m in Sources */,
+				8E50604415588FAB00F42933 /* AsynchronousFreeloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1097,6 +1079,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Arthur Sabintsev (Z4E762QSUZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1112,6 +1095,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "B09ECF02-F5E7-47A1-A176-FB36C53A0EAF";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1123,6 +1107,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Arthur Sabintsev (Z4E762QSUZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1132,6 +1117,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "B09ECF02-F5E7-47A1-A176-FB36C53A0EAF";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

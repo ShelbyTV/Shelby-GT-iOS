@@ -79,7 +79,7 @@
 
 - (IBAction)twitterLogin:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - SocialFacadeDelegate Methods
@@ -87,7 +87,7 @@
 {
     if ( [self.socialFacade facebookAuthorized] ) {
         
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
         
     } else {
         
@@ -100,7 +100,7 @@
     
     if ( [self.socialFacade twitterAuthorized] ) {
         
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
         
     } else {
         
