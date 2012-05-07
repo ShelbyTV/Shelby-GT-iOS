@@ -25,7 +25,7 @@
 - (id)initWithGuideType:(GuideType)type andTableViewManager:(GuideTableViewManager *)manager
 {
     
-    if ( self = [super initWithStyle:UITableViewStyleGrouped] ) {
+    if ( self = [super initWithStyle:UITableViewStylePlain] ) {
         
         // Customize tableView
         self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default"]];
