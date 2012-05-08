@@ -118,7 +118,7 @@
     if ( [self.parsedResultsArray objectAtIndex:indexPath.row] ) {
         
         NSString *imageString = [[[[self.parsedResultsArray objectAtIndex:indexPath.row] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"thumbnail_url"];
-        [AsynchronousFreeloader loadImageFromLink:imageString forImageView:cell.thumbnailImageView];
+        [AsynchronousFreeloader loadImageFromLink:imageString forImageView:cell.thumbnailImageView withPlaceholderView:nil];
         
     }
     
