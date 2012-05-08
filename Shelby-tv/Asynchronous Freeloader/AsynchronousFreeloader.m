@@ -18,7 +18,6 @@
 + (void)saveImageWithName:(NSString*)name                                   // Save data from asynchronous response to tmp directory on device
                  fromData:(NSData*)data;                    
 
-
 + (void)successfulResponseForImageView:(UIImageView*)imageView              // Asynchronous request succeeded
                               withData:(NSData *)data
                               fromLink:(NSString*)link;
@@ -89,6 +88,7 @@
 
 + (BOOL)doesImageWithName:(NSString *)name exist:(NSMutableDictionary *)cache
 {
+    
     BOOL imageExists;
     
     // Check if image reference exists in cache
@@ -104,6 +104,7 @@
     
     } else if ( cacheReferenceExists && !pathReferenceExists ) {    // If image exists in cache, but doesn't exist on device
         
+        // Remove image-reference from cache and update NSUserDefaults
         [cache removeObjectForKey:name];
         [[NSUserDefaults standardUserDefaults] setObject:cache forKey:AsynchronousFreeloaderCache];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -117,49 +118,6 @@
     return imageExists;
 }
 
-+ (UIImage*)resizeImage:(UIImage *)image forImageView:(UIImageView *)imageView
-{
-    
-    CGFloat scale;
-    
-    CGFloat imageWidth = image.size.width;
-    CGFloat imageHeight = image.size.height;
-    
-    CGFloat imageViewWidth = imageView.frame.size.width;
-    CGFloat imageViewHeight = imageView.frame.size.height;
-    
-    CGFloat widthRatio = imageWidth / imageViewWidth;
-    CGFloat heightRatio = imageHeight / imageViewHeight;
-    
-    if ( (widthRatio < 1.0f && heightRatio < 1.0f) ) {
-        
-        if ( widthRatio < heightRatio ) {
-            
-            scale = 1.0f/widthRatio;
-            
-        } else {
-            
-            scale = 1.0f/heightRatio;
-            
-        }
-        
-    } else if ( widthRatio < 1.0f && heightRatio >= 1.0f ) {
-        
-        scale = widthRatio;
-        
-    } else if ( widthRatio >= 1.0f && heightRatio < 1.0f ) {
-        
-        scale = heightRatio;
-    
-    } else { // imageWidth and imageHeight are both grater than 1.0f
-        
-        scale = 1.0f;
-        
-    }
-    
-    return [UIImage imageWithCGImage:[image CGImage] scale:scale orientation:[UIDevice currentDevice].orientation];
-    
-}
 
 + (void)saveImageWithName:(NSString *)name fromData:(NSData *)data
 {
@@ -167,14 +125,14 @@
     NSMutableDictionary *cache = [AsynchronousFreeloader createReferenceToCache];
     
     // Save image to disk with URL-based fileName
-    NSString *fileName = [NSString stringWithFormat:@"%@", name];
-    fileName = [fileName stringByReplacingOccurrencesOfString:@"http://" withString:@""];
-    fileName = [fileName stringByReplacingOccurrencesOfString:@"/" withString:@""];
-    NSString *tmpPath = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), fileName];
-    [data writeToFile:tmpPath atomically:YES];
+    NSString *filename = [NSString stringWithFormat:@"%@", name];
+    filename = [filename stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+    filename = [filename stringByReplacingOccurrencesOfString:@"/" withString:@""];
+    NSString *path = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), filename];
+    [data writeToFile:path atomically:YES];
     
     // Save path to cache
-    [cache setObject:tmpPath forKey:name];
+    [cache setObject:path forKey:name];
     
     // Save cache to NSUserDefaults
     [[NSUserDefaults standardUserDefaults] setObject:cache forKey:AsynchronousFreeloaderCache];
@@ -189,8 +147,9 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
+        // Update UI on Main Thread
         imageView.image = [UIImage imageWithData:data];
-        
+    
     });
     
 }

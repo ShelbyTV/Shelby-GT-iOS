@@ -93,7 +93,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 324;
+    return 324.0f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -119,7 +119,6 @@
         
         NSString *imageString = [[[[self.parsedResultsArray objectAtIndex:indexPath.row] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"thumbnail_url"];
         [AsynchronousFreeloader loadImageFromLink:imageString forImageView:cell.thumbnailImageView];
-
         
     }
     
