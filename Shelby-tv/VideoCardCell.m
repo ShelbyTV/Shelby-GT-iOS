@@ -51,15 +51,18 @@
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     
-    CGColorRef topColor = [[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f] CGColor];
-    CGColorRef bottomColor = [[UIColor colorWithRed:48.0f/255.0f green:48.0f/255.0f blue:48.0f/255.0f alpha:1.0f] CGColor];
-    NSArray *array = [NSArray arrayWithObjects:(__bridge id)topColor, (__bridge id)bottomColor, nil];
-    CFArrayRef colorArray = (__bridge CFArrayRef) array;
-    
     CGFloat colorLocations[] = { 0.0f, 1.0f };
-    
-    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, colorArray, colorLocations);
-    
+
+    CGFloat topColorComponents[] = {51.0f/255.0f, 51.0f/255.0f, 51.0f/255.0f, 1.0f};
+    CGFloat bottomColorComponents[] = {48.0f/255.0f, 48.0f/255.0f, 48.0f/255.0f, 1.0f};
+    CGColorRef topColor = CGColorCreate(colorSpace, topColorComponents);
+    CGColorRef bottomColor = CGColorCreate(colorSpace, bottomColorComponents);
+
+    CFMutableArrayRef colorArray = CFArrayCreateMutable(NULL, 2, &kCFTypeArrayCallBacks);
+    CFArrayAppendValue(colorArray, topColor);
+    CFArrayAppendValue(colorArray, bottomColor);
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, colorArray, colorLocations);    
+
     CGRect frame = view.frame;
     CGPoint startPoint = CGPointMake(CGRectGetMidX(frame), CGRectGetMinY(frame));
     CGPoint endPoint = CGPointMake(CGRectGetMidX(frame), CGRectGetMaxY(frame));
@@ -69,7 +72,7 @@
     CGContextClip(context);
     CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
     CGContextRestoreGState(context);
-    
+
     CFRelease(colorArray);
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorSpace);
