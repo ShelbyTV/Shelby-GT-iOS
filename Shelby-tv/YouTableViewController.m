@@ -65,15 +65,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        CAGradientLayer *gradient = [CAGradientLayer layer];
-        gradient.frame = cell.bounds;
-        gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:51.0f/255.5f green:51.0f/255.5f blue:51.0f/255.5f alpha:1.0f] CGColor], (id)[[UIColor colorWithRed:48.0f/255.5f green:48.0f/255.5f blue:48.0f/255.5f alpha:1.0f] CGColor], nil];
-        [cell.layer addSublayer:gradient];
-    }        
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];    
     
     return cell;
 }

@@ -51,9 +51,10 @@
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     
-    CGColorRef topColor = [[UIColor colorWithRed:51.0f/255.5f green:51.0f/255.5f blue:51.0f/255.5f alpha:1.0f] CGColor];
-    CGColorRef bottomColor = [[UIColor colorWithRed:48.0f/255.5f green:48.0f/255.5f blue:48.0f/255.5f alpha:1.0f] CGColor];
-    CFArrayRef colorArray = (__bridge CFArrayRef)[NSArray arrayWithObjects:(__bridge id)topColor, (__bridge id)bottomColor, nil]; 
+    CGColorRef topColor = [[UIColor colorWithRed:51.0f/255.0f green:51.0f/255.0f blue:51.0f/255.0f alpha:1.0f] CGColor];
+    CGColorRef bottomColor = [[UIColor colorWithRed:48.0f/255.0f green:48.0f/255.0f blue:48.0f/255.0f alpha:1.0f] CGColor];
+    NSArray *array = [NSArray arrayWithObjects:(__bridge id)topColor, (__bridge id)bottomColor, nil];
+    CFArrayRef colorArray = (__bridge CFArrayRef) array;
     
     CGFloat colorLocations[] = { 0.0f, 1.0f };
     
@@ -69,6 +70,7 @@
     CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
     CGContextRestoreGState(context);
     
+    CFRelease(colorArray);
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorSpace);
     

@@ -61,7 +61,7 @@
     [self.window makeKeyAndVisible];
 
     // Present LoginViewController for Proper Device, which performs authorization status check
-    [self presentLoginViewController];
+//    [self presentLoginViewController];
     
     return YES;
 }
