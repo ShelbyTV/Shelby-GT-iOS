@@ -10,10 +10,18 @@
 
 @interface AsynchronousFreeloader ()
 
-+ (NSMutableDictionary*)createReferenceToCache;
-+ (BOOL)checkCache:(NSMutableDictionary*)cache ForLink:(NSString *)link;
-+ (void)successfulResponseForData:(NSData *)data fromLink:(NSString*)link toPresentInImageView:(UIImageView*)imageView;
-+ (void)failedResponse;
++ (NSMutableDictionary*)createReferenceToCache;                             // Create local instance of NSMutableDictionary
+
++ (BOOL)doesImageWithName:(NSString*)name                                   // Check if image exists in cache and on device (determines if HTTP request needs to be performed)
+  existOnDeviceAndInCache:(NSMutableDictionary*)cache;
+
++ (void)successfulResponseForImageView:(UIImageView*)imageView              // Asynchronous request succeeded
+                              withData:(NSData *)data
+                              fromLink:(NSString*)link;
+
++ (void)failedResponseForImageView:(UIImageView*)imageView;                 // Asynchronous request failed
+
++ (void)saveImageWithName:(NSString*)name fromData:(NSData*)data;           // Save data from asynchronous response to tmp directory on device
 
 @end
 
@@ -22,109 +30,134 @@
 #pragma mark - Public Methods
 + (void)loadImageFromLink:(NSString *)link forImageView:(UIImageView *)imageView
 {
-
-    NSMutableDictionary *cache = [AsynchronousFreeloader createReferenceToCache];
-    
-    BOOL imageExists = [AsynchronousFreeloader checkCache:cache ForLink:link];
-    
-    if ( imageExists ) {
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            imageView.image = [cache objectForKey:link];
-            
-        });
-        
-    } else {
-        
-        NSURL *url = [NSURL URLWithString:link];
-        NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        
-        [NSURLConnection  sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-            
-            if ([data length] > 0 && error == nil) {
-                
-                [AsynchronousFreeloader successfulResponseForData:data fromLink:link toPresentInImageView:imageView];
-                
-            } else {
-                
-                [AsynchronousFreeloader failedResponse];
-            }
-            
-        }];
-        
-    }
-    
-        
-}
-
-+ (void)removeImageFromCacheForLink:(NSString *)link
-{
-    
-    NSMutableDictionary *cache = [AsynchronousFreeloader createReferenceToCache];
-    BOOL imageExists = [AsynchronousFreeloader checkCache:cache ForLink:link];
-    
-    if ( cache && imageExists ) {
-    
-        [cache removeObjectForKey:link];
-        [[NSUserDefaults standardUserDefaults] setObject:cache forKey:AsynchronousFreeloaderCache];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-    }
-    
-}
-
-#pragma mark - Private Method
-+ (NSMutableDictionary*)createReferenceToCache
-{
-    
-    NSMutableDictionary *cache;
-    
-    if ( [[NSUserDefaults standardUserDefaults] objectForKey:AsynchronousFreeloaderCache] ) {
-        
-        cache = [[NSUserDefaults standardUserDefaults] objectForKey:AsynchronousFreeloaderCache];
-        
-    } else {
-        
-        cache = [NSMutableDictionary dictionary];
-        
-    }
-
-    return cache;
-    
-}
-
-+ (BOOL)checkCache:(NSMutableDictionary *)cache ForLink:(NSString *)link
-{
-    return ( [cache objectForKey:link] ) ? YES : NO;
-}
-
-+ (void)successfulResponseForData:(NSData *)data fromLink:(NSString*)link toPresentInImageView:(UIImageView*)imageView
-{
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    
-        NSMutableDictionary *cache = [[NSUserDefaults standardUserDefaults] objectForKey:AsynchronousFreeloaderCache];
         
-        UIImage *image = [UIImage imageWithData:data];
+        NSMutableDictionary *cache = [AsynchronousFreeloader createReferenceToCache];
         
-        [cache setObject:image forKey:link];
-        [[NSUserDefaults standardUserDefaults] setObject:cache forKey:AsynchronousFreeloaderCache];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        BOOL imageExists = [AsynchronousFreeloader doesImageWithName:link existOnDeviceAndInCache:cache];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        if ( imageExists ) {
             
-            imageView.image = [UIImage imageWithData:data];
+            imageView.image = [UIImage imageWithContentsOfFile:[cache objectForKey:link]];
             
-        });
+        } else {
+            
+            // Create asychronous request
+            NSURL *url = [NSURL URLWithString:link];
+            NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+            NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+            
+            [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                
+                if ([data length] > 0 && error == nil) {    // Successful asynchronous response
+                    
+                    [AsynchronousFreeloader successfulResponseForImageView:imageView withData:data fromLink:link];
+                    
+                } else {                                    // Failed asynchronous response
+                    
+                    [AsynchronousFreeloader failedResponseForImageView:imageView];
+                    
+                }
+                
+            }];
+            
+        }
+
         
     });
     
 }
 
-+ (void)failedResponse
+#pragma mark - Private Methods
++ (NSMutableDictionary*)createReferenceToCache
 {
+    
+    NSMutableDictionary *cache = [NSMutableDictionary dictionary];
+    
+    if ( [[NSUserDefaults standardUserDefaults] objectForKey:AsynchronousFreeloaderCache] ) {
+        
+        // If cache exists in NSUserDefaults
+        [cache setDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:AsynchronousFreeloaderCache]];
+        
+    }
+    
+    return cache;
+}
+
++ (BOOL)doesImageWithName:(NSString *)name 
+  existOnDeviceAndInCache:(NSMutableDictionary *)cache
+{
+    BOOL imageExists;
+    
+    // Check if image reference exists in cache
+    BOOL cacheReferenceExists = ( [cache objectForKey:name] ) ? YES : NO;
+    
+    // Check if image exists at referenced path
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL pathReferenceExists = [fileManager fileExistsAtPath:[cache objectForKey:name]];
+    
+    if ( cacheReferenceExists && pathReferenceExists ) {            // If image exists in cache and on device
+        
+        imageExists = YES;
+    
+    } else if ( cacheReferenceExists && !pathReferenceExists ) {    // If image exists in cache, but doesn't exist on device
+        
+        [cache removeObjectForKey:name];
+        [[NSUserDefaults standardUserDefaults] setObject:cache forKey:AsynchronousFreeloaderCache];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+    } else {                                                        // If image doesn't exists in cache, nor on the device
+        
+        imageExists = NO;
+        
+    }
+    
+    return imageExists;
+}
+
++ (void)saveImageWithName:(NSString *)name fromData:(NSData *)data
+{
+    
+    NSMutableDictionary *cache = [AsynchronousFreeloader createReferenceToCache];
+    
+    // Save image to disk with URL-based fileName
+    NSString *fileName = [NSString stringWithFormat:@"%@", name];
+    fileName = [fileName stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+    fileName = [fileName stringByReplacingOccurrencesOfString:@"/" withString:@""];
+    NSString *tmpPath = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), fileName];
+    [data writeToFile:tmpPath atomically:YES];
+    
+    // Save path to cache
+    [cache setObject:tmpPath forKey:name];
+    
+    // Save cache to NSUserDefaults
+    [[NSUserDefaults standardUserDefaults] setObject:cache forKey:AsynchronousFreeloaderCache];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
++ (void)successfulResponseForImageView:(UIImageView *)imageView withData:(NSData *)data fromLink:(NSString *)link
+{
+
+    [AsynchronousFreeloader saveImageWithName:link fromData:data];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        imageView.image = [UIImage imageWithData:data];
+        
+    });
+    
+}
+
++ (void)failedResponseForImageView:(UIImageView *)imageView
+{
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        // Custom failed response
+        
+    });
     
 }
 

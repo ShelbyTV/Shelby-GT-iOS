@@ -12,7 +12,6 @@
 
 @interface AsynchronousFreeloader : NSObject
 
-+ (void)loadImageFromLink:(NSString *)link forImageView:(UIImageView *)imageView;
-+ (void)removeImageFromCacheForLink:(NSString *)link;
++ (void)loadImageFromLink:(NSString *)link forImageView:(UIImageView *)imageView;       // Asynchronously load image from 'link' and set it in 'imageView'
 
 @end
