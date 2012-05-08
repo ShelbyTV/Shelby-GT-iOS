@@ -118,6 +118,33 @@
     return imageExists;
 }
 
++ (UIImage*)resizeImage:(UIImage *)image forImageView:(UIImageView*)imageView
+{
+    
+    float hfactor = imageView.bounds.size.width / image.size.width;
+    float vfactor = imageView.bounds.size.height / image.size.height;
+    
+    float factor = fmax(hfactor, vfactor);
+    
+    // Divide the size by the greater of the vertical or horizontal shrinkage factor
+    float newWidth = imageView.bounds.size.width / factor;
+    float newHeight = imageView.bounds.size.height / factor;
+    
+    NSLog(@"%f, %f", newWidth, newHeight);
+    
+    // Then figure out if you need to offset it to center vertically or horizontally
+    float leftOffset = (image.size.width - newWidth) / 2;
+    float topOffset = (image.size.height - newHeight) / 2;
+    
+    CGRect newRect = CGRectMake(leftOffset, topOffset, newWidth, newHeight);
+    UIGraphicsBeginImageContext(image.size);
+    
+    [image drawInRect:newRect blendMode:kCGBlendModePlusDarker alpha:1];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
 
 + (void)saveImageWithName:(NSString *)name fromData:(NSData *)data
 {
@@ -142,12 +169,14 @@
 
 + (void)successfulResponseForImageView:(UIImageView *)imageView withData:(NSData *)data fromLink:(NSString *)link
 {
-
+    
     [AsynchronousFreeloader saveImageWithName:link fromData:data];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        // Update UI on Main Thread
+        // Update imageView on Main Thread
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
         imageView.image = [UIImage imageWithData:data];
     
     });
