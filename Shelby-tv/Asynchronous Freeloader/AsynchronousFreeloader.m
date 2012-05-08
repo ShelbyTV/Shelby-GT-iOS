@@ -13,15 +13,17 @@
 + (NSMutableDictionary*)createReferenceToCache;                             // Create local instance of NSMutableDictionary
 
 + (BOOL)doesImageWithName:(NSString*)name                                   // Check if image exists in cache and on device (determines if HTTP request needs to be performed)
-  existOnDeviceAndInCache:(NSMutableDictionary*)cache;
+                   exist:(NSMutableDictionary*)cache;                                          
+
++ (void)saveImageWithName:(NSString*)name                                   // Save data from asynchronous response to tmp directory on device
+                 fromData:(NSData*)data;                    
+
 
 + (void)successfulResponseForImageView:(UIImageView*)imageView              // Asynchronous request succeeded
                               withData:(NSData *)data
                               fromLink:(NSString*)link;
 
 + (void)failedResponseForImageView:(UIImageView*)imageView;                 // Asynchronous request failed
-
-+ (void)saveImageWithName:(NSString*)name fromData:(NSData*)data;           // Save data from asynchronous response to tmp directory on device
 
 @end
 
@@ -35,7 +37,7 @@
         
         NSMutableDictionary *cache = [AsynchronousFreeloader createReferenceToCache];
         
-        BOOL imageExists = [AsynchronousFreeloader doesImageWithName:link existOnDeviceAndInCache:cache];
+        BOOL imageExists = [AsynchronousFreeloader doesImageWithName:link exist:cache];
         
         if ( imageExists ) {
             
@@ -85,8 +87,7 @@
     return cache;
 }
 
-+ (BOOL)doesImageWithName:(NSString *)name 
-  existOnDeviceAndInCache:(NSMutableDictionary *)cache
++ (BOOL)doesImageWithName:(NSString *)name exist:(NSMutableDictionary *)cache
 {
     BOOL imageExists;
     
@@ -114,6 +115,50 @@
     }
     
     return imageExists;
+}
+
++ (UIImage*)resizeImage:(UIImage *)image forImageView:(UIImageView *)imageView
+{
+    
+    CGFloat scale;
+    
+    CGFloat imageWidth = image.size.width;
+    CGFloat imageHeight = image.size.height;
+    
+    CGFloat imageViewWidth = imageView.frame.size.width;
+    CGFloat imageViewHeight = imageView.frame.size.height;
+    
+    CGFloat widthRatio = imageWidth / imageViewWidth;
+    CGFloat heightRatio = imageHeight / imageViewHeight;
+    
+    if ( (widthRatio < 1.0f && heightRatio < 1.0f) ) {
+        
+        if ( widthRatio < heightRatio ) {
+            
+            scale = 1.0f/widthRatio;
+            
+        } else {
+            
+            scale = 1.0f/heightRatio;
+            
+        }
+        
+    } else if ( widthRatio < 1.0f && heightRatio >= 1.0f ) {
+        
+        scale = widthRatio;
+        
+    } else if ( widthRatio >= 1.0f && heightRatio < 1.0f ) {
+        
+        scale = heightRatio;
+    
+    } else { // imageWidth and imageHeight are both grater than 1.0f
+        
+        scale = 1.0f;
+        
+    }
+    
+    return [UIImage imageWithCGImage:[image CGImage] scale:scale orientation:[UIDevice currentDevice].orientation];
+    
 }
 
 + (void)saveImageWithName:(NSString *)name fromData:(NSData *)data
