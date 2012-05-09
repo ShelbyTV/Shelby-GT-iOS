@@ -89,6 +89,34 @@
     
 }
 
++ (void)removeImageFromLink:(NSString *)link inCache:(NSMutableDictionary *)cache
+{
+
+   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+       [cache removeObjectForKey:link];
+        [[NSUserDefaults standardUserDefaults] setObject:cache forKey:AsynchronousFreeloaderCache];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+   
+   });
+
+}
+
++ (void)removeAllImages
+{
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSMutableDictionary *cache = [AsynchronousFreeloader createReferenceToCache];
+        
+        [cache removeAllObjects];
+        [[NSUserDefaults standardUserDefaults] setObject:cache forKey:AsynchronousFreeloaderCache];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+    });
+    
+}
+
 #pragma mark - Private Methods
 + (void)presentPlaceholderView:(UIView *)placeholderView inImageView:(UIImageView *)imageView
 {
@@ -150,9 +178,7 @@
         // Empty cache if there are too many entries
         if  ( AsynchronousFreeloaderCacheSize >= [cache count] ) {
             
-            [cache removeAllObjects];
-            [[NSUserDefaults standardUserDefaults] setObject:cache forKey:AsynchronousFreeloaderCache];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            [AsynchronousFreeloader removeAllImages];
          
         }
          
@@ -181,9 +207,7 @@
     } else if ( cacheReferenceExists && !pathReferenceExists ) {    // If image exists in cache, but doesn't exist on device
         
         // Remove image-reference from cache and update NSUserDefaults
-        [cache removeObjectForKey:name];
-        [[NSUserDefaults standardUserDefaults] setObject:cache forKey:AsynchronousFreeloaderCache];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [AsynchronousFreeloader removeImageFromLink:name inCache:cache];
         
     } else {                                                        // If image doesn't exists in cache, nor on the device
         
@@ -221,13 +245,6 @@
     [AsynchronousFreeloader saveImageWithName:link fromData:data];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        // Remove UIActivityIndicatorView
-        for ( UIActivityIndicatorView *view in [imageView subviews] ) {
-            
-            [view stopAnimating];
-            [view removeFromSuperview];
-        }
         
         // Update imageView on Main Thread
         imageView.contentMode = UIViewContentModeScaleAspectFill;

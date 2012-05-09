@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define AsynchronousFreeloaderCache         @"Aynchronous Freeloader Cache"
+#define AsynchronousFreeloaderCacheDate     @"Aynchronous Freeloader Cache Date"
 #define AsynchronousFreeloaderCacheSize     200
 
 @interface AsynchronousFreeloader : NSObject
@@ -21,8 +22,14 @@
  
  */
 
- + (void)loadImageFromLink:(NSString *)link 
++ (void)loadImageFromLink:(NSString *)link 
              forImageView:(UIImageView *)imageView 
       withPlaceholderView:(UIView*)placeholderView;       
+
+// Remove an image from the cache (images use links as dictionary keys)
++ (void)removeImageFromLink:(NSString*)link inCache:(NSMutableDictionary*)cache;
+
+// Empty the cache
++ (void)removeAllImages;
 
 @end
