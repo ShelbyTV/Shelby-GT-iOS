@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma mark - Software Author Customized Definitions
 #define AsynchronousFreeloaderCache         @"Aynchronous Freeloader Cache"
-#define AsynchronousFreeloaderCacheDate     @"Aynchronous Freeloader Cache Date"
-#define AsynchronousFreeloaderCacheSize     200
+#define AsynchronousFreeloaderCachePaths    @"Aynchronous Freeloader Cache Path"
+#define AsynchronousFreeloaderCacheNames    @"Aynchronous Freeloader Cache Name"
+
+#pragma mark - User Customized Definitions
+#define AsynchronousFreeloaderCacheSize     100
 
 @interface AsynchronousFreeloader : NSObject
 
@@ -27,7 +31,7 @@
       withPlaceholderView:(UIView*)placeholderView;       
 
 // Remove an image from the cache (images use links as dictionary keys)
-+ (void)removeImageFromLink:(NSString*)link inCache:(NSMutableDictionary*)cache;
++ (void)removeImageFromCache:(NSString*)link;
 
 // Empty the cache
 + (void)removeAllImages;
