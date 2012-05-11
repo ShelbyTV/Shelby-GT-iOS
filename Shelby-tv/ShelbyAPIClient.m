@@ -80,7 +80,7 @@
     
     // Post Notification with Parsed Object
     NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
-    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:self.parsedDictionary];
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:self.parsedDictionary];
 }
 
 @end

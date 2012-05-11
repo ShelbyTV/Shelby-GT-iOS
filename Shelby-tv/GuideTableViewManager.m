@@ -11,7 +11,6 @@
 @implementation GuideTableViewManager
 @synthesize refreshController = _refreshController;
 @synthesize navigationController = _navigationController;
-@synthesize parsedDictionary = _parsedDictionary;
 @synthesize parsedResultsArray = _parsedResultsArray;
 @synthesize tableView = _tableView;
 

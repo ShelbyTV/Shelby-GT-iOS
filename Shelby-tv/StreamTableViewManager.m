@@ -63,16 +63,9 @@
     [self.refreshController didFinishRefreshing];
     
     // Store array from NSNotification, locally
-    if ( [notification.object isKindOfClass:[NSDictionary class]] ) {
+    NSDictionary *parsedDictionary = notification.userInfo;
+    self.parsedResultsArray = [parsedDictionary objectForKey:kAPIRequestResult];
         
-        self.parsedDictionary = notification.object;
-        self.parsedResultsArray = [self.parsedDictionary objectForKey:kAPIRequestResult];
-        
-    } else {
-    
-        NSLog(@"ERROR");
-    }
-    
     // Reload tableView
     [self.tableView reloadData];
 

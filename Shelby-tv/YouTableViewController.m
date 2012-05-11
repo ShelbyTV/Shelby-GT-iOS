@@ -9,9 +9,6 @@
 #import "YouTableViewController.h"
 #import "UINavigationItem+CustomTitleView.h"
 
-// Test
-#import <QuartzCore/QuartzCore.h>
-
 @interface YouTableViewController ()
 
 @end
@@ -65,7 +62,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];    
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewStyleGrouped reuseIdentifier:CellIdentifier];
+    
+    // Configure the cell...
     
     return cell;
 }
