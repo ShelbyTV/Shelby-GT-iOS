@@ -13,11 +13,11 @@
 
 @interface Frame : NSManagedObject
 
-@property (nonatomic, retain) NSString * id;
-@property (nonatomic, retain) NSString * videoID;
-@property (nonatomic, retain) NSString * conversationID;
-@property (nonatomic, retain) Video *video;
-@property (nonatomic, retain) Conversation *conversation;
-@property (nonatomic, retain) DashboardEntry *dashboardEntry;
+@property (nonatomic, strong) NSString * id;
+@property (nonatomic, strong) NSString * videoID;
+@property (nonatomic, strong) NSString * conversationID;
+@property (nonatomic, strong) Video *video;
+@property (nonatomic, strong) Conversation *conversation;
+@property (nonatomic, strong) DashboardEntry *dashboardEntry;
 
 @end

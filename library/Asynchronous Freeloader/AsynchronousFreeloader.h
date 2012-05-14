@@ -18,7 +18,7 @@
 
 @interface AsynchronousFreeloader : NSObject
 
-/* 
+/** 
 
  Asynchronously load image from 'link' and set it in 'imageView'. 
  Optionally, you may add a placeholderView to be displayed while your image is being fetched.
@@ -30,10 +30,14 @@
              forImageView:(UIImageView *)imageView 
       withPlaceholderView:(UIView*)placeholderView;       
 
-// Remove an image from the cache (images use links as dictionary keys)
+/** 
+ Remove an image from the cache. Each images is stored in the cache using the URL it was fetched from.
+ */
 + (void)removeImageFromCache:(NSString*)link;
 
-// Empty the cache
+/**
+ Empty the cache
+*/
 + (void)removeAllImages;
 
 @end

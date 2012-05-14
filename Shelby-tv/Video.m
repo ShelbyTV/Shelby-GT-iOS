@@ -7,7 +7,6 @@
 //
 
 #import "Video.h"
-#import "Frame.h"
 
 @implementation Video
 

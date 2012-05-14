@@ -11,7 +11,6 @@
 #import "Frame.h"
 #import "Video.h"
 
-
 @implementation DashboardEntry
 
 @dynamic id;

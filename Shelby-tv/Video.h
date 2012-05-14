@@ -9,15 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class DashboardEntry, Frame;
 
 @interface Video : NSManagedObject
 
-@property (nonatomic, retain) NSString * id;
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSString * thumbnailURL;
-@property (nonatomic, retain) NSString * sourceURL;
-@property (nonatomic, retain) NSString * caption;
-@property (nonatomic, retain) NSManagedObject *frame;
-@property (nonatomic, retain) NSManagedObject *dashboardEntry;
+@property (nonatomic, strong) NSString * id;
+@property (nonatomic, strong) NSString * title;
+@property (nonatomic, strong) NSString * thumbnailURL;
+@property (nonatomic, strong) NSString * sourceURL;
+@property (nonatomic, strong) NSString * caption;
+@property (nonatomic, strong) NSManagedObject *frame;
+@property (nonatomic, strong) NSManagedObject *dashboardEntry;
 
 @end

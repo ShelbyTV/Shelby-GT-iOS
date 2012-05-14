@@ -35,6 +35,9 @@
 		8E4A77E51551A224003CBA2A /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A77D81551A224003CBA2A /* SBJsonUTF8Stream.m */; };
 		8E4A77E61551A224003CBA2A /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A77DA1551A224003CBA2A /* SBJsonWriter.m */; };
 		8E4A77EA1551A6E2003CBA2A /* ShelbyAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */; };
+		8E5E7F8615614C9A009FC8CE /* missingThumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5E7F8415614C9A009FC8CE /* missingThumbnail.png */; };
+		8E5E7F8715614C9A009FC8CE /* missingThumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5E7F8515614C9A009FC8CE /* missingThumbnail@2x.png */; };
+		8E5E7F95156151B0009FC8CE /* CoreDataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5E7F94156151B0009FC8CE /* CoreDataUtility.m */; };
 		8E64B409155040C9008D7C5F /* NewRollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E64B407155040C9008D7C5F /* NewRollViewController.m */; };
 		8E64B40A155040C9008D7C5F /* NewRollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E64B408155040C9008D7C5F /* NewRollViewController.xib */; };
 		8E64B40F15504115008D7C5F /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E64B40D15504115008D7C5F /* ShareViewController.m */; };
@@ -218,6 +221,10 @@
 		8E4A77DA1551A224003CBA2A /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		8E4A77E81551A6E2003CBA2A /* ShelbyAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelbyAPIClient.h; sourceTree = "<group>"; };
 		8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyAPIClient.m; sourceTree = "<group>"; };
+		8E5E7F8415614C9A009FC8CE /* missingThumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = missingThumbnail.png; path = Resources/images/videocard/missingThumbnail.png; sourceTree = SOURCE_ROOT; };
+		8E5E7F8515614C9A009FC8CE /* missingThumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "missingThumbnail@2x.png"; path = "Resources/images/videocard/missingThumbnail@2x.png"; sourceTree = SOURCE_ROOT; };
+		8E5E7F93156151B0009FC8CE /* CoreDataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataUtility.h; sourceTree = "<group>"; };
+		8E5E7F94156151B0009FC8CE /* CoreDataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataUtility.m; sourceTree = "<group>"; };
 		8E64B406155040C9008D7C5F /* NewRollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewRollViewController.h; sourceTree = "<group>"; };
 		8E64B407155040C9008D7C5F /* NewRollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewRollViewController.m; sourceTree = "<group>"; };
 		8E64B408155040C9008D7C5F /* NewRollViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewRollViewController.xib; sourceTree = "<group>"; };
@@ -300,6 +307,7 @@
 		8E8124F11540C2E800E1EA4B /* GuideTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideTableViewManager.h; sourceTree = "<group>"; };
 		8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideTableViewManager.m; sourceTree = "<group>"; };
 		8E8124F41540C2F900E1EA4B /* TableViewManagers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewManagers.h; sourceTree = "<group>"; };
+		8EA87B4F156167E00029C07E /* CoreDataConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataConstants.h; sourceTree = "<group>"; };
 		8EAA320D154EF239003FC586 /* PeopleRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleRollsTableViewManager.h; sourceTree = "<group>"; };
 		8EAA320E154EF239003FC586 /* PeopleRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleRollsTableViewManager.m; sourceTree = "<group>"; };
 		8EAA3210154EF271003FC586 /* PopularRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularRollsTableViewManager.h; sourceTree = "<group>"; };
@@ -508,6 +516,7 @@
 				8E664D571541B10D0071EC42 /* APIConstants.h */,
 				8E6715A3154F14590059FC1A /* Structures.h */,
 				8E664D6D1541C81F0071EC42 /* TextConstants.h */,
+				8EA87B4F156167E00029C07E /* CoreDataConstants.h */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -596,7 +605,7 @@
 			name = SocialFacade;
 			sourceTree = "<group>";
 		};
-		8E8124DB1540C07400E1EA4B /* Table View Managers */ = {
+		8E8124DB1540C07400E1EA4B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				8E8124F41540C2F900E1EA4B /* TableViewManagers.h */,
@@ -615,7 +624,7 @@
 				8E8124E01540C1A200E1EA4B /* YourRollsTableViewManager.h */,
 				8E67158C154EF3540059FC1A /* YourRollsTableViewManager.m */,
 			);
-			name = "Table View Managers";
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		8ECBA7C11535F6F70009718E = {
@@ -658,12 +667,13 @@
 				8ED311081536049D002614DF /* App Delegate */,
 				8E664D551541B0C40071EC42 /* Constants */,
 				8ED3110515360464002614DF /* Categories */,
+				8E8124DB1540C07400E1EA4B /* Controllers */,
 				8EE5065B155CA90700A04F50 /* Core Data */,
 				8ED311041536045F002614DF /* Models */,
+				8ED3110215360450002614DF /* View Controllers */,
 				8ED311031536045A002614DF /* Views */,
-				8ED3110215360450002614DF /* Controllers */,
-				8ED3110615360475002614DF /* Third Party Libraries */,
 				8ECBA7D71535F6F70009718E /* Supporting Files */,
+				8ED3110615360475002614DF /* Third Party Libraries */,
 			);
 			path = "Shelby-tv";
 			sourceTree = "<group>";
@@ -700,10 +710,9 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		8ED3110215360450002614DF /* Controllers */ = {
+		8ED3110215360450002614DF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8E8124DB1540C07400E1EA4B /* Table View Managers */,
 				8E64B41115504147008D7C5F /* CommentViewController.h */,
 				8E64B41215504147008D7C5F /* CommentViewController.m */,
 				8E664D521541B0120071EC42 /* LoginViewController.h */,
@@ -721,7 +730,7 @@
 				8E671597154F0C3B0059FC1A /* YouTableViewController.h */,
 				8E671598154F0C3B0059FC1A /* YouTableViewController.m */,
 			);
-			name = Controllers;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		8ED311031536045A002614DF /* Views */ = {
@@ -737,6 +746,8 @@
 		8ED311041536045F002614DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8E5E7F93156151B0009FC8CE /* CoreDataUtility.h */,
+				8E5E7F94156151B0009FC8CE /* CoreDataUtility.m */,
 				8E4A77E81551A6E2003CBA2A /* ShelbyAPIClient.h */,
 				8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */,
 			);
@@ -886,6 +897,8 @@
 		8EEA704115544E2900B1B07F /* videocard */ = {
 			isa = PBXGroup;
 			children = (
+				8E5E7F8415614C9A009FC8CE /* missingThumbnail.png */,
+				8E5E7F8515614C9A009FC8CE /* missingThumbnail@2x.png */,
 				8EEA704215544E2900B1B07F /* REFERENCE.png */,
 				8EEA704315544E2900B1B07F /* videocardDivider.png */,
 				8EEA704415544E2900B1B07F /* videocardDivider@2x.png */,
@@ -1027,6 +1040,8 @@
 				8EEA705B15544E2900B1B07F /* videoCardTwitter@2x.png in Resources */,
 				8EE50658155CA7A000A04F50 /* VideoPlayerViewController_iPad.xib in Resources */,
 				8EE50659155CA7A000A04F50 /* VideoPlayerViewController_iPhone.xib in Resources */,
+				8E5E7F8615614C9A009FC8CE /* missingThumbnail.png in Resources */,
+				8E5E7F8715614C9A009FC8CE /* missingThumbnail@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1124,6 +1139,7 @@
 				8EE50672155CAD4200A04F50 /* Conversation.m in Sources */,
 				8EE50675155CAD4200A04F50 /* DashboardEntry.m in Sources */,
 				8EE50678155CAD4200A04F50 /* Frame.m in Sources */,
+				8E5E7F95156151B0009FC8CE /* CoreDataUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

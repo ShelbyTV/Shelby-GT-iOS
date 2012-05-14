@@ -8,6 +8,7 @@
 
 #import "Conversation.h"
 #import "Frame.h"
+#import "DashboardEntry.h"
 
 @implementation Conversation
 
