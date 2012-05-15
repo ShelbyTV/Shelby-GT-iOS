@@ -19,6 +19,7 @@
 
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forRollInContext:(NSManagedObjectContext*)context;
++ (void)storeFrameData:(NSArray *)frameArray forFrame:(Frame*)frame inContext:(NSManagedObjectContext *)context;
 
 @end
 
@@ -93,7 +94,11 @@ static CoreDataUtility *sharedInstance = nil;
         NSString *idString = [[resultsArray objectAtIndex:i] valueForKey:@"id"];
         [dashboardEntry setValue:idString forKey:@"idString"];
         
-        [CoreDataUtility saveContext:context];
+        // Store Frame
+        [self storeFrameData:[resultsArray objectAtIndex:i] forFrame:dashboardEntry.frame inContext:context];
+        
+        // Commity unsaved data in context
+        [self saveContext:context];
         
     }
 
@@ -101,6 +106,11 @@ static CoreDataUtility *sharedInstance = nil;
 }
 
 + (void)storeParsedData:(NSDictionary *)parsedDictionary forRollInContext:(NSManagedObjectContext *)context
+{
+    
+}
+
++ (void)storeFrameData:(NSArray *)frameArray forFrame:(Frame *)frame inContext:(NSManagedObjectContext *)context
 {
     
 }
