@@ -30,18 +30,6 @@ static CoreDataUtility *sharedInstance = nil;
     return sharedInstance;
 }
 
-- (id)init 
-{
-
-    if ( self = [super init] ) {
-        
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
-        
-    }
-    
-    return self;
-}
-
 + (id)allocWithZone:(NSZone *)zone
 {
     return [self sharedInstance];
@@ -78,15 +66,13 @@ static CoreDataUtility *sharedInstance = nil;
     if ( _managedObjectContext ) {
         return _managedObjectContext;
     }
-   
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if ( coordinator ){
         
         _managedObjectContext = [[NSManagedObjectContext alloc] init];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-        [_managedObjectContext setUndoManager:nil];
-        [_managedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
+        
     }
     
     return _managedObjectContext;
@@ -105,8 +91,6 @@ static CoreDataUtility *sharedInstance = nil;
         return _managedObjectModel;
     }
     
-//    _managedObjectModel = [[NSManagedObjectModel alloc] init];
-    _managedObjectModel = [[NSManagedObjectModel alloc] init];
     _managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     return _managedObjectModel;
     
@@ -128,7 +112,7 @@ static CoreDataUtility *sharedInstance = nil;
     
     NSError *error = nil;
     
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_managedObjectModel];
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     
     if ( ![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error] )
     {
@@ -152,7 +136,7 @@ static CoreDataUtility *sharedInstance = nil;
  */
 - (NSURL *)applicationDocumentsDirectory
 {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];;
 }
 
 @end

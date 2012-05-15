@@ -55,15 +55,17 @@
 
     if ( requestType == APIRequestTypeStream ) {
     
-        DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
-        NSArray *resultsArray = [self.parseData objectForKey:kAPIRequestResult];
+        NSLog(@"C: %@\nPSC: %@\nModel: %@\nEnt:", context, context.persistentStoreCoordinator, context.persistentStoreCoordinator.managedObjectModel);
         
+        DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
+        
+        NSArray *resultsArray = [self.parseData objectForKey:kAPIRequestResult];
         for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
             
             NSString *idString = [[resultsArray objectAtIndex:i] valueForKey:@"id"];
             NSLog(@"%@", idString);
             [dashboardEntry setValue:idString forKey:@"idString"];
-//            [CoreDataUtility saveContext:context];
+            [CoreDataUtility saveContext:context];
             
         }
      
