@@ -17,10 +17,8 @@
 
 - (NSURL *)applicationDocumentsDirectory;
 
-+ (void)storeParsedDataForDashboardEntry:(NSDictionary*)parsedDictionary;
-+ (void)storeParsedDataForRoll:(NSDictionary*)parsedDictionary;
-+ (void)storeParsedDataForFrame:(NSDictionary*)parsedDictionary;
-
++ (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
++ (void)storeParsedData:(NSDictionary*)parsedDictionary forRollInContext:(NSManagedObjectContext*)context;
 
 @end
 
@@ -51,23 +49,22 @@ static CoreDataUtility *sharedInstance = nil;
 }
 
 #pragma mark - Public Methods
-
 + (void)storeParsedData:(NSDictionary *)parsedDictionary inCoreData:(NSManagedObjectContext *)context ForType:(APIRequestType)requestType
 {
     if ( requestType == APIRequestTypeStream ) {
         
-        NSArray *resultsArray = [parsedDictionary objectForKey:kAPIRequestResult];
-        for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
+        [self storeParsedData:parsedDictionary forDashboardEntryInContext:context];
             
-            DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
-            NSString *idString = [[resultsArray objectAtIndex:i] valueForKey:@"id"];
-            [dashboardEntry setValue:idString forKey:@"idString"];
-            
-            [CoreDataUtility saveContext:context];
-            
-        }
+    } else if ( requestType == APIRequestTypeRolls ) {
+        
+        [self storeParsedData:parsedDictionary forRollInContext:context];
+        
+    } else {
+        
+        // Other types (temporary for now)
         
     }
+        
     
 }
 
@@ -83,6 +80,30 @@ static CoreDataUtility *sharedInstance = nil;
     }
 }
 
+#pragma mark - Private Methods
++ (void)storeParsedData:(NSDictionary *)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext *)context
+{
+ 
+    NSArray *resultsArray = [parsedDictionary objectForKey:kAPIRequestResult];
+    for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
+        
+        DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
+        
+        // Store DashboardEntry 'id' attribute
+        NSString *idString = [[resultsArray objectAtIndex:i] valueForKey:@"id"];
+        [dashboardEntry setValue:idString forKey:@"idString"];
+        
+        [CoreDataUtility saveContext:context];
+        
+    }
+
+    
+}
+
++ (void)storeParsedData:(NSDictionary *)parsedDictionary forRollInContext:(NSManagedObjectContext *)context
+{
+    
+}
 
 #pragma mark - Accessor Methods
 /*
