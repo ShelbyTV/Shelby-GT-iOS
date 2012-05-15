@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Shelby-tv/ShelbyAPIClient.m"
-         timestampString = "358787835.31919"
+         timestampString = "358788942.071208"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "190"
-         endingLineNumber = "190"
+         startingLineNumber = "192"
+         endingLineNumber = "192"
          landmarkName = "@implementation ShelbyAPIClient"
          landmarkType = "3">
       </FileBreakpoint>
@@ -20,26 +20,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Shelby-tv/AppDelegate.m"
-         timestampString = "358787870.769631"
+         filePath = "Shelby-tv/CoreDataUtility.m"
+         timestampString = "358790831.713861"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "255"
-         endingLineNumber = "255"
-         landmarkName = "-managedObjectContext"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Shelby-tv/AppDelegate.m"
-         timestampString = "358787871.521489"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "256"
-         endingLineNumber = "256"
-         landmarkName = "-managedObjectContext"
+         startingLineNumber = "38"
+         endingLineNumber = "38"
+         landmarkName = "-init"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

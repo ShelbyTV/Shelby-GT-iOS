@@ -50,10 +50,12 @@
 - (void)storeParsedDataInCoreDataOfType:(APIRequestType)requestType
 {
         
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = appDelegate.managedObjectContext;
-    
-    NSLog(@"%@", context);
+    CoreDataUtility *coreDataUtility = (CoreDataUtility*)[CoreDataUtility sharedInstance];
+
+    NSLog(@"%@", coreDataUtility.managedObjectContext);    
+//    NSManagedObjectContext *context = coreDataUtility.managedObjectContext;
+//    
+//    NSLog(@"%@", context);
     
 //    if ( requestType == APIRequestTypeStream ) {
 //    

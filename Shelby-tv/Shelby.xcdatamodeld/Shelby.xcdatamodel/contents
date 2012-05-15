@@ -31,7 +31,7 @@
     <elements>
         <element name="Conversation" positionX="160" positionY="192" width="128" height="90"/>
         <element name="DashboardEntry" positionX="-144" positionY="216" width="128" height="105"/>
-        <element name="Frame" positionX="153" positionY="621" width="128" height="135"/>
-        <element name="Video" positionX="-468" positionY="255" width="128" height="150"/>
+        <element name="Frame" positionX="-99" positionY="558" width="128" height="135"/>
+        <element name="Video" positionX="-486" positionY="183" width="128" height="150"/>
     </elements>
 </model>

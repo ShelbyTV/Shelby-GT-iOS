@@ -10,7 +10,18 @@
 #import <CoreData/CoreData.h>
 
 @interface CoreDataUtility : NSObject
+{
+    NSManagedObjectModel *_managedObjectModel;
+    NSManagedObjectContext *_managedObjectContext;     
+    NSPersistentStoreCoordinator *_persistentStoreCoordinator;
+}
+
+@property (strong, nonatomic, readonly) NSManagedObjectModel *managedObjectModel;
+@property (strong, nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 + (void)saveContext:(NSManagedObjectContext*)context;
+
++ (CoreDataUtility*)sharedInstance;
 
 @end

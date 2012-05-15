@@ -71,6 +71,10 @@
 		8E671596154F0B9E0059FC1A /* StreamTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E671595154F0B9E0059FC1A /* StreamTableViewManager.m */; };
 		8E671599154F0C3B0059FC1A /* YouTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E671598154F0C3B0059FC1A /* YouTableViewController.m */; };
 		8E6715AC154F17BB0059FC1A /* RollsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6715AA154F17BB0059FC1A /* RollsTableViewController.m */; };
+		8E73AF301562B5AF003F5C9D /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E73AF2F1562B5AF003F5C9D /* Frame.m */; };
+		8E73AF331562B5AF003F5C9D /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E73AF321562B5AF003F5C9D /* Video.m */; };
+		8E73AF361562B5AF003F5C9D /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E73AF351562B5AF003F5C9D /* Conversation.m */; };
+		8E73AF391562B5AF003F5C9D /* DashboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E73AF381562B5AF003F5C9D /* DashboardEntry.m */; };
 		8E7F47B3154074130041118E /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B2154074130041118E /* Twitter.framework */; };
 		8E7F47B6154074180041118E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B5154074180041118E /* Accounts.framework */; };
 		8E7F47B81540741F0041118E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B71540741F0041118E /* QuartzCore.framework */; };
@@ -81,10 +85,6 @@
 		8E8124E51540C1BA00E1EA4B /* SavesTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124E41540C1BA00E1EA4B /* SavesTableViewManager.m */; };
 		8E8124E81540C1C800E1EA4B /* SearchTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124E71540C1C800E1EA4B /* SearchTableViewManager.m */; };
 		8E8124F31540C2E800E1EA4B /* GuideTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */; };
-		8EA87B641561AE860029C07E /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA87B631561AE860029C07E /* Conversation.m */; };
-		8EA87B671561AE860029C07E /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA87B661561AE860029C07E /* Video.m */; };
-		8EA87B6A1561AE860029C07E /* DashboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA87B691561AE860029C07E /* DashboardEntry.m */; };
-		8EA87B6D1561AE870029C07E /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA87B6C1561AE870029C07E /* Frame.m */; };
 		8EAA320F154EF239003FC586 /* PeopleRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAA320E154EF239003FC586 /* PeopleRollsTableViewManager.m */; };
 		8EAA3212154EF271003FC586 /* PopularRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAA3211154EF271003FC586 /* PopularRollsTableViewManager.m */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
@@ -289,6 +289,14 @@
 		8E6715A3154F14590059FC1A /* Structures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Structures.h; sourceTree = "<group>"; };
 		8E6715A9154F17BB0059FC1A /* RollsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RollsTableViewController.h; sourceTree = "<group>"; };
 		8E6715AA154F17BB0059FC1A /* RollsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RollsTableViewController.m; sourceTree = "<group>"; };
+		8E73AF2E1562B5AF003F5C9D /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
+		8E73AF2F1562B5AF003F5C9D /* Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
+		8E73AF311562B5AF003F5C9D /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
+		8E73AF321562B5AF003F5C9D /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
+		8E73AF341562B5AF003F5C9D /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
+		8E73AF351562B5AF003F5C9D /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
+		8E73AF371562B5AF003F5C9D /* DashboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardEntry.h; sourceTree = "<group>"; };
+		8E73AF381562B5AF003F5C9D /* DashboardEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardEntry.m; sourceTree = "<group>"; };
 		8E7F47B2154074130041118E /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		8E7F47B5154074180041118E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		8E7F47B71540741F0041118E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -308,14 +316,6 @@
 		8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideTableViewManager.m; sourceTree = "<group>"; };
 		8E8124F41540C2F900E1EA4B /* TableViewManagers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewManagers.h; sourceTree = "<group>"; };
 		8EA87B4F156167E00029C07E /* CoreDataConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataConstants.h; sourceTree = "<group>"; };
-		8EA87B621561AE860029C07E /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
-		8EA87B631561AE860029C07E /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
-		8EA87B651561AE860029C07E /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
-		8EA87B661561AE860029C07E /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
-		8EA87B681561AE860029C07E /* DashboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardEntry.h; sourceTree = "<group>"; };
-		8EA87B691561AE860029C07E /* DashboardEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardEntry.m; sourceTree = "<group>"; };
-		8EA87B6B1561AE870029C07E /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
-		8EA87B6C1561AE870029C07E /* Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
 		8EAA320D154EF239003FC586 /* PeopleRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleRollsTableViewManager.h; sourceTree = "<group>"; };
 		8EAA320E154EF239003FC586 /* PeopleRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleRollsTableViewManager.m; sourceTree = "<group>"; };
 		8EAA3210154EF271003FC586 /* PopularRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularRollsTableViewManager.h; sourceTree = "<group>"; };
@@ -816,14 +816,14 @@
 			isa = PBXGroup;
 			children = (
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
-				8EA87B621561AE860029C07E /* Conversation.h */,
-				8EA87B631561AE860029C07E /* Conversation.m */,
-				8EA87B651561AE860029C07E /* Video.h */,
-				8EA87B661561AE860029C07E /* Video.m */,
-				8EA87B681561AE860029C07E /* DashboardEntry.h */,
-				8EA87B691561AE860029C07E /* DashboardEntry.m */,
-				8EA87B6B1561AE870029C07E /* Frame.h */,
-				8EA87B6C1561AE870029C07E /* Frame.m */,
+				8E73AF371562B5AF003F5C9D /* DashboardEntry.h */,
+				8E73AF381562B5AF003F5C9D /* DashboardEntry.m */,
+				8E73AF341562B5AF003F5C9D /* Conversation.h */,
+				8E73AF351562B5AF003F5C9D /* Conversation.m */,
+				8E73AF311562B5AF003F5C9D /* Video.h */,
+				8E73AF321562B5AF003F5C9D /* Video.m */,
+				8E73AF2E1562B5AF003F5C9D /* Frame.h */,
+				8E73AF2F1562B5AF003F5C9D /* Frame.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -1136,10 +1136,10 @@
 				8EE5065A155CA7A000A04F50 /* VideoPlayerViewController.m in Sources */,
 				8EE50662155CA9E800A04F50 /* Shelby.xcdatamodeld in Sources */,
 				8E5E7F95156151B0009FC8CE /* CoreDataUtility.m in Sources */,
-				8EA87B641561AE860029C07E /* Conversation.m in Sources */,
-				8EA87B671561AE860029C07E /* Video.m in Sources */,
-				8EA87B6A1561AE860029C07E /* DashboardEntry.m in Sources */,
-				8EA87B6D1561AE870029C07E /* Frame.m in Sources */,
+				8E73AF301562B5AF003F5C9D /* Frame.m in Sources */,
+				8E73AF331562B5AF003F5C9D /* Video.m in Sources */,
+				8E73AF361562B5AF003F5C9D /* Conversation.m in Sources */,
+				8E73AF391562B5AF003F5C9D /* DashboardEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
