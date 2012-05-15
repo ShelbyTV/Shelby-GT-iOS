@@ -54,36 +54,20 @@
     NSManagedObjectContext *context = coreDataUtility.managedObjectContext;
 
     if ( requestType == APIRequestTypeStream ) {
-    
-        NSLog(@"C: %@\nPSC: %@\nModel: %@\nEnt:", context, context.persistentStoreCoordinator, context.persistentStoreCoordinator.managedObjectModel);
-        
-        DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
-        
+
         NSArray *resultsArray = [self.parseData objectForKey:kAPIRequestResult];
         for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
             
+            DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
             NSString *idString = [[resultsArray objectAtIndex:i] valueForKey:@"id"];
-            NSLog(@"%@", idString);
+            NSLog(@"DashboardEntry.idString: %@", idString);
             [dashboardEntry setValue:idString forKey:@"idString"];
             [CoreDataUtility saveContext:context];
             
         }
      
      }
-
     
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
-//    [fetchRequest setEntity:entity];
-//    NSError *error = nil;
-//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-//    
-//    for (NSManagedObject *object in fetchedObjects) {
-//        NSLog(@"ID: %@", [object valueForKey:@"id"]);
-//    }
-//    NSLog(@"---------------");
-//    
 }
 
 #pragma mark - NSURLConnectionDataDelegate Methods
