@@ -17,6 +17,11 @@
 
 - (NSURL *)applicationDocumentsDirectory;
 
++ (void)storeParsedDataForDashboardEntry:(NSDictionary*)parsedDictionary;
++ (void)storeParsedDataForRoll:(NSDictionary*)parsedDictionary;
++ (void)storeParsedDataForFrame:(NSDictionary*)parsedDictionary;
+
+
 @end
 
 @implementation CoreDataUtility
