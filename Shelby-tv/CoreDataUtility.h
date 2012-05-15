@@ -11,9 +11,6 @@
 
 @interface CoreDataUtility : NSObject
 
-@property (strong, nonatomic, readonly) NSManagedObjectContext *context;
-
 + (void)saveContext:(NSManagedObjectContext*)context;
-+ (CoreDataUtility *)sharedInstance;
 
 @end

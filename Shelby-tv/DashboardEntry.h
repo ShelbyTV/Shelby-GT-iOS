@@ -2,8 +2,8 @@
 //  DashboardEntry.h
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 5/10/12.
-//  Copyright (c) 2012 Shelby.tv. All rights reserved.
+//  Created by Arthur Ariel Sabintsev on 5/14/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,9 +13,9 @@
 
 @interface DashboardEntry : NSManagedObject
 
-@property (nonatomic, strong) NSString * id;
-@property (nonatomic, strong) Frame *frame;
-@property (nonatomic, strong) Video *video;
-@property (nonatomic, strong) Conversation *conversation;
+@property (nonatomic, retain) NSString * idString;
+@property (nonatomic, retain) Conversation *conversation;
+@property (nonatomic, retain) Frame *frame;
+@property (nonatomic, retain) Video *video;
 
 @end

@@ -2,8 +2,8 @@
 //  DashboardEntry.m
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 5/10/12.
-//  Copyright (c) 2012 Shelby.tv. All rights reserved.
+//  Created by Arthur Ariel Sabintsev on 5/14/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "DashboardEntry.h"
@@ -11,11 +11,12 @@
 #import "Frame.h"
 #import "Video.h"
 
+
 @implementation DashboardEntry
 
-@dynamic id;
+@dynamic idString;
+@dynamic conversation;
 @dynamic frame;
 @dynamic video;
-@dynamic conversation;
 
 @end

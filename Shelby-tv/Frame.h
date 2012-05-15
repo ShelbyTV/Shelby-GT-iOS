@@ -2,8 +2,8 @@
 //  Frame.h
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 5/10/12.
-//  Copyright (c) 2012 Shelby.tv. All rights reserved.
+//  Created by Arthur Ariel Sabintsev on 5/14/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,11 +13,11 @@
 
 @interface Frame : NSManagedObject
 
-@property (nonatomic, strong) NSString * id;
-@property (nonatomic, strong) NSString * videoID;
-@property (nonatomic, strong) NSString * conversationID;
-@property (nonatomic, strong) Video *video;
-@property (nonatomic, strong) Conversation *conversation;
-@property (nonatomic, strong) DashboardEntry *dashboardEntry;
+@property (nonatomic, retain) NSString * conversationID;
+@property (nonatomic, retain) NSString * idString;
+@property (nonatomic, retain) NSString * videoID;
+@property (nonatomic, retain) Conversation *conversation;
+@property (nonatomic, retain) DashboardEntry *dashboardEntry;
+@property (nonatomic, retain) Video *video;
 
 @end

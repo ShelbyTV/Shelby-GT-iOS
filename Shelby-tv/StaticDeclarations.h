@@ -8,6 +8,7 @@
 
 // String Constants 
 #import "APIConstants.h"
+#import "CoreDataConstants.h"
 #import "TextConstants.h"
 
 // Other

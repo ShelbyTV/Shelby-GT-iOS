@@ -7,8 +7,10 @@
 //
 
 #import "ShelbyAPIClient.h"
-#import "NSString+TypedefConversion.h"
+#import "CoreDataUtility.h"
+#import "AppDelegate.h"
 #import "SBJson.h"
+#import "NSString+TypedefConversion.h"
 
 @interface ShelbyAPIClient ()
 
@@ -16,6 +18,9 @@
 @property (strong, nonatomic) NSMutableData *receivedData;
 @property (strong, nonatomic) NSDictionary *parsedDictionary;
 @property (assign, nonatomic) APIRequestType requestType;
+
+- (NSDictionary*)parseData;
+- (void)storeParsedDataInCoreDataOfType:(APIRequestType)requestType;
 
 @end
 
@@ -25,7 +30,7 @@
 @synthesize parsedDictionary = parsedDictionary;
 @synthesize requestType = _requestType;
 
-#pragma mark - Public Method
+#pragma mark - Public Methods
 - (void)performRequest:(NSURLRequest *)request ofType:(APIRequestType)type
 {
     // Set Request Type
@@ -33,6 +38,53 @@
     
     // Initialize Request
     self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+}
+
+#pragma mark - Private Methods
+- (NSDictionary*)parseData
+{
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+    return [parser objectWithData:self.receivedData];
+}
+
+- (void)storeParsedDataInCoreDataOfType:(APIRequestType)requestType
+{
+        
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = appDelegate.managedObjectContext;
+    
+    NSLog(@"%@", context);
+    
+//    if ( requestType == APIRequestTypeStream ) {
+//    
+//        NSManagedObject *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
+//        NSArray *resultsArray = [self.parseData objectForKey:kAPIRequestResult];
+//        
+//        for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
+//            
+//            NSString *idString = [[resultsArray objectAtIndex:i] valueForKey:@"id"];
+//            NSLog(@"%@", idString);
+//            [dashboardEntry setValue:idString forKey:@"idString"];
+//
+//        }
+//     
+//     }
+//    
+//    [CoreDataUtility saveContext:context];
+
+    
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
+//    [fetchRequest setEntity:entity];
+//    NSError *error = nil;
+//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+//    
+//    for (NSManagedObject *object in fetchedObjects) {
+//        NSLog(@"ID: %@", [object valueForKey:@"id"]);
+//    }
+//    NSLog(@"---------------");
+//    
 }
 
 #pragma mark - NSURLConnectionDataDelegate Methods
@@ -75,8 +127,10 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     // Parse Data with SBJSON Parser
-    SBJsonParser *parser = [[SBJsonParser alloc] init];
-    self.parsedDictionary = [parser objectWithData:self.receivedData];
+    self.parsedDictionary = [self parseData];
+    
+    // Store Parsed Data in Core Data
+    [self storeParsedDataInCoreDataOfType:self.requestType];
     
     // Post Notification with Parsed Object
     NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
