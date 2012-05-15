@@ -11,18 +11,20 @@
 #import "StaticDeclarations.h"
 
 @interface CoreDataUtility : NSObject
-{
-    NSManagedObjectModel *_managedObjectModel;
-    NSManagedObjectContext *_managedObjectContext;     
-    NSPersistentStoreCoordinator *_persistentStoreCoordinator;
-}
 
 @property (strong, nonatomic, readonly) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+/** Store JSON-parsed NSDictionary in Core Data for a specific API Request */
++ (void)storeParsedData:(NSDictionary*)parsedDictionary
+             inCoreData:(NSManagedObjectContext*)context 
+                ForType:(APIRequestType)requestType;
+
+/** Commit unsaved changes for a given NSManagedObjextContext instance */
 + (void)saveContext:(NSManagedObjectContext*)context;
 
+/** CoreDataUtility's Singleton Method */
 + (CoreDataUtility*)sharedInstance;
 
 @end

@@ -9,6 +9,11 @@
 #import "CoreDataUtility.h"
 
 @interface CoreDataUtility ()
+{
+    NSManagedObjectModel *_managedObjectModel;
+    NSManagedObjectContext *_managedObjectContext;     
+    NSPersistentStoreCoordinator *_persistentStoreCoordinator;
+}
 
 - (NSURL *)applicationDocumentsDirectory;
 
@@ -41,6 +46,26 @@ static CoreDataUtility *sharedInstance = nil;
 }
 
 #pragma mark - Public Methods
+
++ (void)storeParsedData:(NSDictionary *)parsedDictionary inCoreData:(NSManagedObjectContext *)context ForType:(APIRequestType)requestType
+{
+    if ( requestType == APIRequestTypeStream ) {
+        
+        NSArray *resultsArray = [parsedDictionary objectForKey:kAPIRequestResult];
+        for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
+            
+            DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
+            NSString *idString = [[resultsArray objectAtIndex:i] valueForKey:@"id"];
+            [dashboardEntry setValue:idString forKey:@"idString"];
+            
+            [CoreDataUtility saveContext:context];
+            
+        }
+        
+    }
+    
+}
+
 + (void)saveContext:(NSManagedObjectContext *)context
 {
 
@@ -55,7 +80,7 @@ static CoreDataUtility *sharedInstance = nil;
 
 
 #pragma mark - Accessor Methods
-/**
+/*
  
  Returns the application's instance of NSManagedObjectConteext.
  If an instance doesn't exist, it's created and bound to the application's instance of NSPersistentStoreCoordinator.
@@ -78,7 +103,7 @@ static CoreDataUtility *sharedInstance = nil;
     return _managedObjectContext;
 }
 
-/**
+/*
  
  Returns the application's instance of NSManagedObjectModel.
  If an instance of the model doesn't exist, it is created from the application's model.
@@ -96,7 +121,7 @@ static CoreDataUtility *sharedInstance = nil;
     
 }
 
-/**
+/*
  
  Returns the application's instance NSPersistentStoreCoordinator.
  If the coordinator doesn't already exist, it is created and the application's store added to it.
@@ -129,7 +154,7 @@ static CoreDataUtility *sharedInstance = nil;
     return _persistentStoreCoordinator;
 }
 
-/**
+/*
  
  Returns the URL to the application's Documents directory.
  

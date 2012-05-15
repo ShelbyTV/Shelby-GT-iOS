@@ -73,6 +73,8 @@
     CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
     CGContextRestoreGState(context);
 
+    CFRelease(topColor);
+    CFRelease(bottomColor);
     CFRelease(colorArray);
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorSpace);

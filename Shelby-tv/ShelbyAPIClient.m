@@ -20,7 +20,6 @@
 @property (assign, nonatomic) APIRequestType requestType;
 
 - (NSDictionary*)parseData;
-- (void)storeParsedDataInCoreDataOfType:(APIRequestType)requestType;
 
 @end
 
@@ -45,29 +44,6 @@
 {
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     return [parser objectWithData:self.receivedData];
-}
-
-- (void)storeParsedDataInCoreDataOfType:(APIRequestType)requestType
-{
-        
-    CoreDataUtility *coreDataUtility = [CoreDataUtility sharedInstance];
-    NSManagedObjectContext *context = coreDataUtility.managedObjectContext;
-
-    if ( requestType == APIRequestTypeStream ) {
-
-        NSArray *resultsArray = [self.parseData objectForKey:kAPIRequestResult];
-        for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
-            
-            DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
-            NSString *idString = [[resultsArray objectAtIndex:i] valueForKey:@"id"];
-            NSLog(@"DashboardEntry.idString: %@", idString);
-            [dashboardEntry setValue:idString forKey:@"idString"];
-            [CoreDataUtility saveContext:context];
-            
-        }
-     
-     }
-    
 }
 
 #pragma mark - NSURLConnectionDataDelegate Methods
@@ -112,8 +88,9 @@
     // Parse Data with SBJSON Parser
     self.parsedDictionary = [self parseData];
     
-    // Store Parsed Data in Core Data
-    [self storeParsedDataInCoreDataOfType:self.requestType];
+    // Store parsedDictionary in Core Data
+    NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
+    [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context ForType:self.requestType];
     
     // Post Notification with Parsed Object
     NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
