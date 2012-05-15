@@ -8,26 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Shelby-tv/ShelbyAPIClient.m"
-         timestampString = "358788942.071208"
+         timestampString = "358798958.325636"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "192"
-         endingLineNumber = "192"
+         startingLineNumber = "187"
+         endingLineNumber = "187"
          landmarkName = "@implementation ShelbyAPIClient"
          landmarkType = "3">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Shelby-tv/CoreDataUtility.m"
-         timestampString = "358790831.713861"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "38"
-         endingLineNumber = "38"
-         landmarkName = "-init"
-         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

@@ -30,15 +30,15 @@ static CoreDataUtility *sharedInstance = nil;
     return sharedInstance;
 }
 
-- (id)init
+- (id)init 
 {
-    if (self = [super init] ) {
+
+    if ( self = [super init] ) {
         
-        // Initialize application's instance of NSManagedObjectContext
         _managedObjectContext = [[NSManagedObjectContext alloc] init];
         
     }
-
+    
     return self;
 }
 
@@ -75,19 +75,21 @@ static CoreDataUtility *sharedInstance = nil;
  */
 - (NSManagedObjectContext *)managedObjectContext
 {
-    if ( [self managedObjectContext] ) {
-        return self.managedObjectContext;
+    if ( _managedObjectContext ) {
+        return _managedObjectContext;
     }
+   
     
-    if ( [self persistentStoreCoordinator] ){
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if ( coordinator ){
         
         _managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [self.managedObjectContext setPersistentStoreCoordinator:[self persistentStoreCoordinator]];
-        [self.managedObjectContext setUndoManager:nil];
-        [self.managedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
+        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+        [_managedObjectContext setUndoManager:nil];
+        [_managedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
     }
     
-    return self.managedObjectContext;
+    return _managedObjectContext;
 }
 
 /**
@@ -99,12 +101,14 @@ static CoreDataUtility *sharedInstance = nil;
 - (NSManagedObjectModel *)managedObjectModel
 {
     
-    if ( [self managedObjectModel] ) {
-        return self.managedObjectModel;
+    if ( _managedObjectModel ) {
+        return _managedObjectModel;
     }
     
+//    _managedObjectModel = [[NSManagedObjectModel alloc] init];
+    _managedObjectModel = [[NSManagedObjectModel alloc] init];
     _managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-    return self.managedObjectModel;
+    return _managedObjectModel;
     
 }
 
@@ -116,29 +120,29 @@ static CoreDataUtility *sharedInstance = nil;
  */
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
-    if ( self.persistentStoreCoordinator )
-    {
-        return self.persistentStoreCoordinator;
+    if ( _persistentStoreCoordinator ) {
+        return _persistentStoreCoordinator;
     }
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Shelby-tv.sqlite"];
+    
     NSError *error = nil;
     
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_managedObjectModel];
     
-    if ( ![self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error] )
+    if ( ![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error] )
     {
         // Delete datastore if there's a conflict. User can re-login to repopulate the datastore.
         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
         
         // Retry
-        if ( ![self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error] )
+        if ( ![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error] )
         {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         }
     }
     
-    return self.persistentStoreCoordinator;
+    return _persistentStoreCoordinator;
 }
 
 /**
@@ -150,6 +154,5 @@ static CoreDataUtility *sharedInstance = nil;
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
-
 
 @end

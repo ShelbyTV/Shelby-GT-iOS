@@ -50,29 +50,24 @@
 - (void)storeParsedDataInCoreDataOfType:(APIRequestType)requestType
 {
         
-    CoreDataUtility *coreDataUtility = (CoreDataUtility*)[CoreDataUtility sharedInstance];
+    CoreDataUtility *coreDataUtility = [CoreDataUtility sharedInstance];
+    NSManagedObjectContext *context = coreDataUtility.managedObjectContext;
 
-    NSLog(@"%@", coreDataUtility.managedObjectContext);    
-//    NSManagedObjectContext *context = coreDataUtility.managedObjectContext;
-//    
-//    NSLog(@"%@", context);
+    if ( requestType == APIRequestTypeStream ) {
     
-//    if ( requestType == APIRequestTypeStream ) {
-//    
-//        NSManagedObject *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
-//        NSArray *resultsArray = [self.parseData objectForKey:kAPIRequestResult];
-//        
-//        for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
-//            
-//            NSString *idString = [[resultsArray objectAtIndex:i] valueForKey:@"id"];
-//            NSLog(@"%@", idString);
-//            [dashboardEntry setValue:idString forKey:@"idString"];
-//
-//        }
-//     
-//     }
-//    
-//    [CoreDataUtility saveContext:context];
+        DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
+        NSArray *resultsArray = [self.parseData objectForKey:kAPIRequestResult];
+        
+        for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
+            
+            NSString *idString = [[resultsArray objectAtIndex:i] valueForKey:@"id"];
+            NSLog(@"%@", idString);
+            [dashboardEntry setValue:idString forKey:@"idString"];
+//            [CoreDataUtility saveContext:context];
+            
+        }
+     
+     }
 
     
 //    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
