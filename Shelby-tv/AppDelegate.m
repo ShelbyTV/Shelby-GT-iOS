@@ -129,45 +129,6 @@
     [rollsTableViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"rollsOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"rollsOff"]];
     [rollsTableViewController setTitle:@"Rolls"];
     
-    
-    ///* SAVES *///
-    
-    // Create savesNavigationViewController
-    SavesTableViewManager *savesTableViewManager = [[SavesTableViewManager alloc] init];
-    GuideTableViewController *savesViewController = [[GuideTableViewController alloc] initWithGuideType:GuideTypeSaves andTableViewManager:savesTableViewManager];
-    UINavigationController *savesNavigationController = [[UINavigationController alloc] initWithRootViewController:savesViewController];
-    
-    // Pass savesNavigationController reference to savesTableViewManager
-    savesTableViewManager.navigationController = savesNavigationController;
-    
-    // Customize tabBarItem for Saves
-    NSDictionary *savesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f], UITextAttributeFont,
-                                      [UIColor colorWithRed:141.0f/255.0f green:82.0f/255.0f blue:154.0f/255.0f alpha:1.0f], UITextAttributeTextColor, nil];
-    [savesViewController.tabBarItem setTitleTextAttributes:savesDictionary forState:UIControlStateSelected];
-    [savesViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"savesOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"savesOff"]];
-    [savesViewController setTitle:@"Saves"];
-
-    
-    ///* SEARCH *///
-    
-    // Create searchNavigationController
-    SearchTableViewManager *searchTableViewManager = [[SearchTableViewManager alloc] init];
-    GuideTableViewController *searchViewController = [[GuideTableViewController alloc] initWithGuideType:GuideTypeSearch andTableViewManager:searchTableViewManager];
-    UINavigationController *searchNavigationController = [[UINavigationController alloc] initWithRootViewController:searchViewController];
-    
-    // Pass searchNavigationController reference to searchTableViewManager
-    searchTableViewManager.navigationController = searchNavigationController;
-    
-    // Customize tabBarItem for Search
-    NSDictionary *searchDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f], UITextAttributeFont,
-                                      [UIColor colorWithRed:227.0f/255.0f green:59.0f/255.0f blue:46.0f/255.0f alpha:1.0f], UITextAttributeTextColor, nil];
-    [searchViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"searchOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"searchOff"]];
-    [searchViewController.tabBarItem setTitleTextAttributes:searchDictionary forState:UIControlStateSelected];
-    [searchViewController setTitle:@"Search"];
-    
-    
     ///* YOU *///
     
     // Create youNavigationController
@@ -189,7 +150,7 @@
     
     // Create UITabBarController
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    NSArray *tabBarArray = [NSArray arrayWithObjects:streamNavigationController, rollsNavigationController, savesNavigationController, searchNavigationController, youNavigationController, nil];
+    NSArray *tabBarArray = [NSArray arrayWithObjects:streamNavigationController, rollsNavigationController, youNavigationController, nil];
     tabBarController.viewControllers = tabBarArray;
     
     // Set navigationController as window's rootViewController

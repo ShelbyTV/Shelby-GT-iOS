@@ -78,8 +78,6 @@
 		8E7F47E9154093850041118E /* SocialFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F47E8154093850041118E /* SocialFacade.m */; };
 		8E7F48061540B4690041118E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F48051540B4690041118E /* Crashlytics.framework */; };
 		8E8124D71540B92E00E1EA4B /* GuideTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124D61540B92E00E1EA4B /* GuideTableViewController.m */; };
-		8E8124E51540C1BA00E1EA4B /* SavesTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124E41540C1BA00E1EA4B /* SavesTableViewManager.m */; };
-		8E8124E81540C1C800E1EA4B /* SearchTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124E71540C1C800E1EA4B /* SearchTableViewManager.m */; };
 		8E8124F31540C2E800E1EA4B /* GuideTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */; };
 		8EAA320F154EF239003FC586 /* PeopleRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAA320E154EF239003FC586 /* PeopleRollsTableViewManager.m */; };
 		8EAA3212154EF271003FC586 /* PopularRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAA3211154EF271003FC586 /* PopularRollsTableViewManager.m */; };
@@ -143,10 +141,6 @@
 		8EE673C915531719004EA45C /* youOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673C715531719004EA45C /* youOn.png */; };
 		8EE673D0155317F2004EA45C /* rollsOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673CA155317F2004EA45C /* rollsOff.png */; };
 		8EE673D1155317F2004EA45C /* rollsOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673CB155317F2004EA45C /* rollsOn.png */; };
-		8EE673D2155317F2004EA45C /* savesOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673CC155317F2004EA45C /* savesOff.png */; };
-		8EE673D3155317F2004EA45C /* savesOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673CD155317F2004EA45C /* savesOn.png */; };
-		8EE673D4155317F2004EA45C /* searchOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673CE155317F2004EA45C /* searchOff.png */; };
-		8EE673D5155317F2004EA45C /* searchOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673CF155317F2004EA45C /* searchOn.png */; };
 		8EEA703D155449D800B1B07F /* VideoCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA703C155449D800B1B07F /* VideoCardCell.xib */; };
 		8EEA704015544A2200B1B07F /* VideoCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA703F15544A2200B1B07F /* VideoCardCell.m */; };
 		8EEA704F15544E2900B1B07F /* REFERENCE.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA704215544E2900B1B07F /* REFERENCE.png */; };
@@ -300,10 +294,6 @@
 		8E8124D51540B92E00E1EA4B /* GuideTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideTableViewController.h; sourceTree = "<group>"; };
 		8E8124D61540B92E00E1EA4B /* GuideTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideTableViewController.m; sourceTree = "<group>"; };
 		8E8124E01540C1A200E1EA4B /* YourRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourRollsTableViewManager.h; sourceTree = "<group>"; };
-		8E8124E31540C1BA00E1EA4B /* SavesTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavesTableViewManager.h; sourceTree = "<group>"; };
-		8E8124E41540C1BA00E1EA4B /* SavesTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavesTableViewManager.m; sourceTree = "<group>"; };
-		8E8124E61540C1C800E1EA4B /* SearchTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewManager.h; sourceTree = "<group>"; };
-		8E8124E71540C1C800E1EA4B /* SearchTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewManager.m; sourceTree = "<group>"; };
 		8E8124F11540C2E800E1EA4B /* GuideTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideTableViewManager.h; sourceTree = "<group>"; };
 		8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideTableViewManager.m; sourceTree = "<group>"; };
 		8E8124F41540C2F900E1EA4B /* TableViewManagers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewManagers.h; sourceTree = "<group>"; };
@@ -384,10 +374,6 @@
 		8EE673C715531719004EA45C /* youOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youOn.png; sourceTree = "<group>"; };
 		8EE673CA155317F2004EA45C /* rollsOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rollsOff.png; path = Resources/images/tabBar/rollsOff.png; sourceTree = SOURCE_ROOT; };
 		8EE673CB155317F2004EA45C /* rollsOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rollsOn.png; path = Resources/images/tabBar/rollsOn.png; sourceTree = SOURCE_ROOT; };
-		8EE673CC155317F2004EA45C /* savesOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = savesOff.png; path = Resources/images/tabBar/savesOff.png; sourceTree = SOURCE_ROOT; };
-		8EE673CD155317F2004EA45C /* savesOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = savesOn.png; path = Resources/images/tabBar/savesOn.png; sourceTree = SOURCE_ROOT; };
-		8EE673CE155317F2004EA45C /* searchOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = searchOff.png; path = Resources/images/tabBar/searchOff.png; sourceTree = SOURCE_ROOT; };
-		8EE673CF155317F2004EA45C /* searchOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = searchOn.png; path = Resources/images/tabBar/searchOn.png; sourceTree = SOURCE_ROOT; };
 		8EEA703C155449D800B1B07F /* VideoCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCardCell.xib; sourceTree = "<group>"; };
 		8EEA703E15544A2200B1B07F /* VideoCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCardCell.h; sourceTree = "<group>"; };
 		8EEA703F15544A2200B1B07F /* VideoCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCardCell.m; sourceTree = "<group>"; };
@@ -615,10 +601,6 @@
 				8EAA320E154EF239003FC586 /* PeopleRollsTableViewManager.m */,
 				8EAA3210154EF271003FC586 /* PopularRollsTableViewManager.h */,
 				8EAA3211154EF271003FC586 /* PopularRollsTableViewManager.m */,
-				8E8124E61540C1C800E1EA4B /* SearchTableViewManager.h */,
-				8E8124E71540C1C800E1EA4B /* SearchTableViewManager.m */,
-				8E8124E31540C1BA00E1EA4B /* SavesTableViewManager.h */,
-				8E8124E41540C1BA00E1EA4B /* SavesTableViewManager.m */,
 				8E671594154F0B9E0059FC1A /* StreamTableViewManager.h */,
 				8E671595154F0B9E0059FC1A /* StreamTableViewManager.m */,
 				8E8124E01540C1A200E1EA4B /* YourRollsTableViewManager.h */,
@@ -872,10 +854,6 @@
 			children = (
 				8EE673CA155317F2004EA45C /* rollsOff.png */,
 				8EE673CB155317F2004EA45C /* rollsOn.png */,
-				8EE673CC155317F2004EA45C /* savesOff.png */,
-				8EE673CD155317F2004EA45C /* savesOn.png */,
-				8EE673CE155317F2004EA45C /* searchOff.png */,
-				8EE673CF155317F2004EA45C /* searchOn.png */,
 				8EE673C615531719004EA45C /* youOff.png */,
 				8EE673C715531719004EA45C /* youOn.png */,
 				8EE673AD155316B1004EA45C /* rollsOff@2x.png */,
@@ -1020,10 +998,6 @@
 				8EE673C915531719004EA45C /* youOn.png in Resources */,
 				8EE673D0155317F2004EA45C /* rollsOff.png in Resources */,
 				8EE673D1155317F2004EA45C /* rollsOn.png in Resources */,
-				8EE673D2155317F2004EA45C /* savesOff.png in Resources */,
-				8EE673D3155317F2004EA45C /* savesOn.png in Resources */,
-				8EE673D4155317F2004EA45C /* searchOff.png in Resources */,
-				8EE673D5155317F2004EA45C /* searchOn.png in Resources */,
 				8EEA703D155449D800B1B07F /* VideoCardCell.xib in Resources */,
 				8EEA704F15544E2900B1B07F /* REFERENCE.png in Resources */,
 				8EEA705015544E2900B1B07F /* videocardDivider.png in Resources */,
@@ -1073,8 +1047,6 @@
 				8E7F47E51540931D0041118E /* ASPullToRefreshTableViewController.m in Sources */,
 				8E7F47E9154093850041118E /* SocialFacade.m in Sources */,
 				8E8124D71540B92E00E1EA4B /* GuideTableViewController.m in Sources */,
-				8E8124E51540C1BA00E1EA4B /* SavesTableViewManager.m in Sources */,
-				8E8124E81540C1C800E1EA4B /* SearchTableViewManager.m in Sources */,
 				8E8124F31540C2E800E1EA4B /* GuideTableViewManager.m in Sources */,
 				8E664D541541B0120071EC42 /* LoginViewController.m in Sources */,
 				8E664E121541FE490071EC42 /* NSMutableURLRequest+Parameters.m in Sources */,
