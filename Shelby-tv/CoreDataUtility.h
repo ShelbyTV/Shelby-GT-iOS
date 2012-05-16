@@ -22,7 +22,7 @@
                 ForType:(APIRequestType)requestType;
 
 /** Fetch information stored in Core Data */
-+ (void)fetchData:(NSManagedObjectContext*)context OfType:(APIRequestType)requestType;
++ (DashboardEntry*)fetchData:(NSManagedObjectContext*)context forRow:(NSUInteger)row OfType:(APIRequestType)requestType;
                 
 
 /** Commit unsaved changes for a given NSManagedObjextContext instance */

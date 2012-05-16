@@ -157,6 +157,7 @@
 		8EFD4979156405B70003913D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD4978156405B70003913D /* User.m */; };
 		8EFD497C156405B70003913D /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD497B156405B70003913D /* Conversation.m */; };
 		8EFD497F156405B70003913D /* DashboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD497E156405B70003913D /* DashboardEntry.m */; };
+		8EFD498C156435330003913D /* NSString+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD498B156435330003913D /* NSString+CoreData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -393,6 +394,8 @@
 		8EFD497B156405B70003913D /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		8EFD497D156405B70003913D /* DashboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardEntry.h; sourceTree = "<group>"; };
 		8EFD497E156405B70003913D /* DashboardEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardEntry.m; sourceTree = "<group>"; };
+		8EFD498A156435330003913D /* NSString+CoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CoreData.h"; sourceTree = "<group>"; };
+		8EFD498B156435330003913D /* NSString+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CoreData.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -742,6 +745,8 @@
 		8ED3110515360464002614DF /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				8EFD498A156435330003913D /* NSString+CoreData.h */,
+				8EFD498B156435330003913D /* NSString+CoreData.m */,
 				8E3457851551BC9200FEFC9D /* NSString+TypedefConversion.h */,
 				8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */,
 				8EE673AA15531124004EA45C /* UINavigationItem+CustomTitleView.h */,
@@ -1118,6 +1123,7 @@
 				8EFD4979156405B70003913D /* User.m in Sources */,
 				8EFD497C156405B70003913D /* Conversation.m in Sources */,
 				8EFD497F156405B70003913D /* DashboardEntry.m in Sources */,
+				8EFD498C156435330003913D /* NSString+CoreData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

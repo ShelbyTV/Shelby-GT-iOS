@@ -111,16 +111,8 @@
     if ( [self.parsedResultsArray objectAtIndex:indexPath.row] ) {
         
         NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
+        DashboardEntry *dashboardEntry = [CoreDataUtility fetchData:context forRow:indexPath.row OfType:APIRequestTypeStream];
         
-        NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
-        NSFetchRequest *dashboardEntryRequest = [[NSFetchRequest alloc] init];
-        [dashboardEntryRequest setEntity:dashboardEntryDescription];
-        [dashboardEntryRequest setIncludesSubentities:YES];
-        
-        NSArray *dashboardEntryArray = [context executeFetchRequest:dashboardEntryRequest error:nil];
-        
-        DashboardEntry *dashboardEntry = [dashboardEntryArray objectAtIndex:indexPath.row];
-
         [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
         
     }

@@ -7,6 +7,7 @@
 //
 
 #import "CoreDataUtility.h"
+#import "NSString+CoreData.h"
 
 @interface CoreDataUtility ()
 {
@@ -15,11 +16,12 @@
     NSPersistentStoreCoordinator *_persistentStoreCoordinator;
 }
 
-- (NSURL *)applicationDocumentsDirectory;
 
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forRollInContext:(NSManagedObjectContext*)context;
 + (void)storeFrameArray:(NSArray*)frameArray forDashboardEntry:(DashboardEntry*)dashboardEntry inContext:(NSManagedObjectContext*)context;
+
+- (NSURL *)applicationDocumentsDirectory;
 
 @end
 
@@ -69,9 +71,19 @@ static CoreDataUtility *sharedInstance = nil;
     
 }
 
-+ (void)fetchData:(NSManagedObjectContext *)context OfType:(APIRequestType)requestType
++ (DashboardEntry*)fetchData:(NSManagedObjectContext *)context forRow:(NSUInteger)row OfType:(APIRequestType)requestType
 {
+ 
+    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
+    NSFetchRequest *dashboardEntryRequest = [[NSFetchRequest alloc] init];
+    [dashboardEntryRequest setEntity:dashboardEntryDescription];
+    [dashboardEntryRequest setIncludesSubentities:YES];
     
+    NSArray *dashboardEntryArray = [context executeFetchRequest:dashboardEntryRequest error:nil];
+    
+    DashboardEntry *dashboardEntry = [dashboardEntryArray objectAtIndex:row];
+    
+    return dashboardEntry;
 }
 
 + (void)saveContext:(NSManagedObjectContext *)context
@@ -98,7 +110,7 @@ static CoreDataUtility *sharedInstance = nil;
         
         // Store dashboard attirubutes
         DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
-        NSString *dashboardID = [[resultsArray objectAtIndex:i] valueForKey:@"id"];
+        NSString *dashboardID = [NSString testForNullForCoreDataAttribute:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
         [dashboardEntry setValue:dashboardID forKey:@"dashboardID"];
         
         // Store dashboard.frame attributes
@@ -120,21 +132,21 @@ static CoreDataUtility *sharedInstance = nil;
 
 + (void)storeFrameArray:(NSArray *)frameArray forDashboardEntry:(DashboardEntry *)dashboardEntry inContext:(NSManagedObjectContext *)context
 {
-
+    
     // Store dashboard.frame attributes
     Frame *frame = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataFrame inManagedObjectContext:context];
     dashboardEntry.frame = frame;
     
-    NSString *frameID = [frameArray valueForKey:@"id"];
+    NSString *frameID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"id"]];
     [frame setValue:frameID forKey:@"frameID"];
     
-    NSString *frameConversationID = [frameArray valueForKey:@"conversation_id"];
+    NSString *frameConversationID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"conversation_id"]];
     [frame setValue:frameConversationID forKey:@"conversationID"];
     
-    NSString *frameUserID = [frameArray valueForKey:@"creator_id"];
+    NSString *frameUserID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"creator_id"]];
     [frame setValue:frameUserID forKey:@"userID"];
     
-    NSString *frameVideoID = [frameArray valueForKey:@"video_id"];
+    NSString *frameVideoID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"video_id"]];
     [frame setValue:frameVideoID forKey:@"videoID"];
     
     // Store dashboard.frame.conversation attributes
@@ -147,22 +159,22 @@ static CoreDataUtility *sharedInstance = nil;
     
     NSArray *videoArray = [frameArray valueForKey:@"video"];
     
-    NSString *videoID = [videoArray valueForKey:@"video_id"];
+    NSString *videoID = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"video_id"]];
     [video setValue:videoID forKey:@"videoID"];
     
-    NSString *videoCaption = [videoArray valueForKey:@"description"];
+    NSString *videoCaption = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"description"]];
     [video setValue:videoCaption forKey:@"caption"];
     
-    NSString *videoProviderName = [videoArray valueForKey:@"provider_name"];
+    NSString *videoProviderName = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"provider_name"] ];
     [video setValue:videoProviderName forKey:@"providerName"];
     
-//    NSString *videoSourceURL = [videoArray valueForKey:@"source_url"];
-//    [video setValue:videoSourceURL forKey:@"sourceURL"];
+    NSString *videoSourceURL = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"source_url"]];
+    [video setValue:videoSourceURL forKey:@"sourceURL"];
     
-    NSString *videoThumbnailURL = [videoArray valueForKey:@"thumbnail_url"];
+    NSString *videoThumbnailURL = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"thumbnail_url"]];
     [video setValue:videoThumbnailURL forKey:@"thumbnailURL"];
     
-    NSString *videoTitle = [videoArray valueForKey:@"title"];
+    NSString *videoTitle = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"title"]];
     [video setValue:videoTitle forKey:@"title"];
 
 }
