@@ -7,7 +7,6 @@
 //
 
 #import "Video.h"
-#import "DashboardEntry.h"
 #import "Frame.h"
 
 
@@ -19,7 +18,6 @@
 @dynamic thumbnailURL;
 @dynamic title;
 @dynamic providerName;
-@dynamic dashboardEntry;
 @dynamic frame;
 
 @end

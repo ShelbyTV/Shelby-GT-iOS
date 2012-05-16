@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DashboardEntry, Frame;
+@class Frame;
 
 @interface Video : NSManagedObject
 
@@ -19,7 +19,6 @@
 @property (nonatomic, retain) NSString * thumbnailURL;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * providerName;
-@property (nonatomic, retain) DashboardEntry *dashboardEntry;
 @property (nonatomic, retain) Frame *frame;
 
 @end

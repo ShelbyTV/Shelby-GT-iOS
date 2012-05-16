@@ -7,16 +7,12 @@
 //
 
 #import "DashboardEntry.h"
-#import "Conversation.h"
 #import "Frame.h"
-#import "Video.h"
 
 
 @implementation DashboardEntry
 
 @dynamic dashboardID;
-@dynamic conversation;
 @dynamic frame;
-@dynamic video;
 
 @end

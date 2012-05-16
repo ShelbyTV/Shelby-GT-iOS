@@ -2,14 +2,11 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11E53" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Conversation" representedClassName="Conversation" syncable="YES">
         <attribute name="conversationID" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="dashboardEntry" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardEntry" inverseName="conversation" inverseEntity="DashboardEntry" syncable="YES"/>
         <relationship name="frame" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Frame" inverseName="conversation" inverseEntity="Frame" syncable="YES"/>
     </entity>
     <entity name="DashboardEntry" representedClassName="DashboardEntry" syncable="YES">
         <attribute name="dashboardID" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="conversation" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="dashboardEntry" inverseEntity="Conversation" syncable="YES"/>
         <relationship name="frame" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Frame" inverseName="dashboardEntry" inverseEntity="Frame" syncable="YES"/>
-        <relationship name="video" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Video" inverseName="dashboardEntry" inverseEntity="Video" syncable="YES"/>
     </entity>
     <entity name="Frame" representedClassName="Frame" syncable="YES">
         <attribute name="conversationID" optional="YES" attributeType="String" syncable="YES"/>
@@ -35,7 +32,6 @@
         <attribute name="thumbnailURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoID" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="dashboardEntry" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardEntry" inverseName="video" inverseEntity="DashboardEntry" syncable="YES"/>
         <relationship name="frame" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Frame" inverseName="video" inverseEntity="Frame" syncable="YES"/>
     </entity>
     <elements>

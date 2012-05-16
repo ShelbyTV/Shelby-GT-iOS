@@ -9,13 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Conversation, Frame, Video;
+@class Frame;
 
 @interface DashboardEntry : NSManagedObject
 
 @property (nonatomic, retain) NSString * dashboardID;
-@property (nonatomic, retain) Conversation *conversation;
 @property (nonatomic, retain) Frame *frame;
-@property (nonatomic, retain) Video *video;
 
 @end

@@ -19,7 +19,7 @@
 
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forRollInContext:(NSManagedObjectContext*)context;
-+ (void)storeFrameData:(NSArray *)frameArray forFrame:(Frame*)frame inContext:(NSManagedObjectContext *)context;
++ (void)storeFrameArray:(NSArray*)frameArray forDashboardEntry:(DashboardEntry*)dashboard inContext:(NSManagedObjectContext*)context;
 
 @end
 
@@ -94,14 +94,14 @@ static CoreDataUtility *sharedInstance = nil;
     
     for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
         
+        // Store dashboard attirubutes
         DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
-        
-        // Store Dashboard attributes
         NSString *dashboardID = [[resultsArray objectAtIndex:i] valueForKey:@"id"];
-        [dashboardEntry setValue:dashboardID forKey:@"dashboardID"];
-        
-        // Store Frame attributes for each Dashboard entry
-        [self storeFrameData:[[resultsArray objectAtIndex:i] valueForKey:@"frame"] forFrame:dashboardEntry.frame inContext:context];
+        [dashboardEntry setValue:dashboardID forKey:@"dashboardID"];        
+             
+        // Store dashboard.frame attributes
+        NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];
+        [self storeFrameArray:frameArray forDashboardEntry:dashboardEntry inContext:context];
         
         // Commity unsaved data in context
         [self saveContext:context];
@@ -116,27 +116,35 @@ static CoreDataUtility *sharedInstance = nil;
     
 }
 
-+ (void)storeFrameData:(NSArray *)frameArray forFrame:(Frame *)frame inContext:(NSManagedObjectContext *)context
++ (void)storeFrameArray:(NSArray *)frameArray forDashboardEntry:(DashboardEntry *)dashboard inContext:(NSManagedObjectContext *)context
 {
     
-    for (NSUInteger i = 0; i < [frameArray count]; i++ ) {
-        
-        Frame *frame = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataFrame inManagedObjectContext:context];
-        
-        // Store Frame attributes
-        NSString *frameID = [frameArray valueForKey:@"id"];
-        [frame setValue:frameID forKey:@"frameID"];
-        
-        NSString *userID = [frameArray valueForKey:@"creator_id"];
-        [frame setValue:userID forKey:@"userID"];
-
-        NSString *videoID = [frameArray valueForKey:@"video_id"];
-        [frame setValue:videoID forKey:@"videoID"];
-        
-        NSString *conversationID = [frameArray valueForKey:@"conversation_id"];
-        [frame setValue:conversationID forKey:@"conversationID"];
-        
-    }
+    // Store dashboard.frame attributes
+    NSString *frameID = [frameArray valueForKey:@"id"];
+    [dashboard.frame setValue:frameID forKey:@"frameID"];
+    
+    NSString *frameUserID = [frameArray valueForKey:@"creator_id"];
+    [dashboard.frame setValue:frameUserID forKey:@"userID"];
+    
+    NSString *frameVideoID = [frameArray valueForKey:@"video_id"];
+    [dashboard.frame setValue:frameVideoID forKey:@"videoID"];
+    
+    NSString *frameConversationID = [frameArray valueForKey:@"conversation_id"];
+    [dashboard.frame setValue:frameConversationID forKey:@"conversationID"];
+    
+    // Store dashboard.frame.video attributes
+    NSArray *videoArray = [frameArray valueForKey:@"video"];
+    
+    NSString *videoID = [videoArray valueForKey:@"video_id"];
+    [dashboard.frame.video setValue:videoID forKey:@"videoID"];
+    
+    NSString *videoCaption = [videoArray valueForKey:@"description"];
+    [dashboard.frame.video setValue:videoCaption forKey:@"caption"];
+    
+    NSString *videoProviderName = [videoArray valueForKey:@"provider_name"];
+    [dashboard.frame.video setValue:videoProviderName forKey:@"providerName"];
+    
+    
     
 }
 

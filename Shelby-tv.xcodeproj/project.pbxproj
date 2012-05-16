@@ -152,11 +152,11 @@
 		8EEA705915544E2900B1B07F /* videocardTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA704C15544E2900B1B07F /* videocardTop@2x.png */; };
 		8EEA705A15544E2900B1B07F /* videoCardTwitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA704D15544E2900B1B07F /* videoCardTwitter.png */; };
 		8EEA705B15544E2900B1B07F /* videoCardTwitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA704E15544E2900B1B07F /* videoCardTwitter@2x.png */; };
-		8EFD49371563F5160003913D /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD49361563F5160003913D /* Frame.m */; };
-		8EFD493A1563F5160003913D /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD49391563F5160003913D /* Video.m */; };
-		8EFD493D1563F5160003913D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD493C1563F5160003913D /* User.m */; };
-		8EFD49401563F5160003913D /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD493F1563F5160003913D /* Conversation.m */; };
-		8EFD49431563F5170003913D /* DashboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD49421563F5170003913D /* DashboardEntry.m */; };
+		8EFD4973156405B70003913D /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD4972156405B60003913D /* Frame.m */; };
+		8EFD4976156405B70003913D /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD4975156405B70003913D /* Video.m */; };
+		8EFD4979156405B70003913D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD4978156405B70003913D /* User.m */; };
+		8EFD497C156405B70003913D /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD497B156405B70003913D /* Conversation.m */; };
+		8EFD497F156405B70003913D /* DashboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD497E156405B70003913D /* DashboardEntry.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -383,16 +383,16 @@
 		8EEA704C15544E2900B1B07F /* videocardTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videocardTop@2x.png"; sourceTree = "<group>"; };
 		8EEA704D15544E2900B1B07F /* videoCardTwitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardTwitter.png; sourceTree = "<group>"; };
 		8EEA704E15544E2900B1B07F /* videoCardTwitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardTwitter@2x.png"; sourceTree = "<group>"; };
-		8EFD49351563F5160003913D /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
-		8EFD49361563F5160003913D /* Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
-		8EFD49381563F5160003913D /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
-		8EFD49391563F5160003913D /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
-		8EFD493B1563F5160003913D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		8EFD493C1563F5160003913D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		8EFD493E1563F5160003913D /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
-		8EFD493F1563F5160003913D /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
-		8EFD49411563F5170003913D /* DashboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardEntry.h; sourceTree = "<group>"; };
-		8EFD49421563F5170003913D /* DashboardEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardEntry.m; sourceTree = "<group>"; };
+		8EFD4971156405B60003913D /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
+		8EFD4972156405B60003913D /* Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
+		8EFD4974156405B70003913D /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
+		8EFD4975156405B70003913D /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
+		8EFD4977156405B70003913D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		8EFD4978156405B70003913D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		8EFD497A156405B70003913D /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
+		8EFD497B156405B70003913D /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
+		8EFD497D156405B70003913D /* DashboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardEntry.h; sourceTree = "<group>"; };
+		8EFD497E156405B70003913D /* DashboardEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardEntry.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -801,16 +801,16 @@
 			isa = PBXGroup;
 			children = (
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
-				8EFD493E1563F5160003913D /* Conversation.h */,
-				8EFD493F1563F5160003913D /* Conversation.m */,
-				8EFD49411563F5170003913D /* DashboardEntry.h */,
-				8EFD49421563F5170003913D /* DashboardEntry.m */,
-				8EFD493B1563F5160003913D /* User.h */,
-				8EFD493C1563F5160003913D /* User.m */,
-				8EFD49381563F5160003913D /* Video.h */,
-				8EFD49391563F5160003913D /* Video.m */,
-				8EFD49351563F5160003913D /* Frame.h */,
-				8EFD49361563F5160003913D /* Frame.m */,
+				8EFD497D156405B70003913D /* DashboardEntry.h */,
+				8EFD497E156405B70003913D /* DashboardEntry.m */,
+				8EFD497A156405B70003913D /* Conversation.h */,
+				8EFD497B156405B70003913D /* Conversation.m */,
+				8EFD4977156405B70003913D /* User.h */,
+				8EFD4978156405B70003913D /* User.m */,
+				8EFD4974156405B70003913D /* Video.h */,
+				8EFD4975156405B70003913D /* Video.m */,
+				8EFD4971156405B60003913D /* Frame.h */,
+				8EFD4972156405B60003913D /* Frame.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -1113,11 +1113,11 @@
 				8EE5065A155CA7A000A04F50 /* VideoPlayerViewController.m in Sources */,
 				8EE50662155CA9E800A04F50 /* Shelby.xcdatamodeld in Sources */,
 				8E5E7F95156151B0009FC8CE /* CoreDataUtility.m in Sources */,
-				8EFD49371563F5160003913D /* Frame.m in Sources */,
-				8EFD493A1563F5160003913D /* Video.m in Sources */,
-				8EFD493D1563F5160003913D /* User.m in Sources */,
-				8EFD49401563F5160003913D /* Conversation.m in Sources */,
-				8EFD49431563F5170003913D /* DashboardEntry.m in Sources */,
+				8EFD4973156405B70003913D /* Frame.m in Sources */,
+				8EFD4976156405B70003913D /* Video.m in Sources */,
+				8EFD4979156405B70003913D /* User.m in Sources */,
+				8EFD497C156405B70003913D /* Conversation.m in Sources */,
+				8EFD497F156405B70003913D /* DashboardEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

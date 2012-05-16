@@ -7,9 +7,16 @@
 //
 
 #import "ASPullToRefreshTableViewController.h"
-#import "StaticDeclarations.h"
+
+// Models
 #import "ShelbyAPIClient.h"
+#import "CoreDataUtility.h"
+
+// Categories
 #import "NSString+TypedefConversion.h"
+
+// Constants
+#import "StaticDeclarations.h"
 
 @protocol GuideTableViewManagerDelegate <NSObject>
 
