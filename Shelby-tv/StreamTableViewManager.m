@@ -111,19 +111,17 @@
     if ( [self.parsedResultsArray objectAtIndex:indexPath.row] ) {
         
         NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
- 
-        NSEntityDescription *entity = [NSEntityDescription entityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        [fetchRequest setEntity:entity];
         
-        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
-        for (DashboardEntry *dashboardEntry in fetchedObjects) {
-            NSLog(@"%@", dashboardEntry.frame.video.thumbnailURL);
-        }
+        NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
+        NSFetchRequest *dashboardEntryRequest = [[NSFetchRequest alloc] init];
+        [dashboardEntryRequest setEntity:dashboardEntryDescription];
+        [dashboardEntryRequest setIncludesSubentities:YES];
         
+        NSArray *dashboardEntryArray = [context executeFetchRequest:dashboardEntryRequest error:nil];
         
-//        NSString *imageString = [[[[self.parsedResultsArray objectAtIndex:indexPath.row] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"thumbnail_url"];
-//        [AsynchronousFreeloader loadImageFromLink:imageString forImageView:cell.thumbnailImageView withPlaceholderView:nil];
+        DashboardEntry *dashboardEntry = [dashboardEntryArray objectAtIndex:indexPath.row];
+
+        [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
         
     }
     

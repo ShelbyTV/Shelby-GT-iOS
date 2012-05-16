@@ -19,7 +19,7 @@
 
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forRollInContext:(NSManagedObjectContext*)context;
-+ (void)storeFrameArray:(NSArray*)frameArray forDashboardEntry:(DashboardEntry*)dashboard inContext:(NSManagedObjectContext*)context;
++ (void)storeFrameArray:(NSArray*)frameArray forDashboardEntry:(DashboardEntry*)dashboardEntry inContext:(NSManagedObjectContext*)context;
 
 @end
 
@@ -99,8 +99,8 @@ static CoreDataUtility *sharedInstance = nil;
         // Store dashboard attirubutes
         DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
         NSString *dashboardID = [[resultsArray objectAtIndex:i] valueForKey:@"id"];
-        [dashboardEntry setValue:dashboardID forKey:@"dashboardID"];        
-             
+        [dashboardEntry setValue:dashboardID forKey:@"dashboardID"];
+        
         // Store dashboard.frame attributes
         NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];
         [self storeFrameArray:frameArray forDashboardEntry:dashboardEntry inContext:context];
@@ -118,47 +118,53 @@ static CoreDataUtility *sharedInstance = nil;
     
 }
 
-+ (void)storeFrameArray:(NSArray *)frameArray forDashboardEntry:(DashboardEntry *)dashboard inContext:(NSManagedObjectContext *)context
++ (void)storeFrameArray:(NSArray *)frameArray forDashboardEntry:(DashboardEntry *)dashboardEntry inContext:(NSManagedObjectContext *)context
 {
-    
+
     // Store dashboard.frame attributes
+    Frame *frame = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataFrame inManagedObjectContext:context];
+    dashboardEntry.frame = frame;
+    
     NSString *frameID = [frameArray valueForKey:@"id"];
-    [dashboard.frame setValue:frameID forKey:@"frameID"];
+    [frame setValue:frameID forKey:@"frameID"];
     
     NSString *frameConversationID = [frameArray valueForKey:@"conversation_id"];
-    [dashboard.frame setValue:frameConversationID forKey:@"conversationID"];
+    [frame setValue:frameConversationID forKey:@"conversationID"];
     
     NSString *frameUserID = [frameArray valueForKey:@"creator_id"];
-    [dashboard.frame setValue:frameUserID forKey:@"userID"];
+    [frame setValue:frameUserID forKey:@"userID"];
     
     NSString *frameVideoID = [frameArray valueForKey:@"video_id"];
-    [dashboard.frame setValue:frameVideoID forKey:@"videoID"];
+    [frame setValue:frameVideoID forKey:@"videoID"];
     
     // Store dashboard.frame.conversation attributes
     
     // Store dashboard.frame.user attributes
     
     // Store dashboard.frame.video attributes
+    Video *video = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataVideo inManagedObjectContext:context];
+    frame.video = video;
+    
     NSArray *videoArray = [frameArray valueForKey:@"video"];
     
     NSString *videoID = [videoArray valueForKey:@"video_id"];
-    [dashboard.frame.video setValue:videoID forKey:@"videoID"];
+    [video setValue:videoID forKey:@"videoID"];
     
     NSString *videoCaption = [videoArray valueForKey:@"description"];
-    [dashboard.frame.video setValue:videoCaption forKey:@"caption"];
+    [video setValue:videoCaption forKey:@"caption"];
     
     NSString *videoProviderName = [videoArray valueForKey:@"provider_name"];
-    [dashboard.frame.video setValue:videoProviderName forKey:@"providerName"];
+    [video setValue:videoProviderName forKey:@"providerName"];
     
-    NSString *videoSourceURL = [videoArray valueForKey:@"source_url"];
-    [dashboard.frame.video setValue:videoSourceURL forKey:@"sourceURL"];
+//    NSString *videoSourceURL = [videoArray valueForKey:@"source_url"];
+//    [video setValue:videoSourceURL forKey:@"sourceURL"];
     
     NSString *videoThumbnailURL = [videoArray valueForKey:@"thumbnail_url"];
-    [dashboard.frame.video setValue:videoThumbnailURL forKey:@"thumbnailURL"];
+    [video setValue:videoThumbnailURL forKey:@"thumbnailURL"];
     
     NSString *videoTitle = [videoArray valueForKey:@"title"];
-    [dashboard.frame.video setValue:videoTitle forKey:@"title"];
-    
+    [video setValue:videoTitle forKey:@"title"];
+
 }
 
 #pragma mark - Accessor Methods
