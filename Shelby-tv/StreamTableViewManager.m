@@ -110,6 +110,18 @@
 
     if ( [self.parsedResultsArray objectAtIndex:indexPath.row] ) {
         
+        NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
+ 
+        NSEntityDescription *entity = [NSEntityDescription entityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        [fetchRequest setEntity:entity];
+        
+        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
+        for (DashboardEntry *dashboardEntry in fetchedObjects) {
+            NSLog(@"%@", dashboardEntry.frame.video.thumbnailURL);
+        }
+        
+        
 //        NSString *imageString = [[[[self.parsedResultsArray objectAtIndex:indexPath.row] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"thumbnail_url"];
 //        [AsynchronousFreeloader loadImageFromLink:imageString forImageView:cell.thumbnailImageView withPlaceholderView:nil];
         

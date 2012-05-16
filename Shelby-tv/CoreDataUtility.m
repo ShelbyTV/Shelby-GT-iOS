@@ -82,6 +82,8 @@ static CoreDataUtility *sharedInstance = nil;
         
         if ( [context hasChanges] && ![context save:&error] ) {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        } else {
+            NSLog(@"Data Saved");
         }
     }
 }
@@ -103,10 +105,10 @@ static CoreDataUtility *sharedInstance = nil;
         NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];
         [self storeFrameArray:frameArray forDashboardEntry:dashboardEntry inContext:context];
         
-        // Commity unsaved data in context
-        [self saveContext:context];
-        
     }
+    
+    // Commity unsaved data in context
+    [self saveContext:context];
 
     
 }
@@ -123,14 +125,18 @@ static CoreDataUtility *sharedInstance = nil;
     NSString *frameID = [frameArray valueForKey:@"id"];
     [dashboard.frame setValue:frameID forKey:@"frameID"];
     
+    NSString *frameConversationID = [frameArray valueForKey:@"conversation_id"];
+    [dashboard.frame setValue:frameConversationID forKey:@"conversationID"];
+    
     NSString *frameUserID = [frameArray valueForKey:@"creator_id"];
     [dashboard.frame setValue:frameUserID forKey:@"userID"];
     
     NSString *frameVideoID = [frameArray valueForKey:@"video_id"];
     [dashboard.frame setValue:frameVideoID forKey:@"videoID"];
     
-    NSString *frameConversationID = [frameArray valueForKey:@"conversation_id"];
-    [dashboard.frame setValue:frameConversationID forKey:@"conversationID"];
+    // Store dashboard.frame.conversation attributes
+    
+    // Store dashboard.frame.user attributes
     
     // Store dashboard.frame.video attributes
     NSArray *videoArray = [frameArray valueForKey:@"video"];
@@ -144,7 +150,14 @@ static CoreDataUtility *sharedInstance = nil;
     NSString *videoProviderName = [videoArray valueForKey:@"provider_name"];
     [dashboard.frame.video setValue:videoProviderName forKey:@"providerName"];
     
+    NSString *videoSourceURL = [videoArray valueForKey:@"source_url"];
+    [dashboard.frame.video setValue:videoSourceURL forKey:@"sourceURL"];
     
+    NSString *videoThumbnailURL = [videoArray valueForKey:@"thumbnail_url"];
+    [dashboard.frame.video setValue:videoThumbnailURL forKey:@"thumbnailURL"];
+    
+    NSString *videoTitle = [videoArray valueForKey:@"title"];
+    [dashboard.frame.video setValue:videoTitle forKey:@"title"];
     
 }
 
