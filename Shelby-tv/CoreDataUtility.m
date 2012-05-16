@@ -78,12 +78,10 @@ static CoreDataUtility *sharedInstance = nil;
     NSFetchRequest *dashboardEntryRequest = [[NSFetchRequest alloc] init];
     [dashboardEntryRequest setEntity:dashboardEntryDescription];
     [dashboardEntryRequest setIncludesSubentities:YES];
-    
+
     NSArray *dashboardEntryArray = [context executeFetchRequest:dashboardEntryRequest error:nil];
     
-    DashboardEntry *dashboardEntry = [dashboardEntryArray objectAtIndex:row];
-    
-    return dashboardEntry;
+    return [dashboardEntryArray objectAtIndex:row];
 }
 
 + (void)saveContext:(NSManagedObjectContext *)context
@@ -93,9 +91,9 @@ static CoreDataUtility *sharedInstance = nil;
     if ( context ) {
         
         if ( [context hasChanges] && ![context save:&error] ) {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            NSLog(@"Could not save changes to Core Data. Error: %@, %@", error, [error userInfo]);
         } else {
-            NSLog(@"Data Saved");
+            NSLog(@"Successfully saved changes to Core Data");
         }
     }
 }
@@ -112,6 +110,7 @@ static CoreDataUtility *sharedInstance = nil;
         DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
         NSString *dashboardID = [NSString testForNullForCoreDataAttribute:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
         [dashboardEntry setValue:dashboardID forKey:@"dashboardID"];
+        [dashboardEntry setValue:[NSDate date] forKey:@"date"];
         
         // Store dashboard.frame attributes
         NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];

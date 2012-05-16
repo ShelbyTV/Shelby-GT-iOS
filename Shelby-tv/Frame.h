@@ -3,7 +3,7 @@
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 5/16/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSString * frameID;
 @property (nonatomic, retain) NSString * videoID;
 @property (nonatomic, retain) NSString * userID;
+@property (nonatomic, retain) NSString * timestamp;
 @property (nonatomic, retain) Conversation *conversation;
 @property (nonatomic, retain) DashboardEntry *dashboardEntry;
 @property (nonatomic, retain) Video *video;
