@@ -69,6 +69,11 @@ static CoreDataUtility *sharedInstance = nil;
     
 }
 
++ (void)fetchData:(NSManagedObjectContext *)context OfType:(APIRequestType)requestType
+{
+    
+}
+
 + (void)saveContext:(NSManagedObjectContext *)context
 {
 
@@ -86,16 +91,17 @@ static CoreDataUtility *sharedInstance = nil;
 {
  
     NSArray *resultsArray = [parsedDictionary objectForKey:kAPIRequestResult];
+    
     for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
         
         DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
         
-        // Store DashboardEntry 'id' attribute
-        NSString *idString = [[resultsArray objectAtIndex:i] valueForKey:@"id"];
-        [dashboardEntry setValue:idString forKey:@"idString"];
+        // Store Dashboard attributes
+        NSString *dashboardID = [[resultsArray objectAtIndex:i] valueForKey:@"id"];
+        [dashboardEntry setValue:dashboardID forKey:@"dashboardID"];
         
-        // Store Frame
-        [self storeFrameData:[resultsArray objectAtIndex:i] forFrame:dashboardEntry.frame inContext:context];
+        // Store Frame attributes for each Dashboard entry
+        [self storeFrameData:[[resultsArray objectAtIndex:i] valueForKey:@"frame"] forFrame:dashboardEntry.frame inContext:context];
         
         // Commity unsaved data in context
         [self saveContext:context];
@@ -112,6 +118,25 @@ static CoreDataUtility *sharedInstance = nil;
 
 + (void)storeFrameData:(NSArray *)frameArray forFrame:(Frame *)frame inContext:(NSManagedObjectContext *)context
 {
+    
+    for (NSUInteger i = 0; i < [frameArray count]; i++ ) {
+        
+        Frame *frame = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataFrame inManagedObjectContext:context];
+        
+        // Store Frame attributes
+        NSString *frameID = [frameArray valueForKey:@"id"];
+        [frame setValue:frameID forKey:@"frameID"];
+        
+        NSString *userID = [frameArray valueForKey:@"creator_id"];
+        [frame setValue:userID forKey:@"userID"];
+
+        NSString *videoID = [frameArray valueForKey:@"video_id"];
+        [frame setValue:videoID forKey:@"videoID"];
+        
+        NSString *conversationID = [frameArray valueForKey:@"conversation_id"];
+        [frame setValue:conversationID forKey:@"conversationID"];
+        
+    }
     
 }
 

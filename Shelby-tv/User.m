@@ -1,20 +1,21 @@
 //
-//  Conversation.m
+//  User.m
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 5/16/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "Conversation.h"
-#import "DashboardEntry.h"
+#import "User.h"
 #import "Frame.h"
 
 
-@implementation Conversation
+@implementation User
 
-@dynamic conversationID;
-@dynamic dashboardEntry;
+@dynamic userID;
+@dynamic nickname;
+@dynamic faux;
+@dynamic publicRollID;
 @dynamic frame;
 
 @end

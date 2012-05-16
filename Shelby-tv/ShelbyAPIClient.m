@@ -83,6 +83,7 @@
     
 }
 
+//FIX: Context obtained in an unnatural fashion
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     // Parse Data with SBJSON Parser

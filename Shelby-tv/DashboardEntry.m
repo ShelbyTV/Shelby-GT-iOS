@@ -2,7 +2,7 @@
 //  DashboardEntry.m
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 5/15/12.
+//  Created by Arthur Ariel Sabintsev on 5/16/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -14,7 +14,7 @@
 
 @implementation DashboardEntry
 
-@dynamic idString;
+@dynamic dashboardID;
 @dynamic conversation;
 @dynamic frame;
 @dynamic video;

@@ -2,7 +2,7 @@
 //  Video.h
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 5/15/12.
+//  Created by Arthur Ariel Sabintsev on 5/16/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -14,10 +14,11 @@
 @interface Video : NSManagedObject
 
 @property (nonatomic, retain) NSString * caption;
-@property (nonatomic, retain) NSString * idString;
+@property (nonatomic, retain) NSString * videoID;
 @property (nonatomic, retain) NSString * sourceURL;
 @property (nonatomic, retain) NSString * thumbnailURL;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * providerName;
 @property (nonatomic, retain) DashboardEntry *dashboardEntry;
 @property (nonatomic, retain) Frame *frame;
 
