@@ -14,6 +14,7 @@
 @interface DashboardEntry : NSManagedObject
 
 @property (nonatomic, retain) NSString * dashboardID;
+@property (nonatomic, retain) NSDate * timestamp;
 @property (nonatomic, retain) Frame *frame;
 
 @end

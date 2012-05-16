@@ -17,7 +17,7 @@
 @property (nonatomic, retain) NSString * frameID;
 @property (nonatomic, retain) NSString * videoID;
 @property (nonatomic, retain) NSString * userID;
-@property (nonatomic, retain) NSString * timestamp;
+@property (nonatomic, retain) NSDate * timestamp;
 @property (nonatomic, retain) Conversation *conversation;
 @property (nonatomic, retain) DashboardEntry *dashboardEntry;
 @property (nonatomic, retain) Video *video;

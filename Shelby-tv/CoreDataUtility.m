@@ -74,11 +74,18 @@ static CoreDataUtility *sharedInstance = nil;
 + (DashboardEntry*)fetchData:(NSManagedObjectContext *)context forRow:(NSUInteger)row OfType:(APIRequestType)requestType
 {
  
-    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
+    // Create Fetch Request
     NSFetchRequest *dashboardEntryRequest = [[NSFetchRequest alloc] init];
+    
+    // Fetch DashboardEntry Data
+    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
     [dashboardEntryRequest setEntity:dashboardEntryDescription];
-    [dashboardEntryRequest setIncludesSubentities:YES];
-
+    
+    // Sort by Timestamp
+    NSSortDescriptor *timestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+    [dashboardEntryRequest setSortDescriptors:[NSArray arrayWithObject:timestampSorter]];
+    
+    // Execute Request
     NSArray *dashboardEntryArray = [context executeFetchRequest:dashboardEntryRequest error:nil];
     
     return [dashboardEntryArray objectAtIndex:row];
@@ -110,7 +117,6 @@ static CoreDataUtility *sharedInstance = nil;
         DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
         NSString *dashboardID = [NSString testForNullForCoreDataAttribute:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
         [dashboardEntry setValue:dashboardID forKey:@"dashboardID"];
-        [dashboardEntry setValue:[NSDate date] forKey:@"date"];
         
         // Store dashboard.frame attributes
         NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];
@@ -141,6 +147,12 @@ static CoreDataUtility *sharedInstance = nil;
     
     NSString *frameConversationID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"conversation_id"]];
     [frame setValue:frameConversationID forKey:@"conversationID"];
+
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss+00:00"];
+    NSDate *timestamp = [dateFormat dateFromString:[frameArray valueForKey:@"timestamp"]];
+    [frame setValue:timestamp forKey:@"timestamp"];
+    [dashboardEntry setValue:timestamp forKey:@"timestamp"];
     
     NSString *frameUserID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"creator_id"]];
     [frame setValue:frameUserID forKey:@"userID"];
@@ -246,7 +258,7 @@ static CoreDataUtility *sharedInstance = nil;
         // Retry
         if ( ![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error] )
         {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            NSLog(@"Could not save changes to Core Data. Error: %@, %@", error, [error userInfo]);
         }
     }
     

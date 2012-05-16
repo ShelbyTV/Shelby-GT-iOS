@@ -13,6 +13,7 @@
 @implementation DashboardEntry
 
 @dynamic dashboardID;
+@dynamic timestamp;
 @dynamic frame;
 
 @end
