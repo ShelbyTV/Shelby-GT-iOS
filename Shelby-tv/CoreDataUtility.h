@@ -21,11 +21,13 @@
              inCoreData:(NSManagedObjectContext*)context 
                 ForType:(APIRequestType)requestType;
 
-/** Fetch information stored in Core Data */
-+ (DashboardEntry*)fetchData:(NSManagedObjectContext*)context forRow:(NSUInteger)row OfType:(APIRequestType)requestType;
+/** Fetch dashboardEntry information stored in Core Data */
++ (DashboardEntry*)fetchDashboardEntryData:(NSManagedObjectContext*)context forRow:(NSUInteger)row;
                 
 
-/** Commit unsaved changes for a given NSManagedObjextContext instance */
+/** 
+ Commit unsaved changes for a given NSManagedObjextContext instance 
+ */
 + (void)saveContext:(NSManagedObjectContext*)context;
 
 /** CoreDataUtility's Singleton Method */

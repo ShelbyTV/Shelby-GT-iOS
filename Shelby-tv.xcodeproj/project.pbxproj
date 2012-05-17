@@ -79,6 +79,7 @@
 		8E7F48061540B4690041118E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F48051540B4690041118E /* Crashlytics.framework */; };
 		8E8124D71540B92E00E1EA4B /* GuideTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124D61540B92E00E1EA4B /* GuideTableViewController.m */; };
 		8E8124F31540C2E800E1EA4B /* GuideTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */; };
+		8E863D9215645E8900C35EC5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E863D9115645E8900C35EC5 /* User.m */; };
 		8EAA320F154EF239003FC586 /* PeopleRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAA320E154EF239003FC586 /* PeopleRollsTableViewManager.m */; };
 		8EAA3212154EF271003FC586 /* PopularRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAA3211154EF271003FC586 /* PopularRollsTableViewManager.m */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
@@ -153,7 +154,6 @@
 		8EEA705A15544E2900B1B07F /* videoCardTwitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA704D15544E2900B1B07F /* videoCardTwitter.png */; };
 		8EEA705B15544E2900B1B07F /* videoCardTwitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA704E15544E2900B1B07F /* videoCardTwitter@2x.png */; };
 		8EFD4976156405B70003913D /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD4975156405B70003913D /* Video.m */; };
-		8EFD4979156405B70003913D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD4978156405B70003913D /* User.m */; };
 		8EFD497C156405B70003913D /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD497B156405B70003913D /* Conversation.m */; };
 		8EFD498C156435330003913D /* NSString+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD498B156435330003913D /* NSString+CoreData.m */; };
 		8EFD499E156443C10003913D /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD499D156443C10003913D /* Frame.m */; };
@@ -299,6 +299,8 @@
 		8E8124F11540C2E800E1EA4B /* GuideTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideTableViewManager.h; sourceTree = "<group>"; };
 		8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideTableViewManager.m; sourceTree = "<group>"; };
 		8E8124F41540C2F900E1EA4B /* TableViewManagers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewManagers.h; sourceTree = "<group>"; };
+		8E863D9015645E8900C35EC5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		8E863D9115645E8900C35EC5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		8EA87B4F156167E00029C07E /* CoreDataConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataConstants.h; sourceTree = "<group>"; };
 		8EAA320D154EF239003FC586 /* PeopleRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleRollsTableViewManager.h; sourceTree = "<group>"; };
 		8EAA320E154EF239003FC586 /* PeopleRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleRollsTableViewManager.m; sourceTree = "<group>"; };
@@ -386,8 +388,6 @@
 		8EEA704E15544E2900B1B07F /* videoCardTwitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardTwitter@2x.png"; sourceTree = "<group>"; };
 		8EFD4974156405B70003913D /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
 		8EFD4975156405B70003913D /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
-		8EFD4977156405B70003913D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		8EFD4978156405B70003913D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		8EFD497A156405B70003913D /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
 		8EFD497B156405B70003913D /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		8EFD498A156435330003913D /* NSString+CoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CoreData.h"; sourceTree = "<group>"; };
@@ -806,14 +806,14 @@
 			isa = PBXGroup;
 			children = (
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
+				8EFD497A156405B70003913D /* Conversation.h */,
+				8EFD497B156405B70003913D /* Conversation.m */,
 				8EFD49A31564593C0003913D /* DashboardEntry.h */,
 				8EFD49A41564593C0003913D /* DashboardEntry.m */,
 				8EFD499C156443C10003913D /* Frame.h */,
 				8EFD499D156443C10003913D /* Frame.m */,
-				8EFD497A156405B70003913D /* Conversation.h */,
-				8EFD497B156405B70003913D /* Conversation.m */,
-				8EFD4977156405B70003913D /* User.h */,
-				8EFD4978156405B70003913D /* User.m */,
+				8E863D9015645E8900C35EC5 /* User.h */,
+				8E863D9115645E8900C35EC5 /* User.m */,
 				8EFD4974156405B70003913D /* Video.h */,
 				8EFD4975156405B70003913D /* Video.m */,
 			);
@@ -1120,11 +1120,11 @@
 				8EE50662155CA9E800A04F50 /* Shelby.xcdatamodeld in Sources */,
 				8E5E7F95156151B0009FC8CE /* CoreDataUtility.m in Sources */,
 				8EFD4976156405B70003913D /* Video.m in Sources */,
-				8EFD4979156405B70003913D /* User.m in Sources */,
 				8EFD497C156405B70003913D /* Conversation.m in Sources */,
 				8EFD498C156435330003913D /* NSString+CoreData.m in Sources */,
 				8EFD499E156443C10003913D /* Frame.m in Sources */,
 				8EFD49A51564593C0003913D /* DashboardEntry.m in Sources */,
+				8E863D9215645E8900C35EC5 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

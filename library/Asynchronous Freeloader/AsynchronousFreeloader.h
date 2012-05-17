@@ -25,7 +25,6 @@
  If you pass 'nil' tp placeholderView, a large white UIActivityIndicatorView will be used.
  
  */
-
 + (void)loadImageFromLink:(NSString *)link 
              forImageView:(UIImageView *)imageView 
       withPlaceholderView:(UIView*)placeholderView;       

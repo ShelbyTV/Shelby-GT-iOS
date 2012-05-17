@@ -64,7 +64,7 @@
     
     // Store array from NSNotification, locally
     NSDictionary *parsedDictionary = notification.userInfo;
-    self.parsedResultsArray = [parsedDictionary objectForKey:kAPIRequestResult];
+    self.parsedResultsArray = [parsedDictionary objectForKey:kAPIResult];
         
     // Reload tableView
     [self.tableView reloadData];
@@ -112,7 +112,7 @@
         
         // Fetch date stored in Core Data
         NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
-        DashboardEntry *dashboardEntry = [CoreDataUtility fetchData:context forRow:indexPath.row OfType:APIRequestTypeStream];
+        DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryData:context forRow:indexPath.row];
         
         // Asychronous download and load video thumbnails
         [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];

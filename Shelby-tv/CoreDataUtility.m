@@ -16,12 +16,14 @@
     NSPersistentStoreCoordinator *_persistentStoreCoordinator;
 }
 
-
+// Store dashboardEntry data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary forRollInContext:(NSManagedObjectContext*)context;
-+ (void)storeFrameArray:(NSArray*)frameArray forDashboardEntry:(DashboardEntry*)dashboardEntry inContext:(NSManagedObjectContext*)context;
 
-- (NSURL *)applicationDocumentsDirectory;
+// Store roll data in Core Data
++ (void)storeParsedData:(NSDictionary*)parsedDictionary forRollInContext:(NSManagedObjectContext*)context;
+
+// Store dashbaordEntry.frame data in Core Data
++ (void)storeFrameArray:(NSArray*)frameArray forDashboardEntry:(DashboardEntry*)dashboardEntry inContext:(NSManagedObjectContext*)context;
 
 @end
 
@@ -68,10 +70,9 @@ static CoreDataUtility *sharedInstance = nil;
         
     }
         
-    
 }
 
-+ (DashboardEntry*)fetchData:(NSManagedObjectContext *)context forRow:(NSUInteger)row OfType:(APIRequestType)requestType
++ (DashboardEntry*)fetchDashboardEntryData:(NSManagedObjectContext *)context forRow:(NSUInteger)row
 {
  
     // Create Fetch Request
@@ -85,9 +86,10 @@ static CoreDataUtility *sharedInstance = nil;
     NSSortDescriptor *timestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
     [dashboardEntryRequest setSortDescriptors:[NSArray arrayWithObject:timestampSorter]];
     
-    // Execute Request
+    // Execute Request that returns array of dashboardEntrys
     NSArray *dashboardEntryArray = [context executeFetchRequest:dashboardEntryRequest error:nil];
     
+    // Return dashbaordEntry at a specific index
     return [dashboardEntryArray objectAtIndex:row];
 }
 
@@ -109,16 +111,17 @@ static CoreDataUtility *sharedInstance = nil;
 + (void)storeParsedData:(NSDictionary *)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext *)context
 {
  
-    NSArray *resultsArray = [parsedDictionary objectForKey:kAPIRequestResult];
+    NSArray *resultsArray = [parsedDictionary objectForKey:kAPIResult];
     
     for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
         
-        // Store dashboard attirubutes
+        // Store dashboardEntry attirubutes
+        
         DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
         NSString *dashboardID = [NSString testForNullForCoreDataAttribute:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
         [dashboardEntry setValue:dashboardID forKey:@"dashboardID"];
         
-        // Store dashboard.frame attributes
+        // Store dashboardEntry.frame attributes
         NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];
         [self storeFrameArray:frameArray forDashboardEntry:dashboardEntry inContext:context];
         
@@ -163,6 +166,13 @@ static CoreDataUtility *sharedInstance = nil;
     // Store dashboard.frame.conversation attributes
     
     // Store dashboard.frame.user attributes
+    User *user = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataUser inManagedObjectContext:context];
+    frame.user = user;
+    
+    NSArray *userArray = [frameArray valueForKey:@"creator"];
+    
+    NSString *userID = [NSString testForNullForCoreDataAttribute:[userArray valueForKey:@"creator_id"]];
+    [user setValue:userID forKey:@"userID"];
     
     // Store dashboard.frame.video attributes
     Video *video = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataVideo inManagedObjectContext:context];
@@ -207,7 +217,9 @@ static CoreDataUtility *sharedInstance = nil;
     if ( coordinator ){
         
         _managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [_managedObjectContext setUndoManager:nil];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+        [_managedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
         
     }
     
@@ -244,7 +256,9 @@ static CoreDataUtility *sharedInstance = nil;
         return _persistentStoreCoordinator;
     }
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Shelby-tv.sqlite"];
+    NSURL *applicationDocumentsDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
+    NSURL *storeURL = [applicationDocumentsDirectory URLByAppendingPathComponent:@"Shelby-tv.sqlite"];
     
     NSError *error = nil;
     
@@ -263,16 +277,6 @@ static CoreDataUtility *sharedInstance = nil;
     }
     
     return _persistentStoreCoordinator;
-}
-
-/*
- 
- Returns the URL to the application's Documents directory.
- 
- */
-- (NSURL *)applicationDocumentsDirectory
-{
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];;
 }
 
 @end

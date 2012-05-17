@@ -79,7 +79,8 @@
 
 - (IBAction)twitterLogin:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.socialFacade twitterLogin];
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - SocialFacadeDelegate Methods

@@ -12,10 +12,6 @@
 #import "FBConnect.h"
 #import "OAuthConsumer.h"
 
-/// Authorization Macros ///
-#define         SocialFacadeFacebookAPIKey                  @"349934901721555"
-#define         SocialFacadeTwitterAPIKey                   @"YKVKw0xSviXfMQ6o2MaoA"
-
 /// NSNotificationCenter Macros ///
 #define         SocialFacadeFacebookAuthorizationStatus     @"SocialFacadeFacebookAuthorizationStatus"
 #define         SocialFacadeTwitterAuthorizationStatus      @"SocialFacadeTwitterAuthorizationStatus"
@@ -36,13 +32,7 @@ typedef enum _SocialRequestType
 - (void)twitterAuthorizationStatus;
 @end
 
-@interface SocialFacade : NSObject 
-<
-
-FBSessionDelegate, 
-FBRequestDelegate
-
->
+@interface SocialFacade : NSObject <FBSessionDelegate, FBRequestDelegate>
 
 /// General Properties ///
 @property (strong, nonatomic) Facebook *facebook;
@@ -66,7 +56,12 @@ FBRequestDelegate
 +(SocialFacade *)sharedInstance;
 
 /// Authorization Methods ///
+// Facebook
 - (void)facebookLogin;
 - (void)facebookLogout;
+
+// Twitter
+- (void)twitterLogin;
+- (void)twitterLogout;
 
 @end

@@ -18,7 +18,6 @@
 // Other
 #import "StaticDeclarations.h"
 
-
 @interface GuideTableViewController : ASPullToRefreshTableViewController
 
 - (id)initWithGuideType:(GuideType)type andTableViewManager:(GuideTableViewManager*)manager;

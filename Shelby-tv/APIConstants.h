@@ -10,9 +10,9 @@
 #define kAPIRequestStream               @"http://api.gt.shelby.tv/v1/dashboard?auth_token=sF7waBf8jBMqsxeskPp2"
 
 // Macros for Parsed Data
-#define kAPIRequestResult               @"result"
-#define kAPIRequestStatus               @"status"
-#define kAPIRequestStatusSuccessful     200
+#define kAPIResult                      @"result"
+#define kAPIStatus                      @"status"
+#define kAPIStatusSuccessful            200
 
 // Macros for Notificaitons
 #define kAPIRequestType                 @"APIRequestType"

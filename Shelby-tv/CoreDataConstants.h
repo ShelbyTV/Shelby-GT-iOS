@@ -9,9 +9,11 @@
 #import "Conversation.h"
 #import "DashboardEntry.h"
 #import "Frame.h"
+#import "User.h"
 #import "Video.h"
 
 #define kCoreDataDashboardEntry         @"DashboardEntry"
 #define kCoreDataFrame                  @"Frame"
+#define kCoreDataUser                   @"User"
 #define kCoreDataVideo                  @"Video"
 #define kCoreDataConversation           @"Conversation"

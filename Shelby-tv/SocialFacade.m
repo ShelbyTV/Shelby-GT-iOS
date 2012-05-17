@@ -7,24 +7,33 @@
 //
 
 #import "SocialFacade.h"
+#import "OAuthConsumer.h"
 
 #pragma mark - Private Macros
-/// Miscellaenous Macros ///
-static SocialFacade *sharedInstance = nil;
-#define         SocialFacadePreviouslyLaunched          @"SocialFacadePreviouslyLaunched"
+/// Authorization Macros ///
+#define         SocialFacadeFacebookAppID                   @"115071338568035"
+#define         SocialFacadeTwitterConsumerKey              @"5DNrVZpdIwhQthCJJXCfnQ"
+#define         SocialFacadeTwitterConsumerSecret           @"Tlb35nblFFTZRidpu36Uo3z9mfcvSVv1MuZZ19SHaU"
+
 
 /// Facebook Macros ///
-#define         SocialFacadeFacebookAuthorized          @"SocialFacadeFacebookAuthorized"
-#define         SocialFacadeFacebookName                @"SocialFacadeFacebookName"
-#define         SocialFacadeFacebookID                  @"SocialFacadeFacebookID"
+#define         SocialFacadeFacebookAuthorized              @"SocialFacadeFacebookAuthorized"
+#define         SocialFacadeFacebookName                    @"SocialFacadeFacebookName"
+#define         SocialFacadeFacebookID                      @"SocialFacadeFacebookID"
 
 /// Twitter Macros ///
-#define         SocialFacadeTwitterAuthorized           @"SocialFacadeFacebookAuthorized"
-#define         SocialFacadeTwitterName                 @"SocialFacadeTwitterName"
-#define         SocialFacadeTwitterID                   @"SocialFacadeTwitterID"
+#define         SocialFacadeTwitterAuthorized               @"SocialFacadeFacebookAuthorized"
+#define         SocialFacadeTwitterName                     @"SocialFacadeTwitterName"
+#define         SocialFacadeTwitterID                       @"SocialFacadeTwitterID"
+
+/// Miscellaenous Macros ///
+static SocialFacade *sharedInstance = nil;
+#define         SocialFacadePreviouslyLaunched              @"SocialFacadePreviouslyLaunched"
 
 #pragma mark - Private Declarations
-@interface SocialFacade ()
+@interface SocialFacade () <NSURLConnectionDataDelegate>
+
+@property (strong, atomic) OAToken * token;
 
 /// Facebook Methods ///
 - (void)facebookLogin;
@@ -36,12 +45,16 @@ static SocialFacade *sharedInstance = nil;
 /// Twitter Methods ///
 - (void)twitterLogin;
 - (void)twitterLogout;
+- (OAToken*)getOAToken;
+- (void)createNewTwitterAccount:(ACAccountType*)type;
+
 
 @end
 
 @implementation SocialFacade
 @synthesize facebook = _facebook;
 @synthesize socialRequestType = _socialRequestType;
+@synthesize token = _token;
 
 #pragma mark - Singleton Methods
 + (SocialFacade*)sharedInstance
@@ -109,7 +122,7 @@ static SocialFacade *sharedInstance = nil;
 - (void)checkFacebookAuthorizationStatusOnLaunch 
 {
     
-    self.facebook = [[Facebook alloc] initWithAppId:SocialFacadeFacebookAPIKey andDelegate:self];
+    self.facebook = [[Facebook alloc] initWithAppId:SocialFacadeFacebookAppID andDelegate:self];
     
     // If user has Facebook authorized via Single Sign-on, set NSUserDefault Facebook Authorization Variable to YES/TRUE
     if ( [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"] && [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]) {
@@ -257,22 +270,7 @@ static SocialFacade *sharedInstance = nil;
 #pragma mark - Twitter Authorization Methods
 - (void)twitterLogin
 {
-	// Create an accountStore object
-	ACAccountStore *accountStore = [[ACAccountStore alloc] init];
-	
-	// Create an accountType object that ensures Twitter accounts are retrieved
-    ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    
-    [accountStore requestAccessToAccountsWithType:accountType withCompletionHandler:^(BOOL granted, NSError *error) {
-    
-        if ( granted ) {
-            
-        } else {
-            
-        }
-    
-    }];
-    
+    self.token = [self getOAToken];
 }
 
 - (void)twitterLogout
@@ -280,6 +278,56 @@ static SocialFacade *sharedInstance = nil;
     
 }
 
+- (void)createNewTwitterAccount
+{
+    
+}
+
+#pragma mark - OAuth Methods
+- (OAToken *)getOAToken {
+    
+    NSURL * url = [NSURL URLWithString:@"https://api.twitter.com/oauth/request_token"];
+    
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:SocialFacadeTwitterConsumerKey secret:SocialFacadeTwitterConsumerSecret];
+    
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
+                                                                   consumer:consumer
+                                                                      token:nil
+                                                                      realm:nil 
+                                                          signatureProvider:nil];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    OARequestParameter * parameter = [[OARequestParameter alloc] initWithName:@"oauth_callback"
+                                                                        value:@"oob"];
+    NSArray * params = [NSArray arrayWithObject:parameter];
+    [request setParameters:params];
+    
+    OADataFetcher * fetcher = [[OADataFetcher alloc] init];
+    
+    [fetcher fetchDataWithRequest:request
+                         delegate:self
+                didFinishSelector:@selector(requestTokenTicket:didFinishWithData:)
+                  didFailSelector:@selector(requestTokenTicket:didFailWithError:)];
+    
+    return self.token;
+}
+
+- (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
+{
+    
+    if (ticket.didSucceed) {
+        NSString *responseBody = [[NSString alloc] initWithData:data
+                                                       encoding:NSUTF8StringEncoding];
+        self.token = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
+            NSLog(@"%@",self.token);
+    }
+}
+
+- (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSData *)data 
+{
+    // Inform user that there was a problem with authorization
+}
 
 #pragma mark - Accessor Methods
 /// First Launch Flag /// 
