@@ -37,6 +37,7 @@ typedef enum _SocialRequestType
 /// General Properties ///
 @property (strong, nonatomic) Facebook *facebook;
 @property (assign, nonatomic) SocialRequestType socialRequestType;
+@property (strong, nonatomic) UIViewController *loginViewController;
 
 /// Properties utilizing NSUserDefaults ///
 // General

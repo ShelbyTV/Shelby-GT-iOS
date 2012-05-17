@@ -158,6 +158,7 @@
 		8EFD498C156435330003913D /* NSString+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD498B156435330003913D /* NSString+CoreData.m */; };
 		8EFD499E156443C10003913D /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD499D156443C10003913D /* Frame.m */; };
 		8EFD49A51564593C0003913D /* DashboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD49A41564593C0003913D /* DashboardEntry.m */; };
+		8EFF3A9815658E2500131A97 /* AuthenticateTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF3A9715658E2500131A97 /* AuthenticateTwitterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -396,6 +397,8 @@
 		8EFD499D156443C10003913D /* Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
 		8EFD49A31564593C0003913D /* DashboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardEntry.h; sourceTree = "<group>"; };
 		8EFD49A41564593C0003913D /* DashboardEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardEntry.m; sourceTree = "<group>"; };
+		8EFF3A9615658E2500131A97 /* AuthenticateTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticateTwitterViewController.h; sourceTree = "<group>"; };
+		8EFF3A9715658E2500131A97 /* AuthenticateTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateTwitterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -593,6 +596,8 @@
 			children = (
 				8E7F47E7154093850041118E /* SocialFacade.h */,
 				8E7F47E8154093850041118E /* SocialFacade.m */,
+				8EFF3A9615658E2500131A97 /* AuthenticateTwitterViewController.h */,
+				8EFF3A9715658E2500131A97 /* AuthenticateTwitterViewController.m */,
 			);
 			name = SocialFacade;
 			sourceTree = "<group>";
@@ -1125,6 +1130,7 @@
 				8EFD499E156443C10003913D /* Frame.m in Sources */,
 				8EFD49A51564593C0003913D /* DashboardEntry.m in Sources */,
 				8E863D9215645E8900C35EC5 /* User.m in Sources */,
+				8EFF3A9815658E2500131A97 /* AuthenticateTwitterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

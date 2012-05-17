@@ -8,6 +8,7 @@
 
 #import "SocialFacade.h"
 #import "OAuthConsumer.h"
+#import "AuthenticateTwitterViewController.h"
 
 #pragma mark - Private Macros
 /// Authorization Macros ///
@@ -33,7 +34,7 @@ static SocialFacade *sharedInstance = nil;
 #pragma mark - Private Declarations
 @interface SocialFacade () <NSURLConnectionDataDelegate>
 
-@property (strong, atomic) OAToken * token;
+@property (strong, nonatomic) OAToken * token;
 
 /// Facebook Methods ///
 - (void)facebookLogin;
@@ -45,16 +46,20 @@ static SocialFacade *sharedInstance = nil;
 /// Twitter Methods ///
 - (void)twitterLogin;
 - (void)twitterLogout;
-- (OAToken*)getOAToken;
 - (void)createNewTwitterAccount:(ACAccountType*)type;
 
+/// OAuthConsumer Methods ///
+- (void)getOAToken;
+- (void)authorizeTwitter;
 
 @end
 
 @implementation SocialFacade
 @synthesize facebook = _facebook;
 @synthesize socialRequestType = _socialRequestType;
+@synthesize loginViewController = _loginViewController;
 @synthesize token = _token;
+
 
 #pragma mark - Singleton Methods
 + (SocialFacade*)sharedInstance
@@ -270,7 +275,7 @@ static SocialFacade *sharedInstance = nil;
 #pragma mark - Twitter Authorization Methods
 - (void)twitterLogin
 {
-    self.token = [self getOAToken];
+    [self getOAToken];
 }
 
 - (void)twitterLogout
@@ -278,13 +283,14 @@ static SocialFacade *sharedInstance = nil;
     
 }
 
-- (void)createNewTwitterAccount
+- (void)createNewTwitterAccount:(ACAccountType *)type
 {
     
 }
 
-#pragma mark - OAuth Methods
-- (OAToken *)getOAToken {
+#pragma mark - OAuthConsumer Methods
+- (void)getOAToken 
+{
     
     NSURL * url = [NSURL URLWithString:@"https://api.twitter.com/oauth/request_token"];
     
@@ -298,29 +304,45 @@ static SocialFacade *sharedInstance = nil;
     
     [request setHTTPMethod:@"POST"];
     
-    OARequestParameter * parameter = [[OARequestParameter alloc] initWithName:@"oauth_callback"
+    OARequestParameter *parameter = [[OARequestParameter alloc] initWithName:@"oauth_callback"
                                                                         value:@"oob"];
-    NSArray * params = [NSArray arrayWithObject:parameter];
+    NSArray *params = [NSArray arrayWithObject:parameter];
     [request setParameters:params];
     
-    OADataFetcher * fetcher = [[OADataFetcher alloc] init];
+    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
     
     [fetcher fetchDataWithRequest:request
                          delegate:self
                 didFinishSelector:@selector(requestTokenTicket:didFinishWithData:)
                   didFailSelector:@selector(requestTokenTicket:didFailWithError:)];
     
-    return self.token;
+}
+
+- (void)authorizeTwitter
+{
+    
+    // Load 
+    AuthenticateTwitterViewController *authenticateTwitterViewController = [[AuthenticateTwitterViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:authenticateTwitterViewController];
+    [self.loginViewController presentModalViewController:navigationController animated:YES];
+    
+    // Load Request
+    NSString *authenticationString = [NSString stringWithFormat:@"https://api.twitter.com/oauth/authenticate?oauth_token=%@", self.token.key];
+    NSLog(@"%@",authenticationString);
+    NSURL *authenticationURL = [NSURL URLWithString:authenticationString];
+    NSURLRequest *authenticationRequest = [NSURLRequest requestWithURL:authenticationURL];
+    [authenticateTwitterViewController.webView loadRequest:authenticationRequest];
+
 }
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
 {
     
     if (ticket.didSucceed) {
-        NSString *responseBody = [[NSString alloc] initWithData:data
-                                                       encoding:NSUTF8StringEncoding];
+        
+        NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         self.token = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
-            NSLog(@"%@",self.token);
+        [self authorizeTwitter];
     }
 }
 

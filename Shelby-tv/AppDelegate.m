@@ -185,12 +185,13 @@
         
         LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController_iPhone" bundle:nil];
         [self.window.rootViewController presentModalViewController:loginViewController animated:NO];
+        [[SocialFacade sharedInstance] setLoginViewController:loginViewController];
         
     } else {
         
         LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController_iPad" bundle:nil];
         [self.window.rootViewController presentModalViewController:loginViewController animated:NO];
-        
+        [[SocialFacade sharedInstance] setLoginViewController:loginViewController];
     }
 }
 
