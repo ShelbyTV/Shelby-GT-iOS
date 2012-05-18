@@ -417,7 +417,7 @@ static SocialFacade *sharedInstance = nil;
     
     }];
     
-    // Remove reqeustToken value
+    // Remove reqeustToken value in case user decides to re-authenticate
     self.requestToken = nil;
 
 }
