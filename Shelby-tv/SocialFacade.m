@@ -32,9 +32,11 @@ static SocialFacade *sharedInstance = nil;
 #define         SocialFacadePreviouslyLaunched              @"SocialFacadePreviouslyLaunched"
 
 #pragma mark - Private Declarations
-@interface SocialFacade () <NSURLConnectionDataDelegate>
+@interface SocialFacade ()
 
-@property (strong, nonatomic) OAToken * token;
+@property (strong, nonatomic) OAConsumer *consumer;
+@property (strong, nonatomic) OAToken *requestToken;
+@property (strong, nonatomic) OAToken *accessToken;
 
 /// Facebook Methods ///
 - (void)facebookLogin;
@@ -50,7 +52,7 @@ static SocialFacade *sharedInstance = nil;
 
 /// OAuthConsumer Methods ///
 - (void)getOAToken;
-- (void)authorizeTwitter;
+- (void)authenticateTwitterWithData:(NSData*)data;
 
 @end
 
@@ -58,7 +60,9 @@ static SocialFacade *sharedInstance = nil;
 @synthesize facebook = _facebook;
 @synthesize socialRequestType = _socialRequestType;
 @synthesize loginViewController = _loginViewController;
-@synthesize token = _token;
+@synthesize consumer = _consumer;
+@synthesize requestToken = _requestToken;
+@synthesize accessToken = _accessToken;
 
 
 #pragma mark - Singleton Methods
@@ -294,10 +298,10 @@ static SocialFacade *sharedInstance = nil;
     
     NSURL * url = [NSURL URLWithString:@"https://api.twitter.com/oauth/request_token"];
     
-    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:SocialFacadeTwitterConsumerKey secret:SocialFacadeTwitterConsumerSecret];
+    self.consumer= [[OAConsumer alloc] initWithKey:SocialFacadeTwitterConsumerKey secret:SocialFacadeTwitterConsumerSecret];
     
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
-                                                                   consumer:consumer
+                                                                   consumer:self.consumer
                                                                       token:nil
                                                                       realm:nil 
                                                           signatureProvider:nil];
@@ -318,38 +322,63 @@ static SocialFacade *sharedInstance = nil;
     
 }
 
-- (void)authorizeTwitter
-{
-    
-    // Load 
-    AuthenticateTwitterViewController *authenticateTwitterViewController = [[AuthenticateTwitterViewController alloc] init];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:authenticateTwitterViewController];
-    [self.loginViewController presentModalViewController:navigationController animated:YES];
-    
-    // Load Request
-    NSString *authenticationString = [NSString stringWithFormat:@"https://api.twitter.com/oauth/authenticate?oauth_token=%@", self.token.key];
-    NSLog(@"%@",authenticationString);
-    NSURL *authenticationURL = [NSURL URLWithString:authenticationString];
-    NSURLRequest *authenticationRequest = [NSURLRequest requestWithURL:authenticationURL];
-    [authenticateTwitterViewController.webView loadRequest:authenticationRequest];
-
-}
-
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
 {
-    
+
     if (ticket.didSucceed) {
         
-        NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        self.token = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
-        [self authorizeTwitter];
+        [self authenticateTwitterWithData:data];
+        
     }
+    
 }
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSData *)data 
 {
-    // Inform user that there was a problem with authorization
+    // Inform user that there was a problem with acquiring the request token.
 }
+
+- (void)authenticateTwitterWithData:(NSData *)data
+{
+    
+    NSString* httpBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    self.requestToken = [[OAToken alloc] initWithHTTPResponseBody:httpBody];
+    NSURL* authorizeUrl = [NSURL URLWithString:@"https://api.twitter.com/oauth/authorize"];
+    OAMutableURLRequest* authorizeRequest = [[OAMutableURLRequest alloc] initWithURL:authorizeUrl
+                                                                            consumer:nil 
+                                                                               token:nil
+                                                                               realm:nil
+                                             
+                                                                   signatureProvider:nil];
+    // Create request for accessToken
+    NSString* requestTokenKey = self.requestToken.key;
+    OARequestParameter *tokenParam = [[OARequestParameter alloc] initWithName:@"oauth_token" value:requestTokenKey];
+    OARequestParameter *loginParam = [[OARequestParameter alloc] initWithName:@"force_login" value:@"false"];
+    [authorizeRequest setParameters:[NSArray arrayWithObjects:tokenParam, loginParam, nil]];
+
+    
+    // Load ViewController (that has webView)
+    AuthenticateTwitterViewController *authenticateTwitterViewController = [[AuthenticateTwitterViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:authenticateTwitterViewController];
+    [self.loginViewController presentModalViewController:navigationController animated:YES];
+    [authenticateTwitterViewController.webView loadRequest:authorizeRequest];
+
+}
+
+- (void)didReceiveAccessToken:(OAServiceTicket*)ticket data:(NSData*)data 
+{
+
+    NSString* httpBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    self.accessToken = [[OAToken alloc] initWithHTTPResponseBody:httpBody];
+    NSLog(@"%@",self.accessToken);
+    
+}
+
+- (void)didFailOAuth:(OAServiceTicket*)ticket error:(NSError*)error 
+{
+    // Inform user that there was a problem with acquiring the access token.
+}
+
 
 #pragma mark - Accessor Methods
 /// First Launch Flag /// 
