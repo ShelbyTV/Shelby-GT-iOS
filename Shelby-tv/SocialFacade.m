@@ -16,7 +16,6 @@
 #define         SocialFacadeTwitterConsumerKey              @"5DNrVZpdIwhQthCJJXCfnQ"
 #define         SocialFacadeTwitterConsumerSecret           @"Tlb35nblFFTZRidpu36Uo3z9mfcvSVv1MuZZ19SHaU"
 
-
 /// Facebook Macros ///
 #define         SocialFacadeFacebookAuthorized              @"SocialFacadeFacebookAuthorized"
 #define         SocialFacadeFacebookName                    @"SocialFacadeFacebookName"
@@ -32,7 +31,7 @@ static SocialFacade *sharedInstance = nil;
 #define         SocialFacadePreviouslyLaunched              @"SocialFacadePreviouslyLaunched"
 
 #pragma mark - Private Declarations
-@interface SocialFacade ()
+@interface SocialFacade () <AuthenticateTwitterDelegate>
 
 @property (strong, nonatomic) OAConsumer *consumer;
 @property (strong, nonatomic) OAToken *requestToken;
@@ -343,7 +342,7 @@ static SocialFacade *sharedInstance = nil;
     
     NSString* httpBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     self.requestToken = [[OAToken alloc] initWithHTTPResponseBody:httpBody];
-    NSURL* authorizeUrl = [NSURL URLWithString:@"https://api.twitter.com/oauth/authorize"];
+    NSURL* authorizeUrl = [NSURL URLWithString:@"https://api.twitter.com/oauth/authenticate"];
     OAMutableURLRequest* authorizeRequest = [[OAMutableURLRequest alloc] initWithURL:authorizeUrl
                                                                             consumer:nil 
                                                                                token:nil
@@ -358,7 +357,7 @@ static SocialFacade *sharedInstance = nil;
 
     
     // Load ViewController (that has webView)
-    AuthenticateTwitterViewController *authenticateTwitterViewController = [[AuthenticateTwitterViewController alloc] init];
+    AuthenticateTwitterViewController *authenticateTwitterViewController = [[AuthenticateTwitterViewController alloc] initWithDelegate:self];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:authenticateTwitterViewController];
     [self.loginViewController presentModalViewController:navigationController animated:YES];
     [authenticateTwitterViewController.webView loadRequest:authorizeRequest];
@@ -379,6 +378,11 @@ static SocialFacade *sharedInstance = nil;
     // Inform user that there was a problem with acquiring the access token.
 }
 
+#pragma mark - AuthenticateTwitterDelegate Methods
+- (void)authenticationRequestDidReturnPin:(NSString *)pin
+{
+    NSLog(@"Pin in SocialFacade %@", pin);
+}
 
 #pragma mark - Accessor Methods
 /// First Launch Flag /// 

@@ -10,21 +10,29 @@
 
 @interface AuthenticateTwitterViewController ()
 
+@property (strong, nonatomic) id <AuthenticateTwitterDelegate> delegate;  
 @property(assign, nonatomic) BOOL pinPageLoaded;
 
 @end
 
 @implementation AuthenticateTwitterViewController
 @synthesize webView = _webView;
+@synthesize delegate = _delegate;
 @synthesize pinPageLoaded = _pinPageLoaded;
 
-#pragma mark - View Lifecycle Methods
-- (void)viewDidUnload
+#pragma mark - Initialization Methods
+- (id)initWithDelegate:(id<AuthenticateTwitterDelegate>)delegate
 {
+    if ( self = [super init] ) {
+        
+        self.delegate = delegate;
+        
+    }
     
-    [super viewDidUnload];
+    return self;
 }
 
+#pragma mark - View Lifecycle Methods
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -42,7 +50,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     
-    self.pinPageLoaded = ( [request.URL.absoluteString compare:@"https://api.twitter.com/oauth/authorize"] == NSOrderedSame);
+    self.pinPageLoaded = ( [request.URL.absoluteString compare:@"https://api.twitter.com/oauth/authenticate"] == NSOrderedSame);
     
     return YES;
 }
@@ -53,18 +61,17 @@
 
     if( self.pinPageLoaded ) {
         
+        self.pinPageLoaded = NO;
         NSString *script = @"(function() { return document.getElementsByTagName(\"code\")[0].textContent; } ())";
         NSString *pin = [self.webView stringByEvaluatingJavaScriptFromString:script];
-        
-        NSLog(@"%@", pin);
-        
+
         if ( [pin length] > 0 ) {
             
+            [self.delegate authenticationRequestDidReturnPin:pin];
             [self dismissModalViewControllerAnimated:YES];
 
         }
-        
-        self.pinPageLoaded = NO;
+
     }
 }
 

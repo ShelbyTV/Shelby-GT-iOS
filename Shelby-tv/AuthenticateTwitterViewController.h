@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol AuthenticateTwitterDelegate <NSObject>
+- (void)authenticationRequestDidReturnPin:(NSString*)pin;
+@end
+
 @interface AuthenticateTwitterViewController : UIViewController <UIWebViewDelegate>
 
 @property (strong, nonatomic) UIWebView *webView;
+
+- (id)initWithDelegate:(id<AuthenticateTwitterDelegate>)delegate;
 
 @end
