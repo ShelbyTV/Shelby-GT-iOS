@@ -35,7 +35,6 @@ static SocialFacade *sharedInstance = nil;
 
 @property (strong, nonatomic) OAConsumer *consumer;
 @property (strong, nonatomic) OAToken *requestToken;
-@property (strong, nonatomic) OAToken *accessToken;
 
 /// Facebook Methods ///
 - (void)facebookLogin;
@@ -51,8 +50,9 @@ static SocialFacade *sharedInstance = nil;
 
 /// OAuthConsumer Methods ///
 - (void)getRequestToken;
-- (OAToken*)getAccessTokenWithPin:(NSString*)pin;
+- (void)getAccessTokenWithPin:(NSString*)pin;
 - (void)authenticateTwitterWithData:(NSData*)data;
+- (void)saveTwitterAccountWithAccessToken:(OAToken*)accessToken;
 
 @end
 
@@ -62,7 +62,6 @@ static SocialFacade *sharedInstance = nil;
 @synthesize loginViewController = _loginViewController;
 @synthesize consumer = _consumer;
 @synthesize requestToken = _requestToken;
-@synthesize accessToken = _accessToken;
 
 
 #pragma mark - Singleton Methods
@@ -308,13 +307,11 @@ static SocialFacade *sharedInstance = nil;
     
     [request setHTTPMethod:@"POST"];
     
-    OARequestParameter *parameter = [[OARequestParameter alloc] initWithName:@"oauth_callback"
-                                                                        value:@"oob"];
+    OARequestParameter *parameter = [[OARequestParameter alloc] initWithName:@"oauth_callback" value:@"oob"];
     NSArray *params = [NSArray arrayWithObject:parameter];
     [request setParameters:params];
     
     OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    
     [fetcher fetchDataWithRequest:request
                          delegate:self
                 didFinishSelector:@selector(requestTokenTicket:didFinishWithData:)
@@ -325,11 +322,7 @@ static SocialFacade *sharedInstance = nil;
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
 {
 
-    if (ticket.didSucceed) {
-        
-        [self authenticateTwitterWithData:data];
-        
-    }
+    if (ticket.didSucceed) [self authenticateTwitterWithData:data];
     
 }
 
@@ -366,7 +359,7 @@ static SocialFacade *sharedInstance = nil;
 }
 
 #pragma mark - OAuthConsumer AccessToken Methods
-- (OAToken*)getAccessTokenWithPin:(NSString *)pin
+- (void)getAccessTokenWithPin:(NSString *)pin
 {
     NSURL *url = [NSURL URLWithString:@"https://api.twitter.com/oauth/access_token"];
     
@@ -383,16 +376,12 @@ static SocialFacade *sharedInstance = nil;
     
     OADataFetcher * fetcher = [[OADataFetcher alloc] init];
     
-    self.accessToken = nil;
-    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     [fetcher fetchDataWithRequest:request
                          delegate:self
                 didFinishSelector:@selector(accessTokenTicket:didFinishWithData:)
                   didFailSelector:@selector(accessTokenTicket:didFailWithError:)];
-    
-    return self.accessToken;
 }
 
 
@@ -400,8 +389,8 @@ static SocialFacade *sharedInstance = nil;
 {
 
     NSString* httpBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    self.accessToken = [[OAToken alloc] initWithHTTPResponseBody:httpBody];
-    NSLog(@"AccessToken: %@",self.accessToken);
+    OAToken *accessToken = [[OAToken alloc] initWithHTTPResponseBody:httpBody];
+    [self saveTwitterAccountWithAccessToken:accessToken];
     
 }
 
@@ -410,10 +399,34 @@ static SocialFacade *sharedInstance = nil;
     // Inform user that there was a problem with acquiring the access token.
 }
 
+- (void)saveTwitterAccountWithAccessToken:(OAToken *)accessToken
+{
+    NSString *token = accessToken.key;
+    NSString *secret = accessToken.secret;
+    
+    
+    // Store Twitter Account on device as ACAccount
+    ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+    ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    ACAccountCredential *credential = [[ACAccountCredential alloc] initWithOAuthToken:token tokenSecret:secret];
+    ACAccount *newAccount = [[ACAccount alloc] initWithAccountType:accountType];
+    newAccount.credential = credential;
+    [accountStore saveAccount:newAccount withCompletionHandler:^(BOOL success, NSError *error) {
+        
+        if (success) NSLog(@"%@", newAccount.username);
+    
+    }];
+    
+    // Remove reqeustToken value
+    self.requestToken = nil;
+
+}
+
 #pragma mark - AuthenticateTwitterDelegate Methods
 - (void)authenticationRequestDidReturnPin:(NSString *)pin
 {
     [self getAccessTokenWithPin:pin];
+    
 }
 
 #pragma mark - Accessor Methods
