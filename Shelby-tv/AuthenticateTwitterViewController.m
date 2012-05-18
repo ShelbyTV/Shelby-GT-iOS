@@ -13,6 +13,8 @@
 @property (strong, nonatomic) id <AuthenticateTwitterDelegate> delegate;  
 @property(assign, nonatomic) BOOL pinPageLoaded;
 
+- (void)initializationOnLoad;
+
 @end
 
 @implementation AuthenticateTwitterViewController
@@ -37,10 +39,26 @@
 {
     [super viewDidLoad];
     
-    UIBarButtonItem *cancelBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(dismissModalViewControllerAnimated:)];
+    [self initializationOnLoad];
+}
+
+#pragma mark - Private methods
+- (void)initializationOnLoad
+{
+    
+    // Customize leftBarButtonItem
+    UIBarButtonItem *cancelBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" 
+                                                                            style:UIBarButtonItemStyleDone 
+                                                                           target:self 
+                                                                           action:@selector(dismissModalViewControllerAnimated:)];
     self.navigationItem.leftBarButtonItem = cancelBarButtonItem;
     
-    self.webView = [[UIWebView alloc] initWithFrame:self.view.frame];
+    // Add webView to view hierarchy
+    CGRect frame = CGRectMake(self.view.frame.origin.x, 
+                              -20.0f + self.view.frame.origin.y, 
+                              self.view.frame.size.width, 
+                              self.view.frame.size.height);
+    self.webView = [[UIWebView alloc] initWithFrame:frame];
     self.webView.delegate = self;
     
     [self.view addSubview:self.webView];

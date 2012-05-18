@@ -50,7 +50,8 @@ static SocialFacade *sharedInstance = nil;
 - (void)createNewTwitterAccount:(ACAccountType*)type;
 
 /// OAuthConsumer Methods ///
-- (void)getOAToken;
+- (void)getRequestToken;
+- (OAToken*)getAccessTokenWithPin:(NSString*)pin;
 - (void)authenticateTwitterWithData:(NSData*)data;
 
 @end
@@ -278,7 +279,7 @@ static SocialFacade *sharedInstance = nil;
 #pragma mark - Twitter Authorization Methods
 - (void)twitterLogin
 {
-    [self getOAToken];
+    [self getRequestToken];
 }
 
 - (void)twitterLogout
@@ -291,8 +292,8 @@ static SocialFacade *sharedInstance = nil;
     
 }
 
-#pragma mark - OAuthConsumer Methods
-- (void)getOAToken 
+#pragma mark - OAuthConsumer RequestToken Methods
+- (void)getRequestToken 
 {
     
     NSURL * url = [NSURL URLWithString:@"https://api.twitter.com/oauth/request_token"];
@@ -354,26 +355,57 @@ static SocialFacade *sharedInstance = nil;
     OARequestParameter *tokenParam = [[OARequestParameter alloc] initWithName:@"oauth_token" value:requestTokenKey];
     OARequestParameter *loginParam = [[OARequestParameter alloc] initWithName:@"force_login" value:@"false"];
     [authorizeRequest setParameters:[NSArray arrayWithObjects:tokenParam, loginParam, nil]];
-
+    
     
     // Load ViewController (that has webView)
     AuthenticateTwitterViewController *authenticateTwitterViewController = [[AuthenticateTwitterViewController alloc] initWithDelegate:self];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:authenticateTwitterViewController];
     [self.loginViewController presentModalViewController:navigationController animated:YES];
     [authenticateTwitterViewController.webView loadRequest:authorizeRequest];
-
+    
 }
 
-- (void)didReceiveAccessToken:(OAServiceTicket*)ticket data:(NSData*)data 
+#pragma mark - OAuthConsumer AccessToken Methods
+- (OAToken*)getAccessTokenWithPin:(NSString *)pin
+{
+    NSURL *url = [NSURL URLWithString:@"https://api.twitter.com/oauth/access_token"];
+    
+    OAMutableURLRequest * request = [[OAMutableURLRequest alloc] initWithURL:url
+                                                                     consumer:self.consumer
+                                                                        token:self.requestToken
+                                                                        realm:nil
+                                                            signatureProvider:nil];
+    
+    OARequestParameter * tokenParam = [[OARequestParameter alloc] initWithName:@"oauth_token" value:self.requestToken.key];
+    OARequestParameter * verifierParam = [[OARequestParameter alloc] initWithName:@"oauth_verifier" value:pin];
+    NSArray * params = [NSArray arrayWithObjects:tokenParam, verifierParam, nil];
+    [request setParameters:params];
+    
+    OADataFetcher * fetcher = [[OADataFetcher alloc] init];
+    
+    self.accessToken = nil;
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    [fetcher fetchDataWithRequest:request
+                         delegate:self
+                didFinishSelector:@selector(accessTokenTicket:didFinishWithData:)
+                  didFailSelector:@selector(accessTokenTicket:didFailWithError:)];
+    
+    return self.accessToken;
+}
+
+
+- (void)accessTokenTicket:(OAServiceTicket*)ticket didFinishWithData:(NSData*)data 
 {
 
     NSString* httpBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     self.accessToken = [[OAToken alloc] initWithHTTPResponseBody:httpBody];
-    NSLog(@"%@",self.accessToken);
+    NSLog(@"AccessToken: %@",self.accessToken);
     
 }
 
-- (void)didFailOAuth:(OAServiceTicket*)ticket error:(NSError*)error 
+- (void)accessTokenTicket:(OAServiceTicket*)ticket didFailWithError:(NSError*)error 
 {
     // Inform user that there was a problem with acquiring the access token.
 }
@@ -381,7 +413,7 @@ static SocialFacade *sharedInstance = nil;
 #pragma mark - AuthenticateTwitterDelegate Methods
 - (void)authenticationRequestDidReturnPin:(NSString *)pin
 {
-    NSLog(@"Pin in SocialFacade %@", pin);
+    [self getAccessTokenWithPin:pin];
 }
 
 #pragma mark - Accessor Methods
