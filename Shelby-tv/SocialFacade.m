@@ -54,6 +54,9 @@ static SocialFacade *sharedInstance = nil;
 - (void)authenticateTwitterWithData:(NSData*)data;
 - (void)saveTwitterAccountWithAccessToken:(OAToken*)accessToken;
 
+/// Reverse Auth Methods ///
+- (void)getReverseAuthRequestToken;
+
 @end
 
 @implementation SocialFacade
@@ -295,6 +298,9 @@ static SocialFacade *sharedInstance = nil;
 - (void)getRequestToken 
 {
     
+    // Remove reqeustToken value if value exists and/or user decides to re-authenticate
+    self.requestToken = nil;
+    
     NSURL * url = [NSURL URLWithString:@"https://api.twitter.com/oauth/request_token"];
     
     self.consumer= [[OAConsumer alloc] initWithKey:SocialFacadeTwitterConsumerKey secret:SocialFacadeTwitterConsumerSecret];
@@ -376,8 +382,6 @@ static SocialFacade *sharedInstance = nil;
     
     OADataFetcher * fetcher = [[OADataFetcher alloc] init];
     
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    
     [fetcher fetchDataWithRequest:request
                          delegate:self
                 didFinishSelector:@selector(accessTokenTicket:didFinishWithData:)
@@ -401,9 +405,9 @@ static SocialFacade *sharedInstance = nil;
 
 - (void)saveTwitterAccountWithAccessToken:(OAToken *)accessToken
 {
+    
     NSString *token = accessToken.key;
     NSString *secret = accessToken.secret;
-    
     
     // Store Twitter Account on device as ACAccount
     ACAccountStore *accountStore = [[ACAccountStore alloc] init];
@@ -413,13 +417,63 @@ static SocialFacade *sharedInstance = nil;
     newAccount.credential = credential;
     [accountStore saveAccount:newAccount withCompletionHandler:^(BOOL success, NSError *error) {
         
-        if (success) NSLog(@"%@", newAccount.username);
-    
+        if (success) {
+            
+            NSLog(@"New Account Added: %@", newAccount.username);
+            
+            // Perfom Reverse Auth
+            [self getReverseAuthRequestToken];
+            
+        }
     }];
-    
-    // Remove reqeustToken value in case user decides to re-authenticate
-    self.requestToken = nil;
 
+}
+
+#pragma mark - Reverse Auth Methods
+- (void)getReverseAuthRequestToken
+{
+    NSURL * url = [NSURL URLWithString:@"https://api.twitter.com/oauth/request_token"];
+    
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
+                                                                   consumer:self.consumer
+                                                                      token:nil
+                                                                      realm:nil 
+                                                          signatureProvider:nil];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    OARequestParameter *xauthParam = [[OARequestParameter alloc] initWithName:@"x_auth_mode" value:@"reverse_auth"];
+    NSArray *params = [NSArray arrayWithObject:xauthParam];
+    [request setParameters:params];
+    
+    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+    [fetcher fetchDataWithRequest:request
+                         delegate:self
+                didFinishSelector:@selector(reverseAuthTicket:didFinishWithData:)
+                  didFailSelector:@selector(reverseAuthTicket:didFailWithError:)];
+    
+}
+
+- (void)reverseAuthTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
+{
+    
+    NSLog(@"test1");
+    
+    if (ticket.didSucceed) {
+        
+        NSString* httpBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", httpBody);
+        
+    }
+    
+}
+
+- (void)reverseAuthTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error 
+{
+    
+        NSLog(@"test2");
+    
+    // Inform user that there was a problem with acquiring the request token.
 }
 
 #pragma mark - AuthenticateTwitterDelegate Methods
