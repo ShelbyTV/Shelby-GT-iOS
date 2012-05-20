@@ -48,14 +48,22 @@ static SocialFacade *sharedInstance = nil;
 - (void)twitterLogout;
 - (void)createNewTwitterAccount:(ACAccountType*)type;
 
-/// OAuthConsumer Methods ///
+/// OAuth - Request Token Methods ///
 - (void)getRequestToken;
-- (void)getAccessTokenWithPin:(NSString*)pin;
+- (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data; 
+- (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSData *)data;
 - (void)authenticateTwitterWithData:(NSData*)data;
+
+// OAuth - Access Token Methods ///
+- (void)getAccessTokenWithPin:(NSString*)pin;
+- (void)accessTokenTicket:(OAServiceTicket*)ticket didFinishWithData:(NSData*)data; 
+- (void)accessTokenTicket:(OAServiceTicket*)ticket didFailWithError:(NSData*)data; 
 - (void)saveTwitterAccountWithAccessToken:(OAToken*)accessToken;
 
-/// Reverse Auth Methods ///
+/// Oauth - Reverse Auth Methods ///
 - (void)getReverseAuthRequestToken;
+- (void)reverseAuthTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+- (void)reverseAuthTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error; 
 
 @end
 
@@ -313,8 +321,8 @@ static SocialFacade *sharedInstance = nil;
     
     [request setHTTPMethod:@"POST"];
     
-    OARequestParameter *parameter = [[OARequestParameter alloc] initWithName:@"oauth_callback" value:@"oob"];
-    NSArray *params = [NSArray arrayWithObject:parameter];
+    OARequestParameter *oauthParam = [[OARequestParameter alloc] initWithName:@"oauth_callback" value:@"oob"];
+    NSArray *params = [NSArray arrayWithObject:oauthParam];
     [request setParameters:params];
     
     OADataFetcher *fetcher = [[OADataFetcher alloc] init];
@@ -370,7 +378,7 @@ static SocialFacade *sharedInstance = nil;
     NSURL *url = [NSURL URLWithString:@"https://api.twitter.com/oauth/access_token"];
     
     OAMutableURLRequest * request = [[OAMutableURLRequest alloc] initWithURL:url
-                                                                     consumer:self.consumer
+                                                                     consumer:nil
                                                                         token:self.requestToken
                                                                         realm:nil
                                                             signatureProvider:nil];
@@ -398,7 +406,7 @@ static SocialFacade *sharedInstance = nil;
     
 }
 
-- (void)accessTokenTicket:(OAServiceTicket*)ticket didFailWithError:(NSError*)error 
+- (void)accessTokenTicket:(OAServiceTicket*)ticket didFailWithError:(NSData*)data 
 {
     // Inform user that there was a problem with acquiring the access token.
 }
@@ -432,6 +440,7 @@ static SocialFacade *sharedInstance = nil;
 #pragma mark - Reverse Auth Methods
 - (void)getReverseAuthRequestToken
 {
+    
     NSURL * url = [NSURL URLWithString:@"https://api.twitter.com/oauth/request_token"];
     
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
@@ -447,9 +456,9 @@ static SocialFacade *sharedInstance = nil;
     [request setParameters:params];
     
     OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(reverseAuthTicket:didFinishWithData:)
+    [fetcher fetchDataWithRequest:request 
+                         delegate:self 
+                didFinishSelector:@selector(reverseAuthTicket:didFinishWithData:) 
                   didFailSelector:@selector(reverseAuthTicket:didFailWithError:)];
     
 }
@@ -457,7 +466,7 @@ static SocialFacade *sharedInstance = nil;
 - (void)reverseAuthTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
 {
     
-    NSLog(@"test1");
+    NSLog(@"Reverse Succeeded");
     
     if (ticket.didSucceed) {
         
@@ -468,10 +477,10 @@ static SocialFacade *sharedInstance = nil;
     
 }
 
-- (void)reverseAuthTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error 
+- (void)reverseAuthTicket:(OAServiceTicket *)ticket didFailWithError:(NSData *)data 
 {
     
-        NSLog(@"test2");
+        NSLog(@"Reverse Failed");
     
     // Inform user that there was a problem with acquiring the request token.
 }
