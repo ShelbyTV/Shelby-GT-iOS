@@ -11,3 +11,4 @@
 #define kYourRolls                  @"Your Rolls"
 #define kPeoplesRolls               @"People's Rolls"
 #define kPopularRolls               @"Popular Rolls"
+#define kTwitterNewAccount          @"New Account"

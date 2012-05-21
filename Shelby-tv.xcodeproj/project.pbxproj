@@ -509,9 +509,9 @@
 			children = (
 				8E664D561541B1040071EC42 /* StaticDeclarations.h */,
 				8E664D571541B10D0071EC42 /* APIConstants.h */,
+				8EA87B4F156167E00029C07E /* CoreDataConstants.h */,
 				8E6715A3154F14590059FC1A /* Structures.h */,
 				8E664D6D1541C81F0071EC42 /* TextConstants.h */,
-				8EA87B4F156167E00029C07E /* CoreDataConstants.h */,
 			);
 			name = Constants;
 			sourceTree = "<group>";

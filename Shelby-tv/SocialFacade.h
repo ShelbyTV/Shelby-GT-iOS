@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "FBConnect.h"
-#import "OAuthConsumer.h"
 
 /// NSNotificationCenter Macros ///
 #define         SocialFacadeFacebookAuthorizationStatus     @"SocialFacadeFacebookAuthorizationStatus"

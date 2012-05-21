@@ -9,6 +9,7 @@
 #import "SocialFacade.h"
 #import <Accounts/Accounts.h>
 #import <Twitter/Twitter.h>
+#import "StaticDeclarations.h"
 #import "OAuthConsumer.h"
 #import "AuthenticateTwitterViewController.h"
 
@@ -33,11 +34,18 @@ static SocialFacade *sharedInstance = nil;
 #define         SocialFacadePreviouslyLaunched              @"SocialFacadePreviouslyLaunched"
 
 #pragma mark - Private Declarations
-@interface SocialFacade () <AuthenticateTwitterDelegate, UIActionSheetDelegate>
+@interface SocialFacade () 
+<
+AuthenticateTwitterDelegate, 
+UIActionSheetDelegate, 
+UIPickerViewDataSource, 
+UIPickerViewDelegate
+>
 
 @property (strong, nonatomic) ACAccountStore *twitterAccountStore;  // accountStore must be peristent
 @property (strong, nonatomic) ACAccount *twitterAccount;            // Persistently stores user-specified twitterAccount
 @property (strong, nonatomic) OAToken *requestToken;
+@property (strong, nonatomic) NSMutableArray *pickerViewChoices;
 
 /// Facebook Methods ///
 - (void)facebookLogin;
@@ -50,8 +58,8 @@ static SocialFacade *sharedInstance = nil;
 - (void)twitterLogin;
 - (void)twitterLogout;
 - (void)checkForExistingTwitterAccounts;
-- (void)loginWithExistingAccount;
-- (void)createNewTwitterAccount:(ACAccountType*)type;
+- (void)userHasOneStoredTwitterAccount;
+- (void)userHasMultipleStoredTwitterAccounts;
 
 /// Twitter/OAuth - Request Token Methods ///
 - (void)getRequestToken;
@@ -83,6 +91,7 @@ static SocialFacade *sharedInstance = nil;
 @synthesize twitterAccountStore = _twitterAccountStore;
 @synthesize twitterAccount = _twitterAccount;
 @synthesize requestToken = _requestToken;
+@synthesize pickerViewChoices = _pickerViewChoices;
 
 #pragma mark - Singleton Methods
 + (SocialFacade*)sharedInstance
@@ -299,7 +308,6 @@ static SocialFacade *sharedInstance = nil;
 - (void)twitterLogin
 {
     [self checkForExistingTwitterAccounts];
-    
 }
 
 - (void)twitterLogout
@@ -327,31 +335,38 @@ static SocialFacade *sharedInstance = nil;
         case 1:
         
             self.twitterAccount = [accounts objectAtIndex:0];
-            [self loginWithExistingAccount];
+            [self userHasOneStoredTwitterAccount];
             break;
         
         default:
+            
+            [self userHasMultipleStoredTwitterAccounts];
             break;
    
     }
 
 }
 
-- (void)loginWithExistingAccount;
+- (void)userHasOneStoredTwitterAccount
 {
 
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" 
                                                              delegate:self 
                                                     cancelButtonTitle:nil
                                                destructiveButtonTitle:@"Yes" 
-                                                    otherButtonTitles:@"No", @"New Account", nil];
+                                                    otherButtonTitles:@"No", kTwitterNewAccount, nil];
     
     [actionSheet showInView:self.loginViewController.view];
     
 }
 
-- (void)createNewTwitterAccount:(ACAccountType *)type
+- (void)userHasMultipleStoredTwitterAccounts
 {
+    UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:self.loginViewController.view.frame];
+    pickerView.delegate = self;
+    pickerView.dataSource = self;
+
+    [self.loginViewController.view addSubview:pickerView];
     
 }
 
@@ -571,7 +586,7 @@ static SocialFacade *sharedInstance = nil;
     
 }
 
-#pragma mark - UIActionSheet Delegate
+#pragma mark - UIActionSheetDelegate Method
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
@@ -585,7 +600,7 @@ static SocialFacade *sharedInstance = nil;
             // Do Nothing
             break;
         
-        case 2:     // User clicked 'Login as New User'
+        case 2:     // User clicked 'New Account'
             
             [self getRequestToken];
             break;
@@ -594,6 +609,44 @@ static SocialFacade *sharedInstance = nil;
             break;
     }
 }
+
+#pragma mark - UIPickerViewDataSource Methods
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    NSArray *accounts = [self.twitterAccountStore accountsWithAccountType:twitterType];
+    
+    self.pickerViewChoices = [NSMutableArray arrayWithArray:accounts];
+    [self.pickerViewChoices addObject:kTwitterNewAccount];
+    
+    return [self.pickerViewChoices count];
+}
+
+#pragma mark - UIPickerViewDelegate Method
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSString *title;
+    
+    if ( row != [self.pickerViewChoices count]-1 ) {
+        
+        ACAccount *twitterAccount = (ACAccount*)[self.pickerViewChoices objectAtIndex:row];
+        title = twitterAccount.username;
+    
+    } else {
+    
+        title = [self.pickerViewChoices objectAtIndex:row];
+    
+    }
+    
+    return title;
+}
+
+
 
 #pragma mark - Accessor Methods
 /// First Launch Flag /// 
