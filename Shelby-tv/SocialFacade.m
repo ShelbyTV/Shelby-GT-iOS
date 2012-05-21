@@ -35,6 +35,8 @@ static SocialFacade *sharedInstance = nil;
 #pragma mark - Private Declarations
 @interface SocialFacade () <AuthenticateTwitterDelegate, UIActionSheetDelegate>
 
+@property (strong, nonatomic) ACAccountStore *twitterAccountStore;  // accountStore must be peristent
+@property (strong, nonatomic) ACAccount *twitterAccount;            // Persistently stores user-specified twitterAccount
 @property (strong, nonatomic) OAToken *requestToken;
 
 /// Facebook Methods ///
@@ -70,6 +72,7 @@ static SocialFacade *sharedInstance = nil;
 
 /// Twitter/OAuth - Reverse Auth Access Token Methods ///
 - (void)getReverseAuthAccessToken:(NSString*)reverseAuthRequestResults;
+- (void)sendReverseAuthAccessResultsToServer:(NSString*)reverseAuthAccessResults;
 
 @end
 
@@ -77,6 +80,8 @@ static SocialFacade *sharedInstance = nil;
 @synthesize facebook = _facebook;
 @synthesize socialRequestType = _socialRequestType;
 @synthesize loginViewController = _loginViewController;
+@synthesize twitterAccountStore = _twitterAccountStore;
+@synthesize twitterAccount = _twitterAccount;
 @synthesize requestToken = _requestToken;
 
 #pragma mark - Singleton Methods
@@ -304,31 +309,42 @@ static SocialFacade *sharedInstance = nil;
 
 - (void)checkForExistingTwitterAccounts
 {
-    ACAccountStore *accountStore = [[ACAccountStore alloc] init];
-    ACAccountType *twitterType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    NSArray *accounts = [accountStore accountsWithAccountType:twitterType];
+    
+    // Clear stored twitterAccount
+    if ( [self.twitterAccount.username length] )  self.twitterAccount = nil;
+    
+    // Get all stored twitterAccounts
+    self.twitterAccountStore = [[ACAccountStore alloc] init];
+    ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    NSArray *accounts = [self.twitterAccountStore accountsWithAccountType:twitterType];
     
     switch ( [accounts count] ) {
+            
         case 0:
             [self getRequestToken];
             break;
+        
         case 1:
+        
+            self.twitterAccount = [accounts objectAtIndex:0];
             [self loginWithExistingAccount];
             break;
+        
         default:
             break;
+   
     }
 
 }
 
-- (void)loginWithExistingAccount
+- (void)loginWithExistingAccount;
 {
 
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" 
                                                              delegate:self 
                                                     cancelButtonTitle:nil
-                                               destructiveButtonTitle:nil 
-                                                    otherButtonTitles:@"Yes", @"No", @"New Account", nil];
+                                               destructiveButtonTitle:@"Yes" 
+                                                    otherButtonTitles:@"No", @"New Account", nil];
     
     [actionSheet showInView:self.loginViewController.view];
     
@@ -525,18 +541,27 @@ static SocialFacade *sharedInstance = nil;
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:SocialFacadeTwitterConsumerKey, @"x_reverse_auth_target", reverseAuthRequestResults, @"x_reverse_auth_parameters", nil];
     TWRequest *reverseAuthAccessTokenRequest = [[TWRequest alloc] initWithURL:accessTokenURL parameters:parameters requestMethod:TWRequestMethodPOST];
     
-    ACAccountStore *accountStore = [[ACAccountStore alloc] init];
-    ACAccountType *twitterType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    [accountStore requestAccessToAccountsWithType:twitterType withCompletionHandler:^(BOOL granted, NSError *error) {
-    NSArray *accounts = [accountStore accountsWithAccountType:twitterType];
-    [reverseAuthAccessTokenRequest setAccount:[accounts objectAtIndex:0]];
-    [reverseAuthAccessTokenRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-                if (responseData) {
-                    NSString *responseStr = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-                    NSLog(@"success: %@", responseStr);
-                }
-            }];
+    ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    [self.twitterAccountStore requestAccessToAccountsWithType:twitterType withCompletionHandler:^(BOOL granted, NSError *error) {
+        
+        [reverseAuthAccessTokenRequest setAccount:self.twitterAccount];
+        [reverseAuthAccessTokenRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                    if ( responseData ) {
+            
+                        NSString *results = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+                        [self sendReverseAuthAccessResultsToServer:results];
+                    
+                    }
+            
+                }];
+        
     }];
+}
+
+- (void)sendReverseAuthAccessResultsToServer:(NSString *)reverseAuthAccessResults
+{
+    // Send to Shelby for Token Swap
+    NSLog(@"Token swap with Shelby occurs here");
 }
 
 #pragma mark - AuthenticateTwitterDelegate Methods
@@ -550,15 +575,21 @@ static SocialFacade *sharedInstance = nil;
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
-        case 0:     // Yes
+     
+        case 0:     // User clicked 'Yes'
+            
             [self getReverseAuthRequestToken];
             break;
-        case 1:     // No
+        
+        case 1:     // User clicked 'No'
             // Do Nothing
             break;
-        case 2:     // Login as New User
+        
+        case 2:     // User clicked 'Login as New User'
+            
             [self getRequestToken];
             break;
+        
         default:
             break;
     }
