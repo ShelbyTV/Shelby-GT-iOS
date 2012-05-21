@@ -45,6 +45,7 @@ UIPickerViewDelegate
 @property (strong, nonatomic) ACAccountStore *twitterAccountStore;  // accountStore must be peristent
 @property (strong, nonatomic) ACAccount *twitterAccount;            // Persistently stores user-specified twitterAccount
 @property (strong, nonatomic) OAToken *requestToken;
+@property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) NSMutableArray *pickerViewChoices;
 
 /// Facebook Methods ///
@@ -91,6 +92,7 @@ UIPickerViewDelegate
 @synthesize twitterAccountStore = _twitterAccountStore;
 @synthesize twitterAccount = _twitterAccount;
 @synthesize requestToken = _requestToken;
+@synthesize pickerView = _pickerView;
 @synthesize pickerViewChoices = _pickerViewChoices;
 
 #pragma mark - Singleton Methods
@@ -324,27 +326,34 @@ UIPickerViewDelegate
     // Get all stored twitterAccounts
     self.twitterAccountStore = [[ACAccountStore alloc] init];
     ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    NSArray *accounts = [self.twitterAccountStore accountsWithAccountType:twitterType];
+    [self.twitterAccountStore requestAccessToAccountsWithType:twitterType withCompletionHandler:^(BOOL granted, NSError *error) {
     
-    switch ( [accounts count] ) {
-            
-        case 0:
-            [self getRequestToken];
-            break;
-        
-        case 1:
-        
-            self.twitterAccount = [accounts objectAtIndex:0];
-            [self userHasOneStoredTwitterAccount];
-            break;
-        
-        default:
-            
-            [self userHasMultipleStoredTwitterAccounts];
-            break;
-   
-    }
 
+        if ( granted ) {
+            
+            NSArray *accounts = [self.twitterAccountStore accountsWithAccountType:twitterType];
+            NSLog(@"%@", accounts);
+            switch ( [accounts count] ) {
+                    
+                case 0: // No stored Twitter accounts
+                    [self getRequestToken];
+                    break;
+                    
+                case 1: // One stored Twitter account
+                    
+                    self.twitterAccount = [accounts objectAtIndex:0];
+                    [self userHasOneStoredTwitterAccount];
+                    break;
+                    
+                default: // Multiple stored Twitter accounts
+                    
+                    [self userHasMultipleStoredTwitterAccounts];
+                    break;
+                    
+            }            
+        }
+    }];
+    
 }
 
 - (void)userHasOneStoredTwitterAccount
@@ -362,11 +371,11 @@ UIPickerViewDelegate
 
 - (void)userHasMultipleStoredTwitterAccounts
 {
-    UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:self.loginViewController.view.frame];
-    pickerView.delegate = self;
-    pickerView.dataSource = self;
+    self.pickerView = [[UIPickerView alloc] initWithFrame:self.loginViewController.view.frame];
+    self.pickerView.delegate = self;
+    self.pickerView.dataSource = self;
 
-    [self.loginViewController.view addSubview:pickerView];
+    [self.loginViewController.view addSubview:self.pickerView];
     
 }
 
@@ -483,12 +492,13 @@ UIPickerViewDelegate
     NSString *secret = accessToken.secret;
     
     // Store Twitter Account on device as ACAccount
-    ACAccountStore *accountStore = [[ACAccountStore alloc] init];
-    ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    ACAccountStore *newAccountStore = [[ACAccountStore alloc] init];
+    ACAccountType *twitterType = [newAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    ACAccount *newAccount = [[ACAccount alloc] initWithAccountType:twitterType];
     ACAccountCredential *credential = [[ACAccountCredential alloc] initWithOAuthToken:token tokenSecret:secret];
-    ACAccount *newAccount = [[ACAccount alloc] initWithAccountType:accountType];
     newAccount.credential = credential;
-    [accountStore saveAccount:newAccount withCompletionHandler:^(BOOL success, NSError *error) {
+    
+    [newAccountStore saveAccount:newAccount withCompletionHandler:^(BOOL success, NSError *error) {
 
         // This completionHandler block is NOT performed on the Main Thread
         if (success) {
@@ -619,10 +629,15 @@ UIPickerViewDelegate
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    
+    
+    
     NSArray *accounts = [self.twitterAccountStore accountsWithAccountType:twitterType];
     
     self.pickerViewChoices = [NSMutableArray arrayWithArray:accounts];
     [self.pickerViewChoices addObject:kTwitterNewAccount];
+    [self.pickerViewChoices addObject:@"Cancel"];
+    
     
     return [self.pickerViewChoices count];
 }
@@ -632,7 +647,7 @@ UIPickerViewDelegate
 {
     NSString *title;
     
-    if ( row != [self.pickerViewChoices count]-1 ) {
+    if ( row < [self.pickerViewChoices count]-2 ) {
         
         ACAccount *twitterAccount = (ACAccount*)[self.pickerViewChoices objectAtIndex:row];
         title = twitterAccount.username;
@@ -646,7 +661,26 @@ UIPickerViewDelegate
     return title;
 }
 
-
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    
+    if ( row < [self.pickerViewChoices count]-2 ) {             // User selected existing account
+        
+        [self.pickerView removeFromSuperview];
+        self.twitterAccount = (ACAccount*)[self.pickerViewChoices objectAtIndex:row];
+        [self getReverseAuthRequestToken];
+        
+    } else if ( row == [self.pickerViewChoices count]-2 ) {     // User selected 'New Account'
+        
+        [self.pickerView removeFromSuperview];
+        
+    } else {                                                    // User selected 'Cancel'
+        
+        [self.pickerView removeFromSuperview];
+        [self getRequestToken];
+    }
+    
+}
 
 #pragma mark - Accessor Methods
 /// First Launch Flag /// 
