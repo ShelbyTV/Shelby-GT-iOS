@@ -423,10 +423,11 @@ static SocialFacade *sharedInstance = nil;
     ACAccount *newAccount = [[ACAccount alloc] initWithAccountType:accountType];
     newAccount.credential = credential;
     [accountStore saveAccount:newAccount withCompletionHandler:^(BOOL success, NSError *error) {
-        
+
+        // This completionHandler block is NOT performed on the Main Thread
         if (success) {
-            
-            // Perfom Reverse Auth
+
+            // Reverse Auth must be performed on Main Thread.
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self getReverseAuthRequestToken];
             });
@@ -454,12 +455,13 @@ static SocialFacade *sharedInstance = nil;
     NSArray *params = [NSArray arrayWithObject:xauthParam];
     [reverseAuthRequest setParameters:params];
     
+
+    // Must be performed on main-thread, since code is c
     OADataFetcher *reverseAuthFetcher = [[OADataFetcher alloc] init];
-    [reverseAuthFetcher fetchDataWithRequest:reverseAuthRequest
-                                    delegate:self
-                           didFinishSelector:@selector(reverseAuthTicket:didFinishWithData:)
-                             didFailSelector:@selector(reverseAuthTicket:didFailWithError:)];
-    
+        [reverseAuthFetcher fetchDataWithRequest:reverseAuthRequest
+                                        delegate:self
+                               didFinishSelector:@selector(reverseAuthTicket:didFinishWithData:)
+                                 didFailSelector:@selector(reverseAuthTicket:didFailWithError:)]; 
     
 }
 
