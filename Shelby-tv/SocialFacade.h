@@ -7,8 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Accounts/Accounts.h>
-#import <Twitter/Twitter.h>
 #import "FBConnect.h"
 #import "OAuthConsumer.h"
 
