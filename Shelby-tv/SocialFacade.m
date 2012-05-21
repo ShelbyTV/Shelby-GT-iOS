@@ -33,7 +33,7 @@ static SocialFacade *sharedInstance = nil;
 #define         SocialFacadePreviouslyLaunched              @"SocialFacadePreviouslyLaunched"
 
 #pragma mark - Private Declarations
-@interface SocialFacade () <AuthenticateTwitterDelegate>
+@interface SocialFacade () <AuthenticateTwitterDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) OAToken *requestToken;
 
@@ -44,30 +44,31 @@ static SocialFacade *sharedInstance = nil;
 - (void)getFacebookNameAndID;
 - (void)resetFacebookUserDefaults;
 
-/// Twitter Methods ///
+/// Twitter Authorization Methods ///
 - (void)twitterLogin;
 - (void)twitterLogout;
 - (void)checkForExistingTwitterAccounts;
+- (void)loginWithExistingAccount;
 - (void)createNewTwitterAccount:(ACAccountType*)type;
 
-/// OAuth - Request Token Methods ///
+/// Twitter/OAuth - Request Token Methods ///
 - (void)getRequestToken;
 - (void)requestTokenTicket:(OAServiceTicket*)ticket didFinishWithData:(NSData *)data; 
 - (void)requestTokenTicket:(OAServiceTicket*)ticket didFailWithError:(NSData *)data;
 - (void)authenticateTwitterAccount;
 
-/// OAuth - Access Token Methods ///
+/// Twitter/OAuth - Access Token Methods ///
 - (void)getAccessTokenWithPin:(NSString*)pin;
 - (void)accessTokenTicket:(OAServiceTicket*)ticket didFinishWithData:(NSData*)data;
 - (void)accessTokenTicket:(OAServiceTicket*)ticket didFailWithError:(NSData *)data;
 - (void)saveTwitterAccountWithAccessToken:(OAToken*)accessToken;
 
-/// OAuth - Reverse Auth Request Token Methods ///
+/// Twitter/OAuth - Reverse Auth Request Token Methods ///
 - (void)getReverseAuthRequestToken;
 - (void)reverseAuthRequestTokenTicket:(OAServiceTicket*)ticket didFinishWithData:(NSData *)data;
 - (void)reverseAuthRequestTokenTicket:(OAServiceTicket*)ticket didFailWithError:(NSData *)data;
 
-/// OAuth - Reverse Auth Access Token Methods ///
+/// Twitter/OAuth - Reverse Auth Access Token Methods ///
 - (void)getReverseAuthAccessToken:(NSString*)reverseAuthRequestResults;
 
 @end
@@ -312,13 +313,25 @@ static SocialFacade *sharedInstance = nil;
             [self getRequestToken];
             break;
         case 1:
-            NSLog(@"1");
+            [self loginWithExistingAccount];
             break;
         default:
-            NSLog(@"MORE");
             break;
     }
 
+}
+
+- (void)loginWithExistingAccount
+{
+
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" 
+                                                             delegate:self 
+                                                    cancelButtonTitle:nil
+                                               destructiveButtonTitle:nil 
+                                                    otherButtonTitles:@"Yes", @"No", @"New Account", nil];
+    
+    [actionSheet showInView:self.loginViewController.view];
+    
 }
 
 - (void)createNewTwitterAccount:(ACAccountType *)type
@@ -326,7 +339,7 @@ static SocialFacade *sharedInstance = nil;
     
 }
 
-#pragma mark - OAuthConsumer - RequestToken Methods
+#pragma mark - Twitter/OAuth- RequestToken Methods
 - (void)getRequestToken 
 {
     
@@ -396,7 +409,7 @@ static SocialFacade *sharedInstance = nil;
     
 }
 
-#pragma mark - OAuthConsumer - AccessToken Methods
+#pragma mark - Twitter/OAuth - AccessToken Methods
 - (void)getAccessTokenWithPin:(NSString *)pin
 {
     NSURL *accessTokenURL = [NSURL URLWithString:@"https://api.twitter.com/oauth/access_token"];
@@ -531,6 +544,24 @@ static SocialFacade *sharedInstance = nil;
 {
     [self getAccessTokenWithPin:pin];
     
+}
+
+#pragma mark - UIActionSheet Delegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:     // Yes
+            [self getReverseAuthRequestToken];
+            break;
+        case 1:     // No
+            // Do Nothing
+            break;
+        case 2:     // Login as New User
+            [self getRequestToken];
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark - Accessor Methods
