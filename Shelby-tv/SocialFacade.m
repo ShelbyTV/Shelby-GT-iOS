@@ -292,7 +292,7 @@ static SocialFacade *sharedInstance = nil;
 #pragma mark - Twitter Authorization Methods
 - (void)twitterLogin
 {
-    [self getRequestToken];
+    [self checkForExistingTwitterAccounts];
     
 }
 
@@ -303,7 +303,22 @@ static SocialFacade *sharedInstance = nil;
 
 - (void)checkForExistingTwitterAccounts
 {
+    ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+    ACAccountType *twitterType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    NSArray *accounts = [accountStore accountsWithAccountType:twitterType];
     
+    switch ( [accounts count] ) {
+        case 0:
+            [self getRequestToken];
+            break;
+        case 1:
+            NSLog(@"1");
+            break;
+        default:
+            NSLog(@"MORE");
+            break;
+    }
+
 }
 
 - (void)createNewTwitterAccount:(ACAccountType *)type
