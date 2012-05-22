@@ -51,8 +51,9 @@ UIPickerViewDelegate
 /// Facebook Methods ///
 - (void)facebookLogin;
 - (void)facebookLogout;
-- (void)checkFacebookAuthorizationStatusOnLaunch;
+- (void)checkFacebookTokenPersistenceStatusOnLaunch;
 - (void)getFacebookNameAndID;
+- (void)sendFacebookTokenAndExpirationDateToServer;
 - (void)resetFacebookUserDefaults;
 
 /// Twitter Authorization Methods ///
@@ -122,10 +123,12 @@ UIPickerViewDelegate
             self.facebookName = nil;
             self.facebookID = nil;
             
+            // Set Twitter NSUserDefaults to 'nil' on first launch
+            self.twitterAuthorized = NO;
+            
         }
         
-        // Check Facebook Authorization Status on launch
-        [self checkFacebookAuthorizationStatusOnLaunch];
+        [self checkFacebookTokenPersistenceStatusOnLaunch];
         
     }
     
@@ -158,7 +161,7 @@ UIPickerViewDelegate
     [self.facebook logout];
 }
 
-- (void)checkFacebookAuthorizationStatusOnLaunch 
+- (void)checkFacebookTokenPersistenceStatusOnLaunch 
 {
     
     self.facebook = [[Facebook alloc] initWithAppId:SocialFacadeFacebookAppID andDelegate:self];
@@ -176,12 +179,6 @@ UIPickerViewDelegate
         self.facebook.expirationDate = [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"];
         
         if (DEBUGMODE)  NSLog(@"\nPersisted Token: %@\nExpiration Date: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"], [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]);
-        
-        [self setFacebookAuthorized:YES];
-        
-    } else {
-        
-        [self setFacebookAuthorized:NO];
         
     }
     
@@ -219,10 +216,11 @@ UIPickerViewDelegate
     // Extend Token for 60 Days
     [self.facebook extendAccessToken];
     
-    [self setFacebookAuthorized:YES];
+//    // Get authenticated user's Name and ID
+//    [self getFacebookNameAndID];
     
-    // Get authenticated user's Name and ID
-    [self getFacebookNameAndID];
+    // Send Token and Expiration Date to Shelby
+    [self sendFacebookTokenAndExpirationDateToServer];
     
 }
 
@@ -265,6 +263,17 @@ UIPickerViewDelegate
 - (void)fbSessionInvalidated
 {
     [self resetFacebookUserDefaults];
+}
+
+- (void)sendFacebookTokenAndExpirationDateToServer
+{
+    // Send info to Shelby for token swap
+    if (DEBUGMODE) NSLog(@"Facebook token swap with Shelby occurs at this point.");
+    
+    // These actions should be performed after token swap
+    self.facebookAuthorized = YES;
+    [self.loginViewController dismissModalViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeFacebookAuthorizationStatus object:nil];
 }
 
 #pragma mark - FBRequestDelegate Methods
@@ -314,7 +323,9 @@ UIPickerViewDelegate
 
 - (void)twitterLogout
 {
+    self.twitterAuthorized = NO;
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeFacebookAuthorizationStatus object:nil];
 }
 
 - (void)checkForExistingTwitterAccounts
@@ -380,7 +391,6 @@ UIPickerViewDelegate
     self.twitterPickerView = [[UIPickerView alloc] initWithFrame:self.loginViewController.view.frame];
     self.twitterPickerView.delegate = self;
     self.twitterPickerView.dataSource = self;
-
     [self.loginViewController.view addSubview:self.twitterPickerView];
     
 }
@@ -470,7 +480,7 @@ UIPickerViewDelegate
     [accessTokenFetcher fetchDataWithRequest:accessTokenRequest
                                     delegate:self
                            didFinishSelector:@selector(accessTokenTicket:didFinishWithData:)
-                             didFailSelector:nil];
+                             didFailSelector:@selector(accessTokenTicket:didFailWithError:)];
 }
 
 - (void)accessTokenTicket:(OAServiceTicket*)ticket didFinishWithData:(NSData*)data 
@@ -539,7 +549,7 @@ UIPickerViewDelegate
     [reverseAuthFetcher fetchDataWithRequest:reverseAuthRequest
                                     delegate:self
                            didFinishSelector:@selector(reverseAuthRequestTokenTicket:didFinishWithData:)
-                             didFailSelector:nil]; 
+                             didFailSelector:@selector(reverseAuthRequestTokenTicket:didFailWithError:)]; 
     
 }
 
@@ -583,8 +593,14 @@ UIPickerViewDelegate
 
 - (void)sendReverseAuthAccessResultsToServer:(NSString *)reverseAuthAccessResults
 {
-    // Send to Shelby for Token Swap
-    if (DEBUGMODE) NSLog(@"Token swap with Shelby occurs here");
+    // Send info to Shelby for token swap
+    if (DEBUGMODE) NSLog(@"Twitter token swap with Shelby occurs at this point.");
+    
+    // These actions should be performed after token swap
+    self.twitterAuthorized = YES;
+    [self.loginViewController dismissModalViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeTwitterAuthorizationStatus object:nil];
+    
 }
 
 #pragma mark - AuthenticateTwitterDelegate Methods

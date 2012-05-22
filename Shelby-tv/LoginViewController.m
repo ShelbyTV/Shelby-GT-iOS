@@ -31,7 +31,8 @@
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SocialFacadeFacebookAuthorizationStatus object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SocialFacadeTwitterAuthorizationStatus object:nil];
 }
 
 #pragma mark - View Lifecycle Methods
@@ -47,7 +48,13 @@
     
     // Initialization
     [self initializationOnLoad];
-
+    
+    // Check if user has authorized Facebook or Twitter with Shelby
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self facebookAuthorizationStatus];
+        [self twitterAuthorizationStatus];
+    });
+    
 }
 
 #pragma mark - Private Methods
@@ -69,6 +76,12 @@
                                                  name:SocialFacadeFacebookAuthorizationStatus 
                                                object:nil];
     
+    // Create Observer for twitterAuthorizationStatus
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(twitterAuthorizationStatus) 
+                                                 name:SocialFacadeTwitterAuthorizationStatus 
+                                               object:nil];
+    
 }
 
 #pragma mark - Action Methods
@@ -80,15 +93,15 @@
 - (IBAction)twitterLogin:(id)sender
 {
     [self.socialFacade twitterLogin];
-//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - SocialFacadeDelegate Methods
 -(void)facebookAuthorizationStatus
 {
+    
     if ( [self.socialFacade facebookAuthorized] ) {
         
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil]; 
         
     } else {
         
@@ -104,6 +117,7 @@
         [self dismissViewControllerAnimated:YES completion:nil];
         
     } else {
+        
         
     }
     
