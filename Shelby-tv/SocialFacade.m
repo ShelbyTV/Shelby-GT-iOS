@@ -45,8 +45,8 @@ UIPickerViewDelegate
 @property (strong, nonatomic) ACAccountStore *twitterAccountStore;  // accountStore must be peristent
 @property (strong, nonatomic) ACAccount *twitterAccount;            // Persistently stores user-specified twitterAccount
 @property (strong, nonatomic) OAToken *requestToken;
-@property (strong, nonatomic) UIPickerView *pickerView;
-@property (strong, nonatomic) NSMutableArray *pickerViewChoices;
+@property (strong, nonatomic) UIPickerView *twitterPickerView;
+@property (strong, nonatomic) NSMutableArray *twitterPickerViewChoices;
 
 /// Facebook Methods ///
 - (void)facebookLogin;
@@ -92,8 +92,8 @@ UIPickerViewDelegate
 @synthesize twitterAccountStore = _twitterAccountStore;
 @synthesize twitterAccount = _twitterAccount;
 @synthesize requestToken = _requestToken;
-@synthesize pickerView = _pickerView;
-@synthesize pickerViewChoices = _pickerViewChoices;
+@synthesize twitterPickerView = _twitterPickerView;
+@synthesize twitterPickerViewChoices = _twitterPickerViewChoices;
 
 #pragma mark - Singleton Methods
 + (SocialFacade*)sharedInstance
@@ -175,7 +175,7 @@ UIPickerViewDelegate
         self.facebook.accessToken = [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"];
         self.facebook.expirationDate = [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"];
         
-        NSLog(@"\nPersisted Token: %@\nExpiration Date: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"], [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]);
+        if (DEBUGMODE)  NSLog(@"\nPersisted Token: %@\nExpiration Date: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"], [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]);
         
         [self setFacebookAuthorized:YES];
         
@@ -214,7 +214,7 @@ UIPickerViewDelegate
     [defaults setObject:[self.facebook expirationDate] forKey:@"FBExpirationDateKey"];
     [defaults synchronize];
     
-    NSLog(@"\nOriginal Token: %@\nExpiration Date: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"], [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]);
+    if (DEBUGMODE)  NSLog(@"\nOriginal Token: %@\nExpiration Date: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"], [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]);
     
     // Extend Token for 60 Days
     [self.facebook extendAccessToken];
@@ -258,7 +258,7 @@ UIPickerViewDelegate
     [defaults setObject:expiresAt forKey:@"FBExpirationDateKey"];
     [defaults synchronize];
     
-    NSLog(@"\nExtended Token: %@\nExpiration Date: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"], [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]);
+    if (DEBUGMODE) NSLog(@"\nExtended Token: %@\nExpiration Date: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"], [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]);
     
 }
 
@@ -328,30 +328,36 @@ UIPickerViewDelegate
     ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     [self.twitterAccountStore requestAccessToAccountsWithType:twitterType withCompletionHandler:^(BOOL granted, NSError *error) {
     
-
         if ( granted ) {
             
-            NSArray *accounts = [self.twitterAccountStore accountsWithAccountType:twitterType];
-            NSLog(@"%@", accounts);
-            switch ( [accounts count] ) {
-                    
-                case 0: // No stored Twitter accounts
-                    [self getRequestToken];
-                    break;
-                    
-                case 1: // One stored Twitter account
-                    
-                    self.twitterAccount = [accounts objectAtIndex:0];
-                    [self userHasOneStoredTwitterAccount];
-                    break;
-                    
-                default: // Multiple stored Twitter accounts
-                    
-                    [self userHasMultipleStoredTwitterAccounts];
-                    break;
-                    
-            }            
+            NSArray *accounts = [NSArray arrayWithArray:[self.twitterAccountStore accountsWithAccountType:twitterType]];
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+            
+                switch ( [accounts count] ) {
+                        
+                    case 0: // No stored Twitter accounts
+                        if (DEBUGMODE) NSLog(@"User has zero stored accounts");
+                        [self getRequestToken];
+                        break;
+                        
+                    case 1: // One stored Twitter account
+                        if (DEBUGMODE) NSLog(@"User has one stored account");
+                        self.twitterAccount = [accounts objectAtIndex:0];
+                        [self userHasOneStoredTwitterAccount];
+                        break;
+                        
+                    default: // Multiple stored Twitter accounts
+                       if (DEBUGMODE) NSLog(@"User has multiple stored accounts");
+                        [self userHasMultipleStoredTwitterAccounts];
+                        break;
+                        
+                }            
+        
+            });
+    
         }
+    
     }];
     
 }
@@ -359,7 +365,7 @@ UIPickerViewDelegate
 - (void)userHasOneStoredTwitterAccount
 {
 
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" 
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Sign in with @%@?", self.twitterAccount.username] 
                                                              delegate:self 
                                                     cancelButtonTitle:nil
                                                destructiveButtonTitle:@"Yes" 
@@ -371,11 +377,11 @@ UIPickerViewDelegate
 
 - (void)userHasMultipleStoredTwitterAccounts
 {
-    self.pickerView = [[UIPickerView alloc] initWithFrame:self.loginViewController.view.frame];
-    self.pickerView.delegate = self;
-    self.pickerView.dataSource = self;
+    self.twitterPickerView = [[UIPickerView alloc] initWithFrame:self.loginViewController.view.frame];
+    self.twitterPickerView.delegate = self;
+    self.twitterPickerView.dataSource = self;
 
-    [self.loginViewController.view addSubview:self.pickerView];
+    [self.loginViewController.view addSubview:self.twitterPickerView];
     
 }
 
@@ -404,25 +410,21 @@ UIPickerViewDelegate
     [requestTokenFetcher fetchDataWithRequest:request
                                      delegate:self
                             didFinishSelector:@selector(requestTokenTicket:didFinishWithData:)
-                              didFailSelector:nil];
-    
+                              didFailSelector:@selector(requestTokenTicket:didFailWithError:)];
+
 }
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
 {
-
-    if (ticket.didSucceed) {
-        
-        NSString* httpBodyData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        self.requestToken = [[OAToken alloc] initWithHTTPResponseBody:httpBodyData];
-        [self authenticateTwitterAccount];
-    }
-    
+    NSString* httpBodyData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    self.requestToken = [[OAToken alloc] initWithHTTPResponseBody:httpBodyData];
+    [self authenticateTwitterAccount];
 }
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSData *)data
 {
     // Failed
+    if (DEBUGMODE) NSLog(@"Request Token - Fetch Failure");
 }
 
 - (void)authenticateTwitterAccount
@@ -473,16 +475,15 @@ UIPickerViewDelegate
 
 - (void)accessTokenTicket:(OAServiceTicket*)ticket didFinishWithData:(NSData*)data 
 {
-
-    NSString* httpBodyData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    OAToken *accessToken = [[OAToken alloc] initWithHTTPResponseBody:httpBodyData];
+     NSString* httpBodyData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+     OAToken *accessToken = [[OAToken alloc] initWithHTTPResponseBody:httpBodyData];
     [self saveTwitterAccountWithAccessToken:accessToken];
-    
 }
 
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSData *)data
 {
     // Failed
+    if (DEBUGMODE) NSLog(@"Access Token - Fetch Failure");
 }
 
 - (void)saveTwitterAccountWithAccessToken:(OAToken *)accessToken
@@ -492,17 +493,18 @@ UIPickerViewDelegate
     NSString *secret = accessToken.secret;
     
     // Store Twitter Account on device as ACAccount
-    ACAccountStore *newAccountStore = [[ACAccountStore alloc] init];
-    ACAccountType *twitterType = [newAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     ACAccount *newAccount = [[ACAccount alloc] initWithAccountType:twitterType];
     ACAccountCredential *credential = [[ACAccountCredential alloc] initWithOAuthToken:token tokenSecret:secret];
     newAccount.credential = credential;
     
-    [newAccountStore saveAccount:newAccount withCompletionHandler:^(BOOL success, NSError *error) {
+    [self.twitterAccountStore saveAccount:newAccount withCompletionHandler:^(BOOL success, NSError *error) {
 
         // This completionHandler block is NOT performed on the Main Thread
         if (success) {
 
+            if (DEBUGMODE) NSLog(@"New Account Saved to Store: %@", newAccount.username);
+            
             // Reverse Auth must be performed on Main Thread.
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self getReverseAuthRequestToken];
@@ -543,18 +545,14 @@ UIPickerViewDelegate
 
 - (void)reverseAuthRequestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
 {
-    
-    if (ticket.didSucceed) {
-
-        NSString *httpBodyData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        [self getReverseAuthAccessToken:httpBodyData];
-    }
-    
+    NSString *httpBodyData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [self getReverseAuthAccessToken:httpBodyData];
 }
 
 - (void)reverseAuthRequestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSData *)data
 {
     // Failed
+    if (DEBUGMODE) NSLog(@"Reverse Auth Request Token - Fetch Failure");
 }
 
 
@@ -586,7 +584,7 @@ UIPickerViewDelegate
 - (void)sendReverseAuthAccessResultsToServer:(NSString *)reverseAuthAccessResults
 {
     // Send to Shelby for Token Swap
-    NSLog(@"Token swap with Shelby occurs here");
+    if (DEBUGMODE) NSLog(@"Token swap with Shelby occurs here");
 }
 
 #pragma mark - AuthenticateTwitterDelegate Methods
@@ -634,12 +632,12 @@ UIPickerViewDelegate
     
     NSArray *accounts = [self.twitterAccountStore accountsWithAccountType:twitterType];
     
-    self.pickerViewChoices = [NSMutableArray arrayWithArray:accounts];
-    [self.pickerViewChoices addObject:kTwitterNewAccount];
-    [self.pickerViewChoices addObject:@"Cancel"];
+    self.twitterPickerViewChoices = [NSMutableArray arrayWithArray:accounts];
+    [self.twitterPickerViewChoices addObject:kTwitterNewAccount];
+    [self.twitterPickerViewChoices addObject:@"Cancel"];
     
     
-    return [self.pickerViewChoices count];
+    return [self.twitterPickerViewChoices count];
 }
 
 #pragma mark - UIPickerViewDelegate Method
@@ -647,16 +645,18 @@ UIPickerViewDelegate
 {
     NSString *title;
     
-    if ( row < [self.pickerViewChoices count]-2 ) {
+    if ( row < [self.twitterPickerViewChoices count]-2 ) {
         
-        ACAccount *twitterAccount = (ACAccount*)[self.pickerViewChoices objectAtIndex:row];
+        ACAccount *twitterAccount = (ACAccount*)[self.twitterPickerViewChoices objectAtIndex:row];
         title = twitterAccount.username;
     
     } else {
     
-        title = [self.pickerViewChoices objectAtIndex:row];
-    
+        title = [self.twitterPickerViewChoices objectAtIndex:row];
+   
     }
+    
+    if (DEBUGMODE) NSLog(@"TwitterPickerView Selection %@", title);
     
     return title;
 }
@@ -664,19 +664,19 @@ UIPickerViewDelegate
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     
-    if ( row < [self.pickerViewChoices count]-2 ) {             // User selected existing account
+    if ( row < [self.twitterPickerViewChoices count]-2 ) {             // User selected existing account
         
-        [self.pickerView removeFromSuperview];
-        self.twitterAccount = (ACAccount*)[self.pickerViewChoices objectAtIndex:row];
+        [self.twitterPickerView removeFromSuperview];
+        self.twitterAccount = (ACAccount*)[self.twitterPickerViewChoices objectAtIndex:row];
         [self getReverseAuthRequestToken];
         
-    } else if ( row == [self.pickerViewChoices count]-2 ) {     // User selected 'New Account'
+    } else if ( row == [self.twitterPickerViewChoices count]-2 ) {     // User selected 'New Account'
         
-        [self.pickerView removeFromSuperview];
+        [self.twitterPickerView removeFromSuperview];
         
     } else {                                                    // User selected 'Cancel'
         
-        [self.pickerView removeFromSuperview];
+        [self.twitterPickerView removeFromSuperview];
         [self getRequestToken];
     }
     

@@ -100,9 +100,9 @@ static CoreDataUtility *sharedInstance = nil;
     if ( context ) {
         
         if ( [context hasChanges] && ![context save:&error] ) {
-            NSLog(@"Could not save changes to Core Data. Error: %@, %@", error, [error userInfo]);
+            if (DEBUGMODE) NSLog(@"Could not save changes to Core Data. Error: %@, %@", error, [error userInfo]);
         } else {
-            NSLog(@"Successfully saved changes to Core Data");
+            if (DEBUGMODE) NSLog(@"Successfully saved changes to Core Data");
         }
     }
 }
@@ -272,7 +272,7 @@ static CoreDataUtility *sharedInstance = nil;
         // Retry
         if ( ![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error] )
         {
-            NSLog(@"Could not save changes to Core Data. Error: %@, %@", error, [error userInfo]);
+           if (DEBUGMODE) NSLog(@"Could not save changes to Core Data. Error: %@, %@", error, [error userInfo]);
         }
     }
     
