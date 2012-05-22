@@ -11,8 +11,5 @@
 @interface VideoCardCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
-@property (weak, nonatomic) IBOutlet UIView *captionView;
-@property (weak, nonatomic) IBOutlet UIView *linksView;
-@property (weak, nonatomic) IBOutlet UIView *commentView;
 
 @end

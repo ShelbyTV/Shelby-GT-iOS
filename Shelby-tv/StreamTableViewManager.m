@@ -86,7 +86,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 324.0f;
+    return 242.0f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -116,6 +116,7 @@
         
         // Asychronous download and load video thumbnails
         [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
+//        cell.thumbnailImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         
     }
     

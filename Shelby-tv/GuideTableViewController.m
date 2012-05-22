@@ -28,7 +28,7 @@
     if ( self = [super initWithStyle:UITableViewStylePlain] ) {
         
         // Customize tableView
-        self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default"]];
+        self.tableView.backgroundColor = [UIColor colorWithRed:73.0f/255.0f green:73.0f/255.0f blue:73.0f/255.0f alpha:1.0f];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         // Set Type of GuideTableViewController Instance
