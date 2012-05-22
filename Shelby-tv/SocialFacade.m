@@ -390,7 +390,7 @@ UIPickerViewDelegate
 {
     
     // Remove reqeustToken value if value exists and/or user decides to re-authenticate
-    self.requestToken = nil;
+    if (self.requestToken) self.requestToken = nil;
     
     NSURL *requestTokenURL = [NSURL URLWithString:@"https://api.twitter.com/oauth/request_token"];
     OAConsumer *consumer= [[OAConsumer alloc] initWithKey:SocialFacadeTwitterConsumerKey secret:SocialFacadeTwitterConsumerSecret];
