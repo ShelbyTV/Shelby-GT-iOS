@@ -271,9 +271,11 @@ UIPickerViewDelegate
     if (DEBUGMODE) NSLog(@"Facebook token swap with Shelby occurs at this point.");
     
     // These actions should be performed after token swap
-    self.facebookAuthorized = YES;
-    [self.loginViewController dismissModalViewControllerAnimated:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeFacebookAuthorizationStatus object:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.facebookAuthorized = YES;
+        [self.loginViewController dismissModalViewControllerAnimated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeFacebookAuthorizationStatus object:nil];
+    });
 }
 
 #pragma mark - FBRequestDelegate Methods
@@ -597,9 +599,11 @@ UIPickerViewDelegate
     if (DEBUGMODE) NSLog(@"Twitter token swap with Shelby occurs at this point.");
     
     // These actions should be performed after token swap
-    self.twitterAuthorized = YES;
-    [self.loginViewController dismissModalViewControllerAnimated:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeTwitterAuthorizationStatus object:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.twitterAuthorized = YES;
+        [self.loginViewController dismissModalViewControllerAnimated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeTwitterAuthorizationStatus object:nil];
+    });
     
 }
 
