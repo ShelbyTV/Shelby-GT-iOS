@@ -45,8 +45,12 @@
     NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
     DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryData:context forRow:row];
     
-    // Populate labels
+    // Populate nickname label
     [cell.nicknameLabel setText:dashboardEntry.frame.user.nickname];
+    
+    // Populate nickname label
+    [cell.createdAtLabel setText:dashboardEntry.frame.conversation.messages.createdAt];
+    
     
     // PresentFacebook/Twitter/Tumblr icon for social network source of video
     if ( [dashboardEntry.frame.conversation.messages.originNetwork isEqualToString:@"facebook"] ) {

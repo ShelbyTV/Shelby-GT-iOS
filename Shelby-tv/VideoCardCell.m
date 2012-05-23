@@ -21,9 +21,10 @@
 @synthesize commentsButton = _commentsButton;
 @synthesize rollButton = _rollButton;
 @synthesize shareButton = _shareButton;
+@synthesize nicknameLabel = _nicknameLabel;
+@synthesize createdAtLabel = _createdAtLabel;
 @synthesize favoriteLabel = _favoriteLabel;
 @synthesize commentsLabel = _commentsLabell;
-@synthesize nicknameLabel = _nicknameLabel;
 
 #pragma mark - Memory Deallocation Methods
 - (void)dealloc
@@ -35,9 +36,10 @@
     self.commentsButton = nil;
     self.rollButton = nil;
     self.shareButton = nil;
+    self.nicknameLabel = nil;
+    self.createdAtLabel = nil;
     self.favoriteLabel = nil;
     self.commentsLabel = nil;
-    self.nicknameLabel = nil;
 }
 
 - (void)awakeFromNib
@@ -45,7 +47,8 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     // Customize Labels (all other label customization in VideCardCell.xib)
-    self.nicknameLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:19.0f];
+    self.nicknameLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:15.0f];
+    self.createdAtLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f];
     self.favoriteLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:16.0f];
     self.commentsLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:16.0f];
 }
