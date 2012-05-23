@@ -1,22 +1,20 @@
 //
-//  User.m
+//  Roll.m
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 5/23/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import "User.h"
+#import "Roll.h"
 #import "Frame.h"
 
 
-@implementation User
+@implementation Roll
 
-@dynamic faux;
-@dynamic nickname;
-@dynamic publicRollID;
+@dynamic rollID;
+@dynamic title;
 @dynamic userID;
-@dynamic userImage;
 @dynamic frame;
 
 @end

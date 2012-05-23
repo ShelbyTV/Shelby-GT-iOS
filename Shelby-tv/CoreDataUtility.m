@@ -25,6 +25,18 @@
 // Store dashbaordEntry.frame data in Core Data
 + (void)storeFrameArray:(NSArray*)frameArray forDashboardEntry:(DashboardEntry*)dashboardEntry inContext:(NSManagedObjectContext*)context;
 
+// Store dashboard.frame.conversations data in Core Data
++ (void)storeConversation:(Conversation*)conversation fromframeArray:(NSArray*)frameArray inContext:(NSManagedObjectContext*)context;
+
+// Store dashboard.frame.conversations.messages data in Core Data
++ (void)storeMessages:(Messages*)messages fromConversationsArray:(NSArray*)conversationsArray inContext:(NSManagedObjectContext*)context;
+
+// Store dashboard.frame.user data in Core Data
++ (void)storeUser:(User*)user fromFrameArray:(NSArray*)frameArray inContext:(NSManagedObjectContext*)context;
+
+// Store dashboard.frame.video data in Core Data
++ (void)storeVideo:(Video*)video fromFrameArray:(NSArray*)frameArray inContext:(NSManagedObjectContext*)context;
+
 @end
 
 @implementation CoreDataUtility
@@ -164,20 +176,55 @@ static CoreDataUtility *sharedInstance = nil;
     [frame setValue:frameVideoID forKey:@"videoID"];
     
     // Store dashboard.frame.conversation attributes
+    Conversation *conversation = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataConversation inManagedObjectContext:context];
+    frame.conversation = conversation;
+    [self storeConversation:conversation fromframeArray:frameArray inContext:context];
     
     // Store dashboard.frame.user attributes
     User *user = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataUser inManagedObjectContext:context];
     frame.user = user;
-    
-    NSArray *userArray = [frameArray valueForKey:@"creator"];
-    
-    NSString *userID = [NSString testForNullForCoreDataAttribute:[userArray valueForKey:@"creator_id"]];
-    [user setValue:userID forKey:@"userID"];
+    [self storeUser:user fromFrameArray:frameArray inContext:context];
     
     // Store dashboard.frame.video attributes
     Video *video = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataVideo inManagedObjectContext:context];
     frame.video = video;
+    [self storeVideo:video fromFrameArray:frameArray inContext:context];
+
+}
+
++ (void)storeConversation:(Conversation *)conversation fromframeArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
+{
+
+    NSArray *conversationArray = [frameArray valueForKey:@"conversation"];
+    Messages *messages = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataMessages inManagedObjectContext:context];
+    conversation.messages = messages;
+    [self storeMessages:messages fromConversationsArray:conversationArray inContext:context];
     
+}
+
++ (void)storeMessages:(Messages *)messages fromConversationsArray:(NSArray *)conversationsArray inContext:(NSManagedObjectContext *)context
+{
+    NSArray *messagesArray = [conversationsArray valueForKey:@"conversation"];
+}
+
++ (void)storeUser:(User *)user fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
+{
+    
+    NSArray *userArray = [frameArray valueForKey:@"creator"];
+    
+    NSString *userID = [NSString testForNullForCoreDataAttribute:[userArray valueForKey:@"id"]];
+    [user setValue:userID forKey:@"userID"];
+    
+    NSString *nickname = [NSString testForNullForCoreDataAttribute:[userArray valueForKey:@"nickname"]];
+    [user setValue:nickname forKey:@"nickname"];
+    
+    NSString *userImage = [NSString testForNullForCoreDataAttribute:[userArray valueForKey:@"user_image"]];
+    [user setValue:userImage forKey:@"userImage"];
+
+}
+
++ (void)storeVideo:(Video *)video fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
+{
     NSArray *videoArray = [frameArray valueForKey:@"video"];
     
     NSString *videoID = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"video_id"]];
@@ -197,7 +244,6 @@ static CoreDataUtility *sharedInstance = nil;
     
     NSString *videoTitle = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"title"]];
     [video setValue:videoTitle forKey:@"title"];
-
 }
 
 #pragma mark - Accessor Methods

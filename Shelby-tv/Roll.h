@@ -1,5 +1,5 @@
 //
-//  Conversation.h
+//  Roll.h
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 5/23/12.
@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Frame, Messages;
+@class Frame;
 
-@interface Conversation : NSManagedObject
+@interface Roll : NSManagedObject
 
-@property (nonatomic, retain) NSString * conversationID;
+@property (nonatomic, retain) NSString * rollID;
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * userID;
 @property (nonatomic, retain) Frame *frame;
-@property (nonatomic, retain) Messages *messages;
 
 @end

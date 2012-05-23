@@ -2,7 +2,7 @@
 //  User.h
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 5/16/12.
+//  Created by Arthur Ariel Sabintsev on 5/23/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSString * nickname;
 @property (nonatomic, retain) NSString * publicRollID;
 @property (nonatomic, retain) NSString * userID;
+@property (nonatomic, retain) NSString * userImage;
 @property (nonatomic, retain) Frame *frame;
 
 @end

@@ -3,6 +3,7 @@
     <entity name="Conversation" representedClassName="Conversation" syncable="YES">
         <attribute name="conversationID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="frame" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Frame" inverseName="conversation" inverseEntity="Frame" syncable="YES"/>
+        <relationship name="messages" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Messages" inverseName="conversation" inverseEntity="Messages" syncable="YES"/>
     </entity>
     <entity name="DashboardEntry" representedClassName="DashboardEntry" syncable="YES">
         <attribute name="dashboardID" optional="YES" attributeType="String" syncable="YES"/>
@@ -17,14 +18,31 @@
         <attribute name="videoID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="conversation" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="frame" inverseEntity="Conversation" syncable="YES"/>
         <relationship name="dashboardEntry" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardEntry" inverseName="frame" inverseEntity="DashboardEntry" syncable="YES"/>
+        <relationship name="roll" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Roll" inverseName="frame" inverseEntity="Roll" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="frame" inverseEntity="User" syncable="YES"/>
         <relationship name="video" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Video" inverseName="frame" inverseEntity="Video" syncable="YES"/>
+    </entity>
+    <entity name="Messages" representedClassName="Messages" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="messageID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="originNetwork" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userImageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="conversation" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="messages" inverseEntity="Conversation" syncable="YES"/>
+    </entity>
+    <entity name="Roll" representedClassName="Roll" syncable="YES">
+        <attribute name="rollID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="frame" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Frame" inverseName="roll" inverseEntity="Frame" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="faux" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="publicRollID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userImage" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="frame" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Frame" inverseName="user" inverseEntity="Frame" syncable="YES"/>
     </entity>
     <entity name="Video" representedClassName="Video" syncable="YES">
@@ -40,7 +58,9 @@
         <element name="Conversation" positionX="160" positionY="192" width="128" height="90"/>
         <element name="DashboardEntry" positionX="-119" positionY="138" width="128" height="105"/>
         <element name="Frame" positionX="-99" positionY="558" width="128" height="135"/>
-        <element name="Video" positionX="-486" positionY="183" width="128" height="150"/>
         <element name="User" positionX="288" positionY="639" width="128" height="120"/>
+        <element name="Video" positionX="-486" positionY="183" width="128" height="150"/>
+        <element name="Messages" positionX="358" positionY="144" width="128" height="150"/>
+        <element name="Roll" positionX="-108" positionY="894" width="128" height="105"/>
     </elements>
 </model>

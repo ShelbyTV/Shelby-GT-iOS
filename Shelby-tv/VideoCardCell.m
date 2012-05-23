@@ -14,6 +14,8 @@
 @end
 
 @implementation VideoCardCell
+@synthesize originNetworkImageView = _originNetworkImageView;
+@synthesize userImageView = _userImageView;
 @synthesize thumbnailImageView = _thumbnailImageView;
 @synthesize favoriteButton = _favoriteButton;
 @synthesize commentsButton = _commentsButton;
@@ -21,10 +23,13 @@
 @synthesize shareButton = _shareButton;
 @synthesize favoriteLabel = _favoriteLabel;
 @synthesize commentsLabel = _commentsLabell;
+@synthesize nicknameLabel = _nicknameLabel;
 
 #pragma mark - Memory Deallocation Methods
 - (void)dealloc
 {
+    self.userImageView = nil;
+    self.originNetworkImageView = nil;
     self.thumbnailImageView = nil;
     self.favoriteButton = nil;
     self.commentsButton = nil;
@@ -32,6 +37,7 @@
     self.shareButton = nil;
     self.favoriteLabel = nil;
     self.commentsLabel = nil;
+    self.nicknameLabel = nil;
 }
 
 - (void)awakeFromNib
@@ -39,8 +45,9 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     // Customize Labels (all other label customization in VideCardCell.xib)
-    self.favoriteLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:17.0f];
-    self.commentsLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:17.0f];
+    self.nicknameLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:19.0f];
+    self.favoriteLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:16.0f];
+    self.commentsLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:16.0f];
 }
 
 @end

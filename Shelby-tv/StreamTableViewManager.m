@@ -15,6 +15,7 @@
 @property (assign, nonatomic) BOOL observerCreated;
 
 - (void)createAPIObservers;
+- (void)populateTableViewCell:(VideoCardCell*)cell withContentForRow:(NSInteger)row;
 
 @end
 
@@ -36,6 +37,21 @@
                                                  name:notificationName 
                                                object:nil];
     self.observerCreated = YES;
+}
+
+- (void)populateTableViewCell:(VideoCardCell *)cell withContentForRow:(NSInteger)row
+{
+    // Fetch date stored in Core Data
+    NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
+    DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryData:context forRow:row];
+    
+    // Populate labels
+    [cell.nicknameLabel setText:dashboardEntry.frame.user.nickname];
+    
+    // Asychronous download and load images
+    if ( dashboardEntry.frame.user.userImage ) [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.user.userImage forImageView:cell.userImageView withPlaceholderView:nil];
+    [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
+
 }
 
 #pragma mark - GuideTableViewManagerDelegate Method
@@ -108,17 +124,8 @@
           
     }
 
-    if ( [self.parsedResultsArray objectAtIndex:indexPath.row] ) {
-        
-        // Fetch date stored in Core Data
-        NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
-        DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryData:context forRow:indexPath.row];
-        
-        // Asychronous download and load video thumbnails
-        [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
-//        cell.thumbnailImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-        
-    }
+    // Populate UITableView row with content
+    if ( [self.parsedResultsArray objectAtIndex:indexPath.row] ) [self populateTableViewCell:cell withContentForRow:indexPath.row];      
     
     return cell;
 }
