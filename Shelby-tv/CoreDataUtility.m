@@ -19,9 +19,6 @@
 // Store dashboardEntry data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
 
-// Store roll data in Core Data
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary forRollInContext:(NSManagedObjectContext*)context;
-
 // Store dashbaordEntry.frame data in Core Data
 + (void)storeFrameArray:(NSArray*)frameArray forDashboardEntry:(DashboardEntry*)dashboardEntry inContext:(NSManagedObjectContext*)context;
 
@@ -30,6 +27,9 @@
 
 // Store dashboard.frame.conversations.messages data in Core Data
 + (void)storeMessages:(Messages*)messages fromConversationsArray:(NSArray*)conversationsArray inContext:(NSManagedObjectContext*)context;
+
+// Store roll data in Core Data
++ (void)storeRoll:(Roll*)roll fromFrameArray:(NSArray*)frameArray inContext:(NSManagedObjectContext*)context;
 
 // Store dashboard.frame.user data in Core Data
 + (void)storeUser:(User*)user fromFrameArray:(NSArray*)frameArray inContext:(NSManagedObjectContext*)context;
@@ -74,7 +74,6 @@ static CoreDataUtility *sharedInstance = nil;
             
     } else if ( requestType == APIRequestTypeRolls ) {
         
-        [self storeParsedData:parsedDictionary forRollInContext:context];
         
     } else {
         
@@ -145,11 +144,6 @@ static CoreDataUtility *sharedInstance = nil;
     
 }
 
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary forRollInContext:(NSManagedObjectContext *)context
-{
-    
-}
-
 + (void)storeFrameArray:(NSArray *)frameArray forDashboardEntry:(DashboardEntry *)dashboardEntry inContext:(NSManagedObjectContext *)context
 {
     
@@ -180,6 +174,12 @@ static CoreDataUtility *sharedInstance = nil;
     frame.conversation = conversation;
     [self storeConversation:conversation fromframeArray:frameArray inContext:context];
     
+    // Store dashboard.frame.roll attributes
+    Roll *roll = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataRoll inManagedObjectContext:context];
+    frame.roll = roll;
+    [self storeRoll:roll fromFrameArray:frameArray inContext:context];
+    
+    
     // Store dashboard.frame.user attributes
     User *user = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataUser inManagedObjectContext:context];
     frame.user = user;
@@ -207,27 +207,44 @@ static CoreDataUtility *sharedInstance = nil;
     
 }
 
++ (void)storeRoll:(Roll *)roll fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
+{
+    NSArray *rollArray = [frameArray valueForKey:@"roll"];
+    
+    NSString *rollID = [NSString testForNullForCoreDataAttribute:[rollArray valueForKey:@"id"]];
+    [roll setValue:rollID forKey:@"rollID"];
+    
+    NSString *title = [NSString testForNullForCoreDataAttribute:[rollArray valueForKey:@"title"]];
+    [roll setValue:title forKey:@"title"];
+}
+
 + (void)storeMessages:(Messages *)messages fromConversationsArray:(NSArray *)conversationsArray inContext:(NSManagedObjectContext *)context
 {
-    NSArray *messagesArray = [conversationsArray valueForKey:@"conversation"];
-    
-    NSString *messageID = [NSString testForNullForCoreDataAttribute:[messagesArray valueForKey:@"id"]];
-    [messages setValue:messageID forKey:@"messageID"];
-    
-    NSString *createdAt = [NSString testForNullForCoreDataAttribute:[messagesArray valueForKey:@"created_At"]];
-    [messages setValue:createdAt forKey:@"createdAt"];
-    
-    NSString *nickname = [NSString testForNullForCoreDataAttribute:[messagesArray valueForKey:@"nickname"]];
-    [messages setValue:nickname forKey:@"nickname"];  
-    
-    NSString *originNetwork = [NSString testForNullForCoreDataAttribute:[messagesArray valueForKey:@"origin_network"]];
-    [messages setValue:originNetwork forKey:@"originNetwork"];  
-    
-    NSString *text = [NSString testForNullForCoreDataAttribute:[messagesArray valueForKey:@"text"]];
-    [messages setValue:text forKey:@"text"];  
 
-    NSString *userImageURL = [NSString testForNullForCoreDataAttribute:[messagesArray valueForKey:@"user_image_url"]];
-    [messages setValue:userImageURL forKey:@"userImageURL"];  
+    NSArray *messagesArray = [conversationsArray valueForKey:@"messages"];
+    
+    for (int i = 0; i < [messagesArray count]; i++ ) {
+       
+        NSString *messageID = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i] valueForKey:@"id"]];
+        [messages setValue:messageID forKey:@"messageID"];
+
+        NSString *createdAt = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i]  valueForKey:@"created_At"]];
+        [messages setValue:createdAt forKey:@"createdAt"];
+
+        NSString *nickname = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i]  valueForKey:@"nickname"]];
+        [messages setValue:nickname forKey:@"nickname"];  
+
+        NSString *originNetwork = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i] valueForKey:@"origin_network"]];
+        [messages setValue:originNetwork forKey:@"originNetwork"];  
+        NSLog(@"%@", originNetwork);
+
+        NSString *text = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i]  valueForKey:@"text"]];
+        [messages setValue:text forKey:@"text"];  
+
+        NSString *userImageURL = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i]  valueForKey:@"user_image_url"]];
+        [messages setValue:userImageURL forKey:@"userImageURL"];  
+        
+    }
     
 }
 

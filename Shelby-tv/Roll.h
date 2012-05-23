@@ -15,7 +15,6 @@
 
 @property (nonatomic, retain) NSString * rollID;
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSString * userID;
 @property (nonatomic, retain) Frame *frame;
 
 @end

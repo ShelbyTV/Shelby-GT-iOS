@@ -14,7 +14,6 @@
 
 @dynamic rollID;
 @dynamic title;
-@dynamic userID;
 @dynamic frame;
 
 @end

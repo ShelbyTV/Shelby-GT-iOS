@@ -48,8 +48,31 @@
     // Populate labels
     [cell.nicknameLabel setText:dashboardEntry.frame.user.nickname];
     
-    // Asychronous download and load images
-    if ( dashboardEntry.frame.user.userImage ) [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.user.userImage forImageView:cell.userImageView withPlaceholderView:nil];
+    // PresentFacebook/Twitter/Tumblr icon for social network source of video
+    if ( [dashboardEntry.frame.conversation.messages.originNetwork isEqualToString:@"facebook"] ) {
+    
+        [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampFacebook"]];
+   
+    } else if ( [dashboardEntry.frame.conversation.messages.originNetwork isEqualToString:@"twitter"] ) {
+    
+        [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTwitter"]];
+        
+    } else if ( [dashboardEntry.frame.conversation.messages.originNetwork isEqualToString:@"tumblr"] ) {
+        
+        [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTumblr"]];
+        
+    } else {
+        
+        // Do nothing for nil state
+    }
+    
+    // Asychronous download of user image/icon
+    if ( dashboardEntry.frame.user.userImage ) {
+        
+        [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.user.userImage forImageView:cell.userImageView withPlaceholderView:nil];
+    }
+
+    // Asynchronous download of video thumbnail
     [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
 
 }
