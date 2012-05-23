@@ -13,9 +13,7 @@
 
 @interface User : NSManagedObject
 
-@property (nonatomic, retain) NSString * faux;
 @property (nonatomic, retain) NSString * nickname;
-@property (nonatomic, retain) NSString * publicRollID;
 @property (nonatomic, retain) NSString * userID;
 @property (nonatomic, retain) NSString * userImage;
 @property (nonatomic, retain) Frame *frame;

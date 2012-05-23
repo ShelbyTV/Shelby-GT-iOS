@@ -9,7 +9,6 @@
 #import "Messages.h"
 #import "Conversation.h"
 
-
 @implementation Messages
 
 @dynamic createdAt;

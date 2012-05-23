@@ -160,14 +160,14 @@ static CoreDataUtility *sharedInstance = nil;
     NSString *frameID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"id"]];
     [frame setValue:frameID forKey:@"frameID"];
     
-    NSString *frameConversationID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"conversation_id"]];
-    [frame setValue:frameConversationID forKey:@"conversationID"];
-
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss+00:00"];
     NSDate *timestamp = [dateFormat dateFromString:[frameArray valueForKey:@"timestamp"]];
     [frame setValue:timestamp forKey:@"timestamp"];
     [dashboardEntry setValue:timestamp forKey:@"timestamp"];
+    
+    NSString *frameConversationID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"conversation_id"]];
+    [frame setValue:frameConversationID forKey:@"conversationID"];
     
     NSString *frameUserID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"creator_id"]];
     [frame setValue:frameUserID forKey:@"userID"];
@@ -196,6 +196,11 @@ static CoreDataUtility *sharedInstance = nil;
 {
 
     NSArray *conversationArray = [frameArray valueForKey:@"conversation"];
+
+    NSString *conversationID = [NSString testForNullForCoreDataAttribute:[conversationArray valueForKey:@"id"]];
+    [conversation setValue:conversationID forKey:@"conversationID"];
+    
+    // Store dashboard.frame.conversation.messages attributes
     Messages *messages = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataMessages inManagedObjectContext:context];
     conversation.messages = messages;
     [self storeMessages:messages fromConversationsArray:conversationArray inContext:context];
@@ -205,6 +210,25 @@ static CoreDataUtility *sharedInstance = nil;
 + (void)storeMessages:(Messages *)messages fromConversationsArray:(NSArray *)conversationsArray inContext:(NSManagedObjectContext *)context
 {
     NSArray *messagesArray = [conversationsArray valueForKey:@"conversation"];
+    
+    NSString *messageID = [NSString testForNullForCoreDataAttribute:[messagesArray valueForKey:@"id"]];
+    [messages setValue:messageID forKey:@"messageID"];
+    
+    NSString *createdAt = [NSString testForNullForCoreDataAttribute:[messagesArray valueForKey:@"created_At"]];
+    [messages setValue:createdAt forKey:@"createdAt"];
+    
+    NSString *nickname = [NSString testForNullForCoreDataAttribute:[messagesArray valueForKey:@"nickname"]];
+    [messages setValue:nickname forKey:@"nickname"];  
+    
+    NSString *originNetwork = [NSString testForNullForCoreDataAttribute:[messagesArray valueForKey:@"origin_network"]];
+    [messages setValue:originNetwork forKey:@"originNetwork"];  
+    
+    NSString *text = [NSString testForNullForCoreDataAttribute:[messagesArray valueForKey:@"text"]];
+    [messages setValue:text forKey:@"text"];  
+
+    NSString *userImageURL = [NSString testForNullForCoreDataAttribute:[messagesArray valueForKey:@"user_image_url"]];
+    [messages setValue:userImageURL forKey:@"userImageURL"];  
+    
 }
 
 + (void)storeUser:(User *)user fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
@@ -230,20 +254,20 @@ static CoreDataUtility *sharedInstance = nil;
     NSString *videoID = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"video_id"]];
     [video setValue:videoID forKey:@"videoID"];
     
-    NSString *videoCaption = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"description"]];
-    [video setValue:videoCaption forKey:@"caption"];
+    NSString *caption = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"description"]];
+    [video setValue:caption forKey:@"caption"];
     
-    NSString *videoProviderName = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"provider_name"] ];
-    [video setValue:videoProviderName forKey:@"providerName"];
+    NSString *providerName = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"provider_name"] ];
+    [video setValue:providerName forKey:@"providerName"];
     
-    NSString *videoSourceURL = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"source_url"]];
-    [video setValue:videoSourceURL forKey:@"sourceURL"];
+    NSString *sourceURL = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"source_url"]];
+    [video setValue:sourceURL forKey:@"sourceURL"];
     
-    NSString *videoThumbnailURL = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"thumbnail_url"]];
-    [video setValue:videoThumbnailURL forKey:@"thumbnailURL"];
+    NSString *thumbnailURL = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"thumbnail_url"]];
+    [video setValue:thumbnailURL forKey:@"thumbnailURL"];
     
-    NSString *videoTitle = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"title"]];
-    [video setValue:videoTitle forKey:@"title"];
+    NSString *title = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"title"]];
+    [video setValue:title forKey:@"title"];
 }
 
 #pragma mark - Accessor Methods

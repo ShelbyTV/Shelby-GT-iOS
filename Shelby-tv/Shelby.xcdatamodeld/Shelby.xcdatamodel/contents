@@ -38,9 +38,7 @@
         <relationship name="frame" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Frame" inverseName="roll" inverseEntity="Frame" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
-        <attribute name="faux" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="publicRollID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userImage" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="frame" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Frame" inverseName="user" inverseEntity="Frame" syncable="YES"/>
@@ -58,9 +56,9 @@
         <element name="Conversation" positionX="160" positionY="192" width="128" height="90"/>
         <element name="DashboardEntry" positionX="-119" positionY="138" width="128" height="105"/>
         <element name="Frame" positionX="-99" positionY="558" width="128" height="135"/>
-        <element name="User" positionX="288" positionY="639" width="128" height="120"/>
-        <element name="Video" positionX="-486" positionY="183" width="128" height="150"/>
         <element name="Messages" positionX="358" positionY="144" width="128" height="150"/>
         <element name="Roll" positionX="-108" positionY="894" width="128" height="105"/>
+        <element name="User" positionX="288" positionY="639" width="128" height="120"/>
+        <element name="Video" positionX="-486" positionY="183" width="128" height="150"/>
     </elements>
 </model>

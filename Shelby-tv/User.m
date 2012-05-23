@@ -12,9 +12,7 @@
 
 @implementation User
 
-@dynamic faux;
 @dynamic nickname;
-@dynamic publicRollID;
 @dynamic userID;
 @dynamic userImage;
 @dynamic frame;
