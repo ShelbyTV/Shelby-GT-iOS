@@ -146,7 +146,7 @@ static CoreDataUtility *sharedInstance = nil;
     if ( context ) {
         
         if ( [context hasChanges] && ![context save:&error] ) {
-            if (DEBUGMODE) NSLog(@"Could not save changes to Core Data. Error: %@, %@", error, [error userInfo]);
+//            if (DEBUGMODE) NSLog(@"Could not save changes to Core Data. Error: %@, %@", error, [error userInfo]);
         } else {
             if (DEBUGMODE) NSLog(@"Successfully saved changes to Core Data");
         }
@@ -184,11 +184,11 @@ static CoreDataUtility *sharedInstance = nil;
 
     if ( [array count] ) {
         
-        NSLog(@"%@ DOES EXIST", entityIDValue);
+        NSLog(@"%@ = %@ DOES EXIST", entityIDKey, entityIDValue);
         return [array objectAtIndex:0];
     }
     
-    NSLog(@"%@ DOES NOT EXIST", entityIDValue);
+    NSLog(@"%@ = %@ DOES NOT EXIST", entityIDKey, entityIDValue);
     return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
 }
 
@@ -226,6 +226,7 @@ static CoreDataUtility *sharedInstance = nil;
     }
     
     // Commity unsaved data in context
+    NSLog(@"\n-----------------\n-----------------\n-----------------\n");
     [self saveContext:context];
 
     
