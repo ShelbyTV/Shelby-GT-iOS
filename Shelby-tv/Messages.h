@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSString * messageID;
 @property (nonatomic, retain) NSString * nickname;
 @property (nonatomic, retain) NSString * originNetwork;
+@property (nonatomic, retain) NSDate * timestamp;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSString * userImageURL;
 @property (nonatomic, retain) Conversation *conversation;

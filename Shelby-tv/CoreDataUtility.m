@@ -8,6 +8,7 @@
 
 #import "CoreDataUtility.h"
 #import "NSString+CoreData.h"
+#import "NSDate+DateFromBSONString.h"
 
 @interface CoreDataUtility ()
 {
@@ -20,13 +21,13 @@
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
 
 // Store dashbaordEntry.frame data in Core Data
-+ (void)storeFrameArray:(NSArray*)frameArray forDashboardEntry:(DashboardEntry*)dashboardEntry inContext:(NSManagedObjectContext*)context;
++ (void)storeFrame:(Frame*)frame fromFrameArray:(NSArray*)frameArray inContext:(NSManagedObjectContext*)context;
 
 // Store dashboard.frame.conversations data in Core Data
 + (void)storeConversation:(Conversation*)conversation fromframeArray:(NSArray*)frameArray inContext:(NSManagedObjectContext*)context;
 
 // Store dashboard.frame.conversations.messages data in Core Data
-+ (void)storeMessages:(Messages*)messages fromConversationsArray:(NSArray*)conversationsArray inContext:(NSManagedObjectContext*)context;
++ (void)storeMessagesFromConversation:(Conversation*)conversation withConversationsArray:(NSArray*)conversationsArray inContext:(NSManagedObjectContext*)context;
 
 // Store roll data in Core Data
 + (void)storeRoll:(Roll*)roll fromFrameArray:(NSArray*)frameArray inContext:(NSManagedObjectContext*)context;
@@ -127,14 +128,18 @@ static CoreDataUtility *sharedInstance = nil;
     for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
         
         // Store dashboardEntry attirubutes
-        
         DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
         NSString *dashboardID = [NSString testForNullForCoreDataAttribute:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
         [dashboardEntry setValue:dashboardID forKey:@"dashboardID"];
         
+        NSDate *timestamp = [NSDate dataFromBSONstring:dashboardID];
+        [dashboardEntry setValue:timestamp forKey:@"timestamp"];
+        
         // Store dashboardEntry.frame attributes
+        Frame *frame = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataFrame inManagedObjectContext:context];
+        dashboardEntry.frame = frame;
         NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];
-        [self storeFrameArray:frameArray forDashboardEntry:dashboardEntry inContext:context];
+        [self storeFrame:frame fromFrameArray:frameArray inContext:context];
         
     }
     
@@ -144,30 +149,24 @@ static CoreDataUtility *sharedInstance = nil;
     
 }
 
-+ (void)storeFrameArray:(NSArray *)frameArray forDashboardEntry:(DashboardEntry *)dashboardEntry inContext:(NSManagedObjectContext *)context
++ (void)storeFrame:(Frame *)frame fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
 {
     
-    // Store dashboard.frame attributes
-    Frame *frame = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataFrame inManagedObjectContext:context];
-    dashboardEntry.frame = frame;
-    
+    // Store dashboardEntry.frame attributes
     NSString *frameID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"id"]];
     [frame setValue:frameID forKey:@"frameID"];
+        
+    NSString *conversationID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"conversation_id"]];
+    [frame setValue:conversationID forKey:@"conversationID"];
     
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss+00:00"];
-    NSDate *timestamp = [dateFormat dateFromString:[frameArray valueForKey:@"timestamp"]];
+    NSDate *timestamp = [NSDate dataFromBSONstring:frameID];
     [frame setValue:timestamp forKey:@"timestamp"];
-    [dashboardEntry setValue:timestamp forKey:@"timestamp"];
     
-    NSString *frameConversationID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"conversation_id"]];
-    [frame setValue:frameConversationID forKey:@"conversationID"];
+    NSString *userID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"creator_id"]];
+    [frame setValue:userID forKey:@"userID"];
     
-    NSString *frameUserID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"creator_id"]];
-    [frame setValue:frameUserID forKey:@"userID"];
-    
-    NSString *frameVideoID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"video_id"]];
-    [frame setValue:frameVideoID forKey:@"videoID"];
+    NSString *videoID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"video_id"]];
+    [frame setValue:videoID forKey:@"videoID"];
     
     // Store dashboard.frame.conversation attributes
     Conversation *conversation = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataConversation inManagedObjectContext:context];
@@ -178,7 +177,6 @@ static CoreDataUtility *sharedInstance = nil;
     Roll *roll = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataRoll inManagedObjectContext:context];
     frame.roll = roll;
     [self storeRoll:roll fromFrameArray:frameArray inContext:context];
-    
     
     // Store dashboard.frame.user attributes
     User *user = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataUser inManagedObjectContext:context];
@@ -201,9 +199,7 @@ static CoreDataUtility *sharedInstance = nil;
     [conversation setValue:conversationID forKey:@"conversationID"];
     
     // Store dashboard.frame.conversation.messages attributes
-    Messages *messages = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataMessages inManagedObjectContext:context];
-    conversation.messages = messages;
-    [self storeMessages:messages fromConversationsArray:conversationArray inContext:context];
+    [self storeMessagesFromConversation:conversation withConversationsArray:conversationArray inContext:context];
     
 }
 
@@ -218,13 +214,18 @@ static CoreDataUtility *sharedInstance = nil;
     [roll setValue:title forKey:@"title"];
 }
 
-+ (void)storeMessages:(Messages *)messages fromConversationsArray:(NSArray *)conversationsArray inContext:(NSManagedObjectContext *)context
++ (void)storeMessagesFromConversation:(Conversation *)conversation 
+               withConversationsArray:(NSArray *)conversationsArray 
+                            inContext:(NSManagedObjectContext *)context
 {
 
     NSArray *messagesArray = [conversationsArray valueForKey:@"messages"];
     
     for (int i = 0; i < [messagesArray count]; i++ ) {
        
+        Messages *messages = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataMessages inManagedObjectContext:context];
+        [[conversation mutableSetValueForKey:@"messages"] addObject:messages];
+        
         NSString *messageID = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i] valueForKey:@"id"]];
         [messages setValue:messageID forKey:@"messageID"];
 
@@ -236,8 +237,10 @@ static CoreDataUtility *sharedInstance = nil;
 
         NSString *originNetwork = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i] valueForKey:@"origin_network"]];
         [messages setValue:originNetwork forKey:@"originNetwork"];  
-        NSLog(@"%@", originNetwork);
 
+        NSDate *timestamp = [NSDate dataFromBSONstring:messageID];
+        [messages setValue:timestamp forKey:@"timestamp"];
+        
         NSString *text = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i]  valueForKey:@"text"]];
         [messages setValue:text forKey:@"text"];  
 

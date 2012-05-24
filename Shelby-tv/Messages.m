@@ -15,6 +15,7 @@
 @dynamic messageID;
 @dynamic nickname;
 @dynamic originNetwork;
+@dynamic timestamp;
 @dynamic text;
 @dynamic userImageURL;
 @dynamic conversation;
