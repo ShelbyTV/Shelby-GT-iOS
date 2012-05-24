@@ -2,12 +2,13 @@
 //  Messages.m
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 5/23/12.
+//  Created by Arthur Ariel Sabintsev on 5/24/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
 #import "Messages.h"
 #import "Conversation.h"
+
 
 @implementation Messages
 
@@ -16,8 +17,8 @@
 @dynamic messageID;
 @dynamic nickname;
 @dynamic originNetwork;
-@dynamic timestamp;
 @dynamic text;
+@dynamic timestamp;
 @dynamic userImageURL;
 @dynamic conversation;
 

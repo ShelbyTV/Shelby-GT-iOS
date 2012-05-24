@@ -2,7 +2,7 @@
 //  Messages.h
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 5/23/12.
+//  Created by Arthur Ariel Sabintsev on 5/24/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
@@ -18,8 +18,8 @@
 @property (nonatomic, retain) NSString * messageID;
 @property (nonatomic, retain) NSString * nickname;
 @property (nonatomic, retain) NSString * originNetwork;
-@property (nonatomic, retain) NSDate * timestamp;
 @property (nonatomic, retain) NSString * text;
+@property (nonatomic, retain) NSDate * timestamp;
 @property (nonatomic, retain) NSString * userImageURL;
 @property (nonatomic, retain) Conversation *conversation;
 

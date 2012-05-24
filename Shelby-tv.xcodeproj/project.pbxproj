@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E322738156ED53300167E67 /* Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E322737156ED53300167E67 /* Messages.m */; };
+		8E32273B156ED53300167E67 /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E32273A156ED53300167E67 /* Frame.m */; };
+		8E32273E156ED53300167E67 /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E32273D156ED53300167E67 /* Roll.m */; };
+		8E322741156ED53300167E67 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E322740156ED53300167E67 /* User.m */; };
+		8E322744156ED53300167E67 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E322743156ED53300167E67 /* Conversation.m */; };
+		8E322747156ED53300167E67 /* DashboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E322746156ED53300167E67 /* DashboardEntry.m */; };
+		8E32274A156ED53300167E67 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E322749156ED53300167E67 /* Video.m */; };
 		8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */; };
 		8E347EED156D370000084C25 /* videoCardCommentsOffButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E347EDF156D370000084C25 /* videoCardCommentsOffButton.png */; };
 		8E347EEE156D370000084C25 /* videoCardCommentsOffButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E347EE0156D370000084C25 /* videoCardCommentsOffButton@2x.png */; };
@@ -117,13 +124,6 @@
 		8E90B802156E898700C840B5 /* NSDate+DateFromBSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E90B801156E898700C840B5 /* NSDate+DateFromBSONString.m */; };
 		8EAA320F154EF239003FC586 /* PeopleRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAA320E154EF239003FC586 /* PeopleRollsTableViewManager.m */; };
 		8EAA3212154EF271003FC586 /* PopularRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EAA3211154EF271003FC586 /* PopularRollsTableViewManager.m */; };
-		8EC2DBE5156D8307006F330A /* Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC2DBE4156D8307006F330A /* Messages.m */; };
-		8EC2DBE8156D8307006F330A /* DashboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC2DBE7156D8307006F330A /* DashboardEntry.m */; };
-		8EC2DBEB156D8307006F330A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC2DBEA156D8307006F330A /* User.m */; };
-		8EC2DBEE156D8308006F330A /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC2DBED156D8308006F330A /* Frame.m */; };
-		8EC2DBF1156D8308006F330A /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC2DBF0156D8308006F330A /* Video.m */; };
-		8EC2DBF4156D8308006F330A /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC2DBF3156D8308006F330A /* Roll.m */; };
-		8EC2DBF7156D8308006F330A /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC2DBF6156D8308006F330A /* Conversation.m */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
 		8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D21535F6F70009718E /* Foundation.framework */; };
 		8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D41535F6F70009718E /* CoreGraphics.framework */; };
@@ -171,6 +171,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E322736156ED53300167E67 /* Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Messages.h; sourceTree = "<group>"; };
+		8E322737156ED53300167E67 /* Messages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Messages.m; sourceTree = "<group>"; };
+		8E322739156ED53300167E67 /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
+		8E32273A156ED53300167E67 /* Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
+		8E32273C156ED53300167E67 /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
+		8E32273D156ED53300167E67 /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
+		8E32273F156ED53300167E67 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		8E322740156ED53300167E67 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		8E322742156ED53300167E67 /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
+		8E322743156ED53300167E67 /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
+		8E322745156ED53300167E67 /* DashboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardEntry.h; sourceTree = "<group>"; };
+		8E322746156ED53300167E67 /* DashboardEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardEntry.m; sourceTree = "<group>"; };
+		8E322748156ED53300167E67 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
+		8E322749156ED53300167E67 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
 		8E3457851551BC9200FEFC9D /* NSString+TypedefConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TypedefConversion.h"; sourceTree = "<group>"; };
 		8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TypedefConversion.m"; sourceTree = "<group>"; };
 		8E347EDF156D370000084C25 /* videoCardCommentsOffButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardCommentsOffButton.png; sourceTree = "<group>"; };
@@ -351,20 +365,6 @@
 		8EAA320E154EF239003FC586 /* PeopleRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleRollsTableViewManager.m; sourceTree = "<group>"; };
 		8EAA3210154EF271003FC586 /* PopularRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularRollsTableViewManager.h; sourceTree = "<group>"; };
 		8EAA3211154EF271003FC586 /* PopularRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularRollsTableViewManager.m; sourceTree = "<group>"; };
-		8EC2DBE3156D8307006F330A /* Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Messages.h; sourceTree = "<group>"; };
-		8EC2DBE4156D8307006F330A /* Messages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Messages.m; sourceTree = "<group>"; };
-		8EC2DBE6156D8307006F330A /* DashboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardEntry.h; sourceTree = "<group>"; };
-		8EC2DBE7156D8307006F330A /* DashboardEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardEntry.m; sourceTree = "<group>"; };
-		8EC2DBE9156D8307006F330A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		8EC2DBEA156D8307006F330A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		8EC2DBEC156D8308006F330A /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
-		8EC2DBED156D8308006F330A /* Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
-		8EC2DBEF156D8308006F330A /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
-		8EC2DBF0156D8308006F330A /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
-		8EC2DBF2156D8308006F330A /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
-		8EC2DBF3156D8308006F330A /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
-		8EC2DBF5156D8308006F330A /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
-		8EC2DBF6156D8308006F330A /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		8ECBA7CC1535F6F70009718E /* Shelby-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECBA7D01535F6F70009718E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8ECBA7D21535F6F70009718E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -886,21 +886,21 @@
 		8EE5065B155CA90700A04F50 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				8E322736156ED53300167E67 /* Messages.h */,
+				8E322748156ED53300167E67 /* Video.h */,
+				8E322749156ED53300167E67 /* Video.m */,
+				8E322745156ED53300167E67 /* DashboardEntry.h */,
+				8E322746156ED53300167E67 /* DashboardEntry.m */,
+				8E322742156ED53300167E67 /* Conversation.h */,
+				8E322743156ED53300167E67 /* Conversation.m */,
+				8E32273F156ED53300167E67 /* User.h */,
+				8E322740156ED53300167E67 /* User.m */,
+				8E32273C156ED53300167E67 /* Roll.h */,
+				8E32273D156ED53300167E67 /* Roll.m */,
+				8E322739156ED53300167E67 /* Frame.h */,
+				8E32273A156ED53300167E67 /* Frame.m */,
+				8E322737156ED53300167E67 /* Messages.m */,
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
-				8EC2DBF5156D8308006F330A /* Conversation.h */,
-				8EC2DBF6156D8308006F330A /* Conversation.m */,
-				8EC2DBF2156D8308006F330A /* Roll.h */,
-				8EC2DBF3156D8308006F330A /* Roll.m */,
-				8EC2DBEF156D8308006F330A /* Video.h */,
-				8EC2DBF0156D8308006F330A /* Video.m */,
-				8EC2DBEC156D8308006F330A /* Frame.h */,
-				8EC2DBED156D8308006F330A /* Frame.m */,
-				8EC2DBE9156D8307006F330A /* User.h */,
-				8EC2DBEA156D8307006F330A /* User.m */,
-				8EC2DBE6156D8307006F330A /* DashboardEntry.h */,
-				8EC2DBE7156D8307006F330A /* DashboardEntry.m */,
-				8EC2DBE3156D8307006F330A /* Messages.h */,
-				8EC2DBE4156D8307006F330A /* Messages.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -1167,14 +1167,14 @@
 				8E5E7F95156151B0009FC8CE /* CoreDataUtility.m in Sources */,
 				8EFD498C156435330003913D /* NSString+CoreData.m in Sources */,
 				8EFF3A9815658E2500131A97 /* AuthenticateTwitterViewController.m in Sources */,
-				8EC2DBE5156D8307006F330A /* Messages.m in Sources */,
-				8EC2DBE8156D8307006F330A /* DashboardEntry.m in Sources */,
-				8EC2DBEB156D8307006F330A /* User.m in Sources */,
-				8EC2DBEE156D8308006F330A /* Frame.m in Sources */,
-				8EC2DBF1156D8308006F330A /* Video.m in Sources */,
-				8EC2DBF4156D8308006F330A /* Roll.m in Sources */,
-				8EC2DBF7156D8308006F330A /* Conversation.m in Sources */,
 				8E90B802156E898700C840B5 /* NSDate+DateFromBSONString.m in Sources */,
+				8E322738156ED53300167E67 /* Messages.m in Sources */,
+				8E32273B156ED53300167E67 /* Frame.m in Sources */,
+				8E32273E156ED53300167E67 /* Roll.m in Sources */,
+				8E322741156ED53300167E67 /* User.m in Sources */,
+				8E322744156ED53300167E67 /* Conversation.m in Sources */,
+				8E322747156ED53300167E67 /* DashboardEntry.m in Sources */,
+				8E32274A156ED53300167E67 /* Video.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

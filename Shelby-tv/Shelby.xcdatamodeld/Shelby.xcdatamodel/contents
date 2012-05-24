@@ -13,6 +13,7 @@
     <entity name="Frame" representedClassName="Frame" syncable="YES">
         <attribute name="conversationID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="frameID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rollID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoID" optional="YES" attributeType="String" syncable="YES"/>
@@ -56,10 +57,10 @@
     <elements>
         <element name="Conversation" positionX="160" positionY="192" width="128" height="90"/>
         <element name="DashboardEntry" positionX="-119" positionY="138" width="128" height="105"/>
-        <element name="Frame" positionX="-99" positionY="558" width="128" height="135"/>
+        <element name="Frame" positionX="-99" positionY="558" width="128" height="210"/>
         <element name="Messages" positionX="358" positionY="144" width="128" height="180"/>
         <element name="Roll" positionX="-108" positionY="894" width="128" height="90"/>
-        <element name="User" positionX="288" positionY="639" width="128" height="120"/>
+        <element name="User" positionX="288" positionY="639" width="128" height="105"/>
         <element name="Video" positionX="-486" positionY="183" width="128" height="150"/>
     </elements>
 </model>

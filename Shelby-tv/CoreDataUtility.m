@@ -17,6 +17,12 @@
     NSPersistentStoreCoordinator *_persistentStoreCoordinator;
 }
 
+// Check if entity exists in Core Data
++ (id)checkIfEntity:(NSString*)entityName 
+        withIDValue:(NSString*)entityIDValue 
+           forIDKey:(NSString*)entityIDKey 
+    existsInContext:(NSManagedObjectContext*)context;
+
 // Store dashboardEntry data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
 
@@ -119,7 +125,7 @@ static CoreDataUtility *sharedInstance = nil;
     [messagesRequest setEntity:messagesDescription];
     
     // Only include messages that belond to this specific conversation
-    NSPredicate *messagesPredicate = [NSPredicate predicateWithFormat:@"ANY conversationID == %@", conversation.conversationID];
+    NSPredicate *messagesPredicate = [NSPredicate predicateWithFormat:@"conversationID == %@", conversation.conversationID];
     [messagesRequest setPredicate:messagesPredicate];
     
     // Sort by timestamp
@@ -147,6 +153,45 @@ static CoreDataUtility *sharedInstance = nil;
     }
 }
 
++ (id)checkIfEntity:(NSString *)entityName 
+        withIDValue:(NSString *)entityIDValue 
+           forIDKey:(NSString *)entityIDKey 
+    existsInContext:(NSManagedObjectContext *)context
+{
+
+    // Create fetch request
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setReturnsObjectsAsFaults:NO];
+    
+    // Fetch messages data
+    NSEntityDescription *description = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+    [request setEntity:description];
+    
+    // Only include objects that exist (i.e. entityIDKey and entityIDValue's must exist)
+    NSPredicate *predicate;
+    
+    if ( [entityIDKey isEqualToString:@"messagesID"] ) {
+        predicate = [NSPredicate predicateWithFormat:@"ANY %@ == %@", entityIDKey, entityIDValue];
+    } else {
+        predicate = [NSPredicate predicateWithFormat:@"%@==%@", entityIDKey, entityIDValue];
+    }
+    
+    [request setPredicate:predicate];    
+
+    
+    // Execute request that returns array of dashboardEntrys
+    NSArray *array = [context executeFetchRequest:request error:nil];
+
+    if ( [array count] ) {
+        
+        NSLog(@"%@ DOES EXIST", entityIDValue);
+        return [array objectAtIndex:0];
+    }
+    
+    NSLog(@"%@ DOES NOT EXIST", entityIDValue);
+    return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
+}
+
 #pragma mark - Private Methods
 + (void)storeParsedData:(NSDictionary *)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext *)context
 {
@@ -157,6 +202,11 @@ static CoreDataUtility *sharedInstance = nil;
         
         // Store dashboardEntry attirubutes
         DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
+        dashboardEntry = [self checkIfEntity:kCoreDataDashboardEntry 
+                                 withIDValue:dashboardEntry.dashboardID 
+                                    forIDKey:@"dashboardID" 
+                             existsInContext:context];
+        
         NSString *dashboardID = [NSString testForNullForCoreDataAttribute:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
         [dashboardEntry setValue:dashboardID forKey:@"dashboardID"];
         
@@ -165,6 +215,10 @@ static CoreDataUtility *sharedInstance = nil;
         
         // Store dashboardEntry.frame attributes
         Frame *frame = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataFrame inManagedObjectContext:context];
+        frame = [self checkIfEntity:kCoreDataFrame 
+                                 withIDValue:frame.frameID 
+                                    forIDKey:@"frameID" 
+                             existsInContext:context];
         dashboardEntry.frame = frame;
         NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];
         [self storeFrame:frame fromFrameArray:frameArray inContext:context];
@@ -187,6 +241,9 @@ static CoreDataUtility *sharedInstance = nil;
     NSString *conversationID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"conversation_id"]];
     [frame setValue:conversationID forKey:@"conversationID"];
     
+    NSString *rollID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"roll_id"]];
+    [frame setValue:rollID forKey:@"rollID"];
+    
     NSDate *timestamp = [NSDate dataFromBSONstring:frameID];
     [frame setValue:timestamp forKey:@"timestamp"];
     
@@ -197,22 +254,36 @@ static CoreDataUtility *sharedInstance = nil;
     [frame setValue:videoID forKey:@"videoID"];
     
     // Store dashboard.frame.conversation attributes
-    Conversation *conversation = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataConversation inManagedObjectContext:context];
+    Conversation *conversation = [self checkIfEntity:kCoreDataConversation 
+                    withIDValue:conversationID
+                       forIDKey:@"conversationID" 
+                existsInContext:context];
     frame.conversation = conversation;
     [self storeConversation:conversation fromframeArray:frameArray inContext:context];
     
     // Store dashboard.frame.roll attributes
-    Roll *roll = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataRoll inManagedObjectContext:context];
-    frame.roll = roll;
-    [self storeRoll:roll fromFrameArray:frameArray inContext:context];
-    
+    if ( rollID ) {
+        Roll *roll = [self checkIfEntity:kCoreDataRoll 
+                             withIDValue:rollID
+                                forIDKey:@"rollID" 
+                         existsInContext:context];
+        frame.roll = roll;
+        [self storeRoll:roll fromFrameArray:frameArray inContext:context];
+    }
+
     // Store dashboard.frame.user attributes
-    User *user = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataUser inManagedObjectContext:context];
+    User *user = [self checkIfEntity:kCoreDataUser 
+                         withIDValue:userID
+                            forIDKey:@"userID" 
+                     existsInContext:context];
     frame.user = user;
     [self storeUser:user fromFrameArray:frameArray inContext:context];
     
     // Store dashboard.frame.video attributes
-    Video *video = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataVideo inManagedObjectContext:context];
+    Video *video = [self checkIfEntity:kCoreDataVideo 
+                           withIDValue:videoID
+                              forIDKey:@"videoID" 
+                       existsInContext:context];
     frame.video = video;
     [self storeVideo:video fromFrameArray:frameArray inContext:context];
 
@@ -252,12 +323,17 @@ static CoreDataUtility *sharedInstance = nil;
     for (int i = 0; i < [messagesArray count]; i++ ) {
        
         Messages *messages = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataMessages inManagedObjectContext:context];
+        messages = [self checkIfEntity:kCoreDataMessages 
+                           withIDValue:[[messagesArray objectAtIndex:i] valueForKey:@"id"]
+                              forIDKey:@"messageID" 
+                       existsInContext:context];
         [[conversation mutableSetValueForKey:@"messages"] addObject:messages];
+        
+        // Hold reference to parent conversationID
+        [messages setValue:conversation.conversationID forKey:@"conversationID"];
         
         NSString *messageID = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i] valueForKey:@"id"]];
         [messages setValue:messageID forKey:@"messageID"];
-
-        [messages setValue:conversation.conversationID forKey:@"conversationID"];
         
         NSString *createdAt = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i]  valueForKey:@"created_at"]];
         [messages setValue:createdAt forKey:@"createdAt"];
