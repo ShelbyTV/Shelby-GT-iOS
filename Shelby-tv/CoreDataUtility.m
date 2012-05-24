@@ -89,14 +89,15 @@ static CoreDataUtility *sharedInstance = nil;
  
     // Create fetch request
     NSFetchRequest *dashboardEntryRequest = [[NSFetchRequest alloc] init];
-    
-    // Fetch fashboardEntry Data
+    [dashboardEntryRequest setReturnsObjectsAsFaults:NO];
+
+    // Fetch dashboardEntry data
     NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
     [dashboardEntryRequest setEntity:dashboardEntryDescription];
     
     // Sort by timestamp
-    NSSortDescriptor *timestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-    [dashboardEntryRequest setSortDescriptors:[NSArray arrayWithObject:timestampSorter]];
+    NSSortDescriptor *dashboardTimestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+    [dashboardEntryRequest setSortDescriptors:[NSArray arrayWithObject:dashboardTimestampSorter]];
     
     // Execute request that returns array of dashboardEntrys
     NSArray *dashboardEntryArray = [context executeFetchRequest:dashboardEntryRequest error:nil];
@@ -104,6 +105,32 @@ static CoreDataUtility *sharedInstance = nil;
     // Return messages at a specific index
     return [dashboardEntryArray objectAtIndex:row];
 
+}
+
++ (Messages*)fetchFirstMessageFromConversation:(Conversation *)conversation inContext:(NSManagedObjectContext *)context
+{
+    
+    // Create fetch request
+    NSFetchRequest *messagesRequest = [[NSFetchRequest alloc] init];
+    [messagesRequest setReturnsObjectsAsFaults:NO];
+    
+    // Fetch messages data
+    NSEntityDescription *messagesDescription = [NSEntityDescription entityForName:kCoreDataMessages inManagedObjectContext:context];
+    [messagesRequest setEntity:messagesDescription];
+    
+    // Only include messages that belond to this specific conversation
+    NSPredicate *messagesPredicate = [NSPredicate predicateWithFormat:@"ANY conversationID == %@", conversation.conversationID];
+    [messagesRequest setPredicate:messagesPredicate];
+    
+    // Sort by timestamp
+    NSSortDescriptor *messagesTimestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+    [messagesRequest setSortDescriptors:[NSArray arrayWithObject:messagesTimestampSorter]];
+ 
+    // Execute request that returns array of dashboardEntrys
+    NSArray *messagesArray = [context executeFetchRequest:messagesRequest error:nil];
+    
+    // Return messages at a specific index
+    return [messagesArray objectAtIndex:0];
 }
 
 + (void)saveContext:(NSManagedObjectContext *)context
@@ -221,8 +248,7 @@ static CoreDataUtility *sharedInstance = nil;
 {
 
     NSArray *messagesArray = [conversationsArray valueForKey:@"messages"];
-    
-    
+
     for (int i = 0; i < [messagesArray count]; i++ ) {
        
         Messages *messages = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataMessages inManagedObjectContext:context];
@@ -231,6 +257,8 @@ static CoreDataUtility *sharedInstance = nil;
         NSString *messageID = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i] valueForKey:@"id"]];
         [messages setValue:messageID forKey:@"messageID"];
 
+        [messages setValue:conversation.conversationID forKey:@"conversationID"];
+        
         NSString *createdAt = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i]  valueForKey:@"created_at"]];
         [messages setValue:createdAt forKey:@"createdAt"];
 
@@ -241,7 +269,7 @@ static CoreDataUtility *sharedInstance = nil;
         [messages setValue:originNetwork forKey:@"originNetwork"];  
 
         NSDate *timestamp = [NSDate dataFromBSONstring:messageID];
-        [messages setValue:timestamp forKey:@"timestamp"];
+        [messages setValue:timestamp forKey:@"timestamp"];  
         
         NSString *text = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i]  valueForKey:@"text"]];
         [messages setValue:text forKey:@"text"];  

@@ -11,6 +11,7 @@
 
 @implementation Messages
 
+@dynamic conversationID;
 @dynamic createdAt;
 @dynamic messageID;
 @dynamic nickname;

@@ -13,6 +13,7 @@
 
 @interface Messages : NSManagedObject
 
+@property (nonatomic, retain) NSString * conversationID;
 @property (nonatomic, retain) NSString * createdAt;
 @property (nonatomic, retain) NSString * messageID;
 @property (nonatomic, retain) NSString * nickname;
