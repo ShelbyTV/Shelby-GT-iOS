@@ -145,11 +145,21 @@ static CoreDataUtility *sharedInstance = nil;
     NSError *error = nil;    
     if ( context ) {
         
-        if ( [context hasChanges] && ![context save:&error] ) {
-//            if (DEBUGMODE) NSLog(@"Could not save changes to Core Data. Error: %@, %@", error, [error userInfo]);
+        if(![context save:&error]) {
+            NSLog(@"Failed to save to data store: %@", [error localizedDescription]);
+            NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+            if(detailedErrors != nil && [detailedErrors count] > 0) {
+                for(NSError* detailedError in detailedErrors) {
+                    NSLog(@"  DetailedError: %@", [detailedError userInfo]);
+                }
+            }
+            else {
+                NSLog(@"  %@", [error userInfo]);
+            }
         } else {
-            if (DEBUGMODE) NSLog(@"Successfully saved changes to Core Data");
+            NSLog(@"Core Data Updated!");
         }
+        
     }
 }
 
@@ -168,7 +178,7 @@ static CoreDataUtility *sharedInstance = nil;
     [request setEntity:description];
     
     // Only include objects that exist (i.e. entityIDKey and entityIDValue's must exist)
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@==%@", entityIDKey, entityIDValue];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@=%@", entityIDKey, entityIDValue];
     [request setPredicate:predicate];    
     
     // Execute request that returns array of dashboardEntrys
@@ -290,19 +300,8 @@ static CoreDataUtility *sharedInstance = nil;
     [conversation setValue:conversationID forKey:@"conversationID"];
     
     // Store dashboard.frame.conversation.messages attributes
-    [self storeMessagesFromConversation:conversation withConversationsArray:conversationArray inContext:context];
+//    [self storeMessagesFromConversation:conversation withConversationsArray:conversationArray inContext:context];
     
-}
-
-+ (void)storeRoll:(Roll *)roll fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
-{
-    NSArray *rollArray = [frameArray valueForKey:@"roll"];
-    
-    NSString *rollID = [NSString testForNullForCoreDataAttribute:[rollArray valueForKey:@"id"]];
-    [roll setValue:rollID forKey:@"rollID"];
-    
-    NSString *title = [NSString testForNullForCoreDataAttribute:[rollArray valueForKey:@"title"]];
-    [roll setValue:title forKey:@"title"];
 }
 
 + (void)storeMessagesFromConversation:(Conversation *)conversation 
@@ -344,8 +343,20 @@ static CoreDataUtility *sharedInstance = nil;
 
         NSString *userImageURL = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i]  valueForKey:@"user_image_url"]];
         [messages setValue:userImageURL forKey:@"userImageURL"];  
+        
     }
     
+}
+
++ (void)storeRoll:(Roll *)roll fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
+{
+    NSArray *rollArray = [frameArray valueForKey:@"roll"];
+    
+    NSString *rollID = [NSString testForNullForCoreDataAttribute:[rollArray valueForKey:@"id"]];
+    [roll setValue:rollID forKey:@"rollID"];
+    
+    NSString *title = [NSString testForNullForCoreDataAttribute:[rollArray valueForKey:@"title"]];
+    [roll setValue:title forKey:@"title"];
 }
 
 + (void)storeUser:(User *)user fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
