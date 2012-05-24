@@ -251,7 +251,7 @@ static CoreDataUtility *sharedInstance = nil;
                        forIDKey:@"conversationID" 
                 existsInContext:context];
     frame.conversation = conversation;
-    [self storeConversation:conversation fromframeArray:frameArray inContext:context];
+    [self storeConversation:conversation fromFrameArray:frameArray inContext:context];
     
     // Store dashboard.frame.roll attributes
     if ( rollID ) {
