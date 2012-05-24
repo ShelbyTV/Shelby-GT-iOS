@@ -30,7 +30,7 @@
 + (void)storeFrame:(Frame*)frame fromFrameArray:(NSArray*)frameArray inContext:(NSManagedObjectContext*)context;
 
 // Store dashboard.frame.conversations data in Core Data
-+ (void)storeConversation:(Conversation*)conversation fromframeArray:(NSArray*)frameArray inContext:(NSManagedObjectContext*)context;
++ (void)storeConversation:(Conversation*)conversation fromFrameArray:(NSArray*)frameArray inContext:(NSManagedObjectContext*)context;
 
 // Store dashboard.frame.conversations.messages data in Core Data
 + (void)storeMessagesFromConversation:(Conversation*)conversation withConversationsArray:(NSArray*)conversationsArray inContext:(NSManagedObjectContext*)context;
@@ -281,7 +281,7 @@ static CoreDataUtility *sharedInstance = nil;
 
 }
 
-+ (void)storeConversation:(Conversation *)conversation fromframeArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
++ (void)storeConversation:(Conversation *)conversation fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
 {
 
     NSArray *conversationArray = [frameArray valueForKey:@"conversation"];
