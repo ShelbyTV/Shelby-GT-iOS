@@ -87,43 +87,23 @@ static CoreDataUtility *sharedInstance = nil;
 + (DashboardEntry*)fetchDashboardEntryData:(NSManagedObjectContext *)context forRow:(NSUInteger)row
 {
  
-    // Create Fetch Request
+    // Create fetch request
     NSFetchRequest *dashboardEntryRequest = [[NSFetchRequest alloc] init];
     
-    // Fetch DashboardEntry Data
+    // Fetch fashboardEntry Data
     NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
     [dashboardEntryRequest setEntity:dashboardEntryDescription];
     
-    // Sort by Timestamp
+    // Sort by timestamp
     NSSortDescriptor *timestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
     [dashboardEntryRequest setSortDescriptors:[NSArray arrayWithObject:timestampSorter]];
     
-    // Execute Request that returns array of dashboardEntrys
+    // Execute request that returns array of dashboardEntrys
     NSArray *dashboardEntryArray = [context executeFetchRequest:dashboardEntryRequest error:nil];
     
-    // Return dashbaordEntry at a specific index
+    // Return messages at a specific index
     return [dashboardEntryArray objectAtIndex:row];
 
-}
-
-+ (Messages*)fetchFirstMessageFromConversation:(Conversation *)conversation inContext:(NSManagedObjectContext *)context
-{
-    // Create Fetch Request
-    NSFetchRequest *messagesRequest = [[NSFetchRequest alloc] init];
-    
-    // Fetch DashboardEntry Data
-    NSEntityDescription *messagesDescription = [NSEntityDescription entityForName:kCoreDataMessages inManagedObjectContext:context];
-    [messagesRequest setEntity:messagesDescription];
-    
-    // Sort by Timestamp
-    NSSortDescriptor *timestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-    [messagesRequest setSortDescriptors:[NSArray arrayWithObject:timestampSorter]];
-    
-    // Execute Request that returns array of dashboardEntrys
-    NSArray *dashboardEntryArray = [context executeFetchRequest:messagesRequest error:nil];
-    
-    // Return dashbaordEntry at a specific index
-    return [dashboardEntryArray objectAtIndex:0];
 }
 
 + (void)saveContext:(NSManagedObjectContext *)context
@@ -242,6 +222,7 @@ static CoreDataUtility *sharedInstance = nil;
 
     NSArray *messagesArray = [conversationsArray valueForKey:@"messages"];
     
+    
     for (int i = 0; i < [messagesArray count]; i++ ) {
        
         Messages *messages = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataMessages inManagedObjectContext:context];
@@ -267,7 +248,6 @@ static CoreDataUtility *sharedInstance = nil;
 
         NSString *userImageURL = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i]  valueForKey:@"user_image_url"]];
         [messages setValue:userImageURL forKey:@"userImageURL"];  
-        
     }
     
 }

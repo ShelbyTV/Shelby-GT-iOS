@@ -24,8 +24,6 @@
 /** Fetch dashboardEntry information stored in Core Data */
 + (DashboardEntry*)fetchDashboardEntryData:(NSManagedObjectContext*)context forRow:(NSUInteger)row;
                 
-+ (Messages*)fetchFirstMessageFromConversation:(Conversation*)conversation inContext:(NSManagedObjectContext*)context;
-
 /** 
  Commit unsaved changes for a given NSManagedObjextContext instance 
  */
