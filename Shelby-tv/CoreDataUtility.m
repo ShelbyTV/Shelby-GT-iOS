@@ -103,6 +103,27 @@ static CoreDataUtility *sharedInstance = nil;
     
     // Return dashbaordEntry at a specific index
     return [dashboardEntryArray objectAtIndex:row];
+
+}
+
++ (Messages*)fetchFirstMessageFromConversation:(Conversation *)conversation inContext:(NSManagedObjectContext *)context
+{
+    // Create Fetch Request
+    NSFetchRequest *messagesRequest = [[NSFetchRequest alloc] init];
+    
+    // Fetch DashboardEntry Data
+    NSEntityDescription *messagesDescription = [NSEntityDescription entityForName:kCoreDataMessages inManagedObjectContext:context];
+    [messagesRequest setEntity:messagesDescription];
+    
+    // Sort by Timestamp
+    NSSortDescriptor *timestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+    [messagesRequest setSortDescriptors:[NSArray arrayWithObject:timestampSorter]];
+    
+    // Execute Request that returns array of dashboardEntrys
+    NSArray *dashboardEntryArray = [context executeFetchRequest:messagesRequest error:nil];
+    
+    // Return dashbaordEntry at a specific index
+    return [dashboardEntryArray objectAtIndex:0];
 }
 
 + (void)saveContext:(NSManagedObjectContext *)context

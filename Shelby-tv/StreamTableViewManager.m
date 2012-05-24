@@ -48,26 +48,31 @@
     // Populate nickname label
     [cell.nicknameLabel setText:dashboardEntry.frame.user.nickname];
     
-    // Populate nickname label
-//    [cell.createdAtLabel setText:dashboardEntry.frame.conversation.messages.createdAt];
-//        
-//    // PresentFacebook/Twitter/Tumblr icon for social network source of video
-//    if ( [dashboardEntry.frame.conversation.messages.originNetwork isEqualToString:@"facebook"] ) {
-//    
-//        [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampFacebook"]];
-//   
-//    } else if ( [dashboardEntry.frame.conversation.messages.originNetwork isEqualToString:@"twitter"] ) {
-//    
-//        [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTwitter"]];
-//        
-//    } else if ( [dashboardEntry.frame.conversation.messages.originNetwork isEqualToString:@"tumblr"] ) {
-//        
-//        [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTumblr"]];
-//        
-//    } else {
-//        
-//        // Do nothing for nil state
-//    }
+    // Populate createdAt label
+    
+    Messages *message = [CoreDataUtility fetchFirstMessageFromConversation:dashboardEntry.frame.conversation inContext:context];
+    
+    NSLog(@"%@\n- - - - - - - - - - -", message);
+    
+    [cell.createdAtLabel setText:message.createdAt];
+        
+    // PresentFacebook/Twitter/Tumblr icon for social network source of video
+    if ( [message.originNetwork isEqualToString:@"facebook"] ) {
+    
+        [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampFacebook"]];
+   
+    } else if ( [message.originNetwork isEqualToString:@"twitter"] ) {
+    
+        [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTwitter"]];
+        
+    } else if ( [message.originNetwork isEqualToString:@"tumblr"] ) {
+        
+        [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTumblr"]];
+        
+    } else {
+        
+        // Do nothing for nil state
+    }
     
     // Asychronous download of user image/icon
     if ( dashboardEntry.frame.user.userImage ) {
