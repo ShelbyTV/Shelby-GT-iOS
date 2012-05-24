@@ -168,16 +168,8 @@ static CoreDataUtility *sharedInstance = nil;
     [request setEntity:description];
     
     // Only include objects that exist (i.e. entityIDKey and entityIDValue's must exist)
-    NSPredicate *predicate;
-    
-    if ( [entityIDKey isEqualToString:@"messagesID"] ) {
-        predicate = [NSPredicate predicateWithFormat:@"ANY %@ == %@", entityIDKey, entityIDValue];
-    } else {
-        predicate = [NSPredicate predicateWithFormat:@"%@==%@", entityIDKey, entityIDValue];
-    }
-    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@==%@", entityIDKey, entityIDValue];
     [request setPredicate:predicate];    
-
     
     // Execute request that returns array of dashboardEntrys
     NSArray *array = [context executeFetchRequest:request error:nil];
@@ -201,11 +193,10 @@ static CoreDataUtility *sharedInstance = nil;
     for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
         
         // Store dashboardEntry attirubutes
-        DashboardEntry *dashboardEntry = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
-        dashboardEntry = [self checkIfEntity:kCoreDataDashboardEntry 
-                                 withIDValue:dashboardEntry.dashboardID 
-                                    forIDKey:@"dashboardID" 
-                             existsInContext:context];
+        DashboardEntry *dashboardEntry = [self checkIfEntity:kCoreDataDashboardEntry 
+                                                 withIDValue:[[resultsArray objectAtIndex:i] valueForKey:@"id"]
+                                                    forIDKey:@"dashboardID" 
+                                             existsInContext:context];
         
         NSString *dashboardID = [NSString testForNullForCoreDataAttribute:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
         [dashboardEntry setValue:dashboardID forKey:@"dashboardID"];
@@ -214,13 +205,13 @@ static CoreDataUtility *sharedInstance = nil;
         [dashboardEntry setValue:timestamp forKey:@"timestamp"];
         
         // Store dashboardEntry.frame attributes
-        Frame *frame = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataFrame inManagedObjectContext:context];
-        frame = [self checkIfEntity:kCoreDataFrame 
-                                 withIDValue:frame.frameID 
-                                    forIDKey:@"frameID" 
-                             existsInContext:context];
+        NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];        
+        Frame *frame = [self checkIfEntity:kCoreDataFrame 
+                        withIDValue:[frameArray valueForKey:@"id"]
+                           forIDKey:@"frameID" 
+                    existsInContext:context];
         dashboardEntry.frame = frame;
-        NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];
+        
         [self storeFrame:frame fromFrameArray:frameArray inContext:context];
         
     }
