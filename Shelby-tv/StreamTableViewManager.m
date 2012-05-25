@@ -72,6 +72,8 @@
         // Do nothing for nil state
     }
     
+        NSLog(@"%@", message);
+    
     // Asychronous download of user image/icon
     if ( dashboardEntry.frame.user.userImage ) {
         

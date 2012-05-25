@@ -146,16 +146,16 @@ static CoreDataUtility *sharedInstance = nil;
     if ( context ) {
         
         if(![context save:&error]) {
-            NSLog(@"Failed to save to data store: %@", [error localizedDescription]);
-            NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
-            if(detailedErrors != nil && [detailedErrors count] > 0) {
-                for(NSError* detailedError in detailedErrors) {
-                    NSLog(@"  DetailedError: %@", [detailedError userInfo]);
-                }
-            }
-            else {
-                NSLog(@"  %@", [error userInfo]);
-            }
+//            NSLog(@"Failed to save to data store: %@", [error localizedDescription]);
+//            NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+//            if(detailedErrors != nil && [detailedErrors count] > 0) {
+//                for(NSError* detailedError in detailedErrors) {
+//                    NSLog(@"  DetailedError: %@", [detailedError userInfo]);
+//                }
+//            }
+//            else {
+//                NSLog(@"  %@", [error userInfo]);
+//            }
         } else {
             NSLog(@"Core Data Updated!");
         }
@@ -178,7 +178,7 @@ static CoreDataUtility *sharedInstance = nil;
     [request setEntity:description];
     
     // Only include objects that exist (i.e. entityIDKey and entityIDValue's must exist)
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@=%@", entityIDKey, entityIDValue];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", entityIDKey, entityIDValue];
     [request setPredicate:predicate];    
     
     // Execute request that returns array of dashboardEntrys
@@ -319,6 +319,9 @@ static CoreDataUtility *sharedInstance = nil;
                               forIDKey:@"messageID" 
                        existsInContext:context];
         
+        conversation.messages = [NSSet setWithObject:messages];
+        [conversation addMessagesObject:messages];
+        
         // Hold reference to parent conversationID
         [messages setValue:conversation.conversationID forKey:@"conversationID"];
         
@@ -342,10 +345,9 @@ static CoreDataUtility *sharedInstance = nil;
 
         NSString *userImageURL = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"user_image_url"]];
         [messages setValue:userImageURL forKey:@"userImageURL"];  
-        
-        [conversation addMessagesObject:messages];
     
     }
+
 }
 
 + (void)storeRoll:(Roll *)roll fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
