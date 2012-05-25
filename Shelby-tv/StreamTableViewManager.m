@@ -45,9 +45,12 @@
     NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
     DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryData:context forRow:row];
     
+    // Populate roll label
+    [cell.rollLabel setText:dashboardEntry.frame.roll.title];
+    
     // Populate nickname label
     [cell.nicknameLabel setText:dashboardEntry.frame.user.nickname];
-
+    
     // Fetch messages specific to dashboardEntry
     Messages *message = [CoreDataUtility fetchFirstMessageFromConversation:dashboardEntry.frame.conversation inContext:context];
     
@@ -77,16 +80,13 @@
         
         [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.user.userImage forImageView:cell.userImageView withPlaceholderView:nil];
     
-    } else if ( message.userImageURL ) {
+    } else if ( message.userImageURL ) {    // Use this image (which is never nil) until Spinosa addresses issue.
         
         [AsynchronousFreeloader loadImageFromLink:message.userImageURL forImageView:cell.userImageView withPlaceholderView:nil];
     }
 
-    
     // Asynchronous download of video thumbnail
     [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
-
-    NSLog(@"%d: %@", row, dashboardEntry.frame);
     
 }
 
@@ -135,6 +135,7 @@
 {
     return 1;
 }
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -22,6 +22,7 @@
 @synthesize rollButton = _rollButton;
 @synthesize shareButton = _shareButton;
 @synthesize nicknameLabel = _nicknameLabel;
+@synthesize rollLabel = _rollLabel;
 @synthesize createdAtLabel = _createdAtLabel;
 @synthesize favoriteLabel = _favoriteLabel;
 @synthesize commentsLabel = _commentsLabell;
@@ -37,6 +38,7 @@
     self.rollButton = nil;
     self.shareButton = nil;
     self.nicknameLabel = nil;
+    self.rollLabel = nil;
     self.createdAtLabel = nil;
     self.favoriteLabel = nil;
     self.commentsLabel = nil;
@@ -48,6 +50,7 @@
     
     // Customize Labels (all other label customization in VideCardCell.xib)
     self.nicknameLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:15.0f];
+    self.rollLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f];
     self.createdAtLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f];
     self.favoriteLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:16.0f];
     self.commentsLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:16.0f];
