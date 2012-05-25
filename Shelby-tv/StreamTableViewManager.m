@@ -82,10 +82,11 @@
         [AsynchronousFreeloader loadImageFromLink:message.userImageURL forImageView:cell.userImageView withPlaceholderView:nil];
     }
 
+    
     // Asynchronous download of video thumbnail
     [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
 
-//    NSLog(@"%d: %@ || %@", row,dashboardEntry.dashboardID, dashboardEntry.frame.video.thumbnailURL);
+    NSLog(@"%d: %@", row, dashboardEntry.frame);
     
 }
 
@@ -168,7 +169,7 @@
 #pragma mark - UITableViewDelegate Methods
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
 }
 
 @end

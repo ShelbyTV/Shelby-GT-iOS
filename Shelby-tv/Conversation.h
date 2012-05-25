@@ -2,7 +2,7 @@
 //  Conversation.h
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 5/24/12.
+//  Created by Arthur Ariel Sabintsev on 5/25/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
@@ -14,12 +14,16 @@
 @interface Conversation : NSManagedObject
 
 @property (nonatomic, retain) NSString * conversationID;
-@property (nonatomic, retain) Frame *frame;
+@property (nonatomic, retain) NSSet *frame;
 @property (nonatomic, retain) NSSet *messages;
-
 @end
 
 @interface Conversation (CoreDataGeneratedAccessors)
+
+- (void)addFrameObject:(Frame *)value;
+- (void)removeFrameObject:(Frame *)value;
+- (void)addFrame:(NSSet *)values;
+- (void)removeFrame:(NSSet *)values;
 
 - (void)addMessagesObject:(Messages *)value;
 - (void)removeMessagesObject:(Messages *)value;

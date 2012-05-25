@@ -262,6 +262,7 @@ static CoreDataUtility *sharedInstance = nil;
                        forIDKey:@"conversationID" 
                 existsInContext:context];
     frame.conversation = conversation;
+    [conversation addFrameObject:frame];
     [self storeConversation:conversation fromFrameArray:frameArray inContext:context];
     
     // Store dashboard.frame.roll attributes
@@ -271,6 +272,7 @@ static CoreDataUtility *sharedInstance = nil;
                                 forIDKey:@"rollID" 
                          existsInContext:context];
         frame.roll = roll;
+        [roll addFrameObject:frame];
         [self storeRoll:roll fromFrameArray:frameArray inContext:context];
     }
 
@@ -280,6 +282,7 @@ static CoreDataUtility *sharedInstance = nil;
                             forIDKey:@"userID" 
                      existsInContext:context];
     frame.user = user;
+    [user addFrameObject:frame];
     [self storeUser:user fromFrameArray:frameArray inContext:context];
     
     // Store dashboard.frame.video attributes
@@ -287,7 +290,9 @@ static CoreDataUtility *sharedInstance = nil;
                            withIDValue:videoID
                               forIDKey:@"videoID" 
                        existsInContext:context];
+    
     frame.video = video;
+    [video addFrameObject:frame];
     [self storeVideo:video fromFrameArray:frameArray inContext:context];
 
 }
@@ -320,7 +325,6 @@ static CoreDataUtility *sharedInstance = nil;
                               forIDKey:@"messageID" 
                        existsInContext:context];
         
-        conversation.messages = [NSSet setWithObject:messages];
         [conversation addMessagesObject:messages];
         
         // Hold reference to parent conversationID
@@ -397,10 +401,9 @@ static CoreDataUtility *sharedInstance = nil;
     NSString *thumbnailURL = [NSString testForNull:[videoArray valueForKey:@"thumbnail_url"]];
     [video setValue:thumbnailURL forKey:@"thumbnailURL"];
     
-    NSLog(@"%@, %@", video.videoID, thumbnailURL);
-    
     NSString *title = [NSString testForNull:[videoArray valueForKey:@"title"]];
     [video setValue:title forKey:@"title"];
+    
 }
 
 #pragma mark - Accessor Methods
