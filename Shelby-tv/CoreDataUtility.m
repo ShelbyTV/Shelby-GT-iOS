@@ -156,7 +156,9 @@ static CoreDataUtility *sharedInstance = nil;
 //            else {
 //                NSLog(@"  %@", [error userInfo]);
 //            }
+            
         } else {
+            
             NSLog(@"Core Data Updated!");
         }
         
@@ -186,11 +188,11 @@ static CoreDataUtility *sharedInstance = nil;
 
     if ( [array count] ) {
         
-        NSLog(@"%@ = %@ DOES EXIST", entityIDKey, entityIDValue);
+//        NSLog(@"%@ = %@ DOES EXIST", entityIDKey, entityIDValue);
         return [array objectAtIndex:0];
     }
     
-    NSLog(@"%@ = %@ DOES NOT EXIST", entityIDKey, entityIDValue);
+//    NSLog(@"%@ = %@ DOES NOT EXIST", entityIDKey, entityIDValue);
     return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
 }
 
@@ -227,7 +229,6 @@ static CoreDataUtility *sharedInstance = nil;
     }
     
     // Commity unsaved data in context
-    NSLog(@"\n-----------------\n-----------------\n-----------------\n");
     [self saveContext:context];
 
     
@@ -381,7 +382,7 @@ static CoreDataUtility *sharedInstance = nil;
 {
     NSArray *videoArray = [frameArray valueForKey:@"video"];
     
-    NSString *videoID = [NSString testForNull:[videoArray valueForKey:@"video_id"]];
+    NSString *videoID = [NSString testForNull:[videoArray valueForKey:@"id"]];
     [video setValue:videoID forKey:@"videoID"];
     
     NSString *caption = [NSString testForNull:[videoArray valueForKey:@"description"]];
@@ -395,6 +396,8 @@ static CoreDataUtility *sharedInstance = nil;
     
     NSString *thumbnailURL = [NSString testForNull:[videoArray valueForKey:@"thumbnail_url"]];
     [video setValue:thumbnailURL forKey:@"thumbnailURL"];
+    
+    NSLog(@"%@, %@", video.videoID, thumbnailURL);
     
     NSString *title = [NSString testForNull:[videoArray valueForKey:@"title"]];
     [video setValue:title forKey:@"title"];

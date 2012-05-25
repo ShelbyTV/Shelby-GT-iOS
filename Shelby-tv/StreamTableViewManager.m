@@ -72,17 +72,21 @@
         // Do nothing for nil state
     }
     
-        NSLog(@"%@", message);
-    
     // Asychronous download of user image/icon
-    if ( dashboardEntry.frame.user.userImage ) {
+    if ( dashboardEntry.frame.user.userImage ) { // Occassionally, this is nil. Dan Spinosa is currently addressing this bug.
         
         [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.user.userImage forImageView:cell.userImageView withPlaceholderView:nil];
+    
+    } else if ( message.userImageURL ) {
+        
+        [AsynchronousFreeloader loadImageFromLink:message.userImageURL forImageView:cell.userImageView withPlaceholderView:nil];
     }
 
     // Asynchronous download of video thumbnail
     [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
 
+//    NSLog(@"%d: %@ || %@", row,dashboardEntry.dashboardID, dashboardEntry.frame.video.thumbnailURL);
+    
 }
 
 #pragma mark - GuideTableViewManagerDelegate Method
