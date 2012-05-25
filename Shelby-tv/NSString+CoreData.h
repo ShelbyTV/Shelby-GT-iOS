@@ -1,5 +1,5 @@
 //
-//  NSString+TestForNullForCoreDataAttribute.h
+//  NSString+TestForNull.h
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 5/16/12.
@@ -10,6 +10,6 @@
 
 @interface NSString (CoreData)
 
-+ (NSString*)testForNullForCoreDataAttribute:(NSString*)string;
++ (NSString*)testForNull:(NSString*)string;
 
 @end

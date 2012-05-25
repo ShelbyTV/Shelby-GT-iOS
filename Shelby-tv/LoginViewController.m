@@ -31,8 +31,7 @@
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:SocialFacadeFacebookAuthorizationStatus object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:SocialFacadeTwitterAuthorizationStatus object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SocialFacadeAuthorizationStatus object:nil];
 }
 
 #pragma mark - View Lifecycle Methods
@@ -51,8 +50,7 @@
     
     // Check if user has authorized Facebook or Twitter with Shelby
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self facebookAuthorizationStatus];
-        [self twitterAuthorizationStatus];
+        [self authorizationStatus];
     });
     
 }
@@ -72,14 +70,8 @@
     
     // Create Observer for facebookAuthorizationStatus
     [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(facebookAuthorizationStatus) 
-                                                 name:SocialFacadeFacebookAuthorizationStatus 
-                                               object:nil];
-    
-    // Create Observer for twitterAuthorizationStatus
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(twitterAuthorizationStatus) 
-                                                 name:SocialFacadeTwitterAuthorizationStatus 
+                                             selector:@selector(authorizationStatus) 
+                                                 name:SocialFacadeAuthorizationStatus 
                                                object:nil];
     
 }
@@ -96,23 +88,10 @@
 }
 
 #pragma mark - SocialFacadeDelegate Methods
--(void)facebookAuthorizationStatus
+- (void)authorizationStatus
 {
     
-    if ( [self.socialFacade facebookAuthorized] ) {
-        
-        [self dismissViewControllerAnimated:YES completion:nil]; 
-        
-    } else {
-        
-        
-    }
-}
-
-- (void)twitterAuthorizationStatus
-{
-    
-    if ( [self.socialFacade twitterAuthorized] ) {
+    if ( [self.socialFacade shelbyAuthorized] ) {
         
         [self dismissViewControllerAnimated:YES completion:nil];
         

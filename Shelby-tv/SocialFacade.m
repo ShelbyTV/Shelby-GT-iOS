@@ -20,18 +20,18 @@
 #define         SocialFacadeTwitterConsumerSecret           @"Tlb35nblFFTZRidpu36Uo3z9mfcvSVv1MuZZ19SHaU"
 
 /// Facebook Macros ///
-#define         SocialFacadeFacebookAuthorized              @"SocialFacadeFacebookAuthorized"
 #define         SocialFacadeFacebookName                    @"SocialFacadeFacebookName"
 #define         SocialFacadeFacebookID                      @"SocialFacadeFacebookID"
 
 /// Twitter Macros ///
-#define         SocialFacadeTwitterAuthorized               @"SocialFacadeFacebookAuthorized"
 #define         SocialFacadeTwitterName                     @"SocialFacadeTwitterName"
 #define         SocialFacadeTwitterID                       @"SocialFacadeTwitterID"
 
 /// Miscellaenous Macros ///
-static SocialFacade *sharedInstance = nil;
 #define         SocialFacadePreviouslyLaunched              @"SocialFacadePreviouslyLaunched"
+#define         SocialFacadeShelbyAuthorized                @"SocialFacadeShelbyAuthorized"
+
+static SocialFacade *sharedInstance = nil;
 
 #pragma mark - Private Declarations
 @interface SocialFacade () 
@@ -87,6 +87,7 @@ UIPickerViewDelegate
 @end
 
 @implementation SocialFacade
+@synthesize shelbyAuthorized = _shelbyAuthorized;
 @synthesize facebook = _facebook;
 @synthesize socialRequestType = _socialRequestType;
 @synthesize loginViewController = _loginViewController;
@@ -118,13 +119,14 @@ UIPickerViewDelegate
             // Set to YES, so this condition is never again satisfied
             self.previouslyLaunched = YES;
             
+            // Set Shelby-specific NSUserDefaults to 'nil on first launch
+            self.shelbyAuthorized = NO;
+            
             // Set Facebook NSUserDefaults to 'nil' on first launch
-            self.facebookAuthorized = NO;
             self.facebookName = nil;
             self.facebookID = nil;
             
             // Set Twitter NSUserDefaults to 'nil' on first launch
-            self.twitterAuthorized = NO;
             
         }
         
@@ -235,11 +237,11 @@ UIPickerViewDelegate
         [defaults synchronize];
     }
     
+    self.shelbyAuthorized = NO;
+    
     [self resetFacebookUserDefaults];
     
-    self.facebookAuthorized = NO;
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeFacebookAuthorizationStatus object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
     
 }
 
@@ -272,9 +274,9 @@ UIPickerViewDelegate
     
     // These actions should be performed after token swap
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.facebookAuthorized = YES;
+        self.shelbyAuthorized = YES;
         [self.loginViewController dismissModalViewControllerAnimated:YES];
-        [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeFacebookAuthorizationStatus object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
     });
 }
 
@@ -289,7 +291,7 @@ UIPickerViewDelegate
         NSString *facebookID = [dictionary objectForKey:@"id"];
         [self setFacebookName:facebookName];
         [self setFacebookID:facebookID];
-        [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeFacebookAuthorizationStatus object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
         
     } 
     
@@ -325,9 +327,9 @@ UIPickerViewDelegate
 
 - (void)twitterLogout
 {
-    self.twitterAuthorized = NO;
+    self.shelbyAuthorized = NO;
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeFacebookAuthorizationStatus object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
 }
 
 - (void)checkForExistingTwitterAccounts
@@ -600,9 +602,9 @@ UIPickerViewDelegate
     
     // These actions should be performed after token swap
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.twitterAuthorized = YES;
+        self.shelbyAuthorized = YES;
         [self.loginViewController dismissModalViewControllerAnimated:YES];
-        [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeTwitterAuthorizationStatus object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
     });
     
 }
@@ -715,18 +717,18 @@ UIPickerViewDelegate
     return [[NSUserDefaults standardUserDefaults] boolForKey:SocialFacadePreviouslyLaunched];
 }
 
-/// Facebook Authorization Flag /// 
-- (void)setFacebookAuthorized:(BOOL)facebookAuthorized
+/// Shelby Authorization Flag /// 
+- (void)setShelbyAuthorized:(BOOL)shelbyAuthorized
 {
-    
-    [[NSUserDefaults standardUserDefaults] setBool:facebookAuthorized forKey:SocialFacadeFacebookAuthorized];
+    [[NSUserDefaults standardUserDefaults] setBool:shelbyAuthorized forKey:SocialFacadeShelbyAuthorized];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (BOOL)facebookAuthorized 
+- (BOOL)shelbyAuthorized
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:SocialFacadeFacebookAuthorized];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:SocialFacadeShelbyAuthorized];
 }
+
 
 /// Facebook Name /// 
 - (void)setFacebookName:(NSString *)facebookName
@@ -752,18 +754,6 @@ UIPickerViewDelegate
     return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeFacebookID];
 }
 
-/// Twitter Authorization Flag /// 
-- (void)setTwitterAuthorized:(BOOL)twitterAuthorized
-{
-    
-    [[NSUserDefaults standardUserDefaults] setBool:twitterAuthorized forKey:SocialFacadeTwitterAuthorized];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (BOOL)twitterAuthorized 
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:SocialFacadeTwitterAuthorized];
-}
 
 /// Twitter Name /// 
 - (void)setTwitterName:(NSString *)twitterName

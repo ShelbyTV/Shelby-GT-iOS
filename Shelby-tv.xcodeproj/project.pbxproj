@@ -886,7 +886,6 @@
 		8EE5065B155CA90700A04F50 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				8E322736156ED53300167E67 /* Messages.h */,
 				8E322748156ED53300167E67 /* Video.h */,
 				8E322749156ED53300167E67 /* Video.m */,
 				8E322745156ED53300167E67 /* DashboardEntry.h */,
@@ -899,6 +898,7 @@
 				8E32273D156ED53300167E67 /* Roll.m */,
 				8E322739156ED53300167E67 /* Frame.h */,
 				8E32273A156ED53300167E67 /* Frame.m */,
+				8E322736156ED53300167E67 /* Messages.h */,
 				8E322737156ED53300167E67 /* Messages.m */,
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
 			);

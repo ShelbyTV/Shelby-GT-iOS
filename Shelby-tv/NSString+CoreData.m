@@ -1,5 +1,5 @@
 //
-//  NSString+TestForNullForCoreDataAttribute.m
+//  NSString+TestForNull.m
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 5/16/12.
@@ -10,7 +10,7 @@
 
 @implementation NSString (CoreData)
 
-+ (NSString*)testForNullForCoreDataAttribute:(NSString*)string
++ (NSString*)testForNull:(NSString*)string
 {
     return [string isEqual:[NSNull null]] ? nil : string;
 }

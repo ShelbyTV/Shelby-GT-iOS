@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString * conversationID;
 @property (nonatomic, retain) Frame *frame;
 @property (nonatomic, retain) NSSet *messages;
+
 @end
 
 @interface Conversation (CoreDataGeneratedAccessors)

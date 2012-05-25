@@ -208,7 +208,7 @@ static CoreDataUtility *sharedInstance = nil;
                                                     forIDKey:@"dashboardID" 
                                              existsInContext:context];
         
-        NSString *dashboardID = [NSString testForNullForCoreDataAttribute:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
+        NSString *dashboardID = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
         [dashboardEntry setValue:dashboardID forKey:@"dashboardID"];
         
         NSDate *timestamp = [NSDate dataFromBSONstring:dashboardID];
@@ -237,22 +237,22 @@ static CoreDataUtility *sharedInstance = nil;
 {
     
     // Store dashboardEntry.frame attributes
-    NSString *frameID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"id"]];
+    NSString *frameID = [NSString testForNull:[frameArray valueForKey:@"id"]];
     [frame setValue:frameID forKey:@"frameID"];
         
-    NSString *conversationID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"conversation_id"]];
+    NSString *conversationID = [NSString testForNull:[frameArray valueForKey:@"conversation_id"]];
     [frame setValue:conversationID forKey:@"conversationID"];
     
-    NSString *rollID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"roll_id"]];
+    NSString *rollID = [NSString testForNull:[frameArray valueForKey:@"roll_id"]];
     [frame setValue:rollID forKey:@"rollID"];
     
     NSDate *timestamp = [NSDate dataFromBSONstring:frameID];
     [frame setValue:timestamp forKey:@"timestamp"];
     
-    NSString *userID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"creator_id"]];
+    NSString *userID = [NSString testForNull:[frameArray valueForKey:@"creator_id"]];
     [frame setValue:userID forKey:@"userID"];
     
-    NSString *videoID = [NSString testForNullForCoreDataAttribute:[frameArray valueForKey:@"video_id"]];
+    NSString *videoID = [NSString testForNull:[frameArray valueForKey:@"video_id"]];
     [frame setValue:videoID forKey:@"videoID"];
     
     // Store dashboard.frame.conversation attributes
@@ -296,11 +296,11 @@ static CoreDataUtility *sharedInstance = nil;
 
     NSArray *conversationArray = [frameArray valueForKey:@"conversation"];
 
-    NSString *conversationID = [NSString testForNullForCoreDataAttribute:[conversationArray valueForKey:@"id"]];
+    NSString *conversationID = [NSString testForNull:[conversationArray valueForKey:@"id"]];
     [conversation setValue:conversationID forKey:@"conversationID"];
     
     // Store dashboard.frame.conversation.messages attributes
-//    [self storeMessagesFromConversation:conversation withConversationsArray:conversationArray inContext:context];
+    [self storeMessagesFromConversation:conversation withConversationsArray:conversationArray inContext:context];
     
 }
 
@@ -318,44 +318,44 @@ static CoreDataUtility *sharedInstance = nil;
                            withIDValue:[[messagesArray objectAtIndex:i] valueForKey:@"id"]
                               forIDKey:@"messageID" 
                        existsInContext:context];
-        [[conversation mutableSetValueForKey:@"messages"] addObject:messages];
         
         // Hold reference to parent conversationID
         [messages setValue:conversation.conversationID forKey:@"conversationID"];
         
-        NSString *messageID = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i] valueForKey:@"id"]];
+        NSString *messageID = [NSString testForNull:[[messagesArray objectAtIndex:i] valueForKey:@"id"]];
         [messages setValue:messageID forKey:@"messageID"];
         
-        NSString *createdAt = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i]  valueForKey:@"created_at"]];
+        NSString *createdAt = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"created_at"]];
         [messages setValue:createdAt forKey:@"createdAt"];
 
-        NSString *nickname = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i]  valueForKey:@"nickname"]];
+        NSString *nickname = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"nickname"]];
         [messages setValue:nickname forKey:@"nickname"];  
 
-        NSString *originNetwork = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i] valueForKey:@"origin_network"]];
+        NSString *originNetwork = [NSString testForNull:[[messagesArray objectAtIndex:i] valueForKey:@"origin_network"]];
         [messages setValue:originNetwork forKey:@"originNetwork"];  
 
         NSDate *timestamp = [NSDate dataFromBSONstring:messageID];
         [messages setValue:timestamp forKey:@"timestamp"];  
         
-        NSString *text = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i]  valueForKey:@"text"]];
+        NSString *text = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"text"]];
         [messages setValue:text forKey:@"text"];  
 
-        NSString *userImageURL = [NSString testForNullForCoreDataAttribute:[[messagesArray objectAtIndex:i]  valueForKey:@"user_image_url"]];
+        NSString *userImageURL = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"user_image_url"]];
         [messages setValue:userImageURL forKey:@"userImageURL"];  
         
-    }
+        [conversation addMessagesObject:messages];
     
+    }
 }
 
 + (void)storeRoll:(Roll *)roll fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
 {
     NSArray *rollArray = [frameArray valueForKey:@"roll"];
     
-    NSString *rollID = [NSString testForNullForCoreDataAttribute:[rollArray valueForKey:@"id"]];
+    NSString *rollID = [NSString testForNull:[rollArray valueForKey:@"id"]];
     [roll setValue:rollID forKey:@"rollID"];
     
-    NSString *title = [NSString testForNullForCoreDataAttribute:[rollArray valueForKey:@"title"]];
+    NSString *title = [NSString testForNull:[rollArray valueForKey:@"title"]];
     [roll setValue:title forKey:@"title"];
 }
 
@@ -364,13 +364,13 @@ static CoreDataUtility *sharedInstance = nil;
     
     NSArray *userArray = [frameArray valueForKey:@"creator"];
     
-    NSString *userID = [NSString testForNullForCoreDataAttribute:[userArray valueForKey:@"id"]];
+    NSString *userID = [NSString testForNull:[userArray valueForKey:@"id"]];
     [user setValue:userID forKey:@"userID"];
     
-    NSString *nickname = [NSString testForNullForCoreDataAttribute:[userArray valueForKey:@"nickname"]];
+    NSString *nickname = [NSString testForNull:[userArray valueForKey:@"nickname"]];
     [user setValue:nickname forKey:@"nickname"];
     
-    NSString *userImage = [NSString testForNullForCoreDataAttribute:[userArray valueForKey:@"user_image"]];
+    NSString *userImage = [NSString testForNull:[userArray valueForKey:@"user_image"]];
     [user setValue:userImage forKey:@"userImage"];
 
 }
@@ -379,22 +379,22 @@ static CoreDataUtility *sharedInstance = nil;
 {
     NSArray *videoArray = [frameArray valueForKey:@"video"];
     
-    NSString *videoID = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"video_id"]];
+    NSString *videoID = [NSString testForNull:[videoArray valueForKey:@"video_id"]];
     [video setValue:videoID forKey:@"videoID"];
     
-    NSString *caption = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"description"]];
+    NSString *caption = [NSString testForNull:[videoArray valueForKey:@"description"]];
     [video setValue:caption forKey:@"caption"];
     
-    NSString *providerName = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"provider_name"] ];
+    NSString *providerName = [NSString testForNull:[videoArray valueForKey:@"provider_name"] ];
     [video setValue:providerName forKey:@"providerName"];
     
-    NSString *sourceURL = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"source_url"]];
+    NSString *sourceURL = [NSString testForNull:[videoArray valueForKey:@"source_url"]];
     [video setValue:sourceURL forKey:@"sourceURL"];
     
-    NSString *thumbnailURL = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"thumbnail_url"]];
+    NSString *thumbnailURL = [NSString testForNull:[videoArray valueForKey:@"thumbnail_url"]];
     [video setValue:thumbnailURL forKey:@"thumbnailURL"];
     
-    NSString *title = [NSString testForNullForCoreDataAttribute:[videoArray valueForKey:@"title"]];
+    NSString *title = [NSString testForNull:[videoArray valueForKey:@"title"]];
     [video setValue:title forKey:@"title"];
 }
 

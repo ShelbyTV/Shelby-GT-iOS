@@ -7,6 +7,7 @@
 //
 
 #import "GuideTableViewController.h"
+#import "SocialFacade.h"
 
 @interface GuideTableViewController ()
 
@@ -44,7 +45,7 @@
         self.refreshDelegate = (id)self.guideTableViewManager;
         
         // Perform initial API Request
-        [self.guideTableViewManager performAPIRequestForTableView:self.tableView];
+//        [self.guideTableViewManager performAPIRequestForTableView:self.tableView];
         
     }
     
@@ -61,12 +62,14 @@
 {
     
     [super viewDidLoad];
-    
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if ( [[SocialFacade sharedInstance] shelbyAuthorized] ) [self.guideTableViewManager performAPIRequestForTableView:self.tableView];
     
     [self customizeOnViewAppear];
 }
