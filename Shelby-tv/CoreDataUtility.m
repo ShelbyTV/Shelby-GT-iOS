@@ -90,7 +90,7 @@ static CoreDataUtility *sharedInstance = nil;
         
 }
 
-+ (DashboardEntry*)fetchDashboardEntryData:(NSManagedObjectContext *)context forRow:(NSUInteger)row
++ (DashboardEntry*)fetchDashboardEntryDataForRow:(NSUInteger)row
 {
  
     // Create fetch request
@@ -98,6 +98,7 @@ static CoreDataUtility *sharedInstance = nil;
     [dashboardEntryRequest setReturnsObjectsAsFaults:NO];
 
     // Fetch dashboardEntry data
+    NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext]; 
     NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:kCoreDataEntityDashboardEntry inManagedObjectContext:context];
     [dashboardEntryRequest setEntity:dashboardEntryDescription];
     
@@ -113,7 +114,7 @@ static CoreDataUtility *sharedInstance = nil;
 
 }
 
-+ (Messages*)fetchFirstMessageFromConversation:(Conversation *)conversation inContext:(NSManagedObjectContext *)context
++ (Messages*)fetchFirstMessageFromConversation:(Conversation *)conversation
 {
     
     // Create fetch request
@@ -121,6 +122,7 @@ static CoreDataUtility *sharedInstance = nil;
     [messagesRequest setReturnsObjectsAsFaults:NO];
     
     // Fetch messages data
+    NSManagedObjectContext *context = conversation.managedObjectContext;
     NSEntityDescription *messagesDescription = [NSEntityDescription entityForName:kCoreDataEntityMessages inManagedObjectContext:context];
     [messagesRequest setEntity:messagesDescription];
     

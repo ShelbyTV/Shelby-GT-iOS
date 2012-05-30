@@ -22,9 +22,9 @@
                 ForType:(APIRequestType)requestType;
 
 /** Fetch dashboardEntry information stored in Core Data */
-+ (DashboardEntry*)fetchDashboardEntryData:(NSManagedObjectContext*)context forRow:(NSUInteger)row;
++ (DashboardEntry*)fetchDashboardEntryDataForRow:(NSUInteger)row;
 
-+ (Messages*)fetchFirstMessageFromConversation:(Conversation*)conversation inContext:(NSManagedObjectContext*)context;
++ (Messages*)fetchFirstMessageFromConversation:(Conversation*)conversation;
 
 /** 
  Commit unsaved changes for a given NSManagedObjextContext instance 

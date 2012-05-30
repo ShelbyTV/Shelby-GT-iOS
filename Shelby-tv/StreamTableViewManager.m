@@ -42,8 +42,7 @@
 - (void)populateTableViewCell:(VideoCardCell *)cell withContentForRow:(NSInteger)row
 {
     // Fetch date stored in Core Data
-    NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
-    DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryData:context forRow:row];
+    DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForRow:row];
     
     // Populate roll label
     [cell.rollLabel setText:dashboardEntry.frame.roll.title];
@@ -52,7 +51,7 @@
     [cell.nicknameLabel setText:dashboardEntry.frame.user.nickname];
     
     // Fetch messages specific to dashboardEntry
-    Messages *message = [CoreDataUtility fetchFirstMessageFromConversation:dashboardEntry.frame.conversation inContext:context];
+    Messages *message = [CoreDataUtility fetchFirstMessageFromConversation:dashboardEntry.frame.conversation];
     
     // Populate createdAt label
     [cell.createdAtLabel setText:message.createdAt];
