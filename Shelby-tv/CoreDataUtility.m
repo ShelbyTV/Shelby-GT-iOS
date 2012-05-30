@@ -27,22 +27,22 @@
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
 
 // Store dashbaordEntry.frame data in Core Data
-+ (void)storeFrame:(Frame*)frame fromFrameArray:(NSArray*)frameArray inContext:(NSManagedObjectContext*)context;
++ (void)storeFrame:(Frame*)frame fromFrameArray:(NSArray*)frameArray;
 
 // Store dashboard.frame.conversations data in Core Data
-+ (void)storeConversation:(Conversation*)conversation fromFrameArray:(NSArray*)frameArray inContext:(NSManagedObjectContext*)context;
++ (void)storeConversation:(Conversation*)conversation fromFrameArray:(NSArray*)frameArray;
 
 // Store dashboard.frame.conversations.messages data in Core Data
-+ (void)storeMessagesFromConversation:(Conversation*)conversation withConversationsArray:(NSArray*)conversationsArray inContext:(NSManagedObjectContext*)context;
++ (void)storeMessagesFromConversation:(Conversation*)conversation withConversationsArray:(NSArray*)conversationsArray;
 
 // Store roll data in Core Data
-+ (void)storeRoll:(Roll*)roll fromFrameArray:(NSArray*)frameArray inContext:(NSManagedObjectContext*)context;
++ (void)storeRoll:(Roll*)roll fromFrameArray:(NSArray*)frameArray;
 
 // Store dashboard.frame.user data in Core Data
-+ (void)storeUser:(User*)user fromFrameArray:(NSArray*)frameArray inContext:(NSManagedObjectContext*)context;
++ (void)storeUser:(User*)user fromFrameArray:(NSArray*)frameArray;
 
 // Store dashboard.frame.video data in Core Data
-+ (void)storeVideo:(Video*)video fromFrameArray:(NSArray*)frameArray inContext:(NSManagedObjectContext*)context;
++ (void)storeVideo:(Video*)video fromFrameArray:(NSArray*)frameArray;
 
 @end
 
@@ -148,6 +148,7 @@ static CoreDataUtility *sharedInstance = nil;
     if ( context ) {
         
         if(![context save:&error]) {
+
 //            NSLog(@"Failed to save to data store: %@", [error localizedDescription]);
 //            NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
 //            if(detailedErrors != nil && [detailedErrors count] > 0) {
@@ -226,7 +227,7 @@ static CoreDataUtility *sharedInstance = nil;
                     existsInContext:context];
         dashboardEntry.frame = frame;
         
-        [self storeFrame:frame fromFrameArray:frameArray inContext:context];
+        [self storeFrame:frame fromFrameArray:frameArray];
         
     }
     
@@ -236,7 +237,7 @@ static CoreDataUtility *sharedInstance = nil;
     
 }
 
-+ (void)storeFrame:(Frame *)frame fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
++ (void)storeFrame:(Frame *)frame fromFrameArray:(NSArray *)frameArray
 {
     
     // Store dashboardEntry.frame attributes
@@ -259,13 +260,14 @@ static CoreDataUtility *sharedInstance = nil;
     [frame setValue:videoID forKey:kCoreDataFrameVideoID ];
     
     // Store dashboard.frame.conversation attributes
+    NSManagedObjectContext *context = frame.managedObjectContext;
     Conversation *conversation = [self checkIfEntity:kCoreDataEntityConversation 
                     withIDValue:conversationID
                        forIDKey:kCoreDataFrameConversationID
                 existsInContext:context];
     frame.conversation = conversation;
     [conversation addFrameObject:frame];
-    [self storeConversation:conversation fromFrameArray:frameArray inContext:context];
+    [self storeConversation:conversation fromFrameArray:frameArray];
     
     // Store dashboard.frame.roll attributes
     if ( rollID ) {
@@ -275,7 +277,7 @@ static CoreDataUtility *sharedInstance = nil;
                          existsInContext:context];
         frame.roll = roll;
         [roll addFrameObject:frame];
-        [self storeRoll:roll fromFrameArray:frameArray inContext:context];
+        [self storeRoll:roll fromFrameArray:frameArray];
     }
 
     // Store dashboard.frame.user attributes
@@ -285,7 +287,7 @@ static CoreDataUtility *sharedInstance = nil;
                      existsInContext:context];
     frame.user = user;
     [user addFrameObject:frame];
-    [self storeUser:user fromFrameArray:frameArray inContext:context];
+    [self storeUser:user fromFrameArray:frameArray ];
     
     // Store dashboard.frame.video attributes
     Video *video = [self checkIfEntity:kCoreDataEntityVideo 
@@ -295,11 +297,11 @@ static CoreDataUtility *sharedInstance = nil;
     
     frame.video = video;
     [video addFrameObject:frame];
-    [self storeVideo:video fromFrameArray:frameArray inContext:context];
+    [self storeVideo:video fromFrameArray:frameArray];
 
 }
 
-+ (void)storeConversation:(Conversation *)conversation fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
++ (void)storeConversation:(Conversation *)conversation fromFrameArray:(NSArray *)frameArray
 {
 
     NSArray *conversationArray = [frameArray valueForKey:@"conversation"];
@@ -308,19 +310,18 @@ static CoreDataUtility *sharedInstance = nil;
     [conversation setValue:conversationID forKey:kCoreDataConversationID];
     
     // Store dashboard.frame.conversation.messages attributes
-    [self storeMessagesFromConversation:conversation withConversationsArray:conversationArray inContext:context];
+    [self storeMessagesFromConversation:conversation withConversationsArray:conversationArray];
     
 }
 
-+ (void)storeMessagesFromConversation:(Conversation *)conversation 
-               withConversationsArray:(NSArray *)conversationsArray 
-                            inContext:(NSManagedObjectContext *)context
++ (void)storeMessagesFromConversation:(Conversation *)conversation withConversationsArray:(NSArray *)conversationsArray 
 {
 
     NSArray *messagesArray = [conversationsArray valueForKey:@"messages"];
 
     for (int i = 0; i < [messagesArray count]; i++ ) {
        
+        NSManagedObjectContext *context = conversation.managedObjectContext;
         Messages *messages = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataEntityMessages inManagedObjectContext:context];
         messages = [self checkIfEntity:kCoreDataEntityMessages 
                            withIDValue:[[messagesArray objectAtIndex:i] valueForKey:@"id"]
@@ -357,7 +358,7 @@ static CoreDataUtility *sharedInstance = nil;
 
 }
 
-+ (void)storeRoll:(Roll *)roll fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
++ (void)storeRoll:(Roll *)roll fromFrameArray:(NSArray *)frameArray
 {
     NSArray *rollArray = [frameArray valueForKey:@"roll"];
     
@@ -368,7 +369,7 @@ static CoreDataUtility *sharedInstance = nil;
     [roll setValue:title forKey:kCoreDataRollTitle];
 }
 
-+ (void)storeUser:(User *)user fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
++ (void)storeUser:(User *)user fromFrameArray:(NSArray *)frameArray
 {
     
     NSArray *userArray = [frameArray valueForKey:@"creator"];
@@ -384,7 +385,7 @@ static CoreDataUtility *sharedInstance = nil;
 
 }
 
-+ (void)storeVideo:(Video *)video fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
++ (void)storeVideo:(Video *)video fromFrameArray:(NSArray *)frameArray
 {
     NSArray *videoArray = [frameArray valueForKey:@"video"];
     

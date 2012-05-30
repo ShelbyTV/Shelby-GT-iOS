@@ -16,12 +16,16 @@
 @property (strong, nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-/** Store JSON-parsed NSDictionary in Core Data for a specific API Request */
+/** 
+ Store JSON-parsed NSDictionary in Core Data for a specific API Request 
+ */
 + (void)storeParsedData:(NSDictionary*)parsedDictionary
              inCoreData:(NSManagedObjectContext*)context 
                 ForType:(APIRequestType)requestType;
 
-/** Fetch dashboardEntry information stored in Core Data */
+/** 
+ Fetch dashboardEntry information stored in Core Data 
+ */
 + (DashboardEntry*)fetchDashboardEntryDataForRow:(NSUInteger)row;
 
 + (Messages*)fetchFirstMessageFromConversation:(Conversation*)conversation;
@@ -31,7 +35,9 @@
  */
 + (void)saveContext:(NSManagedObjectContext*)context;
 
-/** CoreDataUtility's Singleton Method */
+/** 
+ CoreDataUtility's Singleton Method 
+ */
 + (CoreDataUtility*)sharedInstance;
 
 @end
