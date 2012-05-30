@@ -65,8 +65,8 @@
     // Make RootViewController Visible
     [self.window makeKeyAndVisible];
 
-    // Present LoginViewController for Proper Device, which performs authorization status check
-    [self presentLoginViewController];
+    // Present LoginViewController for Proper Device if Shelby isn't authorized
+   if ( ![[SocialFacade sharedInstance] shelbyAuthorized] ) [self presentLoginViewController];
     
     return YES;
 }
@@ -79,7 +79,8 @@
 -(void)applicationWillTerminate:(UIApplication *)application
 {
     // Save changes to managedObjectContext before shutdown.
-//    [CoreDataUtility saveContext:self.managedObjectContext];
+    if ( DEBUGMODE ) NSLog(@"Saving updates to Core Data before Shutdown");
+    [CoreDataUtility saveContext:[CoreDataUtility sharedInstance].managedObjectContext];
 }
 
 #pragma mark - Creation Methods
