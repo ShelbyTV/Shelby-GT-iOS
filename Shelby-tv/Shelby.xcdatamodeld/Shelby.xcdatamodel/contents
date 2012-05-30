@@ -26,7 +26,7 @@
     <entity name="Messages" representedClassName="Messages">
         <attribute name="conversationID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="messageID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="messagesID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="originNetwork" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>

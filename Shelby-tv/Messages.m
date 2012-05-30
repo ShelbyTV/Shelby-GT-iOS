@@ -14,7 +14,7 @@
 
 @dynamic conversationID;
 @dynamic createdAt;
-@dynamic messageID;
+@dynamic messagesID;
 @dynamic nickname;
 @dynamic originNetwork;
 @dynamic text;

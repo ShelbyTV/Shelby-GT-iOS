@@ -98,7 +98,7 @@ static CoreDataUtility *sharedInstance = nil;
     [dashboardEntryRequest setReturnsObjectsAsFaults:NO];
 
     // Fetch dashboardEntry data
-    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:kCoreDataDashboardEntry inManagedObjectContext:context];
+    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:kCoreDataEntityDashboardEntry inManagedObjectContext:context];
     [dashboardEntryRequest setEntity:dashboardEntryDescription];
     
     // Sort by timestamp
@@ -121,7 +121,7 @@ static CoreDataUtility *sharedInstance = nil;
     [messagesRequest setReturnsObjectsAsFaults:NO];
     
     // Fetch messages data
-    NSEntityDescription *messagesDescription = [NSEntityDescription entityForName:kCoreDataMessages inManagedObjectContext:context];
+    NSEntityDescription *messagesDescription = [NSEntityDescription entityForName:kCoreDataEntityMessages inManagedObjectContext:context];
     [messagesRequest setEntity:messagesDescription];
     
     // Only include messages that belond to this specific conversation
@@ -205,22 +205,22 @@ static CoreDataUtility *sharedInstance = nil;
     for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
         
         // Store dashboardEntry attirubutes
-        DashboardEntry *dashboardEntry = [self checkIfEntity:kCoreDataDashboardEntry 
+        DashboardEntry *dashboardEntry = [self checkIfEntity:kCoreDataEntityDashboardEntry 
                                                  withIDValue:[[resultsArray objectAtIndex:i] valueForKey:@"id"]
-                                                    forIDKey:@"dashboardID" 
+                                                    forIDKey:kCoreDataDashboardEntryID 
                                              existsInContext:context];
         
         NSString *dashboardID = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
-        [dashboardEntry setValue:dashboardID forKey:@"dashboardID"];
+        [dashboardEntry setValue:dashboardID forKey:kCoreDataDashboardEntryID];
         
         NSDate *timestamp = [NSDate dataFromBSONstring:dashboardID];
-        [dashboardEntry setValue:timestamp forKey:@"timestamp"];
+        [dashboardEntry setValue:timestamp forKey:kCoreDataDashboardEntryTimestamp];
         
         // Store dashboardEntry.frame attributes
         NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];        
-        Frame *frame = [self checkIfEntity:kCoreDataFrame 
+        Frame *frame = [self checkIfEntity:kCoreDataEntityFrame
                         withIDValue:[frameArray valueForKey:@"id"]
-                           forIDKey:@"frameID" 
+                           forIDKey:kCoreDataFrameID  
                     existsInContext:context];
         dashboardEntry.frame = frame;
         
@@ -239,27 +239,27 @@ static CoreDataUtility *sharedInstance = nil;
     
     // Store dashboardEntry.frame attributes
     NSString *frameID = [NSString testForNull:[frameArray valueForKey:@"id"]];
-    [frame setValue:frameID forKey:@"frameID"];
+    [frame setValue:frameID forKey:kCoreDataFrameID ];
         
     NSString *conversationID = [NSString testForNull:[frameArray valueForKey:@"conversation_id"]];
-    [frame setValue:conversationID forKey:@"conversationID"];
+    [frame setValue:conversationID forKey:kCoreDataFrameConversationID];
     
     NSString *rollID = [NSString testForNull:[frameArray valueForKey:@"roll_id"]];
-    [frame setValue:rollID forKey:@"rollID"];
+    [frame setValue:rollID forKey:kCoreDataFrameRollID];
     
     NSDate *timestamp = [NSDate dataFromBSONstring:frameID];
-    [frame setValue:timestamp forKey:@"timestamp"];
+    [frame setValue:timestamp forKey:kCoreDataFrameTimestamp];
     
     NSString *userID = [NSString testForNull:[frameArray valueForKey:@"creator_id"]];
-    [frame setValue:userID forKey:@"userID"];
+    [frame setValue:userID forKey:kCoreDataFrameUserID ];
     
     NSString *videoID = [NSString testForNull:[frameArray valueForKey:@"video_id"]];
-    [frame setValue:videoID forKey:@"videoID"];
+    [frame setValue:videoID forKey:kCoreDataFrameVideoID ];
     
     // Store dashboard.frame.conversation attributes
-    Conversation *conversation = [self checkIfEntity:kCoreDataConversation 
+    Conversation *conversation = [self checkIfEntity:kCoreDataEntityConversation 
                     withIDValue:conversationID
-                       forIDKey:@"conversationID" 
+                       forIDKey:kCoreDataFrameConversationID
                 existsInContext:context];
     frame.conversation = conversation;
     [conversation addFrameObject:frame];
@@ -267,9 +267,9 @@ static CoreDataUtility *sharedInstance = nil;
     
     // Store dashboard.frame.roll attributes
     if ( rollID ) {
-        Roll *roll = [self checkIfEntity:kCoreDataRoll 
+        Roll *roll = [self checkIfEntity:kCoreDataEntityRoll 
                              withIDValue:rollID
-                                forIDKey:@"rollID" 
+                                forIDKey:kCoreDataFrameRollID 
                          existsInContext:context];
         frame.roll = roll;
         [roll addFrameObject:frame];
@@ -277,18 +277,18 @@ static CoreDataUtility *sharedInstance = nil;
     }
 
     // Store dashboard.frame.user attributes
-    User *user = [self checkIfEntity:kCoreDataUser 
+    User *user = [self checkIfEntity:kCoreDataEntityUser 
                          withIDValue:userID
-                            forIDKey:@"userID" 
+                            forIDKey:kCoreDataFrameUserID
                      existsInContext:context];
     frame.user = user;
     [user addFrameObject:frame];
     [self storeUser:user fromFrameArray:frameArray inContext:context];
     
     // Store dashboard.frame.video attributes
-    Video *video = [self checkIfEntity:kCoreDataVideo 
+    Video *video = [self checkIfEntity:kCoreDataEntityVideo 
                            withIDValue:videoID
-                              forIDKey:@"videoID" 
+                              forIDKey:kCoreDataFrameVideoID
                        existsInContext:context];
     
     frame.video = video;
@@ -303,7 +303,7 @@ static CoreDataUtility *sharedInstance = nil;
     NSArray *conversationArray = [frameArray valueForKey:@"conversation"];
 
     NSString *conversationID = [NSString testForNull:[conversationArray valueForKey:@"id"]];
-    [conversation setValue:conversationID forKey:@"conversationID"];
+    [conversation setValue:conversationID forKey:kCoreDataConversationID];
     
     // Store dashboard.frame.conversation.messages attributes
     [self storeMessagesFromConversation:conversation withConversationsArray:conversationArray inContext:context];
@@ -319,37 +319,37 @@ static CoreDataUtility *sharedInstance = nil;
 
     for (int i = 0; i < [messagesArray count]; i++ ) {
        
-        Messages *messages = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataMessages inManagedObjectContext:context];
-        messages = [self checkIfEntity:kCoreDataMessages 
+        Messages *messages = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataEntityMessages inManagedObjectContext:context];
+        messages = [self checkIfEntity:kCoreDataEntityMessages 
                            withIDValue:[[messagesArray objectAtIndex:i] valueForKey:@"id"]
-                              forIDKey:@"messageID" 
+                              forIDKey:kCoreDataMessagesID
                        existsInContext:context];
         
         [conversation addMessagesObject:messages];
         
         // Hold reference to parent conversationID
-        [messages setValue:conversation.conversationID forKey:@"conversationID"];
+        [messages setValue:conversation.conversationID forKey:kCoreDataConversationID];
         
         NSString *messageID = [NSString testForNull:[[messagesArray objectAtIndex:i] valueForKey:@"id"]];
-        [messages setValue:messageID forKey:@"messageID"];
+        [messages setValue:messageID forKey:kCoreDataMessagesID];
         
         NSString *createdAt = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"created_at"]];
-        [messages setValue:createdAt forKey:@"createdAt"];
+        [messages setValue:createdAt forKey:kCoreDataMessagesCreatedAt];
 
         NSString *nickname = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"nickname"]];
-        [messages setValue:nickname forKey:@"nickname"];  
+        [messages setValue:nickname forKey:kCoreDataMessagesNickname];  
 
         NSString *originNetwork = [NSString testForNull:[[messagesArray objectAtIndex:i] valueForKey:@"origin_network"]];
-        [messages setValue:originNetwork forKey:@"originNetwork"];  
+        [messages setValue:originNetwork forKey:kCoreDataMessagesOriginNetwork];  
 
         NSDate *timestamp = [NSDate dataFromBSONstring:messageID];
-        [messages setValue:timestamp forKey:@"timestamp"];  
+        [messages setValue:timestamp forKey:kCoreDataMessagesTimestamp];  
         
         NSString *text = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"text"]];
-        [messages setValue:text forKey:@"text"];  
+        [messages setValue:text forKey:kCoreDataMessagesText];  
 
         NSString *userImageURL = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"user_image_url"]];
-        [messages setValue:userImageURL forKey:@"userImageURL"];  
+        [messages setValue:userImageURL forKey:kCoreDataMessagesUserImageURL];  
     
     }
 
@@ -360,10 +360,10 @@ static CoreDataUtility *sharedInstance = nil;
     NSArray *rollArray = [frameArray valueForKey:@"roll"];
     
     NSString *rollID = [NSString testForNull:[rollArray valueForKey:@"id"]];
-    [roll setValue:rollID forKey:@"rollID"];
+    [roll setValue:rollID forKey:kCoreDataRollID];
     
     NSString *title = [NSString testForNull:[rollArray valueForKey:@"title"]];
-    [roll setValue:title forKey:@"title"];
+    [roll setValue:title forKey:kCoreDataRollTitle];
 }
 
 + (void)storeUser:(User *)user fromFrameArray:(NSArray *)frameArray inContext:(NSManagedObjectContext *)context
@@ -372,13 +372,13 @@ static CoreDataUtility *sharedInstance = nil;
     NSArray *userArray = [frameArray valueForKey:@"creator"];
     
     NSString *userID = [NSString testForNull:[userArray valueForKey:@"id"]];
-    [user setValue:userID forKey:@"userID"];
+    [user setValue:userID forKey:kCoreDataUserID];
     
     NSString *nickname = [NSString testForNull:[userArray valueForKey:@"nickname"]];
-    [user setValue:nickname forKey:@"nickname"];
+    [user setValue:nickname forKey:kCoreDataUserNickname];
     
     NSString *userImage = [NSString testForNull:[userArray valueForKey:@"user_image"]];
-    [user setValue:userImage forKey:@"userImage"];
+    [user setValue:userImage forKey:kCoreDataUserImage];
 
 }
 
@@ -387,22 +387,22 @@ static CoreDataUtility *sharedInstance = nil;
     NSArray *videoArray = [frameArray valueForKey:@"video"];
     
     NSString *videoID = [NSString testForNull:[videoArray valueForKey:@"id"]];
-    [video setValue:videoID forKey:@"videoID"];
+    [video setValue:videoID forKey:kCoreDataVideoID];
     
     NSString *caption = [NSString testForNull:[videoArray valueForKey:@"description"]];
-    [video setValue:caption forKey:@"caption"];
+    [video setValue:caption forKey:kCoreDataVideoCaption];
     
     NSString *providerName = [NSString testForNull:[videoArray valueForKey:@"provider_name"] ];
-    [video setValue:providerName forKey:@"providerName"];
+    [video setValue:providerName forKey:kCoreDataVideoProviderName];
     
     NSString *sourceURL = [NSString testForNull:[videoArray valueForKey:@"source_url"]];
-    [video setValue:sourceURL forKey:@"sourceURL"];
+    [video setValue:sourceURL forKey:kCoreDataVideoSourceURL];
     
     NSString *thumbnailURL = [NSString testForNull:[videoArray valueForKey:@"thumbnail_url"]];
-    [video setValue:thumbnailURL forKey:@"thumbnailURL"];
+    [video setValue:thumbnailURL forKey:kCoreDataVideoThumbnailURL];
     
     NSString *title = [NSString testForNull:[videoArray valueForKey:@"title"]];
-    [video setValue:title forKey:@"title"];
+    [video setValue:title forKey:kCoreDataVideoTitle];
     
 }
 

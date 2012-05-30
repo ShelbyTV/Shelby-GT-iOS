@@ -15,7 +15,7 @@
 
 @property (nonatomic, retain) NSString * conversationID;
 @property (nonatomic, retain) NSString * createdAt;
-@property (nonatomic, retain) NSString * messageID;
+@property (nonatomic, retain) NSString * messagesID;
 @property (nonatomic, retain) NSString * nickname;
 @property (nonatomic, retain) NSString * originNetwork;
 @property (nonatomic, retain) NSString * text;
