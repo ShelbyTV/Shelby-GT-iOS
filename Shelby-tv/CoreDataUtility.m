@@ -149,16 +149,16 @@ static CoreDataUtility *sharedInstance = nil;
         
         if(![context save:&error]) {
 
-//            NSLog(@"Failed to save to data store: %@", [error localizedDescription]);
-//            NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
-//            if(detailedErrors != nil && [detailedErrors count] > 0) {
-//                for(NSError* detailedError in detailedErrors) {
-//                    NSLog(@"  DetailedError: %@", [detailedError userInfo]);
-//                }
-//            }
-//            else {
-//                NSLog(@"  %@", [error userInfo]);
-//            }
+            NSLog(@"Failed to save to data store: %@", [error localizedDescription]);
+            NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+            if(detailedErrors != nil && [detailedErrors count] > 0) {
+                for(NSError* detailedError in detailedErrors) {
+                    NSLog(@"  DetailedError: %@", [detailedError userInfo]);
+                }
+            }
+            else {
+                NSLog(@"  %@", [error userInfo]);
+            }
             
         } else {
             
@@ -190,12 +190,9 @@ static CoreDataUtility *sharedInstance = nil;
     NSArray *array = [context executeFetchRequest:request error:nil];
 
     if ( [array count] ) {
-        
-//        NSLog(@"%@ = %@ DOES EXIST", entityIDKey, entityIDValue);
         return [array objectAtIndex:0];
     }
-    
-//    NSLog(@"%@ = %@ DOES NOT EXIST", entityIDKey, entityIDValue);
+
     return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
 }
 
