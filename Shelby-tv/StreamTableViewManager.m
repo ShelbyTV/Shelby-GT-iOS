@@ -175,7 +175,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return ( self.coreDataResultsArray ) ? 10 : 1;
+    return ( self.coreDataResultsArray ) ?  [self.coreDataResultsArray count] : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -203,10 +203,14 @@
             [self populateTableViewCell:cell withContentForRow:indexPath.row];
             
             // Animate cell as data populates
+            
+            CGRect frame = cell.frame;
+            [cell setFrame:CGRectMake(frame.origin.x, -frame.size.height, frame.size.width, frame.size.height)];
             [cell setHidden:NO];
             [cell setAlpha:0.0f];
             [UIView animateWithDuration:0.3 animations:^{
                 [cell setAlpha:1.0f];
+                [cell setFrame:frame];
             }];
         
         }
