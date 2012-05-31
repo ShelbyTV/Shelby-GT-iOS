@@ -14,7 +14,6 @@
 
 @property (assign, nonatomic) BOOL observerCreated;
 
-
 - (void)createAPIObservers;
 - (void)populateTableViewCell:(VideoCardCell*)cell withContentForRow:(NSInteger)row;
 
@@ -23,11 +22,22 @@
 @implementation StreamTableViewManager 
 @synthesize observerCreated = _observerCreated;
 
-
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString apiRequestTypeToString:APIRequestTypeStream] object:nil];
+}
+
+#pragma mark - Initialization
+- (id)init
+{
+    if ( self = [super init] ) {
+        
+        [self loadDataFromCoreData];
+        
+    }
+    
+    return self;
 }
 
 #pragma mark - Private Methods
@@ -46,7 +56,7 @@
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     
         // Fetch date stored in Core Data
-        DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForRow:row];
+        DashboardEntry *dashboardEntry = [self.coreDataResultsArray objectAtIndex:row];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -103,6 +113,15 @@
 }
 
 #pragma mark - GuideTableViewManagerDelegate Method
+- (void)loadDataFromCoreData
+{
+    // Fetch Stream / DashboardEntry Data from Core Data
+    self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
+    
+    // Perform API Request for Stream Data
+    [self performAPIRequestForTableView:self.tableView];
+}
+
 - (void)performAPIRequestForTableView:(UITableView *)tableView
 {
 
@@ -156,7 +175,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return ( self.parsedResultsArray ) ? [self.parsedResultsArray count] : 1;
+    return ( self.coreDataResultsArray ) ? 10 : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -177,18 +196,20 @@
     [cell setHidden:YES];
     
     // Populate UITableView row with content if content exists (CHANGE THIS CONDITION TO BE CORE-DATA DEPENDENT)
-    if ( [self.parsedResultsArray objectAtIndex:indexPath.row] ) {
+    if ( [self.coreDataResultsArray count]  ) {
      
+        if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {
         
-        [self populateTableViewCell:cell withContentForRow:indexPath.row];
+            [self populateTableViewCell:cell withContentForRow:indexPath.row];
+            
+            // Animate cell as data populates
+            [cell setHidden:NO];
+            [cell setAlpha:0.0f];
+            [UIView animateWithDuration:0.3 animations:^{
+                [cell setAlpha:1.0f];
+            }];
         
-        // Animate cell as data populates
-        [cell setHidden:NO];
-        [cell setAlpha:0.0f];
-        [UIView animateWithDuration:0.3 animations:^{
-            [cell setAlpha:1.0f];
-        }];
-        
+        }
     }
     
     return cell;

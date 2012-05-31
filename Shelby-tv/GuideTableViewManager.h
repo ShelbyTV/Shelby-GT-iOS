@@ -20,6 +20,7 @@
 
 @protocol GuideTableViewManagerDelegate <NSObject>
 
+- (void)loadDataFromCoreData;
 - (void)performAPIRequestForTableView:(UITableView*)tableView;;
 - (void)dataReturnedFromAPI:(NSNotification*)notification;
 
@@ -30,6 +31,7 @@
 @property (strong, nonatomic) ASPullToRefreshTableViewController *refreshController;
 @property (strong, nonatomic) UINavigationController *navigationController;
 @property (strong, nonatomic) NSArray *parsedResultsArray;
+@property (strong, nonatomic) NSArray *coreDataResultsArray;
 @property (strong, nonatomic) UITableView *tableView;
 
 @end

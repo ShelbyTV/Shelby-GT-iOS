@@ -23,10 +23,21 @@
              inCoreData:(NSManagedObjectContext*)context 
                 ForType:(APIRequestType)requestType;
 
-/** 
- Fetch dashboardEntry information stored in Core Data 
+/**
+ Fetch all Dashboard Entrys
  */
+
++ (NSArray*)fetchAllDashboardEntries;
+
+/** 
+ Fetch Dashboard Entry information stored in Core Data 
+ */
+
 + (DashboardEntry*)fetchDashboardEntryDataForRow:(NSUInteger)row;
+
+/**
+ Fetch First Message from dashboardEntry.frame.conversation
+ */
 
 + (Messages*)fetchFirstMessageFromConversation:(Conversation*)conversation;
 

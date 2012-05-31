@@ -12,9 +12,15 @@
 @synthesize refreshController = _refreshController;
 @synthesize navigationController = _navigationController;
 @synthesize parsedResultsArray = _parsedResultsArray;
+@synthesize coreDataResultsArray = _coreDataResultsArray;
 @synthesize tableView = _tableView;
 
 #pragma mark - GuideTableViewManagerDelegate methods
+- (void)loadDataFromCoreData
+{
+    // Do nothing in GuideTableViewManager
+}
+
 - (void)performAPIRequestForTableView:(UITableView *)tableView
 {
     // Do nothing in GuideTableViewManager
