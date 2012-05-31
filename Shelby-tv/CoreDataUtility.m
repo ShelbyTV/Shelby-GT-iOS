@@ -316,6 +316,8 @@ static CoreDataUtility *sharedInstance = nil;
 
     NSArray *messagesArray = [conversationsArray valueForKey:@"messages"];
 
+    conversation.messageCount = [NSNumber numberWithInt:[messagesArray count]];
+    
     for (int i = 0; i < [messagesArray count]; i++ ) {
        
         NSManagedObjectContext *context = conversation.managedObjectContext;

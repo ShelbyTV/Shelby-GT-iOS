@@ -14,6 +14,7 @@
 
 @property (assign, nonatomic) BOOL observerCreated;
 
+
 - (void)createAPIObservers;
 - (void)populateTableViewCell:(VideoCardCell*)cell withContentForRow:(NSInteger)row;
 
@@ -21,6 +22,7 @@
 
 @implementation StreamTableViewManager 
 @synthesize observerCreated = _observerCreated;
+
 
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
@@ -41,52 +43,63 @@
 
 - (void)populateTableViewCell:(VideoCardCell *)cell withContentForRow:(NSInteger)row
 {
-    // Fetch date stored in Core Data
-    DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForRow:row];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     
-    // Populate roll label
-    [cell.rollLabel setText:dashboardEntry.frame.roll.title];
-    
-    // Populate nickname label
-    [cell.nicknameLabel setText:dashboardEntry.frame.user.nickname];
-    
-    // Fetch messages specific to dashboardEntry
-    Messages *message = [CoreDataUtility fetchFirstMessageFromConversation:dashboardEntry.frame.conversation];
-    
-    // Populate createdAt label
-    [cell.createdAtLabel setText:message.createdAt];
+        // Fetch date stored in Core Data
+        DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForRow:row];
         
-    // PresentFacebook/Twitter/Tumblr icon for social network source of video
-    if ( [message.originNetwork isEqualToString:@"facebook"] ) {
-    
-        [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampFacebook"]];
-   
-    } else if ( [message.originNetwork isEqualToString:@"twitter"] ) {
-    
-        [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTwitter"]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // Populate roll label
+            [cell.rollLabel setText:dashboardEntry.frame.roll.title];
+            
+            // Populate nickname label
+            [cell.nicknameLabel setText:dashboardEntry.frame.user.nickname];
+            
+            // Populate comments label
+            [cell.commentsLabel setText:[NSString stringWithFormat:@"%@", dashboardEntry.frame.conversation.messageCount]];
         
-    } else if ( [message.originNetwork isEqualToString:@"tumblr"] ) {
-        
-        [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTumblr"]];
-        
-    } else {
-        
-        // Do nothing for nil state
-    }
-    
-    // Asychronous download of user image/icon
-    if ( dashboardEntry.frame.user.userImage ) { // Occassionally, this is nil. Dan Spinosa is currently addressing this bug.
-        
-        [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.user.userImage forImageView:cell.userImageView withPlaceholderView:nil];
-    
-    } else if ( message.userImageURL ) {    // Use this image (which is never nil) until Spinosa addresses issue.
-        
-        [AsynchronousFreeloader loadImageFromLink:message.userImageURL forImageView:cell.userImageView withPlaceholderView:nil];
-    }
+            // Fetch messages specific to dashboardEntry
+            Messages *message = [CoreDataUtility fetchFirstMessageFromConversation:dashboardEntry.frame.conversation];
+            
+            // Populate createdAt label
+            [cell.createdAtLabel setText:message.createdAt];
+                
+            // PresentFacebook/Twitter/Tumblr icon for social network source of video
+            if ( [message.originNetwork isEqualToString:@"facebook"] ) {
+            
+                [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampFacebook"]];
+           
+            } else if ( [message.originNetwork isEqualToString:@"twitter"] ) {
+            
+                [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTwitter"]];
+                
+            } else if ( [message.originNetwork isEqualToString:@"tumblr"] ) {
+                
+                [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTumblr"]];
+                
+            } else {
+                
+                // Do nothing for nil state
+            }
+            
+            // Asychronous download of user image/icon
+            if ( dashboardEntry.frame.user.userImage ) { // Occassionally, this is nil. Dan Spinosa is currently addressing this bug.
+                
+                [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.user.userImage forImageView:cell.userImageView withPlaceholderView:nil];
+            
+            } else if ( message.userImageURL ) {    // Use this image (which is never nil) until Spinosa addresses issue.
+                
+                [AsynchronousFreeloader loadImageFromLink:message.userImageURL forImageView:cell.userImageView withPlaceholderView:nil];
+            }
 
-    // Asynchronous download of video thumbnail
-    [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
+            // Asynchronous download of video thumbnail
+            [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
     
+            });
+                
+        });
+        
 }
 
 #pragma mark - GuideTableViewManagerDelegate Method
@@ -160,8 +173,23 @@
           
     }
 
-    // Populate UITableView row with content
-    if ( [self.parsedResultsArray objectAtIndex:indexPath.row] ) [self populateTableViewCell:cell withContentForRow:indexPath.row];      
+    // Hide cell until it's populated with information
+    [cell setHidden:YES];
+    
+    // Populate UITableView row with content if content exists (CHANGE THIS CONDITION TO BE CORE-DATA DEPENDENT)
+    if ( [self.parsedResultsArray objectAtIndex:indexPath.row] ) {
+     
+        
+        [self populateTableViewCell:cell withContentForRow:indexPath.row];
+        
+        // Animate cell as data populates
+        [cell setHidden:NO];
+        [cell setAlpha:0.0f];
+        [UIView animateWithDuration:0.3 animations:^{
+            [cell setAlpha:1.0f];
+        }];
+        
+    }
     
     return cell;
 }
@@ -170,6 +198,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+
 }
 
 @end
