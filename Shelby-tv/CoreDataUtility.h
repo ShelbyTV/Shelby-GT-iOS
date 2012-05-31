@@ -19,7 +19,7 @@
 /** 
  Store JSON-parsed NSDictionary in Core Data for a specific API Request 
  */
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary
++ (BOOL)storeParsedData:(NSDictionary*)parsedDictionary
              inCoreData:(NSManagedObjectContext*)context 
                 ForType:(APIRequestType)requestType;
 

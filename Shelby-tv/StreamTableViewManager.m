@@ -33,7 +33,11 @@
 {
     if ( self = [super init] ) {
         
-        [self loadDataFromCoreData];
+        // Fetch Stream / DashboardEntry Data from Core Data
+        self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
+        
+        // Perform API Request for Stream Data
+        [self performAPIRequestForTableView:self.tableView];
         
     }
     
@@ -118,8 +122,6 @@
     // Fetch Stream / DashboardEntry Data from Core Data
     self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
     
-    // Perform API Request for Stream Data
-    [self performAPIRequestForTableView:self.tableView];
 }
 
 - (void)performAPIRequestForTableView:(UITableView *)tableView
@@ -144,11 +146,9 @@
 
     // Hide ASPullToRefreshController's HeaderView
     [self.refreshController didFinishRefreshing];
+
+    [self loadDataFromCoreData];
     
-    // Store array from NSNotification, locally
-    NSDictionary *parsedDictionary = notification.userInfo;
-    self.parsedResultsArray = [parsedDictionary objectForKey:kAPIResult];
-        
     // Reload tableView
     [self.tableView reloadData];
 

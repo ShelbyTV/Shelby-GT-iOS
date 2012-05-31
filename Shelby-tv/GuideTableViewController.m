@@ -43,10 +43,7 @@
         // Set Reference to ASPullToRefreshTableViewController
         self.guideTableViewManager.refreshController = self;
         self.refreshDelegate = (id)self.guideTableViewManager;
-        
-        // Perform initial API Request
-        [self.guideTableViewManager performAPIRequestForTableView:self.tableView];  
-        
+
     }
     
     return self;
@@ -68,9 +65,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-//    if ( [[SocialFacade sharedInstance] shelbyAuthorized] ) [self.guideTableViewManager performAPIRequestForTableView:self.tableView];
-    
+
     [self customizeOnViewAppear];
 }
 

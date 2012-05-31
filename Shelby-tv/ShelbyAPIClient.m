@@ -91,11 +91,15 @@
     
     // Store parsedDictionary in Core Data
     NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
-    [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context ForType:self.requestType];
+    BOOL dataStored = [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context ForType:self.requestType];
     
     // Post Notification with Parsed Object
-    NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
-    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:self.parsedDictionary];
+    if ( dataStored ){
+   
+        NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
+        [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:nil];
+
+    }
 }
 
 @end

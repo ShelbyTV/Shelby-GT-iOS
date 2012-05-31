@@ -73,7 +73,7 @@ static CoreDataUtility *sharedInstance = nil;
 }
 
 #pragma mark - Public Methods
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary inCoreData:(NSManagedObjectContext *)context ForType:(APIRequestType)requestType
++ (BOOL)storeParsedData:(NSDictionary *)parsedDictionary inCoreData:(NSManagedObjectContext *)context ForType:(APIRequestType)requestType
 {
     if ( requestType == APIRequestTypeStream ) {
         
@@ -88,6 +88,7 @@ static CoreDataUtility *sharedInstance = nil;
         
     }
         
+    return YES;
 }
 
 + (NSArray*)fetchAllDashboardEntries
