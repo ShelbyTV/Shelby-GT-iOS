@@ -8,6 +8,7 @@
 
 // Macros for API Routes
 #define kAPIRequestStream               @"http://api.gt.shelby.tv/v1/dashboard?auth_token=sF7waBf8jBMqsxeskPp2"
+#define kAPIRequestPostUpVote           @"http://api.gt.shelby.tv/v1/frame/4fc7d7d8d104127e28000ae7/upvote?auth_token=sF7waBf8jBMqsxeskPp2"
 
 // Macros for Parsed Data
 #define kAPIResult                      @"result"

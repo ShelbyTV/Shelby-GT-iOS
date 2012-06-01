@@ -7,6 +7,7 @@
 //
 
 #import "VideoCardCell.h"
+#import "APIConstants.h"
 #import <CoreGraphics/CoreGraphics.h>
 
 @interface VideoCardCell ()
