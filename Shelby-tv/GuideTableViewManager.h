@@ -20,8 +20,9 @@
 
 @protocol GuideTableViewManagerDelegate <NSObject>
 
+- (void)loadDataOnInitializationForTableView:(UITableView*)tableView;
 - (void)loadDataFromCoreData;
-- (void)performAPIRequestForTableView:(UITableView*)tableView;;
+- (void)performAPIRequest;
 - (void)dataReturnedFromAPI:(NSNotification*)notification;
 
 @end
@@ -33,5 +34,6 @@
 @property (strong, nonatomic) NSArray *parsedResultsArray;
 @property (strong, nonatomic) NSArray *coreDataResultsArray;
 @property (strong, nonatomic) UITableView *tableView;
+
 
 @end

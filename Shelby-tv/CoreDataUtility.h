@@ -19,7 +19,7 @@
 /** 
  Store JSON-parsed NSDictionary in Core Data for a specific API Request 
  */
-+ (BOOL)storeParsedData:(NSDictionary*)parsedDictionary
++ (void)storeParsedData:(NSDictionary*)parsedDictionary
              inCoreData:(NSManagedObjectContext*)context 
                 ForType:(APIRequestType)requestType;
 
@@ -33,7 +33,7 @@
  Fetch Dashboard Entry information stored in Core Data 
  */
 
-+ (DashboardEntry*)fetchDashbfraoardEntryDataForRow:(NSUInteger)row;
++ (DashboardEntry*)fetchDashboardEntryDataForRow:(NSUInteger)row;
 
 /**
  Fetch First Message from dashboardEntry.frame.conversation

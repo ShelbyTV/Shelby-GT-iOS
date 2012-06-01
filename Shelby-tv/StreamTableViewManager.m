@@ -15,7 +15,8 @@
 @property (assign, nonatomic) BOOL observerCreated;
 
 - (void)createAPIObservers;
-- (void)populateTableViewCell:(VideoCardCell*)cell withContentForRow:(NSInteger)row;
+- (void)populateTableViewCell:(VideoCardCell*)cell withContentForRow:(NSUInteger)row;
+- (void)animateCell:(VideoCardCell*)cell forRow:(NSUInteger)row;
 
 @end
 
@@ -28,21 +29,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString apiRequestTypeToString:APIRequestTypeStream] object:nil];
 }
 
-#pragma mark - Initialization
-- (id)init
-{
-    if ( self = [super init] ) {
-        
-        // Fetch Stream / DashboardEntry Data from Core Data
-        self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
-        
-        // Perform API Request for Stream Data
-        [self performAPIRequestForTableView:self.tableView];
-        
-    }
-    
-    return self;
-}
 
 #pragma mark - Private Methods
 - (void)createAPIObservers
@@ -55,7 +41,7 @@
     self.observerCreated = YES;
 }
 
-- (void)populateTableViewCell:(VideoCardCell *)cell withContentForRow:(NSInteger)row
+- (void)populateTableViewCell:(VideoCardCell *)cell withContentForRow:(NSUInteger)row
 {
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     
@@ -119,22 +105,49 @@
         
 }
 
+- (void)animateCell:(VideoCardCell *)cell forRow:(NSUInteger)row
+{
+    CGRect frame = cell.frame;
+    ( row%2 ) 
+    ? [cell setFrame:CGRectMake(2*frame.size.width, frame.origin.y, frame.size.width, frame.size.height)] 
+    : [cell setFrame:CGRectMake(-2*frame.size.width, frame.origin.y, frame.size.width, frame.size.height)];
+    
+    [cell setHidden:NO];
+    [cell setAlpha:0.0f];
+    [UIView animateWithDuration:0.25 animations:^{
+        [cell setAlpha:1.0f];
+        [cell setFrame:frame];
+    }];
+}
+
 #pragma mark - GuideTableViewManagerDelegate Method
+- (void)loadDataOnInitializationForTableView:(UITableView *)tableView
+{
+    
+    // Reference Parent ViewController's UITableView (should ONLY occur on first call to this method)
+    if ( ![self tableView] ) self.tableView = tableView;
+    
+    [self loadDataFromCoreData];
+    
+    [self performAPIRequest];
+    
+}
+
 - (void)loadDataFromCoreData
 {
     // Fetch Stream / DashboardEntry Data from Core Data
     self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
     
+    // Reload tableView
+    [self.tableView reloadData];
+
 }
 
-- (void)performAPIRequestForTableView:(UITableView *)tableView
+- (void)performAPIRequest
 {
 
     // Add API Observers (should ONLY occur on first call to this method)
     if ( NO == self.observerCreated ) [self createAPIObservers];
-    
-    // Reference Parent ViewController's UITableView (should ONLY occur on first call to this method)
-    if ( ![self tableView] ) self.tableView = tableView;
     
     // Peeform API Request
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:kAPIRequestStream]];
@@ -148,12 +161,11 @@
 {
 
     // Hide ASPullToRefreshController's HeaderView
-    [self.refreshController didFinishRefreshing];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.refreshController didFinishRefreshing];
+    });
 
     [self loadDataFromCoreData];
-    
-    // Reload tableView
-    [self.tableView reloadData];
 
 }
 
@@ -161,7 +173,7 @@
 - (void)dataToRefresh
 {
     // Perform API Request for tableView, which WILL/SHOULD/MUST exist before this method is called
-    if ( [self tableView] ) [self performAPIRequestForTableView:self.tableView];
+    [self performAPIRequest];
 }
 
 #pragma mark - UITableViewDatasource Methods
@@ -206,17 +218,8 @@
             [self populateTableViewCell:cell withContentForRow:indexPath.row];
             
             // Animate cell as data populates
+            [self animateCell:cell forRow:indexPath.row];
             
-            CGRect frame = cell.frame;
-            ( indexPath.row%2 ) ? [cell setFrame:CGRectMake(2*frame.size.width, frame.size.height, frame.size.width, frame.size.height)] : [cell setFrame:CGRectMake(-2*frame.size.width, frame.size.height, frame.size.width, frame.size.height)];
-            [cell setHidden:NO];
-            [cell setAlpha:0.0f];
-            [UIView animateWithDuration:0.5 animations:^{
-                [cell setAlpha:1.0f];
-                [cell setFrame:frame];
-            }];
-            
-        
         }
     }
     

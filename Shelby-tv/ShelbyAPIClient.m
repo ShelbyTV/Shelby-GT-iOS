@@ -10,7 +10,6 @@
 #import "CoreDataUtility.h"
 #import "AppDelegate.h"
 #import "SBJson.h"
-#import "NSString+TypedefConversion.h"
 
 @interface ShelbyAPIClient ()
 
@@ -91,15 +90,9 @@
     
     // Store parsedDictionary in Core Data
     NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
-    BOOL dataStored = [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context ForType:self.requestType];
+    [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context ForType:self.requestType];
     
-    // Post Notification with Parsed Object
-    if ( dataStored ){
-   
-        NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
-        [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:nil];
 
-    }
 }
 
 @end

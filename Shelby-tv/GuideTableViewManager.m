@@ -16,12 +16,17 @@
 @synthesize tableView = _tableView;
 
 #pragma mark - GuideTableViewManagerDelegate methods
-- (void)loadDataFromCoreData
+- (void)loadDataOnInitializationForTableView:(UITableView *)tableView
 {
     // Do nothing in GuideTableViewManager
 }
 
-- (void)performAPIRequestForTableView:(UITableView *)tableView
+- (void)loadDataFromCoreData;
+{
+    // Do nothing in GuideTableViewManager
+}
+
+- (void)performAPIRequest
 {
     // Do nothing in GuideTableViewManager
 }

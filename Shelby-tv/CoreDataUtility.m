@@ -9,6 +9,7 @@
 #import "CoreDataUtility.h"
 #import "NSString+CoreData.h"
 #import "NSDate+DateFromBSONString.h"
+#import "NSString+TypedefConversion.h"
 
 @interface CoreDataUtility ()
 {
@@ -73,7 +74,7 @@ static CoreDataUtility *sharedInstance = nil;
 }
 
 #pragma mark - Public Methods
-+ (BOOL)storeParsedData:(NSDictionary *)parsedDictionary inCoreData:(NSManagedObjectContext *)context ForType:(APIRequestType)requestType
++ (void)storeParsedData:(NSDictionary *)parsedDictionary inCoreData:(NSManagedObjectContext *)context ForType:(APIRequestType)requestType
 {
     if ( requestType == APIRequestTypeStream ) {
         
@@ -88,7 +89,10 @@ static CoreDataUtility *sharedInstance = nil;
         
     }
         
-    return YES;
+    // Post Completion Notification
+    NSString *notificationName = [NSString apiRequestTypeToString:requestType];
+    NSLog(@"%@", notificationName);
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:parsedDictionary];
 }
 
 + (NSArray*)fetchAllDashboardEntries

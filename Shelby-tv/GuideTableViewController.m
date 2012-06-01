@@ -44,6 +44,8 @@
         self.guideTableViewManager.refreshController = self;
         self.refreshDelegate = (id)self.guideTableViewManager;
 
+        [self.guideTableViewManager loadDataOnInitializationForTableView:self.tableView];
+        
     }
     
     return self;
