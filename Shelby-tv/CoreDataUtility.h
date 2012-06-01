@@ -33,7 +33,7 @@
  Fetch Dashboard Entry information stored in Core Data 
  */
 
-+ (DashboardEntry*)fetchDashboardEntryDataForRow:(NSUInteger)row;
++ (DashboardEntry*)fetchDashbfraoardEntryDataForRow:(NSUInteger)row;
 
 /**
  Fetch First Message from dashboardEntry.frame.conversation

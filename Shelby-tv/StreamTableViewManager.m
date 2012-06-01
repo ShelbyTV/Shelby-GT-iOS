@@ -208,10 +208,10 @@
             // Animate cell as data populates
             
             CGRect frame = cell.frame;
-            [cell setFrame:CGRectMake(frame.origin.x, -frame.size.height, frame.size.width, frame.size.height)];
+            ( indexPath.row%2 ) ? [cell setFrame:CGRectMake(2*frame.size.width, frame.size.height, frame.size.width, frame.size.height)] : [cell setFrame:CGRectMake(-2*frame.size.width, frame.size.height, frame.size.width, frame.size.height)];
             [cell setHidden:NO];
             [cell setAlpha:0.0f];
-            [UIView animateWithDuration:0.3 animations:^{
+            [UIView animateWithDuration:0.5 animations:^{
                 [cell setAlpha:1.0f];
                 [cell setFrame:frame];
             }];
