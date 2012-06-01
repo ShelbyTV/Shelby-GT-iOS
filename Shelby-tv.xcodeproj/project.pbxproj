@@ -24,6 +24,7 @@
 		8E347EFA156D370000084C25 /* videoCardShareOnButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E347EEC156D370000084C25 /* videoCardShareOnButton@2x.png */; };
 		8E347EFD156D385700084C25 /* videoCardRollOffButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E347EFB156D385700084C25 /* videoCardRollOffButton@2x.png */; };
 		8E347EFE156D385700084C25 /* videoCardRollOnButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E347EFC156D385700084C25 /* videoCardRollOnButton@2x.png */; };
+		8E3EB0CA157838BF001A9325 /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3EB0C9157838BF001A9325 /* Frame.m */; };
 		8E4A7732155185A0003CBA2A /* pullToRefreshArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A7730155185A0003CBA2A /* pullToRefreshArrow.png */; };
 		8E4A7733155185A0003CBA2A /* pullToRefreshArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A7731155185A0003CBA2A /* pullToRefreshArrow@2x.png */; };
 		8E4A778115518B14003CBA2A /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A776415518B14003CBA2A /* Facebook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -161,7 +162,6 @@
 		8EEA703D155449D800B1B07F /* VideoCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA703C155449D800B1B07F /* VideoCardCell.xib */; };
 		8EEA704015544A2200B1B07F /* VideoCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA703F15544A2200B1B07F /* VideoCardCell.m */; };
 		8EF851AE1570317D002335A3 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851AD1570317D002335A3 /* Video.m */; };
-		8EF851B11570317D002335A3 /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851B01570317D002335A3 /* Frame.m */; };
 		8EF851B41570317D002335A3 /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851B31570317D002335A3 /* Roll.m */; };
 		8EF851B71570317D002335A3 /* DashboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851B61570317D002335A3 /* DashboardEntry.m */; };
 		8EF851BA1570317E002335A3 /* Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851B91570317E002335A3 /* Messages.m */; };
@@ -189,6 +189,8 @@
 		8E347EEC156D370000084C25 /* videoCardShareOnButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardShareOnButton@2x.png"; sourceTree = "<group>"; };
 		8E347EFB156D385700084C25 /* videoCardRollOffButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardRollOffButton@2x.png"; sourceTree = "<group>"; };
 		8E347EFC156D385700084C25 /* videoCardRollOnButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardRollOnButton@2x.png"; sourceTree = "<group>"; };
+		8E3EB0C8157838BF001A9325 /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
+		8E3EB0C9157838BF001A9325 /* Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
 		8E4A7730155185A0003CBA2A /* pullToRefreshArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pullToRefreshArrow.png; path = library/ASPullToRefresh/ASPullToRefresh/pullToRefreshArrow.png; sourceTree = SOURCE_ROOT; };
 		8E4A7731155185A0003CBA2A /* pullToRefreshArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pullToRefreshArrow@2x.png"; path = "library/ASPullToRefresh/ASPullToRefresh/pullToRefreshArrow@2x.png"; sourceTree = SOURCE_ROOT; };
 		8E4A776315518B14003CBA2A /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
@@ -406,8 +408,6 @@
 		8EEA703F15544A2200B1B07F /* VideoCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCardCell.m; sourceTree = "<group>"; };
 		8EF851AC1570317D002335A3 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
 		8EF851AD1570317D002335A3 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
-		8EF851AF1570317D002335A3 /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
-		8EF851B01570317D002335A3 /* Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
 		8EF851B21570317D002335A3 /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
 		8EF851B31570317D002335A3 /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
 		8EF851B51570317D002335A3 /* DashboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardEntry.h; sourceTree = "<group>"; };
@@ -887,6 +887,8 @@
 			isa = PBXGroup;
 			children = (
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
+				8E3EB0C8157838BF001A9325 /* Frame.h */,
+				8E3EB0C9157838BF001A9325 /* Frame.m */,
 				8EF851BE1570317E002335A3 /* User.h */,
 				8EF851BF1570317E002335A3 /* User.m */,
 				8EF851B81570317D002335A3 /* Messages.h */,
@@ -895,8 +897,6 @@
 				8EF851B61570317D002335A3 /* DashboardEntry.m */,
 				8EF851B21570317D002335A3 /* Roll.h */,
 				8EF851B31570317D002335A3 /* Roll.m */,
-				8EF851AF1570317D002335A3 /* Frame.h */,
-				8EF851B01570317D002335A3 /* Frame.m */,
 				8EF851AC1570317D002335A3 /* Video.h */,
 				8EF851AD1570317D002335A3 /* Video.m */,
 				8EBC37341578121500AA131E /* Conversation.h */,
@@ -1169,12 +1169,12 @@
 				8EFF3A9815658E2500131A97 /* AuthenticateTwitterViewController.m in Sources */,
 				8E90B802156E898700C840B5 /* NSDate+DateFromBSONString.m in Sources */,
 				8EF851AE1570317D002335A3 /* Video.m in Sources */,
-				8EF851B11570317D002335A3 /* Frame.m in Sources */,
 				8EF851B41570317D002335A3 /* Roll.m in Sources */,
 				8EF851B71570317D002335A3 /* DashboardEntry.m in Sources */,
 				8EF851BA1570317E002335A3 /* Messages.m in Sources */,
 				8EF851C01570317E002335A3 /* User.m in Sources */,
 				8EBC37361578121500AA131E /* Conversation.m in Sources */,
+				8E3EB0CA157838BF001A9325 /* Frame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

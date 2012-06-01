@@ -70,6 +70,9 @@
             // Populate nickname label
             [cell.nicknameLabel setText:dashboardEntry.frame.user.nickname];
             
+            // Populate favorite label
+            [cell.favoriteLabel setText:[NSString stringWithFormat:@"%@", dashboardEntry.frame.upvotersCount]];
+            
             // Populate comments label
             [cell.commentsLabel setText:[NSString stringWithFormat:@"%@", dashboardEntry.frame.conversation.messageCount]];
         
@@ -212,6 +215,7 @@
                 [cell setAlpha:1.0f];
                 [cell setFrame:frame];
             }];
+            
         
         }
     }

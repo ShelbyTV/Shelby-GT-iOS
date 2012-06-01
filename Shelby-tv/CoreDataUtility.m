@@ -241,9 +241,9 @@ static CoreDataUtility *sharedInstance = nil;
         // Store dashboardEntry.frame attributes
         NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];        
         Frame *frame = [self checkIfEntity:kCoreDataEntityFrame
-                        withIDValue:[frameArray valueForKey:@"id"]
-                           forIDKey:kCoreDataFrameID  
-                    existsInContext:context];
+                               withIDValue:[frameArray valueForKey:@"id"]
+                                  forIDKey:kCoreDataFrameID  
+                           existsInContext:context];
         dashboardEntry.frame = frame;
         
         [self storeFrame:frame fromFrameArray:frameArray];
@@ -271,6 +271,9 @@ static CoreDataUtility *sharedInstance = nil;
     
     NSDate *timestamp = [NSDate dataFromBSONstring:frameID];
     [frame setValue:timestamp forKey:kCoreDataFrameTimestamp];
+
+    NSArray *upvotersArray = [NSArray arrayWithArray:[frameArray valueForKey:@"upvoters"]];
+    [frame setValue:[NSNumber numberWithInt:[upvotersArray count]] forKey:kCoreDataFrameUpvotersCount];
     
     NSString *userID = [NSString testForNull:[frameArray valueForKey:@"creator_id"]];
     [frame setValue:userID forKey:kCoreDataFrameUserID ];
@@ -338,7 +341,7 @@ static CoreDataUtility *sharedInstance = nil;
 
     NSArray *messagesArray = [conversationsArray valueForKey:@"messages"];
 
-    conversation.messageCount = [NSNumber numberWithInt:[messagesArray count]];
+    [conversation setValue:[NSNumber numberWithInt:[messagesArray count]] forKey:kCoreDataConversationMessageCount];
     
     for (int i = 0; i < [messagesArray count]; i++ ) {
        

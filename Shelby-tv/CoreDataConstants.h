@@ -34,6 +34,7 @@
 
 // Conversation Attribute Constants
 #define kCoreDataConversationID                 @"conversationID"
+#define kCoreDataConversationMessageCount       @"messageCount"
 
 // DashboardEntry Attribute Constants
 #define kCoreDataDashboardEntryID               @"dashboardID"
@@ -43,9 +44,10 @@
 #define kCoreDataFrameConversationID            @"conversationID"
 #define kCoreDataFrameID                        @"frameID"
 #define kCoreDataFrameRollID                    @"rollID"
+#define kCoreDataFrameTimestamp                 @"timestamp"
+#define kCoreDataFrameUpvotersCount             @"upvotersCount"
 #define kCoreDataFrameUserID                    @"userID"
 #define kCoreDataFrameVideoID                   @"videoID"
-#define kCoreDataFrameTimestamp                 @"timestamp"
 
 // Messages Attribute Constants
 #define kCoreDataMessagesConversationID         @"conversationID"

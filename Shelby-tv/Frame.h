@@ -2,7 +2,7 @@
 //  Frame.h
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 5/25/12.
+//  Created by Arthur Ariel Sabintsev on 5/31/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSDate * timestamp;
 @property (nonatomic, retain) NSString * userID;
 @property (nonatomic, retain) NSString * videoID;
+@property (nonatomic, retain) NSNumber * upvotersCount;
 @property (nonatomic, retain) Conversation *conversation;
 @property (nonatomic, retain) DashboardEntry *dashboardEntry;
 @property (nonatomic, retain) Roll *roll;
