@@ -10,6 +10,7 @@
 #import "NSString+CoreData.h"
 #import "NSDate+DateFromBSONString.h"
 #import "NSString+TypedefConversion.h"
+#import "SocialFacade.h"
 
 @interface CoreDataUtility ()
 {
@@ -76,11 +77,11 @@ static CoreDataUtility *sharedInstance = nil;
 #pragma mark - Public Methods
 + (void)storeParsedData:(NSDictionary *)parsedDictionary inCoreData:(NSManagedObjectContext *)context ForType:(APIRequestType)requestType
 {
-    if ( requestType == APIRequestTypeStream ) {
+    if ( requestType == APIRequestTypeGetStream ) {
         
         [self storeParsedData:parsedDictionary forDashboardEntryInContext:context];
             
-    } else if ( requestType == APIRequestTypeRolls ) {
+    } else if ( requestType == APIRequestTypeGetRolls ) {
         
         
     } else {
@@ -165,6 +166,40 @@ static CoreDataUtility *sharedInstance = nil;
     
     // Return messages at a specific index
     return [messagesArray objectAtIndex:0];
+}
+
++ (BOOL)checkIfUserUpvotedInFrame:(Frame *)frame
+{
+    BOOL exists;
+    
+    // Create fetch request
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setReturnsObjectsAsFaults:NO];
+    
+    // Fetch messages data
+    NSEntityDescription *description = [NSEntityDescription entityForName:kCoreDataEntityFrame inManagedObjectContext:frame.managedObjectContext];
+    [request setEntity:description];
+    
+    // Only include objects that exist (i.e. entityIDKey and entityIDValue's must exist)
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", kCoreDataFrameID, frame.frameID];
+    [request setPredicate:predicate];    
+    
+    // Execute request that returns array of dashboardEntrys
+    NSArray *array = [frame.managedObjectContext executeFetchRequest:request error:nil];
+            
+    NSArray *upvotersArray = [[array objectAtIndex:0] valueForKey:@"upvoters"];
+    
+    if ( [upvotersArray containsObject:[SocialFacade sharedInstance].shelbyCreatorID] ) {
+        
+        exists = YES;
+    
+    } else {
+        
+        exists = NO;
+    }
+
+    return exists;
+
 }
 
 + (void)saveContext:(NSManagedObjectContext *)context

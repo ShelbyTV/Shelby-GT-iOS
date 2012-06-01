@@ -6,10 +6,7 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-// String Constants 
 #import "APIConstants.h"
 #import "CoreDataConstants.h"
 #import "TextConstants.h"
-
-// Other
 #import "Structures.h"

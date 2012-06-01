@@ -32,7 +32,8 @@ typedef enum _APIRequestType
 {
     
     APIRequestTypeNone = 0,
-    APIRequestTypeStream,
-    APIRequestTypeRolls
+    APIRequestTypeGetStream,
+    APIRequestTypeGetRolls,
+    APIRequestTypePostUpvote
     
 } APIRequestType;

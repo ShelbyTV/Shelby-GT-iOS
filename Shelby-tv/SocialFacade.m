@@ -30,6 +30,7 @@
 /// Miscellaenous Macros ///
 #define         SocialFacadePreviouslyLaunched              @"SocialFacadePreviouslyLaunched"
 #define         SocialFacadeShelbyAuthorized                @"SocialFacadeShelbyAuthorized"
+#define         SocialFacadeShelbyCreatorID                 @"SocialFacadeShelbyCreatorID"
 
 static SocialFacade *sharedInstance = nil;
 
@@ -88,6 +89,7 @@ UIPickerViewDelegate
 
 @implementation SocialFacade
 @synthesize shelbyAuthorized = _shelbyAuthorized;
+@synthesize shelbyCreatorID = _shelbyCreatorID;
 @synthesize facebook = _facebook;
 @synthesize socialRequestType = _socialRequestType;
 @synthesize loginViewController = _loginViewController;
@@ -121,6 +123,7 @@ UIPickerViewDelegate
             
             // Set Shelby-specific NSUserDefaults to 'nil on first launch
             self.shelbyAuthorized = NO;
+            self.shelbyCreatorID = nil;
             
             // Set Facebook NSUserDefaults to 'nil' on first launch
             self.facebookName = nil;
@@ -729,6 +732,17 @@ UIPickerViewDelegate
     return [[NSUserDefaults standardUserDefaults] boolForKey:SocialFacadeShelbyAuthorized];
 }
 
+/// Shelby Creator ID /// 
+- (void)setShelbyCreatorID:(NSString *)shelbyCreatorID
+{
+    [[NSUserDefaults standardUserDefaults] setObject:shelbyCreatorID forKey:SocialFacadeShelbyCreatorID];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString*)shelbyCreatorID
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeShelbyCreatorID];
+}
 
 /// Facebook Name /// 
 - (void)setFacebookName:(NSString *)facebookName

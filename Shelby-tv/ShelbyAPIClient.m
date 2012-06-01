@@ -29,13 +29,18 @@
 @synthesize requestType = _requestType;
 
 #pragma mark - Public Methods
-- (void)performRequest:(NSURLRequest *)request ofType:(APIRequestType)type
+- (void)performGetRequest:(NSURLRequest *)request ofType:(APIRequestType)type
 {
     // Set Request Type
     self.requestType = type;
     
     // Initialize Request
     self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+}
+
+- (void)performPostRequest:(NSURLRequest*)request ofType:(APIRequestType)type
+{
+    
 }
 
 #pragma mark - Private Methods

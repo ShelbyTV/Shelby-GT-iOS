@@ -41,6 +41,11 @@
 
 + (Messages*)fetchFirstMessageFromConversation:(Conversation*)conversation;
 
+/**
+Check if user already voted for a specific frame
+*/
++ (BOOL)checkIfUserUpvotedInFrame:(Frame*)frame;
+
 /** 
  Commit unsaved changes for a given NSManagedObjextContext instance 
  */

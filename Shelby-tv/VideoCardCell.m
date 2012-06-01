@@ -18,14 +18,14 @@
 @synthesize originNetworkImageView = _originNetworkImageView;
 @synthesize userImageView = _userImageView;
 @synthesize thumbnailImageView = _thumbnailImageView;
-@synthesize favoriteButton = _favoriteButton;
+@synthesize upvoteButton = _upvoteButton;
 @synthesize commentsButton = _commentsButton;
 @synthesize rollButton = _rollButton;
 @synthesize shareButton = _shareButton;
 @synthesize nicknameLabel = _nicknameLabel;
 @synthesize rollLabel = _rollLabel;
 @synthesize createdAtLabel = _createdAtLabel;
-@synthesize favoriteLabel = _favoriteLabel;
+@synthesize upvoteLabel = _upvoteLabel;
 @synthesize commentsLabel = _commentsLabell;
 
 #pragma mark - Memory Deallocation Methods
@@ -34,14 +34,14 @@
     self.userImageView = nil;
     self.originNetworkImageView = nil;
     self.thumbnailImageView = nil;
-    self.favoriteButton = nil;
+    self.upvoteButton = nil;
     self.commentsButton = nil;
     self.rollButton = nil;
     self.shareButton = nil;
     self.nicknameLabel = nil;
     self.rollLabel = nil;
     self.createdAtLabel = nil;
-    self.favoriteLabel = nil;
+    self.upvoteLabel = nil;
     self.commentsLabel = nil;
 }
 
@@ -53,7 +53,7 @@
     self.nicknameLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:15.0f];
     self.rollLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f];
     self.createdAtLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f];
-    self.favoriteLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:16.0f];
+    self.upvoteLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:16.0f];
     self.commentsLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:16.0f];
 }
 

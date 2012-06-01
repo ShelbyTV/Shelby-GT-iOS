@@ -13,12 +13,12 @@
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *originNetworkImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
-@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+@property (weak, nonatomic) IBOutlet UIButton *upvoteButton;
 @property (weak, nonatomic) IBOutlet UIButton *commentsButton;
 @property (weak, nonatomic) IBOutlet UIButton *rollButton;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak, nonatomic) IBOutlet UILabel *createdAtLabel;
-@property (weak, nonatomic) IBOutlet UILabel *favoriteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *upvoteLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rollLabel;

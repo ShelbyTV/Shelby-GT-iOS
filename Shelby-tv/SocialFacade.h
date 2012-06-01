@@ -31,7 +31,6 @@ typedef enum _SocialRequestType
 @interface SocialFacade : NSObject <FBSessionDelegate, FBRequestDelegate>
 
 /// General Properties ///
-@property (assign, nonatomic) BOOL shelbyAuthorized;
 @property (strong, nonatomic) Facebook *facebook;
 @property (assign, nonatomic) SocialRequestType socialRequestType;
 @property (strong, nonatomic) UIViewController *loginViewController;
@@ -39,6 +38,10 @@ typedef enum _SocialRequestType
 /// Properties utilizing NSUserDefaults ///
 // General
 @property (assign, nonatomic) BOOL previouslyLaunched;
+
+// Shelby
+@property (assign, nonatomic) BOOL shelbyAuthorized;
+@property (copy, nonatomic) NSString *shelbyCreatorID;
 
 // Facebook
 @property (copy, nonatomic) NSString *facebookName;

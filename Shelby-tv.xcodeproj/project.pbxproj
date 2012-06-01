@@ -137,6 +137,7 @@
 		8ED310FF153601A2002614DF /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED310F3153601A2002614DF /* Icon.png */; };
 		8ED31100153601A2002614DF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED310F4153601A2002614DF /* Icon@2x.png */; };
 		8ED31101153601A2002614DF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 8ED310F5153601A2002614DF /* iTunesArtwork */; };
+		8EDB32B115792688007D7106 /* VideoCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB32B015792688007D7106 /* VideoCardController.m */; };
 		8EE5063F155CA39E00A04F50 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EE5063E155CA39E00A04F50 /* MediaPlayer.framework */; };
 		8EE50650155CA75500A04F50 /* Panhandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE5064F155CA75500A04F50 /* Panhandler.m */; };
 		8EE50653155CA76200A04F50 /* AsynchronousFreeloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE50652155CA76200A04F50 /* AsynchronousFreeloader.m */; };
@@ -377,6 +378,8 @@
 		8ED310F3153601A2002614DF /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		8ED310F4153601A2002614DF /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		8ED310F5153601A2002614DF /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		8EDB32AF15792688007D7106 /* VideoCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCardController.h; sourceTree = "<group>"; };
+		8EDB32B015792688007D7106 /* VideoCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCardController.m; sourceTree = "<group>"; };
 		8EE5063E155CA39E00A04F50 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		8EE5064E155CA75500A04F50 /* Panhandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Panhandler.h; path = library/Panhandler/Panhandler.h; sourceTree = SOURCE_ROOT; };
 		8EE5064F155CA75500A04F50 /* Panhandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Panhandler.m; path = library/Panhandler/Panhandler.m; sourceTree = SOURCE_ROOT; };
@@ -637,6 +640,8 @@
 				8E671595154F0B9E0059FC1A /* StreamTableViewManager.m */,
 				8E8124E01540C1A200E1EA4B /* YourRollsTableViewManager.h */,
 				8E67158C154EF3540059FC1A /* YourRollsTableViewManager.m */,
+				8EDB32AF15792688007D7106 /* VideoCardController.h */,
+				8EDB32B015792688007D7106 /* VideoCardController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1175,6 +1180,7 @@
 				8EF851C01570317E002335A3 /* User.m in Sources */,
 				8EBC37361578121500AA131E /* Conversation.m in Sources */,
 				8E3EB0CA157838BF001A9325 /* Frame.m in Sources */,
+				8EDB32B115792688007D7106 /* VideoCardController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

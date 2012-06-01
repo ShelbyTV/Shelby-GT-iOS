@@ -26,14 +26,14 @@
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString apiRequestTypeToString:APIRequestTypeStream] object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString apiRequestTypeToString:APIRequestTypeGetStream] object:nil];
 }
 
 
 #pragma mark - Private Methods
 - (void)createAPIObservers
 {
-    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestTypeStream];
+    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestTypeGetStream];
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(dataReturnedFromAPI:) 
                                                  name:notificationName 
@@ -57,7 +57,7 @@
             [cell.nicknameLabel setText:dashboardEntry.frame.user.nickname];
             
             // Populate favorite label
-            [cell.favoriteLabel setText:[NSString stringWithFormat:@"%@", dashboardEntry.frame.upvotersCount]];
+            [cell.upvoteLabel setText:[NSString stringWithFormat:@"%@", dashboardEntry.frame.upvotersCount]];
             
             // Populate comments label
             [cell.commentsLabel setText:[NSString stringWithFormat:@"%@", dashboardEntry.frame.conversation.messageCount]];
@@ -150,10 +150,10 @@
     if ( NO == self.observerCreated ) [self createAPIObservers];
     
     // Peeform API Request
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:kAPIRequestStream]];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:kAPIRequestGetStream]];
 
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-    [client performRequest:request ofType:APIRequestTypeStream];
+    [client performGetRequest:request ofType:APIRequestTypeGetStream];
     
 }
 
