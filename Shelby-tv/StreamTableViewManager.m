@@ -125,10 +125,13 @@
 {
     
     // Reference Parent ViewController's UITableView (should ONLY occur on first call to this method)
+    // May not need this in long run - retain this for now
     if ( ![self tableView] ) self.tableView = tableView;
     
+    // Load stored data into tableView (if it exists)
     [self loadDataFromCoreData];
     
+    // Fetch new data
     [self performAPIRequest];
     
 }
@@ -137,9 +140,6 @@
 {
     // Fetch Stream / DashboardEntry Data from Core Data
     self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
-    
-    // Reload tableView
-    [self.tableView reloadData];
 
 }
 
