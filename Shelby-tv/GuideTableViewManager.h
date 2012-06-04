@@ -11,6 +11,7 @@
 // Models
 #import "ShelbyAPIClient.h"
 #import "CoreDataUtility.h"
+#import "SocialFacade.h"
 
 // Categories
 #import "NSString+TypedefConversion.h"

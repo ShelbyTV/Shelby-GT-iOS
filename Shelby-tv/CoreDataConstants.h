@@ -11,6 +11,7 @@
 #import "Frame.h"
 #import "Messages.h"
 #import "Roll.h"
+#import "UpvoteUsers.h"
 #import "User.h"
 #import "Video.h"
 
@@ -20,6 +21,7 @@
 #define kCoreDataEntityFrame                    @"Frame"
 #define kCoreDataEntityMessages                 @"Messages"
 #define kCoreDataEntityRoll                     @"Roll"
+#define kCoreDataEntityUpvoteUsers              @"UpvoteUsers"
 #define kCoreDataEntityUser                     @"User"
 #define kCoreDataEntityVideo                    @"Video"
 
@@ -62,6 +64,12 @@
 // Roll Attribute Constants
 #define kCoreDataRollID                         @"rollID"
 #define kCoreDataRollTitle                      @"title"
+
+// UpvoteUsers Attribute Constants
+#define kCoreDataUpvoteUserID                   @"upvoterID"
+#define kCoreDataUpvoteUsersNickname            @"nickname"
+#define kCoreDataUpvoteUsersRollID              @"rollID"
+#define kCoreDataUpvoteUsersImage               @"userImage"
 
 // User Attribute Constants
 #define kCoreDataUserID                         @"userID"

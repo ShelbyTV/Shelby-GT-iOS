@@ -41,6 +41,7 @@ typedef enum _SocialRequestType
 
 // Shelby
 @property (assign, nonatomic) BOOL shelbyAuthorized;
+@property (copy, nonatomic) NSString *shelbyToken;
 @property (copy, nonatomic) NSString *shelbyCreatorID;
 
 // Facebook

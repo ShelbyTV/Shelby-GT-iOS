@@ -7,7 +7,7 @@
 //
 
 // Macros for API Routes
-#define kAPIRequestGetStream            @"http://api.gt.shelby.tv/v1/dashboard?auth_token=sF7waBf8jBMqsxeskPp2"
+#define kAPIRequestGetStream            @"http://api.gt.shelby.tv/v1/dashboard?auth_token="
 #define kAPIRequestPostUpvote           @"http://api.gt.shelby.tv/v1/frame/%@/upvote?auth_token=sF7waBf8jBMqsxeskPp2"
 
 // Macros for Parsed Data
@@ -16,4 +16,4 @@
 #define kAPIStatusSuccessful            200
 
 // Macros for Notificaitons
-#define kAPIRequestNotification     @"APIRequestType"
+#define kAPIRequestNotification         @"APIRequestType"

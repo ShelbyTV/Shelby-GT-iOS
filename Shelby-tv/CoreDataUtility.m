@@ -44,6 +44,9 @@
 + (void)storeUser:(User*)user fromFrameArray:(NSArray*)frameArray;
 
 // Store dashboard.frame.video data in Core Data
++ (void)storeUpvoteUsersFromFrame:(Frame*)frame withFrameArray:(NSArray*)frameArray;
+
+// Store dashboard.frame.video data in Core Data
 + (void)storeVideo:(Video*)video fromFrameArray:(NSArray*)frameArray;
 
 @end
@@ -312,7 +315,8 @@ static CoreDataUtility *sharedInstance = nil;
     [frame setValue:timestamp forKey:kCoreDataFrameTimestamp];
 
     NSArray *upvotersArray = [NSArray arrayWithArray:[frameArray valueForKey:@"upvoters"]];
-    [frame setValue:[NSNumber numberWithInt:[upvotersArray count]] forKey:kCoreDataFrameUpvotersCount];
+    NSUInteger upvotersCount = [upvotersArray count];
+    [frame setValue:[NSNumber numberWithInt:upvotersCount] forKey:kCoreDataFrameUpvotersCount];
     
     NSString *userID = [NSString testForNull:[frameArray valueForKey:@"creator_id"]];
     [frame setValue:userID forKey:kCoreDataFrameUserID ];
@@ -330,7 +334,7 @@ static CoreDataUtility *sharedInstance = nil;
     [conversation addFrameObject:frame];
     [self storeConversation:conversation fromFrameArray:frameArray];
     
-    // Store dashboard.frame.roll attributes
+    // Store dashboard.frame.roll attributes if roll exists
     if ( rollID ) {
         Roll *roll = [self checkIfEntity:kCoreDataEntityRoll 
                              withIDValue:rollID
@@ -341,6 +345,13 @@ static CoreDataUtility *sharedInstance = nil;
         [self storeRoll:roll fromFrameArray:frameArray];
     }
 
+    // Store dashboard.frame.upvoteUsers attributes if upvoteUsers exist
+    if ( upvotersCount ) {
+
+        [self storeUpvoteUsersFromFrame:frame withFrameArray:frameArray];
+   
+    }
+    
     // Store dashboard.frame.user attributes
     User *user = [self checkIfEntity:kCoreDataEntityUser 
                          withIDValue:userID
@@ -348,7 +359,7 @@ static CoreDataUtility *sharedInstance = nil;
                      existsInContext:context];
     frame.user = user;
     [user addFrameObject:frame];
-    [self storeUser:user fromFrameArray:frameArray ];
+    [self storeUser:user fromFrameArray:frameArray];
     
     // Store dashboard.frame.video attributes
     Video *video = [self checkIfEntity:kCoreDataEntityVideo 
@@ -430,6 +441,36 @@ static CoreDataUtility *sharedInstance = nil;
     
     NSString *title = [NSString testForNull:[rollArray valueForKey:@"title"]];
     [roll setValue:title forKey:kCoreDataRollTitle];
+}
+
++ (void)storeUpvoteUsersFromFrame:(Frame *)frame withFrameArray:(NSArray *)frameArray
+{
+   
+    NSArray *upvoteUsersArray = [frameArray valueForKey:@"upvote_users"];
+    
+    for (int i = 0; i < [upvoteUsersArray count]; i++ ) {
+        
+        NSManagedObjectContext *context = frame.managedObjectContext;
+        UpvoteUsers *upvoteUsers  = [self checkIfEntity:kCoreDataEntityUpvoteUsers 
+                                            withIDValue:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"id"]
+                                               forIDKey:kCoreDataUpvoteUserID
+                                        existsInContext:context];
+        [frame addUpvoteUsersObject:upvoteUsers];
+        
+        NSString *upvoterID = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"id"]];
+        [upvoteUsers setValue:upvoterID forKey:kCoreDataUpvoteUserID];
+        
+        NSString *nickname = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"nickname"]];
+        [upvoteUsers setValue:nickname forKey:kCoreDataUpvoteUsersNickname];
+        
+        NSString *rollID = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"rollID"]];
+        [upvoteUsers setValue:rollID forKey:kCoreDataUpvoteUsersRollID];
+        
+        NSString *userImage = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"userInage"]];
+        [upvoteUsers setValue:userImage forKey:kCoreDataUpvoteUsersImage];
+        
+    
+    }
 }
 
 + (void)storeUser:(User *)user fromFrameArray:(NSArray *)frameArray

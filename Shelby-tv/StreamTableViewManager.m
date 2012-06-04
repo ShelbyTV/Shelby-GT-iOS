@@ -133,6 +133,7 @@
     
     // Fetch new data
     [self performAPIRequest];
+
     
 }
 
@@ -150,7 +151,8 @@
     if ( NO == self.observerCreated ) [self createAPIObservers];
     
     // Peeform API Request
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:kAPIRequestGetStream]];
+    NSString *requestString = [NSString stringWithFormat:@"%@%@", kAPIRequestGetStream, [SocialFacade sharedInstance].shelbyToken];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
 
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
     [client performGetRequest:request ofType:APIRequestTypeGetStream];
