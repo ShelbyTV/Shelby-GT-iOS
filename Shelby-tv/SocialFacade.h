@@ -12,17 +12,6 @@
 /// NSNotificationCenter Macros ///
 #define         SocialFacadeAuthorizationStatus     @"SocialFacadeAuthorizationStatus"
 
-
-/// RequestType - Used to sort between various Social Requests ///
-typedef enum _SocialRequestType 
-{
-    
-    SocialRequestFinished = 0,                 // Requests Finished
-    SocialRequestGetFacebookNameAndID = 1,     // GET authenticated in user's Facebook Name and ID
-    SocialRequestGetTwitterNameAndID = 2       // GET authenticated in user's Twitter Name and ID
-    
-}  SocialRequestType;
-
 /// SocialFacadeDelegate - Delegate Method for Login Screens ///
 @protocol SocialFacadeDelegate <NSObject>
 - (void)authorizationStatus;
@@ -32,7 +21,6 @@ typedef enum _SocialRequestType
 
 /// General Properties ///
 @property (strong, nonatomic) Facebook *facebook;
-@property (assign, nonatomic) SocialRequestType socialRequestType;
 @property (strong, nonatomic) UIViewController *loginViewController;
 
 /// Properties utilizing NSUserDefaults ///
@@ -42,6 +30,7 @@ typedef enum _SocialRequestType
 // Shelby
 @property (assign, nonatomic) BOOL shelbyAuthorized;
 @property (copy, nonatomic) NSString *shelbyToken;
+@property (copy, nonatomic) NSString *shelbyNickname;
 @property (copy, nonatomic) NSString *shelbyCreatorID;
 
 /// Singleton Class Method ///

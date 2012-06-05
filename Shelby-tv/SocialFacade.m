@@ -34,15 +34,9 @@
 /// Shelby Macros ///
 #define         SocialFacadeShelbyAuthorized                @"SocialFacadeShelbyAuthorized"
 #define         SocialFacadeShelbyToken                     @"SocialFacadeShelbyToken"
+#define         SocialFacadeShelbyNickname                  @"SocialFacadeShelbyNickname"
 #define         SocialFacadeShelbyCreatorID                 @"SocialFacadeShelbyCreatorID"
 
-/// Facebook Macros ///
-#define         SocialFacadeFacebookName                    @"SocialFacadeFacebookName"
-#define         SocialFacadeFacebookID                      @"SocialFacadeFacebookID"
-
-/// Twitter Macros ///
-#define         SocialFacadeTwitterName                     @"SocialFacadeTwitterName"
-#define         SocialFacadeTwitterID                       @"SocialFacadeTwitterID"
 
 static SocialFacade *sharedInstance = nil;
 
@@ -61,23 +55,22 @@ UIPickerViewDelegate
 
 // Twitter
 @property (strong, nonatomic) ACAccountStore *twitterAccountStore;          // ACAccountStore must be peristent
-@property (strong, nonatomic) ACAccount *twitterAccount;                    // Persistently stores user-specified twitterAccount
-@property (strong, nonatomic) OAToken *twitterRequestToken;                        // Store Request Token
+@property (strong, nonatomic) ACAccount *twitterAccount;                   
+@property (strong, nonatomic) OAToken *twitterRequestToken;                 
 @property (copy, nonatomic) NSString *twitterName;
 @property (copy, nonatomic) NSString *twitterID;
-@property (copy, nonatomic) NSString *twitterReverseAuthToken;                     // Store Reverse Auth Access Token
-@property (copy, nonatomic) NSString *twitterReverseAuthSecret;                    // Store Reverse Auth Access Secret
+@property (copy, nonatomic) NSString *twitterReverseAuthToken;              
+@property (copy, nonatomic) NSString *twitterReverseAuthSecret;             
 @property (strong, nonatomic) UIPickerView *twitterPickerView;              
 @property (strong, nonatomic) NSMutableArray *twitterPickerViewChoices;
 
-// General Methods ///
+/// General Methods ///
 - (void)tokenSwapWasSuccessful:(NSNotification*)notification;
 
 /// Facebook Methods ///
 - (void)facebookLogin;
 - (void)facebookLogout;
 - (void)checkFacebookTokenPersistenceStatusOnLaunch;
-- (void)getFacebookNameAndID;
 - (void)sendFacebookTokenAndExpirationDateToServer;
 - (void)resetFacebookUserDefaults;
 
@@ -113,7 +106,6 @@ UIPickerViewDelegate
 
 @implementation SocialFacade
 @synthesize facebook = _facebook;
-@synthesize socialRequestType = _socialRequestType;
 @synthesize loginViewController = _loginViewController;
 @synthesize facebookName = _facebookName;
 @synthesize facebookID = _facebookID;
@@ -143,22 +135,16 @@ UIPickerViewDelegate
     
     if ( self ) {
         
-        // Set Default NSUserDefaults
+        // Set default NSUserDefaults
         if ( ![self previouslyLaunched] ) {
             
             // Set to YES, so this condition is never again satisfied
             self.previouslyLaunched = YES;
             
-            // Set Shelby-specific NSUserDefaults to 'nil on first launch
+            // Set Shelby-specific NSUserDefaults to nil on first launch
             self.shelbyAuthorized = NO;
             self.shelbyToken = nil;
             self.shelbyCreatorID = nil;
-            
-            // Set Facebook NSUserDefaults to 'nil' on first launch
-            self.facebookName = nil;
-            self.facebookID = nil;
-            
-            // Set Twitter NSUserDefaults to 'nil' on first launch
             
         }
         
@@ -183,10 +169,16 @@ UIPickerViewDelegate
 - (void)tokenSwapWasSuccessful:(NSNotification *)notification
 {
     
-    // Get ShelbyToken from notificaiton dictioanry sent from APIClient
+    // Don't forget to Remove observers
+    
+    // Get Shelby Authorization from notificaiton dictioanry sent from APIClient
     NSDictionary *parsedDictionary = [notification.userInfo objectForKey:@"result"];
+    self.shelbyCreatorID = [parsedDictionary valueForKey:@"id"];
+    self.shelbyNickname = [parsedDictionary valueForKey:@"nickname"];
     self.shelbyToken = [parsedDictionary valueForKey:@"authentication_token"];
-
+    
+    if ( DEBUGMODE ) NSLog(@"Shelby Token Received for %@ (ID# %@): %@", self.shelbyNickname, self.shelbyCreatorID, self.shelbyToken);
+    
     // Dismiss login window after token swap
     self.shelbyAuthorized = YES;
     [self.loginViewController dismissModalViewControllerAnimated:YES];
@@ -206,7 +198,11 @@ UIPickerViewDelegate
 
 - (void)facebookLogout
 {
+    
     [self.facebook logout];
+    self.shelbyAuthorized = NO;
+    [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
+    
 }
 
 - (void)checkFacebookTokenPersistenceStatusOnLaunch 
@@ -223,23 +219,15 @@ UIPickerViewDelegate
          when the app shutsdown/restarts. Blame Facebook's SDK.
          */
         
+        
         self.facebook.accessToken = [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"];
         self.facebook.expirationDate = [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"];
+
         
         if (DEBUGMODE)  NSLog(@"\nPersisted Token: %@\nExpiration Date: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"], [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]);
         
     }
     
-}
-
-#pragma mark - Facebook Request Methods
-- (void)getFacebookNameAndID
-{
-
-    self.socialRequestType = SocialRequestGetFacebookNameAndID;
-    
-    // Perform GraphAPI Request to obtain Facebook user's Name and ID
-    [self.facebook requestWithGraphPath:@"me" andDelegate:self];
 }
 
 #pragma mark - Facebook Reset/Cleaning Methods
@@ -264,11 +252,8 @@ UIPickerViewDelegate
     // Extend Token for 60 Days
     [self.facebook extendAccessToken];
     
-//    // Get authenticated user's Name and ID
-//    [self getFacebookNameAndID];
-    
-    // Send Token and Expiration Date to Shelby
-    [self sendFacebookTokenAndExpirationDateToServer];
+    // Get authenticated user's Name and ID
+    [self.facebook requestWithGraphPath:@"me" andDelegate:self];
     
 }
 
@@ -315,53 +300,52 @@ UIPickerViewDelegate
 
 - (void)sendFacebookTokenAndExpirationDateToServer
 {
-    // Send info to Shelby for token swap
-    if (DEBUGMODE) NSLog(@"Facebook token swap with Shelby occurs at this point.");
     
-    // These actions should be performed after token swap
+    // Create Observer
+    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestTypePostFacebook];
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(tokenSwapWasSuccessful:) 
+                                                 name:notificationName 
+                                               object:nil];
+    
+    // Perform Shelby Token Swap
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.shelbyAuthorized = YES;
-        [self.loginViewController dismissModalViewControllerAnimated:YES];
-        [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
+        
+        NSString *shelbyRequestString = [NSString stringWithFormat:kAPIRequestPostTokenFacebook, self.facebookID, self.facebook.accessToken];
+        NSMutableURLRequest *shelbyRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:shelbyRequestString]]; 
+        [shelbyRequest setHTTPMethod:@"POST"];
+        ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+        [client performRequest:shelbyRequest ofType:APIRequestTypePostFacebook];
+        
     });
+
 }
 
 #pragma mark - FBRequestDelegate Methods
 - (void)request:(FBRequest *)request didLoad:(id)result 
 {
-    // Perform actions from FBRequest results
-    if ( self.socialRequestType == SocialRequestGetFacebookNameAndID ) {
-        
-        NSDictionary *dictionary = (NSDictionary*)result;
-        NSString *facebookName = [dictionary objectForKey:@"name"];
-        NSString *facebookID = [dictionary objectForKey:@"id"];
-        [self setFacebookName:facebookName];
-        [self setFacebookID:facebookID];
-        [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
-        
-    } 
     
-    // Reset SocialRequestType to prevent accidental/improper requests in the future
-    self.socialRequestType = SocialRequestFinished;
+    NSDictionary *dictionary = (NSDictionary*)result;
+    NSString *facebookName = [dictionary objectForKey:@"name"];
+    NSString *facebookID = [dictionary objectForKey:@"id"];
+    [self setFacebookName:facebookName];
+    [self setFacebookID:facebookID];
+    
+    // Send Token and Expiration Date to Shelby
+    [self sendFacebookTokenAndExpirationDateToServer];
+
 }
 
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error
 {
+            
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failure" 
+                                                        message:@"You failed to login. Please try again." 
+                                                       delegate:self 
+                                              cancelButtonTitle:@"Dismiss" 
+                                              otherButtonTitles:nil, nil];
     
-    if ( self.socialRequestType == SocialRequestGetFacebookNameAndID ) {
-        
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Failure" 
-                                                            message:@"You failed to login. Please try again." 
-                                                           delegate:self 
-                                                  cancelButtonTitle:@"Dismiss" 
-                                                  otherButtonTitles:nil, nil];
-        
-        [alertView show];
-        
-    } 
-    
-    // Reset SocialRequestType to prevent accidental/improper requests in the future
-    self.socialRequestType = SocialRequestFinished;
+    [alertView show];
     
 }
 
@@ -824,6 +808,18 @@ UIPickerViewDelegate
 - (NSString*)shelbyToken
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeShelbyToken];
+}
+
+/// Shelby Nickname ///
+- (void)setShelbyNickname:(NSString *)shelbyNickname
+{
+    [[NSUserDefaults standardUserDefaults] setObject:shelbyNickname forKey:SocialFacadeShelbyNickname];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString*)shelbyNickname
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeShelbyNickname];
 }
 
 - (void)setShelbyCreatorID:(NSString *)shelbyCreatorID
