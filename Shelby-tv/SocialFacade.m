@@ -7,11 +7,21 @@
 //
 
 #import "SocialFacade.h"
+#import "AuthenticateTwitterViewController.h"
+
+// Shelby
+#import "ShelbyAPIClient.h"
+
+// Constants
+#import "StaticDeclarations.h"
+
+// Third Party Libraries 
+#import "OAuthConsumer.h"
+#import "SBJson.h"
+
+// Apple Frameworks
 #import <Accounts/Accounts.h>
 #import <Twitter/Twitter.h>
-#import "StaticDeclarations.h"
-#import "OAuthConsumer.h"
-#import "AuthenticateTwitterViewController.h"
 
 #pragma mark - Private Macros
 /// Authorization Macros ///
@@ -46,10 +56,20 @@ UIPickerViewDataSource,
 UIPickerViewDelegate
 >
 
-@property (strong, nonatomic) ACAccountStore *twitterAccountStore;  // accountStore must be peristent
-@property (strong, nonatomic) ACAccount *twitterAccount;            // Persistently stores user-specified twitterAccount
-@property (strong, nonatomic) OAToken *requestToken;
-@property (strong, nonatomic) UIPickerView *twitterPickerView;
+// Facebook
+@property (copy, nonatomic) NSString *facebookName;
+@property (copy, nonatomic) NSString *facebookID;
+
+// Twitter
+@property (copy, nonatomic) NSString *twitterName;
+@property (copy, nonatomic) NSString *twitterID;
+
+@property (strong, nonatomic) ACAccountStore *twitterAccountStore;          // ACAccountStore must be peristent
+@property (strong, nonatomic) ACAccount *twitterAccount;                    // Persistently stores user-specified twitterAccount
+@property (strong, nonatomic) OAToken *requestToken;                        // Store Request Token
+@property (copy, nonatomic) NSString *reverseAuthToken;                     // Store Reverse Auth Access Token
+@property (copy, nonatomic) NSString *reverseAuthSecret;                    // Store Reverse Auth Access Secret
+@property (strong, nonatomic) UIPickerView *twitterPickerView;              
 @property (strong, nonatomic) NSMutableArray *twitterPickerViewChoices;
 
 /// Facebook Methods ///
@@ -86,7 +106,7 @@ UIPickerViewDelegate
 
 /// Twitter/OAuth - Reverse Auth Access Token Methods ///
 - (void)getReverseAuthAccessToken:(NSString*)reverseAuthRequestResults;
-- (void)sendReverseAuthAccessResultsToServer:(NSString*)reverseAuthAccessResults;
+- (void)sendReverseAuthAccessResultsToServer;
 
 @end
 
@@ -97,6 +117,8 @@ UIPickerViewDelegate
 @synthesize twitterAccountStore = _twitterAccountStore;
 @synthesize twitterAccount = _twitterAccount;
 @synthesize requestToken = _requestToken;
+@synthesize reverseAuthToken = _reverseAuthToken;
+@synthesize reverseAuthSecret = _reverseAuthSecret;
 @synthesize twitterPickerView = _twitterPickerView;
 @synthesize twitterPickerViewChoices = _twitterPickerViewChoices;
 
@@ -404,7 +426,7 @@ UIPickerViewDelegate
     
 }
 
-#pragma mark - Twitter/OAuth- RequestToken Methods
+#pragma mark - Twitter/OAuth- Request Token Methods
 - (void)getRequestToken 
 {
     
@@ -470,7 +492,7 @@ UIPickerViewDelegate
     
 }
 
-#pragma mark - Twitter/OAuth - AccessToken Methods
+#pragma mark - Twitter/OAuth - Access Token Methods
 - (void)getAccessTokenWithPin:(NSString *)pin
 {
     NSURL *accessTokenURL = [NSURL URLWithString:@"https://api.twitter.com/oauth/access_token"];
@@ -588,10 +610,39 @@ UIPickerViewDelegate
         
         [reverseAuthAccessTokenRequest setAccount:self.twitterAccount];
         [reverseAuthAccessTokenRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+            
                     if ( responseData ) {
             
-                        NSString *results = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-                        [self sendReverseAuthAccessResultsToServer:results];
+                        // Get results string (e.g., Access Token, Access Token Secret, Twitter Handle)
+                        NSString *reverseAuthAccessResults = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+                        
+                        // Parse string for Acces Token and Access Token Secret
+                        NSString *token = nil;
+                        NSString *secret = nil;
+                        NSString *ID = nil;
+                        NSString *name = nil;
+                        NSScanner *scanner = [NSScanner scannerWithString:reverseAuthAccessResults];
+                        [scanner scanUpToString:@"=" intoString:nil];
+                        [scanner scanUpToString:@"&" intoString:&token];
+                        token = [token stringByReplacingOccurrencesOfString:@"=" withString:@""];
+                        [scanner scanUpToString:@"=" intoString:nil];
+                        [scanner scanUpToString:@"&" intoString:&secret];
+                        secret = [secret stringByReplacingOccurrencesOfString:@"=" withString:@""];
+                        [scanner scanUpToString:@"=" intoString:nil];
+                        [scanner scanUpToString:@"&" intoString:&ID];
+                        ID = [ID stringByReplacingOccurrencesOfString:@"=" withString:@""];
+                        [scanner scanUpToString:@"=" intoString:nil];
+                        [scanner scanUpToString:@"" intoString:&name];
+                        name = [name stringByReplacingOccurrencesOfString:@"=" withString:@""];
+                        
+                        // Store Reverse Auth Access Token and Access Token Secret
+                        [self setReverseAuthToken:token];
+                        [self setReverseAuthSecret:secret];
+                        [self setTwitterID:ID];
+                        [self setTwitterName:name];
+                        
+                        // Send Reverse Auth Access Token and Access Token Secret to Shelby for Token Swap
+                        [self sendReverseAuthAccessResultsToServer];
                     
                     }
             
@@ -600,17 +651,23 @@ UIPickerViewDelegate
     }];
 }
 
-- (void)sendReverseAuthAccessResultsToServer:(NSString *)reverseAuthAccessResults
+- (void)sendReverseAuthAccessResultsToServer
 {
     // Send info to Shelby for token swap
     if (DEBUGMODE) NSLog(@"Twitter token swap with Shelby occurs at this point.");
     
+    NSString *shelbyRequestString = [NSString stringWithFormat:kAPIRequestPostTokenTwitter, self.twitterID, self.reverseAuthToken, self.reverseAuthSecret];
+    NSMutableURLRequest *shelbyRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:shelbyRequestString]]; 
+    [shelbyRequest setHTTPMethod:@"POST"];
+    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+    [client performRequest:shelbyRequest ofType:APIRequestTypePostTwitter];
+    
     // These actions should be performed after token swap
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.shelbyAuthorized = YES;
-        [self.loginViewController dismissModalViewControllerAnimated:YES];
-        [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
-    });
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        self.shelbyAuthorized = YES;
+//        [self.loginViewController dismissModalViewControllerAnimated:YES];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
+//    });
     
 }
 

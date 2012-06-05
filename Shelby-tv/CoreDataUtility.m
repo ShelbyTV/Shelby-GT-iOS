@@ -95,7 +95,6 @@ static CoreDataUtility *sharedInstance = nil;
         
     // Post Completion Notification
     NSString *notificationName = [NSString apiRequestTypeToString:requestType];
-    NSLog(@"%@", notificationName);
     [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:parsedDictionary];
 }
 

@@ -12,7 +12,7 @@
 @interface ShelbyAPIClient : NSObject <NSURLConnectionDataDelegate>
 
 // Request Methods
-- (void)performGetRequest:(NSURLRequest*)request ofType:(APIRequestType)type;
-- (void)performPostRequest:(NSURLRequest*)request ofType:(APIRequestType)type;
+- (void)performRequest:(NSMutableURLRequest*)request ofType:(APIRequestType)type;
+
 
 @end

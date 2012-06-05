@@ -10,6 +10,7 @@
 #import "CoreDataUtility.h"
 #import "AppDelegate.h"
 #import "SBJson.h"
+#import "NSString+TypedefConversion.h"
 
 @interface ShelbyAPIClient ()
 
@@ -29,18 +30,13 @@
 @synthesize requestType = _requestType;
 
 #pragma mark - Public Methods
-- (void)performGetRequest:(NSURLRequest *)request ofType:(APIRequestType)type
+- (void)performRequest:(NSMutableURLRequest *)request ofType:(APIRequestType)type
 {
     // Set Request Type
     self.requestType = type;
     
     // Initialize Request
-    self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
-}
-
-- (void)performPostRequest:(NSURLRequest*)request ofType:(APIRequestType)type
-{
-    
+    self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
 #pragma mark - Private Methods
@@ -87,17 +83,35 @@
     
 }
 
-//FIX: Context obtained in an unnatural fashion
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     // Parse Data with SBJSON Parser
     self.parsedDictionary = [self parseData];
     
-    // Store parsedDictionary in Core Data
-    NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
-    [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context ForType:self.requestType];
+    switch (self.requestType) {
+            
+        case APIRequestTypePostTwitter:{
+            
+            NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
+            [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:parsedDictionary];
+        
+        } break;
+        
+        case APIRequestTypeGetStream:{
+            
+            // Store parsedDictionary in Core Data
+            NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
+            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context ForType:self.requestType];
+            
+        } break;
+            
+        default:
+            break;
+   
+    }
     
-
+    // Reset Request Type
+    self.requestType = APIRequestTypeNone;
 }
 
 @end

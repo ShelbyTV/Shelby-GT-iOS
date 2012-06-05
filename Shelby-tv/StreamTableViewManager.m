@@ -33,6 +33,7 @@
 #pragma mark - Private Methods
 - (void)createAPIObservers
 {
+    
     NSString *notificationName = [NSString apiRequestTypeToString:APIRequestTypeGetStream];
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(dataReturnedFromAPI:) 
@@ -151,11 +152,11 @@
     if ( NO == self.observerCreated ) [self createAPIObservers];
     
     // Peeform API Request
-    NSString *requestString = [NSString stringWithFormat:@"%@%@", kAPIRequestGetStream, [SocialFacade sharedInstance].shelbyToken];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
+    NSString *requestString = [NSString stringWithFormat:kAPIRequestGetStream, [SocialFacade sharedInstance].shelbyToken];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
 
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-    [client performGetRequest:request ofType:APIRequestTypeGetStream];
+    [client performRequest:request ofType:APIRequestTypeGetStream];
     
 }
 
