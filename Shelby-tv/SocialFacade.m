@@ -174,7 +174,7 @@ UIPickerViewDelegate
     [[NSNotificationCenter defaultCenter] removeObserver:self name:notificationName object:nil];
     
     // Get Shelby Authorization from notificaiton dictioanry sent from APIClient
-    NSDictionary *parsedDictionary = [notification.userInfo objectForKey:@"result"];
+    NSDictionary *parsedDictionary = [notification.userInfo objectForKey:kAPIResult];
     self.shelbyCreatorID = [parsedDictionary valueForKey:@"id"];
     self.shelbyNickname = [parsedDictionary valueForKey:@"nickname"];
     self.shelbyToken = [parsedDictionary valueForKey:@"authentication_token"];
