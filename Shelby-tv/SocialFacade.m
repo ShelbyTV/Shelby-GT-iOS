@@ -169,7 +169,9 @@ UIPickerViewDelegate
 - (void)tokenSwapWasSuccessful:(NSNotification *)notification
 {
     
-    // Don't forget to Remove observers
+    // Remove observers
+    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestTypePostToken];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:notificationName object:nil];
     
     // Get Shelby Authorization from notificaiton dictioanry sent from APIClient
     NSDictionary *parsedDictionary = [notification.userInfo objectForKey:@"result"];
@@ -302,7 +304,8 @@ UIPickerViewDelegate
 {
     
     // Create Observer
-    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestTypePostFacebook];
+    APIRequestType requestType = APIRequestTypePostToken;
+    NSString *notificationName = [NSString apiRequestTypeToString:requestType];
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(tokenSwapWasSuccessful:) 
                                                  name:notificationName 
@@ -315,7 +318,7 @@ UIPickerViewDelegate
         NSMutableURLRequest *shelbyRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:shelbyRequestString]]; 
         [shelbyRequest setHTTPMethod:@"POST"];
         ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-        [client performRequest:shelbyRequest ofType:APIRequestTypePostFacebook];
+        [client performRequest:shelbyRequest ofType:requestType];
         
     });
 
@@ -659,7 +662,8 @@ UIPickerViewDelegate
 {
 
     // Create Observer
-    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestTypePostTwitter];
+    APIRequestType requestType = APIRequestTypePostToken;
+    NSString *notificationName = [NSString apiRequestTypeToString:requestType];
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(tokenSwapWasSuccessful:) 
                                                  name:notificationName 
@@ -672,7 +676,7 @@ UIPickerViewDelegate
         NSMutableURLRequest *shelbyRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:shelbyRequestString]]; 
         [shelbyRequest setHTTPMethod:@"POST"];
         ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-        [client performRequest:shelbyRequest ofType:APIRequestTypePostTwitter];
+        [client performRequest:shelbyRequest ofType:requestType];
 
     });
     

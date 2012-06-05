@@ -90,14 +90,7 @@
     
     switch (self.requestType) {
             
-        case APIRequestTypePostFacebook:{
-            
-            NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
-            [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:parsedDictionary];
-            
-        } break;
-            
-        case APIRequestTypePostTwitter:{
+        case APIRequestTypePostToken:{
             
             NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
             [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:parsedDictionary];
