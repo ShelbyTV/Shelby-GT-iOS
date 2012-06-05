@@ -11,8 +11,7 @@
 
 // Shelby
 #import "ShelbyAPIClient.h"
-
-// Constants
+#import "NSString+TypedefConversion.h"
 #import "StaticDeclarations.h"
 
 // Third Party Libraries 
@@ -61,16 +60,18 @@ UIPickerViewDelegate
 @property (copy, nonatomic) NSString *facebookID;
 
 // Twitter
-@property (copy, nonatomic) NSString *twitterName;
-@property (copy, nonatomic) NSString *twitterID;
-
 @property (strong, nonatomic) ACAccountStore *twitterAccountStore;          // ACAccountStore must be peristent
 @property (strong, nonatomic) ACAccount *twitterAccount;                    // Persistently stores user-specified twitterAccount
-@property (strong, nonatomic) OAToken *requestToken;                        // Store Request Token
-@property (copy, nonatomic) NSString *reverseAuthToken;                     // Store Reverse Auth Access Token
-@property (copy, nonatomic) NSString *reverseAuthSecret;                    // Store Reverse Auth Access Secret
+@property (strong, nonatomic) OAToken *twitterRequestToken;                        // Store Request Token
+@property (copy, nonatomic) NSString *twitterName;
+@property (copy, nonatomic) NSString *twitterID;
+@property (copy, nonatomic) NSString *twitterReverseAuthToken;                     // Store Reverse Auth Access Token
+@property (copy, nonatomic) NSString *twitterReverseAuthSecret;                    // Store Reverse Auth Access Secret
 @property (strong, nonatomic) UIPickerView *twitterPickerView;              
 @property (strong, nonatomic) NSMutableArray *twitterPickerViewChoices;
+
+// General Methods ///
+- (void)tokenSwapWasSuccessful:(NSNotification*)notification;
 
 /// Facebook Methods ///
 - (void)facebookLogin;
@@ -114,11 +115,15 @@ UIPickerViewDelegate
 @synthesize facebook = _facebook;
 @synthesize socialRequestType = _socialRequestType;
 @synthesize loginViewController = _loginViewController;
+@synthesize facebookName = _facebookName;
+@synthesize facebookID = _facebookID;
 @synthesize twitterAccountStore = _twitterAccountStore;
 @synthesize twitterAccount = _twitterAccount;
-@synthesize requestToken = _requestToken;
-@synthesize reverseAuthToken = _reverseAuthToken;
-@synthesize reverseAuthSecret = _reverseAuthSecret;
+@synthesize twitterRequestToken = _twitterRequestToken;
+@synthesize twitterName = _twitterName;
+@synthesize twitterID = _twitterID;
+@synthesize twitterReverseAuthToken = _twitterReverseAuthToken;
+@synthesize twitterReverseAuthSecret = _twitterReverseAuthSecret;
 @synthesize twitterPickerView = _twitterPickerView;
 @synthesize twitterPickerViewChoices = _twitterPickerViewChoices;
 
@@ -146,7 +151,7 @@ UIPickerViewDelegate
             
             // Set Shelby-specific NSUserDefaults to 'nil on first launch
             self.shelbyAuthorized = NO;
-            self.shelbyToken = @"sF7waBf8jBMqsxeskPp2"; // Change when Token Swap is in place
+            self.shelbyToken = nil;
             self.shelbyCreatorID = nil;
             
             // Set Facebook NSUserDefaults to 'nil' on first launch
@@ -172,6 +177,20 @@ UIPickerViewDelegate
 - (id)copyWithZone:(NSZone *)zone
 {
     return self;
+}
+
+#pragma mark - Private Methods
+- (void)tokenSwapWasSuccessful:(NSNotification *)notification
+{
+    
+    // Get ShelbyToken from notificaiton dictioanry sent from APIClient
+    NSDictionary *parsedDictionary = [notification.userInfo objectForKey:@"result"];
+    self.shelbyToken = [parsedDictionary valueForKey:@"authentication_token"];
+
+    // Dismiss login window after token swap
+    self.shelbyAuthorized = YES;
+    [self.loginViewController dismissModalViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
 }
 
 #pragma mark - Facebook Authorization Methods
@@ -431,7 +450,7 @@ UIPickerViewDelegate
 {
     
     // Remove reqeustToken value if value exists and/or user decides to re-authenticate
-    if (self.requestToken) self.requestToken = nil;
+    if (self.twitterRequestToken) self.twitterRequestToken = nil;
     
     NSURL *requestTokenURL = [NSURL URLWithString:@"https://api.twitter.com/oauth/request_token"];
     OAConsumer *consumer= [[OAConsumer alloc] initWithKey:SocialFacadeTwitterConsumerKey secret:SocialFacadeTwitterConsumerSecret];
@@ -458,7 +477,7 @@ UIPickerViewDelegate
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
 {
     NSString* httpBodyData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    self.requestToken = [[OAToken alloc] initWithHTTPResponseBody:httpBodyData];
+    self.twitterRequestToken = [[OAToken alloc] initWithHTTPResponseBody:httpBodyData];
     [self authenticateTwitterAccount];
 }
 
@@ -478,7 +497,7 @@ UIPickerViewDelegate
                                                                                realm:nil
                                                                    signatureProvider:nil];
     // Create request for accessToken
-    NSString *requestTokenKey = self.requestToken.key;
+    NSString *requestTokenKey = self.twitterRequestToken.key;
     OARequestParameter *tokenParam = [[OARequestParameter alloc] initWithName:@"oauth_token" value:requestTokenKey];
     OARequestParameter *loginParam = [[OARequestParameter alloc] initWithName:@"force_login" value:@"false"];
     [authorizeRequest setParameters:[NSArray arrayWithObjects:tokenParam, loginParam, nil]];
@@ -498,11 +517,11 @@ UIPickerViewDelegate
     NSURL *accessTokenURL = [NSURL URLWithString:@"https://api.twitter.com/oauth/access_token"];
     OAMutableURLRequest * accessTokenRequest = [[OAMutableURLRequest alloc] initWithURL:accessTokenURL
                                                                                consumer:nil
-                                                                                  token:self.requestToken
+                                                                                  token:self.twitterRequestToken
                                                                                   realm:nil
                                                                       signatureProvider:nil];
     
-    OARequestParameter * tokenParam = [[OARequestParameter alloc] initWithName:@"oauth_token" value:self.requestToken.key];
+    OARequestParameter * tokenParam = [[OARequestParameter alloc] initWithName:@"oauth_token" value:self.twitterRequestToken.key];
     OARequestParameter * verifierParam = [[OARequestParameter alloc] initWithName:@"oauth_verifier" value:pin];
     NSArray * params = [NSArray arrayWithObjects:tokenParam, verifierParam, nil];
     [accessTokenRequest setParameters:params];
@@ -636,14 +655,15 @@ UIPickerViewDelegate
                         name = [name stringByReplacingOccurrencesOfString:@"=" withString:@""];
                         
                         // Store Reverse Auth Access Token and Access Token Secret
-                        [self setReverseAuthToken:token];
-                        [self setReverseAuthSecret:secret];
+                        [self setTwitterReverseAuthToken:token];
+                        [self setTwitterReverseAuthSecret:secret];
                         [self setTwitterID:ID];
                         [self setTwitterName:name];
                         
                         // Send Reverse Auth Access Token and Access Token Secret to Shelby for Token Swap
                         [self sendReverseAuthAccessResultsToServer];
                     
+                        
                     }
             
                 }];
@@ -653,21 +673,24 @@ UIPickerViewDelegate
 
 - (void)sendReverseAuthAccessResultsToServer
 {
-    // Send info to Shelby for token swap
-    if (DEBUGMODE) NSLog(@"Twitter token swap with Shelby occurs at this point.");
+
+    // Create Observer
+    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestTypePostTwitter];
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(tokenSwapWasSuccessful:) 
+                                                 name:notificationName 
+                                               object:nil];
+
+    // Perform Shelby Token Swap
+    dispatch_async(dispatch_get_main_queue(), ^{
     
-    NSString *shelbyRequestString = [NSString stringWithFormat:kAPIRequestPostTokenTwitter, self.twitterID, self.reverseAuthToken, self.reverseAuthSecret];
-    NSMutableURLRequest *shelbyRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:shelbyRequestString]]; 
-    [shelbyRequest setHTTPMethod:@"POST"];
-    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-    [client performRequest:shelbyRequest ofType:APIRequestTypePostTwitter];
-    
-    // These actions should be performed after token swap
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        self.shelbyAuthorized = YES;
-//        [self.loginViewController dismissModalViewControllerAnimated:YES];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
-//    });
+        NSString *shelbyRequestString = [NSString stringWithFormat:kAPIRequestPostTokenTwitter, self.twitterID, self.twitterReverseAuthToken, self.twitterReverseAuthSecret];
+        NSMutableURLRequest *shelbyRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:shelbyRequestString]]; 
+        [shelbyRequest setHTTPMethod:@"POST"];
+        ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+        [client performRequest:shelbyRequest ofType:APIRequestTypePostTwitter];
+
+    });
     
 }
 
@@ -812,55 +835,6 @@ UIPickerViewDelegate
 - (NSString*)shelbyCreatorID
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeShelbyCreatorID];
-}
-
-/// Facebook Name /// 
-- (void)setFacebookName:(NSString *)facebookName
-{
-    [[NSUserDefaults standardUserDefaults] setObject:facebookName forKey:SocialFacadeFacebookName];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (NSString*)facebookName
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeFacebookName];
-}
-
-/// Facebook ID /// 
-- (void)setFacebookID:(NSString *)facebookID
-{
-    [[NSUserDefaults standardUserDefaults] setObject:facebookID forKey:SocialFacadeFacebookID];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (NSString*)facebookID
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeFacebookID];
-}
-
-
-/// Twitter Name /// 
-- (void)setTwitterName:(NSString *)twitterName
-{
-    [[NSUserDefaults standardUserDefaults] setObject:twitterName forKey:SocialFacadeTwitterName];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (NSString*)twitterName
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeTwitterName];
-}
-
-/// Twitter ID /// 
-- (void)setTwitterID:(NSString *)twitterID
-{
-    [[NSUserDefaults standardUserDefaults] setObject:twitterID forKey:SocialFacadeTwitterID];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (NSString*)twitterID
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeTwitterID];
 }
 
 @end

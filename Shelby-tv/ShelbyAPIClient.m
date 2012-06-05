@@ -94,7 +94,7 @@
             
             NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
             [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:parsedDictionary];
-        
+
         } break;
         
         case APIRequestTypeGetStream:{

@@ -44,7 +44,8 @@
         self.guideTableViewManager.refreshController = self;
         self.refreshDelegate = (id)self.guideTableViewManager;
 
-        [self.guideTableViewManager loadDataOnInitializationForTableView:self.tableView];
+        // If user is authorized with Shelby, populate tableViewManager data from API and Core Data
+        if ( [SocialFacade sharedInstance].shelbyAuthorized ) [self.guideTableViewManager loadDataOnInitializationForTableView:self.tableView];
         
     }
     

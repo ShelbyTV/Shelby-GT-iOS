@@ -44,7 +44,6 @@ typedef enum _SocialRequestType
 @property (copy, nonatomic) NSString *shelbyToken;
 @property (copy, nonatomic) NSString *shelbyCreatorID;
 
-
 /// Singleton Class Method ///
 +(SocialFacade *)sharedInstance;
 
