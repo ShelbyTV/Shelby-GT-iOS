@@ -353,6 +353,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         
         // Custom failed response
+        NSLog(@"Image Loading Problem");
         
     });
     
