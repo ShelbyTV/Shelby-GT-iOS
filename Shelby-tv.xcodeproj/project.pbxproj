@@ -121,6 +121,8 @@
 		8EB6D7F0157FD3AF0060202D /* videoCardStroke@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7EE157FD3AF0060202D /* videoCardStroke@2x.png */; };
 		8EB6D7F3157FD4ED0060202D /* videoCardTopBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7F1157FD4ED0060202D /* videoCardTopBar.png */; };
 		8EB6D7F4157FD4ED0060202D /* videoCardTopBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7F2157FD4ED0060202D /* videoCardTopBar@2x.png */; };
+		8EB6D7FF157FF3310060202D /* videoCardUpvotedBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7FD157FF3310060202D /* videoCardUpvotedBar.png */; };
+		8EB6D800157FF3310060202D /* videoCardUpvotedBar@2x.psd in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7FE157FF3310060202D /* videoCardUpvotedBar@2x.psd */; };
 		8EBC37361578121500AA131E /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBC37351578121500AA131E /* Conversation.m */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
 		8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D21535F6F70009718E /* Foundation.framework */; };
@@ -361,6 +363,8 @@
 		8EB6D7EE157FD3AF0060202D /* videoCardStroke@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardStroke@2x.png"; sourceTree = "<group>"; };
 		8EB6D7F1157FD4ED0060202D /* videoCardTopBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardTopBar.png; sourceTree = "<group>"; };
 		8EB6D7F2157FD4ED0060202D /* videoCardTopBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardTopBar@2x.png"; sourceTree = "<group>"; };
+		8EB6D7FD157FF3310060202D /* videoCardUpvotedBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardUpvotedBar.png; sourceTree = "<group>"; };
+		8EB6D7FE157FF3310060202D /* videoCardUpvotedBar@2x.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "videoCardUpvotedBar@2x.psd"; sourceTree = "<group>"; };
 		8EBC37341578121500AA131E /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Conversation.h; path = ../Conversation.h; sourceTree = "<group>"; };
 		8EBC37351578121500AA131E /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Conversation.m; path = ../Conversation.m; sourceTree = "<group>"; };
 		8ECBA7CC1535F6F70009718E /* Shelby-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -681,6 +685,8 @@
 		8E87DEB7156C44C2004E0629 /* videocard */ = {
 			isa = PBXGroup;
 			children = (
+				8EB6D7FD157FF3310060202D /* videoCardUpvotedBar.png */,
+				8EB6D7FE157FF3310060202D /* videoCardUpvotedBar@2x.psd */,
 				8EB6D7F1157FD4ED0060202D /* videoCardTopBar.png */,
 				8EB6D7F2157FD4ED0060202D /* videoCardTopBar@2x.png */,
 				8EB6D7ED157FD3AF0060202D /* videoCardStroke.png */,
@@ -1099,6 +1105,8 @@
 				8EB6D7F0157FD3AF0060202D /* videoCardStroke@2x.png in Resources */,
 				8EB6D7F3157FD4ED0060202D /* videoCardTopBar.png in Resources */,
 				8EB6D7F4157FD4ED0060202D /* videoCardTopBar@2x.png in Resources */,
+				8EB6D7FF157FF3310060202D /* videoCardUpvotedBar.png in Resources */,
+				8EB6D800157FF3310060202D /* videoCardUpvotedBar@2x.psd in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
