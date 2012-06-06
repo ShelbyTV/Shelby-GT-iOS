@@ -126,8 +126,7 @@
 {
     
     // Reference Parent ViewController's UITableView (should ONLY occur on first call to this method)
-    // May not need this in long run - retain this for now
-    if ( ![self tableView] ) self.tableView = tableView;
+    self.tableView = tableView;
     
     // Load stored data into tableView (if it exists)
     [self loadDataFromCoreData];
@@ -141,8 +140,13 @@
 - (void)loadDataFromCoreData
 {
     // Fetch Stream / DashboardEntry Data from Core Data
-    self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
+    if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
+     
+        self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
 
+        [self.tableView reloadData];
+
+    }
 }
 
 - (void)performAPIRequest
@@ -165,10 +169,11 @@
 
     // Hide ASPullToRefreshController's HeaderView
     dispatch_async(dispatch_get_main_queue(), ^{
+        
         [self.refreshController didFinishRefreshing];
+        [self loadDataFromCoreData];
+        
     });
-
-    [self loadDataFromCoreData];
 
 }
 

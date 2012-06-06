@@ -43,9 +43,6 @@
         // Set Reference to ASPullToRefreshTableViewController
         self.guideTableViewManager.refreshController = self;
         self.refreshDelegate = (id)self.guideTableViewManager;
-
-        // If user is authorized with Shelby, populate tableViewManager data from API and Core Data
-        if ( [SocialFacade sharedInstance].shelbyAuthorized ) [self.guideTableViewManager loadDataOnInitializationForTableView:self.tableView];
         
     }
     
@@ -83,7 +80,9 @@
     switch (self.guideType) {
             
         case GuideTypeStream: {
-            
+        
+            // If user is authorized with Shelby, populate tableViewManager data from API and Core Data
+           if ( [SocialFacade sharedInstance].shelbyAuthorized ) [self.guideTableViewManager loadDataOnInitializationForTableView:self.tableView];
             
         } break;
             
