@@ -44,7 +44,7 @@
 - (void)addActionsToCellButtons
 {
     [self.cell.upvoteButton addTarget:self action:@selector(upvote) forControlEvents:UIControlEventTouchUpInside];
-    [self.cell.commentsButton addTarget:self action:@selector(comment) forControlEvents:UIControlEventTouchUpInside];
+    [self.cell.commentButton addTarget:self action:@selector(comment) forControlEvents:UIControlEventTouchUpInside];
     [self.cell.rollButton addTarget:self action:@selector(roll) forControlEvents:UIControlEventTouchUpInside];
     [self.cell.shareButton addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
 }

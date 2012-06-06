@@ -19,14 +19,14 @@
 @synthesize userImageView = _userImageView;
 @synthesize thumbnailImageView = _thumbnailImageView;
 @synthesize upvoteButton = _upvoteButton;
-@synthesize commentsButton = _commentsButton;
+@synthesize commentButton = _commentButton;
 @synthesize rollButton = _rollButton;
 @synthesize shareButton = _shareButton;
 @synthesize nicknameLabel = _nicknameLabel;
 @synthesize rollLabel = _rollLabel;
 @synthesize createdAtLabel = _createdAtLabel;
 @synthesize upvoteLabel = _upvoteLabel;
-@synthesize commentsLabel = _commentsLabell;
+@synthesize commentLabel = _commentLabel;
 
 #pragma mark - Memory Deallocation Methods
 - (void)dealloc
@@ -35,14 +35,14 @@
     self.originNetworkImageView = nil;
     self.thumbnailImageView = nil;
     self.upvoteButton = nil;
-    self.commentsButton = nil;
+    self.commentButton = nil;
     self.rollButton = nil;
     self.shareButton = nil;
     self.nicknameLabel = nil;
     self.rollLabel = nil;
     self.createdAtLabel = nil;
     self.upvoteLabel = nil;
-    self.commentsLabel = nil;
+    self.commentLabel = nil;
 }
 
 - (void)awakeFromNib
@@ -54,7 +54,7 @@
     self.rollLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f];
     self.createdAtLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f];
     self.upvoteLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:16.0f];
-    self.commentsLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:16.0f];
+    self.commentLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:16.0f];
 }
 
 @end
