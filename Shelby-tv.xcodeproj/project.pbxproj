@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E0B3ACC1581404E0008B841 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0B3AB11581404E0008B841 /* MBProgressHUD.m */; };
 		8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */; };
 		8E4A7732155185A0003CBA2A /* pullToRefreshArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A7730155185A0003CBA2A /* pullToRefreshArrow.png */; };
 		8E4A7733155185A0003CBA2A /* pullToRefreshArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A7731155185A0003CBA2A /* pullToRefreshArrow@2x.png */; };
@@ -181,6 +182,8 @@
 
 /* Begin PBXFileReference section */
 		8E0B3A9415813C400008B841 /* ColorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorConstants.h; sourceTree = "<group>"; };
+		8E0B3AB01581404E0008B841 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		8E0B3AB11581404E0008B841 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		8E3457851551BC9200FEFC9D /* NSString+TypedefConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TypedefConversion.h"; sourceTree = "<group>"; };
 		8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TypedefConversion.m"; sourceTree = "<group>"; };
 		8E4A7730155185A0003CBA2A /* pullToRefreshArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pullToRefreshArrow.png; path = library/ASPullToRefresh/ASPullToRefresh/pullToRefreshArrow.png; sourceTree = SOURCE_ROOT; };
@@ -464,6 +467,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E0B3A961581404E0008B841 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				8E0B3AB01581404E0008B841 /* MBProgressHUD.h */,
+				8E0B3AB11581404E0008B841 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		8E4A775F15518B14003CBA2A /* facebook-ios-sdk */ = {
 			isa = PBXGroup;
 			children = (
@@ -870,6 +882,7 @@
 		8ED3110615360475002614DF /* Third Party Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8E0B3A961581404E0008B841 /* MBProgressHUD */,
 				8E50604115588FAB00F42933 /* Asynchronous Freeloader */,
 				8E7F47E6154093210041118E /* ASPullToRefresh */,
 				8E4A775F15518B14003CBA2A /* facebook-ios-sdk */,
@@ -1219,6 +1232,7 @@
 				8EB6D81315800F550060202D /* Creator.m in Sources */,
 				8EB6D81615800FCF0060202D /* Frame.m in Sources */,
 				8EB6D81915801AED0060202D /* ShelbyUser.m in Sources */,
+				8E0B3ACC1581404E0008B841 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

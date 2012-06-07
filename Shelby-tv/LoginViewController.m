@@ -9,6 +9,7 @@
 // LoginViewController
 #import "LoginViewController.h"
 
+
 // Models
 #import "SocialFacade.h"
 #import "ShelbyAPIClient.h"
@@ -19,6 +20,7 @@
 @interface LoginViewController () <SocialFacadeDelegate>
 
 @property (strong, nonatomic) SocialFacade *socialFacade;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 
 - (void)initializationOnLoad;
 - (void)animateOnLoad;
@@ -40,6 +42,7 @@
 @synthesize facebookButton = _facebookButton;
 @synthesize twitterButton = _twitterButton;
 @synthesize socialFacade = _socialFacade;
+@synthesize activityIndicator = _activityIndicator;
 
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
@@ -276,24 +279,33 @@
                          animations:^{
                              
                              self.blackBarImageView.frame = CGRectMake(self.blackBarImageView.frame.origin.x, 
-                                                                       73.0f + self.blackBarImageView.frame.origin.y, 
+                                                                       53.0f + self.blackBarImageView.frame.origin.y, 
                                                                        self.blackBarImageView.frame.size.width, 
                                                                        self.blackBarImageView.frame.size.height);
                              self.sloganLabel.frame = CGRectMake(self.sloganLabel.frame.origin.x, 
-                                                                 73.0f + self.sloganLabel.frame.origin.y, 
+                                                                 53.0f + self.sloganLabel.frame.origin.y, 
                                                                  self.sloganLabel.frame.size.width, 
                                                                  self.sloganLabel.frame.size.height);
                              
                              self.logoImageView.frame = CGRectMake(self.logoImageView.frame.origin.x, 
-                                                                   73.0f + self.logoImageView.frame.origin.y, 
+                                                                   53.0f + self.logoImageView.frame.origin.y, 
                                                                    self.logoImageView.frame.size.width, 
                                                                    self.logoImageView.frame.size.height);
                              
                              
                          } completion:^(BOOL finished) {
                              
+                             self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+                             [self.activityIndicator setFrame:self.view.frame];
+                             [self.activityIndicator setCenter:CGPointMake(self.view.frame.size.width/2.0f, 
+                                                              50.0f + self.blackBarImageView.frame.size.height + self.blackBarImageView.frame.origin.y)];
+                             [self.view addSubview:self.activityIndicator];
+                             [self.activityIndicator startAnimating];
+                             [self.activityIndicator setAlpha:0.0f];
                              
-                             // MBProgressHUD
+                             [UIView animateWithDuration:0.5f animations:^{
+                                 [self.activityIndicator setAlpha:1.0f];
+                             }];
                              
                          }];
     }
@@ -307,7 +319,9 @@
         [self.logoImageView setAlpha:0.0f];
         [self.blackBarImageView setAlpha:0.0f];
         [self.sloganLabel setAlpha:0.0f];
-        
+        [self.activityIndicator setAlpha:0.0f];
+        [self.activityIndicator stopAnimating];
+        [self.view setAlpha:0.25f];
         
     } completion:^(BOOL finished) {
         
@@ -336,10 +350,13 @@
      
         if ( [self.socialFacade firstTimeLogin] ) {     // If this is the first time the user has loggedin, show the animation
             
+            
             [[NSNotificationCenter defaultCenter] addObserver:self 
                                                      selector:@selector(didFinishLoadingDataOnLogin:) 
                                                          name:kDidFinishLoadingDataOnLogin 
                                                        object:nil];
+            
+            if ( self.activityIndicator.superview ) [self.activityIndicator removeFromSuperview];
             
             
             // Peeform Initial API Request

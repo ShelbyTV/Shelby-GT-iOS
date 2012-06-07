@@ -87,13 +87,13 @@
                     [[SocialFacade sharedInstance] setFirstTimeLogin:NO];
                     
                     // Animate View
-                    [self.navigationController.view setAlpha:0.0f];
-                    [self.tabBarController.view setAlpha:0.0f];
-                    [self.view setAlpha:0.0f];
-                    [UIView animateWithDuration:1.5f animations:^{
-                        [self.navigationController.view setAlpha:1.0f];
-                        [self.tabBarController.view setAlpha:1.0f];
-                        [self.view setAlpha:1.0f];
+                    [self.navigationController.navigationBar setAlpha:0.25f];
+                    [self.tabBarController.tabBar setAlpha:0.25f];
+                    [self.tableView setAlpha:0.25f];
+                    [UIView animateWithDuration:1.0f animations:^{
+                        [self.navigationController.navigationBar setAlpha:1.0f];
+                        [self.tabBarController.tabBar setAlpha:1.0f];
+                        [self.tableView setAlpha:1.0f];
                     }];
                 
                 }
