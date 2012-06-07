@@ -41,7 +41,7 @@
 + (void)storeRoll:(Roll*)roll fromFrameArray:(NSArray*)frameArray;
 
 // Store dashboard.frame.user data in Core Data
-+ (void)storeUser:(User*)user fromFrameArray:(NSArray*)frameArray;
++ (void)storeCreator:(Creator*)user fromFrameArray:(NSArray*)frameArray;
 
 // Store dashboard.frame.video data in Core Data
 + (void)storeUpvoteUsersFromFrame:(Frame*)frame withFrameArray:(NSArray*)frameArray;
@@ -317,8 +317,8 @@ static CoreDataUtility *sharedInstance = nil;
     NSUInteger upvotersCount = [upvotersArray count];
     [frame setValue:[NSNumber numberWithInt:upvotersCount] forKey:kCoreDataFrameUpvotersCount];
     
-    NSString *userID = [NSString testForNull:[frameArray valueForKey:@"creator_id"]];
-    [frame setValue:userID forKey:kCoreDataFrameUserID ];
+    NSString *creatorID = [NSString testForNull:[frameArray valueForKey:@"creator_id"]];
+    [frame setValue:creatorID forKey:kCoreDataFrameCreatorID ];
     
     NSString *videoID = [NSString testForNull:[frameArray valueForKey:@"video_id"]];
     [frame setValue:videoID forKey:kCoreDataFrameVideoID ];
@@ -352,13 +352,13 @@ static CoreDataUtility *sharedInstance = nil;
     }
     
     // Store dashboard.frame.user attributes
-    User *user = [self checkIfEntity:kCoreDataEntityUser 
-                         withIDValue:userID
-                            forIDKey:kCoreDataFrameUserID
-                     existsInContext:context];
-    frame.user = user;
-    [user addFrameObject:frame];
-    [self storeUser:user fromFrameArray:frameArray];
+    Creator *creator = [self checkIfEntity:kCoreDataEntityCreator 
+                               withIDValue:creatorID
+                                  forIDKey:kCoreDataFrameCreatorID
+                           existsInContext:context];
+    frame.creator = creator;
+    [creator addFrameObject:frame];
+    [self storeCreator:creator fromFrameArray:frameArray];
     
     // Store dashboard.frame.video attributes
     Video *video = [self checkIfEntity:kCoreDataEntityVideo 
@@ -472,7 +472,7 @@ static CoreDataUtility *sharedInstance = nil;
     }
 }
 
-+ (void)storeUser:(User *)user fromFrameArray:(NSArray *)frameArray
++ (void)storeCreator:(Creator *)user fromFrameArray:(NSArray *)frameArray
 {
     
     NSArray *userArray = [frameArray valueForKey:@"creator"];

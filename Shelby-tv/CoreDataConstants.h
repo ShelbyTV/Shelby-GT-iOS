@@ -7,12 +7,12 @@
 //
 
 #import "Conversation.h"
+#import "Creator.h"
 #import "DashboardEntry.h"
 #import "Frame.h"
 #import "Messages.h"
 #import "Roll.h"
 #import "UpvoteUsers.h"
-#import "User.h"
 #import "Video.h"
 
 // Entity Constants
@@ -22,7 +22,7 @@
 #define kCoreDataEntityMessages                 @"Messages"
 #define kCoreDataEntityRoll                     @"Roll"
 #define kCoreDataEntityUpvoteUsers              @"UpvoteUsers"
-#define kCoreDataEntityUser                     @"User"
+#define kCoreDataEntityCreator                  @"Creator"
 #define kCoreDataEntityVideo                    @"Video"
 
 // Relationship Constants
@@ -38,6 +38,11 @@
 #define kCoreDataConversationID                 @"conversationID"
 #define kCoreDataConversationMessageCount       @"messageCount"
 
+// Creator Attribute Constants
+#define kCoreDataUserID                         @"creatorID"
+#define kCoreDataUserImage                      @"userImage"
+#define kCoreDataUserNickname                   @"nickname"
+
 // DashboardEntry Attribute Constants
 #define kCoreDataDashboardEntryID               @"dashboardID"
 #define kCoreDataDashboardEntryTimestamp        @"timestamp"
@@ -48,7 +53,7 @@
 #define kCoreDataFrameRollID                    @"rollID"
 #define kCoreDataFrameTimestamp                 @"timestamp"
 #define kCoreDataFrameUpvotersCount             @"upvotersCount"
-#define kCoreDataFrameUserID                    @"userID"
+#define kCoreDataFrameCreatorID                 @"creatorID"
 #define kCoreDataFrameVideoID                   @"videoID"
 
 // Messages Attribute Constants
@@ -70,11 +75,6 @@
 #define kCoreDataUpvoteUsersNickname            @"nickname"
 #define kCoreDataUpvoteUsersRollID              @"rollID"
 #define kCoreDataUpvoteUsersImage               @"userImage"
-
-// User Attribute Constants
-#define kCoreDataUserID                         @"userID"
-#define kCoreDataUserImage                      @"userImage"
-#define kCoreDataUserNickname                   @"nickname"
 
 // Video Attribute Constants
 #define kCoreDataVideoID                        @"videoID"

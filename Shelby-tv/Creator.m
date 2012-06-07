@@ -1,19 +1,19 @@
 //
-//  User.m
+//  Creator.m
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 5/25/12.
+//  Created by Arthur Ariel Sabintsev on 6/6/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import "User.h"
+#import "Creator.h"
 #import "Frame.h"
 
 
-@implementation User
+@implementation Creator
 
 @dynamic nickname;
-@dynamic userID;
+@dynamic creatorID;
 @dynamic userImage;
 @dynamic frame;
 

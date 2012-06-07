@@ -1,8 +1,8 @@
 //
-//  User.h
+//  Creator.h
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 5/25/12.
+//  Created by Arthur Ariel Sabintsev on 6/6/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
@@ -11,15 +11,15 @@
 
 @class Frame;
 
-@interface User : NSManagedObject
+@interface Creator : NSManagedObject
 
 @property (nonatomic, retain) NSString * nickname;
-@property (nonatomic, retain) NSString * userID;
+@property (nonatomic, retain) NSString * creatorID;
 @property (nonatomic, retain) NSString * userImage;
 @property (nonatomic, retain) NSSet *frame;
 @end
 
-@interface User (CoreDataGeneratedAccessors)
+@interface Creator (CoreDataGeneratedAccessors)
 
 - (void)addFrameObject:(Frame *)value;
 - (void)removeFrameObject:(Frame *)value;

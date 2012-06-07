@@ -55,7 +55,7 @@
             [cell.rollLabel setText:dashboardEntry.frame.roll.title];
             
             // Populate nickname label
-            [cell.nicknameLabel setText:dashboardEntry.frame.user.nickname];
+            [cell.nicknameLabel setText:dashboardEntry.frame.creator.nickname];
             
             // Populate favorite label
             [cell.upvoteLabel setText:[NSString stringWithFormat:@"%@", dashboardEntry.frame.upvotersCount]];
@@ -88,9 +88,9 @@
             }
             
             // Asychronous download of user image/icon
-            if ( dashboardEntry.frame.user.userImage ) { // Occassionally, this is nil. Dan Spinosa is currently addressing this bug.
+            if ( dashboardEntry.frame.creator.userImage ) { // Occassionally, this is nil. Dan Spinosa is currently addressing this bug.
                 
-                [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.user.userImage forImageView:cell.userImageView withPlaceholderView:nil];
+                [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.creator.userImage forImageView:cell.userImageView withPlaceholderView:nil];
             
             } else if ( message.userImageURL ) {    // Use this image (which is never nil) until Spinosa addresses issue.
                 
