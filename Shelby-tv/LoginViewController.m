@@ -21,9 +21,13 @@
 
 - (void)initializationOnLoad;
 - (void)animateOnLoad;
-- (void)animationStageOne:(UIView*)object;
-- (void)animationStageTwo:(UIView*)object;
-- (void)animationStageThree:(UIView*)object;
+- (void)loginAnimationStageOne:(UIView*)object;
+- (void)loginAnimationStageTwo:(UIView*)object;
+- (void)loginAnimationStageThree:(UIView*)object;
+- (void)logoutAnimationStageOne:(UIView*)object;
+- (void)logoutAnimationStageTwo:(UIView*)object;
+- (void)logoutAnimationStageThree;
+- (void)didFinishLoadingDataOnLogin:(NSNotification*)notification;
 
 @end
 
@@ -41,6 +45,7 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:SocialFacadeAuthorizationStatus object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kDidFinishLoadingDataOnLogin object:nil];
     self.logoImageView = nil;
     self.blackBarImageView = nil;
     self.sloganLabel = nil;
@@ -105,22 +110,25 @@
                          self.logoImageView.frame = CGRectMake(51.0f, 120.0f, 217.0f, 55.0f);
                      
                      } completion:^(BOOL finished) {
+
+                         if ( finished ) {
                          
-                         [UIView animateWithDuration:0.75 animations:^{
-                         
-                             [self.blackBarImageView setAlpha:1.0f];
-                             [self.sloganLabel setAlpha:1.0f];
-                         
-                         } completion:^(BOOL finished) {
+                             [UIView animateWithDuration:0.75 animations:^{
                              
-                             [self animationStageOne:self.facebookImageView];
+                                 [self.blackBarImageView setAlpha:1.0f];
+                                 [self.sloganLabel setAlpha:1.0f];
                              
-                         }];
+                             } completion:^(BOOL finished) {
+                                 
+                                 if ( finished ) [self loginAnimationStageOne:self.facebookImageView];
+                                 
+                             }];
+                         }
                          
                      }];
 }
 
-- (void)animationStageOne:(UIView*)object
+- (void)loginAnimationStageOne:(UIView*)object
 {
     CGRect oldFrame = object.frame;
     object.frame = CGRectMake(-25.0f + oldFrame.origin.x, 
@@ -135,64 +143,204 @@
                          object.alpha = 1.0f;
                          
                      } completion:^(BOOL finished) {
-                         [self animationStageTwo:object];
                          
-                         // Begin Twitter animation if object is facebookImageView
-                         if ( object == self.facebookImageView ) [self animationStageOne:self.twitterImageView];
+                         if ( finished ) {
                          
+                             [self loginAnimationStageTwo:object];
+                             
+                             /*
+                              Begin Twitter animation if object is facebookImageView
+                              Begin second animation (twitter), if first animaiton (facebook) is currently being animated
+                              */
+                              if ( object == self.facebookImageView ) [self loginAnimationStageOne:self.twitterImageView];
+
+                         }
                      }];
 }
 
-- (void)animationStageTwo:(UIView*)object
+- (void)loginAnimationStageTwo:(UIView*)object
 {
     
     [UIView animateWithDuration:0.4 
                      animations:^{
 
-                         object.frame = CGRectMake(-15.0f + object.frame.origin.x, 
-                                                   -15.0f + object.frame.origin.y, 
-                                                   30.0f + object.frame.size.width, 
-                                                   30.0f + object.frame.size.height);;
+                         object.frame = CGRectMake(-5.0f + object.frame.origin.x, 
+                                                   -2.0f + object.frame.origin.y, 
+                                                   4.0f + object.frame.size.width, 
+                                                   4.0f + object.frame.size.height);;
                      } completion:^(BOOL finished) {
                          
-                         [self animationStageThree:object];
+                         if ( finished ) [self loginAnimationStageThree:object];
                                 
                      }];
 
     
 }
 
-- (void)animationStageThree:(UIView*)object
+- (void)loginAnimationStageThree:(UIView*)object
 {
     [UIView animateWithDuration:0.4 
                      animations:^{
                          
-                         object.frame = CGRectMake(15.0f + object.frame.origin.x, 
-                                                  15.0f + object.frame.origin.y, 
-                                                  -30.0f + object.frame.size.width, 
-                                                  -30.0f + object.frame.size.height);
+                         object.frame = CGRectMake(2.0f + object.frame.origin.x, 
+                                                   2.0f + object.frame.origin.y, 
+                                                  -4.0f + object.frame.size.width, 
+                                                  -4.0f + object.frame.size.height);
                          
                      } completion:^(BOOL finished) {
                     
-                         // Hide object
-                         object.alpha = 0.0;
                          
-                         // Replace imageView object with UIButton
-                         if ( object == self.facebookImageView ) {
-                             
-                             [self.facebookButton setFrame:self.facebookImageView.frame];
-                             [self.facebookButton setAlpha:1.0f];
-                             
-                         } else {
-                             
-                             [self.twitterButton setFrame:self.twitterImageView.frame];
-                             [self.twitterButton setAlpha:1.0f];
-                             
+                         if ( finished ) {
+                        
+                             // Replace imageView object with UIButton
+                             if ( object == self.facebookImageView ) {
+                                  
+                                 [self.facebookButton setFrame:object.frame];
+                                 [self.facebookButton setAlpha:1.0f];
+                                 
+                             } else {
+                                 
+                                 [self.twitterButton setFrame:object.frame];
+                                 [self.twitterButton setAlpha:1.0f];
+                                 
+                             } 
+                              
+                            // Hide object
+                            object.alpha = 0.0;
                          }
+                              
                      }];
-
 }
   
+
+
+- (void)logoutAnimationStageOne:(UIView *)object
+{
+    
+    if ( object == self.facebookButton ) { 
+        
+        [self.facebookImageView setAlpha:1.0f];
+        [self.facebookButton setAlpha:0.0f];
+    
+    } else {
+    
+        [self.twitterImageView setAlpha:1.0f]; 
+        [self.twitterButton setAlpha:0.0f];
+   
+    }
+    
+    [UIView animateWithDuration:0.4 
+                     animations:^{
+                         
+                         if ( object == self.facebookButton ) {
+                             
+                             [self.facebookImageView setAlpha:0.0f];
+                             [self.facebookImageView setFrame:CGRectMake(100.0f + self.facebookImageView.frame.origin.x, 
+                                                                         25.0f + self.facebookImageView.frame.origin.y, 
+                                                                         -200.0f + self.facebookImageView.frame.size.width,
+                                                                         -50.0f + self.facebookImageView.frame.size.height)];
+                             
+                         } else {
+                            
+                             [self.twitterImageView setAlpha:0.0f];
+                             [self.twitterImageView setFrame:CGRectMake(100.0f + self.twitterImageView.frame.origin.x, 
+                                                                        25.0f + self.twitterImageView.frame.origin.y, 
+                                                                        -200.0f + self.twitterImageView.frame.size.width,
+                                                                        -50.0f + self.twitterImageView.frame.size.height)];
+                             
+                         }
+                         
+                     } 
+                     
+                     completion:^(BOOL finished) {
+                         
+                         if ( finished ) {
+                             
+                             [self logoutAnimationStageTwo:object];
+                             
+                         }
+                     
+                     }];
+}
+
+- (void)logoutAnimationStageTwo:(UIView *)object
+{
+    
+    if ( object == self.twitterButton ) {
+        
+        [self logoutAnimationStageOne:self.facebookButton];
+        
+    } else {
+        
+        [UIView animateWithDuration:0.5 
+                         animations:^{
+                             
+                             self.blackBarImageView.frame = CGRectMake(self.blackBarImageView.frame.origin.x, 
+                                                                       73.0f + self.blackBarImageView.frame.origin.y, 
+                                                                       self.blackBarImageView.frame.size.width, 
+                                                                       self.blackBarImageView.frame.size.height);
+                             self.sloganLabel.frame = CGRectMake(self.sloganLabel.frame.origin.x, 
+                                                                 73.0f + self.sloganLabel.frame.origin.y, 
+                                                                 self.sloganLabel.frame.size.width, 
+                                                                 self.sloganLabel.frame.size.height);
+                             
+                             self.logoImageView.frame = CGRectMake(self.logoImageView.frame.origin.x, 
+                                                                   73.0f + self.logoImageView.frame.origin.y, 
+                                                                   self.logoImageView.frame.size.width, 
+                                                                   self.logoImageView.frame.size.height);
+                             
+                             
+                         } completion:^(BOOL finished) {
+                             
+                             
+                             [self logoutAnimationStageThree];
+                             
+                         }];
+    }
+}
+
+- (void)logoutAnimationStageThree;
+{
+    [UIView animateWithDuration:0.5 
+                     animations:^{
+                         
+                         [self.sloganLabel setAlpha:0.0f];
+                         
+                     } completion:^(BOOL finished) {
+                         
+                         if ( finished ) {
+                             
+                             [UIView animateWithDuration:0.5 animations:^{
+                                 
+                                 UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+                                 [activityIndicator setFrame:self.blackBarImageView.frame];
+                                 [activityIndicator setCenter:CGPointMake(self.blackBarImageView.frame.size.width/2.0f, self.blackBarImageView.frame.size.height/2.0f)];
+                                 [self.blackBarImageView addSubview:activityIndicator];
+                                 [activityIndicator startAnimating];
+                                 
+                             }];
+                             
+                         }
+                         
+                     }];
+}
+
+- (void)didFinishLoadingDataOnLogin:(NSNotification*)notification
+{
+    [self.socialFacade setFirstTimeLogin:NO];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        [self.view setAlpha:0.0f];
+        
+    } completion:^(BOOL finished) {
+        
+        if (finished)   [self dismissViewControllerAnimated:YES completion:nil];
+   
+    }];
+    
+}
+
 #pragma mark - Action Methods
 - (IBAction)facebookLogin:(id)sender
 {
@@ -208,14 +356,25 @@
 - (void)authorizationStatus
 {
     
-    if ( [self.socialFacade shelbyAuthorized] ) {
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-        
-    } else {
-        
-        
-    }
+    if ( [self.socialFacade shelbyAuthorized] ) {       // If user is authorized with Shelby
+     
+        if ( [self.socialFacade firstTimeLogin] ) {     // If this is the first time the user has loggedin, show the animation
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                     selector:@selector(didFinishLoadingDataOnLogin:) 
+                                                         name:kDidFinishLoadingDataOnLogin 
+                                                       object:nil];
+            
+            [self logoutAnimationStageOne:self.twitterButton];
+            
+            
+        } else {                                        // If the user has logged in before, dismiss LoginViewController
+            
+            [self dismissViewControllerAnimated:NO completion:nil];
+            
+        }
+               
+    } 
     
 }
 

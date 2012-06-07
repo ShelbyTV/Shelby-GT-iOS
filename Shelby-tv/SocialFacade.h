@@ -26,6 +26,7 @@
 /// Properties utilizing NSUserDefaults ///
 // General
 @property (assign, nonatomic) BOOL previouslyLaunched;
+@property (assign, nonatomic) BOOL firstTimeLogin;
 
 // Shelby
 @property (assign, nonatomic) BOOL shelbyAuthorized;

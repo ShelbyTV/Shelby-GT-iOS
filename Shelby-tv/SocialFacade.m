@@ -23,6 +23,7 @@
 #import <Twitter/Twitter.h>
 
 #pragma mark - Private Macros
+
 /// Authorization Macros ///
 #define         SocialFacadeFacebookAppID                   @"349934901721555"
 #define         SocialFacadeTwitterConsumerKey              @"5DNrVZpdIwhQthCJJXCfnQ"
@@ -30,6 +31,7 @@
 
 /// General Macros ///
 #define         SocialFacadePreviouslyLaunched              @"SocialFacadePreviouslyLaunched"
+#define         SocialFacadeFirstTimeLogin                  @"SocialFacadeFirstTimeLogin"
 
 /// Shelby Macros ///
 #define         SocialFacadeShelbyAuthorized                @"SocialFacadeShelbyAuthorized"
@@ -140,6 +142,7 @@ UIPickerViewDelegate
             
             // Set to YES, so this condition is never again satisfied
             self.previouslyLaunched = YES;
+            self.firstTimeLogin = YES;
             
             // Set Shelby-specific NSUserDefaults to nil on first launch
             self.shelbyAuthorized = NO;
@@ -183,7 +186,6 @@ UIPickerViewDelegate
     
     // Dismiss login window after token swap
     self.shelbyAuthorized = YES;
-    [self.loginViewController dismissModalViewControllerAnimated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
 }
 
@@ -788,6 +790,18 @@ UIPickerViewDelegate
 - (BOOL)previouslyLaunched
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:SocialFacadePreviouslyLaunched];
+}
+
+/// First Time Login Flag /// 
+- (void)setFirstTimeLogin:(BOOL)firstTimeLogin
+{
+    [[NSUserDefaults standardUserDefaults] setBool:firstTimeLogin forKey:SocialFacadeFirstTimeLogin];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)firstTimeLogin
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:SocialFacadeFirstTimeLogin];
 }
 
 /// Shelby Authorization Flag /// 
