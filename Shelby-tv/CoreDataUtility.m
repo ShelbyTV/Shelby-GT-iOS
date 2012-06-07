@@ -229,6 +229,10 @@ static CoreDataUtility *sharedInstance = nil;
         }
         
     }
+    
+    // If this is the first time data has been loaded, post notification to dismiss LoginViewController
+    if ( [SocialFacade sharedInstance].firstTimeLogin ) [[NSNotificationCenter defaultCenter] postNotificationName:kDidFinishLoadingDataOnLogin object:nil];
+
 }
 
 + (id)checkIfEntity:(NSString *)entityName 

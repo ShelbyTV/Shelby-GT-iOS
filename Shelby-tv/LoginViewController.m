@@ -11,6 +11,7 @@
 
 // Models
 #import "SocialFacade.h"
+#import "ShelbyAPIClient.h"
 
 // Constants
 #import "StaticDeclarations.h"
@@ -26,7 +27,6 @@
 - (void)loginAnimationStageThree:(UIView*)object;
 - (void)logoutAnimationStageOne:(UIView*)object;
 - (void)logoutAnimationStageTwo:(UIView*)object;
-- (void)logoutAnimationStageThree;
 - (void)didFinishLoadingDataOnLogin:(NSNotification*)notification;
 
 @end
@@ -83,7 +83,7 @@
 - (void)initializationOnLoad
 {
     // Set Background
-    self.view.backgroundColor = [UIColor colorWithRed:54.0f/255.0f green:54.0f/255.0f blue:54.0f/255.0f alpha:1.0f];
+    self.view.backgroundColor = kColorConstantBackgroundColor;
     
     // Set font for sloganLavel
     [self.sloganLabel setFont:[UIFont fontWithName:@"Ubuntu" size:10]];
@@ -293,49 +293,25 @@
                          } completion:^(BOOL finished) {
                              
                              
-                             [self logoutAnimationStageThree];
+                             // MBProgressHUD
                              
                          }];
     }
 }
 
-- (void)logoutAnimationStageThree;
-{
-    [UIView animateWithDuration:0.5 
-                     animations:^{
-                         
-                         [self.sloganLabel setAlpha:0.0f];
-                         
-                     } completion:^(BOOL finished) {
-                         
-                         if ( finished ) {
-                             
-                             [UIView animateWithDuration:0.5 animations:^{
-                                 
-                                 UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-                                 [activityIndicator setFrame:self.blackBarImageView.frame];
-                                 [activityIndicator setCenter:CGPointMake(self.blackBarImageView.frame.size.width/2.0f, self.blackBarImageView.frame.size.height/2.0f)];
-                                 [self.blackBarImageView addSubview:activityIndicator];
-                                 [activityIndicator startAnimating];
-                                 
-                             }];
-                             
-                         }
-                         
-                     }];
-}
-
 - (void)didFinishLoadingDataOnLogin:(NSNotification*)notification
 {
-    [self.socialFacade setFirstTimeLogin:NO];
     
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:1.0 animations:^{
         
-        [self.view setAlpha:0.0f];
+        [self.logoImageView setAlpha:0.0f];
+        [self.blackBarImageView setAlpha:0.0f];
+        [self.sloganLabel setAlpha:0.0f];
+        
         
     } completion:^(BOOL finished) {
         
-        if (finished)   [self dismissViewControllerAnimated:YES completion:nil];
+        if (finished)  [self dismissViewControllerAnimated:NO completion:nil];
    
     }];
     
@@ -364,6 +340,14 @@
                                                      selector:@selector(didFinishLoadingDataOnLogin:) 
                                                          name:kDidFinishLoadingDataOnLogin 
                                                        object:nil];
+            
+            
+            // Peeform Initial API Request
+            NSString *requestString = [NSString stringWithFormat:kAPIRequestGetStream, [SocialFacade sharedInstance].shelbyToken];
+            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
+            
+            ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+            [client performRequest:request ofType:APIRequestTypeGetStream];
             
             [self logoutAnimationStageOne:self.twitterButton];
             

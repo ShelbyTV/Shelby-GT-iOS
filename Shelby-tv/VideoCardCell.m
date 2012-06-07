@@ -7,7 +7,7 @@
 //
 
 #import "VideoCardCell.h"
-#import "APIConstants.h"
+#import "StaticDeclarations.h"
 #import <CoreGraphics/CoreGraphics.h>
 
 @interface VideoCardCell ()
@@ -48,6 +48,7 @@
 - (void)awakeFromNib
 {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.backgroundColor = kColorConstantBackgroundColor;
     
     // Customize Labels (all other label customization in VideCardCell.xib)
     self.nicknameLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:15.0f];

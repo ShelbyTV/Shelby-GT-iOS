@@ -180,6 +180,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E0B3A9415813C400008B841 /* ColorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorConstants.h; sourceTree = "<group>"; };
 		8E3457851551BC9200FEFC9D /* NSString+TypedefConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TypedefConversion.h"; sourceTree = "<group>"; };
 		8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TypedefConversion.m"; sourceTree = "<group>"; };
 		8E4A7730155185A0003CBA2A /* pullToRefreshArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pullToRefreshArrow.png; path = library/ASPullToRefresh/ASPullToRefresh/pullToRefreshArrow.png; sourceTree = SOURCE_ROOT; };
@@ -551,6 +552,7 @@
 			children = (
 				8E664D561541B1040071EC42 /* StaticDeclarations.h */,
 				8E664D571541B10D0071EC42 /* APIConstants.h */,
+				8E0B3A9415813C400008B841 /* ColorConstants.h */,
 				8EA87B4F156167E00029C07E /* CoreDataConstants.h */,
 				8E6715A3154F14590059FC1A /* Structures.h */,
 				8E664D6D1541C81F0071EC42 /* TextConstants.h */,

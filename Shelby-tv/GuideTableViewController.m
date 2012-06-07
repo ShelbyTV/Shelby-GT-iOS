@@ -29,7 +29,8 @@
     if ( self = [super initWithStyle:UITableViewStylePlain] ) {
         
         // Customize tableView
-        self.tableView.backgroundColor = [UIColor colorWithRed:73.0f/255.0f green:73.0f/255.0f blue:73.0f/255.0f alpha:1.0f];
+        self.view.backgroundColor = kColorConstantBackgroundColor;
+        self.tableView.backgroundColor = kColorConstantBackgroundColor;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         // Set Type of GuideTableViewController Instance
@@ -42,6 +43,7 @@
         
         // Set Reference to ASPullToRefreshTableViewController
         self.guideTableViewManager.refreshController = self;
+        self.guideTableViewManager.tableView = self.tableView;
         self.refreshDelegate = (id)self.guideTableViewManager;
         
     }
@@ -50,11 +52,6 @@
 }
 
 #pragma mark - View Lifecycle Methods
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-}
-
 - (void)viewDidLoad
 {
     
@@ -82,7 +79,28 @@
         case GuideTypeStream: {
         
             // If user is authorized with Shelby, populate tableViewManager data from API and Core Data
-           if ( [SocialFacade sharedInstance].shelbyAuthorized ) [self.guideTableViewManager loadDataOnInitializationForTableView:self.tableView];
+            if ( [SocialFacade sharedInstance].shelbyAuthorized ){
+              
+                if ( [SocialFacade sharedInstance].firstTimeLogin ) {
+               
+                    // Make sure the logout animation never appears again
+                    [[SocialFacade sharedInstance] setFirstTimeLogin:NO];
+                    
+                    // Animate View
+                    [self.navigationController.view setAlpha:0.0f];
+                    [self.tabBarController.view setAlpha:0.0f];
+                    [self.view setAlpha:0.0f];
+                    [UIView animateWithDuration:1.5f animations:^{
+                        [self.navigationController.view setAlpha:1.0f];
+                        [self.tabBarController.view setAlpha:1.0f];
+                        [self.view setAlpha:1.0f];
+                    }];
+                
+                }
+                
+                [self.guideTableViewManager loadDataOnInitializationForTableView:self.tableView];
+                
+            }
             
         } break;
             

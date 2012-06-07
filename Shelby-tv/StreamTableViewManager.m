@@ -131,10 +131,6 @@
     // Load stored data into tableView (if it exists)
     [self loadDataFromCoreData];
     
-    // Fetch new data
-    [self performAPIRequest];
-
-    
 }
 
 - (void)loadDataFromCoreData
@@ -146,9 +142,6 @@
 
         [self.tableView reloadData];
         
-        // If this is the first time data has been loaded, post notification to dismiss LoginViewController
-        if ( [SocialFacade sharedInstance].firstTimeLogin ) [[NSNotificationCenter defaultCenter] postNotificationName:kDidFinishLoadingDataOnLogin object:nil];
-
     }
 }
 

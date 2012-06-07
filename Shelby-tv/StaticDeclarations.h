@@ -7,6 +7,7 @@
 //
 
 #import "APIConstants.h"
+#import "ColorConstants.h"
 #import "CoreDataConstants.h"
 #import "TextConstants.h"
 #import "Structures.h"
