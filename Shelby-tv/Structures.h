@@ -10,11 +10,11 @@
 typedef enum _GuideType
 {
     
-    GuideTypeStream= 0,
-    GuideTypeMyRolls,
-    GuideTypePeoplesRolls,
-    GuideTypeBrowseRolls,
-    GuideTypeSettings
+    GuideType_Stream= 0,
+    GuideType_PeopleRolls,
+    GuideType_MyRolls,
+    GuideType_BrowseRolls,
+    GuideType_Settings
     
 } GuideType;
 

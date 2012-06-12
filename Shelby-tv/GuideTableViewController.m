@@ -21,13 +21,20 @@
 @implementation GuideTableViewController
 @synthesize guideType = _guideType;
 @synthesize guideTableViewManager = _guideTableViewManager;
+@synthesize shelbyNavigationView = _shelbyNavigationView;
 
 #pragma mark - Initialization Method
-- (id)initWithType:(GuideType)type forTableViewManager:(GuideTableViewManager *)manager withPullToRefreshEnabled:(BOOL)refreshEnabled
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    
-    if ( self = [super initWithStyle:UITableViewStylePlain] ) {
+    if ( self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil] ) {
         
+    }
+    
+    return self;
+}
+
+- (void)loadWithType:(GuideType)type forTableViewManager:(GuideTableViewManager *)manager withPullToRefreshEnabled:(BOOL)refreshEnabled
+{
         // Customize tableView
         self.view.backgroundColor = kColorConstantBackgroundColor;
         self.tableView.backgroundColor = kColorConstantBackgroundColor;
@@ -49,10 +56,6 @@
             self.refreshDelegate = (id)self.guideTableViewManager;
             
         }
-        
-    }
-    
-    return self;
 }
 
 #pragma mark - View Lifecycle Methods
@@ -74,10 +77,12 @@
 - (void)customizeOnViewAppear
 {
     
+    NSLog(@"%@", NSStringFromCGRect(self.shelbyNavigationView.frame));
+    
     // Customize GuideTableViewController for specific guideTableViewManager
     switch (self.guideType) {
             
-        case GuideTypeStream: {
+        case GuideType_Stream: {
         
             // If user is authorized with Shelby, populate tableViewManager data from API and Core Data
             if ( [SocialFacade sharedInstance].shelbyAuthorized ){

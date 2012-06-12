@@ -94,10 +94,15 @@
     
     // Create streamNavigationController, and initialize it with streamViewController
     StreamTableViewManager *streamTableViewManager = [[StreamTableViewManager alloc] init];
-    GuideTableViewController *streamViewController = [[GuideTableViewController alloc] initWithType:GuideTypeStream 
-                                                                                forTableViewManager:streamTableViewManager 
-                                                                           withPullToRefreshEnabled:YES];
+
+    GuideTableViewController *streamViewController = [[GuideTableViewController alloc] initWithNibName:@"GuideTableViewController" bundle:nil];
+    [streamViewController loadWithType:GuideType_Stream forTableViewManager:streamTableViewManager withPullToRefreshEnabled:YES];
+    
+    //    GuideTableViewController *streamViewController = [[GuideTableViewController alloc] initWithType:GuideType_Stream 
+//                                                                                forTableViewManager:streamTableViewManager 
+//                                                                           withPullToRefreshEnabled:YES];
     UINavigationController *streamNavigationController = [[UINavigationController alloc] initWithRootViewController:streamViewController];
+    [streamNavigationController setNavigationBarHidden:YES];
     
     // Pass streamNavigationController reference to streamTableViewManager
     streamTableViewManager.navigationController = streamNavigationController;

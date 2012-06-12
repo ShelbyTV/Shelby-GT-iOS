@@ -13,13 +13,15 @@
 #import "TableViewManagers.h"
 
 // Views
-#import "UINavigationItem+CustomTitleView.h"
+#import "ShelbyNavigationView.h"
 
 // Other
 #import "StaticDeclarations.h"
 
 @interface GuideTableViewController : ASPullToRefreshTableViewController
 
-- (id)initWithType:(GuideType)type forTableViewManager:(GuideTableViewManager*)manager withPullToRefreshEnabled:(BOOL)refreshEnabled;
+@property (weak, nonatomic) IBOutlet ShelbyNavigationView *shelbyNavigationView;
+
+- (void)loadWithType:(GuideType)type forTableViewManager:(GuideTableViewManager*)manager withPullToRefreshEnabled:(BOOL)refreshEnabled;
 
 @end
