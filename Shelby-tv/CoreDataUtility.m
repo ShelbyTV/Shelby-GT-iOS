@@ -7,7 +7,7 @@
 //
 
 #import "CoreDataUtility.h"
-#import "NSString+CoreData.h"
+#import "NSString+NullTest.h"
 #import "NSDate+DateFromBSONString.h"
 #import "NSString+TypedefConversion.h"
 #import "SocialFacade.h"
@@ -231,7 +231,7 @@ static CoreDataUtility *sharedInstance = nil;
     }
     
     // If this is the first time data has been loaded, post notification to dismiss LoginViewController
-    if ( [SocialFacade sharedInstance].firstTimeLogin ) [[NSNotificationCenter defaultCenter] postNotificationName:kDidFinishLoadingDataOnLogin object:nil];
+    if ( [SocialFacade sharedInstance].firstTimeLogin ) [[NSNotificationCenter defaultCenter] postNotificationName:TextConstants_DidFinishLoadingDataOnLogin object:nil];
 
 }
 

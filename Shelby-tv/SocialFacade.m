@@ -419,7 +419,7 @@ UIPickerViewDelegate
                                                              delegate:self 
                                                     cancelButtonTitle:nil
                                                destructiveButtonTitle:@"Yes" 
-                                                    otherButtonTitles:@"No", kTwitterNewAccount, nil];
+                                                    otherButtonTitles:@"No", TextConstants_TwitterNewAccount, nil];
     
     [actionSheet showInView:self.loginViewController.view];
     
@@ -730,7 +730,7 @@ UIPickerViewDelegate
     NSArray *accounts = [self.twitterAccountStore accountsWithAccountType:twitterType];
     
     self.twitterPickerViewChoices = [NSMutableArray arrayWithArray:accounts];
-    [self.twitterPickerViewChoices addObject:kTwitterNewAccount];
+    [self.twitterPickerViewChoices addObject:TextConstants_TwitterNewAccount];
     [self.twitterPickerViewChoices addObject:@"Cancel"];
     
     

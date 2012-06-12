@@ -20,6 +20,6 @@
 
 @interface GuideTableViewController : ASPullToRefreshTableViewController
 
-- (id)initWithGuideType:(GuideType)type andTableViewManager:(GuideTableViewManager*)manager;
+- (id)initWithType:(GuideType)type forTableViewManager:(GuideTableViewManager*)manager withPullToRefreshEnabled:(BOOL)refreshEnabled;
 
 @end

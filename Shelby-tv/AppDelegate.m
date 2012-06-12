@@ -15,9 +15,7 @@
 // Controllers
 #import "TableViewManagers.h"
 #import "GuideTableViewController.h"
-#import "RollsTableViewController.h"
 #import "LoginViewController.h"
-#import "YouTableViewController.h"
 
 // Analytics
 #import <Crashlytics/Crashlytics.h>
@@ -96,7 +94,9 @@
     
     // Create streamNavigationController, and initialize it with streamViewController
     StreamTableViewManager *streamTableViewManager = [[StreamTableViewManager alloc] init];
-    GuideTableViewController *streamViewController = [[GuideTableViewController alloc] initWithGuideType:GuideTypeStream andTableViewManager:streamTableViewManager];
+    GuideTableViewController *streamViewController = [[GuideTableViewController alloc] initWithType:GuideTypeStream 
+                                                                                forTableViewManager:streamTableViewManager 
+                                                                           withPullToRefreshEnabled:YES];
     UINavigationController *streamNavigationController = [[UINavigationController alloc] initWithRootViewController:streamViewController];
     
     // Pass streamNavigationController reference to streamTableViewManager
@@ -110,52 +110,8 @@
     [streamViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"streamOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"streamOff"]];
     [streamViewController setTitle:@"Stream"];
     
-    
-    ///* ROLLS *///
-    
-    // Create rollsTableViewController and populate it with youRollsTableViewManager (population performed by rollsTableViewController's initWithRollsType: method)
-    RollsTableViewController *rollsTableViewController = [[RollsTableViewController alloc] initWithRollsType:RollsTypeYour];
-    
-    // Create rollsNavigationController
-    UINavigationController *rollsNavigationController = [[UINavigationController alloc] initWithRootViewController:rollsTableViewController];
-    
-    // Pass rollsNavigationController reference to rollsTableViewController
-    rollsTableViewController.navigationController = rollsNavigationController;
-    
-    // Customize tabBarItem for Rolls
-    NSDictionary *rollsDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f], UITextAttributeFont,
-                                     [UIColor colorWithRed:0.0f/255.0f green:146.0f/255.0f blue:193.0f/255.0f alpha:1.0f], UITextAttributeTextColor, nil];
-    [rollsTableViewController.tabBarItem setTitleTextAttributes:rollsDictionary forState:UIControlStateSelected];
-    [rollsTableViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"rollsOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"rollsOff"]];
-    [rollsTableViewController setTitle:@"Rolls"];
-    
-    ///* YOU *///
-    
-    // Create youNavigationController
-    YouTableViewController *youTableViewController = [[YouTableViewController alloc] init];
-    UINavigationController *youNavigationController = [[UINavigationController alloc] initWithRootViewController:youTableViewController];
-    
-    // Pass youNavigationController reference to youTableViewController
-    youTableViewController.navigationController = youNavigationController;
-    
-    // Customize tabBarItem for You
-    NSDictionary *youDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f], UITextAttributeFont,
-                                   [UIColor colorWithRed:239.0f/255.0f green:232.0f/255.0f blue:75.0f/255.0f alpha:1.0f], UITextAttributeTextColor, nil];
-    [youTableViewController.tabBarItem setTitleTextAttributes:youDictionary forState:UIControlStateSelected];
-    [youTableViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"youOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"youOff"]];
-    [youTableViewController setTitle:@"You"];
-    
-    ///* TAB BAR CONTROLLER*
-    
-    // Create UITabBarController
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    NSArray *tabBarArray = [NSArray arrayWithObjects:streamNavigationController, rollsNavigationController, youNavigationController, nil];
-    tabBarController.viewControllers = tabBarArray;
-    
     // Set navigationController as window's rootViewController
-    self.window.rootViewController = tabBarController;
+    self.window.rootViewController = streamNavigationController;
     
 }
 

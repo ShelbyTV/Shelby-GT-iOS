@@ -23,7 +23,7 @@
 @synthesize guideTableViewManager = _guideTableViewManager;
 
 #pragma mark - Initialization Method
-- (id)initWithGuideType:(GuideType)type andTableViewManager:(GuideTableViewManager *)manager
+- (id)initWithType:(GuideType)type forTableViewManager:(GuideTableViewManager *)manager withPullToRefreshEnabled:(BOOL)refreshEnabled
 {
     
     if ( self = [super initWithStyle:UITableViewStylePlain] ) {
@@ -42,9 +42,13 @@
         self.tableView.dataSource = (id)self.guideTableViewManager;
         
         // Set Reference to ASPullToRefreshTableViewController
-        self.guideTableViewManager.refreshController = self;
-        self.guideTableViewManager.tableView = self.tableView;
-        self.refreshDelegate = (id)self.guideTableViewManager;
+        if ( refreshEnabled ) {
+         
+            self.guideTableViewManager.refreshController = self;
+            self.guideTableViewManager.tableView = self.tableView;
+            self.refreshDelegate = (id)self.guideTableViewManager;
+            
+        }
         
     }
     
@@ -69,9 +73,6 @@
 
 - (void)customizeOnViewAppear
 {
-    
-    // Customize NavigationBar Title (must happen in viewWillAppear)
-    [self.navigationItem setTitleView:[UINavigationItem titleViewWithTitle:self.title]];
     
     // Customize GuideTableViewController for specific guideTableViewManager
     switch (self.guideType) {
@@ -104,20 +105,10 @@
             
         } break;
             
-        case GuideTypeSaves: {
-            
-            
-        } break;
-            
-        case GuideTypeSearch: {
-            
-            
-        } break;
-            
         default:
             break;
-    }
-    
+    }    
+
 }
 
 #pragma mark - Interface Orientation Method

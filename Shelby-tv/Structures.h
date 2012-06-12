@@ -11,21 +11,13 @@ typedef enum _GuideType
 {
     
     GuideTypeStream= 0,
-    GuideTypeRolls,
-    GuideTypeSaves,
-    GuideTypeSearch
+    GuideTypeMyRolls,
+    GuideTypePeoplesRolls,
+    GuideTypeBrowseRolls,
+    GuideTypeSettings
     
 } GuideType;
 
-// Structure that distinguishes types of Rolls
-typedef enum _RollsType
-{
-    
-    RollsTypeYour = 0,
-    RollsTypePeople,
-    RollsTypePopular,
-    
-} RollsType;
 
 // Structure that distinguishes types of Shelby API Requests
 typedef enum _APIRequestType

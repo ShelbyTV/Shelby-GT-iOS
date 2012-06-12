@@ -48,7 +48,7 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:SocialFacadeAuthorizationStatus object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kDidFinishLoadingDataOnLogin object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:TextConstants_DidFinishLoadingDataOnLogin object:nil];
     self.logoImageView = nil;
     self.blackBarImageView = nil;
     self.sloganLabel = nil;
@@ -353,7 +353,7 @@
             
             [[NSNotificationCenter defaultCenter] addObserver:self 
                                                      selector:@selector(didFinishLoadingDataOnLogin:) 
-                                                         name:kDidFinishLoadingDataOnLogin 
+                                                         name:TextConstants_DidFinishLoadingDataOnLogin 
                                                        object:nil];
             
             if ( self.activityIndicator.superview ) [self.activityIndicator removeFromSuperview];

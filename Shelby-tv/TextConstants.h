@@ -7,9 +7,5 @@
 //
 
 // Macros for Text
-#define kShelbyTV                       @"Shelby.tv"
-#define kYourRolls                      @"Your Rolls"
-#define kPeoplesRolls                   @"People's Rolls"
-#define kPopularRolls                   @"Popular Rolls"
-#define kTwitterNewAccount              @"New Account"
-#define kDidFinishLoadingDataOnLogin    @"Did Finish Loading Data On Login"
+#define TextConstants_TwitterNewAccount                 @"New Account"
+#define TextConstants_DidFinishLoadingDataOnLogin      @"Did Finish Loading Data On Login"
