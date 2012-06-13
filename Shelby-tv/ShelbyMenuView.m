@@ -7,7 +7,6 @@
 //
 
 #import "ShelbyMenuView.h"
-#import "ShelbyMenuController.h"
 
 @implementation ShelbyMenuView
 

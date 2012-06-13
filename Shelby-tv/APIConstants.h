@@ -7,15 +7,15 @@
 //
 
 // Macros for API Routes
-#define kAPIRequestPostTokenFacebook    @"http://api.gt.shelby.tv/v1/token?provider_name=facebook&uid=%@&token=%@"
-#define kAPIRequestPostTokenTwitter     @"http://api.gt.shelby.tv/v1/token?provider_name=twitter&uid=%@&token=%@&secret=%@"
-#define kAPIRequestGetStream            @"http://api.gt.shelby.tv/v1/dashboard?auth_token=%@"
-#define kAPIRequestPostUpvote           @"http://api.gt.shelby.tv/v1/frame/%@/upvote?auth_token=%@"
+#define APIRequest_PostTokenFacebook    @"http://api.gt.shelby.tv/v1/token?provider_name=facebook&uid=%@&token=%@"
+#define APIRequest_PostTokenTwitter     @"http://api.gt.shelby.tv/v1/token?provider_name=twitter&uid=%@&token=%@&secret=%@"
+#define APIRequest_GetStream            @"http://api.gt.shelby.tv/v1/dashboard?auth_token=%@"
+#define APIRequest_PostUpvote           @"http://api.gt.shelby.tv/v1/frame/%@/upvote?auth_token=%@"
 
 // Macros for Parsed Data
-#define kAPIResult                      @"result"
-#define kAPIStatus                      @"status"
-#define kAPIStatusSuccessful            200
+#define APIRequest_Result                      @"result"
+#define APIRequest_Status                      @"status"
+#define APIRequest_StatusSuccessful            200
 
 // Macros for Notificaitons
-#define kAPIRequestNotification         @"APIRequestType"
+#define APIRequest_Notification         @"APIRequestType"

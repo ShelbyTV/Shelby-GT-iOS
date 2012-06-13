@@ -16,7 +16,7 @@
 #import <Crashlytics/Crashlytics.h>
 
 // Controllers
-#import "ShelbyMenuController.h"
+#import "GuideTableViewController.h"
 #import "LoginViewController.h"
 
 // Constants 
@@ -37,7 +37,6 @@
 
 @implementation AppDelegate
 @synthesize window = _window;
-
 
 #pragma mark - UIApplicationDelegate Methods
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -69,7 +68,7 @@
     return [[[SocialFacade sharedInstance] facebook] handleOpenURL:url];
 }
 
--(void)applicationWillTerminate:(UIApplication *)application
+- (void)applicationWillTerminate:(UIApplication *)application
 {
     // Save changes to managedObjectContext before shutdown.
     if ( DEBUGMODE ) NSLog(@"Saving updates to Core Data before Shutdown");
@@ -80,8 +79,9 @@
 - (void)createRootView
 {
     
-    ShelbyMenuController *menuController = [[ShelbyMenuController alloc] init];
-    self.window.rootViewController = menuController.rootViewController;
+    GuideTableViewController *guideTableViewController = [[GuideTableViewController alloc] initWithGuideType:GuideType_Stream];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:guideTableViewController];
+    self.window.rootViewController = navigationController;
     
 }
 

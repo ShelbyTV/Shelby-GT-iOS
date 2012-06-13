@@ -48,7 +48,7 @@
 - (void)awakeFromNib
 {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.backgroundColor = kColorConstantBackgroundColor;
+    self.backgroundColor = ColorConstants_BackgroundColor;
     
     // Customize Labels (all other label customization in VideCardCell.xib)
     self.nicknameLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:15.0f];

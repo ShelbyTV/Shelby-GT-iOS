@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8E068B6D1587FB430069FD01 /* ShelbyMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B6C1587FB430069FD01 /* ShelbyMenuView.m */; };
 		8E068B7D158823C70069FD01 /* ShelbyMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E068B7C158823C70069FD01 /* ShelbyMenuView.xib */; };
-		8E068B8015882B370069FD01 /* ShelbyMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B7F15882B370069FD01 /* ShelbyMenuController.m */; };
 		8E068B8315883F6C0069FD01 /* SettingsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B8215883F6C0069FD01 /* SettingsTableViewManager.m */; };
 		8E068B86158843650069FD01 /* BrowseRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B85158843640069FD01 /* BrowseRollsTableViewManager.m */; };
 		8E068B89158843B40069FD01 /* PeopleRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B88158843B40069FD01 /* PeopleRollsTableViewManager.m */; };
@@ -199,8 +198,6 @@
 		8E068B6B1587FB430069FD01 /* ShelbyMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelbyMenuView.h; sourceTree = "<group>"; };
 		8E068B6C1587FB430069FD01 /* ShelbyMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyMenuView.m; sourceTree = "<group>"; };
 		8E068B7C158823C70069FD01 /* ShelbyMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShelbyMenuView.xib; sourceTree = "<group>"; };
-		8E068B7E15882B370069FD01 /* ShelbyMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelbyMenuController.h; sourceTree = "<group>"; };
-		8E068B7F15882B370069FD01 /* ShelbyMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyMenuController.m; sourceTree = "<group>"; };
 		8E068B8115883F6C0069FD01 /* SettingsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewManager.h; sourceTree = "<group>"; };
 		8E068B8215883F6C0069FD01 /* SettingsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewManager.m; sourceTree = "<group>"; };
 		8E068B84158843640069FD01 /* BrowseRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowseRollsTableViewManager.h; sourceTree = "<group>"; };
@@ -720,8 +717,6 @@
 				8E068B8215883F6C0069FD01 /* SettingsTableViewManager.m */,
 				8E671594154F0B9E0059FC1A /* StreamTableViewManager.h */,
 				8E671595154F0B9E0059FC1A /* StreamTableViewManager.m */,
-				8E068B7E15882B370069FD01 /* ShelbyMenuController.h */,
-				8E068B7F15882B370069FD01 /* ShelbyMenuController.m */,
 				8EDB32AF15792688007D7106 /* VideoCardController.h */,
 				8EDB32B015792688007D7106 /* VideoCardController.m */,
 			);
@@ -1281,7 +1276,6 @@
 				8EB6D81615800FCF0060202D /* Frame.m in Sources */,
 				8EB6D81915801AED0060202D /* ShelbyUser.m in Sources */,
 				8E068B6D1587FB430069FD01 /* ShelbyMenuView.m in Sources */,
-				8E068B8015882B370069FD01 /* ShelbyMenuController.m in Sources */,
 				8E068B8315883F6C0069FD01 /* SettingsTableViewManager.m in Sources */,
 				8E068B86158843650069FD01 /* BrowseRollsTableViewManager.m in Sources */,
 				8E068B89158843B40069FD01 /* PeopleRollsTableViewManager.m in Sources */,

@@ -107,7 +107,7 @@ static CoreDataUtility *sharedInstance = nil;
     
     // Fetch dashboardEntry data
     NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext]; 
-    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:kCoreDataEntityDashboardEntry inManagedObjectContext:context];
+    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:CoreDataEntityDashboardEntry inManagedObjectContext:context];
     [dashboardEntryRequest setEntity:dashboardEntryDescription];
     
     // Sort by timestamp
@@ -128,7 +128,7 @@ static CoreDataUtility *sharedInstance = nil;
 
     // Fetch dashboardEntry data
     NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext]; 
-    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:kCoreDataEntityDashboardEntry inManagedObjectContext:context];
+    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:CoreDataEntityDashboardEntry inManagedObjectContext:context];
     [dashboardEntryRequest setEntity:dashboardEntryDescription];
     
     // Sort by timestamp
@@ -152,7 +152,7 @@ static CoreDataUtility *sharedInstance = nil;
     
     // Fetch messages data
     NSManagedObjectContext *context = conversation.managedObjectContext;
-    NSEntityDescription *messagesDescription = [NSEntityDescription entityForName:kCoreDataEntityMessages inManagedObjectContext:context];
+    NSEntityDescription *messagesDescription = [NSEntityDescription entityForName:CoreDataEntityMessages inManagedObjectContext:context];
     [messagesRequest setEntity:messagesDescription];
     
     // Only include messages that belond to this specific conversation
@@ -179,11 +179,11 @@ static CoreDataUtility *sharedInstance = nil;
     [request setReturnsObjectsAsFaults:NO];
     
     // Fetch messages data
-    NSEntityDescription *description = [NSEntityDescription entityForName:kCoreDataEntityFrame inManagedObjectContext:frame.managedObjectContext];
+    NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityFrame inManagedObjectContext:frame.managedObjectContext];
     [request setEntity:description];
     
     // Only include objects that exist (i.e. entityIDKey and entityIDValue's must exist)
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", kCoreDataFrameID, frame.frameID];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", CoreDataFrameID, frame.frameID];
     [request setPredicate:predicate];    
     
     // Execute request that returns array of dashboardEntrys
@@ -267,27 +267,27 @@ static CoreDataUtility *sharedInstance = nil;
 + (void)storeParsedData:(NSDictionary *)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext *)context
 {
  
-    NSArray *resultsArray = [parsedDictionary objectForKey:kAPIResult];
+    NSArray *resultsArray = [parsedDictionary objectForKey:APIRequest_Result];
     
     for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
         
         // Store dashboardEntry attirubutes
-        DashboardEntry *dashboardEntry = [self checkIfEntity:kCoreDataEntityDashboardEntry 
+        DashboardEntry *dashboardEntry = [self checkIfEntity:CoreDataEntityDashboardEntry 
                                                  withIDValue:[[resultsArray objectAtIndex:i] valueForKey:@"id"]
-                                                    forIDKey:kCoreDataDashboardEntryID 
+                                                    forIDKey:CoreDataDashboardEntryID 
                                              existsInContext:context];
         
         NSString *dashboardID = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
-        [dashboardEntry setValue:dashboardID forKey:kCoreDataDashboardEntryID];
+        [dashboardEntry setValue:dashboardID forKey:CoreDataDashboardEntryID];
         
         NSDate *timestamp = [NSDate dataFromBSONstring:dashboardID];
-        [dashboardEntry setValue:timestamp forKey:kCoreDataDashboardEntryTimestamp];
+        [dashboardEntry setValue:timestamp forKey:CoreDataDashboardEntryTimestamp];
         
         // Store dashboardEntry.frame attributes
         NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];        
-        Frame *frame = [self checkIfEntity:kCoreDataEntityFrame
+        Frame *frame = [self checkIfEntity:CoreDataEntityFrame
                                withIDValue:[frameArray valueForKey:@"id"]
-                                  forIDKey:kCoreDataFrameID  
+                                  forIDKey:CoreDataFrameID  
                            existsInContext:context];
         dashboardEntry.frame = frame;
         
@@ -306,32 +306,32 @@ static CoreDataUtility *sharedInstance = nil;
     
     // Store dashboardEntry.frame attributes
     NSString *frameID = [NSString testForNull:[frameArray valueForKey:@"id"]];
-    [frame setValue:frameID forKey:kCoreDataFrameID ];
+    [frame setValue:frameID forKey:CoreDataFrameID ];
         
     NSString *conversationID = [NSString testForNull:[frameArray valueForKey:@"conversation_id"]];
-    [frame setValue:conversationID forKey:kCoreDataFrameConversationID];
+    [frame setValue:conversationID forKey:CoreDataFrameConversationID];
     
     NSString *rollID = [NSString testForNull:[frameArray valueForKey:@"roll_id"]];
-    [frame setValue:rollID forKey:kCoreDataFrameRollID];
+    [frame setValue:rollID forKey:CoreDataFrameRollID];
     
     NSDate *timestamp = [NSDate dataFromBSONstring:frameID];
-    [frame setValue:timestamp forKey:kCoreDataFrameTimestamp];
+    [frame setValue:timestamp forKey:CoreDataFrameTimestamp];
 
     NSArray *upvotersArray = [NSArray arrayWithArray:[frameArray valueForKey:@"upvoters"]];
     NSUInteger upvotersCount = [upvotersArray count];
-    [frame setValue:[NSNumber numberWithInt:upvotersCount] forKey:kCoreDataFrameUpvotersCount];
+    [frame setValue:[NSNumber numberWithInt:upvotersCount] forKey:CoreDataFrameUpvotersCount];
     
     NSString *creatorID = [NSString testForNull:[frameArray valueForKey:@"creator_id"]];
-    [frame setValue:creatorID forKey:kCoreDataFrameCreatorID ];
+    [frame setValue:creatorID forKey:CoreDataFrameCreatorID ];
     
     NSString *videoID = [NSString testForNull:[frameArray valueForKey:@"video_id"]];
-    [frame setValue:videoID forKey:kCoreDataFrameVideoID ];
+    [frame setValue:videoID forKey:CoreDataFrameVideoID ];
     
     // Store dashboard.frame.conversation attributes
     NSManagedObjectContext *context = frame.managedObjectContext;
-    Conversation *conversation = [self checkIfEntity:kCoreDataEntityConversation 
+    Conversation *conversation = [self checkIfEntity:CoreDataEntityConversation 
                     withIDValue:conversationID
-                       forIDKey:kCoreDataFrameConversationID
+                       forIDKey:CoreDataFrameConversationID
                 existsInContext:context];
     frame.conversation = conversation;
     [conversation addFrameObject:frame];
@@ -339,9 +339,9 @@ static CoreDataUtility *sharedInstance = nil;
     
     // Store dashboard.frame.roll attributes if roll exists
     if ( rollID ) {
-        Roll *roll = [self checkIfEntity:kCoreDataEntityRoll 
+        Roll *roll = [self checkIfEntity:CoreDataEntityRoll 
                              withIDValue:rollID
-                                forIDKey:kCoreDataFrameRollID 
+                                forIDKey:CoreDataFrameRollID 
                          existsInContext:context];
         frame.roll = roll;
         [roll addFrameObject:frame];
@@ -356,18 +356,18 @@ static CoreDataUtility *sharedInstance = nil;
     }
     
     // Store dashboard.frame.user attributes
-    Creator *creator = [self checkIfEntity:kCoreDataEntityCreator 
+    Creator *creator = [self checkIfEntity:CoreDataEntityCreator 
                                withIDValue:creatorID
-                                  forIDKey:kCoreDataFrameCreatorID
+                                  forIDKey:CoreDataFrameCreatorID
                            existsInContext:context];
     frame.creator = creator;
     [creator addFrameObject:frame];
     [self storeCreator:creator fromFrameArray:frameArray];
     
     // Store dashboard.frame.video attributes
-    Video *video = [self checkIfEntity:kCoreDataEntityVideo 
+    Video *video = [self checkIfEntity:CoreDataEntityVideo 
                            withIDValue:videoID
-                              forIDKey:kCoreDataFrameVideoID
+                              forIDKey:CoreDataFrameVideoID
                        existsInContext:context];
     
     frame.video = video;
@@ -382,7 +382,7 @@ static CoreDataUtility *sharedInstance = nil;
     NSArray *conversationArray = [frameArray valueForKey:@"conversation"];
 
     NSString *conversationID = [NSString testForNull:[conversationArray valueForKey:@"id"]];
-    [conversation setValue:conversationID forKey:kCoreDataConversationID];
+    [conversation setValue:conversationID forKey:CoreDataConversationID];
     
     // Store dashboard.frame.conversation.messages attributes
     [self storeMessagesFromConversation:conversation withConversationsArray:conversationArray];
@@ -394,41 +394,41 @@ static CoreDataUtility *sharedInstance = nil;
 
     NSArray *messagesArray = [conversationsArray valueForKey:@"messages"];
 
-    [conversation setValue:[NSNumber numberWithInt:[messagesArray count]] forKey:kCoreDataConversationMessageCount];
+    [conversation setValue:[NSNumber numberWithInt:[messagesArray count]] forKey:CoreDataConversationMessageCount];
     
     for (int i = 0; i < [messagesArray count]; i++ ) {
        
         NSManagedObjectContext *context = conversation.managedObjectContext;
-        Messages *messages = [self checkIfEntity:kCoreDataEntityMessages 
+        Messages *messages = [self checkIfEntity:CoreDataEntityMessages 
                            withIDValue:[[messagesArray objectAtIndex:i] valueForKey:@"id"]
-                              forIDKey:kCoreDataMessagesID
+                              forIDKey:CoreDataMessagesID
                        existsInContext:context];
         
         [conversation addMessagesObject:messages];
         
         // Hold reference to parent conversationID
-        [messages setValue:conversation.conversationID forKey:kCoreDataConversationID];
+        [messages setValue:conversation.conversationID forKey:CoreDataConversationID];
         
         NSString *messageID = [NSString testForNull:[[messagesArray objectAtIndex:i] valueForKey:@"id"]];
-        [messages setValue:messageID forKey:kCoreDataMessagesID];
+        [messages setValue:messageID forKey:CoreDataMessagesID];
         
         NSString *createdAt = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"created_at"]];
-        [messages setValue:createdAt forKey:kCoreDataMessagesCreatedAt];
+        [messages setValue:createdAt forKey:CoreDataMessagesCreatedAt];
 
         NSString *nickname = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"nickname"]];
-        [messages setValue:nickname forKey:kCoreDataMessagesNickname];  
+        [messages setValue:nickname forKey:CoreDataMessagesNickname];  
 
         NSString *originNetwork = [NSString testForNull:[[messagesArray objectAtIndex:i] valueForKey:@"origin_network"]];
-        [messages setValue:originNetwork forKey:kCoreDataMessagesOriginNetwork];  
+        [messages setValue:originNetwork forKey:CoreDataMessagesOriginNetwork];  
 
         NSDate *timestamp = [NSDate dataFromBSONstring:messageID];
-        [messages setValue:timestamp forKey:kCoreDataMessagesTimestamp];  
+        [messages setValue:timestamp forKey:CoreDataMessagesTimestamp];  
         
         NSString *text = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"text"]];
-        [messages setValue:text forKey:kCoreDataMessagesText];  
+        [messages setValue:text forKey:CoreDataMessagesText];  
 
         NSString *userImageURL = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"user_image_url"]];
-        [messages setValue:userImageURL forKey:kCoreDataMessagesUserImageURL];  
+        [messages setValue:userImageURL forKey:CoreDataMessagesUserImageURL];  
     
     }
 
@@ -439,10 +439,10 @@ static CoreDataUtility *sharedInstance = nil;
     NSArray *rollArray = [frameArray valueForKey:@"roll"];
     
     NSString *rollID = [NSString testForNull:[rollArray valueForKey:@"id"]];
-    [roll setValue:rollID forKey:kCoreDataRollID];
+    [roll setValue:rollID forKey:CoreDataRollID];
     
     NSString *title = [NSString testForNull:[rollArray valueForKey:@"title"]];
-    [roll setValue:title forKey:kCoreDataRollTitle];
+    [roll setValue:title forKey:CoreDataRollTitle];
 }
 
 + (void)storeUpvoteUsersFromFrame:(Frame *)frame withFrameArray:(NSArray *)frameArray
@@ -453,23 +453,23 @@ static CoreDataUtility *sharedInstance = nil;
     for (int i = 0; i < [upvoteUsersArray count]; i++ ) {
         
         NSManagedObjectContext *context = frame.managedObjectContext;
-        UpvoteUsers *upvoteUsers  = [self checkIfEntity:kCoreDataEntityUpvoteUsers 
+        UpvoteUsers *upvoteUsers  = [self checkIfEntity:CoreDataEntityUpvoteUsers 
                                             withIDValue:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"id"]
-                                               forIDKey:kCoreDataUpvoteUserID
+                                               forIDKey:CoreDataUpvoteUserID
                                         existsInContext:context];
         [frame addUpvoteUsersObject:upvoteUsers];
         
         NSString *upvoterID = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"id"]];
-        [upvoteUsers setValue:upvoterID forKey:kCoreDataUpvoteUserID];
+        [upvoteUsers setValue:upvoterID forKey:CoreDataUpvoteUserID];
         
         NSString *nickname = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"nickname"]];
-        [upvoteUsers setValue:nickname forKey:kCoreDataUpvoteUsersNickname];
+        [upvoteUsers setValue:nickname forKey:CoreDataUpvoteUsersNickname];
         
         NSString *rollID = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"rollID"]];
-        [upvoteUsers setValue:rollID forKey:kCoreDataUpvoteUsersRollID];
+        [upvoteUsers setValue:rollID forKey:CoreDataUpvoteUsersRollID];
         
         NSString *userImage = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"userInage"]];
-        [upvoteUsers setValue:userImage forKey:kCoreDataUpvoteUsersImage];
+        [upvoteUsers setValue:userImage forKey:CoreDataUpvoteUsersImage];
         
     
     }
@@ -481,13 +481,13 @@ static CoreDataUtility *sharedInstance = nil;
     NSArray *userArray = [frameArray valueForKey:@"creator"];
     
     NSString *userID = [NSString testForNull:[userArray valueForKey:@"id"]];
-    [user setValue:userID forKey:kCoreDataUserID];
+    [user setValue:userID forKey:CoreDataUserID];
     
     NSString *nickname = [NSString testForNull:[userArray valueForKey:@"nickname"]];
-    [user setValue:nickname forKey:kCoreDataUserNickname];
+    [user setValue:nickname forKey:CoreDataUserNickname];
     
     NSString *userImage = [NSString testForNull:[userArray valueForKey:@"user_image"]];
-    [user setValue:userImage forKey:kCoreDataUserImage];
+    [user setValue:userImage forKey:CoreDataUserImage];
 
 }
 
@@ -496,22 +496,22 @@ static CoreDataUtility *sharedInstance = nil;
     NSArray *videoArray = [frameArray valueForKey:@"video"];
     
     NSString *videoID = [NSString testForNull:[videoArray valueForKey:@"id"]];
-    [video setValue:videoID forKey:kCoreDataVideoID];
+    [video setValue:videoID forKey:CoreDataVideoID];
     
     NSString *caption = [NSString testForNull:[videoArray valueForKey:@"description"]];
-    [video setValue:caption forKey:kCoreDataVideoCaption];
+    [video setValue:caption forKey:CoreDataVideoCaption];
     
     NSString *providerName = [NSString testForNull:[videoArray valueForKey:@"provider_name"] ];
-    [video setValue:providerName forKey:kCoreDataVideoProviderName];
+    [video setValue:providerName forKey:CoreDataVideoProviderName];
     
     NSString *sourceURL = [NSString testForNull:[videoArray valueForKey:@"source_url"]];
-    [video setValue:sourceURL forKey:kCoreDataVideoSourceURL];
+    [video setValue:sourceURL forKey:CoreDataVideoSourceURL];
     
     NSString *thumbnailURL = [NSString testForNull:[videoArray valueForKey:@"thumbnail_url"]];
-    [video setValue:thumbnailURL forKey:kCoreDataVideoThumbnailURL];
+    [video setValue:thumbnailURL forKey:CoreDataVideoThumbnailURL];
     
     NSString *title = [NSString testForNull:[videoArray valueForKey:@"title"]];
-    [video setValue:title forKey:kCoreDataVideoTitle];
+    [video setValue:title forKey:CoreDataVideoTitle];
     
 }
 

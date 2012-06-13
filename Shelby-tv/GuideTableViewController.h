@@ -7,22 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
-// Controllers
 #import "ASPullToRefreshTableViewController.h"
-#import "ShelbyMenuController.h"
-#import "TableViewManagers.h"
-
-// Views
-#import "ShelbyMenuView.h"
-
-// Other
 #import "StaticDeclarations.h"
 
 @interface GuideTableViewController : ASPullToRefreshTableViewController
 
-@property (strong, nonatomic) ShelbyMenuController *menuController;
+- (id)initWithGuideType:(GuideType)type;
 
-- (id)initWithType:(GuideType)type forTableViewManager:(GuideTableViewManager*)manager withPullToRefreshEnabled:(BOOL)refreshEnabled;
+- (IBAction)browseRollsButton;
+- (IBAction)myRollsButton;
+- (IBAction)peopleRollsButton;
+- (IBAction)streamButton;
+- (IBAction)settingsButton;
 
 @end

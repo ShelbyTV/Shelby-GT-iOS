@@ -146,7 +146,7 @@
     if ( NO == self.observerCreated ) [self createAPIObservers];
     
     // Peeform API Request
-    NSString *requestString = [NSString stringWithFormat:kAPIRequestGetStream, [SocialFacade sharedInstance].shelbyToken];
+    NSString *requestString = [NSString stringWithFormat:APIRequest_GetStream, [SocialFacade sharedInstance].shelbyToken];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
 
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
@@ -228,7 +228,6 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-
 }
 
 @end

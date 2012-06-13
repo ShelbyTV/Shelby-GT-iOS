@@ -12,7 +12,7 @@
 
 + (NSString*)apiRequestTypeToString:(APIRequestType)type
 {
-    return [NSString stringWithFormat:@"%@%d", kAPIRequestNotification, type];
+    return [NSString stringWithFormat:@"%@%d", APIRequest_Notification, type];
 }
 
 @end

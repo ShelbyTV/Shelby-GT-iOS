@@ -85,7 +85,7 @@
 - (void)initializationOnLoad
 {
     // Set Background
-    self.view.backgroundColor = kColorConstantBackgroundColor;
+    self.view.backgroundColor = ColorConstants_BackgroundColor;
     
     // Set font for sloganLavel
     [self.sloganLabel setFont:[UIFont fontWithName:@"Ubuntu" size:10]];
@@ -359,7 +359,7 @@
             
             
             // Peeform Initial API Request
-            NSString *requestString = [NSString stringWithFormat:kAPIRequestGetStream, [SocialFacade sharedInstance].shelbyToken];
+            NSString *requestString = [NSString stringWithFormat:APIRequest_GetStream, [SocialFacade sharedInstance].shelbyToken];
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
             
             ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];

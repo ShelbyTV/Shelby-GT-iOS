@@ -177,7 +177,7 @@ UIPickerViewDelegate
     [[NSNotificationCenter defaultCenter] removeObserver:self name:notificationName object:nil];
     
     // Get Shelby Authorization from notificaiton dictioanry sent from APIClient
-    NSDictionary *parsedDictionary = [notification.userInfo objectForKey:kAPIResult];
+    NSDictionary *parsedDictionary = [notification.userInfo objectForKey:APIRequest_Result];
     self.shelbyCreatorID = [parsedDictionary valueForKey:@"id"];
     self.shelbyNickname = [parsedDictionary valueForKey:@"nickname"];
     self.shelbyToken = [parsedDictionary valueForKey:@"authentication_token"];
@@ -316,7 +316,7 @@ UIPickerViewDelegate
     // Perform Shelby Token Swap
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        NSString *shelbyRequestString = [NSString stringWithFormat:kAPIRequestPostTokenFacebook, self.facebookID, self.facebook.accessToken];
+        NSString *shelbyRequestString = [NSString stringWithFormat:APIRequest_PostTokenFacebook, self.facebookID, self.facebook.accessToken];
         NSMutableURLRequest *shelbyRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:shelbyRequestString]]; 
         [shelbyRequest setHTTPMethod:@"POST"];
         ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
@@ -674,7 +674,7 @@ UIPickerViewDelegate
     // Perform Shelby Token Swap
     dispatch_async(dispatch_get_main_queue(), ^{
     
-        NSString *shelbyRequestString = [NSString stringWithFormat:kAPIRequestPostTokenTwitter, self.twitterID, self.twitterReverseAuthToken, self.twitterReverseAuthSecret];
+        NSString *shelbyRequestString = [NSString stringWithFormat:APIRequest_PostTokenTwitter, self.twitterID, self.twitterReverseAuthToken, self.twitterReverseAuthSecret];
         NSMutableURLRequest *shelbyRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:shelbyRequestString]]; 
         [shelbyRequest setHTTPMethod:@"POST"];
         ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
