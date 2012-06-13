@@ -13,6 +13,7 @@
 
 @property (assign, nonatomic) GuideType guideType;
 @property (strong, nonatomic) GuideTableViewManager *guideTableViewManager;
+@property (strong, nonatomic) ShelbyMenuView *shelbyMenuView;
 
 - (void)customizeOnViewAppear;
 
@@ -21,7 +22,7 @@
 @implementation GuideTableViewController
 @synthesize guideType = _guideType;
 @synthesize guideTableViewManager = _guideTableViewManager;
-@synthesize shelbyNavigationView = _shelbyNavigationView;
+@synthesize shelbyMenuView = _shelbyMenuView;
 
 
 - (id)initWithType:(GuideType)type forTableViewManager:(GuideTableViewManager *)manager withPullToRefreshEnabled:(BOOL)refreshEnabled
@@ -65,11 +66,11 @@
 {
     [super viewWillAppear:animated];
 
-    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ShelbyNavigationView" owner:self options:nil];
-    self.shelbyNavigationView = (ShelbyMenuView*)[nib objectAtIndex:0];
-    [self.navigationController.navigationBar addSubview:self.shelbyNavigationView];    
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ShelbyMenuView" owner:self options:nil];
+    self.shelbyMenuView = (ShelbyMenuView*)[nib objectAtIndex:0];
+    [self.navigationController.navigationBar addSubview:self.shelbyMenuView];    
     
-    NSLog(@"%@", NSStringFromCGRect(self.shelbyNavigationView.frame));
+    NSLog(@"%@", NSStringFromCGRect(self.shelbyMenuView.frame));
     
     [self customizeOnViewAppear];
 }

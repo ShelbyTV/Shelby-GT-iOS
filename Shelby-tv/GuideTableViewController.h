@@ -20,8 +20,6 @@
 
 @interface GuideTableViewController : ASPullToRefreshTableViewController
 
-@property (weak, nonatomic) IBOutlet ShelbyMenuView *shelbyNavigationView;
-
 - (id)initWithType:(GuideType)type forTableViewManager:(GuideTableViewManager*)manager withPullToRefreshEnabled:(BOOL)refreshEnabled;
 
 @end

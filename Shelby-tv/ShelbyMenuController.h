@@ -12,4 +12,10 @@
 
 @property (strong, nonatomic) UIViewController *rootViewController;
 
+- (IBAction)browseRollsButton;
+- (IBAction)myRollsButton;
+- (IBAction)peopleRollsButton;
+- (IBAction)streamButton;
+- (IBAction)settingsButton;
+
 @end

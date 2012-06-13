@@ -399,8 +399,7 @@ static CoreDataUtility *sharedInstance = nil;
     for (int i = 0; i < [messagesArray count]; i++ ) {
        
         NSManagedObjectContext *context = conversation.managedObjectContext;
-        Messages *messages = [NSEntityDescription insertNewObjectForEntityForName:kCoreDataEntityMessages inManagedObjectContext:context];
-        messages = [self checkIfEntity:kCoreDataEntityMessages 
+        Messages *messages = [self checkIfEntity:kCoreDataEntityMessages 
                            withIDValue:[[messagesArray objectAtIndex:i] valueForKey:@"id"]
                               forIDKey:kCoreDataMessagesID
                        existsInContext:context];
