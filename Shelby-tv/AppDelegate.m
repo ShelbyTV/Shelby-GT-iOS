@@ -12,13 +12,12 @@
 // Models
 #import "SocialFacade.h"
 
-// Controllers
-#import "TableViewManagers.h"
-#import "GuideTableViewController.h"
-#import "LoginViewController.h"
-
 // Analytics
 #import <Crashlytics/Crashlytics.h>
+
+// Controllers
+#import "ShelbyMenuController.h"
+#import "LoginViewController.h"
 
 // Constants 
 #import "StaticDeclarations.h"
@@ -31,8 +30,7 @@
 
 - (void)analytics;
 - (void)customization;
-- (void)createRootViewForPad;
-- (void)createRootViewForPhone;
+- (void)createRootView;
 - (void)presentLoginViewController;
 
 @end
@@ -54,11 +52,8 @@
     [self analytics];
     
     // Create Navigation Architecture for iPhone and iPad
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        [self createRootViewForPhone];
-    } else {
-        [self createRootViewForPad];
-    }
+    [self createRootView];
+ 
     
     // Make RootViewController Visible
     [self.window makeKeyAndVisible];
@@ -82,41 +77,11 @@
 }
 
 #pragma mark - Creation Methods
-- (void)createRootViewForPad
+- (void)createRootView
 {
     
-}
-
-- (void)createRootViewForPhone
-{
-    
-    ///* STREAM *///
-    
-    // Create streamNavigationController, and initialize it with streamViewController
-    StreamTableViewManager *streamTableViewManager = [[StreamTableViewManager alloc] init];
-
-    GuideTableViewController *streamViewController = [[GuideTableViewController alloc] initWithNibName:@"GuideTableViewController" bundle:nil];
-    [streamViewController loadWithType:GuideType_Stream forTableViewManager:streamTableViewManager withPullToRefreshEnabled:YES];
-    
-    //    GuideTableViewController *streamViewController = [[GuideTableViewController alloc] initWithType:GuideType_Stream 
-//                                                                                forTableViewManager:streamTableViewManager 
-//                                                                           withPullToRefreshEnabled:YES];
-    UINavigationController *streamNavigationController = [[UINavigationController alloc] initWithRootViewController:streamViewController];
-    [streamNavigationController setNavigationBarHidden:YES];
-    
-    // Pass streamNavigationController reference to streamTableViewManager
-    streamTableViewManager.navigationController = streamNavigationController;
-    
-    // Customize tabBarItem for Stream
-    NSDictionary *streamDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f], UITextAttributeFont,
-                                      [UIColor colorWithRed:98.0f/255.0f green:188.0f/255.0f blue:86.0f/255.0f alpha:1.0f], UITextAttributeTextColor, nil];
-    [streamViewController.tabBarItem setTitleTextAttributes:streamDictionary forState:UIControlStateSelected];
-    [streamViewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"streamOn"] withFinishedUnselectedImage:[UIImage imageNamed:@"streamOff"]];
-    [streamViewController setTitle:@"Stream"];
-    
-    // Set navigationController as window's rootViewController
-    self.window.rootViewController = streamNavigationController;
+    ShelbyMenuController *menuController = [[ShelbyMenuController alloc] init];
+    self.window.rootViewController = menuController.rootViewController;
     
 }
 

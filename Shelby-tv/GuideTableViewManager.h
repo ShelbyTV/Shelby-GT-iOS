@@ -13,6 +13,9 @@
 #import "CoreDataUtility.h"
 #import "SocialFacade.h"
 
+// Views
+#import "ShelbyMenuView.h"
+
 // Categories
 #import "NSString+TypedefConversion.h"
 

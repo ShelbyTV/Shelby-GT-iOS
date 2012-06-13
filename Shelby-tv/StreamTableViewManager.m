@@ -108,16 +108,10 @@
 
 - (void)animateCell:(VideoCardCell *)cell forRow:(NSUInteger)row
 {
-    CGRect frame = cell.frame;
-    ( row%2 ) 
-    ? [cell setFrame:CGRectMake(2*frame.size.width, frame.origin.y, frame.size.width, frame.size.height)] 
-    : [cell setFrame:CGRectMake(-2*frame.size.width, frame.origin.y, frame.size.width, frame.size.height)];
     
-    [cell setHidden:NO];
-    [cell setAlpha:0.0f];
-    [UIView animateWithDuration:0.25 animations:^{
+    [UIView animateWithDuration:0.50 
+                     animations:^{
         [cell setAlpha:1.0f];
-        [cell setFrame:frame];
     }];
 }
 
@@ -211,8 +205,8 @@
           
     }
 
-    // Hide cell until it's populated with information
-    [cell setHidden:YES];
+    // Pseudo-hide cell until it's populated with information
+    [cell setAlpha:0.0f];
     
     // Populate UITableView row with content if content exists (CHANGE THIS CONDITION TO BE CORE-DATA DEPENDENT)
     if ( [self.coreDataResultsArray count]  ) {

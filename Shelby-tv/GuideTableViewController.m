@@ -23,18 +23,10 @@
 @synthesize guideTableViewManager = _guideTableViewManager;
 @synthesize shelbyNavigationView = _shelbyNavigationView;
 
-#pragma mark - Initialization Method
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    if ( self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil] ) {
-        
-    }
-    
-    return self;
-}
 
-- (void)loadWithType:(GuideType)type forTableViewManager:(GuideTableViewManager *)manager withPullToRefreshEnabled:(BOOL)refreshEnabled
+- (id)initWithType:(GuideType)type forTableViewManager:(GuideTableViewManager *)manager withPullToRefreshEnabled:(BOOL)refreshEnabled
 {
+    if ( self = [super init] ) {
         // Customize tableView
         self.view.backgroundColor = kColorConstantBackgroundColor;
         self.tableView.backgroundColor = kColorConstantBackgroundColor;
@@ -56,6 +48,9 @@
             self.refreshDelegate = (id)self.guideTableViewManager;
             
         }
+    }
+    
+    return self;
 }
 
 #pragma mark - View Lifecycle Methods
@@ -70,6 +65,12 @@
 {
     [super viewWillAppear:animated];
 
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ShelbyNavigationView" owner:self options:nil];
+    self.shelbyNavigationView = (ShelbyMenuView*)[nib objectAtIndex:0];
+    [self.navigationController.navigationBar addSubview:self.shelbyNavigationView];    
+    
+    NSLog(@"%@", NSStringFromCGRect(self.shelbyNavigationView.frame));
+    
     [self customizeOnViewAppear];
 }
 
@@ -77,7 +78,7 @@
 - (void)customizeOnViewAppear
 {
     
-    NSLog(@"%@", NSStringFromCGRect(self.shelbyNavigationView.frame));
+    
     
     // Customize GuideTableViewController for specific guideTableViewManager
     switch (self.guideType) {
