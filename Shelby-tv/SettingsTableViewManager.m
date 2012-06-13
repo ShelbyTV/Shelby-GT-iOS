@@ -1,14 +1,14 @@
 //
-//  PeopleRollsTableViewManager.m
+//  SettingsTableViewManager.m
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 6/12/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import "PeopleRollsTableViewManager.h"
+#import "SettingsTableViewManager.h"
 
-@implementation PeopleRollsTableViewManager 
+@implementation SettingsTableViewManager
 
 #pragma mark - GuideTableViewMangerDelegate Methods
 - (void)loadDataOnInitializationForTableView:(UITableView*)tableView
@@ -25,12 +25,6 @@
 }
 
 - (void)dataReturnedFromAPI:(NSNotification*)notification
-{
-    
-}
-
-#pragma mark - ASPullToRefreshDelegate Methods
-- (void)dataToRefresh
 {
     
 }

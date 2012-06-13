@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ShelbyMenuView.h"
 
 @interface ShelbyMenuController : NSObject
 
 @property (strong, nonatomic) UIViewController *rootViewController;
+@property (strong, nonatomic) ShelbyMenuView *menuView;
 
 - (IBAction)browseRollsButton;
 - (IBAction)myRollsButton;

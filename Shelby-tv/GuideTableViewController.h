@@ -10,6 +10,7 @@
 
 // Controllers
 #import "ASPullToRefreshTableViewController.h"
+#import "ShelbyMenuController.h"
 #import "TableViewManagers.h"
 
 // Views
@@ -19,6 +20,8 @@
 #import "StaticDeclarations.h"
 
 @interface GuideTableViewController : ASPullToRefreshTableViewController
+
+@property (strong, nonatomic) ShelbyMenuController *menuController;
 
 - (id)initWithType:(GuideType)type forTableViewManager:(GuideTableViewManager*)manager withPullToRefreshEnabled:(BOOL)refreshEnabled;
 

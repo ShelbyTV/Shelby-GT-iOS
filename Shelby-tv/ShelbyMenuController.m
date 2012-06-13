@@ -24,6 +24,7 @@
 @implementation ShelbyMenuController
 @synthesize rootViewController = _rootViewController;
 @synthesize dictionaryOfMenuItems = _dictionaryOfMenuItems;
+@synthesize menuView = _menuView;
 
 #pragma mark - Initialization Method
 
@@ -34,10 +35,12 @@
         /// General Memory Allocation
         self.dictionaryOfMenuItems = [NSMutableDictionary dictionary];
         
+        // Create menuView image and reference
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ShelbyMenuView" owner:self options:nil];
+        self.menuView = (ShelbyMenuView*)[nib objectAtIndex:0];
+        
         // Create Navigation Menu
         [self createMenu];
-        
-        NSLog(@"%@", self.dictionaryOfMenuItems);
         
         // Set menu's rootViewController (to be passed to UIWindow's rootViewController property)
         self.rootViewController = [self.dictionaryOfMenuItems objectForKey:[self dictionaryKeyMaker:GuideType_Stream]];
@@ -88,13 +91,12 @@
     GuideTableViewController *streamViewController = [[GuideTableViewController alloc] initWithType:GuideType_Stream 
                                                                                 forTableViewManager:streamTableViewManager 
                                                                            withPullToRefreshEnabled:YES];
+    streamViewController.menuController = self;
     
-    UINavigationController *streamNavigationController = [[UINavigationController alloc] initWithRootViewController:streamViewController];
+    UINavigationController *streamNavigationController = [[UINavigationController alloc] initWithRootViewController:streamViewController]; 
     streamTableViewManager.navigationController = streamNavigationController;
-    
     [self.dictionaryOfMenuItems setObject:streamNavigationController forKey:[self dictionaryKeyMaker:GuideType_Stream]];
-    
-    
+
     /// *** People Rolls *** ///
     PeopleRollsTableViewManager *peopleRollsTableViewManager = [[PeopleRollsTableViewManager alloc] init];
     
@@ -103,8 +105,7 @@
                                                                                 withPullToRefreshEnabled:YES];
     
     UINavigationController *peopleRollsNavigationController = [[UINavigationController alloc] initWithRootViewController:peopleRollsViewController];
-    peopleRollsTableViewManager.navigationController = peopleRollsNavigationController;
-    
+    peopleRollsTableViewManager.navigationController = peopleRollsNavigationController; 
     [self.dictionaryOfMenuItems setObject:peopleRollsNavigationController forKey:[self dictionaryKeyMaker:GuideType_PeopleRolls]];
     
     /// *** My Rolls *** ///
@@ -114,9 +115,8 @@
                                                                                       forTableViewManager:myRollsTableViewManager 
                                                                                  withPullToRefreshEnabled:YES];
     
-    UINavigationController *myRollsNavigationController = [[UINavigationController alloc] initWithRootViewController:myRollsTableViewController];
+    UINavigationController *myRollsNavigationController = [[UINavigationController alloc] initWithRootViewController:myRollsTableViewController]; 
     myRollsTableViewManager.navigationController = myRollsNavigationController;
-    
     [self.dictionaryOfMenuItems setObject:myRollsNavigationController forKey:[self dictionaryKeyMaker:GuideType_MyRolls]];
     
     /// *** Browse Rolls *** ///
@@ -127,8 +127,7 @@
                                                                                      withPullToRefreshEnabled:YES];
     
     UINavigationController *browseRollsNavigationController = [[UINavigationController alloc] initWithRootViewController:browseRollsTableViewController];
-    browseRollsTableViewManager.navigationController = browseRollsNavigationController;
-    
+    browseRollsTableViewManager.navigationController = browseRollsNavigationController; 
     [self.dictionaryOfMenuItems setObject:browseRollsNavigationController forKey:[self dictionaryKeyMaker:GuideType_BrowseRolls]];
     
     /// *** Settings *** ///
@@ -140,7 +139,6 @@
     
     UINavigationController *settingsNavigationController = [[UINavigationController alloc] initWithRootViewController:settingsTableViewController];
     settingsTableViewManager.navigationController = settingsNavigationController;
-    
     [self.dictionaryOfMenuItems setObject:settingsNavigationController forKey:[self dictionaryKeyMaker:GuideType_Settings]];
 
 }

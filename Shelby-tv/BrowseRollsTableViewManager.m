@@ -1,14 +1,14 @@
 //
-//  PeopleRollsTableViewManager.m
+//  BrowseRollsTableViewManager.m
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 6/12/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import "PeopleRollsTableViewManager.h"
+#import "BrowseRollsTableViewManager.h"
 
-@implementation PeopleRollsTableViewManager 
+@implementation BrowseRollsTableViewManager
 
 #pragma mark - GuideTableViewMangerDelegate Methods
 - (void)loadDataOnInitializationForTableView:(UITableView*)tableView
