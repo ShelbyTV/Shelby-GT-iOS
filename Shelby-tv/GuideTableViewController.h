@@ -12,8 +12,6 @@
 
 @interface GuideTableViewController : ASPullToRefreshTableViewController
 
-- (id)initWithGuideType:(GuideType)type;
-
 - (IBAction)browseRollsButton;
 - (IBAction)myRollsButton;
 - (IBAction)peopleRollsButton;

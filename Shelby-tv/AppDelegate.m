@@ -19,9 +19,6 @@
 #import "GuideTableViewController.h"
 #import "LoginViewController.h"
 
-// Constants 
-#import "StaticDeclarations.h"
-
 // Core Data
 #import <CoreData/CoreData.h>
 #import "CoreDataUtility.h"
@@ -79,7 +76,7 @@
 - (void)createRootView
 {
     
-    GuideTableViewController *guideTableViewController = [[GuideTableViewController alloc] initWithGuideType:GuideType_Stream];
+    GuideTableViewController *guideTableViewController = [[GuideTableViewController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:guideTableViewController];
     self.window.rootViewController = navigationController;
     

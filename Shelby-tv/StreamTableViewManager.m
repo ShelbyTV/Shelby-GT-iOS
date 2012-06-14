@@ -118,6 +118,7 @@
 #pragma mark - GuideTableViewManagerDelegate Method
 - (void)loadDataOnInitializationForTableView:(UITableView *)tableView
 {
+
     
     // Reference Parent ViewController's UITableView (should ONLY occur on first call to this method)
     self.tableView = tableView;
@@ -188,7 +189,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return ( self.coreDataResultsArray ) ?  [self.coreDataResultsArray count] : 1;
+    return ( self.coreDataResultsArray ) ?  [self.coreDataResultsArray count] : 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -202,9 +203,8 @@
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
         cell = (VideoCardCell*)[nib objectAtIndex:0];
-          
     }
-
+    
     // Pseudo-hide cell until it's populated with information
     [cell setAlpha:0.0f];
     
@@ -213,7 +213,7 @@
      
         if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {
         
-            [self populateTableViewCell:cell withContentForRow:indexPath.row];
+            if ( [cell isMemberOfClass:[VideoCardCell class]] ) [self populateTableViewCell:cell withContentForRow:indexPath.row];
             
             // Animate cell as data populates
             [self animateCell:cell forRow:indexPath.row];
