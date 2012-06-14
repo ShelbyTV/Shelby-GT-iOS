@@ -199,10 +199,11 @@
     static NSString *CellIdentifier = @"Cell";
     VideoCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
-    cell = (VideoCardCell*)[nib objectAtIndex:0];
-    
-    NSLog(@"%d %@",indexPath.row, cell);
+    if ( (nil == cell) || (0 == indexPath.row) ) {
+        
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
+        cell = (VideoCardCell*)[nib objectAtIndex:0];
+    }
     
     // Pseudo-hide cell until it's populated with information
     [cell setAlpha:0.0f];
