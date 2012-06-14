@@ -220,7 +220,7 @@ static CoreDataUtility *sharedInstance = nil;
                 }
             }
             else {
-                NSLog(@"  %@", [error userInfo]);
+                NSLog(@"%@", [error userInfo]);
             }
             
         } else {
@@ -271,33 +271,42 @@ static CoreDataUtility *sharedInstance = nil;
     
     for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
         
-        // Store dashboardEntry attirubutes
-        DashboardEntry *dashboardEntry = [self checkIfEntity:CoreDataEntityDashboardEntry 
-                                                 withIDValue:[[resultsArray objectAtIndex:i] valueForKey:@"id"]
-                                                    forIDKey:CoreDataDashboardEntryID 
-                                             existsInContext:context];
+        // Conditions for saving entires into database
+        NSArray *messagesExistArray = [[[[resultsArray objectAtIndex:i] valueForKey:@"frame"] valueForKey:@"conversation"] valueForKey:@"messages"];
+        NSString *sourceURLExists = [[[[resultsArray objectAtIndex:i] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"source_url"];
         
-        NSString *dashboardID = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
-        [dashboardEntry setValue:dashboardID forKey:CoreDataDashboardEntryID];
-        
-        NSDate *timestamp = [NSDate dataFromBSONstring:dashboardID];
-        [dashboardEntry setValue:timestamp forKey:CoreDataDashboardEntryTimestamp];
-        
-        // Store dashboardEntry.frame attributes
-        NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];        
-        Frame *frame = [self checkIfEntity:CoreDataEntityFrame
-                               withIDValue:[frameArray valueForKey:@"id"]
-                                  forIDKey:CoreDataFrameID  
-                           existsInContext:context];
-        dashboardEntry.frame = frame;
-        
-        [self storeFrame:frame fromFrameArray:frameArray];
+        if ( [messagesExistArray count] && sourceURLExists ) {
+            
+            NSLog(@"num: %d", i);
+            
+            // Store dashboardEntry attirubutes
+            DashboardEntry *dashboardEntry = [self checkIfEntity:CoreDataEntityDashboardEntry 
+                                                     withIDValue:[[resultsArray objectAtIndex:i] valueForKey:@"id"]
+                                                        forIDKey:CoreDataDashboardEntryID 
+                                                 existsInContext:context];
+            
+            NSString *dashboardID = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
+            [dashboardEntry setValue:dashboardID forKey:CoreDataDashboardEntryID];
+            
+            NSDate *timestamp = [NSDate dataFromBSONstring:dashboardID];
+            [dashboardEntry setValue:timestamp forKey:CoreDataDashboardEntryTimestamp];
+            
+            // Store dashboardEntry.frame attributes
+            NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];        
+            Frame *frame = [self checkIfEntity:CoreDataEntityFrame
+                                   withIDValue:[frameArray valueForKey:@"id"]
+                                      forIDKey:CoreDataFrameID  
+                               existsInContext:context];
+            dashboardEntry.frame = frame;
+            
+            // Check to make sure messages exist
+            [self storeFrame:frame fromFrameArray:frameArray];
+            
+        }
         
     }
-    
-    // Commity unsaved data in context
-    [self saveContext:context];
-
+        // Commity unsaved data in context
+        [self saveContext:context];
     
 }
 

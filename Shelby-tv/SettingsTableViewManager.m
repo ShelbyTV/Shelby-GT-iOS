@@ -16,10 +16,12 @@
     self.tableView = tableView;
     [self.tableView reloadData];
 }
+
 - (void)loadDataFromCoreData
 {
     
 }
+
 - (void)performAPIRequest
 {
     

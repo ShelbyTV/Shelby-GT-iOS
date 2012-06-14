@@ -134,7 +134,7 @@
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
      
         self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
-
+        
         [self.tableView reloadData];
         
     }
@@ -199,7 +199,7 @@
     static NSString *CellIdentifier = @"Cell";
     VideoCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if ( (nil == cell) || (0 == indexPath.row) ) {
+    if ( (nil == cell) || (0 == indexPath.row) ) { // The 0 == indexPath.row is to fix an issue when reloading stream via the ShelbyMenuView
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
         cell = (VideoCardCell*)[nib objectAtIndex:0];
@@ -213,7 +213,7 @@
      
         if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {
         
-            if ( [cell isMemberOfClass:[VideoCardCell class]] ) [self populateTableViewCell:cell withContentForRow:indexPath.row];
+            [self populateTableViewCell:cell withContentForRow:indexPath.row];
             
             // Animate cell as data populates
             [self animateCell:cell forRow:indexPath.row];

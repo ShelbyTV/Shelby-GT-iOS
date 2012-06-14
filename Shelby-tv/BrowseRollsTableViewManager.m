@@ -13,12 +13,15 @@
 #pragma mark - GuideTableViewMangerDelegate Methods
 - (void)loadDataOnInitializationForTableView:(UITableView*)tableView
 {
-    
+    self.tableView = tableView;
+    [self.tableView reloadData];
 }
+
 - (void)loadDataFromCoreData
 {
     
 }
+
 - (void)performAPIRequest
 {
     
