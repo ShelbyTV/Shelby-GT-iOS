@@ -189,7 +189,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return ( self.coreDataResultsArray ) ?  [self.coreDataResultsArray count] : 0;
+    return ( self.coreDataResultsArray ) ?  [self.coreDataResultsArray count] : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -199,11 +199,10 @@
     static NSString *CellIdentifier = @"Cell";
     VideoCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if ( nil == cell ) {
-        
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
-        cell = (VideoCardCell*)[nib objectAtIndex:0];
-    }
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
+    cell = (VideoCardCell*)[nib objectAtIndex:0];
+    
+    NSLog(@"%d %@",indexPath.row, cell);
     
     // Pseudo-hide cell until it's populated with information
     [cell setAlpha:0.0f];
