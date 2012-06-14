@@ -88,14 +88,11 @@
             }
             
             // Asychronous download of user image/icon
-            if ( dashboardEntry.frame.creator.userImage ) { // Occassionally, this is nil. Dan Spinosa is currently addressing this bug.
+            if ( dashboardEntry.frame.creator.userImage ) {
                 
                 [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.creator.userImage forImageView:cell.userImageView withPlaceholderView:nil];
             
-            } else if ( message.userImageURL ) {    // Use this image (which is never nil) until Spinosa addresses issue.
-                
-                [AsynchronousFreeloader loadImageFromLink:message.userImageURL forImageView:cell.userImageView withPlaceholderView:nil];
-            }
+            } 
 
             // Asynchronous download of video thumbnail
             [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];

@@ -320,6 +320,12 @@ static CoreDataUtility *sharedInstance = nil;
     NSString *conversationID = [NSString testForNull:[frameArray valueForKey:@"conversation_id"]];
     [frame setValue:conversationID forKey:CoreDataFrameConversationID];
     
+    NSString *createdAt = [NSString testForNull:[frameArray valueForKey:@"creator_at"]];
+    [frame setValue:createdAt forKey:CoreDataFrameCreatedAt ];
+    
+    NSString *creatorID = [NSString testForNull:[frameArray valueForKey:@"creator_id"]];
+    [frame setValue:creatorID forKey:CoreDataFrameCreatorID ];
+    
     NSString *rollID = [NSString testForNull:[frameArray valueForKey:@"roll_id"]];
     [frame setValue:rollID forKey:CoreDataFrameRollID];
     
@@ -329,9 +335,7 @@ static CoreDataUtility *sharedInstance = nil;
     NSArray *upvotersArray = [NSArray arrayWithArray:[frameArray valueForKey:@"upvoters"]];
     NSUInteger upvotersCount = [upvotersArray count];
     [frame setValue:[NSNumber numberWithInt:upvotersCount] forKey:CoreDataFrameUpvotersCount];
-    
-    NSString *creatorID = [NSString testForNull:[frameArray valueForKey:@"creator_id"]];
-    [frame setValue:creatorID forKey:CoreDataFrameCreatorID ];
+
     
     NSString *videoID = [NSString testForNull:[frameArray valueForKey:@"video_id"]];
     [frame setValue:videoID forKey:CoreDataFrameVideoID ];
