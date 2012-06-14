@@ -13,6 +13,8 @@
 		8E068B86158843650069FD01 /* BrowseRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B85158843640069FD01 /* BrowseRollsTableViewManager.m */; };
 		8E068B89158843B40069FD01 /* PeopleRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B88158843B40069FD01 /* PeopleRollsTableViewManager.m */; };
 		8E068B8C1588444E0069FD01 /* MyRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */; };
+		8E1749C4158A87AF00EDFE4D /* navigationBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E1749C2158A87AF00EDFE4D /* navigationBarBackground.png */; };
+		8E1749C5158A87AF00EDFE4D /* navigationBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E1749C3158A87AF00EDFE4D /* navigationBarBackground@2x.png */; };
 		8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */; };
 		8E4A7732155185A0003CBA2A /* pullToRefreshArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A7730155185A0003CBA2A /* pullToRefreshArrow.png */; };
 		8E4A7733155185A0003CBA2A /* pullToRefreshArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A7731155185A0003CBA2A /* pullToRefreshArrow@2x.png */; };
@@ -207,6 +209,8 @@
 		8E068B8A1588444D0069FD01 /* MyRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRollsTableViewManager.h; sourceTree = "<group>"; };
 		8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRollsTableViewManager.m; sourceTree = "<group>"; };
 		8E0B3A9415813C400008B841 /* ColorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorConstants.h; sourceTree = "<group>"; };
+		8E1749C2158A87AF00EDFE4D /* navigationBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationBarBackground.png; sourceTree = "<group>"; };
+		8E1749C3158A87AF00EDFE4D /* navigationBarBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBarBackground@2x.png"; sourceTree = "<group>"; };
 		8E3457851551BC9200FEFC9D /* NSString+TypedefConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TypedefConversion.h"; sourceTree = "<group>"; };
 		8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TypedefConversion.m"; sourceTree = "<group>"; };
 		8E4A7730155185A0003CBA2A /* pullToRefreshArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pullToRefreshArrow.png; path = library/ASPullToRefresh/ASPullToRefresh/pullToRefreshArrow.png; sourceTree = SOURCE_ROOT; };
@@ -988,6 +992,8 @@
 		8EE673841552E474004EA45C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8E1749C2158A87AF00EDFE4D /* navigationBarBackground.png */,
+				8E1749C3158A87AF00EDFE4D /* navigationBarBackground@2x.png */,
 				8E791DE715828D3200B0E744 /* navigation */,
 				8EE673851552E474004EA45C /* login */,
 				8E87DE98156C34D5004E0629 /* tabBar */,
@@ -1179,6 +1185,8 @@
 				8E791E1015828D3200B0E744 /* navigationButtonStreamOn.png in Resources */,
 				8E791E1115828D3200B0E744 /* navigationButtonStreamOn@2x.png in Resources */,
 				8E068B7D158823C70069FD01 /* ShelbyMenuView.xib in Resources */,
+				8E1749C4158A87AF00EDFE4D /* navigationBarBackground.png in Resources */,
+				8E1749C5158A87AF00EDFE4D /* navigationBarBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
