@@ -44,12 +44,10 @@
 
 - (void)populateTableViewCell:(VideoCardCell *)cell withContentForRow:(NSUInteger)row
 {
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    
-        // Fetch date stored in Core Data
-        DashboardEntry *dashboardEntry = [self.coreDataResultsArray objectAtIndex:row];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
+       
+            // Fetch date stored in Core Data
+            DashboardEntry *dashboardEntry = [self.coreDataResultsArray objectAtIndex:row];
             
             // Populate roll label
             [cell.rollLabel setText:dashboardEntry.frame.roll.title];
@@ -97,8 +95,6 @@
             // Asynchronous download of video thumbnail
             [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
     
-            });
-                
         });
         
 }
@@ -116,7 +112,6 @@
 - (void)loadDataOnInitializationForTableView:(UITableView *)tableView
 {
 
-    
     // Reference Parent ViewController's UITableView (should ONLY occur on first call to this method)
     self.tableView = tableView;
     

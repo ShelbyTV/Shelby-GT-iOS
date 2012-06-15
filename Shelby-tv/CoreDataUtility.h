@@ -54,7 +54,7 @@ Check if user already voted for a specific frame
 /** 
  Delete all stored information
  */
-+ (void)dumpCoreDataStack;
++ (void)dumpAllData;
 
 
 

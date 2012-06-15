@@ -19,6 +19,9 @@
     NSPersistentStoreCoordinator *_persistentStoreCoordinator;
 }
 
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
 /// Check if entity exists in Core Data
 + (id)checkIfEntity:(NSString*)entityName 
         withIDValue:(NSString*)entityIDValue 
@@ -231,19 +234,18 @@ static CoreDataUtility *sharedInstance = nil;
     
     // If this is the first time data has been loaded, post notification to dismiss LoginViewController
     if ( [SocialFacade sharedInstance].firstTimeLogin ) [[NSNotificationCenter defaultCenter] postNotificationName:TextConstants_DidFinishLoadingDataOnLogin object:nil];
-
 }
 
 
-+ (void)dumpCoreDataStack
++ (void)dumpAllData
 {
     
-    NSURL *applicationDocumentsDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    NSURL *storeURL = [applicationDocumentsDirectory URLByAppendingPathComponent:@"Shelby-tv.sqlite"];
-    [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
-    
-    [[self sharedInstance] persistentStoreCoordinator];
-
+    NSPersistentStoreCoordinator *coordinator =  [[self sharedInstance] persistentStoreCoordinator];
+    NSPersistentStore *store = [[coordinator persistentStores] objectAtIndex:0];
+    [[NSFileManager defaultManager] removeItemAtURL:store.URL error:nil];
+    [coordinator removePersistentStore:store error:nil];
+    [[self sharedInstance] setPersistentStoreCoordinator:nil];
+    [[self sharedInstance] setManagedObjectContext:nil];
 
 }
 

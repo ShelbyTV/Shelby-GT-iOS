@@ -24,7 +24,7 @@
 - (void)initalizeTableViewManagers;
 - (void)initalizeMenuView;
 - (void)loadWithType:(GuideType)type forTableViewManager:(GuideTableViewManager*)manager withPullToRefreshEnabled:(BOOL)refreshEnabled;
-
+- (void)tableViewDelegatesWillChange;
 
 /// Animation Methods
 - (void)fadeInAnimation;
@@ -49,7 +49,7 @@
     [self initalizeMenuView];
     
     // Load Stream
-    [self streamButton];
+    [self loadWithType:GuideType_Stream forTableViewManager:self.streamtableViewManager withPullToRefreshEnabled:YES];
     
 }
 
@@ -100,32 +100,64 @@
         
     }
     
+    [self fadeInAnimation];
+    
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) [manager loadDataOnInitializationForTableView:self.tableView];
+    
+}
+
+- (void)tableViewDelegatesWillChange
+{
+    
+    [self fadeOutAnimation];
+    switch (self.guideType) {
+        case GuideType_BrowseRolls:
+            [self.browseRollsTableViewManager.refreshController didFinishRefreshing];
+            break;
+        case GuideType_MyRolls:
+            [self.myRollsTableViewManager.refreshController didFinishRefreshing];
+            break;
+        case GuideType_PeopleRolls:
+            [self.peopleRollsTableViewManager.refreshController didFinishRefreshing];
+            break;
+        case GuideType_Settings:
+            break;
+        case GuideType_Stream:
+            [self.streamtableViewManager.refreshController didFinishRefreshing];
+            break;
+        default:
+            break;
+    }
     
 }
 
 - (IBAction)browseRollsButton
 {
+    [self tableViewDelegatesWillChange];
     [self loadWithType:GuideType_BrowseRolls forTableViewManager:self.browseRollsTableViewManager withPullToRefreshEnabled:YES];
 }
 
 - (IBAction)myRollsButton
 {
+    [self tableViewDelegatesWillChange];
     [self loadWithType:GuideType_MyRolls forTableViewManager:self.myRollsTableViewManager withPullToRefreshEnabled:YES];
 }
 
 - (IBAction)peopleRollsButton
 {
+    [self tableViewDelegatesWillChange];
     [self loadWithType:GuideType_PeopleRolls forTableViewManager:self.peopleRollsTableViewManager withPullToRefreshEnabled:YES];
 }
 
 - (IBAction)settingsButton
 {
+    [self tableViewDelegatesWillChange];
     [self loadWithType:GuideType_Settings forTableViewManager:self.settingsTableViewManager withPullToRefreshEnabled:NO];
 }
 
 - (IBAction)streamButton
 {
+    [self tableViewDelegatesWillChange];
     [self loadWithType:GuideType_Stream forTableViewManager:self.streamtableViewManager withPullToRefreshEnabled:YES];
 }
 

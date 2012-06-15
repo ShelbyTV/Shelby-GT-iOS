@@ -17,6 +17,13 @@
 
 @implementation SettingsTableViewManager
 
+#pragma mark - Deallocation Method
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SocialFacadeAuthorizationStatus object:nil];
+}
+
+#pragma mark - Private Methods
 - (void)logout
 {
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -27,9 +34,14 @@
 - (void)loadDataOnInitializationForTableView:(UITableView*)tableView
 {
     self.tableView = tableView;
+    
+    // Begin Temp Styling Code
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = [UIColor blackColor];
+    // End Temp Styling Code
+    
+    
     [self.tableView reloadData];
 }
 
@@ -76,7 +88,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logout) name:SocialFacadeAuthorizationStatus object:nil];
-    [CoreDataUtility dumpCoreDataStack];
+    [CoreDataUtility dumpAllData];
     [[SocialFacade sharedInstance] shelbyLogout];
 }
 
