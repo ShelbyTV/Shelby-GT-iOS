@@ -56,7 +56,7 @@
 
     } else {
         
-        NSLog(@"CONNECTION FAILED!");
+       if ( DEBUGMODE ) NSLog(@"CONNECTION FAILED!");
     }
     
 }
@@ -77,7 +77,7 @@
     
     if ( connection == self.connection ) {
         
-        NSLog(@"CONNECTION ERROR!");
+        if ( DEBUGMODE ) NSLog(@"CONNECTION ERROR!");
         
     }
     

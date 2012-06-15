@@ -99,6 +99,7 @@
     self.refreshLabel.backgroundColor = [UIColor clearColor];
     self.refreshLabel.font = [UIFont boldSystemFontOfSize:11.0f];
     self.refreshLabel.textAlignment = UITextAlignmentCenter;
+    self.refreshLabel.textColor = [UIColor whiteColor];
     [self.refreshHeaderView addSubview:self.refreshLabel];
     
     // Create refreshTimestampLabal that displays the last time the dataSource was refreshed
@@ -121,7 +122,7 @@
     [self.refreshHeaderView addSubview:self.refreshArrow];
     
     // Create refreshSpinner (e.g., UIActivityIndicatorView)
-    self.refreshSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.refreshSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     self.refreshSpinner.frame = CGRectMake(floorf(floorf(kREFRESH_HEADER_HEIGHT - 20.0f) / 2.0f), floorf((kREFRESH_HEADER_HEIGHT - 20.0f) / 2.0f), 20.0f, 20.0f);
     self.refreshSpinner.hidesWhenStopped = YES;
 

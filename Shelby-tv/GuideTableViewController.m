@@ -94,6 +94,10 @@
         manager.refreshController = self;
         self.refreshDelegate = (id)manager;
         
+    } else {
+        
+        self.refreshDelegate = nil;
+        
     }
     
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) [manager loadDataOnInitializationForTableView:self.tableView];
@@ -117,12 +121,12 @@
 
 - (IBAction)settingsButton
 {
-    [self loadWithType:GuideType_Settings forTableViewManager:self.settingsTableViewManager withPullToRefreshEnabled:YES];
+    [self loadWithType:GuideType_Settings forTableViewManager:self.settingsTableViewManager withPullToRefreshEnabled:NO];
 }
 
 - (IBAction)streamButton
 {
-    [self loadWithType:GuideType_Stream forTableViewManager:self.streamtableViewManager withPullToRefreshEnabled:NO];
+    [self loadWithType:GuideType_Stream forTableViewManager:self.streamtableViewManager withPullToRefreshEnabled:YES];
 }
 
 #pragma mark - Animation Methods

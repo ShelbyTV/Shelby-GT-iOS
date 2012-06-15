@@ -70,14 +70,12 @@ UIPickerViewDelegate
 - (void)tokenSwapWasSuccessful:(NSNotification*)notification;
 
 /// Facebook Methods ///
-- (void)facebookLogin;
 - (void)facebookLogout;
 - (void)checkFacebookTokenPersistenceStatusOnLaunch;
 - (void)sendFacebookTokenAndExpirationDateToServer;
 - (void)resetFacebookUserDefaults;
 
 /// Twitter Authorization Methods ///
-- (void)twitterLogin;
 - (void)twitterLogout;
 - (void)checkForExistingTwitterAccounts;
 - (void)userHasOneStoredTwitterAccount;
@@ -187,6 +185,19 @@ UIPickerViewDelegate
     // Dismiss login window after token swap
     self.shelbyAuthorized = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
+}
+
+- (void)shelbyLogout
+{
+    if ( [[NSUserDefaults standardUserDefaults] objectForKey:@"FBAccessTokenKey"] ) {
+        
+        [self facebookLogout];
+        
+    } else {
+        
+        [self twitterLogout];
+        
+    }
 }
 
 #pragma mark - Facebook Authorization Methods

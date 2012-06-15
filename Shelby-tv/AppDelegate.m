@@ -28,7 +28,6 @@
 - (void)analytics;
 - (void)customization;
 - (void)createRootView;
-- (void)presentLoginViewController;
 
 @end
 

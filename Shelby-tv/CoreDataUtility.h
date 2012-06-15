@@ -52,6 +52,13 @@ Check if user already voted for a specific frame
 + (void)saveContext:(NSManagedObjectContext*)context;
 
 /** 
+ Delete all stored information
+ */
++ (void)dumpCoreDataStack;
+
+
+
+/** 
  CoreDataUtility's Singleton Method 
  */
 + (CoreDataUtility*)sharedInstance;

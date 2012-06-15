@@ -19,34 +19,34 @@
     NSPersistentStoreCoordinator *_persistentStoreCoordinator;
 }
 
-// Check if entity exists in Core Data
+/// Check if entity exists in Core Data
 + (id)checkIfEntity:(NSString*)entityName 
         withIDValue:(NSString*)entityIDValue 
            forIDKey:(NSString*)entityIDKey 
     existsInContext:(NSManagedObjectContext*)context;
 
-// Store dashboardEntry data in Core Data
+/// Store dashboardEntry data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
 
-// Store dashbaordEntry.frame data in Core Data
+/// Store dashbaordEntry.frame data in Core Data
 + (void)storeFrame:(Frame*)frame fromFrameArray:(NSArray*)frameArray;
 
-// Store dashboard.frame.conversations data in Core Data
+/// Store dashboard.frame.conversations data in Core Data
 + (void)storeConversation:(Conversation*)conversation fromFrameArray:(NSArray*)frameArray;
 
-// Store dashboard.frame.conversations.messages data in Core Data
+/// Store dashboard.frame.conversations.messages data in Core Data
 + (void)storeMessagesFromConversation:(Conversation*)conversation withConversationsArray:(NSArray*)conversationsArray;
 
-// Store roll data in Core Data
+/// Store roll data in Core Data
 + (void)storeRoll:(Roll*)roll fromFrameArray:(NSArray*)frameArray;
 
-// Store dashboard.frame.user data in Core Data
+/// Store dashboard.frame.user data in Core Data
 + (void)storeCreator:(Creator*)user fromFrameArray:(NSArray*)frameArray;
 
-// Store dashboard.frame.video data in Core Data
+/// Store dashboard.frame.video data in Core Data
 + (void)storeUpvoteUsersFromFrame:(Frame*)frame withFrameArray:(NSArray*)frameArray;
 
-// Store dashboard.frame.video data in Core Data
+/// Store dashboard.frame.video data in Core Data
 + (void)storeVideo:(Video*)video fromFrameArray:(NSArray*)frameArray;
 
 @end
@@ -212,20 +212,19 @@ static CoreDataUtility *sharedInstance = nil;
         
         if(![context save:&error]) {
 
-            NSLog(@"Failed to save to data store: %@", [error localizedDescription]);
+            if ( DEBUGMODE ) NSLog(@"Failed to save to data store: %@", [error localizedDescription]);
             NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
             if(detailedErrors != nil && [detailedErrors count] > 0) {
                 for(NSError* detailedError in detailedErrors) {
-                    NSLog(@"  DetailedError: %@", [detailedError userInfo]);
+                    if ( DEBUGMODE ) NSLog(@"  DetailedError: %@", [detailedError userInfo]);
                 }
             }
             else {
-                NSLog(@"%@", [error userInfo]);
+                if ( DEBUGMODE ) NSLog(@"%@", [error userInfo]);
             }
             
         } else {
-            
-            NSLog(@"Core Data Updated!");
+            if ( DEBUGMODE ) NSLog(@"Core Data Updated!");
         }
         
     }
@@ -235,8 +234,21 @@ static CoreDataUtility *sharedInstance = nil;
 
 }
 
-+ (id)checkIfEntity:(NSString *)entityName 
-        withIDValue:(NSString *)entityIDValue 
+
++ (void)dumpCoreDataStack
+{
+    
+    NSURL *applicationDocumentsDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSURL *storeURL = [applicationDocumentsDirectory URLByAppendingPathComponent:@"Shelby-tv.sqlite"];
+    [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
+    
+    [[self sharedInstance] persistentStoreCoordinator];
+
+
+}
+
++ (id)checkIfEntity:(NSString *)entityName
+        withIDValue:(NSString *)entityIDValue
            forIDKey:(NSString *)entityIDKey 
     existsInContext:(NSManagedObjectContext *)context
 {
@@ -276,8 +288,6 @@ static CoreDataUtility *sharedInstance = nil;
         NSString *sourceURLExists = [[[[resultsArray objectAtIndex:i] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"source_url"];
         
         if ( [messagesExistArray count] && sourceURLExists ) {
-            
-            NSLog(@"num: %d", i);
             
             // Store dashboardEntry attirubutes
             DashboardEntry *dashboardEntry = [self checkIfEntity:CoreDataEntityDashboardEntry 

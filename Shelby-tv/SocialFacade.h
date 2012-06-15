@@ -38,12 +38,14 @@
 +(SocialFacade *)sharedInstance;
 
 /// Authorization Methods ///
+// Shelby
+- (void)shelbyLogout;
+
 // Facebook
 - (void)facebookLogin;
-- (void)facebookLogout;
 
 // Twitter
 - (void)twitterLogin;
-- (void)twitterLogout;
+
 
 @end
