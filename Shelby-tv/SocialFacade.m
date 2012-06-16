@@ -205,7 +205,7 @@ UITableViewDelegate
 {
     if ( ![self.facebook isSessionValid] ) {
         
-        NSArray *permissions = [[NSArray alloc] initWithObjects:@"publish_stream", @"user_about_me", nil];
+        NSArray *permissions = [[NSArray alloc] initWithObjects:@"publish_stream", @"read_stream", @"email" , @"publish_actions", @"user_about_me",  nil];
         
         [self.facebook authorize:permissions];
     }

@@ -79,6 +79,16 @@
         
         if ( DEBUGMODE ) NSLog(@"CONNECTION ERROR!");
         
+    
+        // Pop request-dependent error message
+        
+        // Post notification to signal finished request.
+        NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
+        [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:parsedDictionary];
+        
+        // Reset request type
+        self.requestType = APIRequestTypeNone;
+        
     }
     
 }
@@ -110,7 +120,7 @@
    
     }
     
-    // Reset Request Type
+    // Reset request type
     self.requestType = APIRequestTypeNone;
 }
 
