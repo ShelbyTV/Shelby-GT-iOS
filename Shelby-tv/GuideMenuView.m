@@ -1,13 +1,13 @@
 //
-//  ShelbyMenuView.h
+//  GuideMenuView.m
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 6/12/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "GuideMenuView.h"
 
-@interface ShelbyMenuView : UIView
+@implementation GuideMenuView
 
 @end

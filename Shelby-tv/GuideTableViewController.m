@@ -8,12 +8,12 @@
 
 #import "GuideTableViewController.h"
 #import "TableViewManagers.h"
-#import "ShelbyMenuView.h"
+#import "GuideMenuView.h"
 
 @interface GuideTableViewController ()
 
 @property (assign, nonatomic) GuideType guideType;
-@property (strong, nonatomic) ShelbyMenuView *menuView;
+@property (strong, nonatomic) GuideMenuView *menuView;
 @property (strong, nonatomic) StreamTableViewManager *streamtableViewManager;
 @property (strong, nonatomic) PeopleRollsTableViewManager *peopleRollsTableViewManager;
 @property (strong, nonatomic) MyRollsTableViewManager *myRollsTableViewManager;
@@ -67,8 +67,8 @@
 {
     
     // Add menuView over navigationBar
-    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ShelbyMenuView" owner:self options:nil];
-    self.menuView = (ShelbyMenuView*)[nib objectAtIndex:0];
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"GuideMenuView" owner:self options:nil];
+    self.menuView = (GuideMenuView*)[nib objectAtIndex:0];
     [self.navigationController.navigationBar addSubview:self.menuView];
 
 }
