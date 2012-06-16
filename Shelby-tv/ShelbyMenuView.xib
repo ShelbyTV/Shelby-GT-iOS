@@ -101,7 +101,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">My Rolls</string>
 						<reference key="IBUIHighlightedTitleColor" ref="199364509"/>
 						<reference key="IBUINormalTitleColor" ref="199364509"/>
@@ -172,7 +171,6 @@
 						<string key="NSFrame">{{277, 7}, {38, 29}}</string>
 						<reference key="NSSuperview" ref="842574106"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

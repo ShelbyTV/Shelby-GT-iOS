@@ -47,8 +47,8 @@ static SocialFacade *sharedInstance = nil;
 <
 AuthenticateTwitterDelegate, 
 UIActionSheetDelegate, 
-UIPickerViewDataSource, 
-UIPickerViewDelegate
+UITableViewDataSource,
+UITableViewDelegate
 >
 
 // Facebook
@@ -62,9 +62,9 @@ UIPickerViewDelegate
 @property (copy, nonatomic) NSString *twitterName;
 @property (copy, nonatomic) NSString *twitterID;
 @property (copy, nonatomic) NSString *twitterReverseAuthToken;              
-@property (copy, nonatomic) NSString *twitterReverseAuthSecret;             
-@property (strong, nonatomic) UIPickerView *twitterPickerView;              
-@property (strong, nonatomic) NSMutableArray *twitterPickerViewChoices;
+@property (copy, nonatomic) NSString *twitterReverseAuthSecret;
+@property (strong, nonatomic) UITableViewController *twitterAccountsTableViewController;
+@property (strong, nonatomic) NSMutableArray *storedTwitterAccounts;
 
 /// General Methods ///
 - (void)tokenSwapWasSuccessful:(NSNotification*)notification;
@@ -116,8 +116,8 @@ UIPickerViewDelegate
 @synthesize twitterID = _twitterID;
 @synthesize twitterReverseAuthToken = _twitterReverseAuthToken;
 @synthesize twitterReverseAuthSecret = _twitterReverseAuthSecret;
-@synthesize twitterPickerView = _twitterPickerView;
-@synthesize twitterPickerViewChoices = _twitterPickerViewChoices;
+@synthesize twitterAccountsTableViewController = _twitterAccountsTableViewController;
+@synthesize storedTwitterAccounts = _storedTwitterAccounts;
 
 #pragma mark - Singleton Methods
 + (SocialFacade*)sharedInstance
@@ -438,10 +438,12 @@ UIPickerViewDelegate
 
 - (void)userHasMultipleStoredTwitterAccounts
 {
-    self.twitterPickerView = [[UIPickerView alloc] initWithFrame:self.loginViewController.view.frame];
-    self.twitterPickerView.delegate = self;
-    self.twitterPickerView.dataSource = self;
-    [self.loginViewController.view addSubview:self.twitterPickerView];
+    
+    self.twitterAccountsTableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+    self.twitterAccountsTableViewController.tableView.dataSource = self;
+    self.twitterAccountsTableViewController.tableView.delegate = self;
+    
+    [self.loginViewController presentModalViewController:self.twitterAccountsTableViewController animated:YES];
     
 }
 
@@ -735,59 +737,73 @@ UIPickerViewDelegate
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    
-    
-    
     NSArray *accounts = [self.twitterAccountStore accountsWithAccountType:twitterType];
     
-    self.twitterPickerViewChoices = [NSMutableArray arrayWithArray:accounts];
-    [self.twitterPickerViewChoices addObject:TextConstants_TwitterNewAccount];
-    [self.twitterPickerViewChoices addObject:@"Cancel"];
+    self.storedTwitterAccounts = [NSMutableArray arrayWithArray:accounts];
+    [self.storedTwitterAccounts addObject:TextConstants_TwitterNewAccount];
+    [self.storedTwitterAccounts addObject:@"Cancel"];
     
     
-    return [self.twitterPickerViewChoices count];
+    return [self.storedTwitterAccounts count];
 }
 
-#pragma mark - UIPickerViewDelegate Method
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+
+#pragma mark - UITableViewDataSource Methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSString *title;
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    NSArray *accounts = [self.twitterAccountStore accountsWithAccountType:twitterType];
+    self.storedTwitterAccounts = [NSMutableArray arrayWithArray:accounts];
+    [self.storedTwitterAccounts addObject:TextConstants_TwitterNewAccount];
+    [self.storedTwitterAccounts addObject:@"Cancel"];
     
-    if ( row < [self.twitterPickerViewChoices count]-2 ) {
+    return [self.storedTwitterAccounts count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewStyleGrouped reuseIdentifier:CellIdentifier];
+    
+    if (indexPath.row < [self.storedTwitterAccounts count]-2) {
+    
+        // List of Twitter Accounts
+        ACAccount *account = [self.storedTwitterAccounts objectAtIndex:indexPath.row];
+        cell.textLabel.text = account.username;
+
         
-        ACAccount *twitterAccount = (ACAccount*)[self.twitterPickerViewChoices objectAtIndex:row];
-        title = twitterAccount.username;
-    
     } else {
-    
-        title = [self.twitterPickerViewChoices objectAtIndex:row];
-   
+        
+        // New Account & Cancel Option
+        cell.textLabel.text = [self.storedTwitterAccounts objectAtIndex:indexPath.row];
+        
     }
     
-    if (DEBUGMODE) NSLog(@"TwitterPickerView Selection %@", title);
-    
-    return title;
+    return cell;
 }
 
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+#pragma mark - UITableViewDelegate Methods
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if ( row < [self.twitterPickerViewChoices count]-2 ) {             // User selected existing account
+    if ( indexPath.row < [self.storedTwitterAccounts count]-2 ) {             // User selected existing account
         
-        [self.twitterPickerView removeFromSuperview];
-        self.twitterAccount = (ACAccount*)[self.twitterPickerViewChoices objectAtIndex:row];
+        self.twitterAccount = [self.storedTwitterAccounts objectAtIndex:indexPath.row];;
         [self getReverseAuthRequestToken];
         
-    } else if ( row == [self.twitterPickerViewChoices count]-2 ) {     // User selected 'New Account'
+    } else if ( indexPath.row == [self.storedTwitterAccounts count]-2 ) {     // User selected 'New Account'
         
-        [self.twitterPickerView removeFromSuperview];
+        [self getRequestToken];
         
     } else {                                                    // User selected 'Cancel'
         
-        [self.twitterPickerView removeFromSuperview];
-        [self getRequestToken];
     }
     
+    [self.twitterAccountsTableViewController dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - Accessor Methods

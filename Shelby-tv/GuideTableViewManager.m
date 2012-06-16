@@ -36,7 +36,7 @@
     // Do nothing in GuideTableViewManager
 }
 
-#pragma mark - UITableViewDatasource Methods
+#pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
