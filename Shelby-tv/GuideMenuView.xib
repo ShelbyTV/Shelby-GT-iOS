@@ -95,7 +95,7 @@
 						<string key="NSFrame">{{62, 7}, {65, 29}}</string>
 						<reference key="NSSuperview" ref="842574106"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="690933315"/>
+						<reference key="NSNextKeyView" ref="573193697"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -112,13 +112,13 @@
 							<int key="type">2</int>
 							<double key="pointSize">13</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="203441483">
+						<object class="NSFont" key="IBUIFont" id="487494822">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">13</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="690933315">
+					<object class="IBUIImageView" id="573193697">
 						<reference key="NSNextResponder" ref="842574106"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{127, 7}, {1, 29}}</string>
@@ -139,7 +139,7 @@
 						<string key="NSFrame">{{128, 7}, {65, 29}}</string>
 						<reference key="NSSuperview" ref="842574106"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="598965772"/>
+						<reference key="NSNextKeyView" ref="49115810"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -153,9 +153,9 @@
 							<string key="NSResourceName">navigationButtonMyRolls.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="179494495"/>
-						<reference key="IBUIFont" ref="203441483"/>
+						<reference key="IBUIFont" ref="487494822"/>
 					</object>
-					<object class="IBUIImageView" id="598965772">
+					<object class="IBUIImageView" id="49115810">
 						<reference key="NSNextResponder" ref="842574106"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{193, 7}, {1, 29}}</string>
@@ -173,7 +173,7 @@
 					<object class="IBUIButton" id="62232290">
 						<reference key="NSNextResponder" ref="842574106"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{193, 7}, {65, 29}}</string>
+						<string key="NSFrame">{{194, 7}, {65, 29}}</string>
 						<reference key="NSSuperview" ref="842574106"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="862096801"/>
@@ -190,7 +190,7 @@
 							<string key="NSResourceName">navigationButtonBrowseRolls.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="179494495"/>
-						<reference key="IBUIFont" ref="203441483"/>
+						<reference key="IBUIFont" ref="487494822"/>
 					</object>
 					<object class="IBUIButton" id="862096801">
 						<reference key="NSNextResponder" ref="842574106"/>
@@ -306,8 +306,8 @@
 							<reference ref="62232290"/>
 							<reference ref="1067973154"/>
 							<reference ref="333706839"/>
-							<reference ref="690933315"/>
-							<reference ref="598965772"/>
+							<reference ref="573193697"/>
+							<reference ref="49115810"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">View</string>
@@ -349,12 +349,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">20</int>
-						<reference key="object" ref="690933315"/>
+						<reference key="object" ref="573193697"/>
 						<reference key="parent" ref="842574106"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">21</int>
-						<reference key="object" ref="598965772"/>
+						<reference key="object" ref="49115810"/>
 						<reference key="parent" ref="842574106"/>
 					</object>
 				</array>
