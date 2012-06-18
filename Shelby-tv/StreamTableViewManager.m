@@ -7,21 +7,26 @@
 //
 
 #import "StreamTableViewManager.h"
-#import "VideoCardCell.h"
+#import "VideoCardController.h"
 #import "AsynchronousFreeloader.h"
 
 @interface StreamTableViewManager ()
 
 @property (assign, nonatomic) BOOL observerCreated;
+@property (strong, nonatomic) NSMutableArray *arrayOfFrameIDs;
 
 - (void)createAPIObservers;
 - (void)populateTableViewCell:(VideoCardCell*)cell withContentForRow:(NSUInteger)row;
 - (void)animateCell:(VideoCardCell*)cell forRow:(NSUInteger)row;
 
+- (void)upvote:(UIButton *)button;
+- (void)downvote:(UIButton *)button;
+
 @end
 
 @implementation StreamTableViewManager 
 @synthesize observerCreated = _observerCreated;
+@synthesize arrayOfFrameIDs = _arrayOfFrameIDs;
 
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
@@ -46,57 +51,96 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
        
-            // Fetch date stored in Core Data
-            DashboardEntry *dashboardEntry = [self.coreDataResultsArray objectAtIndex:row];
-            
-            // Populate roll label
-            [cell.rollLabel setText:dashboardEntry.frame.roll.title];
-            
-            // Populate nickname label
-            [cell.nicknameLabel setText:dashboardEntry.frame.creator.nickname];
-            
-            // Populate favorite label
-            [cell.upvoteLabel setText:[NSString stringWithFormat:@"%@", dashboardEntry.frame.upvotersCount]];
-            
-            // Populate comments label
-            [cell.commentLabel setText:[NSString stringWithFormat:@"%@", dashboardEntry.frame.conversation.messageCount]];
+        // General Initializations
+        [cell setTag:row];
+    
+        // Fetch date stored in Core Data
+        DashboardEntry *dashboardEntry = [self.coreDataResultsArray objectAtIndex:row];
         
-            // Fetch messages specific to dashboardEntry
-            Messages *message = [CoreDataUtility fetchFirstMessageFromConversation:dashboardEntry.frame.conversation];
+        // Populate roll label
+        [cell.rollLabel setText:dashboardEntry.frame.roll.title];
+        
+        // Populate nickname label
+        [cell.nicknameLabel setText:dashboardEntry.frame.creator.nickname];
+        
+        // Populate favorite label
+        [cell.upvoteLabel setText:[NSString stringWithFormat:@"%@", dashboardEntry.frame.upvotersCount]];
+        
+        // Populate comments label
+        [cell.commentLabel setText:[NSString stringWithFormat:@"%@", dashboardEntry.frame.conversation.messageCount]];
+    
+        // Fetch messages specific to dashboardEntry
+        Messages *message = [CoreDataUtility fetchFirstMessageFromConversation:dashboardEntry.frame.conversation];
+        
+        // Populate createdAt label
+        [cell.createdAtLabel setText:message.createdAt];
             
-            // Populate createdAt label
-            [cell.createdAtLabel setText:message.createdAt];
-                
-            // PresentFacebook/Twitter/Tumblr icon for social network source of video
-            if ( [message.originNetwork isEqualToString:@"facebook"] ) {
+        // Present Facebook/Twitter/Tumblr icon for social network source of video
+        if ( [message.originNetwork isEqualToString:@"facebook"] ) {
+        
+            [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampFacebook"]];
+       
+        } else if ( [message.originNetwork isEqualToString:@"twitter"] ) {
+        
+            [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTwitter"]];
             
-                [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampFacebook"]];
-           
-            } else if ( [message.originNetwork isEqualToString:@"twitter"] ) {
+        } else if ( [message.originNetwork isEqualToString:@"tumblr"] ) {
             
-                [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTwitter"]];
-                
-            } else if ( [message.originNetwork isEqualToString:@"tumblr"] ) {
-                
-                [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTumblr"]];
-                
-            } else {
-                
-                // Do nothing for nil state
-            }
+            [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTumblr"]];
             
-            // Asychronous download of user image/icon
-            if ( dashboardEntry.frame.creator.userImage ) {
-                
-                [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.creator.userImage forImageView:cell.userImageView withPlaceholderView:nil];
+        } else {
             
-            } 
+            // Do nothing for nil state
+        }
+    
+        // Present Heart/Unheart button (depends if user already liked video)
+        if ( ![self arrayOfFrameIDs] ) self.arrayOfFrameIDs = [NSMutableArray array];
+        [self.arrayOfFrameIDs addObject:dashboardEntry.frame.frameID];
+        BOOL upvoted = [CoreDataUtility checkIfUserUpvotedInFrame:dashboardEntry.frame];
+    
+    
+        if ( upvoted ) {
+    
+            [cell.upvoteButton setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
+            [cell.upvoteButton setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
+            [cell.upvoteButton addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
+            
+        } else {
+    
+            [cell setTag:row];
+            [cell.upvoteButton setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
+            [cell.upvoteButton setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
+            [self.arrayOfFrameIDs addObject:dashboardEntry.frame.frameID];
+            [cell.upvoteButton addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
+        }
+    
+        
+        // Asychronous download of user image/icon
+        if ( dashboardEntry.frame.creator.userImage ) {
+            
+            [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.creator.userImage forImageView:cell.userImageView withPlaceholderView:nil];
+        
+        } 
 
-            // Asynchronous download of video thumbnail
-            [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
+        // Asynchronous download of video thumbnail
+        [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
     
         });
         
+}
+
+- (void)upvote:(UIButton *)button
+{
+    NSLog(@"Upvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
+    VideoCardController *videoCardController = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
+    [videoCardController upvote];
+}
+
+- (void)downvote:(UIButton *)button
+{
+    NSLog(@"Downvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
+    VideoCardController *videoCardController = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
+    [videoCardController downvote];
 }
 
 - (void)animateCell:(VideoCardCell *)cell forRow:(NSUInteger)row

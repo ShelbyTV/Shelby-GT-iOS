@@ -13,18 +13,16 @@
 
 @interface VideoCardController : NSObject
 
-- (id)initWithCell:(VideoCardCell*)cell 
-         withFrame:(Frame*)frame 
-  inViewController:(UIViewController*)viewController;
+- (id)initWithFrameID:(NSString *)frameID;
 
-- (BOOL)checkIfUserUpvoted;
+- (void)upvote;
+
+- (void)downvote;
 
 - (void)comment;
 
 - (void)roll;
 
 - (void)share;
-
-- (void)upvote;
 
 @end

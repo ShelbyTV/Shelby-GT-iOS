@@ -115,6 +115,21 @@
             
         } break;
             
+            
+        case APIRequestTypePostUpvote:{
+            
+            if ( DEBUGMODE ) NSLog(@"Upvoted posted successfully");
+            
+        } break;
+            
+        
+        case APIRequestTypePostDownvote:{
+            
+            if ( DEBUGMODE ) NSLog(@"Downvote posted successfully");
+            
+        } break;
+            
+            
         default:
             break;
    

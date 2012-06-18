@@ -8,50 +8,48 @@
 
 #import "VideoCardController.h"
 #import "CoreDataUtility.h"
+#import "ShelbyAPIClient.h"
 #import "SocialFacade.h"
 
 @interface VideoCardController ()
 
-@property (strong, nonatomic) VideoCardCell *cell;
-@property (strong, nonatomic) Frame *frame;
-@property (strong, nonatomic) UIViewController *viewController;
+@property (strong, nonatomic) NSString *frameID;
 
 - (void)addActionsToCellButtons;
 
 @end
 
 @implementation VideoCardController
-@synthesize cell = _cell;
-@synthesize frame = _frame;
-@synthesize viewController = _viewController;
+@synthesize frameID = _frameID;
 
-- (id)initWithCell:(VideoCardCell *)cell 
-         withFrame:(Frame *)frame 
-  inViewController:(UIViewController *)viewController
+- (id)initWithFrameID:(NSString *)frameID;
 {
     if ( self == [super init] ) {
         
-        self.cell = cell;
-        self.frame = frame;
-        self.viewController = viewController;
-    
-        [self addActionsToCellButtons];
+        self.frameID = frameID;
+     
     }
     
     return self;
 }
 
-- (void)addActionsToCellButtons
+- (void)upvote
 {
-    [self.cell.upvoteButton addTarget:self action:@selector(upvote) forControlEvents:UIControlEventTouchUpInside];
-    [self.cell.commentButton addTarget:self action:@selector(comment) forControlEvents:UIControlEventTouchUpInside];
-    [self.cell.rollButton addTarget:self action:@selector(roll) forControlEvents:UIControlEventTouchUpInside];
-    [self.cell.shareButton addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
+    NSString *upvoteRequestString = [NSString stringWithFormat:APIRequest_PostDownvote, self.frameID, [SocialFacade sharedInstance].shelbyToken];
+    NSMutableURLRequest *upvoteRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:upvoteRequestString]];
+    [upvoteRequest setHTTPMethod:@"POST"];
+    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+    [client performRequest:upvoteRequest ofType:APIRequestTypePostUpvote];
+    
 }
 
-- (BOOL)checkIfUserUpvoted
+- (void)downvote
 {
-    return [CoreDataUtility checkIfUserUpvotedInFrame:self.frame];
+    NSString *downvoteRequestString = [NSString stringWithFormat:APIRequest_PostDownvote, self.frameID, [SocialFacade sharedInstance].shelbyToken];
+    NSMutableURLRequest *downvoteRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:downvoteRequestString]];
+    [downvoteRequest setHTTPMethod:@"POST"];
+    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+    [client performRequest:downvoteRequest ofType:APIRequestTypePostDownvote];
 }
 
 - (void)comment
@@ -65,11 +63,6 @@
 }
 
 - (void)share
-{
-    
-}
-
-- (void)upvote
 {
     
 }

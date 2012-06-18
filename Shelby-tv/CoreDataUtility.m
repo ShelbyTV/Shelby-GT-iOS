@@ -177,33 +177,52 @@ static CoreDataUtility *sharedInstance = nil;
 {
     BOOL exists;
     
-    // Create fetch request
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setReturnsObjectsAsFaults:NO];
+    if ( frame.upvotersCount ) {
     
-    // Fetch messages data
-    NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityFrame inManagedObjectContext:frame.managedObjectContext];
-    [request setEntity:description];
-    
-    // Only include objects that exist (i.e. entityIDKey and entityIDValue's must exist)
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", CoreDataFrameID, frame.frameID];
-    [request setPredicate:predicate];    
-    
-    // Execute request that returns array of dashboardEntrys
-    NSArray *array = [frame.managedObjectContext executeFetchRequest:request error:nil];
-            
-    NSArray *upvotersArray = [[array objectAtIndex:0] valueForKey:@"upvoters"];
-    
-    if ( [upvotersArray containsObject:[SocialFacade sharedInstance].shelbyCreatorID] ) {
+        // Create fetch request
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setReturnsObjectsAsFaults:NO];
         
-        exists = YES;
+        // Fetch messages data
+        NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityFrame inManagedObjectContext:frame.managedObjectContext];
+        [request setEntity:description];
+        
+        // Only include objects that exist (i.e. entityIDKey and entityIDValue's must exist)
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", CoreDataFrameID, frame.frameID];
+        [request setPredicate:predicate];    
+        
+        // Execute request that returns array of dashboardEntrys
+        NSArray *array = [frame.managedObjectContext executeFetchRequest:request error:nil];
+        
+        for (Frame *frame in array) {
+            for (UpvoteUsers *upvoteUsers in [frame upvoteUsers]) {
+
+                if ( [upvoteUsers.upvoterID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) {
+                    
+                    NSLog(@"%@", upvoteUsers.upvoterID);
+                    
+                    exists = YES;
+                    
+                } else {
+                    
+                    exists = NO;
+                }
+                
+                return exists;
+
+                
+            }
+        }
+        
+        
+    
     
     } else {
         
         exists = NO;
     }
-
-    return exists;
+        
+    return NO;
 
 }
 
