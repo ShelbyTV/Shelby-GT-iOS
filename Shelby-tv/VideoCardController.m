@@ -15,8 +15,6 @@
 
 @property (strong, nonatomic) NSString *frameID;
 
-- (void)addActionsToCellButtons;
-
 @end
 
 @implementation VideoCardController

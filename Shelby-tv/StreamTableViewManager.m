@@ -54,8 +54,12 @@
         // General Initializations
         [cell setTag:row];
     
-        // Fetch date stored in Core Data
+        // Fetch data stored in Core Data
         DashboardEntry *dashboardEntry = [self.coreDataResultsArray objectAtIndex:row];
+        
+        // Store Frame ID
+        if ( ![self arrayOfFrameIDs] ) self.arrayOfFrameIDs = [NSMutableArray array];
+        [self.arrayOfFrameIDs addObject:dashboardEntry.frame.frameID];
         
         // Populate roll label
         [cell.rollLabel setText:dashboardEntry.frame.roll.title];
@@ -92,20 +96,18 @@
             
             // Do nothing for nil state
         }
-    
+        
+        
         // Present Heart/Unheart button (depends if user already liked video)
-        if ( ![self arrayOfFrameIDs] ) self.arrayOfFrameIDs = [NSMutableArray array];
-        [self.arrayOfFrameIDs addObject:dashboardEntry.frame.frameID];
         BOOL upvoted = [CoreDataUtility checkIfUserUpvotedInFrame:dashboardEntry.frame];
     
-    
-        if ( upvoted ) {
+        if ( upvoted ) { // Make sure Heart is Red and user is able to Downvote
     
             [cell.upvoteButton setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
             [cell.upvoteButton setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
             [cell.upvoteButton addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
             
-        } else {
+        } else { // Make sure Heart is Gray and user is able to Upvote
     
             [cell.upvoteButton setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
             [cell.upvoteButton setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
@@ -129,14 +131,25 @@
 
 - (void)upvote:(UIButton *)button
 {
-    NSLog(@"Upvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
+    if ( DEBUGMODE )NSLog(@"Upvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
+    
+    [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
+    [button addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
+    
     VideoCardController *videoCardController = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
     [videoCardController upvote];
+    
 }
 
 - (void)downvote:(UIButton *)button
 {
-    NSLog(@"Downvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
+    if ( DEBUGMODE ) NSLog(@"Downvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
+    
+    [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
+    [button addTarget:self action:@selector(upvote::) forControlEvents:UIControlEventTouchUpInside];
+    
     VideoCardController *videoCardController = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
     [videoCardController downvote];
 }

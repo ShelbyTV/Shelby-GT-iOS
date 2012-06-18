@@ -194,12 +194,11 @@ static CoreDataUtility *sharedInstance = nil;
         // Execute request that returns array of dashboardEntrys
         NSArray *array = [frame.managedObjectContext executeFetchRequest:request error:nil];
         
-        for (Frame *frame in array) {
-            for (UpvoteUsers *upvoteUsers in [frame upvoteUsers]) {
-
+        for (Frame *fetchedframe in array) {
+            
+            for (UpvoteUsers *upvoteUsers in [fetchedframe upvoteUsers]) {
+                
                 if ( [upvoteUsers.upvoterID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) {
-                    
-                    NSLog(@"%@", upvoteUsers.upvoterID);
                     
                     exists = YES;
                     
