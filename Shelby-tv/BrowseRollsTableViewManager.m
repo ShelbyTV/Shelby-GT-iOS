@@ -35,7 +35,7 @@
 #pragma mark - ASPullToRefreshDelegate Methods
 - (void)dataToRefresh
 {
-    
+    [self.refreshController didFinishRefreshing];
 }
 
 @end

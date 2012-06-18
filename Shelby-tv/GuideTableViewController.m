@@ -19,6 +19,7 @@
 @property (strong, nonatomic) MyRollsTableViewManager *myRollsTableViewManager;
 @property (strong, nonatomic) BrowseRollsTableViewManager *browseRollsTableViewManager;
 @property (strong, nonatomic) SettingsTableViewManager *settingsTableViewManager;
+@property (assign, nonatomic) BOOL firstLoad;
 
 /// Customization Methods
 - (void)initalizeTableViewManagers;
@@ -41,6 +42,7 @@
 {                           
     [super viewDidLoad];
     [self initalizeTableViewManagers];
+    self.firstLoad = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -94,10 +96,6 @@
         manager.refreshController = self;
         self.refreshDelegate = (id)manager;
         
-    } else {
-        
-        self.refreshDelegate = nil;
-        
     }
     
     [self fadeInAnimation];
@@ -110,6 +108,7 @@
 {
     
     [self fadeOutAnimation];
+    
     switch (self.guideType) {
         case GuideType_BrowseRolls:
             [self.browseRollsTableViewManager.refreshController didFinishRefreshing];
@@ -128,6 +127,8 @@
         default:
             break;
     }
+
+    self.refreshDelegate = nil;
     
 }
 
@@ -164,22 +165,19 @@
 #pragma mark - Animation Methods
 - (void)fadeInAnimation
 {
-    [self.navigationController.navigationBar setAlpha:0.25f];
-    [self.tabBarController.tabBar setAlpha:0.25f];
+    if ( self.firstLoad ) [self.navigationController.navigationBar setAlpha:0.25f];
     [self.tableView setAlpha:0.25f];
     [UIView animateWithDuration:1.0f animations:^{
-        [self.navigationController.navigationBar setAlpha:1.0f];
-        [self.tabBarController.tabBar setAlpha:1.0f];
+        if ( self.firstLoad ) [self.navigationController.navigationBar setAlpha:1.0f];
         [self.tableView setAlpha:1.0f];
     }];
+    
+    if ( self.firstLoad ) self.firstLoad = NO;
 }
 
 - (void)fadeOutAnimation
 {
-
     [UIView animateWithDuration:1.0f animations:^{
-        [self.navigationController.navigationBar setAlpha:0.25f];
-        [self.tabBarController.tabBar setAlpha:0.25f];
         [self.tableView setAlpha:0.25f];
     }];
 }
