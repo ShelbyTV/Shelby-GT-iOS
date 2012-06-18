@@ -2,7 +2,7 @@
 //  Conversation.m
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 5/31/12.
+//  Created by Arthur Ariel Sabintsev on 6/18/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 

@@ -307,8 +307,14 @@ static CoreDataUtility *sharedInstance = nil;
         // Conditions for saving entires into database
         NSArray *messagesExistArray = [[[[resultsArray objectAtIndex:i] valueForKey:@"frame"] valueForKey:@"conversation"] valueForKey:@"messages"];
         NSString *sourceURLExists = [[[[resultsArray objectAtIndex:i] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"source_url"];
+        id frameReturned = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];
+        BOOL frameNull = [frameReturned isKindOfClass:([NSNull class])] ? YES : NO;
         
-        if ( [messagesExistArray count] && sourceURLExists ) {
+        if ( YES == frameNull ) {
+        
+            // Do Nothing
+            
+        } else if ( [messagesExistArray count] && sourceURLExists && frameNull==NO ) {
             
             // Store dashboardEntry attirubutes
             DashboardEntry *dashboardEntry = [self checkIfEntity:CoreDataEntityDashboardEntry 
@@ -331,7 +337,12 @@ static CoreDataUtility *sharedInstance = nil;
             dashboardEntry.frame = frame;
             
             // Check to make sure messages exist
+            NSLog(@"Loc 2 | %d", i);
             [self storeFrame:frame fromFrameArray:frameArray];
+            
+        } else {
+            
+            // Do Nothing
             
         }
         
