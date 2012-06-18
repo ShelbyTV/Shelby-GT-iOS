@@ -13,6 +13,7 @@
 @interface StreamTableViewManager ()
 
 @property (assign, nonatomic) BOOL observerCreated;
+@property (strong, nonatomic) NSMutableArray *arrayOfCells;
 @property (strong, nonatomic) NSMutableArray *arrayOfFrameIDs;
 
 - (void)createAPIObservers;
@@ -26,6 +27,7 @@
 
 @implementation StreamTableViewManager 
 @synthesize observerCreated = _observerCreated;
+@synthesize arrayOfCells = _arrayOfCells;
 @synthesize arrayOfFrameIDs = _arrayOfFrameIDs;
 
 #pragma mark - Memory Deallocation Method
@@ -52,8 +54,12 @@
     dispatch_async(dispatch_get_main_queue(), ^{
        
         // General Initializations
+        if ( ![self arrayOfCells] ) self.arrayOfCells = [NSMutableArray array];
+        [self.arrayOfCells addObject:cell];
+        
         [cell setTag:row];
-    
+        [cell.upvoteButton setTag:row];
+        
         // Fetch data stored in Core Data
         DashboardEntry *dashboardEntry = [self.coreDataResultsArray objectAtIndex:row];
         
@@ -100,9 +106,7 @@
         
         // Present Heart/Unheart button (depends if user already liked video)
         BOOL upvoted = [CoreDataUtility checkIfUserUpvotedInFrame:dashboardEntry.frame];
-    
-        NSLog(@"Upvoted: %d", upvoted);
-        
+
         if ( upvoted ) { // Make sure Heart is Red and user is able to Downvote
     
             [cell.upvoteButton setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
@@ -137,10 +141,18 @@
     
     [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
+    [button removeTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
     [button addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
     
-    VideoCardController *videoCardController = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
-    [videoCardController upvote];
+    VideoCardCell *cell = (VideoCardCell*)[self.arrayOfCells objectAtIndex:button.tag];
+    NSUInteger numberOfVotes = [cell.upvoteLabel.text intValue];
+    numberOfVotes++;
+    cell.upvoteLabel.text = nil;
+    cell.upvoteLabel.text = [NSString stringWithFormat:@"%d", numberOfVotes];
+    NSLog(@"Upvote Number: %d | %@", numberOfVotes, cell.upvoteLabel.text);
+    
+    VideoCardController *controller = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
+    [controller upvote];
     
 }
 
@@ -150,10 +162,18 @@
     
     [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
-    [button addTarget:self action:@selector(upvote::) forControlEvents:UIControlEventTouchUpInside];
+    [button removeTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
     
-    VideoCardController *videoCardController = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
-    [videoCardController downvote];
+    VideoCardCell *cell = (VideoCardCell*)[self.arrayOfCells objectAtIndex:button.tag];
+    NSUInteger numberOfVotes = [cell.upvoteLabel.text intValue];
+    numberOfVotes--;
+    cell.upvoteLabel.text = nil;
+    cell.upvoteLabel.text = [NSString stringWithFormat:@"%d", numberOfVotes];
+    NSLog(@"Downvote Number: %d | %@", numberOfVotes, cell.upvoteLabel.text);
+    
+    VideoCardController *controller = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
+    [controller downvote];
 }
 
 - (void)animateCell:(VideoCardCell *)cell forRow:(NSUInteger)row
