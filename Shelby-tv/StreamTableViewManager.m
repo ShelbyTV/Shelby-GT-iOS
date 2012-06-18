@@ -110,7 +110,6 @@
             [cell setTag:row];
             [cell.upvoteButton setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
             [cell.upvoteButton setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
-            [self.arrayOfFrameIDs addObject:dashboardEntry.frame.frameID];
             [cell.upvoteButton addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
         }
     
