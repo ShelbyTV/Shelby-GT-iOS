@@ -101,6 +101,8 @@
         // Present Heart/Unheart button (depends if user already liked video)
         BOOL upvoted = [CoreDataUtility checkIfUserUpvotedInFrame:dashboardEntry.frame];
     
+        NSLog(@"Upvoted: %d", upvoted);
+        
         if ( upvoted ) { // Make sure Heart is Red and user is able to Downvote
     
             [cell.upvoteButton setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];

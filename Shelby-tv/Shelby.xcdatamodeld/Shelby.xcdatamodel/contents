@@ -65,7 +65,7 @@
         <attribute name="rollID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="upvoterID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userImage" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="frame" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Frame" inverseName="upvoteUsers" inverseEntity="Frame" syncable="YES"/>
+        <relationship name="frame" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Frame" inverseName="upvoteUsers" inverseEntity="Frame" syncable="YES"/>
     </entity>
     <entity name="Video" representedClassName="Video" syncable="YES">
         <attribute name="caption" optional="YES" attributeType="String" syncable="YES"/>
@@ -84,7 +84,7 @@
         <element name="Messages" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Roll" positionX="0" positionY="0" width="0" height="0"/>
         <element name="ShelbyUser" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="UpvoteUsers" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="UpvoteUsers" positionX="0" positionY="0" width="0" height="120"/>
         <element name="Video" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

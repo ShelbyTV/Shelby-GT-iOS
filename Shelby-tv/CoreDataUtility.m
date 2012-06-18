@@ -192,9 +192,9 @@ static CoreDataUtility *sharedInstance = nil;
         [request setPredicate:predicate];    
         
         // Execute request that returns array of dashboardEntrys
-        NSArray *array = [frame.managedObjectContext executeFetchRequest:request error:nil];
+        NSArray *frameArray = [frame.managedObjectContext executeFetchRequest:request error:nil];
         
-        for (Frame *fetchedframe in array) {
+        for (Frame *fetchedframe in frameArray) {
             
             for (UpvoteUsers *upvoteUsers in [fetchedframe upvoteUsers]) {
                 
