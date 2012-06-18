@@ -636,9 +636,7 @@ UITableViewDelegate
             
                         // Get results string (e.g., Access Token, Access Token Secret, Twitter Handle)
                         NSString *reverseAuthAccessResults = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-                        
-                        NSLog(@"RARes: %@", reverseAuthAccessResults);
-                        
+                    
                         // Parse string for Acces Token and Access Token Secret
                         NSString *token = nil;
                         NSString *secret = nil;
