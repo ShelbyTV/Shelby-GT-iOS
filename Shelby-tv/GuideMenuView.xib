@@ -54,7 +54,7 @@
 					<object class="IBUIButton" id="1072350054">
 						<reference key="NSNextResponder" ref="842574106"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{5, 7}, {38, 29}}</string>
+						<string key="NSFrame">{{5, 6}, {38, 30}}</string>
 						<reference key="NSSuperview" ref="842574106"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="333706839"/>
@@ -92,7 +92,7 @@
 					<object class="IBUIButton" id="333706839">
 						<reference key="NSNextResponder" ref="842574106"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{62, 7}, {65, 29}}</string>
+						<string key="NSFrame">{{63, 6}, {65, 30}}</string>
 						<reference key="NSSuperview" ref="842574106"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="129767805"/>
@@ -121,22 +121,22 @@
 					<object class="IBUIImageView" id="129767805">
 						<reference key="NSNextResponder" ref="842574106"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{127, 7}, {1, 29}}</string>
+						<string key="NSFrame">{{128, 6}, {1, 29}}</string>
 						<reference key="NSSuperview" ref="842574106"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="699306133"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
+						<object class="NSCustomResource" key="IBUIImage" id="268161859">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">navigationDividerLeft.png</string>
+							<string key="NSResourceName">navigationDivider.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="699306133">
 						<reference key="NSNextResponder" ref="842574106"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{128, 7}, {65, 29}}</string>
+						<string key="NSFrame">{{129, 6}, {64, 30}}</string>
 						<reference key="NSSuperview" ref="842574106"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="289570579"/>
@@ -158,22 +158,19 @@
 					<object class="IBUIImageView" id="289570579">
 						<reference key="NSNextResponder" ref="842574106"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{193, 7}, {1, 29}}</string>
+						<string key="NSFrame">{{193, 6}, {1, 29}}</string>
 						<reference key="NSSuperview" ref="842574106"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="62232290"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">navigationDividerRight.png</string>
-						</object>
+						<reference key="IBUIImage" ref="268161859"/>
 					</object>
 					<object class="IBUIButton" id="62232290">
 						<reference key="NSNextResponder" ref="842574106"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{194, 7}, {65, 29}}</string>
+						<string key="NSFrame">{{194, 6}, {65, 30}}</string>
 						<reference key="NSSuperview" ref="842574106"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="862096801"/>
@@ -195,7 +192,7 @@
 					<object class="IBUIButton" id="862096801">
 						<reference key="NSNextResponder" ref="842574106"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{277, 7}, {38, 29}}</string>
+						<string key="NSFrame">{{277, 7}, {38, 30}}</string>
 						<reference key="NSSuperview" ref="842574106"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -301,13 +298,13 @@
 						<reference key="object" ref="842574106"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="862096801"/>
-							<reference ref="699306133"/>
-							<reference ref="1072350054"/>
-							<reference ref="62232290"/>
 							<reference ref="1067973154"/>
-							<reference ref="333706839"/>
 							<reference ref="129767805"/>
 							<reference ref="289570579"/>
+							<reference ref="1072350054"/>
+							<reference ref="333706839"/>
+							<reference ref="699306133"/>
+							<reference ref="62232290"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">View</string>
@@ -451,13 +448,12 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="navigationBarBackground.png">{320, 44}</string>
-			<string key="navigationButtonBrowseRolls.png">{65, 29}</string>
-			<string key="navigationButtonMyRolls.png">{65, 29}</string>
-			<string key="navigationButtonPeopleRolls.png">{65, 29}</string>
-			<string key="navigationButtonSettings.png">{38, 29}</string>
-			<string key="navigationButtonStream.png">{38, 29}</string>
-			<string key="navigationDividerLeft.png">{1, 29}</string>
-			<string key="navigationDividerRight.png">{1, 29}</string>
+			<string key="navigationButtonBrowseRolls.png">{65, 30}</string>
+			<string key="navigationButtonMyRolls.png">{64, 30}</string>
+			<string key="navigationButtonPeopleRolls.png">{65, 30}</string>
+			<string key="navigationButtonSettings.png">{38, 30}</string>
+			<string key="navigationButtonStream.png">{38, 30}</string>
+			<string key="navigationDivider.png">{1, 29}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1875</string>
 	</data>

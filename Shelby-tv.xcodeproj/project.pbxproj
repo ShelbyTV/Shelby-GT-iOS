@@ -53,10 +53,6 @@
 		8E50942C158D1329000AF390 /* navigationButtonSettings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E509428158D1329000AF390 /* navigationButtonSettings@2x.png */; };
 		8E50942D158D1329000AF390 /* navigationButtonStream.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E509429158D1329000AF390 /* navigationButtonStream.png */; };
 		8E50942E158D1329000AF390 /* navigationButtonStream@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E50942A158D1329000AF390 /* navigationButtonStream@2x.png */; };
-		8E509431158D13AE000AF390 /* navigationDividerLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E50942F158D13AE000AF390 /* navigationDividerLeft.png */; };
-		8E509432158D13AE000AF390 /* navigationDividerLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E509430158D13AE000AF390 /* navigationDividerLeft@2x.png */; };
-		8E509435158D1551000AF390 /* navigationDividerRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E509433158D1551000AF390 /* navigationDividerRight.png */; };
-		8E509436158D1551000AF390 /* navigationDividerRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E509434158D1551000AF390 /* navigationDividerRight@2x.png */; };
 		8E5E7F95156151B0009FC8CE /* CoreDataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5E7F94156151B0009FC8CE /* CoreDataUtility.m */; };
 		8E664D401541A66A0071EC42 /* LoginViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */; };
 		8E664D421541A6770071EC42 /* LoginViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */; };
@@ -138,6 +134,8 @@
 		8EB6D81615800FCF0060202D /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6D81515800FCF0060202D /* Frame.m */; };
 		8EB6D81915801AED0060202D /* ShelbyUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6D81815801AED0060202D /* ShelbyUser.m */; };
 		8EC54585158F96310048FEAA /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC54584158F96310048FEAA /* Conversation.m */; };
+		8EC54588158FB1CB0048FEAA /* navigationDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC54586158FB1CB0048FEAA /* navigationDivider.png */; };
+		8EC54589158FB1CB0048FEAA /* navigationDivider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC54587158FB1CB0048FEAA /* navigationDivider@2x.png */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
 		8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D21535F6F70009718E /* Foundation.framework */; };
 		8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D41535F6F70009718E /* CoreGraphics.framework */; };
@@ -165,12 +163,10 @@
 		8EE50659155CA7A000A04F50 /* VideoPlayerViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EE50655155CA79F00A04F50 /* VideoPlayerViewController_iPhone.xib */; };
 		8EE50662155CA9E800A04F50 /* Shelby.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */; };
 		8EE50664155CAC1600A04F50 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EE50663155CAC1600A04F50 /* CoreData.framework */; };
-		8EE6738B1552E474004EA45C /* loginBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673861552E474004EA45C /* loginBackground@2x.png */; };
 		8EE6738C1552E474004EA45C /* loginBlackBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673871552E474004EA45C /* loginBlackBar@2x.png */; };
 		8EE6738D1552E474004EA45C /* loginFacebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673881552E474004EA45C /* loginFacebook@2x.png */; };
 		8EE6738E1552E474004EA45C /* loginTwitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673891552E474004EA45C /* loginTwitter@2x.png */; };
 		8EE6738F1552E474004EA45C /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE6738A1552E474004EA45C /* logo@2x.png */; };
-		8EE6739A1552E6F0004EA45C /* loginBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673951552E6F0004EA45C /* loginBackground.png */; };
 		8EE6739B1552E6F0004EA45C /* loginBlackBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673961552E6F0004EA45C /* loginBlackBar.png */; };
 		8EE6739C1552E6F0004EA45C /* loginFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673971552E6F0004EA45C /* loginFacebook.png */; };
 		8EE6739D1552E6F0004EA45C /* loginTwitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673981552E6F0004EA45C /* loginTwitter.png */; };
@@ -270,10 +266,6 @@
 		8E509428158D1329000AF390 /* navigationButtonSettings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonSettings@2x.png"; sourceTree = "<group>"; };
 		8E509429158D1329000AF390 /* navigationButtonStream.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonStream.png; sourceTree = "<group>"; };
 		8E50942A158D1329000AF390 /* navigationButtonStream@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonStream@2x.png"; sourceTree = "<group>"; };
-		8E50942F158D13AE000AF390 /* navigationDividerLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationDividerLeft.png; sourceTree = "<group>"; };
-		8E509430158D13AE000AF390 /* navigationDividerLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationDividerLeft@2x.png"; sourceTree = "<group>"; };
-		8E509433158D1551000AF390 /* navigationDividerRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationDividerRight.png; sourceTree = "<group>"; };
-		8E509434158D1551000AF390 /* navigationDividerRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationDividerRight@2x.png"; sourceTree = "<group>"; };
 		8E5E7F93156151B0009FC8CE /* CoreDataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataUtility.h; sourceTree = "<group>"; };
 		8E5E7F94156151B0009FC8CE /* CoreDataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataUtility.m; sourceTree = "<group>"; };
 		8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_iPhone.xib; sourceTree = "<group>"; };
@@ -393,6 +385,8 @@
 		8EB6D81815801AED0060202D /* ShelbyUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyUser.m; sourceTree = "<group>"; };
 		8EC54583158F96310048FEAA /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
 		8EC54584158F96310048FEAA /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
+		8EC54586158FB1CB0048FEAA /* navigationDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationDivider.png; sourceTree = "<group>"; };
+		8EC54587158FB1CB0048FEAA /* navigationDivider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationDivider@2x.png"; sourceTree = "<group>"; };
 		8ECBA7CC1535F6F70009718E /* Shelby-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECBA7D01535F6F70009718E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8ECBA7D21535F6F70009718E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -428,12 +422,10 @@
 		8EE50655155CA79F00A04F50 /* VideoPlayerViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayerViewController_iPhone.xib; sourceTree = "<group>"; };
 		8EE50661155CA9E800A04F50 /* Shelby.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shelby.xcdatamodel; sourceTree = "<group>"; };
 		8EE50663155CAC1600A04F50 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		8EE673861552E474004EA45C /* loginBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginBackground@2x.png"; sourceTree = "<group>"; };
 		8EE673871552E474004EA45C /* loginBlackBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginBlackBar@2x.png"; sourceTree = "<group>"; };
 		8EE673881552E474004EA45C /* loginFacebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginFacebook@2x.png"; sourceTree = "<group>"; };
 		8EE673891552E474004EA45C /* loginTwitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginTwitter@2x.png"; sourceTree = "<group>"; };
 		8EE6738A1552E474004EA45C /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
-		8EE673951552E6F0004EA45C /* loginBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBackground.png; sourceTree = "<group>"; };
 		8EE673961552E6F0004EA45C /* loginBlackBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBlackBar.png; sourceTree = "<group>"; };
 		8EE673971552E6F0004EA45C /* loginFacebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginFacebook.png; sourceTree = "<group>"; };
 		8EE673981552E6F0004EA45C /* loginTwitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginTwitter.png; sourceTree = "<group>"; };
@@ -643,8 +635,8 @@
 		8E791DE715828D3200B0E744 /* navigation */ = {
 			isa = PBXGroup;
 			children = (
-				8E509433158D1551000AF390 /* navigationDividerRight.png */,
-				8E509434158D1551000AF390 /* navigationDividerRight@2x.png */,
+				8EC54586158FB1CB0048FEAA /* navigationDivider.png */,
+				8EC54587158FB1CB0048FEAA /* navigationDivider@2x.png */,
 				8E509425158D11A6000AF390 /* navigationButtonBrowseRolls@2x.png */,
 				8E509417158D10E2000AF390 /* navigationBarBackground.png */,
 				8E509418158D10E2000AF390 /* navigationBarBackground@2x.png */,
@@ -657,8 +649,6 @@
 				8E509428158D1329000AF390 /* navigationButtonSettings@2x.png */,
 				8E509429158D1329000AF390 /* navigationButtonStream.png */,
 				8E50942A158D1329000AF390 /* navigationButtonStream@2x.png */,
-				8E50942F158D13AE000AF390 /* navigationDividerLeft.png */,
-				8E509430158D13AE000AF390 /* navigationDividerLeft@2x.png */,
 			);
 			name = navigation;
 			path = Resources/images/navigation;
@@ -985,12 +975,10 @@
 		8EE673851552E474004EA45C /* login */ = {
 			isa = PBXGroup;
 			children = (
-				8EE673951552E6F0004EA45C /* loginBackground.png */,
 				8EE673961552E6F0004EA45C /* loginBlackBar.png */,
 				8EE673971552E6F0004EA45C /* loginFacebook.png */,
 				8EE673981552E6F0004EA45C /* loginTwitter.png */,
 				8EE673991552E6F0004EA45C /* logo.png */,
-				8EE673861552E474004EA45C /* loginBackground@2x.png */,
 				8EE673871552E474004EA45C /* loginBlackBar@2x.png */,
 				8EE673881552E474004EA45C /* loginFacebook@2x.png */,
 				8EE673891552E474004EA45C /* loginTwitter@2x.png */,
@@ -1083,12 +1071,10 @@
 				8E4A7732155185A0003CBA2A /* pullToRefreshArrow.png in Resources */,
 				8E4A7733155185A0003CBA2A /* pullToRefreshArrow@2x.png in Resources */,
 				8E4A778215518B14003CBA2A /* FBDialog.bundle in Resources */,
-				8EE6738B1552E474004EA45C /* loginBackground@2x.png in Resources */,
 				8EE6738C1552E474004EA45C /* loginBlackBar@2x.png in Resources */,
 				8EE6738D1552E474004EA45C /* loginFacebook@2x.png in Resources */,
 				8EE6738E1552E474004EA45C /* loginTwitter@2x.png in Resources */,
 				8EE6738F1552E474004EA45C /* logo@2x.png in Resources */,
-				8EE6739A1552E6F0004EA45C /* loginBackground.png in Resources */,
 				8EE6739B1552E6F0004EA45C /* loginBlackBar.png in Resources */,
 				8EE6739C1552E6F0004EA45C /* loginFacebook.png in Resources */,
 				8EE6739D1552E6F0004EA45C /* loginTwitter.png in Resources */,
@@ -1155,10 +1141,8 @@
 				8E50942C158D1329000AF390 /* navigationButtonSettings@2x.png in Resources */,
 				8E50942D158D1329000AF390 /* navigationButtonStream.png in Resources */,
 				8E50942E158D1329000AF390 /* navigationButtonStream@2x.png in Resources */,
-				8E509431158D13AE000AF390 /* navigationDividerLeft.png in Resources */,
-				8E509432158D13AE000AF390 /* navigationDividerLeft@2x.png in Resources */,
-				8E509435158D1551000AF390 /* navigationDividerRight.png in Resources */,
-				8E509436158D1551000AF390 /* navigationDividerRight@2x.png in Resources */,
+				8EC54588158FB1CB0048FEAA /* navigationDivider.png in Resources */,
+				8EC54589158FB1CB0048FEAA /* navigationDivider@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

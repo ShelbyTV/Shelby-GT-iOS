@@ -508,7 +508,7 @@ UITableViewDelegate
     // Load ViewController (that has webView)
     AuthenticateTwitterViewController *authenticateTwitterViewController = [[AuthenticateTwitterViewController alloc] initWithDelegate:self];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:authenticateTwitterViewController];
-    [self.loginViewController presentModalViewController:navigationController animated:YES];
+    [self.loginViewController presentViewController:navigationController animated:YES completion:nil];
     [authenticateTwitterViewController.webView loadRequest:authorizeRequest];
     
 }
@@ -562,8 +562,8 @@ UITableViewDelegate
     
     [self.twitterAccountStore saveAccount:newAccount withCompletionHandler:^(BOOL success, NSError *error) {
 
-        // This completionHandler block is NOT performed on the Main Thread
-        if (success) {
+        // This completionHandler block is NOT performed on the main thread
+        if ( success ) {
 
             if (DEBUGMODE) NSLog(@"New Account Saved to Store: %@", newAccount.username);
             
@@ -636,6 +636,8 @@ UITableViewDelegate
             
                         // Get results string (e.g., Access Token, Access Token Secret, Twitter Handle)
                         NSString *reverseAuthAccessResults = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+                        
+                        NSLog(@"RARes: %@", reverseAuthAccessResults);
                         
                         // Parse string for Acces Token and Access Token Secret
                         NSString *token = nil;
