@@ -21,14 +21,14 @@
 @property (assign, nonatomic) APIRequestType requestType;
 
 - (NSDictionary*)parseData;
-- (void)updateFrame:(NSDictionary*)frameDictionary;
+- (void)updateUpvoteState:(NSDictionary*)resultsDictionary;
 
 @end
 
 @implementation ShelbyAPIClient
 @synthesize connection = _connection;
 @synthesize receivedData = _receivedData;
-@synthesize parsedDictionary = parsedDictionary;
+@synthesize parsedDictionary = _parsedDictionary;
 @synthesize requestType = _requestType;
 
 #pragma mark - Public Methods
@@ -48,17 +48,13 @@
     return [parser objectWithData:self.receivedData];
 }
 
-- (void)updateFrame:(NSDictionary*)frameDictionary
+- (void)updateUpvoteState:(NSDictionary*)resultsDictionary
 {
-    
-    NSArray *resultsArray = [frameDictionary objectForKey:APIRequest_Result];
-    NSString *frameID = [resultsArray valueForKey:@"id"];
-    
-    NSString *frameRequestString = [NSString stringWithFormat:APIRequest_GetFrame, frameID, [SocialFacade sharedInstance].shelbyToken];
+    NSString *frameRequestString = [NSString stringWithFormat:APIRequest_GetStream, [SocialFacade sharedInstance].shelbyToken];
     NSMutableURLRequest *frameRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:frameRequestString]];
     [frameRequest setHTTPMethod:@"GET"];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-    [client performRequest:frameRequest ofType:APIRequestType_GetFrame];
+    [client performRequest:frameRequest ofType:APIRequestType_UpdateUpvoteState];
 }
 
 #pragma mark - NSURLConnectionDataDelegate Methods
@@ -99,7 +95,7 @@
         
         // Post notification to signal finished request.
         NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
-        [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:parsedDictionary];
+        [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:self.parsedDictionary];
         
         // Reset request type
         self.requestType = APIRequestType_None;
@@ -110,7 +106,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    // Parse Data with SBJSON Parser
+ 
     self.parsedDictionary = [self parseData];
     
     switch (self.requestType) {
@@ -118,33 +114,21 @@
         case APIRequestType_PostToken:{
             
             NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
-            [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:parsedDictionary];
+            [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:self.parsedDictionary];
 
         } break;
         
         case APIRequestType_GetStream:{
             
-            // Store parsedDictionary in Core Data
             NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
             [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context ForType:self.requestType];
             
         } break;
-            
-            
-        case APIRequestType_GetFrame:{
-            
-            if ( DEBUGMODE ) NSLog(@"Frame received successfully");            
-            NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
-            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context ForType:self.requestType];
-            
-            
-        } break;
-            
             
         case APIRequestType_PostUpvote:{
             
             if ( DEBUGMODE ) NSLog(@"Upvoted posted successfully");
-            [self updateFrame:parsedDictionary];
+            [self updateUpvoteState:self.parsedDictionary];
             
         } break;
             
@@ -152,10 +136,17 @@
         case APIRequestType_PostDownvote:{
             
             if ( DEBUGMODE ) NSLog(@"Downvote posted successfully");
-            [self updateFrame:parsedDictionary];
+            [self updateUpvoteState:self.parsedDictionary];
             
         } break;
             
+            
+        case APIRequestType_UpdateUpvoteState:{
+            
+            NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
+            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context ForType:self.requestType];
+            
+        } break;
             
         default:
             break;

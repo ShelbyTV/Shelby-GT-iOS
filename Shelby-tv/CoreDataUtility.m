@@ -31,8 +31,8 @@
 /// Store dashboardEntry data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
 
-/// Store dashboardEntry data in Core Data
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary forFrameUpvotesInContext:(NSManagedObjectContext*)context;
+/// Store Upvote state change data in Core Data
++ (void)storeParsedData:(NSDictionary*)parsedDictionary andUpdateUpvoteStateInContext:(NSManagedObjectContext*)context;
 
 /// Store dashbaordEntry.frame data in Core Data
 + (void)storeFrame:(Frame*)frame fromFrameArray:(NSArray*)frameArray;
@@ -90,10 +90,9 @@ static CoreDataUtility *sharedInstance = nil;
         
         [self storeParsedData:parsedDictionary forDashboardEntryInContext:context];
             
-    } else if ( requestType == APIRequestType_GetFrame ) {
-        
-        [self storeParsedData:parsedDictionary forFrameUpvotesInContext:context];
-        
+    } else if ( requestType == APIRequestType_UpdateUpvoteState) {
+    
+        [self storeParsedData:parsedDictionary andUpdateUpvoteStateInContext:context];
         
     } else {
         
@@ -339,34 +338,48 @@ static CoreDataUtility *sharedInstance = nil;
     }
         // Commity unsaved data in context
         [self saveContext:context];
-    
 }
 
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary forFrameUpvotesInContext:(NSManagedObjectContext *)context
++ (void)storeParsedData:(NSDictionary *)parsedDictionary andUpdateUpvoteStateInContext:(NSManagedObjectContext *)context
 {
     
-    NSArray *frameArray = [parsedDictionary objectForKey:APIRequest_Result];
+    NSArray *resultsArray = [parsedDictionary objectForKey:APIRequest_Result];
     
-    Frame *frame = [self checkIfEntity:CoreDataEntityFrame
-                           withIDValue:[frameArray valueForKey:@"id"]
-                              forIDKey:CoreDataFrameID  
-                       existsInContext:context];
-
-    // Check to make sure messages exist
-    NSArray *upvotersArray = [NSArray arrayWithArray:[frameArray valueForKey:@"upvoters"]];
-    NSUInteger upvotersCount = [upvotersArray count];
-    [frame setValue:[NSNumber numberWithInt:upvotersCount] forKey:CoreDataFrameUpvotersCount];
+    for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
+            
+        // Store dashboardEntry attirubutes
+        DashboardEntry *dashboardEntry = [self checkIfEntity:CoreDataEntityDashboardEntry 
+                                                 withIDValue:[[resultsArray objectAtIndex:i] valueForKey:@"id"]
+                                                    forIDKey:CoreDataDashboardEntryID 
+                                             existsInContext:context];
         
-    // Store dashboard.frame.upvoteUsers attributes if upvoteUsers exist
-    if ( upvotersCount ) {
         
-        [self storeUpvoteUsersFromFrame:frame withFrameArray:frameArray];
+        // Store dashboardEntry.frame attributes
+        NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];        
+        Frame *frame = [self checkIfEntity:CoreDataEntityFrame
+                               withIDValue:[frameArray valueForKey:@"id"]
+                                  forIDKey:CoreDataFrameID  
+                           existsInContext:context];
+        dashboardEntry.frame = frame;
+        
+        // Modify dashboard.frame.upvotersCount
+        NSArray *upvotersArray = [NSArray arrayWithArray:[frameArray valueForKey:@"upvoters"]];
+        NSUInteger upvotersCount = [upvotersArray count];
+        [frame setValue:[NSNumber numberWithInt:upvotersCount] forKey:CoreDataFrameUpvotersCount];
+        
+        if ( upvotersCount ) {
+            
+            [self storeUpvoteUsersFromFrame:frame withFrameArray:frameArray];
+            
+        } else {
+            
+            // Remove all upvoteUsers managedObjects attached to this frame.
+            
+        }
         
     }
-    
     // Commity unsaved data in context
     [self saveContext:context];
-    
 }
 
 + (void)storeFrame:(Frame *)frame fromFrameArray:(NSArray *)frameArray
