@@ -10,6 +10,7 @@
 #import "CoreDataUtility.h"
 #import "ShelbyAPIClient.h"
 #import "SocialFacade.h"
+#import "NSString+TypedefConversion.h"
 
 @interface VideoCardController ()
 
@@ -20,6 +21,7 @@
 @implementation VideoCardController
 @synthesize frameID = _frameID;
 
+#pragma mark - Initialization Method
 - (id)initWithFrameID:(NSString *)frameID;
 {
     if ( self == [super init] ) {
@@ -31,13 +33,15 @@
     return self;
 }
 
+
+#pragma mark - Public Methods
 - (void)upvote
 {
     NSString *upvoteRequestString = [NSString stringWithFormat:APIRequest_PostDownvote, self.frameID, [SocialFacade sharedInstance].shelbyToken];
     NSMutableURLRequest *upvoteRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:upvoteRequestString]];
     [upvoteRequest setHTTPMethod:@"POST"];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-    [client performRequest:upvoteRequest ofType:APIRequestTypePostUpvote];
+    [client performRequest:upvoteRequest ofType:APIRequestType_PostUpvote];
     
 }
 
@@ -47,7 +51,7 @@
     NSMutableURLRequest *downvoteRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:downvoteRequestString]];
     [downvoteRequest setHTTPMethod:@"POST"];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-    [client performRequest:downvoteRequest ofType:APIRequestTypePostDownvote];
+    [client performRequest:downvoteRequest ofType:APIRequestType_PostDownvote];
 }
 
 - (void)comment

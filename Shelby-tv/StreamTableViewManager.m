@@ -33,7 +33,7 @@
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString apiRequestTypeToString:APIRequestTypeGetStream] object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString apiRequestTypeToString:APIRequestType_GetStream] object:nil];
 }
 
 
@@ -41,7 +41,7 @@
 - (void)createAPIObservers
 {
     
-    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestTypeGetStream];
+    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestType_GetStream];
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(dataReturnedFromAPI:) 
                                                  name:notificationName 
@@ -51,14 +51,14 @@
 
 - (void)populateTableViewCell:(VideoCardCell *)cell withContentForRow:(NSUInteger)row
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-       
+
         // General Initializations
-        if ( ![self arrayOfCells] ) self.arrayOfCells = [NSMutableArray array];
-        [self.arrayOfCells addObject:cell];
-        
         [cell setTag:row];
         [cell.upvoteButton setTag:row];
+        [cell.upvoteLabel setTag:row];
+        
+        if ( ![self arrayOfCells] ) self.arrayOfCells = [NSMutableArray array];
+        [self.arrayOfCells addObject:cell];
         
         // Fetch data stored in Core Data
         DashboardEntry *dashboardEntry = [self.coreDataResultsArray objectAtIndex:row];
@@ -130,8 +130,7 @@
 
         // Asynchronous download of video thumbnail
         [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
-    
-        });
+
         
 }
 
@@ -145,11 +144,12 @@
     [button addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
     
     VideoCardCell *cell = (VideoCardCell*)[self.arrayOfCells objectAtIndex:button.tag];
-    NSUInteger numberOfVotes = [cell.upvoteLabel.text intValue];
+    NSInteger numberOfVotes = [cell.upvoteLabel.text intValue];
     numberOfVotes++;
-    cell.upvoteLabel.text = nil;
-    cell.upvoteLabel.text = [NSString stringWithFormat:@"%d", numberOfVotes];
-    NSLog(@"Upvote Number: %d | %@", numberOfVotes, cell.upvoteLabel.text);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [cell.upvoteLabel setText:[NSString stringWithFormat:@"%d", numberOfVotes]];
+        [cell setNeedsDisplay];
+    });
     
     VideoCardController *controller = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
     [controller upvote];
@@ -166,11 +166,12 @@
     [button addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
     
     VideoCardCell *cell = (VideoCardCell*)[self.arrayOfCells objectAtIndex:button.tag];
-    NSUInteger numberOfVotes = [cell.upvoteLabel.text intValue];
+    NSInteger numberOfVotes = [cell.upvoteLabel.text intValue];
     numberOfVotes--;
-    cell.upvoteLabel.text = nil;
-    cell.upvoteLabel.text = [NSString stringWithFormat:@"%d", numberOfVotes];
-    NSLog(@"Downvote Number: %d | %@", numberOfVotes, cell.upvoteLabel.text);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [cell.upvoteLabel setText:[NSString stringWithFormat:@"%d", numberOfVotes]];
+            [cell setNeedsDisplay];
+        });
     
     VideoCardController *controller = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
     [controller downvote];
@@ -220,7 +221,7 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
 
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-    [client performRequest:request ofType:APIRequestTypeGetStream];
+    [client performRequest:request ofType:APIRequestType_GetStream];
     
 }
 

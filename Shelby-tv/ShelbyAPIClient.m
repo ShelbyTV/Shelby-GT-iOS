@@ -8,6 +8,7 @@
 
 #import "ShelbyAPIClient.h"
 #import "CoreDataUtility.h"
+#import "SocialFacade.h"
 #import "AppDelegate.h"
 #import "SBJson.h"
 #import "NSString+TypedefConversion.h"
@@ -20,6 +21,7 @@
 @property (assign, nonatomic) APIRequestType requestType;
 
 - (NSDictionary*)parseData;
+- (void)updateFrame:(NSDictionary*)frameDictionary;
 
 @end
 
@@ -44,6 +46,19 @@
 {
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     return [parser objectWithData:self.receivedData];
+}
+
+- (void)updateFrame:(NSDictionary*)frameDictionary
+{
+    
+    NSArray *resultsArray = [frameDictionary objectForKey:APIRequest_Result];
+    NSString *frameID = [resultsArray valueForKey:@"id"];
+    
+    NSString *frameRequestString = [NSString stringWithFormat:APIRequest_GetFrame, frameID, [SocialFacade sharedInstance].shelbyToken];
+    NSMutableURLRequest *frameRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:frameRequestString]];
+    [frameRequest setHTTPMethod:@"GET"];
+    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+    [client performRequest:frameRequest ofType:APIRequestType_GetFrame];
 }
 
 #pragma mark - NSURLConnectionDataDelegate Methods
@@ -87,7 +102,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:parsedDictionary];
         
         // Reset request type
-        self.requestType = APIRequestTypeNone;
+        self.requestType = APIRequestType_None;
         
     }
     
@@ -100,14 +115,14 @@
     
     switch (self.requestType) {
             
-        case APIRequestTypePostToken:{
+        case APIRequestType_PostToken:{
             
             NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
             [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:parsedDictionary];
 
         } break;
         
-        case APIRequestTypeGetStream:{
+        case APIRequestType_GetStream:{
             
             // Store parsedDictionary in Core Data
             NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
@@ -116,16 +131,28 @@
         } break;
             
             
-        case APIRequestTypePostUpvote:{
+        case APIRequestType_GetFrame:{
+            
+            if ( DEBUGMODE ) NSLog(@"Frame received successfully");            
+            NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
+            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context ForType:self.requestType];
+            
+            
+        } break;
+            
+            
+        case APIRequestType_PostUpvote:{
             
             if ( DEBUGMODE ) NSLog(@"Upvoted posted successfully");
+            [self updateFrame:parsedDictionary];
             
         } break;
             
         
-        case APIRequestTypePostDownvote:{
+        case APIRequestType_PostDownvote:{
             
             if ( DEBUGMODE ) NSLog(@"Downvote posted successfully");
+            [self updateFrame:parsedDictionary];
             
         } break;
             
@@ -136,7 +163,7 @@
     }
     
     // Reset request type
-    self.requestType = APIRequestTypeNone;
+    self.requestType = APIRequestType_None;
 }
 
 @end

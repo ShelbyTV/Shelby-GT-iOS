@@ -363,7 +363,7 @@
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
             
             ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-            [client performRequest:request ofType:APIRequestTypeGetStream];
+            [client performRequest:request ofType:APIRequestType_GetStream];
             
             [self logoutAnimationStageOne:self.twitterButton];
             

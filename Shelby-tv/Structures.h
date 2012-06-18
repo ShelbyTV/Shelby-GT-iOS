@@ -23,12 +23,13 @@ typedef enum _GuideType
 typedef enum _APIRequestType
 {
     
-    APIRequestTypeNone = 0,
-    APIRequestTypePostToken,
-    APIRequestTypeGetShelbyUser,
-    APIRequestTypeGetStream,
-    APIRequestTypeGetRolls,
-    APIRequestTypePostUpvote,
-    APIRequestTypePostDownvote
+    APIRequestType_None = 0,
+    APIRequestType_PostToken,
+    APIRequestType_GetShelbyUser,
+    APIRequestType_GetStream,
+    APIRequestType_GetFrame,
+    APIRequestType_GetRolls,
+    APIRequestType_PostUpvote,
+    APIRequestType_PostDownvote
     
 } APIRequestType;

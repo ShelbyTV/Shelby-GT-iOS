@@ -171,7 +171,7 @@ UITableViewDelegate
 {
     
     // Remove observers
-    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestTypePostToken];
+    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestType_PostToken];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:notificationName object:nil];
     
     // Get Shelby Authorization from notificaiton dictioanry sent from APIClient
@@ -317,7 +317,7 @@ UITableViewDelegate
 {
     
     // Create Observer
-    APIRequestType requestType = APIRequestTypePostToken;
+    APIRequestType requestType = APIRequestType_PostToken;
     NSString *notificationName = [NSString apiRequestTypeToString:requestType];
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(tokenSwapWasSuccessful:) 
@@ -677,7 +677,7 @@ UITableViewDelegate
 {
 
     // Create Observer
-    APIRequestType requestType = APIRequestTypePostToken;
+    APIRequestType requestType = APIRequestType_PostToken;
     NSString *notificationName = [NSString apiRequestTypeToString:requestType];
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(tokenSwapWasSuccessful:) 

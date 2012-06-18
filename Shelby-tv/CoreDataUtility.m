@@ -31,6 +31,9 @@
 /// Store dashboardEntry data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
 
+/// Store dashboardEntry data in Core Data
++ (void)storeParsedData:(NSDictionary*)parsedDictionary forFrameUpvotesInContext:(NSManagedObjectContext*)context;
+
 /// Store dashbaordEntry.frame data in Core Data
 + (void)storeFrame:(Frame*)frame fromFrameArray:(NSArray*)frameArray;
 
@@ -83,11 +86,13 @@ static CoreDataUtility *sharedInstance = nil;
 #pragma mark - Public Methods
 + (void)storeParsedData:(NSDictionary *)parsedDictionary inCoreData:(NSManagedObjectContext *)context ForType:(APIRequestType)requestType
 {
-    if ( requestType == APIRequestTypeGetStream ) {
+    if ( requestType == APIRequestType_GetStream ) {
         
         [self storeParsedData:parsedDictionary forDashboardEntryInContext:context];
             
-    } else if ( requestType == APIRequestTypeGetRolls ) {
+    } else if ( requestType == APIRequestType_GetFrame ) {
+        
+        [self storeParsedData:parsedDictionary forFrameUpvotesInContext:context];
         
         
     } else {
@@ -175,7 +180,8 @@ static CoreDataUtility *sharedInstance = nil;
 
 + (BOOL)checkIfUserUpvotedInFrame:(Frame *)frame
 {
-    BOOL exists;
+    
+    BOOL exists = NO;
     
     if ( frame.upvotersCount ) {
     
@@ -206,22 +212,18 @@ static CoreDataUtility *sharedInstance = nil;
                     
                     exists = NO;
                 }
-                
-                return exists;
 
                 
             }
         }
         
-        
-    
     
     } else {
         
         exists = NO;
     }
         
-    return NO;
+    return exists;
 
 }
 
@@ -340,6 +342,33 @@ static CoreDataUtility *sharedInstance = nil;
     
 }
 
++ (void)storeParsedData:(NSDictionary *)parsedDictionary forFrameUpvotesInContext:(NSManagedObjectContext *)context
+{
+    
+    NSArray *frameArray = [parsedDictionary objectForKey:APIRequest_Result];
+    
+    Frame *frame = [self checkIfEntity:CoreDataEntityFrame
+                           withIDValue:[frameArray valueForKey:@"id"]
+                              forIDKey:CoreDataFrameID  
+                       existsInContext:context];
+
+    // Check to make sure messages exist
+    NSArray *upvotersArray = [NSArray arrayWithArray:[frameArray valueForKey:@"upvoters"]];
+    NSUInteger upvotersCount = [upvotersArray count];
+    [frame setValue:[NSNumber numberWithInt:upvotersCount] forKey:CoreDataFrameUpvotersCount];
+        
+    // Store dashboard.frame.upvoteUsers attributes if upvoteUsers exist
+    if ( upvotersCount ) {
+        
+        [self storeUpvoteUsersFromFrame:frame withFrameArray:frameArray];
+        
+    }
+    
+    // Commity unsaved data in context
+    [self saveContext:context];
+    
+}
+
 + (void)storeFrame:(Frame *)frame fromFrameArray:(NSArray *)frameArray
 {
     
@@ -365,7 +394,6 @@ static CoreDataUtility *sharedInstance = nil;
     NSArray *upvotersArray = [NSArray arrayWithArray:[frameArray valueForKey:@"upvoters"]];
     NSUInteger upvotersCount = [upvotersArray count];
     [frame setValue:[NSNumber numberWithInt:upvotersCount] forKey:CoreDataFrameUpvotersCount];
-
     
     NSString *videoID = [NSString testForNull:[frameArray valueForKey:@"video_id"]];
     [frame setValue:videoID forKey:CoreDataFrameVideoID ];
