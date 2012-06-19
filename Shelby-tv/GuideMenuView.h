@@ -10,4 +10,10 @@
 
 @interface GuideMenuView : UIView
 
+@property (weak, nonatomic) IBOutlet UIButton *browseRollsButton;
+@property (weak, nonatomic) IBOutlet UIButton *myRollsButton;
+@property (weak, nonatomic) IBOutlet UIButton *peopleRollsButton;
+@property (weak, nonatomic) IBOutlet UIButton *settingsButton;
+@property (weak, nonatomic) IBOutlet UIButton *streamButton;
+
 @end

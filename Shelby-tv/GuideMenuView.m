@@ -10,4 +10,19 @@
 
 @implementation GuideMenuView
 
+@synthesize browseRollsButton = _browseRollsButton;
+@synthesize myRollsButton = _myRollsButton;
+@synthesize peopleRollsButton = _peopleRollsButton;
+@synthesize settingsButton = _settingsButton;
+@synthesize streamButton = _streamButton;
+
+- (void)dealloc
+{
+    self.browseRollsButton = nil;
+    self.myRollsButton = nil;
+    self.peopleRollsButton = nil;
+    self.settingsButton = nil;
+    self.streamButton = nil;
+}
+
 @end

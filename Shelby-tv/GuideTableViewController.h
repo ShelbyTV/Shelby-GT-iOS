@@ -8,14 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ASPullToRefreshTableViewController.h"
+#import "ShelbyController.h"
 #import "StaticDeclarations.h"
 
 @interface GuideTableViewController : ASPullToRefreshTableViewController
 
-- (IBAction)browseRollsButton;
-- (IBAction)myRollsButton;
-- (IBAction)peopleRollsButton;
-- (IBAction)streamButton;
-- (IBAction)settingsButton;
+@property (strong, nonatomic) ShelbyController *shelbyController;
+
+- (id)initWithType:(GuideType)type;
 
 @end

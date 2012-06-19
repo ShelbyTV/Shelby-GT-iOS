@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E04DC2D1590E1620066BBA6 /* ShelbyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E04DC2C1590E1620066BBA6 /* ShelbyController.m */; };
 		8E068B6D1587FB430069FD01 /* GuideMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B6C1587FB430069FD01 /* GuideMenuView.m */; };
 		8E068B7D158823C70069FD01 /* GuideMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E068B7C158823C70069FD01 /* GuideMenuView.xib */; };
 		8E068B8315883F6C0069FD01 /* SettingsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B8215883F6C0069FD01 /* SettingsTableViewManager.m */; };
@@ -186,6 +187,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E04DC2B1590E1620066BBA6 /* ShelbyController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ShelbyController.h; sourceTree = "<group>"; };
+		8E04DC2C1590E1620066BBA6 /* ShelbyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyController.m; sourceTree = "<group>"; };
 		8E068B6B1587FB430069FD01 /* GuideMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideMenuView.h; sourceTree = "<group>"; };
 		8E068B6C1587FB430069FD01 /* GuideMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideMenuView.m; sourceTree = "<group>"; };
 		8E068B7C158823C70069FD01 /* GuideMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideMenuView.xib; sourceTree = "<group>"; };
@@ -847,6 +850,8 @@
 				8E8124D61540B92E00E1EA4B /* GuideTableViewController.m */,
 				8E664D521541B0120071EC42 /* LoginViewController.h */,
 				8E664D531541B0120071EC42 /* LoginViewController.m */,
+				8E04DC2B1590E1620066BBA6 /* ShelbyController.h */,
+				8E04DC2C1590E1620066BBA6 /* ShelbyController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1244,6 +1249,7 @@
 				8E068B89158843B40069FD01 /* PeopleRollsTableViewManager.m in Sources */,
 				8E068B8C1588444E0069FD01 /* MyRollsTableViewManager.m in Sources */,
 				8EC54585158F96310048FEAA /* Conversation.m in Sources */,
+				8E04DC2D1590E1620066BBA6 /* ShelbyController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

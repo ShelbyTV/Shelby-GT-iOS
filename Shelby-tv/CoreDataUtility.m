@@ -337,7 +337,6 @@ static CoreDataUtility *sharedInstance = nil;
             dashboardEntry.frame = frame;
             
             // Check to make sure messages exist
-            NSLog(@"Loc 2 | %d", i);
             [self storeFrame:frame fromFrameArray:frameArray];
             
         } else {

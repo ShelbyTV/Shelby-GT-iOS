@@ -18,6 +18,7 @@
 // Controllers
 #import "GuideTableViewController.h"
 #import "LoginViewController.h"
+#import "ShelbyController.h"
 
 // Core Data
 #import <CoreData/CoreData.h>
@@ -49,7 +50,6 @@
     // Create Navigation Architecture for iPhone and iPad
     [self createRootView];
  
-    
     // Make RootViewController Visible
     [self.window makeKeyAndVisible];
 
@@ -75,9 +75,32 @@
 - (void)createRootView
 {
     
-    GuideTableViewController *guideTableViewController = [[GuideTableViewController alloc] init];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:guideTableViewController];
-    self.window.rootViewController = navigationController;
+    NSMutableDictionary *viewControllers = [NSMutableDictionary dictionary];
+    
+    GuideTableViewController *browseRollsTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_BrowseRolls];
+    UINavigationController *browseRollsNavigationController = [[UINavigationController alloc] initWithRootViewController:browseRollsTableViewController];
+    [viewControllers setValue:browseRollsNavigationController forKey:TextConstants_BrowseRollsSection];
+    
+    GuideTableViewController *myRollsTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_MyRolls];
+    UINavigationController *myRollsNavigationController = [[UINavigationController alloc] initWithRootViewController:myRollsTableViewController];
+    [viewControllers setValue:myRollsNavigationController forKey:TextConstants_MyRollsSection];
+    
+    GuideTableViewController *peopleRollsTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_PeopleRolls];
+    UINavigationController *peopleRollsNavigationController = [[UINavigationController alloc] initWithRootViewController:peopleRollsTableViewController];
+    [viewControllers setValue:peopleRollsNavigationController forKey:TextConstants_PeopleRollsSection];
+    
+    GuideTableViewController *settingsTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_Settings];
+    UINavigationController *settingsNavigationController = [[UINavigationController alloc] initWithRootViewController:settingsTableViewController];
+    [viewControllers setValue:settingsNavigationController forKey:TextConstants_SettingsSection];
+    
+    GuideTableViewController *streamTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_Stream];
+    UINavigationController *streamNavigationController = [[UINavigationController alloc] initWithRootViewController:streamTableViewController];
+    [viewControllers setValue:streamNavigationController forKey:TextConstants_StreamSection];
+
+    ShelbyController *shelbyController = [[ShelbyController alloc] initWithViewControllers:viewControllers];
+    
+    
+    self.window.rootViewController = shelbyController;
     
 }
 

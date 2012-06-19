@@ -12,20 +12,14 @@
 
 @interface GuideTableViewController ()
 
-@property (assign, nonatomic) GuideType guideType;
+@property (assign, nonatomic) GuideType type;
 @property (strong, nonatomic) GuideMenuView *menuView;
-@property (strong, nonatomic) StreamTableViewManager *streamtableViewManager;
-@property (strong, nonatomic) PeopleRollsTableViewManager *peopleRollsTableViewManager;
-@property (strong, nonatomic) MyRollsTableViewManager *myRollsTableViewManager;
-@property (strong, nonatomic) BrowseRollsTableViewManager *browseRollsTableViewManager;
-@property (strong, nonatomic) SettingsTableViewManager *settingsTableViewManager;
+@property (strong, nonatomic) GuideTableViewManager *tableViewManager;
 @property (assign, nonatomic) BOOL firstLoad;
 
-/// Customization Methods
-- (void)initalizeTableViewManagers;
-- (void)initalizeMenuView;
-- (void)loadWithType:(GuideType)type forTableViewManager:(GuideTableViewManager*)manager withPullToRefreshEnabled:(BOOL)refreshEnabled;
-- (void)tableViewDelegatesWillChange;
+/// Creation Methods
+- (GuideTableViewManager*)createTableViewManager;
+- (void)createView;
 
 /// Animation Methods
 - (void)fadeInAnimation;
@@ -34,132 +28,159 @@
 @end
 
 @implementation GuideTableViewController
-@synthesize guideType = _guideType;
+@synthesize shelbyController = _shelbyController;
+@synthesize type = _guideType;
 @synthesize menuView = _menuView;
+@synthesize tableViewManager = _tableViewManager;
+
+#pragma mark - Initialization Methods
+- (id)initWithType:(GuideType)type
+{
+    
+    if ( self = [super init] ) {
+        
+        // Set Type of GuideTableViewController Instance
+        self.type = type;
+        
+        self.tableViewManager = [self createTableViewManager];
+        
+        // Customize tableView
+        self.view.backgroundColor = ColorConstants_BackgroundColor;
+        self.tableView.backgroundColor = ColorConstants_BackgroundColor;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView.delegate = (id)self.tableViewManager;
+        self.tableView.dataSource = (id)self.tableViewManager;
+        self.refreshDelegate = (id)self.tableViewManager;
+        self.tableViewManager.refreshController = self;
+        
+    }
+    
+    return  self;
+}
 
 #pragma mark - View Lifecycle Methods
 - (void)viewDidLoad
 {                           
     [super viewDidLoad];
-    [self initalizeTableViewManagers];
     self.firstLoad = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];  
-    [self initalizeMenuView];
-    
-    // Load Stream
-    [self loadWithType:GuideType_Stream forTableViewManager:self.streamtableViewManager withPullToRefreshEnabled:YES];
-    
+    [self createView];
 }
 
 #pragma mark -  Customization Methods
-- (void)initalizeTableViewManagers
+- (GuideTableViewManager*)createTableViewManager
 {
-    self.browseRollsTableViewManager = [[BrowseRollsTableViewManager alloc] init];
-    self.myRollsTableViewManager = [[MyRollsTableViewManager alloc] init];
-    self.peopleRollsTableViewManager = [[PeopleRollsTableViewManager alloc] init];
-    self.settingsTableViewManager = [[SettingsTableViewManager alloc] init];
-    self.streamtableViewManager = [[StreamTableViewManager alloc] init];
+    
+    GuideTableViewManager *tableViewManager;
+    
+    switch ( self.type ) {
+            
+        case GuideType_BrowseRolls:
+            tableViewManager = [[BrowseRollsTableViewManager alloc] init];
+            break;
+            
+        case GuideType_MyRolls:
+            tableViewManager = [[MyRollsTableViewManager alloc] init];
+            break;
+            
+        case GuideType_PeopleRolls:
+            tableViewManager = [[PeopleRollsTableViewManager alloc] init];
+            break;
+            
+        case GuideType_Settings:
+            tableViewManager = [[SettingsTableViewManager alloc] init];
+            break;
+            
+        case GuideType_Stream:
+            tableViewManager = [[StreamTableViewManager alloc] init];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return tableViewManager;
 }
 
-- (void)initalizeMenuView
+- (void)createView
 {
     
     // Add menuView over navigationBar
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"GuideMenuView" owner:self options:nil];
     self.menuView = (GuideMenuView*)[nib objectAtIndex:0];
     [self.navigationController.navigationBar addSubview:self.menuView];
-
-}
-
-
-#pragma mark - Action Methods
-- (void)loadWithType:(GuideType)type forTableViewManager:(GuideTableViewManager *)manager withPullToRefreshEnabled:(BOOL)refreshEnabled
-{
     
-    // Set Type of GuideTableViewController Instance
-    self.guideType = type;
-    
-    // Customize tableView
-    self.view.backgroundColor = ColorConstants_BackgroundColor;
-    self.tableView.backgroundColor = ColorConstants_BackgroundColor;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.delegate = (id)manager;
-    self.tableView.dataSource = (id)manager;
-    
-    // Set Reference to ASPullToRefreshTableViewController
-    if ( refreshEnabled ) {
-        
-        manager.refreshController = self;
-        self.refreshDelegate = (id)manager;
-        
+    // Set section-specific UI properties
+    switch ( self.type ) {
+            
+        case GuideType_BrowseRolls:{
+       
+            [self.menuView.browseRollsButton setHighlighted:YES];
+            
+        }break;
+            
+        case GuideType_MyRolls:{
+            
+            [self.menuView.myRollsButton setHighlighted:YES];
+            
+        }break;
+            
+        case GuideType_PeopleRolls:{
+            
+            [self.menuView.peopleRollsButton setHighlighted:YES];
+            
+        }break;
+            
+        case GuideType_Settings:{
+            
+            [self.menuView.settingsButton setHighlighted:YES];
+            
+        }break;
+            
+        case GuideType_Stream:{
+            
+            [self.menuView.streamButton setHighlighted:YES];
+            
+        }break;
+            
+        default:
+            break;
     }
     
     [self fadeInAnimation];
     
-    if ( [SocialFacade sharedInstance].shelbyAuthorized ) [manager loadDataOnInitializationForTableView:self.tableView];
-    
+    // Call API and Core Data in section's tableViewManager
+    if ( [SocialFacade sharedInstance].shelbyAuthorized ) [self.tableViewManager loadDataOnInitializationForTableView:self.tableView];
+
 }
 
-- (void)tableViewDelegatesWillChange
-{
-    
-    [self fadeOutAnimation];
-    
-    switch (self.guideType) {
-        case GuideType_BrowseRolls:
-            [self.browseRollsTableViewManager.refreshController didFinishRefreshing];
-            break;
-        case GuideType_MyRolls:
-            [self.myRollsTableViewManager.refreshController didFinishRefreshing];
-            break;
-        case GuideType_PeopleRolls:
-            [self.peopleRollsTableViewManager.refreshController didFinishRefreshing];
-            break;
-        case GuideType_Settings:
-            break;
-        case GuideType_Stream:
-            [self.streamtableViewManager.refreshController didFinishRefreshing];
-            break;
-        default:
-            break;
-    }
-
-    self.refreshDelegate = nil;
-    
-}
 
 - (IBAction)browseRollsButton
 {
-    [self tableViewDelegatesWillChange];
-    [self loadWithType:GuideType_BrowseRolls forTableViewManager:self.browseRollsTableViewManager withPullToRefreshEnabled:YES];
+    [self.shelbyController presentSection:GuideType_BrowseRolls];
 }
-
 - (IBAction)myRollsButton
 {
-    [self tableViewDelegatesWillChange];
-    [self loadWithType:GuideType_MyRolls forTableViewManager:self.myRollsTableViewManager withPullToRefreshEnabled:YES];
+
 }
 
 - (IBAction)peopleRollsButton
 {
-    [self tableViewDelegatesWillChange];
-    [self loadWithType:GuideType_PeopleRolls forTableViewManager:self.peopleRollsTableViewManager withPullToRefreshEnabled:YES];
+    
 }
 
 - (IBAction)settingsButton
 {
-    [self tableViewDelegatesWillChange];
-    [self loadWithType:GuideType_Settings forTableViewManager:self.settingsTableViewManager withPullToRefreshEnabled:NO];
+
 }
 
 - (IBAction)streamButton
 {
-    [self tableViewDelegatesWillChange];
-    [self loadWithType:GuideType_Stream forTableViewManager:self.streamtableViewManager withPullToRefreshEnabled:YES];
+
 }
 
 #pragma mark - Animation Methods
@@ -167,9 +188,12 @@
 {
     if ( self.firstLoad ) [self.navigationController.navigationBar setAlpha:0.25f];
     [self.tableView setAlpha:0.25f];
+    
     [UIView animateWithDuration:1.0f animations:^{
+    
         if ( self.firstLoad ) [self.navigationController.navigationBar setAlpha:1.0f];
         [self.tableView setAlpha:1.0f];
+   
     }];
     
     if ( self.firstLoad ) self.firstLoad = NO;
@@ -178,7 +202,9 @@
 - (void)fadeOutAnimation
 {
     [UIView animateWithDuration:1.0f animations:^{
+        
         [self.tableView setAlpha:0.25f];
+    
     }];
 }
 
