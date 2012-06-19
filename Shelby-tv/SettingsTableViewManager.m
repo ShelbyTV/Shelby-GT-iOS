@@ -34,14 +34,6 @@
 - (void)loadDataOnInitializationForTableView:(UITableView*)tableView
 {
     self.tableView = tableView;
-    
-    // Begin Temp Styling Code
-    self.tableView.backgroundColor = [UIColor whiteColor];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.tableView.separatorColor = [UIColor blackColor];
-    // End Temp Styling Code
-    
-    
     [self.tableView reloadData];
 }
 
@@ -58,6 +50,17 @@
 - (void)dataReturnedFromAPI:(NSNotification*)notification
 {
     
+}
+
+#pragma mark - UITableViewDataSource Methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

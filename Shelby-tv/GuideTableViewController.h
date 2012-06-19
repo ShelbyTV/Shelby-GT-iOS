@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ASPullToRefreshTableViewController.h"
-#import "ShelbyController.h"
 #import "StaticDeclarations.h"
+
+@class ShelbyController;
 
 @interface GuideTableViewController : ASPullToRefreshTableViewController
 

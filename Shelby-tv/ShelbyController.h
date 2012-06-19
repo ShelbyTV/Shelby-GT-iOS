@@ -12,6 +12,11 @@
 @interface ShelbyController : UIViewController
 
 - (id)initWithViewControllers:(NSMutableDictionary*)dictionary;
-- (void)presentSection:(GuideType)type;
+
+- (IBAction)browseRollsButton:(id)sender;
+- (IBAction)myRollsButton:(id)sender;
+- (IBAction)peopleRollsButton:(id)sender;
+- (IBAction)settingsButton:(id)sender;
+- (IBAction)streamButton:(id)sender;
 
 @end

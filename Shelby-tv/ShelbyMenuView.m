@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import "GuideMenuView.h"
+#import "ShelbyMenuView.h"
 
-@implementation GuideMenuView
+@implementation ShelbyMenuView
 
 @synthesize browseRollsButton = _browseRollsButton;
 @synthesize myRollsButton = _myRollsButton;

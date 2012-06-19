@@ -22,7 +22,7 @@
 @synthesize delegate = _delegate;
 @synthesize pinPageLoaded = _pinPageLoaded;
 
-#pragma mark - Initialization Methods
+#pragma mark - Initialization Method
 - (id)initWithDelegate:(id<AuthenticateTwitterDelegate>)delegate
 {
     if ( self = [super init] ) {

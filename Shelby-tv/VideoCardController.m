@@ -22,9 +22,9 @@
 @synthesize frameID = _frameID;
 
 #pragma mark - Initialization Method
-- (id)initWithFrameID:(NSString *)frameID;
+- (id)initWithFrameID:(NSString *)frameID
 {
-    if ( self == [super init] ) {
+    if ( self = [super init] ) {
         
         self.frameID = frameID;
      

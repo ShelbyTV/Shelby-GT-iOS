@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSDictionary *viewControllers;
 @property (assign, nonatomic) NSUInteger currentType;
 
+- (void)presentSection:(GuideType)type;
 - (void)removeCurrentlyPresentedSection;
 - (void)adjustFrame:(UIView*)view;
 
@@ -49,7 +50,6 @@
 #pragma mark - Public Methods
 - (void)presentSection:(GuideType)type
 {
-    
     
     // Step 1: Remove current section's view
     [self removeCurrentlyPresentedSection];
@@ -110,6 +110,30 @@
         default:
             break;
     }
+}
+
+- (IBAction)browseRollsButton:(id)sender
+{
+    [self presentSection:GuideType_BrowseRolls];
+}
+- (IBAction)myRollsButton:(id)sender
+{
+    [self presentSection:GuideType_MyRolls];
+}
+
+- (IBAction)peopleRollsButton:(id)sender
+{
+    [self presentSection:GuideType_PeopleRolls];
+}
+
+- (IBAction)settingsButton:(id)sender
+{
+    [self presentSection:GuideType_Settings];
+}
+
+- (IBAction)streamButton:(id)sender
+{
+    [self presentSection:GuideType_Stream];
 }
 
 #pragma mark - Private Methods

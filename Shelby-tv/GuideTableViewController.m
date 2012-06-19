@@ -7,13 +7,14 @@
 //
 
 #import "GuideTableViewController.h"
+#import "ShelbyController.h"
 #import "TableViewManagers.h"
-#import "GuideMenuView.h"
+#import "ShelbyMenuView.h"
 
 @interface GuideTableViewController ()
 
 @property (assign, nonatomic) GuideType type;
-@property (strong, nonatomic) GuideMenuView *menuView;
+@property (strong, nonatomic) ShelbyMenuView *menuView;
 @property (strong, nonatomic) GuideTableViewManager *tableViewManager;
 @property (assign, nonatomic) BOOL firstLoad;
 
@@ -33,7 +34,7 @@
 @synthesize menuView = _menuView;
 @synthesize tableViewManager = _tableViewManager;
 
-#pragma mark - Initialization Methods
+#pragma mark - Initialization Method
 - (id)initWithType:(GuideType)type
 {
     
@@ -51,8 +52,7 @@
         self.tableView.delegate = (id)self.tableViewManager;
         self.tableView.dataSource = (id)self.tableViewManager;
         self.refreshDelegate = (id)self.tableViewManager;
-        self.tableViewManager.refreshController = self;
-        
+
     }
     
     return  self;
@@ -62,7 +62,6 @@
 - (void)viewDidLoad
 {                           
     [super viewDidLoad];
-    self.firstLoad = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -75,43 +74,44 @@
 - (GuideTableViewManager*)createTableViewManager
 {
     
-    GuideTableViewManager *tableViewManager;
+    GuideTableViewManager *manager;
     
     switch ( self.type ) {
             
-        case GuideType_BrowseRolls:
-            tableViewManager = [[BrowseRollsTableViewManager alloc] init];
-            break;
+        case GuideType_BrowseRolls:{
+           manager = [[BrowseRollsTableViewManager alloc] init];
+        } break;
             
-        case GuideType_MyRolls:
-            tableViewManager = [[MyRollsTableViewManager alloc] init];
-            break;
+        case GuideType_MyRolls:{
+            manager = [[MyRollsTableViewManager alloc] init];
+        } break;
             
-        case GuideType_PeopleRolls:
-            tableViewManager = [[PeopleRollsTableViewManager alloc] init];
-            break;
+        case GuideType_PeopleRolls:{
+            manager = [[PeopleRollsTableViewManager alloc] init];
+        } break;
             
-        case GuideType_Settings:
-            tableViewManager = [[SettingsTableViewManager alloc] init];
-            break;
+        case GuideType_Settings:{
+//            manager = [[SettingsTableViewManager alloc] init];
+        } break;
             
-        case GuideType_Stream:
-            tableViewManager = [[StreamTableViewManager alloc] init];
-            break;
+        case GuideType_Stream:{
+            manager = [[StreamTableViewManager alloc] init];
+        } break;
             
         default:
             break;
     }
     
-    return tableViewManager;
+    return manager;
+    
 }
 
 - (void)createView
 {
     
     // Add menuView over navigationBar
-    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"GuideMenuView" owner:self options:nil];
-    self.menuView = (GuideMenuView*)[nib objectAtIndex:0];
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ShelbyMenuView" owner:self options:nil];
+    self.menuView = (ShelbyMenuView*)[nib objectAtIndex:0];
     [self.navigationController.navigationBar addSubview:self.menuView];
     
     // Set section-specific UI properties
@@ -121,31 +121,31 @@
        
             [self.menuView.browseRollsButton setHighlighted:YES];
             
-        }break;
+        } break;
             
         case GuideType_MyRolls:{
             
             [self.menuView.myRollsButton setHighlighted:YES];
             
-        }break;
+        } break;
             
         case GuideType_PeopleRolls:{
             
             [self.menuView.peopleRollsButton setHighlighted:YES];
             
-        }break;
+        } break;
             
         case GuideType_Settings:{
             
             [self.menuView.settingsButton setHighlighted:YES];
             
-        }break;
+        } break;
             
         case GuideType_Stream:{
             
             [self.menuView.streamButton setHighlighted:YES];
             
-        }break;
+        } break;
             
         default:
             break;
@@ -158,55 +158,52 @@
 
 }
 
-
-- (IBAction)browseRollsButton
-{
-    [self.shelbyController presentSection:GuideType_BrowseRolls];
-}
-- (IBAction)myRollsButton
-{
-    [self.shelbyController presentSection:GuideType_MyRolls];
-}
-
-- (IBAction)peopleRollsButton
-{
-    [self.shelbyController presentSection:GuideType_PeopleRolls];
-}
-
-- (IBAction)settingsButton
-{
-    [self.shelbyController presentSection:GuideType_Settings];
-}
-
-- (IBAction)streamButton
-{
-    [self.shelbyController presentSection:GuideType_Stream];
-}
-
 #pragma mark - Animation Methods
 - (void)fadeInAnimation
 {
-    if ( self.firstLoad ) [self.navigationController.navigationBar setAlpha:0.25f];
+    
     [self.tableView setAlpha:0.25f];
-    
     [UIView animateWithDuration:1.0f animations:^{
-    
-        if ( self.firstLoad ) [self.navigationController.navigationBar setAlpha:1.0f];
         [self.tableView setAlpha:1.0f];
-   
+        
     }];
     
-    if ( self.firstLoad ) self.firstLoad = NO;
 }
 
 - (void)fadeOutAnimation
 {
     [UIView animateWithDuration:1.0f animations:^{
-        
         [self.tableView setAlpha:0.25f];
-    
+        
     }];
 }
+
+#pragma mark - Action Methods (declared in, and siphoned to ShelbyController)
+- (IBAction)browseRollsButton:(id)sender
+{
+    [self.shelbyController browseRollsButton:nil];
+}
+
+- (IBAction)myRollsButton:(id)sender
+{
+    [self.shelbyController myRollsButton:nil];
+}
+
+- (IBAction)peopleRollsButton:(id)sender
+{
+    [self.shelbyController peopleRollsButton:nil];
+}
+
+- (IBAction)settingsButton:(id)sender
+{
+    [self.shelbyController settingsButton:nil];
+}
+
+- (IBAction)streamButton:(id)sender
+{
+    [self.shelbyController streamButton:nil];
+}
+
 
 #pragma mark - Interface Orientation Method
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

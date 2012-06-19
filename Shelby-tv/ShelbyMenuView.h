@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GuideMenuView : UIView
+@interface ShelbyMenuView : UIView
 
 @property (weak, nonatomic) IBOutlet UIButton *browseRollsButton;
 @property (weak, nonatomic) IBOutlet UIButton *myRollsButton;

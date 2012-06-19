@@ -18,7 +18,7 @@
 
 - (void)createAPIObservers;
 - (void)populateTableViewCell:(VideoCardCell*)cell withContentForRow:(NSUInteger)row;
-- (void)animateCell:(VideoCardCell*)cell forRow:(NSUInteger)row;
+//- (void)animateCell:(VideoCardCell*)cell forRow:(NSUInteger)row;
 
 - (void)upvote:(UIButton *)button;
 - (void)downvote:(UIButton *)button;
@@ -136,7 +136,7 @@
 
 - (void)upvote:(UIButton *)button
 {
-    if ( DEBUGMODE )NSLog(@"Upvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
+    if ( DEBUGMODE ) NSLog(@"Upvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
     
     [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
@@ -175,15 +175,6 @@
     
     VideoCardController *controller = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
     [controller downvote];
-}
-
-- (void)animateCell:(VideoCardCell *)cell forRow:(NSUInteger)row
-{
-    
-    [UIView animateWithDuration:0.50 
-                     animations:^{
-        [cell setAlpha:1.0f];
-    }];
 }
 
 #pragma mark - GuideTableViewManagerDelegate Method
@@ -269,11 +260,11 @@
     static NSString *CellIdentifier = @"Cell";
     VideoCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-//    if ( (nil == cell) || (0 == indexPath.row) ) { // The 0 == indexPath.row is to fix an issue when reloading stream via the ShelbyMenuView
+    if ( (nil == cell) || (0 == indexPath.row) ) { // The 0 == indexPath.row is to fix an issue when reloading stream via the ShelbyMenuView
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
         cell = (VideoCardCell*)[nib objectAtIndex:0];
-//    }
+    }
     
     // Pseudo-hide cell until it's populated with information
     [cell setAlpha:0.0f];
@@ -284,9 +275,6 @@
         if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {
         
             [self populateTableViewCell:cell withContentForRow:indexPath.row];
-            
-            // Animate cell as data populates
-            [self animateCell:cell forRow:indexPath.row];
             
         }
     }

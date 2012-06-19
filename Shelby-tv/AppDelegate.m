@@ -18,6 +18,8 @@
 // Controllers
 #import "GuideTableViewController.h"
 #import "LoginViewController.h"
+
+#import "SettingsTableViewController.h"
 #import "ShelbyController.h"
 
 // Core Data
@@ -89,7 +91,7 @@
     UINavigationController *peopleRollsNavigationController = [[UINavigationController alloc] initWithRootViewController:peopleRollsTableViewController];
     [viewControllers setValue:peopleRollsNavigationController forKey:TextConstants_PeopleRollsSection];
     
-    GuideTableViewController *settingsTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_Settings];
+    SettingsTableViewController *settingsTableViewController = [[SettingsTableViewController alloc] initWithStyle:UITableViewStylePlain];
     UINavigationController *settingsNavigationController = [[UINavigationController alloc] initWithRootViewController:settingsTableViewController];
     [viewControllers setValue:settingsNavigationController forKey:TextConstants_SettingsSection];
     
@@ -99,6 +101,7 @@
 
     ShelbyController *shelbyController = [[ShelbyController alloc] initWithViewControllers:viewControllers];
     
+    // Add reference to shelbyController
     browseRollsTableViewController.shelbyController = shelbyController;
     myRollsTableViewController.shelbyController = shelbyController;
     peopleRollsTableViewController.shelbyController = shelbyController;
