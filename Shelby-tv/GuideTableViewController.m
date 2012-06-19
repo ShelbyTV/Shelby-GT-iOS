@@ -52,6 +52,7 @@
         self.tableView.delegate = (id)self.tableViewManager;
         self.tableView.dataSource = (id)self.tableViewManager;
         self.refreshDelegate = (id)self.tableViewManager;
+        self.tableViewManager.refreshController = self;
 
     }
     
