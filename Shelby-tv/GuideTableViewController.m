@@ -165,22 +165,22 @@
 }
 - (IBAction)myRollsButton
 {
-
+    [self.shelbyController presentSection:GuideType_MyRolls];
 }
 
 - (IBAction)peopleRollsButton
 {
-    
+    [self.shelbyController presentSection:GuideType_PeopleRolls];
 }
 
 - (IBAction)settingsButton
 {
-
+    [self.shelbyController presentSection:GuideType_Settings];
 }
 
 - (IBAction)streamButton
 {
-
+    [self.shelbyController presentSection:GuideType_Stream];
 }
 
 #pragma mark - Animation Methods

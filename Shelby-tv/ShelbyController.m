@@ -14,6 +14,7 @@
 @property (assign, nonatomic) NSUInteger currentType;
 
 - (void)removeCurrentlyPresentedSection;
+- (void)adjustFrame:(UIView*)view;
 
 @end
 
@@ -32,11 +33,9 @@
   
         // Section that is visible on application launch
         UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_StreamSection];
-        CGRect frame = navigationController.view.frame;
-        navigationController.view.frame = CGRectMake(frame.origin.x,
-                                                     frame.origin.y,
-                                                     frame.size.width,
-                                                     1.0f + frame.size.height); // Adjusts y-origin by -20px when adding any number to height (not sure why)
+
+        [self adjustFrame:navigationController.view];
+        
         [self.view addSubview:navigationController.view];
         
         navigationController.view.tag = GuideType_Stream;
@@ -61,8 +60,8 @@
         case GuideType_BrowseRolls:{
             
             UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_BrowseRollsSection];
+            [self adjustFrame:navigationController.view];
             [self.view addSubview:navigationController.view];
-            
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -71,8 +70,8 @@
         case GuideType_MyRolls:{
             
             UINavigationController *navigationController= (UINavigationController*)[self.viewControllers objectForKey:TextConstants_MyRollsSection];
+            [self adjustFrame:navigationController.view];
             [self.view addSubview:navigationController.view];
-            
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -81,8 +80,8 @@
         case GuideType_PeopleRolls:{
             
             UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_PeopleRollsSection];
+            [self adjustFrame:navigationController.view];
             [self.view addSubview:navigationController.view];
-            
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -91,8 +90,8 @@
         case GuideType_Settings:{
             
             UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_SettingsSection];
+            [self adjustFrame:navigationController.view];
             [self.view addSubview:navigationController.view];
-            
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -101,13 +100,12 @@
         case GuideType_Stream:{
             
             UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_StreamSection];
+            [self adjustFrame:navigationController.view];
             [self.view addSubview:navigationController.view];
-            
             navigationController.view.tag = type;
             self.currentType = type;
             
         } break;
-            
             
         default:
             break;
@@ -129,6 +127,15 @@
     
     }
 
+}
+
+- (void)adjustFrame:(UIView *)view
+{
+    CGRect frame = view.frame;
+    view.frame = CGRectMake(frame.origin.x,
+                            frame.origin.y,
+                            frame.size.width,
+                            1.0f + frame.size.height); // Adjusts y-origin by -20px when adding any number to height (not sure why)
 }
 
 #pragma mark - Interface Orientation Method

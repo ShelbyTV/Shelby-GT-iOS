@@ -99,6 +99,11 @@
 
     ShelbyController *shelbyController = [[ShelbyController alloc] initWithViewControllers:viewControllers];
     
+    browseRollsTableViewController.shelbyController = shelbyController;
+    myRollsTableViewController.shelbyController = shelbyController;
+    peopleRollsTableViewController.shelbyController = shelbyController;
+    settingsTableViewController.shelbyController = shelbyController;
+    streamTableViewController.shelbyController = shelbyController;
     
     self.window.rootViewController = shelbyController;
     
