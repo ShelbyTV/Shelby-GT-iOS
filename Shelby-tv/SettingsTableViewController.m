@@ -107,32 +107,6 @@
     }];
 }
 
-#pragma mark - Action Methods (declared in, and siphoned to ShelbyController)
-- (IBAction)browseRollsButton:(id)sender
-{
-    [self.shelbyController browseRollsButton:nil];
-}
-
-- (IBAction)myRollsButton:(id)sender
-{
-    [self.shelbyController myRollsButton:nil];
-}
-
-- (IBAction)peopleRollsButton:(id)sender
-{
-    [self.shelbyController peopleRollsButton:nil];
-}
-
-- (IBAction)settingsButton:(id)sender
-{
-    [self.shelbyController settingsButton:nil];
-}
-
-- (IBAction)streamButton:(id)sender
-{
-    [self.shelbyController streamButton:nil];
-}
-
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -174,6 +148,32 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logout) name:SocialFacadeAuthorizationStatus object:nil];
     [CoreDataUtility dumpAllData];
     [[SocialFacade sharedInstance] shelbyLogout];
+}
+
+#pragma mark - ShelbyControllerDelegate Methods
+- (IBAction)browseRollsButton:(id)sender
+{
+    [self.shelbyController browseRollsButton:nil];
+}
+
+- (IBAction)myRollsButton:(id)sender
+{
+    [self.shelbyController myRollsButton:nil];
+}
+
+- (IBAction)peopleRollsButton:(id)sender
+{
+    [self.shelbyController peopleRollsButton:nil];
+}
+
+- (IBAction)settingsButton:(id)sender
+{
+    [self.shelbyController settingsButton:nil];
+}
+
+- (IBAction)streamButton:(id)sender
+{
+    [self.shelbyController streamButton:nil];
 }
 
 #pragma mark - Interface Orientation Method

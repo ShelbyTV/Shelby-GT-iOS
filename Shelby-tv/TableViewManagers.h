@@ -9,5 +9,4 @@
 #import "BrowseRollsTableViewManager.h"
 #import "MyRollsTableViewManager.h"
 #import "PeopleRollsTableViewManager.h"
-#import "SettingsTableViewManager.h"
 #import "StreamTableViewManager.h"

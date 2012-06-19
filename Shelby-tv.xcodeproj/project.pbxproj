@@ -11,10 +11,10 @@
 		8E04DC31159117DD0066BBA6 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E04DC30159117DD0066BBA6 /* SettingsTableViewController.m */; };
 		8E068B6D1587FB430069FD01 /* ShelbyMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B6C1587FB430069FD01 /* ShelbyMenuView.m */; };
 		8E068B7D158823C70069FD01 /* ShelbyMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E068B7C158823C70069FD01 /* ShelbyMenuView.xib */; };
-		8E068B8315883F6C0069FD01 /* SettingsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B8215883F6C0069FD01 /* SettingsTableViewManager.m */; };
 		8E068B86158843650069FD01 /* BrowseRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B85158843640069FD01 /* BrowseRollsTableViewManager.m */; };
 		8E068B89158843B40069FD01 /* PeopleRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B88158843B40069FD01 /* PeopleRollsTableViewManager.m */; };
 		8E068B8C1588444E0069FD01 /* MyRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */; };
+		8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2A8EAE159135970028712C /* StreamTableViewManager.m */; };
 		8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */; };
 		8E4A7732155185A0003CBA2A /* pullToRefreshArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A7730155185A0003CBA2A /* pullToRefreshArrow.png */; };
 		8E4A7733155185A0003CBA2A /* pullToRefreshArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A7731155185A0003CBA2A /* pullToRefreshArrow@2x.png */; };
@@ -79,7 +79,6 @@
 		8E664E231541FE490071EC42 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E664E0C1541FE490071EC42 /* OAToken.m */; };
 		8E664E241541FE490071EC42 /* OATokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E664E0E1541FE490071EC42 /* OATokenManager.m */; settings = {COMPILER_FLAGS = "-Wno-arc-performSelector-leaks"; }; };
 		8E664E251541FE490071EC42 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 8E664E101541FE490071EC42 /* README */; };
-		8E671596154F0B9E0059FC1A /* StreamTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E671595154F0B9E0059FC1A /* StreamTableViewManager.m */; };
 		8E7F47B3154074130041118E /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B2154074130041118E /* Twitter.framework */; };
 		8E7F47B6154074180041118E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B5154074180041118E /* Accounts.framework */; };
 		8E7F47B81540741F0041118E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B71540741F0041118E /* QuartzCore.framework */; };
@@ -192,11 +191,9 @@
 		8E04DC2C1590E1620066BBA6 /* ShelbyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyController.m; sourceTree = "<group>"; };
 		8E04DC2F159117DD0066BBA6 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		8E04DC30159117DD0066BBA6 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
-		8E068B6B1587FB430069FD01 /* ShelbyMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ShelbyMenuView.h; sourceTree = "<group>"; };
+		8E068B6B1587FB430069FD01 /* ShelbyMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelbyMenuView.h; sourceTree = "<group>"; };
 		8E068B6C1587FB430069FD01 /* ShelbyMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyMenuView.m; sourceTree = "<group>"; };
 		8E068B7C158823C70069FD01 /* ShelbyMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShelbyMenuView.xib; sourceTree = "<group>"; };
-		8E068B8115883F6C0069FD01 /* SettingsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewManager.h; sourceTree = "<group>"; };
-		8E068B8215883F6C0069FD01 /* SettingsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewManager.m; sourceTree = "<group>"; };
 		8E068B84158843640069FD01 /* BrowseRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowseRollsTableViewManager.h; sourceTree = "<group>"; };
 		8E068B85158843640069FD01 /* BrowseRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowseRollsTableViewManager.m; sourceTree = "<group>"; };
 		8E068B87158843B40069FD01 /* PeopleRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleRollsTableViewManager.h; sourceTree = "<group>"; };
@@ -204,6 +201,8 @@
 		8E068B8A1588444D0069FD01 /* MyRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRollsTableViewManager.h; sourceTree = "<group>"; };
 		8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRollsTableViewManager.m; sourceTree = "<group>"; };
 		8E0B3A9415813C400008B841 /* ColorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorConstants.h; sourceTree = "<group>"; };
+		8E2A8EAD159135970028712C /* StreamTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewManager.h; sourceTree = "<group>"; };
+		8E2A8EAE159135970028712C /* StreamTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamTableViewManager.m; sourceTree = "<group>"; };
 		8E3457851551BC9200FEFC9D /* NSString+TypedefConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TypedefConversion.h"; sourceTree = "<group>"; };
 		8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TypedefConversion.m"; sourceTree = "<group>"; };
 		8E4A7730155185A0003CBA2A /* pullToRefreshArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pullToRefreshArrow.png; path = library/ASPullToRefresh/ASPullToRefresh/pullToRefreshArrow.png; sourceTree = SOURCE_ROOT; };
@@ -321,8 +320,6 @@
 		8E664E0E1541FE490071EC42 /* OATokenManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OATokenManager.m; sourceTree = "<group>"; };
 		8E664E0F1541FE490071EC42 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
 		8E664E101541FE490071EC42 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
-		8E671594154F0B9E0059FC1A /* StreamTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewManager.h; sourceTree = "<group>"; };
-		8E671595154F0B9E0059FC1A /* StreamTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamTableViewManager.m; sourceTree = "<group>"; };
 		8E6715A3154F14590059FC1A /* Structures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Structures.h; sourceTree = "<group>"; };
 		8E7F47B2154074130041118E /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		8E7F47B5154074180041118E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -694,10 +691,8 @@
 				8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */,
 				8E068B87158843B40069FD01 /* PeopleRollsTableViewManager.h */,
 				8E068B88158843B40069FD01 /* PeopleRollsTableViewManager.m */,
-				8E068B8115883F6C0069FD01 /* SettingsTableViewManager.h */,
-				8E068B8215883F6C0069FD01 /* SettingsTableViewManager.m */,
-				8E671594154F0B9E0059FC1A /* StreamTableViewManager.h */,
-				8E671595154F0B9E0059FC1A /* StreamTableViewManager.m */,
+				8E2A8EAD159135970028712C /* StreamTableViewManager.h */,
+				8E2A8EAE159135970028712C /* StreamTableViewManager.m */,
 				8EDB32AF15792688007D7106 /* VideoCardController.h */,
 				8EDB32B015792688007D7106 /* VideoCardController.m */,
 			);
@@ -1204,7 +1199,6 @@
 				8E664E211541FE490071EC42 /* OAServiceTicket.m in Sources */,
 				8E664E231541FE490071EC42 /* OAToken.m in Sources */,
 				8E664E241541FE490071EC42 /* OATokenManager.m in Sources */,
-				8E671596154F0B9E0059FC1A /* StreamTableViewManager.m in Sources */,
 				8E4A778115518B14003CBA2A /* Facebook.m in Sources */,
 				8E4A778315518B14003CBA2A /* FBDialog.m in Sources */,
 				8E4A778415518B14003CBA2A /* FBFrictionlessRequestSettings.m in Sources */,
@@ -1249,13 +1243,13 @@
 				8EB6D81615800FCF0060202D /* Frame.m in Sources */,
 				8EB6D81915801AED0060202D /* ShelbyUser.m in Sources */,
 				8E068B6D1587FB430069FD01 /* ShelbyMenuView.m in Sources */,
-				8E068B8315883F6C0069FD01 /* SettingsTableViewManager.m in Sources */,
 				8E068B86158843650069FD01 /* BrowseRollsTableViewManager.m in Sources */,
 				8E068B89158843B40069FD01 /* PeopleRollsTableViewManager.m in Sources */,
 				8E068B8C1588444E0069FD01 /* MyRollsTableViewManager.m in Sources */,
 				8EC54585158F96310048FEAA /* Conversation.m in Sources */,
 				8E04DC2D1590E1620066BBA6 /* ShelbyController.m in Sources */,
 				8E04DC31159117DD0066BBA6 /* SettingsTableViewController.m in Sources */,
+				8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

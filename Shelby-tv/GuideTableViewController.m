@@ -91,7 +91,7 @@
         } break;
             
         case GuideType_Settings:{
-//            manager = [[SettingsTableViewManager alloc] init];
+            // Do nothing
         } break;
             
         case GuideType_Stream:{
@@ -178,7 +178,7 @@
     }];
 }
 
-#pragma mark - Action Methods (declared in, and siphoned to ShelbyController)
+#pragma mark - ShelbyControllerDelegate Methods
 - (IBAction)browseRollsButton:(id)sender
 {
     [self.shelbyController browseRollsButton:nil];
