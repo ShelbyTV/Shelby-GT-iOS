@@ -29,6 +29,8 @@
     
     if ( self = [super init] ) {
         
+        self.view.backgroundColor = ColorConstants_BackgroundColor;
+        
         // Reference sections (sent from App Delegate)
         self.viewControllers = [NSMutableDictionary dictionaryWithDictionary:dictionary];
   

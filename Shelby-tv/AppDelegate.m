@@ -70,7 +70,7 @@
 {
     // Save changes to managedObjectContext before shutdown.
     if ( DEBUGMODE ) NSLog(@"Saving updates to Core Data before Shutdown");
-    [CoreDataUtility saveContext:[CoreDataUtility sharedInstance].managedObjectContext forRequestType:nil];
+    [CoreDataUtility saveContext:[CoreDataUtility sharedInstance].managedObjectContext forRequestType:0];
 }
 
 #pragma mark - Creation Methods

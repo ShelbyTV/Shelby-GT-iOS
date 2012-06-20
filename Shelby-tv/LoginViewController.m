@@ -356,15 +356,12 @@
                                                        object:nil];
             
             if ( self.activityIndicator.superview ) [self.activityIndicator removeFromSuperview];
-            
-            
-//            // Peeform Initial API Request
-//            NSString *requestString = [NSString stringWithFormat:APIRequest_GetStream, [SocialFacade sharedInstance].shelbyToken];
-//            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
-//            
-//            ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-//            [client performRequest:request ofType:APIRequestType_GetStream];
-            
+                        
+            // Peeform Initial API Request
+            NSString *requestString = [NSString stringWithFormat:APIRequest_GetStream, [SocialFacade sharedInstance].shelbyToken];
+            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
+            ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+            [client performRequest:request ofType:APIRequestType_GetStream];
             [self logoutAnimationStageOne:self.twitterButton];
             
             

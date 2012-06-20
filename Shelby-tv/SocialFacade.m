@@ -176,11 +176,14 @@ UITableViewDelegate
     
     // Get Shelby Authorization from notificaiton dictioanry sent from APIClient
     NSArray *shelbyArray = [CoreDataUtility fetchShelbyAuthData];
-    self.shelbyToken = [shelbyArray valueForKey:CoreDataShelbyUserAuthToken];
-    self.shelbyCreatorID = [shelbyArray valueForKey:CoreDataShelbyUserID];
+    [self setShelbyToken:[shelbyArray valueForKey:CoreDataShelbyUserAuthToken]];
+    [self setShelbyCreatorID:[shelbyArray valueForKey:CoreDataShelbyUserID]];
+    
+    NSLog(@"token:\n%@", self.shelbyToken);
+    NSLog(@"id:\n%@", self.shelbyCreatorID);
     
     // Dismiss login window after token swap
-    self.shelbyAuthorized = YES;
+    [self setShelbyAuthorized:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
 }
 
@@ -831,6 +834,18 @@ UITableViewDelegate
 /// Shelby Authorization Flag /// 
 - (void)setShelbyAuthorized:(BOOL)shelbyAuthorized
 {
+    if ( shelbyAuthorized ) {
+        
+        
+        
+    } else {
+        
+        // If logging out, set Token and CreatorID to nil
+        self.shelbyToken = nil;
+        self.shelbyCreatorID = nil;
+        
+    }
+    
     [[NSUserDefaults standardUserDefaults] setBool:shelbyAuthorized forKey:SocialFacadeShelbyAuthorized];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
