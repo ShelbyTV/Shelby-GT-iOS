@@ -20,7 +20,7 @@
 #import "LoginViewController.h"
 
 #import "SettingsTableViewController.h"
-#import "ShelbyController.h"
+#import "ShelbyMenuController.h"
 
 // Core Data
 #import <CoreData/CoreData.h>
@@ -99,7 +99,7 @@
     UINavigationController *streamNavigationController = [[UINavigationController alloc] initWithRootViewController:streamTableViewController];
     [viewControllers setValue:streamNavigationController forKey:TextConstants_StreamSection];
 
-    ShelbyController *shelbyController = [[ShelbyController alloc] initWithViewControllers:viewControllers];
+    ShelbyMenuController *shelbyController = [[ShelbyMenuController alloc] initWithViewControllers:viewControllers];
     
     // Add reference to shelbyController
     browseRollsTableViewController.shelbyController = shelbyController;

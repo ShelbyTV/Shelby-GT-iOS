@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "ASPullToRefreshTableViewController.h"
 #import "StaticDeclarations.h"
-#import "ShelbyController.h"
+#import "ShelbyMenuController.h"
 
 @interface GuideTableViewController : ASPullToRefreshTableViewController <ShelbyControllerDelegate>
 
-@property (strong, nonatomic) ShelbyController *shelbyController;
+@property (strong, nonatomic) ShelbyMenuController *shelbyController;
 
 - (id)initWithType:(GuideType)type;
 

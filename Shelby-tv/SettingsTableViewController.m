@@ -8,7 +8,7 @@
 
 #import "SettingsTableViewController.h"
 #import "TableViewManagers.h"
-#import "ShelbyController.h"
+#import "ShelbyMenuController.h"
 #import "ShelbyMenuView.h"
 #import "AppDelegate.h"
 

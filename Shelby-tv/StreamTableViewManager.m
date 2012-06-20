@@ -79,28 +79,32 @@
         // Populate comments label
         [cell.commentLabel setText:[NSString stringWithFormat:@"%@", dashboardEntry.frame.conversation.messageCount]];
     
-        // Fetch messages specific to dashboardEntry
+        // Fetch messages specific to dashboardEntry (may return nil, but that's ok!)
         Messages *message = [CoreDataUtility fetchFirstMessageFromConversation:dashboardEntry.frame.conversation];
         
         // Populate createdAt label
         [cell.createdAtLabel setText:message.createdAt];
-            
-        // Present Facebook/Twitter/Tumblr icon for social network source of video
-        if ( [message.originNetwork isEqualToString:@"facebook"] ) {
+                
+        if ( message ) { // If message exists, present Facebook/Twitter/Tumblr icon for social network source of video
+
         
-            [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampFacebook"]];
-       
-        } else if ( [message.originNetwork isEqualToString:@"twitter"] ) {
-        
-            [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTwitter"]];
+            if ( [message.originNetwork isEqualToString:@"facebook"] ) {
             
-        } else if ( [message.originNetwork isEqualToString:@"tumblr"] ) {
+                [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampFacebook"]];
+           
+            } else if ( [message.originNetwork isEqualToString:@"twitter"] ) {
             
-            [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTumblr"]];
+                [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTwitter"]];
+                
+            } else if ( [message.originNetwork isEqualToString:@"tumblr"] ) {
+                
+                [cell.originNetworkImageView setImage:[UIImage imageNamed:@"videoCardTimestampTumblr"]];
+                
+            } else {
+                
+                // Do nothing for nil state
+            }
             
-        } else {
-            
-            // Do nothing for nil state
         }
         
         

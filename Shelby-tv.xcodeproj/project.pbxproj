@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E04DC2D1590E1620066BBA6 /* ShelbyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E04DC2C1590E1620066BBA6 /* ShelbyController.m */; };
+		8E04DC2D1590E1620066BBA6 /* ShelbyMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E04DC2C1590E1620066BBA6 /* ShelbyMenuController.m */; };
 		8E04DC31159117DD0066BBA6 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E04DC30159117DD0066BBA6 /* SettingsTableViewController.m */; };
 		8E068B6D1587FB430069FD01 /* ShelbyMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B6C1587FB430069FD01 /* ShelbyMenuView.m */; };
 		8E068B7D158823C70069FD01 /* ShelbyMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E068B7C158823C70069FD01 /* ShelbyMenuView.xib */; };
@@ -109,6 +109,7 @@
 		8E87DF00156C4A8A004E0629 /* videoCardTimestampTwitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E87DEE8156C4A8A004E0629 /* videoCardTimestampTwitter.png */; };
 		8E87DF01156C4A8A004E0629 /* videoCardTimestampTwitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E87DEE9156C4A8A004E0629 /* videoCardTimestampTwitter@2x.png */; };
 		8E90B802156E898700C840B5 /* NSDate+DateFromBSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E90B801156E898700C840B5 /* NSDate+DateFromBSONString.m */; };
+		8E946118159171E600031F09 /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E946117159171E600031F09 /* Roll.m */; };
 		8EB6D7DD157FD1F50060202D /* videoCardButtonCommentOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7CD157FD1F50060202D /* videoCardButtonCommentOff.png */; };
 		8EB6D7DE157FD1F50060202D /* videoCardButtonCommentOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7CE157FD1F50060202D /* videoCardButtonCommentOff@2x.png */; };
 		8EB6D7DF157FD1F50060202D /* videoCardButtonCommentOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7CF157FD1F50060202D /* videoCardButtonCommentOn.png */; };
@@ -179,7 +180,6 @@
 		8EEA703D155449D800B1B07F /* VideoCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA703C155449D800B1B07F /* VideoCardCell.xib */; };
 		8EEA704015544A2200B1B07F /* VideoCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA703F15544A2200B1B07F /* VideoCardCell.m */; };
 		8EF851AE1570317D002335A3 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851AD1570317D002335A3 /* Video.m */; };
-		8EF851B41570317D002335A3 /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851B31570317D002335A3 /* Roll.m */; };
 		8EF851B71570317D002335A3 /* DashboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851B61570317D002335A3 /* DashboardEntry.m */; };
 		8EF851BA1570317E002335A3 /* Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851B91570317E002335A3 /* Messages.m */; };
 		8EFD498C156435330003913D /* NSString+NullTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD498B156435330003913D /* NSString+NullTest.m */; };
@@ -187,8 +187,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8E04DC2B1590E1620066BBA6 /* ShelbyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelbyController.h; sourceTree = "<group>"; };
-		8E04DC2C1590E1620066BBA6 /* ShelbyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyController.m; sourceTree = "<group>"; };
+		8E04DC2B1590E1620066BBA6 /* ShelbyMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelbyMenuController.h; sourceTree = "<group>"; };
+		8E04DC2C1590E1620066BBA6 /* ShelbyMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyMenuController.m; sourceTree = "<group>"; };
 		8E04DC2F159117DD0066BBA6 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		8E04DC30159117DD0066BBA6 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		8E068B6B1587FB430069FD01 /* ShelbyMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelbyMenuView.h; sourceTree = "<group>"; };
@@ -357,6 +357,8 @@
 		8E87DEE9156C4A8A004E0629 /* videoCardTimestampTwitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardTimestampTwitter@2x.png"; sourceTree = "<group>"; };
 		8E90B800156E898700C840B5 /* NSDate+DateFromBSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateFromBSONString.h"; sourceTree = "<group>"; };
 		8E90B801156E898700C840B5 /* NSDate+DateFromBSONString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateFromBSONString.m"; sourceTree = "<group>"; };
+		8E946116159171E600031F09 /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
+		8E946117159171E600031F09 /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
 		8EA87B4F156167E00029C07E /* CoreDataConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataConstants.h; sourceTree = "<group>"; };
 		8EB6D7CD157FD1F50060202D /* videoCardButtonCommentOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardButtonCommentOff.png; sourceTree = "<group>"; };
 		8EB6D7CE157FD1F50060202D /* videoCardButtonCommentOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardButtonCommentOff@2x.png"; sourceTree = "<group>"; };
@@ -443,8 +445,6 @@
 		8EEA703F15544A2200B1B07F /* VideoCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCardCell.m; sourceTree = "<group>"; };
 		8EF851AC1570317D002335A3 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
 		8EF851AD1570317D002335A3 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
-		8EF851B21570317D002335A3 /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
-		8EF851B31570317D002335A3 /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
 		8EF851B51570317D002335A3 /* DashboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardEntry.h; sourceTree = "<group>"; };
 		8EF851B61570317D002335A3 /* DashboardEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardEntry.m; sourceTree = "<group>"; };
 		8EF851B81570317D002335A3 /* Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Messages.h; sourceTree = "<group>"; };
@@ -850,8 +850,8 @@
 				8E664D531541B0120071EC42 /* LoginViewController.m */,
 				8E04DC2F159117DD0066BBA6 /* SettingsTableViewController.h */,
 				8E04DC30159117DD0066BBA6 /* SettingsTableViewController.m */,
-				8E04DC2B1590E1620066BBA6 /* ShelbyController.h */,
-				8E04DC2C1590E1620066BBA6 /* ShelbyController.m */,
+				8E04DC2B1590E1620066BBA6 /* ShelbyMenuController.h */,
+				8E04DC2C1590E1620066BBA6 /* ShelbyMenuController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -943,6 +943,8 @@
 			isa = PBXGroup;
 			children = (
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
+				8E946116159171E600031F09 /* Roll.h */,
+				8E946117159171E600031F09 /* Roll.m */,
 				8EC54583158F96310048FEAA /* Conversation.h */,
 				8EC54584158F96310048FEAA /* Conversation.m */,
 				8EB6D81115800F550060202D /* Creator.h */,
@@ -953,8 +955,6 @@
 				8EB6D81515800FCF0060202D /* Frame.m */,
 				8EF851B81570317D002335A3 /* Messages.h */,
 				8EF851B91570317E002335A3 /* Messages.m */,
-				8EF851B21570317D002335A3 /* Roll.h */,
-				8EF851B31570317D002335A3 /* Roll.m */,
 				8EB6D81715801AED0060202D /* ShelbyUser.h */,
 				8EB6D81815801AED0060202D /* ShelbyUser.m */,
 				8ECFFE44157D73BF007CCA73 /* UpvoteUsers.h */,
@@ -1234,7 +1234,6 @@
 				8EFF3A9815658E2500131A97 /* AuthenticateTwitterViewController.m in Sources */,
 				8E90B802156E898700C840B5 /* NSDate+DateFromBSONString.m in Sources */,
 				8EF851AE1570317D002335A3 /* Video.m in Sources */,
-				8EF851B41570317D002335A3 /* Roll.m in Sources */,
 				8EF851B71570317D002335A3 /* DashboardEntry.m in Sources */,
 				8EF851BA1570317E002335A3 /* Messages.m in Sources */,
 				8EDB32B115792688007D7106 /* VideoCardController.m in Sources */,
@@ -1247,9 +1246,10 @@
 				8E068B89158843B40069FD01 /* PeopleRollsTableViewManager.m in Sources */,
 				8E068B8C1588444E0069FD01 /* MyRollsTableViewManager.m in Sources */,
 				8EC54585158F96310048FEAA /* Conversation.m in Sources */,
-				8E04DC2D1590E1620066BBA6 /* ShelbyController.m in Sources */,
+				8E04DC2D1590E1620066BBA6 /* ShelbyMenuController.m in Sources */,
 				8E04DC31159117DD0066BBA6 /* SettingsTableViewController.m in Sources */,
 				8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */,
+				8E946118159171E600031F09 /* Roll.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1338,7 +1338,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A6CC5FE3-9170-47F2-A539-3EDB4028F3C0";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A6CC5FE3-9170-47F2-A539-3EDB4028F3C0";
-				SDKROOT = iphoneos6.0;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1364,7 +1364,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A6CC5FE3-9170-47F2-A539-3EDB4028F3C0";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A6CC5FE3-9170-47F2-A539-3EDB4028F3C0";
-				SDKROOT = iphoneos6.0;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				WRAPPER_EXTENSION = app;
 			};

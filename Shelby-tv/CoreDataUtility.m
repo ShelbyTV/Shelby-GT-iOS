@@ -173,8 +173,8 @@ static CoreDataUtility *sharedInstance = nil;
     // Execute request that returns array of dashboardEntrys
     NSArray *messagesArray = [context executeFetchRequest:messagesRequest error:nil];
     
-    // Return messages at a specific index
-    return [messagesArray objectAtIndex:0];
+    return ( [messagesArray count] ) ? [messagesArray objectAtIndex:0] : nil;
+
 }
 
 + (BOOL)checkIfUserUpvotedInFrame:(Frame *)frame
@@ -305,7 +305,6 @@ static CoreDataUtility *sharedInstance = nil;
     for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
         
         // Conditions for saving entires into database
-        NSArray *messagesExistArray = [[[[resultsArray objectAtIndex:i] valueForKey:@"frame"] valueForKey:@"conversation"] valueForKey:@"messages"];
         NSString *sourceURLExists = [[[[resultsArray objectAtIndex:i] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"source_url"];
         id frameReturned = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];
         BOOL frameNull = [frameReturned isKindOfClass:([NSNull class])] ? YES : NO;
@@ -314,7 +313,7 @@ static CoreDataUtility *sharedInstance = nil;
         
             // Do Nothing
             
-        } else if ( [messagesExistArray count] && sourceURLExists && frameNull==NO ) {
+        } else if ( sourceURLExists ) { // && NO == frameNull
             
             // Store dashboardEntry attirubutes
             DashboardEntry *dashboardEntry = [self checkIfEntity:CoreDataEntityDashboardEntry 
