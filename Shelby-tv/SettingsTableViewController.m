@@ -150,7 +150,7 @@
     [[SocialFacade sharedInstance] shelbyLogout];
 }
 
-#pragma mark - shelbyMenuControllerDelegate Methods
+#pragma mark - ShelbyMenuControllerDelegate Methods
 - (IBAction)browseRollsButton:(id)sender
 {
     [self.shelbyMenuController browseRollsButton:nil];

@@ -142,19 +142,32 @@
 {
     if ( DEBUGMODE ) NSLog(@"Upvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
     
-    [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
-    [button removeTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
-    [button addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
+
     
     VideoCardCell *cell = (VideoCardCell*)[self.arrayOfCells objectAtIndex:button.tag];
-    NSInteger numberOfVotes = [cell.upvoteLabel.text intValue];
-    numberOfVotes++;
+    NSInteger upvotersCount = [cell.upvoteLabel.text intValue];
+    upvotersCount++;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [cell.upvoteLabel setText:[NSString stringWithFormat:@"%d", numberOfVotes]];
+        [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
+        [button removeTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.upvoteLabel setText:[NSString stringWithFormat:@"%d", upvotersCount]];
         [cell setNeedsDisplay];
     });
     
+    // Quickly modify Core Data values
+    DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForRow:button.tag];
+    Frame *frame = dashboardEntry.frame;
+    
+    NSMutableSet *upvoteUsers = [NSMutableSet setWithSet:frame.upvoteUsers];
+    [upvoteUsers addObject:frame.creatorID];
+    
+    [frame setUpvotersCount:[NSNumber numberWithInt:upvotersCount]];
+    
+    [CoreDataUtility saveContext:dashboardEntry.managedObjectContext];
+    
+    // Ping API with new values
     VideoCardController *controller = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
     [controller upvote];
     
@@ -164,19 +177,31 @@
 {
     if ( DEBUGMODE ) NSLog(@"Downvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
     
-    [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
-    [button removeTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
-    [button addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
     
     VideoCardCell *cell = (VideoCardCell*)[self.arrayOfCells objectAtIndex:button.tag];
-    NSInteger numberOfVotes = [cell.upvoteLabel.text intValue];
-    numberOfVotes--;
+    NSInteger upvotersCount = [cell.upvoteLabel.text intValue];
+    upvotersCount--;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [cell.upvoteLabel setText:[NSString stringWithFormat:@"%d", numberOfVotes]];
+            [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
+            [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
+            [button removeTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
+            [button addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.upvoteLabel setText:[NSString stringWithFormat:@"%d", upvotersCount]];
             [cell setNeedsDisplay];
         });
     
+    // Quickly modify Core Data values
+    DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForRow:button.tag];
+    Frame *frame = dashboardEntry.frame;
+    
+    NSMutableSet *upvoteUsers = [NSMutableSet setWithSet:frame.upvoteUsers];
+    [upvoteUsers removeObject:frame.creatorID];
+    
+    [frame setUpvotersCount:[NSNumber numberWithInt:upvotersCount]];
+    
+    [CoreDataUtility saveContext:dashboardEntry.managedObjectContext];
+    
+    // Ping API with new values
     VideoCardController *controller = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
     [controller downvote];
 }
