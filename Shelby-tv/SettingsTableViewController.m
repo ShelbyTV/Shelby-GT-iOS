@@ -25,7 +25,7 @@
 @end
 
 @implementation SettingsTableViewController
-@synthesize shelbyController = _shelbyController;
+@synthesize shelbyMenuController = _shelbyMenuController;
 @synthesize menuView = _menuView;
 
 #pragma mark - Deallocation Method
@@ -150,30 +150,30 @@
     [[SocialFacade sharedInstance] shelbyLogout];
 }
 
-#pragma mark - ShelbyControllerDelegate Methods
+#pragma mark - shelbyMenuControllerDelegate Methods
 - (IBAction)browseRollsButton:(id)sender
 {
-    [self.shelbyController browseRollsButton:nil];
+    [self.shelbyMenuController browseRollsButton:nil];
 }
 
 - (IBAction)myRollsButton:(id)sender
 {
-    [self.shelbyController myRollsButton:nil];
+    [self.shelbyMenuController myRollsButton:nil];
 }
 
 - (IBAction)peopleRollsButton:(id)sender
 {
-    [self.shelbyController peopleRollsButton:nil];
+    [self.shelbyMenuController peopleRollsButton:nil];
 }
 
 - (IBAction)settingsButton:(id)sender
 {
-    [self.shelbyController settingsButton:nil];
+    [self.shelbyMenuController settingsButton:nil];
 }
 
 - (IBAction)streamButton:(id)sender
 {
-    [self.shelbyController streamButton:nil];
+    [self.shelbyMenuController streamButton:nil];
 }
 
 #pragma mark - Interface Orientation Method

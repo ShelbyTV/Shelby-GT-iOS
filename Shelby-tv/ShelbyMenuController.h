@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "StaticDeclarations.h"
 
-@protocol ShelbyControllerDelegate <NSObject>
+@protocol ShelbyMenuControllerDelegate <NSObject>
 
 - (IBAction)browseRollsButton:(id)sender;
 - (IBAction)myRollsButton:(id)sender;
@@ -19,7 +19,7 @@
 
 @end
 
-@interface ShelbyMenuController : UIViewController <ShelbyControllerDelegate>
+@interface ShelbyMenuController : UIViewController <ShelbyMenuControllerDelegate>
 
 - (id)initWithViewControllers:(NSMutableDictionary*)dictionary;
 

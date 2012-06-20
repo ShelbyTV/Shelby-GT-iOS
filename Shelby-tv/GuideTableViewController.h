@@ -11,9 +11,9 @@
 #import "StaticDeclarations.h"
 #import "ShelbyMenuController.h"
 
-@interface GuideTableViewController : ASPullToRefreshTableViewController <ShelbyControllerDelegate>
+@interface GuideTableViewController : ASPullToRefreshTableViewController <ShelbyMenuControllerDelegate>
 
-@property (strong, nonatomic) ShelbyMenuController *shelbyController;
+@property (strong, nonatomic) ShelbyMenuController *shelbyMenuController;
 
 - (id)initWithType:(GuideType)type;
 

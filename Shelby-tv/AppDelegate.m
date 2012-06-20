@@ -98,16 +98,16 @@
     UINavigationController *streamNavigationController = [[UINavigationController alloc] initWithRootViewController:streamTableViewController];
     [viewControllers setValue:streamNavigationController forKey:TextConstants_StreamSection];
 
-    ShelbyMenuController *shelbyController = [[ShelbyMenuController alloc] initWithViewControllers:viewControllers];
+    ShelbyMenuController *shelbyMenuController = [[ShelbyMenuController alloc] initWithViewControllers:viewControllers];
     
-    // Add reference to shelbyController
-    browseRollsTableViewController.shelbyController = shelbyController;
-    myRollsTableViewController.shelbyController = shelbyController;
-    peopleRollsTableViewController.shelbyController = shelbyController;
-    settingsTableViewController.shelbyController = shelbyController;
-    streamTableViewController.shelbyController = shelbyController;
+    // Add reference to shelbyMenuController
+    browseRollsTableViewController.shelbyMenuController = shelbyMenuController;
+    myRollsTableViewController.shelbyMenuController = shelbyMenuController;
+    peopleRollsTableViewController.shelbyMenuController = shelbyMenuController;
+    settingsTableViewController.shelbyMenuController = shelbyMenuController;
+    streamTableViewController.shelbyMenuController = shelbyMenuController;
     
-    self.window.rootViewController = shelbyController;
+    self.window.rootViewController = shelbyMenuController;
     
 }
 
