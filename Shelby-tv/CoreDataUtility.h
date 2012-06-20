@@ -23,6 +23,13 @@
              inCoreData:(NSManagedObjectContext*)context 
                 ForType:(APIRequestType)requestType;
 
+
+/**
+ Fetch all Dashboard Entrys
+ */
+
++ (NSArray*)fetchShelbyAuthData;
+
 /**
  Fetch all Dashboard Entrys
  */
@@ -49,7 +56,7 @@ Check if user already voted for a specific frame
 /** 
  Commit unsaved changes for a given NSManagedObjextContext instance 
  */
-+ (void)saveContext:(NSManagedObjectContext*)context;
++ (void)saveContext:(NSManagedObjectContext *)context forRequestType:(APIRequestType)type;
 
 /** 
  Delete all stored information

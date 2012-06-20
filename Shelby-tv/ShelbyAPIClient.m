@@ -87,8 +87,9 @@
 {
     
     if ( connection == self.connection ) {
+    
         
-        if ( DEBUGMODE ) NSLog(@"CONNECTION ERROR!");
+        if ( DEBUGMODE ) NSLog(@"CONNECTION ERROR for APIRequestType #%d!", self.requestType);
         
     
         // Pop request-dependent error message
@@ -113,8 +114,8 @@
             
         case APIRequestType_PostToken:{
             
-            NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
-            [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:self.parsedDictionary];
+            NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
+            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context ForType:self.requestType];
 
         } break;
         

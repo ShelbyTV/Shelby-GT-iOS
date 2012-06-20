@@ -12,6 +12,7 @@
 #import "Frame.h"
 #import "Messages.h"
 #import "Roll.h"
+#import "ShelbyUser.h"
 #import "UpvoteUsers.h"
 #import "Video.h"
 
@@ -21,6 +22,7 @@
 #define CoreDataEntityFrame                     @"Frame"
 #define CoreDataEntityMessages                  @"Messages"
 #define CoreDataEntityRoll                      @"Roll"
+#define CoreDataEntityShelbyUser                @"ShelbyUser"
 #define CoreDataEntityUpvoteUsers               @"UpvoteUsers"
 #define CoreDataEntityCreator                   @"Creator"
 #define CoreDataEntityVideo                     @"Video"
@@ -70,6 +72,15 @@
 // Roll Attribute Constants
 #define CoreDataRollID                          @"rollID"
 #define CoreDataRollTitle                       @"title"
+
+// Shelbyuser Attribute Constants
+#define CoreDataShelbyUserID                    @"shelbyID"
+#define CoreDataShelbyUserAuthToken             @"authToken"
+#define CoreDataShelbyUserHeartRollID           @"heartRollID"
+#define CoreDataShelbyUserNickname              @"nickname"
+#define CoreDataShelbyUserPersonalRollID        @"personalRollID"
+#define CoreDataShelbyUserPublicRollID          @"publicRollID"
+#define CoreDataShelbyUserWatchLaterRollID      @"watchLaterRollID"
 
 // UpvoteUsers Attribute Constants
 #define CoreDataUpvoteUserID                    @"upvoterID"

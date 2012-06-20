@@ -11,6 +11,7 @@
 
 // Shelby
 #import "ShelbyAPIClient.h"
+#import "CoreDataUtility.h"
 #import "NSString+TypedefConversion.h"
 #import "StaticDeclarations.h"
 
@@ -36,7 +37,6 @@
 /// Shelby Macros ///
 #define         SocialFacadeShelbyAuthorized                @"SocialFacadeShelbyAuthorized"
 #define         SocialFacadeShelbyToken                     @"SocialFacadeShelbyToken"
-#define         SocialFacadeShelbyNickname                  @"SocialFacadeShelbyNickname"
 #define         SocialFacadeShelbyCreatorID                 @"SocialFacadeShelbyCreatorID"
 
 
@@ -175,12 +175,9 @@ UITableViewDelegate
     [[NSNotificationCenter defaultCenter] removeObserver:self name:notificationName object:nil];
     
     // Get Shelby Authorization from notificaiton dictioanry sent from APIClient
-    NSDictionary *parsedDictionary = [notification.userInfo objectForKey:APIRequest_Result];
-    self.shelbyCreatorID = [parsedDictionary valueForKey:@"id"];
-    self.shelbyNickname = [parsedDictionary valueForKey:@"nickname"];
-    self.shelbyToken = [parsedDictionary valueForKey:@"authentication_token"];
-    
-    if ( DEBUGMODE ) NSLog(@"Shelby Token Received for %@ (ID# %@): %@", self.shelbyNickname, self.shelbyCreatorID, self.shelbyToken);
+    NSArray *shelbyArray = [CoreDataUtility fetchShelbyAuthData];
+    self.shelbyToken = [shelbyArray valueForKey:CoreDataShelbyUserAuthToken];
+    self.shelbyCreatorID = [shelbyArray valueForKey:CoreDataShelbyUserID];
     
     // Dismiss login window after token swap
     self.shelbyAuthorized = YES;
@@ -855,18 +852,7 @@ UITableViewDelegate
     return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeShelbyToken];
 }
 
-/// Shelby Nickname ///
-- (void)setShelbyNickname:(NSString *)shelbyNickname
-{
-    [[NSUserDefaults standardUserDefaults] setObject:shelbyNickname forKey:SocialFacadeShelbyNickname];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (NSString*)shelbyNickname
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeShelbyNickname];
-}
-
+/// Shelby Creator ID ///
 - (void)setShelbyCreatorID:(NSString *)shelbyCreatorID
 {
     [[NSUserDefaults standardUserDefaults] setObject:shelbyCreatorID forKey:SocialFacadeShelbyCreatorID];

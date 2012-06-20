@@ -26,7 +26,6 @@ typedef enum _APIRequestType
     
     APIRequestType_None = 0,
     APIRequestType_PostToken,
-    APIRequestType_GetShelbyUser,
     APIRequestType_GetStream,
     APIRequestType_GetRolls,
     APIRequestType_PostUpvote,
