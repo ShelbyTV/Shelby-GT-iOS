@@ -29,13 +29,13 @@
     existsInContext:(NSManagedObjectContext*)context;
 
 /// Store dashboardEntry data in Core Data
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary withRequestType:(APIRequestType)type forShelbyUserInContext:(NSManagedObjectContext*)context;
++ (void)storeParsedData:(NSDictionary*)parsedDictionary forShelbyUserInContext:(NSManagedObjectContext*)context;
 
 /// Store dashboardEntry data in Core Data
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary withRequestType:(APIRequestType)type forDashboardEntryInContext:(NSManagedObjectContext*)context;
++ (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
 
 /// Store Upvote state change data in Core Data
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary withRequestType:(APIRequestType)type andUpdateUpvoteStateInContext:(NSManagedObjectContext*)context;
++ (void)storeParsedData:(NSDictionary*)parsedDictionary andUpdateUpvoteStateInContext:(NSManagedObjectContext*)context;
 
 /// Store dashbaordEntry.frame data in Core Data
 + (void)storeFrame:(Frame*)frame fromFrameArray:(NSArray*)frameArray;
@@ -87,30 +87,33 @@ static CoreDataUtility *sharedInstance = nil;
 }
 
 #pragma mark - Public Methods
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary inCoreData:(NSManagedObjectContext *)context ForType:(APIRequestType)requestType
++ (void)storeParsedData:(NSDictionary *)parsedDictionary inCoreData:(NSManagedObjectContext *)context forType:(APIRequestType)requestType
 {
     
     switch ( requestType ) {
             
         case APIRequestType_PostToken:
-            [self storeParsedData:parsedDictionary withRequestType:requestType forShelbyUserInContext:context];
+            [self storeParsedData:parsedDictionary forShelbyUserInContext:context];
             break;
             
         case APIRequestType_GetStream:
-            [self storeParsedData:parsedDictionary withRequestType:requestType forDashboardEntryInContext:context];
+            [self storeParsedData:parsedDictionary forDashboardEntryInContext:context];
             break;
             
         case APIRequestType_UpdateUpvoteState:
-            [self storeParsedData:parsedDictionary withRequestType:requestType andUpdateUpvoteStateInContext:context];
+            [self storeParsedData:parsedDictionary andUpdateUpvoteStateInContext:context];
             break;
             
         default:
             break;
     }
+    
+    NSString *notificationName = [NSString apiRequestTypeToString:requestType];
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:nil];
 
 }
 
-+ (NSArray*)fetchShelbyAuthData
++ (ShelbyUser*)fetchShelbyAuthData
 {
     
     // Create fetch request
@@ -119,11 +122,11 @@ static CoreDataUtility *sharedInstance = nil;
     
     // Fetch dashboardEntry data
     NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext];
-    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:CoreDataEntityShelbyUser inManagedObjectContext:context];
-    [shelbyTokenRequest setEntity:dashboardEntryDescription];
+    NSEntityDescription *shelbyDescription = [NSEntityDescription entityForName:CoreDataEntityShelbyUser inManagedObjectContext:context];
+    [shelbyTokenRequest setEntity:shelbyDescription];
     
     // Execute request that returns array of dashboardEntrys
-    return [context executeFetchRequest:shelbyTokenRequest error:nil];;
+    return [[context executeFetchRequest:shelbyTokenRequest error:nil] objectAtIndex:0];
     
 }
 
@@ -248,7 +251,7 @@ static CoreDataUtility *sharedInstance = nil;
 
 }
 
-+ (void)saveContext:(NSManagedObjectContext *)context forRequestType:(APIRequestType)type
++ (void)saveContext:(NSManagedObjectContext *)context
 {
 
     NSError *error = nil;    
@@ -271,11 +274,6 @@ static CoreDataUtility *sharedInstance = nil;
             if ( DEBUGMODE ) NSLog(@"Core Data Updated!");
         }
         
-    }
-    
-    if ( type ) {
-        NSString *notificationName = [NSString apiRequestTypeToString:type];
-        [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:nil];
     }
     
     // If this is the first time data has been loaded, post notification to dismiss LoginViewController
@@ -324,14 +322,15 @@ static CoreDataUtility *sharedInstance = nil;
 }
 
 #pragma mark - Private Methods
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary withRequestType:(APIRequestType)type forShelbyUserInContext:(NSManagedObjectContext *)context
++ (void)storeParsedData:(NSDictionary *)parsedDictionary forShelbyUserInContext:(NSManagedObjectContext *)context
 {
     
     ShelbyUser *shelbyUser = [self checkIfEntity:CoreDataEntityShelbyUser
                                              withIDValue:[parsedDictionary valueForKey:@"id"]
                                                 forIDKey:CoreDataShelbyUserID
                                          existsInContext:context];
-    NSDictionary *resultsDictionary = [NSDictionary dictionaryWithDictionary:[parsedDictionary valueForKey:APIRequest_Result]];
+    
+    NSDictionary *resultsDictionary = [parsedDictionary valueForKey:APIRequest_Result];
     
     NSString *userID= [NSString testForNull:[resultsDictionary valueForKey:@"id"]];
     [shelbyUser setValue:userID forKey:CoreDataShelbyUserID];
@@ -351,10 +350,10 @@ static CoreDataUtility *sharedInstance = nil;
     NSString *watchLaterRollID = [NSString testForNull:[resultsDictionary valueForKey:@"watch_later_roll_id"]];
     [shelbyUser setValue:watchLaterRollID forKey:CoreDataShelbyUserWatchLaterRollID];
     
-    [self saveContext:context forRequestType:type];
+    [self saveContext:context];
 }
 
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary withRequestType:(APIRequestType)type forDashboardEntryInContext:(NSManagedObjectContext *)context
++ (void)storeParsedData:(NSDictionary *)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext *)context
 {
  
     NSArray *resultsArray = [parsedDictionary objectForKey:APIRequest_Result];
@@ -403,10 +402,10 @@ static CoreDataUtility *sharedInstance = nil;
         
     }
     
-    [self saveContext:context forRequestType:type];
+    [self saveContext:context];
 }
 
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary withRequestType:(APIRequestType)type andUpdateUpvoteStateInContext:(NSManagedObjectContext *)context
++ (void)storeParsedData:(NSDictionary *)parsedDictionary andUpdateUpvoteStateInContext:(NSManagedObjectContext *)context
 {
     
     NSArray *resultsArray = [parsedDictionary objectForKey:APIRequest_Result];
@@ -445,7 +444,7 @@ static CoreDataUtility *sharedInstance = nil;
         
     }
     
-    [self saveContext:context forRequestType:type];
+    [self saveContext:context];
 }
 
 + (void)storeFrame:(Frame *)frame fromFrameArray:(NSArray *)frameArray

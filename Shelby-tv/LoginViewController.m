@@ -105,10 +105,10 @@
 - (void)animateOnLoad
 {
     [UIView animateWithDuration:1.0 
-                          delay:0.0 
+                          delay:0.0
                         options:UIViewAnimationCurveEaseIn 
                      animations:^{
-                     
+                      
                          self.logoImageView.frame = CGRectMake(51.0f, 120.0f, 217.0f, 55.0f);
                      
                      } completion:^(BOOL finished) {
@@ -356,12 +356,15 @@
                                                        object:nil];
             
             if ( self.activityIndicator.superview ) [self.activityIndicator removeFromSuperview];
-                        
+            
+            
             // Peeform Initial API Request
             NSString *requestString = [NSString stringWithFormat:APIRequest_GetStream, [SocialFacade sharedInstance].shelbyToken];
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
+            
             ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
             [client performRequest:request ofType:APIRequestType_GetStream];
+            
             [self logoutAnimationStageOne:self.twitterButton];
             
             

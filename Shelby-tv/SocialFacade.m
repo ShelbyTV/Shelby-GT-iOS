@@ -174,14 +174,12 @@ UITableViewDelegate
     NSString *notificationName = [NSString apiRequestTypeToString:APIRequestType_PostToken];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:notificationName object:nil];
     
-    // Get Shelby Authorization from notificaiton dictioanry sent from APIClient
-    NSArray *shelbyArray = [CoreDataUtility fetchShelbyAuthData];
-    [self setShelbyToken:[shelbyArray valueForKey:CoreDataShelbyUserAuthToken]];
-    [self setShelbyCreatorID:[shelbyArray valueForKey:CoreDataShelbyUserID]];
+    // Get Shelby Authorization from notificaiton dictioanry qsent from APIClient
+    ShelbyUser *shelbyUser = [CoreDataUtility fetchShelbyAuthData];
     
-    NSLog(@"token:\n%@", self.shelbyToken);
-    NSLog(@"id:\n%@", self.shelbyCreatorID);
-    
+    [self setShelbyToken:shelbyUser.authToken];
+    [self setShelbyCreatorID:shelbyUser.shelbyID];
+
     // Dismiss login window after token swap
     [self setShelbyAuthorized:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];

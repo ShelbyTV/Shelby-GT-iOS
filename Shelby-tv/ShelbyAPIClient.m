@@ -115,14 +115,14 @@
         case APIRequestType_PostToken:{
             
             NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
-            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context ForType:self.requestType];
+            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
 
         } break;
         
         case APIRequestType_GetStream:{
             
             NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
-            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context ForType:self.requestType];
+            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
             
         } break;
             
@@ -145,7 +145,7 @@
         case APIRequestType_UpdateUpvoteState:{
             
             NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
-            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context ForType:self.requestType];
+            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
             
         } break;
             
