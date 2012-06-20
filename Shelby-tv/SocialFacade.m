@@ -236,6 +236,8 @@ UITableViewDelegate
         self.facebook.accessToken = [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"];
         self.facebook.expirationDate = [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"];
 
+        // Perform graph request with updated token and send results to Shelby
+        [self.facebook requestWithGraphPath:@"me" andDelegate:self];
         
         if (DEBUGMODE)  NSLog(@"\nPersisted Token: %@\nExpiration Date: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"], [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]);
         
@@ -324,7 +326,8 @@ UITableViewDelegate
     
     // Perform Shelby Token Swap
     dispatch_async(dispatch_get_main_queue(), ^{
-        
+    
+        if ( DEBUGMODE )NSLog(@"Perform Facebook Token Swap with Shelby");
         NSString *shelbyRequestString = [NSString stringWithFormat:APIRequest_PostTokenFacebook, self.facebookID, self.facebook.accessToken];
         NSMutableURLRequest *shelbyRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:shelbyRequestString]]; 
         [shelbyRequest setHTTPMethod:@"POST"];
@@ -685,6 +688,7 @@ UITableViewDelegate
     // Perform Shelby Token Swap
     dispatch_async(dispatch_get_main_queue(), ^{
     
+        if ( DEBUGMODE )NSLog(@"Perform Twitter Token Swap with Shelby");
         NSString *shelbyRequestString = [NSString stringWithFormat:APIRequest_PostTokenTwitter, self.twitterID, self.twitterReverseAuthToken, self.twitterReverseAuthSecret];
         NSMutableURLRequest *shelbyRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:shelbyRequestString]]; 
         [shelbyRequest setHTTPMethod:@"POST"];
@@ -788,16 +792,16 @@ UITableViewDelegate
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ( indexPath.row < [self.storedTwitterAccounts count]-2 ) {             // User selected existing account
+    if ( indexPath.row < [self.storedTwitterAccounts count]-2 ) {               // User selected existing account
         
         self.twitterAccount = [self.storedTwitterAccounts objectAtIndex:indexPath.row];;
         [self getReverseAuthRequestToken];
         
-    } else if ( indexPath.row == [self.storedTwitterAccounts count]-2 ) {     // User selected 'New Account'
+    } else if ( indexPath.row == [self.storedTwitterAccounts count]-2 ) {       // User selected 'New Account'
         
         [self getRequestToken];
         
-    } else {                                                    // User selected 'Cancel'
+    } else {                                                                    // User selected 'Cancel'
         
     }
     
