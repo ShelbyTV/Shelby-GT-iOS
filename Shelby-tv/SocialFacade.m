@@ -440,9 +440,11 @@ UITableViewDelegate
 - (void)userHasMultipleStoredTwitterAccounts
 {
     
-    self.twitterAccountsTableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
-    self.twitterAccountsTableViewController.tableView.dataSource = self;
-    self.twitterAccountsTableViewController.tableView.delegate = self;
+    if ( ![self twitterAccountsTableViewController] ) {
+        self.twitterAccountsTableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+        self.twitterAccountsTableViewController.tableView.dataSource = self;
+        self.twitterAccountsTableViewController.tableView.delegate = self;
+    }
     
     [self.loginViewController presentModalViewController:self.twitterAccountsTableViewController animated:YES];
     
