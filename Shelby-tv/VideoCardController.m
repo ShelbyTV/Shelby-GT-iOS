@@ -37,7 +37,7 @@
 #pragma mark - Public Methods
 - (void)upvote
 {
-    NSString *upvoteRequestString = [NSString stringWithFormat:APIRequest_PostDownvote, self.frameID, [SocialFacade sharedInstance].shelbyToken];
+    NSString *upvoteRequestString = [NSString stringWithFormat:APIRequest_PostUpvote, self.frameID, [SocialFacade sharedInstance].shelbyToken];
     NSMutableURLRequest *upvoteRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:upvoteRequestString]];
     [upvoteRequest setHTTPMethod:@"POST"];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];

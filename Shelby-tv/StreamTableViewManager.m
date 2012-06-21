@@ -142,7 +142,7 @@
     if ( DEBUGMODE ) NSLog(@"Upvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
 
     VideoCardCell *cell = (VideoCardCell*)[self.arrayOfCells objectAtIndex:button.tag];
-    NSInteger upvotersCount = [cell.upvoteLabel.text intValue];
+    NSUInteger upvotersCount = [cell.upvoteLabel.text intValue];
     upvotersCount++;
     dispatch_async(dispatch_get_main_queue(), ^{
         [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
@@ -150,7 +150,6 @@
         [button removeTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
         [button addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
         [cell.upvoteLabel setText:[NSString stringWithFormat:@"%d", upvotersCount]];
-        [cell setNeedsDisplay];
     });
     
     // Quickly modify Core Data values
@@ -160,13 +159,15 @@
     
     UpvoteUsers *upvoteUsers = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:dashboardEntry.managedObjectContext];
     [upvoteUsers setValue:shelbyUser.shelbyID forKey:CoreDataUpvoteUserID];
-    [upvoteUsers setValue:shelbyUser.shelbyID forKey:CoreDataUpvoteUsersNickname];
+    [upvoteUsers setValue:shelbyUser.nickname forKey:CoreDataUpvoteUsersNickname];
     [upvoteUsers setValue:nil forKey:CoreDataUpvoteUsersImage];
     [upvoteUsers setValue:frame.rollID forKey:CoreDataUpvoteUsersRollID];
     [frame addUpvoteUsersObject:upvoteUsers];
-        [frame setUpvotersCount:[NSNumber numberWithInt:upvotersCount]];
+    [frame setValue:[NSNumber numberWithInt:upvotersCount] forKey:CoreDataFrameUpvotersCount];
     
-    [CoreDataUtility saveContext:dashboardEntry.managedObjectContext];
+    [CoreDataUtility saveContext:frame.managedObjectContext];
+    
+    self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
     
     // Ping API with new values
     VideoCardController *controller = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
@@ -178,7 +179,6 @@
 {
     if ( DEBUGMODE ) NSLog(@"Downvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
     
-    
     VideoCardCell *cell = (VideoCardCell*)[self.arrayOfCells objectAtIndex:button.tag];
     NSInteger upvotersCount = [cell.upvoteLabel.text intValue];
     upvotersCount--;
@@ -188,7 +188,6 @@
             [button removeTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
             [button addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
             [cell.upvoteLabel setText:[NSString stringWithFormat:@"%d", upvotersCount]];
-            [cell setNeedsDisplay];
         });
     
     // Quickly modify Core Data values
@@ -196,11 +195,16 @@
     Frame *frame = dashboardEntry.frame;
     
     NSMutableSet *upvoteUsers = [NSMutableSet setWithSet:frame.upvoteUsers];
-    [upvoteUsers removeObject:frame.creatorID];
     
-    [frame setUpvotersCount:[NSNumber numberWithInt:upvotersCount]];
+    for (NSString *upvoterID in [upvoteUsers allObjects]) {
+        
+    }
     
-    [CoreDataUtility saveContext:dashboardEntry.managedObjectContext];
+    [frame setValue:[NSNumber numberWithInt:upvotersCount] forKey:CoreDataFrameUpvotersCount];
+    
+    [CoreDataUtility saveContext:frame.managedObjectContext];
+    
+    self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
     
     // Ping API with new values
     VideoCardController *controller = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
@@ -290,11 +294,11 @@
     static NSString *CellIdentifier = @"Cell";
     VideoCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if ( (nil == cell) || (0 == indexPath.row) ) { // The 0 == indexPath.row is to fix an issue when reloading stream via the ShelbyMenuView
+//    if ( nil == cell ) { // The 0 == indexPath.row is to fix an issue when reloading stream via the ShelbyMenuView
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
         cell = (VideoCardCell*)[nib objectAtIndex:0];
-    }
+//    }
     
     // Pseudo-hide cell until it's populated with information
     [cell setAlpha:0.0f];

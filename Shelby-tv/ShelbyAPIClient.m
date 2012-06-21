@@ -87,14 +87,12 @@
 {
     
     if ( connection == self.connection ) {
-    
         
         if ( DEBUGMODE ) NSLog(@"CONNECTION ERROR for APIRequestType #%d!", self.requestType);
         
-    
         // Pop request-dependent error message
         
-        // Post notification to signal finished request.
+        // Post notification to signal finished request (e.g., release pull to refresh)
         NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
         [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:self.parsedDictionary];
         
@@ -129,6 +127,7 @@
         case APIRequestType_PostUpvote:{
             
             if ( DEBUGMODE ) NSLog(@"Upvoted posted successfully");
+            
             [self updateUpvoteState:self.parsedDictionary];
             
         } break;
