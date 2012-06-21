@@ -8,18 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "StaticDeclarations.h"
+#import "ShelbyMenuView.h"
 
 @protocol ShelbyMenuControllerDelegate <NSObject>
 
-- (IBAction)browseRollsButton:(id)sender;
-- (IBAction)myRollsButton:(id)sender;
-- (IBAction)peopleRollsButton:(id)sender;
-- (IBAction)settingsButton:(id)sender;
-- (IBAction)streamButton:(id)sender;
+- (void)browseRollsButton;
+- (void)myRollsButton;
+- (void)peopleRollsButton;
+- (void)settingsButton;
+- (void)streamButton;
 
 @end
 
 @interface ShelbyMenuController : UIViewController <ShelbyMenuControllerDelegate>
+
+@property (strong, nonatomic) ShelbyMenuView *menuView;
 
 - (id)initWithViewControllers:(NSMutableDictionary*)dictionary;
 

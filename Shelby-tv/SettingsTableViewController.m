@@ -72,12 +72,8 @@
 {
     
     // Add menuView over navigationBar
-    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ShelbyMenuView" owner:self options:nil];
-    self.menuView = (ShelbyMenuView*)[nib objectAtIndex:0];
+    self.menuView = self.shelbyMenuController.menuView;
     [self.navigationController.navigationBar addSubview:self.menuView];
-    
-    // Set section-specific UI properties
-    [self.menuView.settingsButton setHighlighted:YES];
     
 }
 
@@ -151,29 +147,29 @@
 }
 
 #pragma mark - ShelbyMenuControllerDelegate Methods
-- (IBAction)browseRollsButton:(id)sender
+- (void)browseRollsButton
 {
-    [self.shelbyMenuController browseRollsButton:nil];
+    [self.shelbyMenuController browseRollsButton];
 }
 
-- (IBAction)myRollsButton:(id)sender
+- (void)myRollsButton
 {
-    [self.shelbyMenuController myRollsButton:nil];
+    [self.shelbyMenuController myRollsButton];
 }
 
-- (IBAction)peopleRollsButton:(id)sender
+- (void)peopleRollsButton
 {
-    [self.shelbyMenuController peopleRollsButton:nil];
+    [self.shelbyMenuController peopleRollsButton];
 }
 
-- (IBAction)settingsButton:(id)sender
+- (void)settingsButton
 {
-    [self.shelbyMenuController settingsButton:nil];
+    [self.shelbyMenuController settingsButton];
 }
 
-- (IBAction)streamButton:(id)sender
+- (void)streamButton
 {
-    [self.shelbyMenuController streamButton:nil];
+    [self.shelbyMenuController streamButton];
 }
 
 #pragma mark - Interface Orientation Method

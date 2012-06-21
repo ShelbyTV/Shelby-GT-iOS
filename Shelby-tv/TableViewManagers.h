@@ -9,4 +9,5 @@
 #import "BrowseRollsTableViewManager.h"
 #import "MyRollsTableViewManager.h"
 #import "PeopleRollsTableViewManager.h"
+#import "RollVideosTableViewManager.h"
 #import "StreamTableViewManager.h"

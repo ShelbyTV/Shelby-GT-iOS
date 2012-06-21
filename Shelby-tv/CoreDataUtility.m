@@ -277,7 +277,7 @@ static CoreDataUtility *sharedInstance = nil;
     }
     
     // If this is the first time data has been loaded, post notification to dismiss LoginViewController
-    if ( [SocialFacade sharedInstance].firstTimeLogin ) [[NSNotificationCenter defaultCenter] postNotificationName:TextConstants_DidFinishLoadingDataOnLogin object:nil];
+    if ( [SocialFacade sharedInstance].firstTimeLogin ) [[NSNotificationCenter defaultCenter] postNotificationName:TextConstants_CoreData_DidFinishLoadingDataOnLogin object:nil];
 }
 
 

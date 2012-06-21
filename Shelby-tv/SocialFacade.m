@@ -431,7 +431,7 @@ UITableViewDelegate
                                                              delegate:self 
                                                     cancelButtonTitle:nil
                                                destructiveButtonTitle:@"Yes" 
-                                                    otherButtonTitles:@"No", TextConstants_TwitterNewAccount, nil];
+                                                    otherButtonTitles:@"No", TextConstants_Social_NewTwitterAccount, nil];
     
     [actionSheet showInView:self.loginViewController.view];
     
@@ -744,7 +744,7 @@ UITableViewDelegate
     NSArray *accounts = [self.twitterAccountStore accountsWithAccountType:twitterType];
     
     self.storedTwitterAccounts = [NSMutableArray arrayWithArray:accounts];
-    [self.storedTwitterAccounts addObject:TextConstants_TwitterNewAccount];
+    [self.storedTwitterAccounts addObject:TextConstants_Social_NewTwitterAccount];
     [self.storedTwitterAccounts addObject:@"Cancel"];
     
     
@@ -763,7 +763,7 @@ UITableViewDelegate
     ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     NSArray *accounts = [self.twitterAccountStore accountsWithAccountType:twitterType];
     self.storedTwitterAccounts = [NSMutableArray arrayWithArray:accounts];
-    [self.storedTwitterAccounts addObject:TextConstants_TwitterNewAccount];
+    [self.storedTwitterAccounts addObject:TextConstants_Social_NewTwitterAccount];
     [self.storedTwitterAccounts addObject:@"Cancel"];
     
     return [self.storedTwitterAccounts count];

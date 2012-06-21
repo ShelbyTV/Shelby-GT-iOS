@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSDictionary *viewControllers;
 @property (assign, nonatomic) NSUInteger currentType;
 
+- (void)createMenuView;
 - (void)presentSection:(GuideType)type;
 - (void)removeCurrentlyPresentedSection;
 - (void)adjustFrame:(UIView*)view;
@@ -20,6 +21,7 @@
 @end
 
 @implementation ShelbyMenuController
+@synthesize menuView = _menuView;
 @synthesize viewControllers = _viewControllers;
 @synthesize currentType = _currentType;
 
@@ -33,9 +35,12 @@
         
         // Reference sections (sent from App Delegate)
         self.viewControllers = [NSMutableDictionary dictionaryWithDictionary:dictionary];
-  
+        
         // Set currentType to nil
         self.currentType = GuideType_None;
+        
+        // Create ShelbyMenuView and connect actions to menu buttons
+        [self createMenuView];
         
         // Section that is visible on application launch
         [self presentSection:GuideType_Stream];
@@ -57,9 +62,10 @@
             
         case GuideType_BrowseRolls:{
             
-            UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_BrowseRollsSection];
+            UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_Section_BrowseRolls];
             [self adjustFrame:navigationController.view];
             [self.view addSubview:navigationController.view];
+            [self.menuView.browseRollsButton setHighlighted:YES];
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -67,9 +73,10 @@
         
         case GuideType_MyRolls:{
             
-            UINavigationController *navigationController= (UINavigationController*)[self.viewControllers objectForKey:TextConstants_MyRollsSection];
+            UINavigationController *navigationController= (UINavigationController*)[self.viewControllers objectForKey:TextConstants_Section_MyRolls];
             [self adjustFrame:navigationController.view];
             [self.view addSubview:navigationController.view];
+            [self.menuView.myRollsButton setHighlighted:YES];
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -77,9 +84,10 @@
         
         case GuideType_PeopleRolls:{
             
-            UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_PeopleRollsSection];
+            UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_Section_PeopleRolls];
             [self adjustFrame:navigationController.view];
             [self.view addSubview:navigationController.view];
+            [self.menuView.peopleRollsButton setHighlighted:YES];
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -87,9 +95,10 @@
             
         case GuideType_Settings:{
             
-            UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_SettingsSection];
+            UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_Section_Settings];
             [self adjustFrame:navigationController.view];
             [self.view addSubview:navigationController.view];
+            [self.menuView.settingsButton setHighlighted:YES];
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -97,9 +106,10 @@
             
         case GuideType_Stream:{
             
-            UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_StreamSection];
+            UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_Section_Stream];
             [self adjustFrame:navigationController.view];
             [self.view addSubview:navigationController.view];
+            [self.menuView.streamButton setHighlighted:YES];
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -110,31 +120,53 @@
     }
 }
 
-- (IBAction)browseRollsButton:(id)sender
+- (void)browseRollsButton
 {
     [self presentSection:GuideType_BrowseRolls];
 }
-- (IBAction)myRollsButton:(id)sender
+- (void)myRollsButton
 {
     [self presentSection:GuideType_MyRolls];
 }
 
-- (IBAction)peopleRollsButton:(id)sender
+- (void)peopleRollsButton
 {
     [self presentSection:GuideType_PeopleRolls];
 }
 
-- (IBAction)settingsButton:(id)sender
+- (void)settingsButton
 {
     [self presentSection:GuideType_Settings];
 }
 
-- (IBAction)streamButton:(id)sender
+- (void)streamButton
 {
     [self presentSection:GuideType_Stream];
 }
 
 #pragma mark - Private Methods
+- (void)createMenuView
+{
+    // Grab reference to menuView nib
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ShelbyMenuView" owner:self options:nil];
+    self.menuView = (ShelbyMenuView*)[nib objectAtIndex:0];
+    
+    // Add Target-Action to Buttons
+    [self.menuView.browseRollsButton addTarget:self action:@selector(browseRollsButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuView.myRollsButton addTarget:self action:@selector(myRollsButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuView.peopleRollsButton addTarget:self action:@selector(peopleRollsButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuView.settingsButton addTarget:self action:@selector(settingsButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuView.streamButton addTarget:self action:@selector(streamButton) forControlEvents:UIControlEventTouchUpInside];
+
+    // Add Tags to Buttons
+    self.menuView.browseRollsButton.tag = GuideType_BrowseRolls;
+    self.menuView.myRollsButton.tag = GuideType_MyRolls;
+    self.menuView.peopleRollsButton.tag = GuideType_PeopleRolls;
+    self.menuView.settingsButton.tag = GuideType_Settings;
+    self.menuView.streamButton.tag = GuideType_Stream;
+    
+}
+
 - (void)removeCurrentlyPresentedSection
 {
 
@@ -143,6 +175,13 @@
         for (UIView *currentView in [self.view subviews]) {
             
             if ( self.currentType == currentView.tag ) [currentView removeFromSuperview];
+            
+            for (UIButton *button in [self.menuView subviews]) {
+                
+                if ( button.tag == self.currentType ) [button setHighlighted:NO];
+                
+            }
+            
             self.currentType = GuideType_None;
             
         }
