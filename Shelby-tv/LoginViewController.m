@@ -13,8 +13,12 @@
 #import "SocialFacade.h"
 #import "ShelbyAPIClient.h"
 
+// Controllers
+#import "ShelbyMenuController.h"
+
 // Constants
 #import "StaticDeclarations.h"
+
 
 @interface LoginViewController () <SocialFacadeDelegate>
 
@@ -33,6 +37,7 @@
 @end
 
 @implementation LoginViewController
+@synthesize shelbyMenuController = _shelbyMenuController;
 @synthesize logoImageView = _logoImageView;
 @synthesize sloganLabel = _sloganLabel;
 @synthesize blackBarImageView = _blackBarImageView;
@@ -324,8 +329,12 @@
         
     } completion:^(BOOL finished) {
         
-        if (finished)  [self dismissViewControllerAnimated:NO completion:nil];
-   
+        if (finished)  {
+        
+            [self.shelbyMenuController presentSection:GuideType_Stream];
+            [self dismissViewControllerAnimated:NO completion:nil];
+        
+        }
     }];
     
 }

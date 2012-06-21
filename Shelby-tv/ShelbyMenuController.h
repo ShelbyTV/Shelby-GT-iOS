@@ -25,5 +25,6 @@
 @property (strong, nonatomic) ShelbyMenuView *menuView;
 
 - (id)initWithViewControllers:(NSMutableDictionary*)dictionary;
+- (void)presentSection:(GuideType)type;
 
 @end

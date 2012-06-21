@@ -107,7 +107,6 @@
             
         }
         
-        
         // Present Heart/Unheart button (depends if user already liked video)
         BOOL upvoted = [CoreDataUtility checkIfUserUpvotedInFrame:dashboardEntry.frame];
 
@@ -141,9 +140,7 @@
 - (void)upvote:(UIButton *)button
 {
     if ( DEBUGMODE ) NSLog(@"Upvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
-    
 
-    
     VideoCardCell *cell = (VideoCardCell*)[self.arrayOfCells objectAtIndex:button.tag];
     NSInteger upvotersCount = [cell.upvoteLabel.text intValue];
     upvotersCount++;
@@ -157,13 +154,17 @@
     });
     
     // Quickly modify Core Data values
+    ShelbyUser *shelbyUser = [CoreDataUtility fetchShelbyAuthData];
     DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForRow:button.tag];
     Frame *frame = dashboardEntry.frame;
     
-    NSMutableSet *upvoteUsers = [NSMutableSet setWithSet:frame.upvoteUsers];
-    [upvoteUsers addObject:frame.creatorID];
-    
-    [frame setUpvotersCount:[NSNumber numberWithInt:upvotersCount]];
+    UpvoteUsers *upvoteUsers = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:dashboardEntry.managedObjectContext];
+    [upvoteUsers setValue:shelbyUser.shelbyID forKey:CoreDataUpvoteUserID];
+    [upvoteUsers setValue:shelbyUser.shelbyID forKey:CoreDataUpvoteUsersNickname];
+    [upvoteUsers setValue:nil forKey:CoreDataUpvoteUsersImage];
+    [upvoteUsers setValue:frame.rollID forKey:CoreDataUpvoteUsersRollID];
+    [frame addUpvoteUsersObject:upvoteUsers];
+        [frame setUpvotersCount:[NSNumber numberWithInt:upvotersCount]];
     
     [CoreDataUtility saveContext:dashboardEntry.managedObjectContext];
     

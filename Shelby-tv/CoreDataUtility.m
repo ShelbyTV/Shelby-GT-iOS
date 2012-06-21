@@ -205,7 +205,7 @@ static CoreDataUtility *sharedInstance = nil;
 + (BOOL)checkIfUserUpvotedInFrame:(Frame *)frame
 {
     
-    BOOL exists = NO;
+    BOOL upvoted = NO;
     
     if ( frame.upvotersCount ) {
     
@@ -230,11 +230,11 @@ static CoreDataUtility *sharedInstance = nil;
                 
                 if ( [upvoteUsers.upvoterID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) {
                     
-                    exists = YES;
+                    upvoted = YES;
                     
                 } else {
                     
-                    exists = NO;
+                    upvoted = NO;
                 }
 
                 
@@ -244,10 +244,10 @@ static CoreDataUtility *sharedInstance = nil;
     
     } else {
         
-        exists = NO;
+        upvoted = NO;
     }
         
-    return exists;
+    return upvoted;
 
 }
 
@@ -583,6 +583,22 @@ static CoreDataUtility *sharedInstance = nil;
 
 }
 
++ (void)storeCreator:(Creator *)user fromFrameArray:(NSArray *)frameArray
+{
+    
+    NSArray *userArray = [frameArray valueForKey:@"creator"];
+    
+    NSString *userID = [NSString testForNull:[userArray valueForKey:@"id"]];
+    [user setValue:userID forKey:CoreDataUserID];
+    
+    NSString *nickname = [NSString testForNull:[userArray valueForKey:@"nickname"]];
+    [user setValue:nickname forKey:CoreDataUserNickname];
+    
+    NSString *userImage = [NSString testForNull:[userArray valueForKey:@"user_image"]];
+    [user setValue:userImage forKey:CoreDataUserImage];
+    
+}
+
 + (void)storeRoll:(Roll *)roll fromFrameArray:(NSArray *)frameArray
 {
     NSArray *rollArray = [frameArray valueForKey:@"roll"];
@@ -622,22 +638,6 @@ static CoreDataUtility *sharedInstance = nil;
         
     
     }
-}
-
-+ (void)storeCreator:(Creator *)user fromFrameArray:(NSArray *)frameArray
-{
-    
-    NSArray *userArray = [frameArray valueForKey:@"creator"];
-    
-    NSString *userID = [NSString testForNull:[userArray valueForKey:@"id"]];
-    [user setValue:userID forKey:CoreDataUserID];
-    
-    NSString *nickname = [NSString testForNull:[userArray valueForKey:@"nickname"]];
-    [user setValue:nickname forKey:CoreDataUserNickname];
-    
-    NSString *userImage = [NSString testForNull:[userArray valueForKey:@"user_image"]];
-    [user setValue:userImage forKey:CoreDataUserImage];
-
 }
 
 + (void)storeVideo:(Video *)video fromFrameArray:(NSArray *)frameArray

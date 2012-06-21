@@ -14,7 +14,6 @@
 @property (assign, nonatomic) NSUInteger currentType;
 
 - (void)createMenuView;
-- (void)presentSection:(GuideType)type;
 - (void)removeCurrentlyPresentedSection;
 - (void)adjustFrame:(UIView*)view;
 
