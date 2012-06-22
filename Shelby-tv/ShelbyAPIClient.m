@@ -137,7 +137,7 @@
             
             if ( DEBUGMODE ) NSLog(@"Upvoted posted successfully");
             
-            [self updateUpvoteState:self.parsedDictionary];
+//            [self updateUpvoteState:self.parsedDictionary];
             
         } break;
             
@@ -145,7 +145,7 @@
         case APIRequestType_PostDownvote:{
             
             if ( DEBUGMODE ) NSLog(@"Downvote posted successfully");
-            [self updateUpvoteState:self.parsedDictionary];
+//            [self updateUpvoteState:self.parsedDictionary];
             
         } break;
             

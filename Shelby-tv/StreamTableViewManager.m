@@ -116,12 +116,14 @@
     
             [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
             [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
+            [cell.upvoteButton removeTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
             [cell.upvoteButton addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
             
         } else { // Make sure Heart is Gray and user is able to Upvote
     
             [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
             [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
+            [cell.upvoteButton removeTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
             [cell.upvoteButton addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
         }
     
@@ -145,7 +147,7 @@
     if ( DEBUGMODE ) NSLog(@"Upvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
 
     VideoCardCell *cell = (VideoCardCell*)[self.arrayOfCells objectAtIndex:button.tag];
-    NSUInteger upvoteCount= [cell.upvoteButton.titleLabel.text intValue];
+    NSUInteger upvoteCount = [cell.upvoteButton.titleLabel.text intValue];
     upvoteCount++;
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -156,23 +158,25 @@
         [button setTitle:[NSString stringWithFormat:@"%d", upvoteCount] forState:UIControlStateNormal];
     });
     
+    
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-
-        // Quickly modify Core Data values
-        ShelbyUser *shelbyUser = [CoreDataUtility fetchShelbyAuthData];
-        DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForRow:button.tag];
-        Frame *frame = dashboardEntry.frame;
-        
-        UpvoteUsers *upvoteUsers = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:dashboardEntry.managedObjectContext];
-        [upvoteUsers setValue:shelbyUser.shelbyID forKey:CoreDataUpvoteUserID];
-        [upvoteUsers setValue:shelbyUser.nickname forKey:CoreDataUpvoteUsersNickname];
-        [upvoteUsers setValue:nil forKey:CoreDataUpvoteUsersImage];
-        [upvoteUsers setValue:frame.rollID forKey:CoreDataUpvoteUsersRollID];
-        [frame addUpvoteUsersObject:upvoteUsers];
-        [frame setValue:[NSNumber numberWithInt:upvoteCount] forKey:CoreDataFrameUpvotersCount];
-        
-        [CoreDataUtility saveContext:frame.managedObjectContext];
-        
+        @synchronized(self) {
+            // Quickly modify Core Data values
+            ShelbyUser *shelbyUser = [CoreDataUtility fetchShelbyAuthData];
+            DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForRow:button.tag];
+            Frame *frame = dashboardEntry.frame;
+            
+            UpvoteUsers *upvoteUsers = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:dashboardEntry.managedObjectContext];
+            [upvoteUsers setValue:shelbyUser.shelbyID forKey:CoreDataUpvoteUserID];
+            [upvoteUsers setValue:shelbyUser.nickname forKey:CoreDataUpvoteUsersNickname];
+            [upvoteUsers setValue:nil forKey:CoreDataUpvoteUsersImage];
+            [upvoteUsers setValue:frame.rollID forKey:CoreDataUpvoteUsersRollID];
+            [frame addUpvoteUsersObject:upvoteUsers];
+            [frame setValue:[NSNumber numberWithInt:upvoteCount] forKey:CoreDataFrameUpvotersCount];
+            
+            [CoreDataUtility saveContext:frame.managedObjectContext];
+        }
     });
     
     // Ping API with new values
@@ -187,7 +191,7 @@
     if ( DEBUGMODE ) NSLog(@"Downvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
     
     VideoCardCell *cell = (VideoCardCell*)[self.arrayOfCells objectAtIndex:button.tag];
-    NSUInteger upvoteCount= [cell.upvoteButton.titleLabel.text intValue];
+    NSUInteger upvoteCount = [cell.upvoteButton.titleLabel.text intValue];
     upvoteCount--;
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -200,26 +204,27 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
     
-        // Quickly modify Core Data values
-        DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForRow:button.tag];
-        Frame *frame = dashboardEntry.frame;
-        
-        NSMutableSet *upvoteUsers = [NSMutableSet setWithSet:frame.upvoteUsers];
-        
-        for (UpvoteUsers *user in [upvoteUsers allObjects]) {
+        @synchronized(self) {
+            // Quickly modify Core Data values
+            DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForRow:button.tag];
+            Frame *frame = dashboardEntry.frame;
             
-            if ( [user.upvoterID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) {
+            NSMutableSet *upvoteUsers = [NSMutableSet setWithSet:frame.upvoteUsers];
+            
+            for (UpvoteUsers *user in [upvoteUsers allObjects]) {
                 
-                [frame removeUpvoteUsersObject:user];
+                if ( [user.upvoterID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) {
+                    
+                    [frame removeUpvoteUsersObject:user];
+                    
+                }
                 
             }
             
+            [frame setValue:[NSNumber numberWithInt:upvoteCount] forKey:CoreDataFrameUpvotersCount];
+            
+            [CoreDataUtility saveContext:frame.managedObjectContext];
         }
-        
-        [frame setValue:[NSNumber numberWithInt:upvoteCount] forKey:CoreDataFrameUpvotersCount];
-        
-        [CoreDataUtility saveContext:frame.managedObjectContext];
- 
     });
         
     // Ping API with new values
@@ -309,13 +314,10 @@
     // For Testing Purposes
     static NSString *CellIdentifier = @"Cell";
     VideoCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-//    if ( nil == cell ) { 
-        
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
-        cell = (VideoCardCell*)[nib objectAtIndex:0];
-//    }
-    
+           
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
+    cell = (VideoCardCell*)[nib objectAtIndex:0];
+
     // Pseudo-hide cell until it's populated with information
     [cell setAlpha:0.0f];
     
