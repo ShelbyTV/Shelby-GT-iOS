@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "SBJson.h"
 #import "NSString+TypedefConversion.h"
+#import "Reachability.h"
 
 @interface ShelbyAPIClient ()
 
@@ -33,13 +34,48 @@
 #pragma mark - Public Methods
 - (void)performRequest:(NSMutableURLRequest *)request ofType:(APIRequestType)type
 {
-    // Set Request Type
-    self.requestType = type;
     
-    // Initialize Request
-    self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+    [reach startNotifier];
     
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    reach.reachableBlock = ^(Reachability *reach){
+    
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if ( DEBUG ) NSLog(@"Internet Connection Available");
+            
+            // Set Request Type
+            self.requestType = type;
+            
+            // Initialize Request
+            self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+            
+            
+        });
+
+    };
+    
+    reach.unreachableBlock = ^(Reachability *reach){
+        
+    if ( DEBUG ) NSLog(@"Internet Connection Unavailable");
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Internet Connection Unavailable"
+                                                                message:@"Please make sure you're connected to WiFi or 3G and try again"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"Dismiss"
+                                                      otherButtonTitles:nil, nil];
+            [alertView show];
+            
+            
+        });
+
+    };
+    
+
 }
 
 #pragma mark - Private Methods

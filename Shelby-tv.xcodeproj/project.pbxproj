@@ -138,6 +138,8 @@
 		8EC54588158FB1CB0048FEAA /* navigationDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC54586158FB1CB0048FEAA /* navigationDivider.png */; };
 		8EC54589158FB1CB0048FEAA /* navigationDivider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC54587158FB1CB0048FEAA /* navigationDivider@2x.png */; };
 		8EC981321594F95900BB9227 /* ShelbyUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC981311594F95900BB9227 /* ShelbyUser.m */; };
+		8EC9813715950DF100BB9227 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC9813615950DF100BB9227 /* Reachability.m */; };
+		8EC9813D15950FEB00BB9227 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC9813C15950FEA00BB9227 /* SystemConfiguration.framework */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
 		8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D21535F6F70009718E /* Foundation.framework */; };
 		8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D41535F6F70009718E /* CoreGraphics.framework */; };
@@ -393,6 +395,9 @@
 		8EC54587158FB1CB0048FEAA /* navigationDivider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationDivider@2x.png"; sourceTree = "<group>"; };
 		8EC981301594F95900BB9227 /* ShelbyUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelbyUser.h; sourceTree = "<group>"; };
 		8EC981311594F95900BB9227 /* ShelbyUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyUser.m; sourceTree = "<group>"; };
+		8EC9813515950DF100BB9227 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		8EC9813615950DF100BB9227 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		8EC9813C15950FEA00BB9227 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8ECBA7CC1535F6F70009718E /* Shelby-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECBA7D01535F6F70009718E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8ECBA7D21535F6F70009718E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -463,6 +468,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EC9813D15950FEB00BB9227 /* SystemConfiguration.framework in Frameworks */,
 				8E7F47B6154074180041118E /* Accounts.framework in Frameworks */,
 				8E7F47B3154074130041118E /* Twitter.framework in Frameworks */,
 				8EE50664155CAC1600A04F50 /* CoreData.framework in Frameworks */,
@@ -763,6 +769,16 @@
 			path = Resources/images/videocard;
 			sourceTree = SOURCE_ROOT;
 		};
+		8EC9813415950DF100BB9227 /* Reachability (ARC) */ = {
+			isa = PBXGroup;
+			children = (
+				8EC9813515950DF100BB9227 /* Reachability.h */,
+				8EC9813615950DF100BB9227 /* Reachability.m */,
+			);
+			name = "Reachability (ARC)";
+			path = "../library/Reachability (ARC)";
+			sourceTree = "<group>";
+		};
 		8ECBA7C11535F6F70009718E = {
 			isa = PBXGroup;
 			children = (
@@ -791,6 +807,7 @@
 				8ECBA7D21535F6F70009718E /* Foundation.framework */,
 				8EE5063E155CA39E00A04F50 /* MediaPlayer.framework */,
 				8E7F47B71540741F0041118E /* QuartzCore.framework */,
+				8EC9813C15950FEA00BB9227 /* SystemConfiguration.framework */,
 				8E7F47B2154074130041118E /* Twitter.framework */,
 				8ECBA7D01535F6F70009718E /* UIKit.framework */,
 			);
@@ -907,6 +924,7 @@
 				8E4A775F15518B14003CBA2A /* facebook-ios-sdk */,
 				8E664DE51541FE490071EC42 /* OAuthConsumer */,
 				8EE50641155CA3D300A04F50 /* Panhandler */,
+				8EC9813415950DF100BB9227 /* Reachability (ARC) */,
 				8E4A77A415519036003CBA2A /* SBJSON */,
 				8E7F47EA154093890041118E /* SocialFacade */,
 			);
@@ -1256,6 +1274,7 @@
 				8E946118159171E600031F09 /* Roll.m in Sources */,
 				8EFE780C15939B0200499994 /* RollVideosTableViewManager.m in Sources */,
 				8EC981321594F95900BB9227 /* ShelbyUser.m in Sources */,
+				8EC9813715950DF100BB9227 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
