@@ -13,11 +13,10 @@
 @interface StreamTableViewManager ()
 
 @property (assign, nonatomic) BOOL observerCreated;
-@property (strong, nonatomic) NSMutableArray *arrayOfCells;
 @property (strong, nonatomic) NSMutableArray *arrayOfFrameIDs;
 
 - (void)createAPIObservers;
-- (void)populateTableViewCell:(VideoCardCell*)cell withContentForRow:(NSUInteger)row;
+- (void)populateTableViewCell:(VideoCardCell*)cell withContent:(DashboardEntry*)dashboardEntry inRow:(NSUInteger)row;
 //- (void)animateCell:(VideoCardCell*)cell forRow:(NSUInteger)row;
 
 - (void)upvote:(UIButton *)button;
@@ -27,7 +26,6 @@
 
 @implementation StreamTableViewManager 
 @synthesize observerCreated = _observerCreated;
-@synthesize arrayOfCells = _arrayOfCells;
 @synthesize arrayOfFrameIDs = _arrayOfFrameIDs;
 
 #pragma mark - Memory Deallocation Method
@@ -49,7 +47,7 @@
     self.observerCreated = YES;
 }
 
-- (void)populateTableViewCell:(VideoCardCell *)cell withContentForRow:(NSUInteger)row
+- (void)populateTableViewCell:(VideoCardCell *)cell withContent:(DashboardEntry *)dashboardEntry inRow:(NSUInteger)row
 {
 
         // General Initializations
@@ -58,16 +56,27 @@
         [cell setTag:row];
         [cell.upvoteButton setTag:row];
         
-        // Store Cell
-        if ( ![self arrayOfCells] ) self.arrayOfCells = [NSMutableArray array];
-        [self.arrayOfCells addObject:cell];
-        
-        // Fetch data stored in Core Data
-        DashboardEntry *dashboardEntry = [self.coreDataResultsArray objectAtIndex:row];
-        
         // Store Frame ID
         if ( ![self arrayOfFrameIDs] ) self.arrayOfFrameIDs = [NSMutableArray array];
         [self.arrayOfFrameIDs addObject:dashboardEntry.frame.frameID];
+        
+        // Present Heart/Unheart button (depends if user already liked video)
+        BOOL upvoted = [CoreDataUtility checkIfUserUpvotedInFrame:dashboardEntry.frame];
+        
+        if ( upvoted ) { // Make sure Heart is Red and user is able to Downvote
+            
+            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
+            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
+            [cell.upvoteButton removeTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.upvoteButton addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
+            
+        } else { // Make sure Heart is Gray and user is able to Upvote
+            
+            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
+            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
+            [cell.upvoteButton removeTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.upvoteButton addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
+        }
         
         // Populate roll label
         [cell.rollLabel setText:dashboardEntry.frame.roll.title];
@@ -108,26 +117,7 @@
             }
             
         }
-        
-        // Present Heart/Unheart button (depends if user already liked video)
-        BOOL upvoted = [CoreDataUtility checkIfUserUpvotedInFrame:dashboardEntry.frame];
-
-        if ( upvoted ) { // Make sure Heart is Red and user is able to Downvote
     
-            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
-            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
-            [cell.upvoteButton removeTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
-            [cell.upvoteButton addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
-            
-        } else { // Make sure Heart is Gray and user is able to Upvote
-    
-            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
-            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
-            [cell.upvoteButton removeTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
-            [cell.upvoteButton addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
-        }
-    
-        
         // Asychronous download of user image/icon
         if ( dashboardEntry.frame.creator.userImage ) {
             
@@ -146,8 +136,7 @@
 {
     if ( DEBUGMODE ) NSLog(@"Upvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
 
-    VideoCardCell *cell = (VideoCardCell*)[self.arrayOfCells objectAtIndex:button.tag];
-    NSUInteger upvoteCount = [cell.upvoteButton.titleLabel.text intValue];
+    NSUInteger upvoteCount = [button.titleLabel.text intValue];
     upvoteCount++;
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -188,8 +177,7 @@
 {
     if ( DEBUGMODE ) NSLog(@"Downvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
     
-    VideoCardCell *cell = (VideoCardCell*)[self.arrayOfCells objectAtIndex:button.tag];
-    NSUInteger upvoteCount = [cell.upvoteButton.titleLabel.text intValue];
+    NSUInteger upvoteCount = [button.titleLabel.text intValue];
     upvoteCount--;
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -310,24 +298,58 @@
 {
     
     static NSString *CellIdentifier = @"Cell";
-    VideoCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-           
-    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
-    cell = (VideoCardCell*)[nib objectAtIndex:0];
-
-    // Pseudo-hide cell until it's populated with information
-    [cell setAlpha:0.0f];
     
-    if ( [self.coreDataResultsArray count]  ) {
-     
-        if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {
+    // Fetch data stored in Core Data
+    DashboardEntry *dashboardEntry = [self.coreDataResultsArray objectAtIndex:indexPath.row];
+    
+    // Create proper cell based on number of upvotes
+    NSUInteger upvotersCount = [dashboardEntry.frame.upvotersCount intValue];
+    
+    if ( upvotersCount > 0 ) {
         
-            [self populateTableViewCell:cell withContentForRow:indexPath.row];
+        VideoCardExpandedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardExpandedCell" owner:self options:nil];
+        cell = (VideoCardExpandedCell*)[nib objectAtIndex:0];
+        
+        // Pseudo-hide cell until it's populated with information
+        [cell setAlpha:0.0f];
+        
+        if ( [self.coreDataResultsArray count]  ) {
             
+            if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {
+                
+                [self populateTableViewCell:cell withContent:dashboardEntry inRow:indexPath.row];
+                
+            }
         }
+        
+        
+        return cell;
+        
+    } else {
+     
+        VideoCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
+        cell = (VideoCardCell*)[nib objectAtIndex:0];
+    
+        // Pseudo-hide cell until it's populated with information
+        [cell setAlpha:0.0f];
+        
+        if ( [self.coreDataResultsArray count]  ) {
+            
+            if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {
+                
+                [self populateTableViewCell:cell withContent:dashboardEntry inRow:indexPath.row];
+                
+            }
+        }
+        
+        return cell;
+        
     }
     
-    return cell;
 }
 
 #pragma mark - UITableViewDelegate Methods
