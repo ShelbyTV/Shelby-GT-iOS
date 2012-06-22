@@ -22,6 +22,7 @@
 @property (assign, nonatomic) APIRequestType requestType;
 
 - (NSDictionary*)parseData;
+- (void)postNotification;
 
 @end
 
@@ -35,17 +36,19 @@
 - (void)performRequest:(NSMutableURLRequest *)request ofType:(APIRequestType)type
 {
     
+    // Set Request Type
+    self.requestType = type;
+    
+    // Initialize Reachability
     Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
     [reach startNotifier];
     
+    // If internet connection is AVAILABLE, execute this block of code.
     reach.reachableBlock = ^(Reachability *reach){
     
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if ( DEBUG ) NSLog(@"Internet Connection Available");
-            
-            // Set Request Type
-            self.requestType = type;
             
             // Initialize Request
             self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -57,14 +60,18 @@
 
     };
     
+    // If internet connection is UNAVAILABLE, execute this block of code.
     reach.unreachableBlock = ^(Reachability *reach){
         
     if ( DEBUG ) NSLog(@"Internet Connection Unavailable");
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
+            // Post notification to force UI changes, like pull-to-refresh to finish
+            [self postNotification];
+            
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Internet Connection Unavailable"
-                                                                message:@"Please make sure you're connected to WiFi or 3G and try again"
+                                                                message:@"Please make sure you're connected to WiFi or 3G and try again."
                                                                delegate:nil
                                                       cancelButtonTitle:@"Dismiss"
                                                       otherButtonTitles:nil, nil];
@@ -83,6 +90,12 @@
 {
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     return [parser objectWithData:self.receivedData];
+}
+
+- (void)postNotification
+{
+    NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:self.parsedDictionary];
 }
 
 #pragma mark - NSURLConnectionDataDelegate Methods
@@ -139,8 +152,7 @@
             } break;
                 
             default:{
-                NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
-                [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:self.parsedDictionary];
+                [self postNotification];
             }
                 break;
         }
