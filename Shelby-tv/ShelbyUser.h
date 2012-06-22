@@ -2,7 +2,7 @@
 //  ShelbyUser.h
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 6/6/12.
+//  Created by Arthur Ariel Sabintsev on 6/22/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
@@ -12,11 +12,12 @@
 
 @interface ShelbyUser : NSManagedObject
 
-@property (nonatomic, retain) NSString * shelbyID;
+@property (nonatomic, retain) NSString * authToken;
+@property (nonatomic, retain) NSString * heartRollID;
 @property (nonatomic, retain) NSString * nickname;
 @property (nonatomic, retain) NSString * personalRollID;
-@property (nonatomic, retain) NSString * authToken;
+@property (nonatomic, retain) NSString * shelbyID;
 @property (nonatomic, retain) NSString * watchLaterRollID;
-@property (nonatomic, retain) NSString * heartRollID;
+@property (nonatomic, retain) NSString * userImage;
 
 @end

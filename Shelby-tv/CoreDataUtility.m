@@ -347,6 +347,9 @@ static CoreDataUtility *sharedInstance = nil;
     NSString *personalRollID = [NSString testForNull:[resultsDictionary valueForKey:@"personal_roll_id"]];
     [shelbyUser setValue:personalRollID forKey:CoreDataShelbyUserPersonalRollID];
     
+    NSString *userImage = [NSString testForNull:[resultsDictionary valueForKey:@"user_image"]];
+    [shelbyUser setValue:userImage forKey:CoreDataShelbyUserImage];
+    
     NSString *watchLaterRollID = [NSString testForNull:[resultsDictionary valueForKey:@"watch_later_roll_id"]];
     [shelbyUser setValue:watchLaterRollID forKey:CoreDataShelbyUserWatchLaterRollID];
     

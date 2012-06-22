@@ -2,7 +2,7 @@
 //  ShelbyUser.m
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 6/6/12.
+//  Created by Arthur Ariel Sabintsev on 6/22/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
@@ -11,11 +11,12 @@
 
 @implementation ShelbyUser
 
-@dynamic shelbyID;
+@dynamic authToken;
+@dynamic heartRollID;
 @dynamic nickname;
 @dynamic personalRollID;
-@dynamic authToken;
+@dynamic shelbyID;
 @dynamic watchLaterRollID;
-@dynamic heartRollID;
+@dynamic userImage;
 
 @end

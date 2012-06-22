@@ -134,10 +134,10 @@
 		8EB6D800157FF3310060202D /* videoCardUpvotedBar@2x.psd in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7FE157FF3310060202D /* videoCardUpvotedBar@2x.psd */; };
 		8EB6D81315800F550060202D /* Creator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6D81215800F550060202D /* Creator.m */; };
 		8EB6D81615800FCF0060202D /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6D81515800FCF0060202D /* Frame.m */; };
-		8EB6D81915801AED0060202D /* ShelbyUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6D81815801AED0060202D /* ShelbyUser.m */; };
 		8EC54585158F96310048FEAA /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC54584158F96310048FEAA /* Conversation.m */; };
 		8EC54588158FB1CB0048FEAA /* navigationDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC54586158FB1CB0048FEAA /* navigationDivider.png */; };
 		8EC54589158FB1CB0048FEAA /* navigationDivider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC54587158FB1CB0048FEAA /* navigationDivider@2x.png */; };
+		8EC981321594F95900BB9227 /* ShelbyUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC981311594F95900BB9227 /* ShelbyUser.m */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
 		8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D21535F6F70009718E /* Foundation.framework */; };
 		8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D41535F6F70009718E /* CoreGraphics.framework */; };
@@ -387,12 +387,12 @@
 		8EB6D81215800F550060202D /* Creator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Creator.m; sourceTree = "<group>"; };
 		8EB6D81415800FCF0060202D /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
 		8EB6D81515800FCF0060202D /* Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
-		8EB6D81715801AED0060202D /* ShelbyUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelbyUser.h; sourceTree = "<group>"; };
-		8EB6D81815801AED0060202D /* ShelbyUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyUser.m; sourceTree = "<group>"; };
 		8EC54583158F96310048FEAA /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
 		8EC54584158F96310048FEAA /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		8EC54586158FB1CB0048FEAA /* navigationDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationDivider.png; sourceTree = "<group>"; };
 		8EC54587158FB1CB0048FEAA /* navigationDivider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationDivider@2x.png"; sourceTree = "<group>"; };
+		8EC981301594F95900BB9227 /* ShelbyUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelbyUser.h; sourceTree = "<group>"; };
+		8EC981311594F95900BB9227 /* ShelbyUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyUser.m; sourceTree = "<group>"; };
 		8ECBA7CC1535F6F70009718E /* Shelby-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECBA7D01535F6F70009718E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8ECBA7D21535F6F70009718E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -948,6 +948,8 @@
 			isa = PBXGroup;
 			children = (
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
+				8EC981301594F95900BB9227 /* ShelbyUser.h */,
+				8EC981311594F95900BB9227 /* ShelbyUser.m */,
 				8E946116159171E600031F09 /* Roll.h */,
 				8E946117159171E600031F09 /* Roll.m */,
 				8EC54583158F96310048FEAA /* Conversation.h */,
@@ -960,8 +962,6 @@
 				8EB6D81515800FCF0060202D /* Frame.m */,
 				8EF851B81570317D002335A3 /* Messages.h */,
 				8EF851B91570317E002335A3 /* Messages.m */,
-				8EB6D81715801AED0060202D /* ShelbyUser.h */,
-				8EB6D81815801AED0060202D /* ShelbyUser.m */,
 				8ECFFE44157D73BF007CCA73 /* UpvoteUsers.h */,
 				8ECFFE45157D73BF007CCA73 /* UpvoteUsers.m */,
 				8EF851AC1570317D002335A3 /* Video.h */,
@@ -1245,7 +1245,6 @@
 				8ECFFE46157D73BF007CCA73 /* UpvoteUsers.m in Sources */,
 				8EB6D81315800F550060202D /* Creator.m in Sources */,
 				8EB6D81615800FCF0060202D /* Frame.m in Sources */,
-				8EB6D81915801AED0060202D /* ShelbyUser.m in Sources */,
 				8E068B6D1587FB430069FD01 /* ShelbyMenuView.m in Sources */,
 				8E068B86158843650069FD01 /* BrowseRollsTableViewManager.m in Sources */,
 				8E068B89158843B40069FD01 /* PeopleRollsTableViewManager.m in Sources */,
@@ -1256,6 +1255,7 @@
 				8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */,
 				8E946118159171E600031F09 /* Roll.m in Sources */,
 				8EFE780C15939B0200499994 /* RollVideosTableViewManager.m in Sources */,
+				8EC981321594F95900BB9227 /* ShelbyUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

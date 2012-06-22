@@ -73,10 +73,11 @@
 #define CoreDataRollID                          @"rollID"
 #define CoreDataRollTitle                       @"title"
 
-// Shelbyuser Attribute Constants
+// ShelbyUser Attribute Constants
 #define CoreDataShelbyUserID                    @"shelbyID"
 #define CoreDataShelbyUserAuthToken             @"authToken"
 #define CoreDataShelbyUserHeartRollID           @"heartRollID"
+#define CoreDataShelbyUserImage                 @"userImage"
 #define CoreDataShelbyUserNickname              @"nickname"
 #define CoreDataShelbyUserPersonalRollID        @"personalRollID"
 #define CoreDataShelbyUserPublicRollID          @"publicRollID"
