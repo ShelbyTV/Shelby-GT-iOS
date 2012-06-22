@@ -39,6 +39,8 @@
     
     // Initialize Request
     self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
 
 #pragma mark - Private Methods
@@ -91,6 +93,10 @@
         if ( DEBUGMODE ) NSLog(@"CONNECTION ERROR for APIRequestType #%d!", self.requestType);
         
         // Pop request-dependent error message
+        // AlertViews with GuideTypeNumber
+        
+        // Hide activity indicator
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
         // Post notification to signal finished request (e.g., release pull to refresh)
         NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
@@ -106,6 +112,9 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
  
+    // Hide activity indicator
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
     self.parsedDictionary = [self parseData];
     
     switch (self.requestType) {

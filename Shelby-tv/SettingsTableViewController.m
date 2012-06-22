@@ -88,7 +88,7 @@
 {
     
     [self.tableView setAlpha:0.25f];
-    [UIView animateWithDuration:1.0f animations:^{
+    [UIView animateWithDuration:0.5f animations:^{
         [self.tableView setAlpha:1.0f];
         
     }];
@@ -97,7 +97,7 @@
 
 - (void)fadeOutAnimation
 {
-    [UIView animateWithDuration:1.0f animations:^{
+    [UIView animateWithDuration:0.5f animations:^{
         [self.tableView setAlpha:0.25f];
         
     }];
