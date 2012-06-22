@@ -93,7 +93,12 @@
         if ( DEBUGMODE ) NSLog(@"CONNECTION ERROR for APIRequestType #%d!", self.requestType);
         
         // Pop request-dependent error message
-        // AlertViews with GuideTypeNumber
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:[NSString stringWithFormat:@"Error #%d", self.requestType]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Dismiss"
+                                                  otherButtonTitles:nil, nil];
+        [alertView show];
         
         // Hide activity indicator
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];

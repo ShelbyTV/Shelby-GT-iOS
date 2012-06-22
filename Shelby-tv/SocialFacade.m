@@ -636,54 +636,60 @@ UITableViewDelegate
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:SocialFacadeTwitterConsumerKey, @"x_reverse_auth_target", reverseAuthRequestResults, @"x_reverse_auth_parameters", nil];
     TWRequest *reverseAuthAccessTokenRequest = [[TWRequest alloc] initWithURL:accessTokenURL parameters:parameters requestMethod:TWRequestMethodPOST];
 
+    NSLog(@"Request Results: %@",reverseAuthRequestResults);
+    
     ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     [self.twitterAccountStore requestAccessToAccountsWithType:twitterType withCompletionHandler:^(BOOL granted, NSError *error) {
         
-        [reverseAuthAccessTokenRequest setAccount:self.twitterAccount];
-        [reverseAuthAccessTokenRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-                        
-                    if ( responseData ) {
+        if ( granted ) {
+    
+            [reverseAuthAccessTokenRequest setAccount:self.twitterAccount];
+            [reverseAuthAccessTokenRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                            
+                        if ( responseData ) {
 
-                        // Get results string (e.g., Access Token, Access Token Secret, Twitter Handle)
-                        NSString *reverseAuthAccessResults = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-                    
-                        // Parse string for Acces Token and Access Token Secret
-                        NSString *token = nil;
-                        NSString *secret = nil;
-                        NSString *ID = nil;
-                        NSString *name = nil;
-                        NSScanner *scanner = [NSScanner scannerWithString:reverseAuthAccessResults];
-                        [scanner scanUpToString:@"=" intoString:nil];
-                        [scanner scanUpToString:@"&" intoString:&token];
-                        token = [token stringByReplacingOccurrencesOfString:@"=" withString:@""];
-                        [scanner scanUpToString:@"=" intoString:nil];
-                        [scanner scanUpToString:@"&" intoString:&secret];
-                        secret = [secret stringByReplacingOccurrencesOfString:@"=" withString:@""];
-                        [scanner scanUpToString:@"=" intoString:nil];
-                        [scanner scanUpToString:@"&" intoString:&ID];
-                        ID = [ID stringByReplacingOccurrencesOfString:@"=" withString:@""];
-                        [scanner scanUpToString:@"=" intoString:nil];
-                        [scanner scanUpToString:@"" intoString:&name];
-                        name = [name stringByReplacingOccurrencesOfString:@"=" withString:@""];
+                            // Get results string (e.g., Access Token, Access Token Secret, Twitter Handle)
+                            NSString *reverseAuthAccessResults = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
                         
-                        // Store Reverse Auth Access Token and Access Token Secret
-                        
-                        NSLog(@"%@",token);
-                        
-                        [self setTwitterReverseAuthToken:token];
-                        [self setTwitterReverseAuthSecret:secret];
-                        [self setTwitterID:ID];
-                        [self setTwitterName:name];
-                        
-                        // Send Reverse Auth Access Token and Access Token Secret to Shelby for Token Swap
-                        [self sendReverseAuthAccessResultsToServer];
-                    
-                        
-                    } else {
-                        
-                    }
-            
-                }];
+                            NSLog(@"Access Results: %@",reverseAuthAccessResults);
+                            
+                            // Parse string for Acces Token and Access Token Secret
+                            NSString *token = nil;
+                            NSString *secret = nil;
+                            NSString *ID = nil;
+                            NSString *name = nil;
+                            NSScanner *scanner = [NSScanner scannerWithString:reverseAuthAccessResults];
+                            [scanner scanUpToString:@"=" intoString:nil];
+                            [scanner scanUpToString:@"&" intoString:&token];
+                            token = [token stringByReplacingOccurrencesOfString:@"=" withString:@""];
+                            [scanner scanUpToString:@"=" intoString:nil];
+                            [scanner scanUpToString:@"&" intoString:&secret];
+                            secret = [secret stringByReplacingOccurrencesOfString:@"=" withString:@""];
+                            [scanner scanUpToString:@"=" intoString:nil];
+                            [scanner scanUpToString:@"&" intoString:&ID];
+                            ID = [ID stringByReplacingOccurrencesOfString:@"=" withString:@""];
+                            [scanner scanUpToString:@"=" intoString:nil];
+                            [scanner scanUpToString:@"" intoString:&name];
+                            name = [name stringByReplacingOccurrencesOfString:@"=" withString:@""];
+                            
+                            // Store Reverse Auth Access Token and Access Token Secret
+                            
+                            NSLog(@"ReverseAuth-Token: %@", token);
+                            NSLog(@"ReverseAuth-Secret: %@", secret);
+                            [self setTwitterReverseAuthToken:token];
+                            [self setTwitterReverseAuthSecret:secret];
+                            [self setTwitterID:ID];
+                            [self setTwitterName:name];
+                            
+                            // Send Reverse Auth Access Token and Access Token Secret to Shelby for Token Swap
+                            [self sendReverseAuthAccessResultsToServer];
+                            
+                        } else {
+                            
+                        }
+                
+                    }];
+        }
         
     }];
 }
@@ -705,6 +711,7 @@ UITableViewDelegate
         if ( DEBUGMODE )NSLog(@"Perform Twitter Token Swap with Shelby");
         NSString *shelbyRequestString = [NSString stringWithFormat:APIRequest_PostTokenTwitter, self.twitterID, self.twitterReverseAuthToken, self.twitterReverseAuthSecret];
         NSMutableURLRequest *shelbyRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:shelbyRequestString]]; 
+        
         [shelbyRequest setHTTPMethod:@"POST"];
         ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
         [client performRequest:shelbyRequest ofType:requestType];

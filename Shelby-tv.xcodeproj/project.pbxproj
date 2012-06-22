@@ -1327,7 +1327,7 @@
 		8ECBA7EE1535F6F70009718E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Arthur Sabintsev (Z4E762QSUZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arthur Sabintsev (Z4E762QSUZ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1342,7 +1342,7 @@
 					"\"$(SRCROOT)/library/facebook-ios-sdk/lib/facebook-ios-sdk\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A6CC5FE3-9170-47F2-A539-3EDB4028F3C0";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A6CC5FE3-9170-47F2-A539-3EDB4028F3C0";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -1353,8 +1353,8 @@
 		8ECBA7EF1535F6F70009718E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Arthur Sabintsev (Z4E762QSUZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arthur Sabintsev (Z4E762QSUZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1368,8 +1368,8 @@
 					"\"$(SRCROOT)/library/facebook-ios-sdk/lib/facebook-ios-sdk\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A6CC5FE3-9170-47F2-A539-3EDB4028F3C0";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A6CC5FE3-9170-47F2-A539-3EDB4028F3C0";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				WRAPPER_EXTENSION = app;
