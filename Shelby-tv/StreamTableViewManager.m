@@ -322,8 +322,6 @@
             
             for (UIImageView *imageView in [cell subviews] ) {
                 
-                if ([upvoteUsersarray count]>2) NSLog(@"%@", upvoteUsersarray);
-                
                 if ( (imageView.tag == userCounter) && (userCounter < 10) && [imageView isMemberOfClass:[UIImageView class]] ) {
                     
                     [AsynchronousFreeloader loadImageFromLink:user.userImage forImageView:imageView withPlaceholderView:nil];

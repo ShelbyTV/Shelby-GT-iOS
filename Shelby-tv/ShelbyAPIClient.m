@@ -48,7 +48,7 @@
     
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            if ( DEBUG ) NSLog(@"Internet Connection Available");
+            if ( DEBUGMODE ) NSLog(@"Internet Connection Available");
             
             // Initialize Request
             self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -63,7 +63,7 @@
     // If internet connection is UNAVAILABLE, execute this block of code.
     reach.unreachableBlock = ^(Reachability *reach){
         
-    if ( DEBUG ) NSLog(@"Internet Connection Unavailable");
+    if ( DEBUGMODE ) NSLog(@"Internet Connection Unavailable");
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
