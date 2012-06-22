@@ -30,6 +30,5 @@ typedef enum _APIRequestType
     APIRequestType_GetRolls,
     APIRequestType_PostUpvote,
     APIRequestType_PostDownvote,
-    APIRequestType_UpdateUpvoteState
     
 } APIRequestType;

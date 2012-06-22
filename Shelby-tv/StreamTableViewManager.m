@@ -158,8 +158,6 @@
         [button setTitle:[NSString stringWithFormat:@"%d", upvoteCount] forState:UIControlStateNormal];
     });
     
-    
-    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         @synchronized(self) {
             // Quickly modify Core Data values
@@ -170,7 +168,7 @@
             UpvoteUsers *upvoteUsers = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:dashboardEntry.managedObjectContext];
             [upvoteUsers setValue:shelbyUser.shelbyID forKey:CoreDataUpvoteUserID];
             [upvoteUsers setValue:shelbyUser.nickname forKey:CoreDataUpvoteUsersNickname];
-            [upvoteUsers setValue:nil forKey:CoreDataUpvoteUsersImage];
+            [upvoteUsers setValue:shelbyUser.userImage forKey:CoreDataUpvoteUsersImage];
             [upvoteUsers setValue:frame.rollID forKey:CoreDataUpvoteUsersRollID];
             [frame addUpvoteUsersObject:upvoteUsers];
             [frame setValue:[NSNumber numberWithInt:upvoteCount] forKey:CoreDataFrameUpvotersCount];

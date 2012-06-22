@@ -34,9 +34,6 @@
 /// Store dashboardEntry data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
 
-/// Store Upvote state change data in Core Data
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary andUpdateUpvoteStateInContext:(NSManagedObjectContext*)context;
-
 /// Store dashbaordEntry.frame data in Core Data
 + (void)storeFrame:(Frame*)frame fromFrameArray:(NSArray*)frameArray;
 
@@ -98,10 +95,6 @@ static CoreDataUtility *sharedInstance = nil;
             
         case APIRequestType_GetStream:
             [self storeParsedData:parsedDictionary forDashboardEntryInContext:context];
-            break;
-            
-        case APIRequestType_UpdateUpvoteState:
-            [self storeParsedData:parsedDictionary andUpdateUpvoteStateInContext:context];
             break;
             
         default:
@@ -400,48 +393,6 @@ static CoreDataUtility *sharedInstance = nil;
         } else {
             
             // Do Nothing
-            
-        }
-        
-    }
-    
-    [self saveContext:context];
-}
-
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary andUpdateUpvoteStateInContext:(NSManagedObjectContext *)context
-{
-    
-    NSArray *resultsArray = [parsedDictionary objectForKey:APIRequest_Result];
-    
-    for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
-            
-        // Store dashboardEntry attirubutes
-        DashboardEntry *dashboardEntry = [self checkIfEntity:CoreDataEntityDashboardEntry 
-                                                 withIDValue:[[resultsArray objectAtIndex:i] valueForKey:@"id"]
-                                                    forIDKey:CoreDataDashboardEntryID 
-                                             existsInContext:context];
-        
-        
-        // Store dashboardEntry.frame attributes
-        NSArray *frameArray = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];        
-        Frame *frame = [self checkIfEntity:CoreDataEntityFrame
-                               withIDValue:[frameArray valueForKey:@"id"]
-                                  forIDKey:CoreDataFrameID  
-                           existsInContext:context];
-        dashboardEntry.frame = frame;
-        
-        // Modify dashboard.frame.upvotersCount
-        NSArray *upvotersArray = [NSArray arrayWithArray:[frameArray valueForKey:@"upvoters"]];
-        NSUInteger upvotersCount = [upvotersArray count];
-        [frame setValue:[NSNumber numberWithInt:upvotersCount] forKey:CoreDataFrameUpvotersCount];
-        
-        if ( upvotersCount ) {
-            
-            [self storeUpvoteUsersFromFrame:frame withFrameArray:frameArray];
-            
-        } else {
-            
-            // Remove all upvoteUsers managedObjects attached to this frame.
             
         }
         

@@ -21,7 +21,6 @@
 @property (assign, nonatomic) APIRequestType requestType;
 
 - (NSDictionary*)parseData;
-- (void)updateUpvoteState:(NSDictionary*)resultsDictionary;
 
 @end
 
@@ -48,15 +47,6 @@
 {
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     return [parser objectWithData:self.receivedData];
-}
-
-- (void)updateUpvoteState:(NSDictionary*)resultsDictionary
-{
-    NSString *frameRequestString = [NSString stringWithFormat:APIRequest_GetStream, [SocialFacade sharedInstance].shelbyToken];
-    NSMutableURLRequest *frameRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:frameRequestString]];
-    [frameRequest setHTTPMethod:@"GET"];
-    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-    [client performRequest:frameRequest ofType:APIRequestType_UpdateUpvoteState];
 }
 
 #pragma mark - NSURLConnectionDataDelegate Methods
@@ -156,25 +146,15 @@
             
             if ( DEBUGMODE ) NSLog(@"Upvoted posted successfully");
             
-//            [self updateUpvoteState:self.parsedDictionary];
-            
         } break;
             
         
         case APIRequestType_PostDownvote:{
             
             if ( DEBUGMODE ) NSLog(@"Downvote posted successfully");
-//            [self updateUpvoteState:self.parsedDictionary];
             
         } break;
-            
-            
-        case APIRequestType_UpdateUpvoteState:{
-            
-            NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
-            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
-            
-        } break;
+
             
         default:
             break;
