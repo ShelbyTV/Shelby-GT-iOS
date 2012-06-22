@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VideoCardCell.h"
 
-@interface VideoCardExpandedCell : UITableViewCell
+@interface VideoCardExpandedCell : VideoCardCell
+
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *originNetworkImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
+@property (weak, nonatomic) IBOutlet UIButton *upvoteButton;
+@property (weak, nonatomic) IBOutlet UIButton *commentButton;
+@property (weak, nonatomic) IBOutlet UIButton *rollButton;
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
+@property (weak, nonatomic) IBOutlet UILabel *createdAtLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rollLabel;
 
 @end

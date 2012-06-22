@@ -141,7 +141,9 @@
 		8EC9813715950DF100BB9227 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC9813615950DF100BB9227 /* Reachability.m */; };
 		8EC9813D15950FEB00BB9227 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC9813C15950FEA00BB9227 /* SystemConfiguration.framework */; };
 		8EC981401595134700BB9227 /* VideoCardExpandedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC9813F1595134700BB9227 /* VideoCardExpandedCell.m */; };
-		8EC981421595135C00BB9227 /* VideoCardExtendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EC981411595135C00BB9227 /* VideoCardExtendedCell.xib */; };
+		8EC981421595135C00BB9227 /* VideoCardExpandedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EC981411595135C00BB9227 /* VideoCardExpandedCell.xib */; };
+		8EC981451595171800BB9227 /* videoCardExpandedStroke.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC981431595171800BB9227 /* videoCardExpandedStroke.png */; };
+		8EC981461595171800BB9227 /* videoCardExpandedStroke@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC981441595171800BB9227 /* videoCardExpandedStroke@2x.png */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
 		8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D21535F6F70009718E /* Foundation.framework */; };
 		8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D41535F6F70009718E /* CoreGraphics.framework */; };
@@ -402,7 +404,9 @@
 		8EC9813C15950FEA00BB9227 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8EC9813E1595134700BB9227 /* VideoCardExpandedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCardExpandedCell.h; sourceTree = "<group>"; };
 		8EC9813F1595134700BB9227 /* VideoCardExpandedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCardExpandedCell.m; sourceTree = "<group>"; };
-		8EC981411595135C00BB9227 /* VideoCardExtendedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCardExtendedCell.xib; sourceTree = "<group>"; };
+		8EC981411595135C00BB9227 /* VideoCardExpandedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCardExpandedCell.xib; sourceTree = "<group>"; };
+		8EC981431595171800BB9227 /* videoCardExpandedStroke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardExpandedStroke.png; sourceTree = "<group>"; };
+		8EC981441595171800BB9227 /* videoCardExpandedStroke@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardExpandedStroke@2x.png"; sourceTree = "<group>"; };
 		8ECBA7CC1535F6F70009718E /* Shelby-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECBA7D01535F6F70009718E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8ECBA7D21535F6F70009718E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -739,6 +743,8 @@
 		8E87DEB7156C44C2004E0629 /* videocard */ = {
 			isa = PBXGroup;
 			children = (
+				8EC981431595171800BB9227 /* videoCardExpandedStroke.png */,
+				8EC981441595171800BB9227 /* videoCardExpandedStroke@2x.png */,
 				8EB6D7FD157FF3310060202D /* videoCardUpvotedBar.png */,
 				8EB6D7FE157FF3310060202D /* videoCardUpvotedBar@2x.psd */,
 				8EB6D7F1157FD4ED0060202D /* videoCardTopBar.png */,
@@ -945,9 +951,9 @@
 				8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */,
 				8E068B7C158823C70069FD01 /* ShelbyMenuView.xib */,
 				8EEA703C155449D800B1B07F /* VideoCardCell.xib */,
+				8EC981411595135C00BB9227 /* VideoCardExpandedCell.xib */,
 				8EE50654155CA79F00A04F50 /* VideoPlayerViewController_iPad.xib */,
 				8EE50655155CA79F00A04F50 /* VideoPlayerViewController_iPhone.xib */,
-				8EC981411595135C00BB9227 /* VideoCardExtendedCell.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -1179,7 +1185,9 @@
 				8E50942E158D1329000AF390 /* navigationButtonStream@2x.png in Resources */,
 				8EC54588158FB1CB0048FEAA /* navigationDivider.png in Resources */,
 				8EC54589158FB1CB0048FEAA /* navigationDivider@2x.png in Resources */,
-				8EC981421595135C00BB9227 /* VideoCardExtendedCell.xib in Resources */,
+				8EC981421595135C00BB9227 /* VideoCardExpandedCell.xib in Resources */,
+				8EC981451595171800BB9227 /* videoCardExpandedStroke.png in Resources */,
+				8EC981461595171800BB9227 /* videoCardExpandedStroke@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

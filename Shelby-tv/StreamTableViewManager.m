@@ -309,7 +309,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    // For Testing Purposes
     static NSString *CellIdentifier = @"Cell";
     VideoCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
            
@@ -319,7 +318,6 @@
     // Pseudo-hide cell until it's populated with information
     [cell setAlpha:0.0f];
     
-    // Populate UITableView row with content if content exists (CHANGE THIS CONDITION TO BE CORE-DATA DEPENDENT)
     if ( [self.coreDataResultsArray count]  ) {
      
         if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "VideoCardCell.h"
+#import "VideoCardExpandedCell.h"
 #import "StaticDeclarations.h"
 
 
