@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *rollButton;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak, nonatomic) IBOutlet UILabel *createdAtLabel;
-@property (weak, nonatomic) IBOutlet UILabel *upvoteLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rollLabel;

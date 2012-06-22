@@ -54,10 +54,9 @@
 
         // General Initializations
     dispatch_async(dispatch_get_main_queue(), ^{
-    
+        
         [cell setTag:row];
         [cell.upvoteButton setTag:row];
-        [cell.upvoteLabel setTag:row];
         
         if ( ![self arrayOfCells] ) self.arrayOfCells = [NSMutableArray array];
         [self.arrayOfCells addObject:cell];
@@ -76,7 +75,7 @@
         [cell.nicknameLabel setText:dashboardEntry.frame.creator.nickname];
         
         // Populate favorite label
-        [cell.upvoteLabel setText:[NSString stringWithFormat:@"%@", dashboardEntry.frame.upvotersCount]];
+        [cell.upvoteButton setTitle:[NSString stringWithFormat:@"%@", dashboardEntry.frame.upvotersCount] forState:UIControlStateNormal];
         
         // Populate comments label
         [cell.commentLabel setText:[NSString stringWithFormat:@"%@", dashboardEntry.frame.conversation.messageCount]];
@@ -114,14 +113,14 @@
 
         if ( upvoted ) { // Make sure Heart is Red and user is able to Downvote
     
-            [cell.upvoteButton setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
-            [cell.upvoteButton setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
+            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
+            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
             [cell.upvoteButton addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
             
         } else { // Make sure Heart is Gray and user is able to Upvote
     
-            [cell.upvoteButton setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
-            [cell.upvoteButton setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
+            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
+            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
             [cell.upvoteButton addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
         }
     
@@ -145,15 +144,14 @@
     if ( DEBUGMODE ) NSLog(@"Upvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
 
     VideoCardCell *cell = (VideoCardCell*)[self.arrayOfCells objectAtIndex:button.tag];
-    NSUInteger upvotersCount = [cell.upvoteLabel.text intValue];
+    NSUInteger upvotersCount = [cell.upvoteButton.titleLabel.text intValue];
     upvotersCount++;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
-        [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
+        [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
         [button removeTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
         [button addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.upvoteLabel setText:[NSString stringWithFormat:@"%d", upvotersCount]];
-        [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
+        [button setTitle:[NSString stringWithFormat:@"%d", upvotersCount] forState:UIControlStateNormal];
     });
     
     // Quickly modify Core Data values
@@ -182,15 +180,14 @@
     if ( DEBUGMODE ) NSLog(@"Downvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
     
     VideoCardCell *cell = (VideoCardCell*)[self.arrayOfCells objectAtIndex:button.tag];
-    NSUInteger upvotersCount = [cell.upvoteLabel.text intValue];
+    NSUInteger upvotersCount = [cell.upvoteButton.titleLabel.text intValue];
     upvotersCount--;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
-            [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
+            [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
+            [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
             [button removeTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
             [button addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
-            [cell.upvoteLabel setText:[NSString stringWithFormat:@"%d", upvotersCount]];
-            [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
+            [button setTitle:[NSString stringWithFormat:@"%d", upvotersCount] forState:UIControlStateNormal];
         });
     
     // Quickly modify Core Data values
@@ -202,8 +199,6 @@
     for (UpvoteUsers *user in [upvoteUsers allObjects]) {
         
         if ( [user.upvoterID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) {
-            
-            NSLog(@"%@", user.upvoterID);
             
             [frame removeUpvoteUsersObject:user];
             
@@ -303,11 +298,11 @@
     static NSString *CellIdentifier = @"Cell";
     VideoCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-//    if ( nil == cell ) { // The 0 == indexPath.row is to fix an issue when reloading stream via the ShelbyMenuView
+    if ( nil == cell ) { // The 0 == indexPath.row is to fix an issue when reloading stream via the ShelbyMenuView
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
         cell = (VideoCardCell*)[nib objectAtIndex:0];
-//    }
+    }
     
     // Pseudo-hide cell until it's populated with information
     [cell setAlpha:0.0f];

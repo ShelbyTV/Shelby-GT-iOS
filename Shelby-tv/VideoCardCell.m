@@ -25,7 +25,6 @@
 @synthesize nicknameLabel = _nicknameLabel;
 @synthesize rollLabel = _rollLabel;
 @synthesize createdAtLabel = _createdAtLabel;
-@synthesize upvoteLabel = _upvoteLabel;
 @synthesize commentLabel = _commentLabel;
 
 #pragma mark - Memory Deallocation Methods
@@ -41,7 +40,6 @@
     self.nicknameLabel = nil;
     self.rollLabel = nil;
     self.createdAtLabel = nil;
-    self.upvoteLabel = nil;
     self.commentLabel = nil;
 }
 
@@ -51,10 +49,12 @@
     self.backgroundColor = ColorConstants_BackgroundColor;
     
     // Customize Labels (all other label customization in VideCardCell.xib)
+    [self.upvoteButton.titleLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:16.0f]];
+    
     self.nicknameLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:15.0f];
     self.rollLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f];
     self.createdAtLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:10.0f];
-    self.upvoteLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:16.0f];
+    
     self.commentLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:16.0f];
 }
 
