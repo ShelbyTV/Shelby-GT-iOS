@@ -91,21 +91,35 @@
     if ( connection == self.connection ) {
         
         if ( DEBUGMODE ) NSLog(@"CONNECTION ERROR for APIRequestType #%d!", self.requestType);
+
+        // Hide activity indicator
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
         
         // Pop request-dependent error message
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                            message:[NSString stringWithFormat:@"Error #%d", self.requestType]
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Error #%d0", self.requestType]
+                                                            message:@"Please retrty your previous action"
                                                            delegate:nil
                                                   cancelButtonTitle:@"Dismiss"
                                                   otherButtonTitles:nil, nil];
         [alertView show];
         
-        // Hide activity indicator
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
-        // Post notification to signal finished request (e.g., release pull to refresh)
-        NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
-        [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:self.parsedDictionary];
+        // Post notification for specific requestTypes
+        switch (self.requestType) {
+                
+            case APIRequestType_PostToken:{
+                // Do Nothing
+            } break;
+                
+            default:{
+                NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
+                [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:self.parsedDictionary];
+            }
+                break;
+        }
+        
+
         
         // Reset request type
         self.requestType = APIRequestType_None;

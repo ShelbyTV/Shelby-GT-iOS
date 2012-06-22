@@ -636,7 +636,7 @@ UITableViewDelegate
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:SocialFacadeTwitterConsumerKey, @"x_reverse_auth_target", reverseAuthRequestResults, @"x_reverse_auth_parameters", nil];
     TWRequest *reverseAuthAccessTokenRequest = [[TWRequest alloc] initWithURL:accessTokenURL parameters:parameters requestMethod:TWRequestMethodPOST];
 
-    NSLog(@"Request Results: %@",reverseAuthRequestResults);
+    if ( DEBUGMODE ) NSLog(@"Request Results: %@",reverseAuthRequestResults);
     
     ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     [self.twitterAccountStore requestAccessToAccountsWithType:twitterType withCompletionHandler:^(BOOL granted, NSError *error) {
@@ -651,7 +651,7 @@ UITableViewDelegate
                             // Get results string (e.g., Access Token, Access Token Secret, Twitter Handle)
                             NSString *reverseAuthAccessResults = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
                         
-                            NSLog(@"Access Results: %@",reverseAuthAccessResults);
+                            if ( DEBUGMODE ) NSLog(@"Access Results: %@",reverseAuthAccessResults);
                             
                             // Parse string for Acces Token and Access Token Secret
                             NSString *token = nil;
@@ -674,8 +674,9 @@ UITableViewDelegate
                             
                             // Store Reverse Auth Access Token and Access Token Secret
                             
-                            NSLog(@"ReverseAuth-Token: %@", token);
-                            NSLog(@"ReverseAuth-Secret: %@", secret);
+                            if ( DEBUGMODE ) NSLog(@"ReverseAuth-Token: %@", token);
+                            if ( DEBUGMODE ) NSLog(@"ReverseAuth-Secret: %@", secret);
+                            
                             [self setTwitterReverseAuthToken:token];
                             [self setTwitterReverseAuthSecret:secret];
                             [self setTwitterID:ID];
