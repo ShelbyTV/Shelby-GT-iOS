@@ -177,9 +177,13 @@ UITableViewDelegate
     // Get Shelby Authorization from notificaiton dictioanry qsent from APIClient
     ShelbyUser *shelbyUser = [CoreDataUtility fetchShelbyAuthData];
     
-    [self setShelbyToken:shelbyUser.authToken];
-    [self setShelbyCreatorID:shelbyUser.shelbyID];
-
+    if (shelbyUser) {
+    
+        [self setShelbyToken:shelbyUser.authToken];
+        [self setShelbyCreatorID:shelbyUser.shelbyID];
+    
+    }
+        
     // Dismiss login window after token swap
     [self setShelbyAuthorized:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
@@ -213,6 +217,8 @@ UITableViewDelegate
 {
     
     [self.facebook logout];
+    self.shelbyToken = nil;
+    self.shelbyCreatorID = nil;
     self.shelbyAuthorized = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
     
@@ -374,6 +380,8 @@ UITableViewDelegate
 
 - (void)twitterLogout
 {
+    self.shelbyToken = nil;
+    self.shelbyCreatorID = nil;
     self.shelbyAuthorized = NO;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
@@ -519,6 +527,7 @@ UITableViewDelegate
 #pragma mark - Twitter/OAuth - Access Token Methods
 - (void)getAccessTokenWithPin:(NSString *)pin
 {
+    
     NSURL *accessTokenURL = [NSURL URLWithString:@"https://api.twitter.com/oauth/access_token"];
     OAMutableURLRequest * accessTokenRequest = [[OAMutableURLRequest alloc] initWithURL:accessTokenURL
                                                                                consumer:nil
@@ -553,7 +562,6 @@ UITableViewDelegate
 
 - (void)saveTwitterAccountWithAccessToken:(OAToken *)accessToken
 {
-    
     NSString *token = accessToken.key;
     NSString *secret = accessToken.secret;
     
@@ -583,7 +591,6 @@ UITableViewDelegate
 #pragma mark - OAuthConsumer - Reverse Auth Request Token Methods
 - (void)getReverseAuthRequestToken
 {
-
     NSURL *url = [NSURL URLWithString:@"https://api.twitter.com/oauth/request_token"];
     OAConsumer *consumer= [[OAConsumer alloc] initWithKey:SocialFacadeTwitterConsumerKey secret:SocialFacadeTwitterConsumerSecret];
     OAMutableURLRequest *reverseAuthRequest = [[OAMutableURLRequest alloc] initWithURL:url
@@ -628,15 +635,15 @@ UITableViewDelegate
     NSURL *accessTokenURL = [NSURL URLWithString:@"https://api.twitter.com/oauth/access_token"];
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:SocialFacadeTwitterConsumerKey, @"x_reverse_auth_target", reverseAuthRequestResults, @"x_reverse_auth_parameters", nil];
     TWRequest *reverseAuthAccessTokenRequest = [[TWRequest alloc] initWithURL:accessTokenURL parameters:parameters requestMethod:TWRequestMethodPOST];
-    
+
     ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     [self.twitterAccountStore requestAccessToAccountsWithType:twitterType withCompletionHandler:^(BOOL granted, NSError *error) {
         
         [reverseAuthAccessTokenRequest setAccount:self.twitterAccount];
         [reverseAuthAccessTokenRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-            
+                        
                     if ( responseData ) {
-            
+
                         // Get results string (e.g., Access Token, Access Token Secret, Twitter Handle)
                         NSString *reverseAuthAccessResults = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
                     
@@ -660,6 +667,9 @@ UITableViewDelegate
                         name = [name stringByReplacingOccurrencesOfString:@"=" withString:@""];
                         
                         // Store Reverse Auth Access Token and Access Token Secret
+                        
+                        NSLog(@"%@",token);
+                        
                         [self setTwitterReverseAuthToken:token];
                         [self setTwitterReverseAuthSecret:secret];
                         [self setTwitterID:ID];
@@ -668,6 +678,8 @@ UITableViewDelegate
                         // Send Reverse Auth Access Token and Access Token Secret to Shelby for Token Swap
                         [self sendReverseAuthAccessResultsToServer];
                     
+                        
+                    } else {
                         
                     }
             
@@ -838,18 +850,6 @@ UITableViewDelegate
 /// Shelby Authorization Flag /// 
 - (void)setShelbyAuthorized:(BOOL)shelbyAuthorized
 {
-    if ( shelbyAuthorized ) {
-        
-        
-        
-    } else {
-        
-        // If logging out, set Token and CreatorID to nil
-        self.shelbyToken = nil;
-        self.shelbyCreatorID = nil;
-        
-    }
-    
     [[NSUserDefaults standardUserDefaults] setBool:shelbyAuthorized forKey:SocialFacadeShelbyAuthorized];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

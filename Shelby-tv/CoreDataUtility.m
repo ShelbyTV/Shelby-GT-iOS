@@ -361,7 +361,7 @@ static CoreDataUtility *sharedInstance = nil;
     for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
         
         // Conditions for saving entires into database
-        NSString *sourceURLExists = [[[[resultsArray objectAtIndex:i] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"source_url"];
+        BOOL sourceURLExists = [[[[[resultsArray objectAtIndex:i] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"source_url"] isKindOfClass:[NSNull class]] ? NO : YES;
         id frameReturned = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];
         BOOL frameNull = [frameReturned isKindOfClass:([NSNull class])] ? YES : NO;
         
@@ -369,7 +369,7 @@ static CoreDataUtility *sharedInstance = nil;
         
             // Do Nothing
             
-        } else if ( sourceURLExists ) { // && NO == frameNull
+        } else if ( YES == sourceURLExists ) { // && NO == frameNull
             
             // Store dashboardEntry attirubutes
             DashboardEntry *dashboardEntry = [self checkIfEntity:CoreDataEntityDashboardEntry 
