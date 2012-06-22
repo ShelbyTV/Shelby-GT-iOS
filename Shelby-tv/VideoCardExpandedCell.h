@@ -22,4 +22,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rollLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *upvotedUserZero;
+@property (weak, nonatomic) IBOutlet UIImageView *upvotedUserOne;
+@property (weak, nonatomic) IBOutlet UIImageView *upvotedUserTwo;
+@property (weak, nonatomic) IBOutlet UIImageView *upvotedUserThree;
+@property (weak, nonatomic) IBOutlet UIImageView *upvotedUserFour;
+@property (weak, nonatomic) IBOutlet UIImageView *upvotedUserFive;
+@property (weak, nonatomic) IBOutlet UIImageView *upvotedUserSix;
+@property (weak, nonatomic) IBOutlet UIImageView *upvotedUserSeven;
+@property (weak, nonatomic) IBOutlet UIImageView *upvotedUserEight;
+@property (weak, nonatomic) IBOutlet UIImageView *upvotedUserNine;
+
+
 @end

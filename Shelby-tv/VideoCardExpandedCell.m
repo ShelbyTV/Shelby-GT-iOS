@@ -25,6 +25,16 @@
 @synthesize nicknameLabel = _nicknameLabel;
 @synthesize rollLabel = _rollLabel;
 @synthesize createdAtLabel = _createdAtLabel;
+@synthesize upvotedUserZero = _upvotedUserZero;
+@synthesize upvotedUserOne = _upvotedUserOne;
+@synthesize upvotedUserTwo = _upvotedUserTwo;
+@synthesize upvotedUserThree = _upvotedUserThree;
+@synthesize upvotedUserFour = _upvotedUserFour;
+@synthesize upvotedUserFive = _upvotedUserFive;
+@synthesize upvotedUserSix = _upvotedUserSix;
+@synthesize upvotedUserSeven = _upvotedUserSeven;
+@synthesize upvotedUserEight = _upvotedUserEight;
+@synthesize upvotedUserNine = _upvotedUserNine;
 
 #pragma mark - Memory Deallocation Methods
 - (void)dealloc
@@ -39,6 +49,16 @@
     self.nicknameLabel = nil;
     self.rollLabel = nil;
     self.createdAtLabel = nil;
+    self.upvotedUserZero = nil;
+    self.upvotedUserOne = nil;
+    self.upvotedUserTwo = nil;
+    self.upvotedUserThree = nil;
+    self.upvotedUserFour = nil;
+    self.upvotedUserFive = nil;
+    self.upvotedUserSix = nil;
+    self.upvotedUserSeven = nil;
+    self.upvotedUserEight = nil;
+    self.upvotedUserNine = nil;
 }
 
 - (void)awakeFromNib

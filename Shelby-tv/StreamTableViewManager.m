@@ -60,6 +60,12 @@
         if ( ![self arrayOfFrameIDs] ) self.arrayOfFrameIDs = [NSMutableArray array];
         [self.arrayOfFrameIDs addObject:dashboardEntry.frame.frameID];
         
+        // Populate roll label
+        [cell.rollLabel setText:dashboardEntry.frame.roll.title];
+        
+        // Populate nickname label
+        [cell.nicknameLabel setText:dashboardEntry.frame.creator.nickname];
+        
         // Present Heart/Unheart button (depends if user already liked video)
         BOOL upvoted = [CoreDataUtility checkIfUserUpvotedInFrame:dashboardEntry.frame];
         
@@ -78,11 +84,6 @@
             [cell.upvoteButton addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
         }
         
-        // Populate roll label
-        [cell.rollLabel setText:dashboardEntry.frame.roll.title];
-        
-        // Populate nickname label
-        [cell.nicknameLabel setText:dashboardEntry.frame.creator.nickname];
         
         // Populate Upvote Button label
         [cell.upvoteButton setTitle:[NSString stringWithFormat:@"%@", dashboardEntry.frame.upvotersCount] forState:UIControlStateNormal];
@@ -311,6 +312,28 @@
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardExpandedCell" owner:self options:nil];
         cell = (VideoCardExpandedCell*)[nib objectAtIndex:0];
+        
+        NSUInteger userCounter = 0;
+        NSMutableArray *upvoteUsersarray = [NSMutableArray arrayWithArray:[dashboardEntry.frame.upvoteUsers allObjects]];
+        
+        while ( userCounter < [upvoteUsersarray count] ) {
+            
+            UpvoteUsers *user = [upvoteUsersarray objectAtIndex:userCounter];
+            
+            for (UIImageView *imageView in [cell subviews] ) {
+                
+                if ([upvoteUsersarray count]>2) NSLog(@"%@", upvoteUsersarray);
+                
+                if ( (imageView.tag == userCounter) && (userCounter < 10) && [imageView isMemberOfClass:[UIImageView class]] ) {
+                    
+                    [AsynchronousFreeloader loadImageFromLink:user.userImage forImageView:imageView withPlaceholderView:nil];
+                    
+                }
+                
+            }
+            
+            userCounter++;
+        }
         
         // Pseudo-hide cell until it's populated with information
         [cell setAlpha:0.0f];
