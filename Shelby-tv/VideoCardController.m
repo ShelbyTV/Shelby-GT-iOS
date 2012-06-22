@@ -42,7 +42,6 @@
     [upvoteRequest setHTTPMethod:@"POST"];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
     [client performRequest:upvoteRequest ofType:APIRequestType_PostUpvote];
-    
 }
 
 - (void)downvote

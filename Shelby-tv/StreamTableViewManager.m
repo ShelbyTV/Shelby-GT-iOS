@@ -53,6 +53,8 @@
 {
 
         // General Initializations
+    dispatch_async(dispatch_get_main_queue(), ^{
+    
         [cell setTag:row];
         [cell.upvoteButton setTag:row];
         [cell.upvoteLabel setTag:row];
@@ -134,6 +136,7 @@
         // Asynchronous download of video thumbnail
         [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
 
+    });
         
 }
 
@@ -150,6 +153,7 @@
         [button removeTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
         [button addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
         [cell.upvoteLabel setText:[NSString stringWithFormat:@"%d", upvotersCount]];
+        [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
     });
     
     // Quickly modify Core Data values
@@ -167,8 +171,6 @@
     
     [CoreDataUtility saveContext:frame.managedObjectContext];
     
-    self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
-    
     // Ping API with new values
     VideoCardController *controller = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
     [controller upvote];
@@ -180,7 +182,7 @@
     if ( DEBUGMODE ) NSLog(@"Downvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
     
     VideoCardCell *cell = (VideoCardCell*)[self.arrayOfCells objectAtIndex:button.tag];
-    NSInteger upvotersCount = [cell.upvoteLabel.text intValue];
+    NSUInteger upvotersCount = [cell.upvoteLabel.text intValue];
     upvotersCount--;
         dispatch_async(dispatch_get_main_queue(), ^{
             [button setImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
@@ -188,6 +190,7 @@
             [button removeTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
             [button addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
             [cell.upvoteLabel setText:[NSString stringWithFormat:@"%d", upvotersCount]];
+            [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
         });
     
     // Quickly modify Core Data values
@@ -196,16 +199,22 @@
     
     NSMutableSet *upvoteUsers = [NSMutableSet setWithSet:frame.upvoteUsers];
     
-    for (NSString *upvoterID in [upvoteUsers allObjects]) {
+    for (UpvoteUsers *user in [upvoteUsers allObjects]) {
+        
+        if ( [user.upvoterID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) {
+            
+            NSLog(@"%@", user.upvoterID);
+            
+            [frame removeUpvoteUsersObject:user];
+            
+        }
         
     }
     
     [frame setValue:[NSNumber numberWithInt:upvotersCount] forKey:CoreDataFrameUpvotersCount];
     
     [CoreDataUtility saveContext:frame.managedObjectContext];
-    
-    self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
-    
+ 
     // Ping API with new values
     VideoCardController *controller = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
     [controller downvote];
