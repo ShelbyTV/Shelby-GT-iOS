@@ -161,6 +161,10 @@
 		8ED31100153601A2002614DF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED310F4153601A2002614DF /* Icon@2x.png */; };
 		8ED31101153601A2002614DF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 8ED310F5153601A2002614DF /* iTunesArtwork */; };
 		8EDB32B115792688007D7106 /* VideoCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB32B015792688007D7106 /* VideoCardController.m */; };
+		8EE40A461596354900559484 /* rollsOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE40A441596354900559484 /* rollsOverlay.png */; };
+		8EE40A471596354900559484 /* rollsOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE40A451596354900559484 /* rollsOverlay@2x.png */; };
+		8EE40A4B1596359200559484 /* RollsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE40A4A1596359200559484 /* RollsCell.m */; };
+		8EE40A4D159638E000559484 /* RollsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EE40A4C159638E000559484 /* RollsCell.xib */; };
 		8EE5063F155CA39E00A04F50 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EE5063E155CA39E00A04F50 /* MediaPlayer.framework */; };
 		8EE50650155CA75500A04F50 /* Panhandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE5064F155CA75500A04F50 /* Panhandler.m */; };
 		8EE50653155CA76200A04F50 /* AsynchronousFreeloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE50652155CA76200A04F50 /* AsynchronousFreeloader.m */; };
@@ -427,6 +431,11 @@
 		8ED310F5153601A2002614DF /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		8EDB32AF15792688007D7106 /* VideoCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCardController.h; sourceTree = "<group>"; };
 		8EDB32B015792688007D7106 /* VideoCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCardController.m; sourceTree = "<group>"; };
+		8EE40A441596354900559484 /* rollsOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollsOverlay.png; sourceTree = "<group>"; };
+		8EE40A451596354900559484 /* rollsOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rollsOverlay@2x.png"; sourceTree = "<group>"; };
+		8EE40A491596359200559484 /* RollsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RollsCell.h; sourceTree = "<group>"; };
+		8EE40A4A1596359200559484 /* RollsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RollsCell.m; sourceTree = "<group>"; };
+		8EE40A4C159638E000559484 /* RollsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RollsCell.xib; sourceTree = "<group>"; };
 		8EE5063E155CA39E00A04F50 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		8EE5064E155CA75500A04F50 /* Panhandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Panhandler.h; path = library/Panhandler/Panhandler.h; sourceTree = SOURCE_ROOT; };
 		8EE5064F155CA75500A04F50 /* Panhandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Panhandler.m; path = library/Panhandler/Panhandler.m; sourceTree = SOURCE_ROOT; };
@@ -885,6 +894,8 @@
 			children = (
 				8ED3110715360490002614DF /* Xibs */,
 				8E068B6B1587FB430069FD01 /* ShelbyMenuView.h */,
+				8EE40A491596359200559484 /* RollsCell.h */,
+				8EE40A4A1596359200559484 /* RollsCell.m */,
 				8E068B6C1587FB430069FD01 /* ShelbyMenuView.m */,
 				8EEA703E15544A2200B1B07F /* VideoCardCell.h */,
 				8EEA703F15544A2200B1B07F /* VideoCardCell.m */,
@@ -940,6 +951,7 @@
 			children = (
 				8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */,
 				8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */,
+				8EE40A4C159638E000559484 /* RollsCell.xib */,
 				8E068B7C158823C70069FD01 /* ShelbyMenuView.xib */,
 				8EEA703C155449D800B1B07F /* VideoCardCell.xib */,
 				8EC981411595135C00BB9227 /* VideoCardExpandedCell.xib */,
@@ -957,6 +969,16 @@
 			);
 			name = "App Delegate";
 			sourceTree = "<group>";
+		};
+		8EE40A431596354900559484 /* rolls */ = {
+			isa = PBXGroup;
+			children = (
+				8EE40A441596354900559484 /* rollsOverlay.png */,
+				8EE40A451596354900559484 /* rollsOverlay@2x.png */,
+			);
+			name = rolls;
+			path = Resources/images/rolls;
+			sourceTree = SOURCE_ROOT;
 		};
 		8EE50641155CA3D300A04F50 /* Panhandler */ = {
 			isa = PBXGroup;
@@ -996,6 +1018,7 @@
 		8EE673841552E474004EA45C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8EE40A431596354900559484 /* rolls */,
 				8E791DE715828D3200B0E744 /* navigation */,
 				8EE673851552E474004EA45C /* login */,
 				8E87DE98156C34D5004E0629 /* tabBar */,
@@ -1176,6 +1199,9 @@
 				8EC981421595135C00BB9227 /* VideoCardExpandedCell.xib in Resources */,
 				8EC981451595171800BB9227 /* videoCardExpandedStroke.png in Resources */,
 				8EC981461595171800BB9227 /* videoCardExpandedStroke@2x.png in Resources */,
+				8EE40A461596354900559484 /* rollsOverlay.png in Resources */,
+				8EE40A471596354900559484 /* rollsOverlay@2x.png in Resources */,
+				8EE40A4D159638E000559484 /* RollsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1281,6 +1307,7 @@
 				8EC981321594F95900BB9227 /* ShelbyUser.m in Sources */,
 				8EC9813715950DF100BB9227 /* Reachability.m in Sources */,
 				8EC981401595134700BB9227 /* VideoCardExpandedCell.m in Sources */,
+				8EE40A4B1596359200559484 /* RollsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1352,7 +1379,7 @@
 		8ECBA7EE1535F6F70009718E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Arthur Sabintsev (Z4E762QSUZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arthur Sabintsev (Z4E762QSUZ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1367,7 +1394,7 @@
 					"\"$(SRCROOT)/library/facebook-ios-sdk/lib/facebook-ios-sdk\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "A6CC5FE3-9170-47F2-A539-3EDB4028F3C0";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A6CC5FE3-9170-47F2-A539-3EDB4028F3C0";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -1378,8 +1405,8 @@
 		8ECBA7EF1535F6F70009718E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Arthur Sabintsev (Z4E762QSUZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arthur Sabintsev (Z4E762QSUZ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1393,8 +1420,8 @@
 					"\"$(SRCROOT)/library/facebook-ios-sdk/lib/facebook-ios-sdk\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "A6CC5FE3-9170-47F2-A539-3EDB4028F3C0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A6CC5FE3-9170-47F2-A539-3EDB4028F3C0";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				WRAPPER_EXTENSION = app;

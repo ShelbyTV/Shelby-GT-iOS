@@ -7,6 +7,7 @@
 //
 
 #import "BrowseRollsTableViewManager.h"
+#import "RollsCell.h"
 
 @implementation BrowseRollsTableViewManager
 

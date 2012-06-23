@@ -584,7 +584,7 @@ static CoreDataUtility *sharedInstance = nil;
         NSString *nickname = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"nickname"]];
         [upvoteUsers setValue:nickname forKey:CoreDataUpvoteUsersNickname];
         
-        NSString *rollID = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"roll_id"]];
+        NSString *rollID = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"public_roll_id"]];
         [upvoteUsers setValue:rollID forKey:CoreDataUpvoteUsersRollID];
         
         NSString *userImage = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"user_image"]];
