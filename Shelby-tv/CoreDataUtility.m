@@ -144,6 +144,25 @@ static CoreDataUtility *sharedInstance = nil;
     
 }
 
++ (NSArray*)fetchAllBrowseRolls
+{
+    // Create fetch request
+    NSFetchRequest *dashboardEntryRequest = [[NSFetchRequest alloc] init];
+    [dashboardEntryRequest setReturnsObjectsAsFaults:NO];
+    
+    // Fetch dashboardEntry data
+    NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext];
+    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:CoreDataEntityDashboardEntry inManagedObjectContext:context];
+    [dashboardEntryRequest setEntity:dashboardEntryDescription];
+    
+    // Sort by timestamp
+    NSSortDescriptor *dashboardTimestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+    [dashboardEntryRequest setSortDescriptors:[NSArray arrayWithObject:dashboardTimestampSorter]];
+    
+    // Execute request that returns array of dashboardEntrys
+    return [context executeFetchRequest:dashboardEntryRequest error:nil];
+}
+
 + (DashboardEntry*)fetchDashboardEntryDataForRow:(NSUInteger)row
 {
  

@@ -226,7 +226,7 @@
     // Reference Parent ViewController's UITableView (should ONLY occur on first call to this method)
     self.tableView = tableView;
     
-    // Load stored data into tableView (if it exists)
+    // Load stored data into tableView
     [self loadDataFromCoreData];
     
 }
@@ -234,6 +234,7 @@
 - (void)loadDataFromCoreData
 {
     // Fetch Stream / DashboardEntry Data from Core Data
+    
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
      
         self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
@@ -241,6 +242,7 @@
         [self.tableView reloadData];
         
     }
+    
 }
 
 - (void)performAPIRequest

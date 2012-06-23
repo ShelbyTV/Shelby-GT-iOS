@@ -36,6 +36,12 @@
 
 + (NSArray*)fetchAllDashboardEntries;
 
+/**
+ Fetch all Dashboard Entrys
+ */
+
++ (NSArray*)fetchAllBrowseRolls;
+
 /** 
  Fetch Dashboard Entry information stored in Core Data 
  */
