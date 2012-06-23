@@ -147,20 +147,24 @@ static CoreDataUtility *sharedInstance = nil;
 + (NSArray*)fetchAllBrowseRolls
 {
     // Create fetch request
-    NSFetchRequest *dashboardEntryRequest = [[NSFetchRequest alloc] init];
-    [dashboardEntryRequest setReturnsObjectsAsFaults:NO];
+    NSFetchRequest *browseRollsRequest = [[NSFetchRequest alloc] init];
+    [browseRollsRequest setReturnsObjectsAsFaults:NO];
     
     // Fetch dashboardEntry data
     NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext];
-    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:CoreDataEntityDashboardEntry inManagedObjectContext:context];
-    [dashboardEntryRequest setEntity:dashboardEntryDescription];
+    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:CoreDataEntityRoll inManagedObjectContext:context];
+    [browseRollsRequest setEntity:dashboardEntryDescription];
     
-    // Sort by timestamp
-    NSSortDescriptor *dashboardTimestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-    [dashboardEntryRequest setSortDescriptors:[NSArray arrayWithObject:dashboardTimestampSorter]];
+    // Only include messages that belond to this specific conversation
+    NSPredicate *browseRollsPredicate = [NSPredicate predicateWithFormat:@"browseRoll == %d", YES];
+    [browseRollsRequest setPredicate:browseRollsPredicate];
+    
+//    // Sort by timestamp
+//    NSSortDescriptor *dashboardTimestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+//    [browseRollsRequest setSortDescriptors:[NSArray arrayWithObject:dashboardTimestampSorter]];
     
     // Execute request that returns array of dashboardEntrys
-    return [context executeFetchRequest:dashboardEntryRequest error:nil];
+    return [context executeFetchRequest:browseRollsRequest error:nil];
 }
 
 + (DashboardEntry*)fetchDashboardEntryDataForRow:(NSUInteger)row
@@ -174,6 +178,7 @@ static CoreDataUtility *sharedInstance = nil;
     NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext]; 
     NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:CoreDataEntityDashboardEntry inManagedObjectContext:context];
     [dashboardEntryRequest setEntity:dashboardEntryDescription];
+    
     
     // Sort by timestamp
     NSSortDescriptor *dashboardTimestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];

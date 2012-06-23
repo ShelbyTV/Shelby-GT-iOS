@@ -48,6 +48,7 @@
         <userInfo/>
     </entity>
     <entity name="Roll" representedClassName="Roll" syncable="YES">
+        <attribute name="browseRoll" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="creatorID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isPublic" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="rollID" optional="YES" attributeType="String" syncable="YES"/>
@@ -81,14 +82,14 @@
         <relationship name="frame" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Frame" inverseName="video" inverseEntity="Frame" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Conversation" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Creator" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="DashboardEntry" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Frame" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Messages" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Roll" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ShelbyUser" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="UpvoteUsers" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Video" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Conversation" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Creator" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="DashboardEntry" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Frame" positionX="0" positionY="0" width="128" height="255"/>
+        <element name="Messages" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="Roll" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="ShelbyUser" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="UpvoteUsers" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Video" positionX="0" positionY="0" width="128" height="150"/>
     </elements>
 </model>

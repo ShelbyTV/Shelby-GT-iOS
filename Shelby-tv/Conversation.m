@@ -10,7 +10,6 @@
 #import "Frame.h"
 #import "Messages.h"
 
-
 @implementation Conversation
 
 @dynamic conversationID;

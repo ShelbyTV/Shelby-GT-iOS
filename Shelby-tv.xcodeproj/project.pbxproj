@@ -43,6 +43,7 @@
 		8E4A77E51551A224003CBA2A /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A77D81551A224003CBA2A /* SBJsonUTF8Stream.m */; };
 		8E4A77E61551A224003CBA2A /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A77DA1551A224003CBA2A /* SBJsonWriter.m */; };
 		8E4A77EA1551A6E2003CBA2A /* ShelbyAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */; };
+		8E4CE11915966B5300C851E7 /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4CE11815966B5300C851E7 /* Roll.m */; };
 		8E50941E158D10E2000AF390 /* navigationBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E509417158D10E2000AF390 /* navigationBarBackground.png */; };
 		8E50941F158D10E2000AF390 /* navigationBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E509418158D10E2000AF390 /* navigationBarBackground@2x.png */; };
 		8E509420158D10E2000AF390 /* navigationButtonBrowseRolls.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E509419158D10E2000AF390 /* navigationButtonBrowseRolls.png */; };
@@ -107,7 +108,6 @@
 		8E87DF00156C4A8A004E0629 /* videoCardTimestampTwitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E87DEE8156C4A8A004E0629 /* videoCardTimestampTwitter.png */; };
 		8E87DF01156C4A8A004E0629 /* videoCardTimestampTwitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E87DEE9156C4A8A004E0629 /* videoCardTimestampTwitter@2x.png */; };
 		8E90B802156E898700C840B5 /* NSDate+DateFromBSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E90B801156E898700C840B5 /* NSDate+DateFromBSONString.m */; };
-		8E946118159171E600031F09 /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E946117159171E600031F09 /* Roll.m */; };
 		8EB6D7DD157FD1F50060202D /* videoCardButtonCommentOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7CD157FD1F50060202D /* videoCardButtonCommentOff.png */; };
 		8EB6D7DE157FD1F50060202D /* videoCardButtonCommentOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7CE157FD1F50060202D /* videoCardButtonCommentOff@2x.png */; };
 		8EB6D7DF157FD1F50060202D /* videoCardButtonCommentOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7CF157FD1F50060202D /* videoCardButtonCommentOn.png */; };
@@ -267,6 +267,8 @@
 		8E4A77DA1551A224003CBA2A /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		8E4A77E81551A6E2003CBA2A /* ShelbyAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelbyAPIClient.h; sourceTree = "<group>"; };
 		8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyAPIClient.m; sourceTree = "<group>"; };
+		8E4CE11715966B5300C851E7 /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
+		8E4CE11815966B5300C851E7 /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
 		8E509417158D10E2000AF390 /* navigationBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationBarBackground.png; sourceTree = "<group>"; };
 		8E509418158D10E2000AF390 /* navigationBarBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBarBackground@2x.png"; sourceTree = "<group>"; };
 		8E509419158D10E2000AF390 /* navigationButtonBrowseRolls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonBrowseRolls.png; sourceTree = "<group>"; };
@@ -363,8 +365,6 @@
 		8E87DEE9156C4A8A004E0629 /* videoCardTimestampTwitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardTimestampTwitter@2x.png"; sourceTree = "<group>"; };
 		8E90B800156E898700C840B5 /* NSDate+DateFromBSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateFromBSONString.h"; sourceTree = "<group>"; };
 		8E90B801156E898700C840B5 /* NSDate+DateFromBSONString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateFromBSONString.m"; sourceTree = "<group>"; };
-		8E946116159171E600031F09 /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
-		8E946117159171E600031F09 /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
 		8EA87B4F156167E00029C07E /* CoreDataConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataConstants.h; sourceTree = "<group>"; };
 		8EB6D7CD157FD1F50060202D /* videoCardButtonCommentOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardButtonCommentOff.png; sourceTree = "<group>"; };
 		8EB6D7CE157FD1F50060202D /* videoCardButtonCommentOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardButtonCommentOff@2x.png"; sourceTree = "<group>"; };
@@ -993,10 +993,10 @@
 			isa = PBXGroup;
 			children = (
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
+				8E4CE11715966B5300C851E7 /* Roll.h */,
+				8E4CE11815966B5300C851E7 /* Roll.m */,
 				8EC981301594F95900BB9227 /* ShelbyUser.h */,
 				8EC981311594F95900BB9227 /* ShelbyUser.m */,
-				8E946116159171E600031F09 /* Roll.h */,
-				8E946117159171E600031F09 /* Roll.m */,
 				8EC54583158F96310048FEAA /* Conversation.h */,
 				8EC54584158F96310048FEAA /* Conversation.m */,
 				8EB6D81115800F550060202D /* Creator.h */,
@@ -1302,12 +1302,12 @@
 				8E04DC2D1590E1620066BBA6 /* ShelbyMenuController.m in Sources */,
 				8E04DC31159117DD0066BBA6 /* SettingsTableViewController.m in Sources */,
 				8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */,
-				8E946118159171E600031F09 /* Roll.m in Sources */,
 				8EFE780C15939B0200499994 /* RollVideosTableViewManager.m in Sources */,
 				8EC981321594F95900BB9227 /* ShelbyUser.m in Sources */,
 				8EC9813715950DF100BB9227 /* Reachability.m in Sources */,
 				8EC981401595134700BB9227 /* VideoCardExpandedCell.m in Sources */,
 				8EE40A4B1596359200559484 /* RollsCell.m in Sources */,
+				8E4CE11915966B5300C851E7 /* Roll.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

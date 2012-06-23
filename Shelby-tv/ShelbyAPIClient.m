@@ -174,7 +174,7 @@
     
     self.parsedDictionary = [self parseData];
     
-    switch (self.requestType) {
+    switch ( self.requestType ) {
             
         case APIRequestType_PostToken:{
             
@@ -184,6 +184,13 @@
         } break;
         
         case APIRequestType_GetStream:{
+            
+            NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
+            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
+            
+        } break;
+            
+        case APIRequestType_GetBrowseRolls:{
             
             NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
             [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];

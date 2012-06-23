@@ -71,6 +71,10 @@
 
 // Roll Attribute Constants
 #define CoreDataRollID                          @"rollID"
+#define CoreDataRollBrowseRoll                  @"browseRoll"
+#define CoreDataRollCreatorID                   @"creatorID"
+#define CoreDataRollThumbnailURL                @"thumbnailURL"
+#define CoreDataRollIsPublic                    @"isPublic"
 #define CoreDataRollTitle                       @"title"
 
 // ShelbyUser Attribute Constants

@@ -9,7 +9,6 @@
 #import "DashboardEntry.h"
 #import "Frame.h"
 
-
 @implementation DashboardEntry
 
 @dynamic dashboardID;

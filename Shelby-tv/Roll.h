@@ -2,7 +2,7 @@
 //  Roll.h
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 6/20/12.
+//  Created by Arthur Ariel Sabintsev on 6/23/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString * rollID;
 @property (nonatomic, retain) NSString * thumbnail_url;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSNumber * browseRoll;
 @property (nonatomic, retain) NSSet *frame;
 @end
 

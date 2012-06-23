@@ -171,8 +171,7 @@ UITableViewDelegate
 {
     
     // Remove observers
-    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestType_PostToken];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:notificationName object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString apiRequestTypeToString:APIRequestType_PostToken] object:nil];
     
     // Get Shelby Authorization from notificaiton dictioanry qsent from APIClient
     ShelbyUser *shelbyUser = [CoreDataUtility fetchShelbyAuthData];

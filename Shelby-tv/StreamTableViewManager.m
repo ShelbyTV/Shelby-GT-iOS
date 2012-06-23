@@ -234,7 +234,6 @@
 - (void)loadDataFromCoreData
 {
     // Fetch Stream / DashboardEntry Data from Core Data
-    
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
      
         self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
@@ -251,10 +250,9 @@
     // Add API Observers (should ONLY occur on first call to this method)
     if ( NO == self.observerCreated ) [self createAPIObservers];
     
-    // Peeform API Request
+    // Perform API Request
     NSString *requestString = [NSString stringWithFormat:APIRequest_GetStream, [SocialFacade sharedInstance].shelbyToken];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
-
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
     [client performRequest:request ofType:APIRequestType_GetStream];
     
