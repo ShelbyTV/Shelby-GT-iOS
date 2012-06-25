@@ -6,23 +6,38 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import "ShelbyMenuController.h"
+#import "ShelbyMenuViewController.h"
 
-@interface ShelbyMenuController ()
+@interface ShelbyMenuViewController ()
 
 @property (strong, nonatomic) NSDictionary *viewControllers;
 @property (assign, nonatomic) NSUInteger currentType;
 
-- (void)createMenuView;
+- (void)setupMenuButton;
 - (void)removeCurrentlyPresentedSection;
 - (void)adjustFrame:(UIView*)view;
 
 @end
 
-@implementation ShelbyMenuController
-@synthesize menuView = _menuView;
+@implementation ShelbyMenuViewController
+@synthesize mainView = _mainView;
 @synthesize viewControllers = _viewControllers;
 @synthesize currentType = _currentType;
+@synthesize browseRollsButton = _browseRollsButton;
+@synthesize myRollsButton = _myRollsButton;
+@synthesize peopleRollsButton = _peopleRollsButton;
+@synthesize settingsButton = _settingsButton;
+@synthesize streamButton = _streamButton;
+
+#pragma mark - Deallocation Method
+- (void)dealloc
+{
+    self.browseRollsButton = nil;
+    self.myRollsButton = nil;
+    self.peopleRollsButton = nil;
+    self.settingsButton = nil;
+    self.streamButton = nil;
+}
 
 #pragma mark - Initialization Method
 - (id)initWithViewControllers:(NSMutableDictionary*)dictionary
@@ -38,8 +53,8 @@
         // Set currentType to nil
         self.currentType = GuideType_None;
         
-        // Create ShelbyMenuView and connect actions to menu buttons
-        [self createMenuView];
+        // Setup navigation buttons (actions and tags)
+        [self setupMenuButton];
         
         // Section that is visible on application launch
         [self presentSection:GuideType_Stream];
@@ -63,8 +78,8 @@
             
             UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_Section_BrowseRolls];
             [self adjustFrame:navigationController.view];
-            [self.view addSubview:navigationController.view];
-            [self.menuView.browseRollsButton setHighlighted:YES];
+            [self.mainView addSubview:navigationController.view];
+            [self.browseRollsButton setSelected:YES];
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -74,8 +89,8 @@
             
             UINavigationController *navigationController= (UINavigationController*)[self.viewControllers objectForKey:TextConstants_Section_MyRolls];
             [self adjustFrame:navigationController.view];
-            [self.view addSubview:navigationController.view];
-            [self.menuView.myRollsButton setHighlighted:YES];
+            [self.mainView addSubview:navigationController.view];
+            [self.myRollsButton setSelected:YES];
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -85,8 +100,8 @@
             
             UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_Section_PeopleRolls];
             [self adjustFrame:navigationController.view];
-            [self.view addSubview:navigationController.view];
-            [self.menuView.peopleRollsButton setHighlighted:YES];
+            [self.mainView addSubview:navigationController.view];
+            [self.peopleRollsButton setSelected:YES];
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -96,8 +111,8 @@
             
             UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_Section_Settings];
             [self adjustFrame:navigationController.view];
-            [self.view addSubview:navigationController.view];
-            [self.menuView.settingsButton setHighlighted:YES];
+            [self.mainView addSubview:navigationController.view];
+            [self.settingsButton setSelected:YES];
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -107,8 +122,8 @@
             
             UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_Section_Stream];
             [self adjustFrame:navigationController.view];
-            [self.view addSubview:navigationController.view];
-            [self.menuView.streamButton setHighlighted:YES];
+            [self.mainView addSubview:navigationController.view];
+            [self.streamButton setSelected:YES];
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -119,50 +134,47 @@
     }
 }
 
-- (void)browseRollsButton
+- (void)browseRollsButtonAction
 {
     [self presentSection:GuideType_BrowseRolls];
 }
-- (void)myRollsButton
+- (void)myRollsButtonAction
 {
     [self presentSection:GuideType_MyRolls];
 }
 
-- (void)peopleRollsButton
+- (void)peopleRollsButtonAction
 {
     [self presentSection:GuideType_PeopleRolls];
 }
 
-- (void)settingsButton
+- (void)settingsButtonAction
 {
     [self presentSection:GuideType_Settings];
 }
 
-- (void)streamButton
+- (void)streamButtonAction
 {
     [self presentSection:GuideType_Stream];
 }
 
 #pragma mark - Private Methods
-- (void)createMenuView
+- (void)setupMenuButton
 {
-    // Grab reference to menuView nib
-    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ShelbyMenuView" owner:self options:nil];
-    self.menuView = (ShelbyMenuView*)[nib objectAtIndex:0];
-    
+
     // Add Target-Action to Buttons
-    [self.menuView.browseRollsButton addTarget:self action:@selector(browseRollsButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuView.myRollsButton addTarget:self action:@selector(myRollsButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuView.peopleRollsButton addTarget:self action:@selector(peopleRollsButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuView.settingsButton addTarget:self action:@selector(settingsButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.menuView.streamButton addTarget:self action:@selector(streamButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.browseRollsButton addTarget:self action:@selector(browseRollsButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.myRollsButton addTarget:self action:@selector(myRollsButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.peopleRollsButton addTarget:self action:@selector(peopleRollsButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.settingsButton addTarget:self action:@selector(settingsButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.streamButton addTarget:self action:@selector(streamButtonAction) forControlEvents:UIControlEventTouchUpInside];
 
     // Add Tags to Buttons
-    self.menuView.browseRollsButton.tag = GuideType_BrowseRolls;
-    self.menuView.myRollsButton.tag = GuideType_MyRolls;
-    self.menuView.peopleRollsButton.tag = GuideType_PeopleRolls;
-    self.menuView.settingsButton.tag = GuideType_Settings;
-    self.menuView.streamButton.tag = GuideType_Stream;
+    self.browseRollsButton.tag = GuideType_BrowseRolls;
+    self.myRollsButton.tag = GuideType_MyRolls;
+    self.peopleRollsButton.tag = GuideType_PeopleRolls;
+    self.settingsButton.tag = GuideType_Settings;
+    self.streamButton.tag = GuideType_Stream;
     
 }
 
@@ -175,9 +187,9 @@
             
             if ( self.currentType == currentView.tag ) [currentView removeFromSuperview];
             
-            for (UIButton *button in [self.menuView subviews]) {
+            for (UIButton *button in [self.view subviews]) {
                 
-                if ( button.tag == self.currentType ) [button setHighlighted:NO];
+                if ( button.tag == self.currentType && [button isMemberOfClass:[UIButton class]] ) [button setSelected:NO];
                 
             }
             

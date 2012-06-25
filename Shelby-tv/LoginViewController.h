@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class ShelbyMenuController;
+@class ShelbyMenuViewController;
 @interface LoginViewController : UIViewController
 
-@property (strong, nonatomic) ShelbyMenuController *shelbyMenuController;
+@property (strong, nonatomic) ShelbyMenuViewController *menuController;
 @property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *blackBarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *sloganLabel;

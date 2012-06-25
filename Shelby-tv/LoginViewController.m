@@ -14,7 +14,7 @@
 #import "ShelbyAPIClient.h"
 
 // Controllers
-#import "ShelbyMenuController.h"
+#import "ShelbyMenuViewController.h"
 
 // Constants
 #import "StaticDeclarations.h"
@@ -37,7 +37,7 @@
 @end
 
 @implementation LoginViewController
-@synthesize shelbyMenuController = _shelbyMenuController;
+@synthesize menuController = _menuController;
 @synthesize logoImageView = _logoImageView;
 @synthesize sloganLabel = _sloganLabel;
 @synthesize blackBarImageView = _blackBarImageView;
@@ -331,7 +331,7 @@
         
         if (finished)  {
         
-            [self.shelbyMenuController presentSection:GuideType_Stream];
+            [self.menuController presentSection:GuideType_Stream];
             [self dismissViewControllerAnimated:NO completion:nil];
         
         }

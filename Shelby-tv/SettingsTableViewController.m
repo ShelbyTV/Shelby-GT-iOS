@@ -8,13 +8,10 @@
 
 #import "SettingsTableViewController.h"
 #import "TableViewManagers.h"
-#import "ShelbyMenuController.h"
-#import "ShelbyMenuView.h"
+#import "ShelbyMenuViewController.h"
 #import "AppDelegate.h"
 
 @interface SettingsTableViewController ()
-
-@property (strong, nonatomic) ShelbyMenuView *menuView;
 
 - (void)logout;
 
@@ -25,8 +22,7 @@
 @end
 
 @implementation SettingsTableViewController
-@synthesize shelbyMenuController = _shelbyMenuController;
-@synthesize menuView = _menuView;
+@synthesize menuController = _menuController;
 
 #pragma mark - Deallocation Method
 - (void)dealloc
@@ -57,7 +53,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self createView];
     [self fadeInAnimation];
 }
 
@@ -65,16 +60,6 @@
 {
     [super viewWillDisappear:animated];
     [self fadeOutAnimation];
-}
-
-#pragma mark - Private Methods
-- (void)createView
-{
-    
-    // Add menuView over navigationBar
-    self.menuView = self.shelbyMenuController.menuView;
-    [self.navigationController.navigationBar addSubview:self.menuView];
-    
 }
 
 #pragma mark - Private Methods
@@ -121,7 +106,7 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if ( (nil == cell) || (0 == indexPath.row) ) { // The 0 == indexPath.row is to fix an issue when reloading stream via the ShelbyMenuView
+    if (  nil == cell ) { 
         
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
@@ -146,30 +131,30 @@
     [[SocialFacade sharedInstance] shelbyLogout];
 }
 
-#pragma mark - ShelbyMenuControllerDelegate Methods
-- (void)browseRollsButton
+#pragma mark - ShelbyMenuDelegate Methods
+- (void)browseRollsButtonAction
 {
-    [self.shelbyMenuController browseRollsButton];
+    [self.menuController browseRollsButtonAction];
 }
 
-- (void)myRollsButton
+- (void)myRollsButtonAction
 {
-    [self.shelbyMenuController myRollsButton];
+    [self.menuController myRollsButtonAction];
 }
 
-- (void)peopleRollsButton
+- (void)peopleRollsButtonAction
 {
-    [self.shelbyMenuController peopleRollsButton];
+    [self.menuController peopleRollsButtonAction];
 }
 
-- (void)settingsButton
+- (void)settingsButtonAction
 {
-    [self.shelbyMenuController settingsButton];
+    [self.menuController settingsButtonAction];
 }
 
-- (void)streamButton
+- (void)streamButtonAction
 {
-    [self.shelbyMenuController streamButton];
+    [self.menuController streamButtonAction];
 }
 
 #pragma mark - Interface Orientation Method

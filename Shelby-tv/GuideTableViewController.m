@@ -7,14 +7,12 @@
 //
 
 #import "GuideTableViewController.h"
-#import "ShelbyMenuController.h"
+#import "ShelbyMenuViewController.h"
 #import "TableViewManagers.h"
-#import "ShelbyMenuView.h"
 
 @interface GuideTableViewController ()
 
 @property (assign, nonatomic) GuideType type;
-@property (strong, nonatomic) ShelbyMenuView *menuView;
 @property (strong, nonatomic) GuideTableViewManager *tableViewManager;
 @property (assign, nonatomic) BOOL firstLoad;
 
@@ -29,9 +27,8 @@
 @end
 
 @implementation GuideTableViewController
-@synthesize shelbyMenuController = _shelbyMenuController;
+@synthesize menuController = menuController;
 @synthesize type = _guideType;
-@synthesize menuView = _menuView;
 @synthesize tableViewManager = _tableViewManager;
 
 #pragma mark - Initialization Method
@@ -111,41 +108,36 @@
 - (void)createView
 {
     
-    // Add menuView over navigationBar
-    self.menuView = self.shelbyMenuController.menuView;
-    [self.navigationController.navigationBar addSubview:self.menuView];
-
-    
     // Set section-specific UI properties
     switch ( self.type ) {
             
         case GuideType_BrowseRolls:{
        
-            [self.menuView.browseRollsButton setHighlighted:YES];
+            [self.menuController.browseRollsButton setHighlighted:YES];
             
         } break;
             
         case GuideType_MyRolls:{
             
-            [self.menuView.myRollsButton setHighlighted:YES];
+            [self.menuController.myRollsButton setHighlighted:YES];
             
         } break;
             
         case GuideType_PeopleRolls:{
             
-            [self.menuView.peopleRollsButton setHighlighted:YES];
+            [self.menuController.peopleRollsButton setHighlighted:YES];
             
         } break;
             
         case GuideType_Settings:{
             
-            [self.menuView.settingsButton setHighlighted:YES];
+            [self.menuController.settingsButton setHighlighted:YES];
             
         } break;
             
         case GuideType_Stream:{
             
-            [self.menuView.streamButton setHighlighted:YES];
+            [self.menuController.streamButton setHighlighted:YES];
             
         } break;
             
@@ -180,30 +172,30 @@
     }];
 }
 
-#pragma mark - ShelbyMenuControllerDelegate Methods
-- (void)browseRollsButton
+#pragma mark - ShelbyMenuDelegate Methods
+- (void)browseRollsButtonAction
 {
-    [self.shelbyMenuController browseRollsButton];
+    [self.menuController browseRollsButtonAction];
 }
 
-- (void)myRollsButton
+- (void)myRollsButtonAction
 {
-    [self.shelbyMenuController myRollsButton];
+    [self.menuController myRollsButtonAction];
 }
 
-- (void)peopleRollsButton
+- (void)peopleRollsButtonAction
 {
-    [self.shelbyMenuController peopleRollsButton];
+    [self.menuController peopleRollsButtonAction];
 }
 
-- (void)settingsButton
+- (void)settingsButtonAction
 {
-    [self.shelbyMenuController settingsButton];
+    [self.menuController settingsButtonAction];
 }
 
-- (void)streamButton
+- (void)streamButtonAction
 {
-    [self.shelbyMenuController streamButton];
+    [self.menuController streamButtonAction];
 }
 
 

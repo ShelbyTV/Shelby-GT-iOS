@@ -20,7 +20,7 @@
 #import "LoginViewController.h"
 
 #import "SettingsTableViewController.h"
-#import "ShelbyMenuController.h"
+#import "ShelbyMenuViewController.h"
 
 // Core Data
 #import <CoreData/CoreData.h>
@@ -28,7 +28,7 @@
 
 @interface AppDelegate ()
 
-@property (strong, nonatomic) ShelbyMenuController *shelbyMenuController;
+@property (strong, nonatomic) ShelbyMenuViewController *menuController;
 
 - (void)analytics;
 - (void)customization;
@@ -38,7 +38,7 @@
 
 @implementation AppDelegate
 @synthesize window = _window;
-@synthesize shelbyMenuController = _shelbyMenuController;
+@synthesize menuController = _menuController;
 
 #pragma mark - UIApplicationDelegate Methods
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -101,16 +101,16 @@
     UINavigationController *streamNavigationController = [[UINavigationController alloc] initWithRootViewController:streamTableViewController];
     [viewControllers setValue:streamNavigationController forKey:TextConstants_Section_Stream];
 
-    self.shelbyMenuController = [[ShelbyMenuController alloc] initWithViewControllers:viewControllers];
+    self.menuController = [[ShelbyMenuViewController alloc] initWithViewControllers:viewControllers];
     
-    // Add reference to shelbyMenuController
-    browseRollsTableViewController.shelbyMenuController = self.shelbyMenuController;
-    myRollsTableViewController.shelbyMenuController = self.shelbyMenuController;
-    peopleRollsTableViewController.shelbyMenuController = self.shelbyMenuController;
-    settingsTableViewController.shelbyMenuController = self.shelbyMenuController;
-    streamTableViewController.shelbyMenuController = self.shelbyMenuController;
+    // Add reference to ShelbyMenuViewController
+    browseRollsTableViewController.menuController = self.menuController;
+    myRollsTableViewController.menuController = self.menuController;
+    peopleRollsTableViewController.menuController = self.menuController;
+    settingsTableViewController.menuController = self.menuController;
+    streamTableViewController.menuController = self.menuController;
     
-    self.window.rootViewController = self.shelbyMenuController;
+    self.window.rootViewController = self.menuController;
     
 }
 
@@ -140,14 +140,14 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         
         LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController_iPhone" bundle:nil];
-        loginViewController.shelbyMenuController = self.shelbyMenuController;
+        loginViewController.menuController = self.menuController;
         [self.window.rootViewController presentModalViewController:loginViewController animated:NO];
         [[SocialFacade sharedInstance] setLoginViewController:loginViewController];
         
     } else {
         
         LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController_iPad" bundle:nil];
-        loginViewController.shelbyMenuController = self.shelbyMenuController;
+        loginViewController.menuController = self.menuController;
         [self.window.rootViewController presentModalViewController:loginViewController animated:NO];
         [[SocialFacade sharedInstance] setLoginViewController:loginViewController];
     }

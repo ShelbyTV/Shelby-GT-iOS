@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ShelbyMenuController.h"
+#import "ShelbyMenuViewController.h"
 
-@interface SettingsTableViewController : UITableViewController <ShelbyMenuControllerDelegate>
+@interface SettingsTableViewController : UITableViewController <ShelbyMenuDelegate>
 
-@property (strong, nonatomic) ShelbyMenuController *shelbyMenuController;
+@property (strong, nonatomic) ShelbyMenuViewController *menuController;
 
 @end
