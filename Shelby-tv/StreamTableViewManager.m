@@ -298,8 +298,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    static NSString *CellIdentifier = @"Cell";
-    
     // Fetch data stored in Core Data
     DashboardEntry *dashboardEntry = [self.coreDataResultsArray objectAtIndex:indexPath.row];
     
@@ -307,11 +305,10 @@
     NSUInteger upvotersCount = [dashboardEntry.frame.upvotersCount intValue];
     
     if ( upvotersCount > 0 ) {
-        
-        VideoCardExpandedCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardExpandedCell" owner:self options:nil];
-        cell = (VideoCardExpandedCell*)[nib objectAtIndex:0];
+        VideoCardExpandedCell *cell = (VideoCardExpandedCell*)[nib objectAtIndex:0];
         
         NSUInteger userCounter = 0;
         NSMutableArray *upvoteUsersarray = [NSMutableArray arrayWithArray:[dashboardEntry.frame.upvoteUsers allObjects]];
@@ -349,11 +346,9 @@
         return cell;
         
     } else {
-     
-        VideoCardCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
-        cell = (VideoCardCell*)[nib objectAtIndex:0];
+        VideoCardCell *cell = (VideoCardCell*)[nib objectAtIndex:0];
     
         // Pseudo-hide cell until it's populated with information
         [cell setAlpha:0.0f];
