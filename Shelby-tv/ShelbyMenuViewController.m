@@ -21,17 +21,18 @@
 
 @implementation ShelbyMenuViewController
 @synthesize mainView = _mainView;
-@synthesize viewControllers = _viewControllers;
-@synthesize currentType = _currentType;
 @synthesize browseRollsButton = _browseRollsButton;
 @synthesize myRollsButton = _myRollsButton;
 @synthesize peopleRollsButton = _peopleRollsButton;
 @synthesize settingsButton = _settingsButton;
 @synthesize streamButton = _streamButton;
+@synthesize viewControllers = _viewControllers;
+@synthesize currentType = _currentType;
 
 #pragma mark - Deallocation Method
 - (void)dealloc
 {
+    self.mainView = nil;
     self.browseRollsButton = nil;
     self.myRollsButton = nil;
     self.peopleRollsButton = nil;
@@ -189,8 +190,12 @@
             
             for (UIButton *button in [self.view subviews]) {
                 
-                if ( button.tag == self.currentType && [button isMemberOfClass:[UIButton class]] ) [button setSelected:NO];
-                
+                if ( button.tag == self.currentType && [button isMemberOfClass:[UIButton class]] ) {
+                 
+                    [button setSelected:NO];
+                    [button setHighlighted:NO];
+
+                }
             }
             
             self.currentType = GuideType_None;

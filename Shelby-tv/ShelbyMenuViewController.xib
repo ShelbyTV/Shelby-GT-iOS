@@ -39,7 +39,7 @@
 					<object class="IBUIView" id="806917853">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{320, 376}</string>
+						<string key="NSFrameSize">{320, 416}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="373927945"/>
@@ -60,7 +60,7 @@
 						<string key="NSFrame">{{0, 416}, {64, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="907727829"/>
+						<reference key="NSNextKeyView" ref="681670574"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">5</int>
@@ -83,6 +83,7 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">navigationButtonStreamOn.png</string>
 						</object>
+						<reference key="IBUIDisabledImage" ref="524950345"/>
 						<reference key="IBUISelectedImage" ref="524950345"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
@@ -104,7 +105,7 @@
 						<string key="NSFrame">{{64, 416}, {64, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="639509437"/>
+						<reference key="NSNextKeyView" ref="907727829"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">3</int>
@@ -114,12 +115,12 @@
 						<reference key="IBUIHighlightedTitleColor" ref="439894678"/>
 						<reference key="IBUINormalTitleColor" ref="439894678"/>
 						<reference key="IBUINormalTitleShadowColor" ref="462842747"/>
-						<object class="NSCustomResource" key="IBUIHighlightedImage" id="1065611558">
+						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="137971207">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">navigationButtonPeopleRollsOn.png</string>
 						</object>
-						<reference key="IBUISelectedImage" ref="1065611558"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
+						<reference key="IBUISelectedBackgroundImage" ref="137971207"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">navigationButtonPeopleRollsOff.png</string>
 						</object>
@@ -139,7 +140,7 @@
 						<string key="NSFrame">{{128, 416}, {64, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="171685424"/>
+						<reference key="NSNextKeyView" ref="1047652347"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">2</int>
@@ -167,7 +168,7 @@
 						<string key="NSFrame">{{192, 416}, {64, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="182265405"/>
+						<reference key="NSNextKeyView" ref="171685424"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">1</int>
@@ -226,9 +227,9 @@
 						<string key="NSFrame">{{64, 416}, {1, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="681670574"/>
+						<reference key="NSNextKeyView" ref="639509437"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<int key="IBUITag">1003</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage" id="444578058">
 							<string key="NSClassName">NSImage</string>
@@ -243,19 +244,19 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="358755079"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<int key="IBUITag">1003</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<reference key="IBUIImage" ref="444578058"/>
 					</object>
 					<object class="IBUIImageView" id="171685424">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{189, 416}, {1, 45}}</string>
+						<string key="NSFrame">{{192, 416}, {1, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1047652347"/>
+						<reference key="NSNextKeyView" ref="182265405"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<int key="IBUITag">1003</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<reference key="IBUIImage" ref="444578058"/>
 					</object>
@@ -267,7 +268,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="390959693"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<int key="IBUITag">1003</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<reference key="IBUIImage" ref="444578058"/>
 					</object>
@@ -419,8 +420,13 @@
 						<string key="objectName">Button - Settings</string>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">32</int>
-						<reference key="object" ref="907727829"/>
+						<int key="objectID">34</int>
+						<reference key="object" ref="171685424"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">35</int>
+						<reference key="object" ref="182265405"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -429,13 +435,8 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">34</int>
-						<reference key="object" ref="171685424"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">35</int>
-						<reference key="object" ref="182265405"/>
+						<int key="objectID">32</int>
+						<reference key="object" ref="907727829"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -458,15 +459,15 @@
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="1" key="6.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="7.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="7.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="8.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="3" key="8.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">35</int>
+			<int key="maxID">36</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -475,6 +476,7 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="browseRollsButton">UIButton</string>
+						<string key="dividers">UIImageView</string>
 						<string key="mainView">UIView</string>
 						<string key="myRollsButton">UIButton</string>
 						<string key="peopleRollsButton">UIButton</string>
@@ -485,6 +487,10 @@
 						<object class="IBToOneOutletInfo" key="browseRollsButton">
 							<string key="name">browseRollsButton</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dividers">
+							<string key="name">dividers</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="mainView">
 							<string key="name">mainView</string>
