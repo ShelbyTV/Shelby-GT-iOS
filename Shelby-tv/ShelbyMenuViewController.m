@@ -72,7 +72,10 @@
     // Step 1: Remove current section's view
     [self removeCurrentlyPresentedSection];
     
-    // Step 2: Present new setion's view
+    // Step 2: Set Navigation Logo
+    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigationLogo"]];
+    
+    // Step 3: Present new setion's view
     switch (type) {
             
         case GuideType_BrowseRolls:{
@@ -81,6 +84,7 @@
             [self adjustFrame:navigationController.view];
             [self.mainView addSubview:navigationController.view];
             [self.browseRollsButton setSelected:YES];
+            navigationController.visibleViewController.navigationItem.titleView = logoView;
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -92,6 +96,7 @@
             [self adjustFrame:navigationController.view];
             [self.mainView addSubview:navigationController.view];
             [self.myRollsButton setSelected:YES];
+            navigationController.visibleViewController.navigationItem.titleView = logoView;
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -103,6 +108,7 @@
             [self adjustFrame:navigationController.view];
             [self.mainView addSubview:navigationController.view];
             [self.peopleRollsButton setSelected:YES];
+            navigationController.visibleViewController.navigationItem.titleView = logoView;
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -114,6 +120,7 @@
             [self adjustFrame:navigationController.view];
             [self.mainView addSubview:navigationController.view];
             [self.settingsButton setSelected:YES];
+            navigationController.visibleViewController.navigationItem.titleView = logoView;
             navigationController.view.tag = type;
             self.currentType = type;
             
@@ -125,6 +132,7 @@
             [self adjustFrame:navigationController.view];
             [self.mainView addSubview:navigationController.view];
             [self.streamButton setSelected:YES];
+            navigationController.visibleViewController.navigationItem.titleView = logoView;
             navigationController.view.tag = type;
             self.currentType = type;
             
