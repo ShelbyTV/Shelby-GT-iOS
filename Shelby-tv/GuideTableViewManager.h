@@ -8,10 +8,11 @@
 
 #import "ASPullToRefreshTableViewController.h"
 
-// Models
+// Controllers
 #import "ShelbyAPIClient.h"
 #import "CoreDataUtility.h"
 #import "SocialFacade.h"
+#import "AsynchronousFreeloader.h"
 
 // Categories
 #import "NSString+TypedefConversion.h"

@@ -10,10 +10,10 @@
 
 @interface RollsCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *rollsCoverImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *coverImageView;
 @property (weak, nonatomic) IBOutlet UILabel *creatorNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *rollsNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *videoCountLabel;
-@property (weak, nonatomic) IBOutlet UILabel *watchingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rollNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *frameCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *followingCountLabel;
 
 @end

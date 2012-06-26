@@ -156,9 +156,7 @@
             }
                 break;
         }
-        
 
-        
         // Reset request type
         self.requestType = APIRequestType_None;
         

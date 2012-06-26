@@ -2,7 +2,7 @@
 //  Roll.h
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 6/23/12.
+//  Created by Arthur Ariel Sabintsev on 6/26/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
@@ -13,12 +13,16 @@
 
 @interface Roll : NSManagedObject
 
-@property (nonatomic, retain) NSString * creatorID;
+@property (nonatomic, retain) NSNumber * isBrowse;
+@property (nonatomic, retain) NSString * creatorNickname;
 @property (nonatomic, retain) NSNumber * isPublic;
 @property (nonatomic, retain) NSString * rollID;
-@property (nonatomic, retain) NSString * thumbnail_url;
+@property (nonatomic, retain) NSString * thumbnailURL;
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSNumber * browseRoll;
+@property (nonatomic, retain) NSNumber * frameCount;
+@property (nonatomic, retain) NSNumber * isGenius;
+@property (nonatomic, retain) NSString * creatorID;
+@property (nonatomic, retain) NSNumber * followingCount;
 @property (nonatomic, retain) NSSet *frame;
 @end
 

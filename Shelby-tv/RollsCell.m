@@ -9,21 +9,32 @@
 #import "RollsCell.h"
 
 @implementation RollsCell
-@synthesize rollsCoverImageView = _rollsCoverImageView;
+@synthesize coverImageView = _coverImageView;
 @synthesize creatorNameLabel = _creatorNameLabel;
-@synthesize rollsNameLabel = _rollsNameLabel;
-@synthesize videoCountLabel = _videoCountLabel;
-@synthesize watchingLabel = _watchingLabel;
+@synthesize rollNameLabel = _rollNameLabel;
+@synthesize frameCountLabel = _frameCountLabel;
+@synthesize followingCountLabel = _followingCountLabel;
 
 - (void)dealloc
 {
     
-    self.rollsCoverImageView = nil;
+    self.coverImageView = nil;
     self.creatorNameLabel = nil;
-    self.rollsNameLabel = nil;
-    self.videoCountLabel = nil;
-    self.watchingLabel = nil;
+    self.rollNameLabel = nil;
+    self.frameCountLabel = nil;
+    self.followingCountLabel = nil;
     
+}
+
+- (void)awakeFromNib
+{
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    // Customize Labels (all other label customization in VideCardCell.xib)
+    [self.creatorNameLabel setFont:[UIFont fontWithName:@"Ubuntu" size:15.0f]];
+    [self.rollNameLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:15.0f]];
+    [self.frameCountLabel setFont:[UIFont fontWithName:@"Ubuntu" size:11.0f]];
+    [self.followingCountLabel setFont:[UIFont fontWithName:@"Ubuntu" size:11.0f]];
 }
 
 @end

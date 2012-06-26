@@ -2,7 +2,7 @@
 //  Roll.m
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 6/23/12.
+//  Created by Arthur Ariel Sabintsev on 6/26/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
@@ -12,12 +12,16 @@
 
 @implementation Roll
 
-@dynamic creatorID;
+@dynamic isBrowse;
+@dynamic creatorNickname;
 @dynamic isPublic;
 @dynamic rollID;
-@dynamic thumbnail_url;
+@dynamic thumbnailURL;
 @dynamic title;
-@dynamic browseRoll;
+@dynamic frameCount;
+@dynamic isGenius;
+@dynamic creatorID;
+@dynamic followingCount;
 @dynamic frame;
 
 @end

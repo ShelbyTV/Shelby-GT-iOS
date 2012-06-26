@@ -28,11 +28,14 @@
            forIDKey:(NSString*)entityIDKey 
     existsInContext:(NSManagedObjectContext*)context;
 
-/// Store dashboardEntry data in Core Data
+/// Store shelbyUser data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forShelbyUserInContext:(NSManagedObjectContext*)context;
 
 /// Store dashboardEntry data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
+
+/// Store browseRolls data in Core Data
++ (void)storeParsedData:(NSDictionary*)parsedDictionary forBrowseRollsInContext:(NSManagedObjectContext*)context;
 
 /// Store dashbaordEntry.frame data in Core Data
 + (void)storeFrame:(Frame*)frame fromFrameArray:(NSArray*)frameArray;
@@ -97,6 +100,10 @@ static CoreDataUtility *sharedInstance = nil;
             [self storeParsedData:parsedDictionary forDashboardEntryInContext:context];
             break;
             
+        case APIRequestType_GetBrowseRolls:
+            [self storeParsedData:parsedDictionary forBrowseRollsInContext:context];
+            break;
+            
         default:
             break;
     }
@@ -156,7 +163,7 @@ static CoreDataUtility *sharedInstance = nil;
     [browseRollsRequest setEntity:dashboardEntryDescription];
     
     // Only include messages that belond to this specific conversation
-    NSPredicate *browseRollsPredicate = [NSPredicate predicateWithFormat:@"browseRoll == %d", YES];
+    NSPredicate *browseRollsPredicate = [NSPredicate predicateWithFormat:@"isBrowse == %d", YES];
     [browseRollsRequest setPredicate:browseRollsPredicate];
     
 //    // Sort by timestamp
@@ -369,6 +376,54 @@ static CoreDataUtility *sharedInstance = nil;
     
     NSString *watchLaterRollID = [NSString testForNull:[resultsDictionary valueForKey:@"watch_later_roll_id"]];
     [shelbyUser setValue:watchLaterRollID forKey:CoreDataShelbyUserWatchLaterRollID];
+    
+    [self saveContext:context];
+}
+
++ (void)storeParsedData:(NSDictionary *)parsedDictionary forBrowseRollsInContext:(NSManagedObjectContext *)context
+{
+    NSArray *resultsArray = [parsedDictionary valueForKey:APIRequest_Result];
+    
+    for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
+    
+        NSLog(@"%@", [resultsArray objectAtIndex:i]);
+        
+        Roll *roll = [self checkIfEntity:CoreDataEntityRoll
+                             withIDValue:[[resultsArray objectAtIndex:i] valueForKey:@"id"]
+                                forIDKey:CoreDataRollID
+                         existsInContext:context];
+    
+        NSString *rollID = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
+        [roll setValue:rollID forKey:CoreDataRollID];
+        
+        NSString *creatorID = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"creator_id"]];
+        [roll setValue:creatorID forKey:CoreDataRollCreatorID];
+        
+        NSString *nickname = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"creator_nickname"]];
+        [roll setValue:nickname forKey:CoreDataRollCreatorNickname];
+        
+        NSNumber *frameCount = [[resultsArray objectAtIndex:i] valueForKey:@"frame_count"];
+        [roll setValue:frameCount forKey:CoreDataRollFrameCount];
+        
+        NSNumber *followingCount = [[resultsArray objectAtIndex:i] valueForKey:@"following_user_count"];
+        [roll setValue:followingCount forKey:CoreDataRollFollowingCount];
+        
+        NSNumber *isGenius = [[resultsArray objectAtIndex:i] valueForKey:@"genius"];
+        [roll setValue:isGenius forKey:CoreDataRollGeniusRoll];
+        
+        NSNumber *isPublic = [[resultsArray objectAtIndex:i] valueForKey:@"public"];
+        [roll setValue:isPublic forKey:CoreDataRollPublicRoll];
+        
+        NSString *thumbnailURL = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"first_frame_thumbnail_url"]];
+        [roll setValue:thumbnailURL forKey:CoreDataRollThumbnailURL];
+        
+        NSString *title = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"title"]];
+        [roll setValue:title forKey:CoreDataRollTitle];
+        
+        // Signifies that this roll should be visible in the 'Browse Rolls' section
+        [roll setValue:[NSNumber numberWithBool:YES] forKey:CoreDataRollBrowseRoll];
+        
+    }
     
     [self saveContext:context];
 }

@@ -29,7 +29,7 @@
 - (void)createAPIObservers
 {
     
-    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestType_GetStream];
+    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestType_GetBrowseRolls];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(dataReturnedFromAPI:)
                                                  name:notificationName
@@ -75,6 +75,7 @@
 
 - (void)dataReturnedFromAPI:(NSNotification*)notification
 {
+    
     // Hide ASPullToRefreshController's HeaderView
     dispatch_async(dispatch_get_main_queue(), ^{
         
@@ -82,12 +83,57 @@
         [self loadDataFromCoreData];
         
     });
+    
 }
 
-#pragma mark - ASPullToRefreshDelegate Methods
+#pragma mark - ASPullToRefreshDelegate Method
 - (void)dataToRefresh
 {
-    [self.refreshController didFinishRefreshing];
+    // Perform API Request for tableView, which WILL/SHOULD/MUST exist before this method is called
+    [self performAPIRequest];
 }
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 97.0f;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return ( self.coreDataResultsArray ) ?  [self.coreDataResultsArray count] : 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"RollsCell" owner:self options:nil];
+    RollsCell *cell = (RollsCell*)[nib objectAtIndex:0];
+    
+    
+    Roll *roll= [self.coreDataResultsArray objectAtIndex:indexPath.row];
+    [AsynchronousFreeloader loadImageFromLink:roll.thumbnailURL forImageView:cell.coverImageView withPlaceholderView:nil];
+    [cell.creatorNameLabel setText:roll.creatorNickname];
+    [cell.creatorNameLabel setText:roll.title];
+    [cell.frameCountLabel setText:[NSString stringWithFormat:@"%d", [roll.frameCount intValue]]];
+    [cell.frameCountLabel setText:[NSString stringWithFormat:@"%d", [roll.followingCount intValue]]];
+    
+    
+    return cell;
+    
+}
+
+#pragma mark - UITableViewDelegate Methods
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
 
 @end

@@ -12,6 +12,7 @@
 		8E068B86158843650069FD01 /* BrowseRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B85158843640069FD01 /* BrowseRollsTableViewManager.m */; };
 		8E068B89158843B40069FD01 /* PeopleRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B88158843B40069FD01 /* PeopleRollsTableViewManager.m */; };
 		8E068B8C1588444E0069FD01 /* MyRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */; };
+		8E08C988159A36AB0097F360 /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E08C987159A36AB0097F360 /* Roll.m */; };
 		8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2A8EAE159135970028712C /* StreamTableViewManager.m */; };
 		8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */; };
 		8E4A04611598CA3900E4F675 /* ShelbyMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A04601598CA3900E4F675 /* ShelbyMenuViewController.xib */; };
@@ -42,7 +43,6 @@
 		8E4A77E51551A224003CBA2A /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A77D81551A224003CBA2A /* SBJsonUTF8Stream.m */; };
 		8E4A77E61551A224003CBA2A /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A77DA1551A224003CBA2A /* SBJsonWriter.m */; };
 		8E4A77EA1551A6E2003CBA2A /* ShelbyAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */; };
-		8E4CE11915966B5300C851E7 /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4CE11815966B5300C851E7 /* Roll.m */; };
 		8E5E7F95156151B0009FC8CE /* CoreDataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5E7F94156151B0009FC8CE /* CoreDataUtility.m */; };
 		8E664D401541A66A0071EC42 /* LoginViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */; };
 		8E664D421541A6770071EC42 /* LoginViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */; };
@@ -203,6 +203,8 @@
 		8E068B88158843B40069FD01 /* PeopleRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleRollsTableViewManager.m; sourceTree = "<group>"; };
 		8E068B8A1588444D0069FD01 /* MyRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRollsTableViewManager.h; sourceTree = "<group>"; };
 		8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRollsTableViewManager.m; sourceTree = "<group>"; };
+		8E08C986159A36AB0097F360 /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
+		8E08C987159A36AB0097F360 /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
 		8E0B3A9415813C400008B841 /* ColorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorConstants.h; sourceTree = "<group>"; };
 		8E2A8EAD159135970028712C /* StreamTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewManager.h; sourceTree = "<group>"; };
 		8E2A8EAE159135970028712C /* StreamTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamTableViewManager.m; sourceTree = "<group>"; };
@@ -263,8 +265,6 @@
 		8E4A77DA1551A224003CBA2A /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		8E4A77E81551A6E2003CBA2A /* ShelbyAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelbyAPIClient.h; sourceTree = "<group>"; };
 		8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyAPIClient.m; sourceTree = "<group>"; };
-		8E4CE11715966B5300C851E7 /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
-		8E4CE11815966B5300C851E7 /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
 		8E5E7F93156151B0009FC8CE /* CoreDataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataUtility.h; sourceTree = "<group>"; };
 		8E5E7F94156151B0009FC8CE /* CoreDataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataUtility.m; sourceTree = "<group>"; };
 		8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_iPhone.xib; sourceTree = "<group>"; };
@@ -976,9 +976,9 @@
 		8EE5065B155CA90700A04F50 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				8E08C986159A36AB0097F360 /* Roll.h */,
+				8E08C987159A36AB0097F360 /* Roll.m */,
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
-				8E4CE11715966B5300C851E7 /* Roll.h */,
-				8E4CE11815966B5300C851E7 /* Roll.m */,
 				8EC981301594F95900BB9227 /* ShelbyUser.h */,
 				8EC981311594F95900BB9227 /* ShelbyUser.m */,
 				8EC54583158F96310048FEAA /* Conversation.h */,
@@ -1288,7 +1288,7 @@
 				8EC9813715950DF100BB9227 /* Reachability.m in Sources */,
 				8EC981401595134700BB9227 /* VideoCardExpandedCell.m in Sources */,
 				8EE40A4B1596359200559484 /* RollsCell.m in Sources */,
-				8E4CE11915966B5300C851E7 /* Roll.m in Sources */,
+				8E08C988159A36AB0097F360 /* Roll.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
