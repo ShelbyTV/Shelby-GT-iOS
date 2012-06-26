@@ -567,8 +567,7 @@ UITableViewDelegate
     // Store Twitter Account on device as ACAccount
     ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     ACAccount *newAccount = [[ACAccount alloc] initWithAccountType:twitterType];
-    ACAccountCredential *credential = [[ACAccountCredential alloc] initWithOAuthToken:token tokenSecret:secret];
-    newAccount.credential = credential;
+    newAccount.credential = [[ACAccountCredential alloc] initWithOAuthToken:token tokenSecret:secret];;
     
     [self.twitterAccountStore saveAccount:newAccount withCompletionHandler:^(BOOL success, NSError *error) {
 
@@ -579,6 +578,7 @@ UITableViewDelegate
             
             // Reverse Auth must be performed on Main Thread.
             dispatch_async(dispatch_get_main_queue(), ^{
+                self.twitterAccount = newAccount;
                 [self getReverseAuthRequestToken];
             });
     

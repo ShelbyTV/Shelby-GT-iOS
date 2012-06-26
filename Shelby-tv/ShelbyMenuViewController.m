@@ -7,6 +7,8 @@
 //
 
 #import "ShelbyMenuViewController.h"
+#import "ShelbyAPIClient.h"
+#import "SocialFacade.h"
 
 @interface ShelbyMenuViewController ()
 
@@ -79,6 +81,12 @@
     switch (type) {
             
         case GuideType_BrowseRolls:{
+            
+            // Perform Initial API Request
+            NSString *requestString = [NSString stringWithFormat:APIRequest_GetBrowseRolls, [SocialFacade sharedInstance].shelbyToken];
+            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
+            ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+            [client performRequest:request ofType:APIRequestType_GetBrowseRolls];
             
             UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_Section_BrowseRolls];
             [self adjustFrame:navigationController.view];

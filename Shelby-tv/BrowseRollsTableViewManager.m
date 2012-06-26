@@ -116,14 +116,12 @@
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"RollsCell" owner:self options:nil];
     RollsCell *cell = (RollsCell*)[nib objectAtIndex:0];
     
-    
     Roll *roll= [self.coreDataResultsArray objectAtIndex:indexPath.row];
     [AsynchronousFreeloader loadImageFromLink:roll.thumbnailURL forImageView:cell.coverImageView withPlaceholderView:nil];
     [cell.creatorNameLabel setText:roll.creatorNickname];
-    [cell.creatorNameLabel setText:roll.title];
-    [cell.frameCountLabel setText:[NSString stringWithFormat:@"%d", [roll.frameCount intValue]]];
-    [cell.frameCountLabel setText:[NSString stringWithFormat:@"%d", [roll.followingCount intValue]]];
-    
+    [cell.rollNameLabel setText:roll.title];
+    [cell.frameCountLabel setText:[NSString stringWithFormat:@"%d videos", [roll.frameCount intValue]]];
+    [cell.followingCountLabel setText:[NSString stringWithFormat:@"%d people watching", [roll.followingCount intValue]]];
     
     return cell;
     

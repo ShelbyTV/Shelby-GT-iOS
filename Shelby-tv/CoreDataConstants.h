@@ -74,7 +74,7 @@
 #define CoreDataRollCreatorID                   @"creatorID"
 #define CoreDataRollCreatorNickname             @"creatorNickname"
 #define CoreDataRollFrameCount                  @"frameCount"
-#define CoreDataRollFollowingCount                  @"followingCount"
+#define CoreDataRollFollowingCount              @"followingCount"
 #define CoreDataRollBrowseRoll                  @"isBrowse"
 #define CoreDataRollGeniusRoll                  @"isGenius"
 #define CoreDataRollPublicRoll                  @"isPublic"

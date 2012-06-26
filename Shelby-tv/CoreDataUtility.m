@@ -385,8 +385,6 @@ static CoreDataUtility *sharedInstance = nil;
     NSArray *resultsArray = [parsedDictionary valueForKey:APIRequest_Result];
     
     for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
-    
-        NSLog(@"%@", [resultsArray objectAtIndex:i]);
         
         Roll *roll = [self checkIfEntity:CoreDataEntityRoll
                              withIDValue:[[resultsArray objectAtIndex:i] valueForKey:@"id"]
