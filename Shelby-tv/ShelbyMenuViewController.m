@@ -18,6 +18,8 @@
 - (void)setupMenuButton;
 - (void)removeCurrentlyPresentedSection;
 - (void)adjustFrame:(UIView*)view;
+- (void)fadeInAnimation;
+- (void)fadeOutAnimation;
 
 @end
 
@@ -93,6 +95,7 @@
         } break;
         
         case GuideType_MyRolls:{
+    
             
             UINavigationController *navigationController= (UINavigationController*)[self.viewControllers objectForKey:TextConstants_Section_MyRolls];
             [self adjustFrame:navigationController.view];
@@ -143,6 +146,9 @@
         default:
             break;
     }
+    
+    // Step 4: Fade in new view
+    [self fadeInAnimation];
 }
 
 - (void)browseRollsButtonAction
@@ -208,6 +214,7 @@
                 }
             }
             
+            [self fadeOutAnimation];
             self.currentType = GuideType_None;
             
         }
@@ -225,6 +232,26 @@
                                       frame.size.width,
                                       frame.size.height);
     }
+}
+
+#pragma mark - Animation Methods
+- (void)fadeInAnimation
+{
+    
+    [self.mainView setAlpha:0.25f];
+    [UIView animateWithDuration:0.5f animations:^{
+        [self.mainView setAlpha:1.0f];
+        
+    }];
+    
+}
+
+- (void)fadeOutAnimation
+{
+    [UIView animateWithDuration:0.5f animations:^{
+        [self.mainView setAlpha:0.25f];
+        
+    }];
 }
 
 #pragma mark - Interface Orientation Method

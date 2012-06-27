@@ -20,10 +20,6 @@
 - (GuideTableViewManager*)createTableViewManager;
 - (void)createView;
 
-/// Animation Methods
-- (void)fadeInAnimation;
-- (void)fadeOutAnimation;
-
 @end
 
 @implementation GuideTableViewController
@@ -67,6 +63,11 @@
 {
     [super viewWillAppear:animated];  
     [self createView];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
 }
 
 #pragma mark -  Customization Methods
@@ -145,31 +146,9 @@
             break;
     }
     
-    [self fadeInAnimation];
-    
     // Call API and Core Data in section's tableViewManager
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) [self.tableViewManager loadDataOnInitializationForTableView:self.tableView];
 
-}
-
-#pragma mark - Animation Methods
-- (void)fadeInAnimation
-{
-    
-    [self.tableView setAlpha:0.25f];
-    [UIView animateWithDuration:0.5f animations:^{
-        [self.tableView setAlpha:1.0f];
-        
-    }];
-    
-}
-
-- (void)fadeOutAnimation
-{
-    [UIView animateWithDuration:0.5f animations:^{
-        [self.tableView setAlpha:0.25f];
-        
-    }];
 }
 
 #pragma mark - ShelbyMenuDelegate Methods

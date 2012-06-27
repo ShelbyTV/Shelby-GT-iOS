@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1296</int>
-		<string key="IBDocument.SystemVersion">12A248</string>
+		<string key="IBDocument.SystemVersion">12A256</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2546</string>
-		<string key="IBDocument.AppKitVersion">1183</string>
+		<string key="IBDocument.AppKitVersion">1185</string>
 		<string key="IBDocument.HIToolboxVersion">622.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -363,13 +363,13 @@
 							<reference ref="681670574"/>
 							<reference ref="390959693"/>
 							<reference ref="1047652347"/>
-							<reference ref="806917853"/>
 							<reference ref="358755079"/>
 							<reference ref="182265405"/>
 							<reference ref="171685424"/>
 							<reference ref="639509437"/>
 							<reference ref="907727829"/>
 							<reference ref="373927945"/>
+							<reference ref="806917853"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -476,7 +476,6 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="browseRollsButton">UIButton</string>
-						<string key="dividers">UIImageView</string>
 						<string key="mainView">UIView</string>
 						<string key="myRollsButton">UIButton</string>
 						<string key="peopleRollsButton">UIButton</string>
@@ -487,10 +486,6 @@
 						<object class="IBToOneOutletInfo" key="browseRollsButton">
 							<string key="name">browseRollsButton</string>
 							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="dividers">
-							<string key="name">dividers</string>
-							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="mainView">
 							<string key="name">mainView</string>

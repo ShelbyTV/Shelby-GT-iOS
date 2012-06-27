@@ -108,6 +108,7 @@ static CoreDataUtility *sharedInstance = nil;
             break;
             
         case APIRequestType_GetBrowseRolls:
+
             [self storeParsedData:parsedDictionary forBrowseRollsInContext:context];
             break;
             
@@ -340,11 +341,8 @@ static CoreDataUtility *sharedInstance = nil;
         }
         
     }
-    
-    // If this is the first time data has been loaded, post notification to dismiss LoginViewController
-    if ( [SocialFacade sharedInstance].firstTimeLogin ) [[NSNotificationCenter defaultCenter] postNotificationName:TextConstants_CoreData_DidFinishLoadingDataOnLogin object:nil];
-}
 
+}
 
 + (void)dumpAllData
 {
@@ -505,6 +503,14 @@ static CoreDataUtility *sharedInstance = nil;
         roll.isPublic = [[resultsArray objectAtIndex:i] valueForKey:@"public"];
         
         roll.isBrowse = [NSNumber numberWithBool:YES];
+        
+    }
+    
+    // If this is the first time data has been loaded, post notification to dismiss LoginViewController
+    if ( [SocialFacade sharedInstance].firstTimeLogin ) {
+        
+        [[SocialFacade sharedInstance] setFirstTimeLogin:NO];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TextConstants_CoreData_DidFinishLoadingDataOnLogin object:nil];
         
     }
     

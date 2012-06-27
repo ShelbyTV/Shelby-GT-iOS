@@ -170,34 +170,33 @@
     // Hide activity indicator
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
+    // Create reference to context
+    NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
+    
     self.parsedDictionary = [self parseData];
     
     switch ( self.requestType ) {
             
         case APIRequestType_PostToken:{
             
-            NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
             [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
 
         } break;
         
         case APIRequestType_GetStream:{
             
-            NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
             [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
             
         } break;
        
         case APIRequestType_GetRollsFollowing:{
             
-            NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
             [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
             
         } break;
             
         case APIRequestType_GetBrowseRolls:{
             
-            NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
             [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
             
         } break;

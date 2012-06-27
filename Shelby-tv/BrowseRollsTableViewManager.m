@@ -49,7 +49,7 @@
 
 - (void)loadDataFromCoreData
 {
-    // Fetch Stream / DashboardEntry Data from Core Data
+    // Fetch Browse Rolls Data from Core Data
     
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
         

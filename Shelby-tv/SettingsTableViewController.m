@@ -15,10 +15,6 @@
 
 - (void)logout;
 
-// Animation Methods
-- (void)fadeInAnimation;
-- (void)fadeOutAnimation;
-
 @end
 
 @implementation SettingsTableViewController
@@ -53,13 +49,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self fadeInAnimation];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
-    [self fadeOutAnimation];
+    [super viewWillDisappear:animated];;
 }
 
 #pragma mark - Private Methods
@@ -67,25 +61,6 @@
 {
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate presentLoginViewController];
-}
-
-- (void)fadeInAnimation
-{
-    
-    [self.tableView setAlpha:0.25f];
-    [UIView animateWithDuration:0.5f animations:^{
-        [self.tableView setAlpha:1.0f];
-        
-    }];
-    
-}
-
-- (void)fadeOutAnimation
-{
-    [UIView animateWithDuration:0.5f animations:^{
-        [self.tableView setAlpha:0.25f];
-        
-    }];
 }
 
 #pragma mark - UITableViewDataSource Methods

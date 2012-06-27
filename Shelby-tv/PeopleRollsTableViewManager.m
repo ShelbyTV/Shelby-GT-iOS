@@ -21,7 +21,7 @@
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString apiRequestTypeToString:APIRequestType_GetBrowseRolls] object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString apiRequestTypeToString:APIRequestType_GetRollsFollowing] object:nil];
 }
 
 
@@ -49,7 +49,7 @@
 
 - (void)loadDataFromCoreData
 {
-    // Fetch Stream / DashboardEntry Data from Core Data
+    // Fetch Rolls-Following Data from Core Data
     
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
         
