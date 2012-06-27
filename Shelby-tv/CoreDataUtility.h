@@ -37,6 +37,12 @@
 + (NSArray*)fetchAllDashboardEntries;
 
 /**
+ Fetch all Browse Rolls
+ */
+
++ (NSArray*)fetchBrowseRolls;
+
+/**
  Fetch all My Rolls
  */
 
@@ -49,11 +55,10 @@
 + (NSArray*)fetchPeopleRolls;
 
 /**
- Fetch all Browse Rolls
+ Fetch videos from a specific roll
  */
 
-+ (NSArray*)fetchBrowseRolls;
-
++ (NSArray*)fetchRollVideos;
 
 /** 
  Fetch Dashboard Entry information stored in Core Data 

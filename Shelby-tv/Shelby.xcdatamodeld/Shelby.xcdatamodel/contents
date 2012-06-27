@@ -57,6 +57,7 @@
         <attribute name="isGenius" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isMy" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isPeople" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isPersonal" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isPublic" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="rollID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailURL" optional="YES" attributeType="String" syncable="YES"/>

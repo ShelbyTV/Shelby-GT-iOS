@@ -16,5 +16,7 @@
 @property (strong, nonatomic) ShelbyMenuViewController *menuController;
 
 - (id)initWithType:(GuideType)type;
+- (id)initWithType:(GuideType)type andRollID:(NSString*)rollID;
+
 
 @end

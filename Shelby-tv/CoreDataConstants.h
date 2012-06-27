@@ -75,10 +75,6 @@
 #define CoreDataRollCreatorNickname             @"creatorNickname"
 #define CoreDataRollFrameCount                  @"frameCount"
 #define CoreDataRollFollowingCount              @"followingCount"
-#define CoreDataRollBrowseRoll                  @"isBrowse"
-#define CoreDataRollCollaborativeRoll           @"isCollaborative"
-#define CoreDataRollGeniusRoll                  @"isGenius"
-#define CoreDataRollPublicRoll                  @"isPublic"
 #define CoreDataRollThumbnailURL                @"thumbnailURL"
 #define CoreDataRollTitle                       @"title"
 

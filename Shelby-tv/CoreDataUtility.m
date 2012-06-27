@@ -216,6 +216,25 @@ static CoreDataUtility *sharedInstance = nil;
     return [context executeFetchRequest:request error:nil];
 }
 
++ (NSArray*)fetchRollVideos
+{
+    // Create fetch request
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setReturnsObjectsAsFaults:NO];
+    
+    // Fetch dashboardEntry data
+    NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext];
+    NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityFrame inManagedObjectContext:context];
+    [request setEntity:description];
+    
+    // Only include messages that belond to this specific conversation
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isPeople == %d", YES];
+    [request setPredicate:predicate];
+    
+    // Execute request that returns array of dashboardEntrys
+    return [context executeFetchRequest:request error:nil];
+}
+
 + (DashboardEntry*)fetchDashboardEntryDataForRow:(NSUInteger)row
 {
  
@@ -460,17 +479,14 @@ static CoreDataUtility *sharedInstance = nil;
         
         if ( [roll.isPublic boolValue] && ![roll.isCollaborative boolValue] ) {
             
-            NSLog(@"PeopleRoll: %@", roll.title);
             roll.isPeople = [NSNumber numberWithBool:YES];
         
         } else if ( [roll.isPublic boolValue] && [roll.isCollaborative boolValue] ) {
             
-            NSLog(@"MyRoll: %@", roll.title);
             roll.isMy = [NSNumber numberWithBool:YES];
             
         } else if ( ![roll.isPublic boolValue] ) {
             
-            NSLog(@"MyRoll: %@", roll.title);
             roll.isMy = [NSNumber numberWithBool:YES];
             
         } else {

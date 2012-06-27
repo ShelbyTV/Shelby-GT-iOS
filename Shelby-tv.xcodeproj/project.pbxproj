@@ -517,6 +517,7 @@
 		8E6AF84B159B743B00F570CF /* Facebook SDK */ = {
 			isa = PBXGroup;
 			children = (
+				8E6AF855159B743B00F570CF /* FBJSON */,
 				8E6AF84C159B743B00F570CF /* Facebook.h */,
 				8E6AF84D159B743B00F570CF /* Facebook.m */,
 				8E6AF84E159B743B00F570CF /* facebook_ios_sdk_Prefix.pch */,
@@ -526,7 +527,6 @@
 				8E6AF852159B743B00F570CF /* FBDialog.m */,
 				8E6AF853159B743B00F570CF /* FBFrictionlessRequestSettings.h */,
 				8E6AF854159B743B00F570CF /* FBFrictionlessRequestSettings.m */,
-				8E6AF855159B743B00F570CF /* FBJSON */,
 				8E6AF863159B743B00F570CF /* FBLoginDialog.h */,
 				8E6AF864159B743B00F570CF /* FBLoginDialog.m */,
 				8E6AF865159B743B00F570CF /* FBRequest.h */,
@@ -912,13 +912,13 @@
 		8ED3110615360475002614DF /* Third Party Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				8E6AF8D8159B76FF00F570CF /* OAuth Consumer */,
-				8E6AF903159B76FF00F570CF /* SB JSON */,
-				8E6AF84B159B743B00F570CF /* Facebook SDK */,
 				8E50604115588FAB00F42933 /* Asynchronous Freeloader */,
 				8E7F47E6154093210041118E /* ASPullToRefresh */,
+				8E6AF84B159B743B00F570CF /* Facebook SDK */,
+				8E6AF8D8159B76FF00F570CF /* OAuth Consumer */,
 				8EE50641155CA3D300A04F50 /* Panhandler */,
 				8EC9813415950DF100BB9227 /* Reachability (ARC) */,
+				8E6AF903159B76FF00F570CF /* SB JSON */,
 				8E7F47EA154093890041118E /* SocialFacade */,
 			);
 			name = "Third Party Libraries";

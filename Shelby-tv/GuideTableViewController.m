@@ -15,6 +15,7 @@
 @property (assign, nonatomic) GuideType type;
 @property (strong, nonatomic) GuideTableViewManager *tableViewManager;
 @property (assign, nonatomic) BOOL firstLoad;
+@property (strong, nonatomic) NSString *rollID;
 
 /// Creation Methods
 - (GuideTableViewManager*)createTableViewManager;
@@ -26,6 +27,7 @@
 @synthesize menuController = menuController;
 @synthesize type = _guideType;
 @synthesize tableViewManager = _tableViewManager;
+@synthesize rollID = _rollID;
 
 #pragma mark - Initialization Method
 - (id)initWithType:(GuideType)type
@@ -48,6 +50,34 @@
         self.refreshDelegate = (id)self.tableViewManager;
         self.tableViewManager.refreshController = self;
 
+    }
+    
+    return  self;
+}
+
+- (id)initWithType:(GuideType)type andRollID:(NSString *)rollID
+{
+    
+    if ( self = [super init] ) {
+        
+        // Set type of GuideTableViewController Instance
+        self.type = type;
+        
+        // Set rollID for API call to display videos/frames for correct roll
+        self.rollID = rollID;
+        
+        // Initialize appropriate tableViewManager
+        self.tableViewManager = [self createTableViewManager];
+        
+        // Customize tableView
+        self.view.backgroundColor = ColorConstants_BackgroundColor;
+        self.tableView.backgroundColor = ColorConstants_BackgroundColor;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView.delegate = (id)self.tableViewManager;
+        self.tableView.dataSource = (id)self.tableViewManager;
+        self.refreshDelegate = (id)self.tableViewManager;
+        self.tableViewManager.refreshController = self;
+        
     }
     
     return  self;
@@ -96,6 +126,11 @@
             
         case GuideType_Stream:{
             manager = [[StreamTableViewManager alloc] init];
+        } break;
+            
+        case GuideType_RollVideos:{
+            manager = [[RollVideosTableViewManager alloc] init];
+            manager.rollID = self.rollID;
         } break;
             
         default:

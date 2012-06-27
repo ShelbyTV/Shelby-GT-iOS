@@ -16,7 +16,6 @@
 
 - (void)createAPIObservers;
 - (void)populateTableViewCell:(VideoCardCell*)cell withContent:(DashboardEntry*)dashboardEntry inRow:(NSUInteger)row;
-//- (void)animateCell:(VideoCardCell*)cell forRow:(NSUInteger)row;
 
 - (void)upvote:(UIButton *)button;
 - (void)downvote:(UIButton *)button;

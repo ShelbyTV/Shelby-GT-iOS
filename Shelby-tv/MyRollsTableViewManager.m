@@ -7,6 +7,7 @@
 //
 
 #import "MyRollsTableViewManager.h"
+#import "GuideTableViewController.h"
 #import "RollsCell.h"
 
 @interface MyRollsTableViewManager ()
@@ -130,7 +131,10 @@
 #pragma mark - UITableViewDelegate Methods
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NSLog(@"Pressed");
+    Roll *roll= [self.coreDataResultsArray objectAtIndex:indexPath.row];
+    GuideTableViewController *rollVideosTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_RollVideos andRollID:roll.rollID];
+    [self.navigationController presentViewController:rollVideosTableViewController animated:YES completion:nil];
 }
 
 

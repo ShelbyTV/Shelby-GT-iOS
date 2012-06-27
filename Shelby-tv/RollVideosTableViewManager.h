@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "GuideTableViewManager.h"
 
-@interface RollVideosTableViewManager : NSObject
+@interface RollVideosTableViewManager : GuideTableViewManager <GuideTableViewManagerDelegate, ASPullToRefreshDelegate>
 
 @end
