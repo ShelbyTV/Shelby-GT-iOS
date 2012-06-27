@@ -12,16 +12,17 @@
 
 @implementation Roll
 
-@dynamic isBrowse;
+@dynamic creatorID;
 @dynamic creatorNickname;
+@dynamic followingCount;
+@dynamic frameCount;
+@dynamic isBrowse;
+@dynamic isGenius;
 @dynamic isPublic;
 @dynamic rollID;
 @dynamic thumbnailURL;
 @dynamic title;
-@dynamic frameCount;
-@dynamic isGenius;
-@dynamic creatorID;
-@dynamic followingCount;
+@dynamic isCollaborative;
 @dynamic frame;
 
 @end

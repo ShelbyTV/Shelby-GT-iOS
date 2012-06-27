@@ -187,6 +187,13 @@
             [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
             
         } break;
+       
+        case APIRequestType_GetRollsFollowing:{
+            
+            NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
+            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
+            
+        } break;
             
         case APIRequestType_GetBrowseRolls:{
             

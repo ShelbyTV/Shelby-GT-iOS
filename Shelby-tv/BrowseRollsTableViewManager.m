@@ -53,7 +53,7 @@
     
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
         
-        self.coreDataResultsArray = [CoreDataUtility fetchAllBrowseRolls];
+        self.coreDataResultsArray = [CoreDataUtility fetchBrowseRolls];
         
         [self.tableView reloadData];
         

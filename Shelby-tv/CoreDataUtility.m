@@ -34,6 +34,9 @@
 /// Store dashboardEntry data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
 
+/// Store rollsFollowing data in Core Data
++ (void)storeParsedData:(NSDictionary*)parsedDictionary forRollsFollowingInContext:(NSManagedObjectContext*)context;
+
 /// Store browseRolls data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forBrowseRollsInContext:(NSManagedObjectContext*)context;
 
@@ -100,6 +103,10 @@ static CoreDataUtility *sharedInstance = nil;
             [self storeParsedData:parsedDictionary forDashboardEntryInContext:context];
             break;
             
+        case APIRequestType_GetRollsFollowing:
+            [self storeParsedData:parsedDictionary forRollsFollowingInContext:context];
+            break;
+            
         case APIRequestType_GetBrowseRolls:
             [self storeParsedData:parsedDictionary forBrowseRollsInContext:context];
             break;
@@ -134,44 +141,78 @@ static CoreDataUtility *sharedInstance = nil;
 {
     
     // Create fetch request
-    NSFetchRequest *dashboardEntryRequest = [[NSFetchRequest alloc] init];
-    [dashboardEntryRequest setReturnsObjectsAsFaults:NO];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setReturnsObjectsAsFaults:NO];
     
     // Fetch dashboardEntry data
     NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext]; 
-    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:CoreDataEntityDashboardEntry inManagedObjectContext:context];
-    [dashboardEntryRequest setEntity:dashboardEntryDescription];
+    NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityDashboardEntry inManagedObjectContext:context];
+    [request setEntity:description];
     
     // Sort by timestamp
-    NSSortDescriptor *dashboardTimestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-    [dashboardEntryRequest setSortDescriptors:[NSArray arrayWithObject:dashboardTimestampSorter]];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
     // Execute request that returns array of dashboardEntrys
-    return [context executeFetchRequest:dashboardEntryRequest error:nil];
+    return [context executeFetchRequest:request error:nil];
     
 }
 
-+ (NSArray*)fetchAllBrowseRolls
++ (NSArray*)fetchBrowseRolls
 {
     // Create fetch request
-    NSFetchRequest *browseRollsRequest = [[NSFetchRequest alloc] init];
-    [browseRollsRequest setReturnsObjectsAsFaults:NO];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setReturnsObjectsAsFaults:NO];
     
     // Fetch dashboardEntry data
     NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext];
-    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:CoreDataEntityRoll inManagedObjectContext:context];
-    [browseRollsRequest setEntity:dashboardEntryDescription];
+    NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityRoll inManagedObjectContext:context];
+    [request setEntity:description];
     
     // Only include messages that belond to this specific conversation
-    NSPredicate *browseRollsPredicate = [NSPredicate predicateWithFormat:@"isBrowse == %d", YES];
-    [browseRollsRequest setPredicate:browseRollsPredicate];
-    
-//    // Sort by timestamp
-//    NSSortDescriptor *dashboardTimestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-//    [browseRollsRequest setSortDescriptors:[NSArray arrayWithObject:dashboardTimestampSorter]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isBrowse == %d", YES];
+    [request setPredicate:predicate];
     
     // Execute request that returns array of dashboardEntrys
-    return [context executeFetchRequest:browseRollsRequest error:nil];
+    return [context executeFetchRequest:request error:nil];
+}
+
++ (NSArray*)fetchMyRolls
+{
+    // Create fetch request
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setReturnsObjectsAsFaults:NO];
+    
+    // Fetch dashboardEntry data
+    NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext];
+    NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityRoll inManagedObjectContext:context];
+    [request setEntity:description];
+    
+    // Only include messages that belond to this specific conversation
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isPublic == %d OR (isPublic == %d AND isCollaborative == %d)", NO, YES, YES];
+    [request setPredicate:predicate];
+    
+    // Execute request that returns array of dashboardEntrys
+    return [context executeFetchRequest:request error:nil];
+}
+
++ (NSArray*)fetchPeopleRolls
+{
+    // Create fetch request
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setReturnsObjectsAsFaults:NO];
+    
+    // Fetch dashboardEntry data
+    NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext];
+    NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityRoll inManagedObjectContext:context];
+    [request setEntity:description];
+    
+    // Only include messages that belond to this specific conversation
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isPublic == %d && isCollaborative == %d", YES, NO];
+    [request setPredicate:predicate];
+    
+    // Execute request that returns array of dashboardEntrys
+    return [context executeFetchRequest:request error:nil];
 }
 
 + (DashboardEntry*)fetchDashboardEntryDataForRow:(NSUInteger)row
@@ -380,7 +421,7 @@ static CoreDataUtility *sharedInstance = nil;
     [self saveContext:context];
 }
 
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary forBrowseRollsInContext:(NSManagedObjectContext *)context
++ (void)storeParsedData:(NSDictionary *)parsedDictionary forRollsFollowingInContext:(NSManagedObjectContext *)context
 {
     NSArray *resultsArray = [parsedDictionary valueForKey:APIRequest_Result];
     
@@ -405,12 +446,51 @@ static CoreDataUtility *sharedInstance = nil;
         
         NSNumber *followingCount = [[resultsArray objectAtIndex:i] valueForKey:@"following_user_count"];
         [roll setValue:followingCount forKey:CoreDataRollFollowingCount];
+                
+        NSString *thumbnailURL = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"first_frame_thumbnail_url"]];
+        [roll setValue:thumbnailURL forKey:CoreDataRollThumbnailURL];
         
-        NSNumber *isGenius = [[resultsArray objectAtIndex:i] valueForKey:@"genius"];
-        [roll setValue:isGenius forKey:CoreDataRollGeniusRoll];
+        NSString *title = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"title"]];
+        [roll setValue:title forKey:CoreDataRollTitle];
         
-        NSNumber *isPublic = [[resultsArray objectAtIndex:i] valueForKey:@"public"];
-        [roll setValue:isPublic forKey:CoreDataRollPublicRoll];
+        roll.isCollaborative = [[resultsArray objectAtIndex:i] valueForKey:@"collaborative"];
+        
+        roll.isGenius = [[resultsArray objectAtIndex:i] valueForKey:@"genius"];
+        
+        roll.isPublic = [[resultsArray objectAtIndex:i] valueForKey:@"public"];
+        
+        roll.isBrowse = [NSNumber numberWithBool:NO];
+        
+    }
+    
+    [self saveContext:context];
+}
+
++ (void)storeParsedData:(NSDictionary *)parsedDictionary forBrowseRollsInContext:(NSManagedObjectContext *)context
+{
+    NSArray *resultsArray = [parsedDictionary valueForKey:APIRequest_Result];
+    
+    for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
+        
+        Roll *roll = [self checkIfEntity:CoreDataEntityRoll
+                             withIDValue:[[resultsArray objectAtIndex:i] valueForKey:@"id"]
+                                forIDKey:CoreDataRollID
+                         existsInContext:context];
+        
+        NSString *rollID = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
+        [roll setValue:rollID forKey:CoreDataRollID];
+        
+        NSString *creatorID = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"creator_id"]];
+        [roll setValue:creatorID forKey:CoreDataRollCreatorID];
+        
+        NSString *nickname = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"creator_nickname"]];
+        [roll setValue:nickname forKey:CoreDataRollCreatorNickname];
+        
+        NSNumber *frameCount = [[resultsArray objectAtIndex:i] valueForKey:@"frame_count"];
+        [roll setValue:frameCount forKey:CoreDataRollFrameCount];
+        
+        NSNumber *followingCount = [[resultsArray objectAtIndex:i] valueForKey:@"following_user_count"];
+        [roll setValue:followingCount forKey:CoreDataRollFollowingCount];
         
         NSString *thumbnailURL = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"first_frame_thumbnail_url"]];
         [roll setValue:thumbnailURL forKey:CoreDataRollThumbnailURL];
@@ -418,8 +498,13 @@ static CoreDataUtility *sharedInstance = nil;
         NSString *title = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"title"]];
         [roll setValue:title forKey:CoreDataRollTitle];
         
-        // Signifies that this roll should be visible in the 'Browse Rolls' section
-        [roll setValue:[NSNumber numberWithBool:YES] forKey:CoreDataRollBrowseRoll];
+        roll.isCollaborative = [[resultsArray objectAtIndex:i] valueForKey:@"collaborative"];
+        
+        roll.isGenius = [[resultsArray objectAtIndex:i] valueForKey:@"genius"];
+        
+        roll.isPublic = [[resultsArray objectAtIndex:i] valueForKey:@"public"];
+        
+        roll.isBrowse = [NSNumber numberWithBool:YES];
         
     }
     

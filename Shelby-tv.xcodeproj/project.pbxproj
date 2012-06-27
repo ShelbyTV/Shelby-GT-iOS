@@ -12,7 +12,7 @@
 		8E068B86158843650069FD01 /* BrowseRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B85158843640069FD01 /* BrowseRollsTableViewManager.m */; };
 		8E068B89158843B40069FD01 /* PeopleRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B88158843B40069FD01 /* PeopleRollsTableViewManager.m */; };
 		8E068B8C1588444E0069FD01 /* MyRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */; };
-		8E08C988159A36AB0097F360 /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E08C987159A36AB0097F360 /* Roll.m */; };
+		8E120416159A7189009DB7C7 /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E120415159A7189009DB7C7 /* Roll.m */; };
 		8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2A8EAE159135970028712C /* StreamTableViewManager.m */; };
 		8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */; };
 		8E4A04611598CA3900E4F675 /* ShelbyMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A04601598CA3900E4F675 /* ShelbyMenuViewController.xib */; };
@@ -203,9 +203,9 @@
 		8E068B88158843B40069FD01 /* PeopleRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleRollsTableViewManager.m; sourceTree = "<group>"; };
 		8E068B8A1588444D0069FD01 /* MyRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRollsTableViewManager.h; sourceTree = "<group>"; };
 		8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRollsTableViewManager.m; sourceTree = "<group>"; };
-		8E08C986159A36AB0097F360 /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
-		8E08C987159A36AB0097F360 /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
 		8E0B3A9415813C400008B841 /* ColorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorConstants.h; sourceTree = "<group>"; };
+		8E120414159A7189009DB7C7 /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
+		8E120415159A7189009DB7C7 /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
 		8E2A8EAD159135970028712C /* StreamTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewManager.h; sourceTree = "<group>"; };
 		8E2A8EAE159135970028712C /* StreamTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamTableViewManager.m; sourceTree = "<group>"; };
 		8E3457851551BC9200FEFC9D /* NSString+TypedefConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TypedefConversion.h"; sourceTree = "<group>"; };
@@ -710,6 +710,10 @@
 		8E8124DB1540C07400E1EA4B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8E5E7F93156151B0009FC8CE /* CoreDataUtility.h */,
+				8E5E7F94156151B0009FC8CE /* CoreDataUtility.m */,
+				8E4A77E81551A6E2003CBA2A /* ShelbyAPIClient.h */,
+				8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */,
 				8E8124F41540C2F900E1EA4B /* TableViewManagers.h */,
 				8E8124F11540C2E800E1EA4B /* GuideTableViewManager.h */,
 				8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */,
@@ -818,7 +822,6 @@
 				8E664D551541B0C40071EC42 /* Constants */,
 				8ED3110515360464002614DF /* Categories */,
 				8EE5065B155CA90700A04F50 /* Core Data */,
-				8ED311041536045F002614DF /* Models */,
 				8E8124DB1540C07400E1EA4B /* Controllers */,
 				8ED3110215360450002614DF /* View Controllers */,
 				8ED311031536045A002614DF /* Views */,
@@ -887,17 +890,6 @@
 				8EC9813F1595134700BB9227 /* VideoCardExpandedCell.m */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		8ED311041536045F002614DF /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				8E5E7F93156151B0009FC8CE /* CoreDataUtility.h */,
-				8E5E7F94156151B0009FC8CE /* CoreDataUtility.m */,
-				8E4A77E81551A6E2003CBA2A /* ShelbyAPIClient.h */,
-				8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */,
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 		8ED3110515360464002614DF /* Categories */ = {
@@ -976,8 +968,8 @@
 		8EE5065B155CA90700A04F50 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				8E08C986159A36AB0097F360 /* Roll.h */,
-				8E08C987159A36AB0097F360 /* Roll.m */,
+				8E120414159A7189009DB7C7 /* Roll.h */,
+				8E120415159A7189009DB7C7 /* Roll.m */,
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
 				8EC981301594F95900BB9227 /* ShelbyUser.h */,
 				8EC981311594F95900BB9227 /* ShelbyUser.m */,
@@ -1288,7 +1280,7 @@
 				8EC9813715950DF100BB9227 /* Reachability.m in Sources */,
 				8EC981401595134700BB9227 /* VideoCardExpandedCell.m in Sources */,
 				8EE40A4B1596359200559484 /* RollsCell.m in Sources */,
-				8E08C988159A36AB0097F360 /* Roll.m in Sources */,
+				8E120416159A7189009DB7C7 /* Roll.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
