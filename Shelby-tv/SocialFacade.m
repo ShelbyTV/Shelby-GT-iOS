@@ -618,7 +618,6 @@ UITableViewDelegate
     [reverseAuthRequest setParameters:params];
     
     OADataFetcher *reverseAuthFetcher = [[OADataFetcher alloc] init];
-    
     [reverseAuthFetcher fetchDataWithRequest:reverseAuthRequest
                                     delegate:self
                            didFinishSelector:@selector(reverseAuthRequestTokenTicket:didFinishWithData:)
