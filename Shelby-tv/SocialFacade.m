@@ -476,6 +476,7 @@ UITableViewDelegate
                                                                       realm:nil 
                                                           signatureProvider:nil];
     
+    
     [request setHTTPMethod:@"POST"];
     
     OARequestParameter *oauthParam = [[OARequestParameter alloc] initWithName:@"oauth_callback" value:@"oob"];
@@ -611,22 +612,21 @@ UITableViewDelegate
                                                                      signatureProvider:nil];
     
     [reverseAuthRequest setHTTPMethod:@"POST"];
-    
+        
     OARequestParameter *xauthParam = [[OARequestParameter alloc] initWithName:@"x_auth_mode" value:@"reverse_auth"];
     NSArray *params = [NSArray arrayWithObject:xauthParam];
     [reverseAuthRequest setParameters:params];
     
-
-    // Must be performed on main-thread, since code is c
     OADataFetcher *reverseAuthFetcher = [[OADataFetcher alloc] init];
+    
     [reverseAuthFetcher fetchDataWithRequest:reverseAuthRequest
                                     delegate:self
                            didFinishSelector:@selector(reverseAuthRequestTokenTicket:didFinishWithData:)
-                             didFailSelector:@selector(reverseAuthRequestTokenTicket:didFailWithError:)]; 
+                             didFailSelector:@selector(reverseAuthRequestTokenTicket:didFailWithError:)];
     
 }
 
-- (void)reverseAuthRequestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
+- (void)reverseAuthRequestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
     if (ticket.didSucceed) {
         

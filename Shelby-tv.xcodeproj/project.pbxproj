@@ -12,7 +12,6 @@
 		8E068B86158843650069FD01 /* BrowseRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B85158843640069FD01 /* BrowseRollsTableViewManager.m */; };
 		8E068B89158843B40069FD01 /* PeopleRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B88158843B40069FD01 /* PeopleRollsTableViewManager.m */; };
 		8E068B8C1588444E0069FD01 /* MyRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */; };
-		8E120416159A7189009DB7C7 /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E120415159A7189009DB7C7 /* Roll.m */; };
 		8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2A8EAE159135970028712C /* StreamTableViewManager.m */; };
 		8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */; };
 		8E4A04611598CA3900E4F675 /* ShelbyMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A04601598CA3900E4F675 /* ShelbyMenuViewController.xib */; };
@@ -131,6 +130,7 @@
 		8EB6D7FF157FF3310060202D /* videoCardUpvotedBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7FD157FF3310060202D /* videoCardUpvotedBar.png */; };
 		8EB6D81315800F550060202D /* Creator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6D81215800F550060202D /* Creator.m */; };
 		8EB6D81615800FCF0060202D /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6D81515800FCF0060202D /* Frame.m */; };
+		8EB80E35159B943D001A274E /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB80E34159B943D001A274E /* Roll.m */; };
 		8EC54585158F96310048FEAA /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC54584158F96310048FEAA /* Conversation.m */; };
 		8EC981321594F95900BB9227 /* ShelbyUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC981311594F95900BB9227 /* ShelbyUser.m */; };
 		8EC9813715950DF100BB9227 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC9813615950DF100BB9227 /* Reachability.m */; };
@@ -204,8 +204,6 @@
 		8E068B8A1588444D0069FD01 /* MyRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRollsTableViewManager.h; sourceTree = "<group>"; };
 		8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRollsTableViewManager.m; sourceTree = "<group>"; };
 		8E0B3A9415813C400008B841 /* ColorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorConstants.h; sourceTree = "<group>"; };
-		8E120414159A7189009DB7C7 /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
-		8E120415159A7189009DB7C7 /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
 		8E2A8EAD159135970028712C /* StreamTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewManager.h; sourceTree = "<group>"; };
 		8E2A8EAE159135970028712C /* StreamTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamTableViewManager.m; sourceTree = "<group>"; };
 		8E3457851551BC9200FEFC9D /* NSString+TypedefConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TypedefConversion.h"; sourceTree = "<group>"; };
@@ -389,6 +387,8 @@
 		8EB6D81215800F550060202D /* Creator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Creator.m; sourceTree = "<group>"; };
 		8EB6D81415800FCF0060202D /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
 		8EB6D81515800FCF0060202D /* Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
+		8EB80E33159B943D001A274E /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
+		8EB80E34159B943D001A274E /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
 		8EC54583158F96310048FEAA /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
 		8EC54584158F96310048FEAA /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		8EC981301594F95900BB9227 /* ShelbyUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelbyUser.h; sourceTree = "<group>"; };
@@ -970,9 +970,9 @@
 		8EE5065B155CA90700A04F50 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				8E120414159A7189009DB7C7 /* Roll.h */,
-				8E120415159A7189009DB7C7 /* Roll.m */,
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
+				8EB80E33159B943D001A274E /* Roll.h */,
+				8EB80E34159B943D001A274E /* Roll.m */,
 				8EC981301594F95900BB9227 /* ShelbyUser.h */,
 				8EC981311594F95900BB9227 /* ShelbyUser.m */,
 				8EC54583158F96310048FEAA /* Conversation.h */,
@@ -1241,7 +1241,6 @@
 				8EC9813715950DF100BB9227 /* Reachability.m in Sources */,
 				8EC981401595134700BB9227 /* VideoCardExpandedCell.m in Sources */,
 				8EE40A4B1596359200559484 /* RollsCell.m in Sources */,
-				8E120416159A7189009DB7C7 /* Roll.m in Sources */,
 				8E6AF8AC159B743B00F570CF /* Facebook.m in Sources */,
 				8E6AF8AE159B743B00F570CF /* FBDialog.m in Sources */,
 				8E6AF8AF159B743B00F570CF /* FBFrictionlessRequestSettings.m in Sources */,
@@ -1283,6 +1282,7 @@
 				8E6AF93A159B76FF00F570CF /* SBJsonTokeniser.m in Sources */,
 				8E6AF93B159B76FF00F570CF /* SBJsonUTF8Stream.m in Sources */,
 				8E6AF93C159B76FF00F570CF /* SBJsonWriter.m in Sources */,
+				8EB80E35159B943D001A274E /* Roll.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -66,7 +66,8 @@
 }
 
 - (void)fetchDataWithRequest:(OAMutableURLRequest *)aRequest delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector {
-	request = aRequest;
+	
+    request = aRequest;
     delegate = aDelegate;
     didFinishSelector = finishSelector;
     didFailSelector = failSelector;

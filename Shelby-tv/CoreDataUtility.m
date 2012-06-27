@@ -190,7 +190,7 @@ static CoreDataUtility *sharedInstance = nil;
     [request setEntity:description];
     
     // Only include messages that belond to this specific conversation
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isPublic == %d OR (isPublic == %d AND isCollaborative == %d)", NO, YES, YES];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isMy == %d", YES];
     [request setPredicate:predicate];
     
     // Execute request that returns array of dashboardEntrys
@@ -209,7 +209,7 @@ static CoreDataUtility *sharedInstance = nil;
     [request setEntity:description];
     
     // Only include messages that belond to this specific conversation
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isPublic == %d && isCollaborative == %d", YES, NO];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isPeople == %d", YES];
     [request setPredicate:predicate];
     
     // Execute request that returns array of dashboardEntrys
@@ -457,7 +457,28 @@ static CoreDataUtility *sharedInstance = nil;
         
         roll.isPublic = [[resultsArray objectAtIndex:i] valueForKey:@"public"];
         
-        roll.isBrowse = [NSNumber numberWithBool:NO];
+        
+        if ( [roll.isPublic boolValue] && ![roll.isCollaborative boolValue] ) {
+            
+            NSLog(@"PeopleRoll: %@", roll.title);
+            roll.isPeople = [NSNumber numberWithBool:YES];
+        
+        } else if ( [roll.isPublic boolValue] && [roll.isCollaborative boolValue] ) {
+            
+            NSLog(@"MyRoll: %@", roll.title);
+            roll.isMy = [NSNumber numberWithBool:YES];
+            
+        } else if ( ![roll.isPublic boolValue] ) {
+            
+            NSLog(@"MyRoll: %@", roll.title);
+            roll.isMy = [NSNumber numberWithBool:YES];
+            
+        } else {
+            
+            roll.isMy = [NSNumber numberWithBool:NO];
+            roll.isPeople = [NSNumber numberWithBool:NO];
+            
+        }
         
     }
     
