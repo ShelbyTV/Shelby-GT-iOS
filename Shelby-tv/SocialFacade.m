@@ -395,9 +395,10 @@ UITableViewDelegate
     // Get all stored twitterAccounts
     self.twitterAccountStore = [[ACAccountStore alloc] init];
     ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    self.twitterAccount = [[ACAccount alloc] initWithAccountType:twitterType];
     [self.twitterAccountStore requestAccessToAccountsWithType:twitterType withCompletionHandler:^(BOOL granted, NSError *error) {
     
-        if ( granted ) {
+        if ( granted && !error ) {
             
             NSArray *accounts = [NSArray arrayWithArray:[self.twitterAccountStore accountsWithAccountType:twitterType]];
 
@@ -425,6 +426,9 @@ UITableViewDelegate
         
             });
     
+        } else {
+            
+            NSLog(@"Access granted? %@. %@", (granted) ? @"YES" : @"NO", error);
         }
     
     }];
@@ -488,9 +492,13 @@ UITableViewDelegate
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
 {
-    NSString* httpBodyData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    self.twitterRequestToken = [[OAToken alloc] initWithHTTPResponseBody:httpBodyData];
-    [self authenticateTwitterAccount];
+    if (ticket.didSucceed) {
+        
+        NSString* httpBodyData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        self.twitterRequestToken = [[OAToken alloc] initWithHTTPResponseBody:httpBodyData];
+        [self authenticateTwitterAccount];
+        
+    }
 }
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSData *)data
@@ -548,9 +556,13 @@ UITableViewDelegate
 
 - (void)accessTokenTicket:(OAServiceTicket*)ticket didFinishWithData:(NSData*)data 
 {
-     NSString* httpBodyData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-     OAToken *accessToken = [[OAToken alloc] initWithHTTPResponseBody:httpBodyData];
-    [self saveTwitterAccountWithAccessToken:accessToken];
+    if (ticket.didSucceed) {
+    
+        NSString* httpBodyData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+         OAToken *accessToken = [[OAToken alloc] initWithHTTPResponseBody:httpBodyData];
+        [self saveTwitterAccountWithAccessToken:accessToken];
+    
+    }
 }
 
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSData *)data
@@ -616,8 +628,12 @@ UITableViewDelegate
 
 - (void)reverseAuthRequestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
 {
-    NSString *httpBodyData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    [self getReverseAuthAccessToken:httpBodyData];
+    if (ticket.didSucceed) {
+        
+        NSString *httpBodyData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        [self getReverseAuthAccessToken:httpBodyData];
+        
+    }
 }
 
 - (void)reverseAuthRequestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSData *)data
@@ -750,26 +766,6 @@ UITableViewDelegate
             break;
     }
 }
-
-#pragma mark - UIPickerViewDataSource Methods
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    NSArray *accounts = [self.twitterAccountStore accountsWithAccountType:twitterType];
-    
-    self.storedTwitterAccounts = [NSMutableArray arrayWithArray:accounts];
-    [self.storedTwitterAccounts addObject:TextConstants_Social_NewTwitterAccount];
-    [self.storedTwitterAccounts addObject:@"Cancel"];
-    
-    
-    return [self.storedTwitterAccounts count];
-}
-
 
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
