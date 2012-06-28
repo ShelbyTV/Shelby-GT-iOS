@@ -188,7 +188,7 @@
 		8EF851B71570317D002335A3 /* DashboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851B61570317D002335A3 /* DashboardEntry.m */; };
 		8EF851BA1570317E002335A3 /* Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851B91570317E002335A3 /* Messages.m */; };
 		8EFD498C156435330003913D /* NSString+NullTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD498B156435330003913D /* NSString+NullTest.m */; };
-		8EFE780C15939B0200499994 /* RollVideosTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFE780B15939B0200499994 /* RollVideosTableViewManager.m */; };
+		8EFE780C15939B0200499994 /* RollFramesTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFE780B15939B0200499994 /* RollFramesTableViewManager.m */; };
 		8EFF3A9815658E2500131A97 /* AuthenticateTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF3A9715658E2500131A97 /* AuthenticateTwitterViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -465,8 +465,8 @@
 		8EF851B91570317E002335A3 /* Messages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Messages.m; sourceTree = "<group>"; };
 		8EFD498A156435330003913D /* NSString+NullTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NullTest.h"; sourceTree = "<group>"; };
 		8EFD498B156435330003913D /* NSString+NullTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NullTest.m"; sourceTree = "<group>"; };
-		8EFE780A15939B0200499994 /* RollVideosTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RollVideosTableViewManager.h; sourceTree = "<group>"; };
-		8EFE780B15939B0200499994 /* RollVideosTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RollVideosTableViewManager.m; sourceTree = "<group>"; };
+		8EFE780A15939B0200499994 /* RollFramesTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RollFramesTableViewManager.h; sourceTree = "<group>"; };
+		8EFE780B15939B0200499994 /* RollFramesTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RollFramesTableViewManager.m; sourceTree = "<group>"; };
 		8EFF3A9615658E2500131A97 /* AuthenticateTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticateTwitterViewController.h; sourceTree = "<group>"; };
 		8EFF3A9715658E2500131A97 /* AuthenticateTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticateTwitterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -725,8 +725,8 @@
 				8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */,
 				8E068B87158843B40069FD01 /* PeopleRollsTableViewManager.h */,
 				8E068B88158843B40069FD01 /* PeopleRollsTableViewManager.m */,
-				8EFE780A15939B0200499994 /* RollVideosTableViewManager.h */,
-				8EFE780B15939B0200499994 /* RollVideosTableViewManager.m */,
+				8EFE780A15939B0200499994 /* RollFramesTableViewManager.h */,
+				8EFE780B15939B0200499994 /* RollFramesTableViewManager.m */,
 				8E2A8EAD159135970028712C /* StreamTableViewManager.h */,
 				8E2A8EAE159135970028712C /* StreamTableViewManager.m */,
 				8EDB32AF15792688007D7106 /* VideoCardController.h */,
@@ -1236,7 +1236,7 @@
 				8E04DC2D1590E1620066BBA6 /* ShelbyMenuViewController.m in Sources */,
 				8E04DC31159117DD0066BBA6 /* SettingsTableViewController.m in Sources */,
 				8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */,
-				8EFE780C15939B0200499994 /* RollVideosTableViewManager.m in Sources */,
+				8EFE780C15939B0200499994 /* RollFramesTableViewManager.m in Sources */,
 				8EC981321594F95900BB9227 /* ShelbyUser.m in Sources */,
 				8EC9813715950DF100BB9227 /* Reachability.m in Sources */,
 				8EC981401595134700BB9227 /* VideoCardExpandedCell.m in Sources */,

@@ -132,8 +132,8 @@
             manager = [[StreamTableViewManager alloc] init];
         } break;
             
-        case GuideType_RollVideos:{
-            manager = [[RollVideosTableViewManager alloc] init];
+        case GuideType_RollFrames:{
+            manager = [[RollFramesTableViewManager alloc] init];
             manager.rollID = self.rollID;
         } break;
             

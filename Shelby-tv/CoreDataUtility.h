@@ -56,8 +56,10 @@
 + (NSArray*)fetchPeopleRolls;
 
 /**
- Fetch videos from a specific roll
+ Fetch frames from a specific roll
  */
++ (NSArray*)fetchFramesForRoll:(NSString*)rollID;
+
 
 /** 
  Fetch Dashboard Entry information stored in Core Data 

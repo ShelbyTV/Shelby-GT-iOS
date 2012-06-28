@@ -40,7 +40,7 @@
 @property (strong, nonatomic) NSArray *coreDataResultsArray;
 @property (strong, nonatomic) UITableView *tableView;
 
-// RollVideosTableViewManager
+// RollFramesTableViewManager
 @property (strong, nonatomic) NSString *rollID;
 
 

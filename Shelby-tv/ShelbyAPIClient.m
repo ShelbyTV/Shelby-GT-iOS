@@ -201,6 +201,12 @@
             
         } break;
             
+        case APIRequestType_GetRollFrames:{
+            
+            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
+            
+        } break;
+            
         case APIRequestType_PostUpvote:{
             
             if ( DEBUGMODE ) NSLog(@"Upvoted posted successfully");

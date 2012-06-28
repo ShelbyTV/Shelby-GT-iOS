@@ -1,28 +1,28 @@
 //
-//  RollVideosTableViewManager.m
+//  RollFramesTableViewManager.m
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 6/21/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import "RollVideosTableViewManager.h"
+#import "RollFramesTableViewManager.h"
 #import "VideoCardController.h"
 
-@interface RollVideosTableViewManager ()
+@interface RollFramesTableViewManager ()
 
 @property (assign, nonatomic) BOOL observerCreated;
 @property (strong, nonatomic) NSMutableArray *arrayOfFrameIDs;
 
 - (void)createAPIObservers;
-- (void)populateTableViewCell:(VideoCardCell*)cell withContent:(DashboardEntry*)dashboardEntry inRow:(NSUInteger)row;
+- (void)populateTableViewCell:(VideoCardCell*)cell withContent:(Frame*)frame inRow:(NSUInteger)row;
 
 - (void)upvote:(UIButton *)button;
 - (void)downvote:(UIButton *)button;
 
 @end
 
-@implementation RollVideosTableViewManager
+@implementation RollFramesTableViewManager
 @synthesize observerCreated = _observerCreated;
 @synthesize arrayOfFrameIDs = _arrayOfFrameIDs;
 @synthesize rollID = _rollID;
@@ -30,14 +30,14 @@
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString apiRequestTypeToString:APIRequestType_GetRollVideos] object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString apiRequestTypeToString:APIRequestType_GetRollFrames] object:nil];
 }
 
 #pragma mark - Private Methods
 - (void)createAPIObservers
 {
     
-    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestType_GetRollVideos];
+    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestType_GetRollFrames];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(dataReturnedFromAPI:)
                                                  name:notificationName
@@ -45,7 +45,7 @@
     self.observerCreated = YES;
 }
 
-- (void)populateTableViewCell:(VideoCardCell *)cell withContent:(DashboardEntry *)dashboardEntry inRow:(NSUInteger)row
+- (void)populateTableViewCell:(VideoCardCell *)cell withContent:(Frame *)frame inRow:(NSUInteger)row
 {
     
     // General Initializations
@@ -56,16 +56,16 @@
         
         // Store Frame ID
         if ( ![self arrayOfFrameIDs] ) self.arrayOfFrameIDs = [NSMutableArray array];
-        [self.arrayOfFrameIDs addObject:dashboardEntry.frame.frameID];
+        [self.arrayOfFrameIDs addObject:frame.frameID];
         
         // Populate roll label
-        [cell.rollLabel setText:dashboardEntry.frame.roll.title];
+        [cell.rollLabel setText:frame.roll.title];
         
         // Populate nickname label
-        [cell.nicknameLabel setText:dashboardEntry.frame.creator.nickname];
+        [cell.nicknameLabel setText:frame.creator.nickname];
         
         // Present Heart/Unheart button (depends if user already liked video)
-        BOOL upvoted = [CoreDataUtility checkIfUserUpvotedInFrame:dashboardEntry.frame];
+        BOOL upvoted = [CoreDataUtility checkIfUserUpvotedInFrame:frame];
         
         if ( upvoted ) { // Make sure Heart is Red and user is able to Downvote
             
@@ -84,13 +84,13 @@
         
         
         // Populate Upvote Button label
-        [cell.upvoteButton setTitle:[NSString stringWithFormat:@"%@", dashboardEntry.frame.upvotersCount] forState:UIControlStateNormal];
+        [cell.upvoteButton setTitle:[NSString stringWithFormat:@"%@", frame.upvotersCount] forState:UIControlStateNormal];
         
         // Populate comments label
-        [cell.commentButton setTitle:[NSString stringWithFormat:@"%@", dashboardEntry.frame.conversation.messageCount] forState:UIControlStateNormal];
+        [cell.commentButton setTitle:[NSString stringWithFormat:@"%@", frame.conversation.messageCount] forState:UIControlStateNormal];
         
         // Fetch messages specific to dashboardEntry (may return nil, but that's ok!)
-        Messages *message = [CoreDataUtility fetchFirstMessageFromConversation:dashboardEntry.frame.conversation];
+        Messages *message = [CoreDataUtility fetchFirstMessageFromConversation:frame.conversation];
         
         // Populate createdAt label
         [cell.createdAtLabel setText:message.createdAt];
@@ -118,14 +118,14 @@
         }
         
         // Asychronous download of user image/icon
-        if ( dashboardEntry.frame.creator.userImage ) {
+        if ( frame.creator.userImage ) {
             
-            [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.creator.userImage forImageView:cell.userImageView withPlaceholderView:nil];
+            [AsynchronousFreeloader loadImageFromLink:frame.creator.userImage forImageView:cell.userImageView withPlaceholderView:nil];
             
         }
         
         // Asynchronous download of video thumbnail
-        [AsynchronousFreeloader loadImageFromLink:dashboardEntry.frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
+        [AsynchronousFreeloader loadImageFromLink:frame.video.thumbnailURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
         
     });
     
@@ -231,10 +231,12 @@
 
 - (void)loadDataFromCoreData
 {
-    // Fetch RollVideos Data from Core Data
+    // Fetch RollFrames Data from Core Data
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
         
-//        self.coreDataResultsArray = [CoreDataUtility fetchRollVideos];
+        self.coreDataResultsArray = [CoreDataUtility fetchFramesForRoll:self.rollID];
+        
+        NSLog(@"%d", [self.coreDataResultsArray count]);
         
         [self.tableView reloadData];
         
@@ -249,10 +251,10 @@
     if ( NO == self.observerCreated ) [self createAPIObservers];
     
     // Perform API Request
-    NSString *requestString = [NSString stringWithFormat:APIRequest_GetRollVideos, self.rollID, [SocialFacade sharedInstance].shelbyToken];
+    NSString *requestString = [NSString stringWithFormat:APIRequest_GetRollFrames, self.rollID, [SocialFacade sharedInstance].shelbyToken];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-    [client performRequest:request ofType:APIRequestType_GetRollVideos];
+    [client performRequest:request ofType:APIRequestType_GetRollFrames];
     
 }
 
@@ -296,73 +298,81 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    // Fetch data stored in Core Data
-    DashboardEntry *dashboardEntry = [self.coreDataResultsArray objectAtIndex:indexPath.row];
+    if ( [self.coreDataResultsArray count] > 0) {
     
-    // Create proper cell based on number of upvotes
-    NSUInteger upvotersCount = [dashboardEntry.frame.upvotersCount intValue];
-    
-    if ( upvotersCount > 0 ) {
+        // Fetch data stored in Core Data
+        Frame *frame = [self.coreDataResultsArray objectAtIndex:indexPath.row];
         
+        // Create proper cell based on number of upvotes
+        NSUInteger upvotersCount = [frame.upvotersCount intValue];
         
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardExpandedCell" owner:self options:nil];
-        VideoCardExpandedCell *cell = (VideoCardExpandedCell*)[nib objectAtIndex:0];
-        
-        NSUInteger userCounter = 0;
-        NSMutableArray *upvoteUsersarray = [NSMutableArray arrayWithArray:[dashboardEntry.frame.upvoteUsers allObjects]];
-        
-        while ( userCounter < [upvoteUsersarray count] ) {
+        if ( upvotersCount > 0 ) {
             
-            UpvoteUsers *user = [upvoteUsersarray objectAtIndex:userCounter];
             
-            for (UIImageView *imageView in [cell subviews] ) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardExpandedCell" owner:self options:nil];
+            VideoCardExpandedCell *cell = (VideoCardExpandedCell*)[nib objectAtIndex:0];
+            
+            NSUInteger userCounter = 0;
+            NSMutableArray *upvoteUsersarray = [NSMutableArray arrayWithArray:[frame.upvoteUsers allObjects]];
+            
+            while ( userCounter < [upvoteUsersarray count] ) {
                 
-                if ( (imageView.tag == userCounter) && (userCounter < 10) && [imageView isMemberOfClass:[UIImageView class]] ) {
+                UpvoteUsers *user = [upvoteUsersarray objectAtIndex:userCounter];
+                
+                for (UIImageView *imageView in [cell subviews] ) {
                     
-                    [AsynchronousFreeloader loadImageFromLink:user.userImage forImageView:imageView withPlaceholderView:nil];
+                    if ( (imageView.tag == userCounter) && (userCounter < 10) && [imageView isMemberOfClass:[UIImageView class]] ) {
+                        
+                        [AsynchronousFreeloader loadImageFromLink:user.userImage forImageView:imageView withPlaceholderView:nil];
+                        
+                    }
                     
                 }
                 
+                userCounter++;
             }
             
-            userCounter++;
-        }
-        
-        // Pseudo-hide cell until it's populated with information
-        [cell setAlpha:0.0f];
-        
-        if ( [self.coreDataResultsArray count]  ) {
+            // Pseudo-hide cell until it's populated with information
+            [cell setAlpha:0.0f];
             
-            if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {
+            if ( [self.coreDataResultsArray count]  ) {
                 
-                [self populateTableViewCell:cell withContent:dashboardEntry inRow:indexPath.row];
-                
+                if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {
+                    
+                    [self populateTableViewCell:cell withContent:frame inRow:indexPath.row];
+                    
+                }
             }
+            
+            
+            return cell;
+            
+        } else {
+            
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
+            VideoCardCell *cell = (VideoCardCell*)[nib objectAtIndex:0];
+            
+            // Pseudo-hide cell until it's populated with information
+            [cell setAlpha:0.0f];
+            
+            if ( [self.coreDataResultsArray count]  ) {
+                
+                if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {
+                    
+                    [self populateTableViewCell:cell withContent:frame inRow:indexPath.row];
+                    
+                }
+            }
+            
+            return cell;
+            
         }
-        
-        
-        return cell;
-        
     } else {
         
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
-        VideoCardCell *cell = (VideoCardCell*)[nib objectAtIndex:0];
-        
-        // Pseudo-hide cell until it's populated with information
-        [cell setAlpha:0.0f];
-        
-        if ( [self.coreDataResultsArray count]  ) {
-            
-            if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {
-                
-                [self populateTableViewCell:cell withContent:dashboardEntry inRow:indexPath.row];
-                
-            }
-        }
-        
+        UITableViewCell *cell = [[UITableViewCell alloc] init];
         return cell;
-        
     }
+    
     
 }
 

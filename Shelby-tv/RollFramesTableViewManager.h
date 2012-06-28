@@ -1,5 +1,5 @@
 //
-//  RollVideosTableViewManager.h
+//  RollFramesTableViewManager.m
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 6/21/12.
@@ -8,6 +8,6 @@
 
 #import "GuideTableViewManager.h"
 
-@interface RollVideosTableViewManager : GuideTableViewManager <GuideTableViewManagerDelegate, ASPullToRefreshDelegate>
+@interface RollFramesTableViewManager : GuideTableViewManager <GuideTableViewManagerDelegate, ASPullToRefreshDelegate>
 
 @end

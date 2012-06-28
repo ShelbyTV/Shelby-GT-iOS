@@ -131,11 +131,9 @@
 #pragma mark - UITableViewDelegate Methods
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Pressed");
     Roll *roll= [self.coreDataResultsArray objectAtIndex:indexPath.row];
-    GuideTableViewController *rollVideosTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_RollVideos andRollID:roll.rollID];
-    NSLog(@"%@", self.guideController.navigationController);
-    [self.guideController.navigationController pushViewController:rollVideosTableViewController animated:YES];
+    GuideTableViewController *rollFramesTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_RollFrames andRollID:roll.rollID];
+    [self.guideController.navigationController pushViewController:rollFramesTableViewController animated:YES];
 }
 
 

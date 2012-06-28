@@ -31,14 +31,17 @@
 /// Store shelbyUser data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forShelbyUserInContext:(NSManagedObjectContext*)context;
 
-/// Store dashboardEntry data in Core Data
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
-
 /// Store rollsFollowing data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forRollsFollowingInContext:(NSManagedObjectContext*)context;
 
 /// Store browseRolls data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forBrowseRollsInContext:(NSManagedObjectContext*)context;
+
+/// Store dashboardEntry data in Core Data
++ (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
+
+/// Store frame data in Core Data
++ (void)storeParsedData:(NSDictionary*)parsedDictionary forFramesInContext:(NSManagedObjectContext*)context;
 
 /// Store dashbaordEntry.frame data in Core Data
 + (void)storeFrame:(Frame*)frame fromFrameArray:(NSArray*)frameArray;
@@ -110,8 +113,11 @@ static CoreDataUtility *sharedInstance = nil;
             break;
             
         case APIRequestType_GetBrowseRolls:
-
             [self storeParsedData:parsedDictionary forBrowseRollsInContext:context];
+            break;
+            
+        case APIRequestType_GetRollFrames:
+            [self storeParsedData:parsedDictionary forFramesInContext:context];
             break;
             
         default:
@@ -212,6 +218,25 @@ static CoreDataUtility *sharedInstance = nil;
     
     // Only include messages that belond to this specific conversation
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isPeople == %d", YES];
+    [request setPredicate:predicate];
+    
+    // Execute request that returns array of dashboardEntrys
+    return [context executeFetchRequest:request error:nil];
+}
+
++ (NSArray*)fetchFramesForRoll:(NSString*)rollID
+{
+    // Create fetch request
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setReturnsObjectsAsFaults:NO];
+    
+    // Fetch dashboardEntry data
+    NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext];
+    NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityFrame inManagedObjectContext:context];
+    [request setEntity:description];
+    
+    // Only include messages that belond to this specific conversation
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"rollID == %@", rollID];
     [request setPredicate:predicate];
     
     // Execute request that returns array of dashboardEntrys
@@ -540,6 +565,26 @@ static CoreDataUtility *sharedInstance = nil;
     
 }
 
++ (void)storeParsedData:(NSDictionary *)parsedDictionary forFramesInContext:(NSManagedObjectContext *)context
+{
+    
+    NSArray *resultsArray = [[parsedDictionary objectForKey:APIRequest_Result] valueForKey:@"frames"];
+    
+    for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
+        
+        NSArray *frameArray = [resultsArray objectAtIndex:i];
+        
+        Frame *frame = [CoreDataUtility checkIfEntity:CoreDataEntityFrame
+                                          withIDValue:[frameArray valueForKey:@"id"]
+                                             forIDKey:CoreDataFrameID
+                                      existsInContext:context];
+        
+        [self storeFrame:frame fromFrameArray:frameArray];
+    }
+    
+//    [self saveContext:context];
+}
+
 + (void)storeParsedData:(NSDictionary *)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext *)context
 {
  
@@ -578,8 +623,6 @@ static CoreDataUtility *sharedInstance = nil;
                                existsInContext:context];
             dashboardEntry.frame = frame;
             
-            NSLog(@"%d | %@", i, frame);
-            
             // Check to make sure messages exist
             [self storeFrame:frame fromFrameArray:frameArray];
             
@@ -600,11 +643,11 @@ static CoreDataUtility *sharedInstance = nil;
     // Store dashboardEntry.frame attributes
     NSString *frameID = [NSString testForNull:[frameArray valueForKey:@"id"]];
     [frame setValue:frameID forKey:CoreDataFrameID ];
-        
+    
     NSString *conversationID = [NSString testForNull:[frameArray valueForKey:@"conversation_id"]];
     [frame setValue:conversationID forKey:CoreDataFrameConversationID];
     
-    NSString *createdAt = [NSString testForNull:[frameArray valueForKey:@"creator_at"]];
+    NSString *createdAt = [NSString testForNull:[frameArray valueForKey:@"created_at"]];
     [frame setValue:createdAt forKey:CoreDataFrameCreatedAt ];
     
     NSString *creatorID = [NSString testForNull:[frameArray valueForKey:@"creator_id"]];

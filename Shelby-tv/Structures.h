@@ -16,7 +16,7 @@ typedef enum _GuideType
     GuideType_PeopleRolls,
     GuideType_Settings,
     GuideType_Stream,
-    GuideType_RollVideos
+    GuideType_RollFrames
     
 } GuideType;
 
@@ -30,7 +30,7 @@ typedef enum _APIRequestType
     APIRequestType_GetStream,
     APIRequestType_GetRollsFollowing,
     APIRequestType_GetBrowseRolls,
-    APIRequestType_GetRollVideos,
+    APIRequestType_GetRollFrames,
     APIRequestType_PostUpvote,
     APIRequestType_PostDownvote
     
