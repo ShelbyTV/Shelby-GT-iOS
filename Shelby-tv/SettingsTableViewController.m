@@ -19,6 +19,7 @@
 
 @implementation SettingsTableViewController
 @synthesize menuController = _menuController;
+@synthesize navigationController = _navigationController;
 
 #pragma mark - Deallocation Method
 - (void)dealloc

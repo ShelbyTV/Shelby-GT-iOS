@@ -20,6 +20,8 @@
 // Constants
 #import "StaticDeclarations.h"
 
+@class GuideTableViewController;
+
 @protocol GuideTableViewManagerDelegate <NSObject>
 
 - (void)loadDataOnInitializationForTableView:(UITableView*)tableView;
@@ -33,7 +35,7 @@
 
 // All TableViewManagers
 @property (strong, nonatomic) ASPullToRefreshTableViewController *refreshController;
-@property (strong, nonatomic) UINavigationController *navigationController;
+@property (strong, nonatomic) GuideTableViewController *guideController;
 @property (strong, nonatomic) NSArray *parsedResultsArray;
 @property (strong, nonatomic) NSArray *coreDataResultsArray;
 @property (strong, nonatomic) UITableView *tableView;

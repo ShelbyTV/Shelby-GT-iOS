@@ -134,7 +134,8 @@
     NSLog(@"Pressed");
     Roll *roll= [self.coreDataResultsArray objectAtIndex:indexPath.row];
     GuideTableViewController *rollVideosTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_RollVideos andRollID:roll.rollID];
-    [self.navigationController presentViewController:rollVideosTableViewController animated:YES completion:nil];
+    NSLog(@"%@", self.guideController.navigationController);
+    [self.guideController.navigationController pushViewController:rollVideosTableViewController animated:YES];
 }
 
 

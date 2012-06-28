@@ -14,6 +14,7 @@
 @interface GuideTableViewController : ASPullToRefreshTableViewController <ShelbyMenuDelegate>
 
 @property (strong, nonatomic) ShelbyMenuViewController *menuController;
+@property (strong, nonatomic) UINavigationController *navigationController;
 
 - (id)initWithType:(GuideType)type;
 - (id)initWithType:(GuideType)type andRollID:(NSString*)rollID;

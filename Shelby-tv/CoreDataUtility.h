@@ -59,8 +59,6 @@
  Fetch videos from a specific roll
  */
 
-+ (NSArray*)fetchRollVideos;
-
 /** 
  Fetch Dashboard Entry information stored in Core Data 
  */

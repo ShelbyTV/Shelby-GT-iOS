@@ -234,7 +234,7 @@
     // Fetch RollVideos Data from Core Data
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
         
-        self.coreDataResultsArray = [CoreDataUtility fetchRollVideos];
+//        self.coreDataResultsArray = [CoreDataUtility fetchRollVideos];
         
         [self.tableView reloadData];
         
@@ -249,7 +249,7 @@
     if ( NO == self.observerCreated ) [self createAPIObservers];
     
     // Perform API Request
-    NSString *requestString = [NSString stringWithFormat:APIRequest_GetRollVideos, [SocialFacade sharedInstance].shelbyToken];
+    NSString *requestString = [NSString stringWithFormat:APIRequest_GetRollVideos, self.rollID, [SocialFacade sharedInstance].shelbyToken];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
     [client performRequest:request ofType:APIRequestType_GetRollVideos];
@@ -290,7 +290,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return ( self.coreDataResultsArray ) ?  [self.coreDataResultsArray count] : 1;
+    return ( self.coreDataResultsArray ) ?  20 : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

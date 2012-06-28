@@ -12,5 +12,6 @@
 @interface SettingsTableViewController : UITableViewController <ShelbyMenuDelegate>
 
 @property (strong, nonatomic) ShelbyMenuViewController *menuController;
+@property (strong, nonatomic) UINavigationController *navigationController;
 
 @end

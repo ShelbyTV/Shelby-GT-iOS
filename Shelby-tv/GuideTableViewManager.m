@@ -10,7 +10,7 @@
 
 @implementation GuideTableViewManager
 @synthesize refreshController = _refreshController;
-@synthesize navigationController = _navigationController;
+@synthesize guideController = _guideController;
 @synthesize parsedResultsArray = _parsedResultsArray;
 @synthesize coreDataResultsArray = _coreDataResultsArray;
 @synthesize tableView = _tableView;

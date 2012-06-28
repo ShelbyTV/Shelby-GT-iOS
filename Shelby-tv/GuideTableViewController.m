@@ -28,6 +28,7 @@
 @synthesize type = _guideType;
 @synthesize tableViewManager = _tableViewManager;
 @synthesize rollID = _rollID;
+@synthesize navigationController = _navigationController;
 
 #pragma mark - Initialization Method
 - (id)initWithType:(GuideType)type
@@ -40,6 +41,9 @@
         
         // Initialize appropriate tableViewManager
         self.tableViewManager = [self createTableViewManager];
+        
+        // Pass instance of this controller to manager
+        self.tableViewManager.guideController = self;
         
         // Customize tableView
         self.view.backgroundColor = ColorConstants_BackgroundColor;

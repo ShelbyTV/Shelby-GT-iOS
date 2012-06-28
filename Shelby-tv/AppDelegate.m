@@ -83,22 +83,27 @@
     
     GuideTableViewController *browseRollsTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_BrowseRolls];
     UINavigationController *browseRollsNavigationController = [[UINavigationController alloc] initWithRootViewController:browseRollsTableViewController];
+    browseRollsTableViewController.navigationController = browseRollsNavigationController;
     [viewControllers setValue:browseRollsNavigationController forKey:TextConstants_Section_BrowseRolls];
     
     GuideTableViewController *myRollsTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_MyRolls];
     UINavigationController *myRollsNavigationController = [[UINavigationController alloc] initWithRootViewController:myRollsTableViewController];
+    myRollsTableViewController.navigationController = myRollsNavigationController;
     [viewControllers setValue:myRollsNavigationController forKey:TextConstants_Section_MyRolls];
     
     GuideTableViewController *peopleRollsTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_PeopleRolls];
     UINavigationController *peopleRollsNavigationController = [[UINavigationController alloc] initWithRootViewController:peopleRollsTableViewController];
+    peopleRollsTableViewController.navigationController = peopleRollsNavigationController;
     [viewControllers setValue:peopleRollsNavigationController forKey:TextConstants_Section_PeopleRolls];
     
     SettingsTableViewController *settingsTableViewController = [[SettingsTableViewController alloc] initWithStyle:UITableViewStylePlain];
     UINavigationController *settingsNavigationController = [[UINavigationController alloc] initWithRootViewController:settingsTableViewController];
+    settingsTableViewController.navigationController = settingsNavigationController;
     [viewControllers setValue:settingsNavigationController forKey:TextConstants_Section_Settings];
     
     GuideTableViewController *streamTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_Stream];
     UINavigationController *streamNavigationController = [[UINavigationController alloc] initWithRootViewController:streamTableViewController];
+    streamTableViewController.navigationController = streamNavigationController;
     [viewControllers setValue:streamNavigationController forKey:TextConstants_Section_Stream];
 
     self.menuController = [[ShelbyMenuViewController alloc] initWithViewControllers:viewControllers];
