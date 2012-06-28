@@ -30,13 +30,13 @@
 
 @interface OADataFetcher : NSObject {
 @private
-    OAMutableURLRequest *request;
-    NSURLResponse *response;
-    NSURLConnection *connection;
-    NSMutableData *responseData;
-    id delegate;
-    SEL didFinishSelector;
-    SEL didFailSelector;
+    OAMutableURLRequest *_request;
+    NSURLResponse *_response;
+    NSURLConnection *_connection;
+    NSMutableData *_responseData;
+    id _delegate;
+    SEL _didFinishSelector;
+    SEL _didFailSelector;
 }
 
 - (void)fetchDataWithRequest:(OAMutableURLRequest *)aRequest delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector;

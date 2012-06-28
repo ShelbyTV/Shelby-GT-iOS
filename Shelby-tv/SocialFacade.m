@@ -199,6 +199,12 @@ UITableViewDelegate
         [self twitterLogout];
         
     }
+    
+    self.shelbyToken = nil;
+    self.shelbyCreatorID = nil;
+    self.shelbyAuthorized = NO;
+    self.firstTimeLogin = YES;
+    
 }
 
 #pragma mark - Facebook Authorization Methods
@@ -216,9 +222,6 @@ UITableViewDelegate
 {
     
     [self.facebook logout];
-    self.shelbyToken = nil;
-    self.shelbyCreatorID = nil;
-    self.shelbyAuthorized = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
     
 }
@@ -379,9 +382,6 @@ UITableViewDelegate
 
 - (void)twitterLogout
 {
-    self.shelbyToken = nil;
-    self.shelbyCreatorID = nil;
-    self.shelbyAuthorized = NO;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:SocialFacadeAuthorizationStatus object:nil];
 }

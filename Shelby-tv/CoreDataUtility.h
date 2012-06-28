@@ -15,6 +15,7 @@
 @property (strong, nonatomic, readonly) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (assign, nonatomic) APIRequestType requestType;
 
 /** 
  Store JSON-parsed NSDictionary in Core Data for a specific API Request 
@@ -86,7 +87,6 @@ Check if user already voted for a specific frame
  Delete all stored information
  */
 + (void)dumpAllData;
-
 
 
 /** 

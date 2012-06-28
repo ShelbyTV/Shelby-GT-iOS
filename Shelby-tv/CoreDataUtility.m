@@ -93,6 +93,8 @@ static CoreDataUtility *sharedInstance = nil;
 + (void)storeParsedData:(NSDictionary *)parsedDictionary inCoreData:(NSManagedObjectContext *)context forType:(APIRequestType)requestType
 {
     
+    [[self sharedInstance] setRequestType:requestType];
+    
     switch ( requestType ) {
             
         case APIRequestType_PostToken:
@@ -357,10 +359,19 @@ static CoreDataUtility *sharedInstance = nil;
             
         } else {
             if ( DEBUGMODE ) NSLog(@"Core Data Updated!");
+            
+            // If this is the first time data has been loaded, post notification to dismiss LoginViewController
+            if ( [self sharedInstance].requestType == APIRequestType_GetBrowseRolls && [SocialFacade sharedInstance].firstTimeLogin ) {
+                [[self sharedInstance] setRequestType:APIRequestType_None];
+                [[SocialFacade sharedInstance] setFirstTimeLogin:NO];
+                [[NSNotificationCenter defaultCenter] postNotificationName:TextConstants_CoreData_DidFinishLoadingDataOnLogin object:nil];
+                
+            }
+            
         }
         
     }
-
+    
 }
 
 + (void)dumpAllData
@@ -374,6 +385,7 @@ static CoreDataUtility *sharedInstance = nil;
     [[self sharedInstance] setManagedObjectContext:nil];
 
 }
+
 
 + (id)checkIfEntity:(NSString *)entityName
         withIDValue:(NSString *)entityIDValue
@@ -543,15 +555,8 @@ static CoreDataUtility *sharedInstance = nil;
         
     }
     
-    // If this is the first time data has been loaded, post notification to dismiss LoginViewController
-    if ( [SocialFacade sharedInstance].firstTimeLogin ) {
-        
-        [[SocialFacade sharedInstance] setFirstTimeLogin:NO];
-        [[NSNotificationCenter defaultCenter] postNotificationName:TextConstants_CoreData_DidFinishLoadingDataOnLogin object:nil];
-        
-    }
-    
     [self saveContext:context];
+    
 }
 
 + (void)storeParsedData:(NSDictionary *)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext *)context
@@ -591,6 +596,8 @@ static CoreDataUtility *sharedInstance = nil;
                                       forIDKey:CoreDataFrameID  
                                existsInContext:context];
             dashboardEntry.frame = frame;
+            
+            NSLog(@"%d | %@", i, frame);
             
             // Check to make sure messages exist
             [self storeFrame:frame fromFrameArray:frameArray];

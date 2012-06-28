@@ -12,6 +12,7 @@
 // Models
 #import "SocialFacade.h"
 #import "ShelbyAPIClient.h"
+#import "CoreDataUtility.h"
 
 // Controllers
 #import "ShelbyMenuViewController.h"
@@ -310,7 +311,7 @@
                              [UIView animateWithDuration:0.5f animations:^{
                                  [self.activityIndicator setAlpha:1.0f];
                              }];
-                             
+                         
                          }];
     }
 }

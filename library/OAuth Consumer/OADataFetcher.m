@@ -31,7 +31,7 @@
 
 - (id)init {
 	if ((self = [super init])) {
-		responseData = [[NSMutableData alloc] init];
+		_responseData = [[NSMutableData alloc] init];
 	}
 	return self;
 }
@@ -39,48 +39,56 @@
 
 /* Protocol for async URL loading */
 - (void)connection:(NSURLConnection *)aConnection didReceiveResponse:(NSURLResponse *)aResponse {
-	response = aResponse;
-	[responseData setLength:0];
+	_response = aResponse;
+	[_responseData setLength:0];
 }
 	
 - (void)connection:(NSURLConnection *)aConnection didFailWithError:(NSError *)error {
-	OAServiceTicket *ticket = [[OAServiceTicket alloc] initWithRequest:request
-															  response:response
-																  data:responseData
+	OAServiceTicket *ticket = [[OAServiceTicket alloc] initWithRequest:_request
+															  response:_response
+																  data:_responseData
 															didSucceed:NO];
 
     
-	[delegate performSelector:didFailSelector withObject:ticket withObject:error];
+	[_delegate performSelector:_didFailSelector withObject:ticket withObject:error];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-	[responseData appendData:data];
+	[_responseData appendData:data];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     
-    OAServiceTicket *ticket = [[OAServiceTicket alloc] initWithRequest:request
-                                                              response:response
-                                                                  data:responseData
+//    if ( [(NSHTTPURLResponse *)_response statusCode] != 200 ) {
+//        
+//        connection = nil;
+//        _connection = [[NSURLConnection alloc] initWithRequest:_request delegate:self];
+//        
+//    } else {
+    
+    OAServiceTicket *ticket = [[OAServiceTicket alloc] initWithRequest:_request
+                                                              response:_response
+                                                                  data:_responseData
                                                             didSucceed:YES];
     
-    [delegate performSelector:didFinishSelector withObject:ticket withObject:responseData];
+    [_delegate performSelector:_didFinishSelector withObject:ticket withObject:_responseData];
 
+//    }
 	    
 }
 
 - (void)fetchDataWithRequest:(OAMutableURLRequest *)aRequest delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector {
 	
-    request = aRequest;
-    delegate = aDelegate;
-    didFinishSelector = finishSelector;
-    didFailSelector = failSelector;
+    _request = aRequest;
+    _delegate = aDelegate;
+    _didFinishSelector = finishSelector;
+    _didFailSelector = failSelector;
     
-    [request prepare];
+    [_request prepare];
 
-    request.HTTPShouldHandleCookies = NO;
+    _request.HTTPShouldHandleCookies = NO;
     
-	connection = [[NSURLConnection alloc] initWithRequest:aRequest delegate:self];
+	_connection = [[NSURLConnection alloc] initWithRequest:aRequest delegate:self];
 }
 
 @end
