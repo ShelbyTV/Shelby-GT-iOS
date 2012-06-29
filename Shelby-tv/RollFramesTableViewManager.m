@@ -236,6 +236,8 @@
         
         self.coreDataResultsArray = [CoreDataUtility fetchFramesForRoll:self.rollID];
 
+        NSLog(@"%d | %@", [self.coreDataResultsArray count], self.tableView);
+        
         [self.tableView reloadData];
         
     }
@@ -254,6 +256,21 @@
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
     [client performRequest:request ofType:APIRequestType_GetRollFrames];
     
+}
+
+- (void)performAPIRequestForRollID:(NSString *)rollID
+{
+    // Add API Observers (should ONLY occur on first call to this method)
+    if ( NO == self.observerCreated ) [self createAPIObservers];
+    
+    // Grab reference to rollID
+    self.rollID = rollID;
+    
+    // Perform API Request
+    NSString *requestString = [NSString stringWithFormat:APIRequest_GetRollFrames, self.rollID, [SocialFacade sharedInstance].shelbyToken];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
+    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+    [client performRequest:request ofType:APIRequestType_GetRollFrames];
 }
 
 - (void)dataReturnedFromAPI:(NSNotification*)notification

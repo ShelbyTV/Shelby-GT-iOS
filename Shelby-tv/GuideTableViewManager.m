@@ -15,6 +15,15 @@
 @synthesize coreDataResultsArray = _coreDataResultsArray;
 @synthesize tableView = _tableView;
 
+#pragma mark - Public Methods
++ (void)performAPIRequestForRollID:(NSString *)rollID
+{
+    NSString *requestString = [NSString stringWithFormat:APIRequest_GetRollFrames, rollID, [SocialFacade sharedInstance].shelbyToken];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
+    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+    [client performRequest:request ofType:APIRequestType_GetRollFrames];
+}
+
 #pragma mark - GuideTableViewManagerDelegate methods
 - (void)loadDataOnInitializationForTableView:(UITableView *)tableView
 {

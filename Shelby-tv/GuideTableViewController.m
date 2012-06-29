@@ -82,8 +82,7 @@
         self.refreshDelegate = (id)self.tableViewManager;
         self.tableViewManager.refreshController = self;
         
-        // Load data
-        [self.tableViewManager loadDataFromCoreData];
+//        [self.tableViewManager performAPIRequestForRollID:rollID];
     }
     
     return  self;
@@ -99,11 +98,6 @@
 {
     [super viewWillAppear:animated];  
     [self createView];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
 }
 
 #pragma mark -  Customization Methods

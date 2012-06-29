@@ -16,7 +16,10 @@
 @property (strong, nonatomic) ShelbyMenuViewController *menuController;
 @property (strong, nonatomic) UINavigationController *navigationController;
 
+// For most GuideTableViewManagers
 - (id)initWithType:(GuideType)type;
+
+// For RollFramesTableViewManager
 - (id)initWithType:(GuideType)type andRollID:(NSString*)rollID;
 
 
