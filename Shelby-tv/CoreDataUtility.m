@@ -391,7 +391,7 @@ static CoreDataUtility *sharedInstance = nil;
             if ( DEBUGMODE ) NSLog(@"Core Data Updated!");
             
             // If this is the first time data has been loaded, post notification to dismiss LoginViewController
-            if ( [self sharedInstance].requestType == APIRequestType_GetBrowseRolls && [SocialFacade sharedInstance].firstTimeLogin ) {
+            if ( [self sharedInstance].requestType == APIRequestType_GetBrowseRolls && [SocialFacade sharedInstance].firstTimeLogin == YES ) {
                 [[self sharedInstance] setRequestType:APIRequestType_None];
                 [[SocialFacade sharedInstance] setFirstTimeLogin:NO];
                 [[NSNotificationCenter defaultCenter] postNotificationName:TextConstants_CoreData_DidFinishLoadingDataOnLogin object:nil];
@@ -537,7 +537,7 @@ static CoreDataUtility *sharedInstance = nil;
             roll.isPeople = [NSNumber numberWithBool:NO];
             
         }
-        
+    
     }
     
     [self saveContext:context];
@@ -582,7 +582,7 @@ static CoreDataUtility *sharedInstance = nil;
         roll.isPublic = [[resultsArray objectAtIndex:i] valueForKey:@"public"];
         
         roll.isBrowse = [NSNumber numberWithBool:YES];
-        
+    
     }
     
     [self saveContext:context];
@@ -606,7 +606,7 @@ static CoreDataUtility *sharedInstance = nil;
         [self storeFrame:frame fromFrameArray:frameArray];
     }
     
-//    [self saveContext:context];
+    [self saveContext:context];
 }
 
 + (void)storeParsedData:(NSDictionary *)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext *)context

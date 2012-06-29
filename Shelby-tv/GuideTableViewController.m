@@ -53,7 +53,7 @@
         self.tableView.dataSource = (id)self.tableViewManager;
         self.refreshDelegate = (id)self.tableViewManager;
         self.tableViewManager.refreshController = self;
-
+        
     }
     
     return  self;
@@ -82,7 +82,9 @@
         self.refreshDelegate = (id)self.tableViewManager;
         self.tableViewManager.refreshController = self;
         
-//        [self.tableViewManager performAPIRequestForRollID:rollID];
+        // Perform API Request
+        [GuideTableViewManager performAPIRequestForRollID:rollID];
+        
     }
     
     return  self;
