@@ -124,8 +124,9 @@
     [cell.frameCountLabel setText:[NSString stringWithFormat:@"%d videos", [roll.frameCount intValue]]];
     [cell.followingCountLabel setText:[NSString stringWithFormat:@"%d people watching", [roll.followingCount intValue]]];
     
-    [GuideTableViewManager performAPIRequestOfType:GuideType_RollFrames forRollID:roll.rollID];
-    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        if ( ![NSThread mainThread] ) [GuideTableViewManager performAPIRequestForRollID:roll.rollID];
+    });
     return cell;
     
 }

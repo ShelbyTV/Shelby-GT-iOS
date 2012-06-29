@@ -190,10 +190,10 @@
 - (void)loadDataOnViewAppear
 {
     // Perform API Request
-    if ( self.type == GuideType_MyRolls || self.type == GuideType_PeopleRolls ) {
+    if ( self.type == GuideType_MyRolls || self.type == GuideType_PeopleRolls || self.type == GuideType_BrowseRolls ) {
         
         [self.tableViewManager loadDataOnInitializationForTableView:self.tableView];
-        [GuideTableViewManager performAPIRequestOfType:GuideType_RollFrames forRollID:self.rollID];
+        [GuideTableViewManager performAPIRequestForRollID:self.rollID];
     
     }
 

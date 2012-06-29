@@ -16,13 +16,13 @@
 @synthesize tableView = _tableView;
 
 #pragma mark - Public Methods
-+ (void)performAPIRequestOfType:(GuideType)type forRollID:(NSString*)rollID;
++ (void)performAPIRequestForRollID:(NSString*)rollID;
 {
 
         NSString *requestString = [NSString stringWithFormat:APIRequest_GetRollFrames, rollID, [SocialFacade sharedInstance].shelbyToken];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
         ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-        [client performRequest:request ofType:type];
+        [client performRequest:request ofType:APIRequestType_GetRollFrames];
 
 }
 

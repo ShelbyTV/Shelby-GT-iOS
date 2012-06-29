@@ -43,6 +43,6 @@
 // RollFramesTableViewManager
 @property (strong, nonatomic) NSString *rollID;
 
-+ (void)performAPIRequestOfType:(GuideType)type forRollID:(NSString*)rollID;
++ (void)performAPIRequestForRollID:(NSString*)rollID;
 
 @end
