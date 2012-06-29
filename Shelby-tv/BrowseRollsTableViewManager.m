@@ -7,6 +7,7 @@
 //
 
 #import "BrowseRollsTableViewManager.h"
+#import "GuideTableViewController.h"
 #import "RollsCell.h"
 
 @interface BrowseRollsTableViewManager ()
@@ -123,6 +124,8 @@
     [cell.frameCountLabel setText:[NSString stringWithFormat:@"%d videos", [roll.frameCount intValue]]];
     [cell.followingCountLabel setText:[NSString stringWithFormat:@"%d people watching", [roll.followingCount intValue]]];
     
+    [GuideTableViewManager performAPIRequestOfType:GuideType_BrowseRolls forRollID:roll.rollID];
+    
     return cell;
     
 }
@@ -130,7 +133,9 @@
 #pragma mark - UITableViewDelegate Methods
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    Roll *roll= [self.coreDataResultsArray objectAtIndex:indexPath.row];
+    GuideTableViewController *rollFramesTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_RollFrames andRollID:roll.rollID];
+    [self.guideController.navigationController pushViewController:rollFramesTableViewController animated:YES];
 }
 
 

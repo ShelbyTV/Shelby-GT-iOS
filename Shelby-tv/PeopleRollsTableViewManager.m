@@ -7,6 +7,7 @@
 //
 
 #import "PeopleRollsTableViewManager.h"
+#import "GuideTableViewController.h"
 #import "RollsCell.h"
 
 @interface PeopleRollsTableViewManager ()
@@ -93,12 +94,10 @@
     [self performAPIRequest];
 }
 
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
-
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -123,6 +122,11 @@
     [cell.frameCountLabel setText:[NSString stringWithFormat:@"%d videos", [roll.frameCount intValue]]];
     [cell.followingCountLabel setText:[NSString stringWithFormat:@"%d people watching", [roll.followingCount intValue]]];
     
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        if ( ![NSThread mainThread] ) [GuideTableViewManager performAPIRequestOfType:GuideType_PeopleRolls forRollID:roll.rollID];
+    });
+    
+    
     return cell;
     
 }
@@ -130,8 +134,9 @@
 #pragma mark - UITableViewDelegate Methods
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    Roll *roll= [self.coreDataResultsArray objectAtIndex:indexPath.row];
+    GuideTableViewController *rollFramesTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_RollFrames andRollID:roll.rollID];
+    [self.guideController.navigationController pushViewController:rollFramesTableViewController animated:YES];
 }
-
 
 @end

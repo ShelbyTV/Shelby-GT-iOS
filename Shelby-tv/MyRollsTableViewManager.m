@@ -122,8 +122,8 @@
     [cell.frameCountLabel setText:[NSString stringWithFormat:@"%d videos", [roll.frameCount intValue]]];
     [cell.followingCountLabel setText:[NSString stringWithFormat:@"%d people watching", [roll.followingCount intValue]]];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-       if ( ![NSThread mainThread] ) [GuideTableViewManager performAPIRequestForRollID:roll.rollID];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        if ( ![NSThread mainThread] ) [GuideTableViewManager performAPIRequestOfType:GuideType_MyRolls forRollID:roll.rollID];
     });
     
     return cell;
@@ -137,6 +137,5 @@
     GuideTableViewController *rollFramesTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_RollFrames andRollID:roll.rollID];
     [self.guideController.navigationController pushViewController:rollFramesTableViewController animated:YES];
 }
-
 
 @end
