@@ -124,7 +124,7 @@
     [cell.frameCountLabel setText:[NSString stringWithFormat:@"%d videos", [roll.frameCount intValue]]];
     [cell.followingCountLabel setText:[NSString stringWithFormat:@"%d people watching", [roll.followingCount intValue]]];
     
-    [GuideTableViewManager performAPIRequestOfType:GuideType_BrowseRolls forRollID:roll.rollID];
+    [GuideTableViewManager performAPIRequestOfType:GuideType_RollFrames forRollID:roll.rollID];
     
     return cell;
     

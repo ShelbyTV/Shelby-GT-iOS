@@ -18,39 +18,11 @@
 #pragma mark - Public Methods
 + (void)performAPIRequestOfType:(GuideType)type forRollID:(NSString*)rollID;
 {
-    switch ( type ) {
-            
-        case GuideType_BrowseRolls:{
-            
-            NSString *requestString = [NSString stringWithFormat:APIRequest_GetBrowseRolls, [SocialFacade sharedInstance].shelbyToken];
-            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
-            ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-            [client performRequest:request ofType:type];
-            
-        } break;
-            
-        case GuideType_MyRolls:{
-            
-            NSString *requestString = [NSString stringWithFormat:APIRequest_GetRollFrames, rollID, [SocialFacade sharedInstance].shelbyToken];
-            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
-            ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-            [client performRequest:request ofType:type];
-            
-        } break;
-            
-        case GuideType_PeopleRolls:{
-            
-            NSString *requestString = [NSString stringWithFormat:APIRequest_GetRollFrames, rollID, [SocialFacade sharedInstance].shelbyToken];
-            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
-            ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-            [client performRequest:request ofType:type];
-            
-        } break;
-            
-        default:
-            break;
-    }
-    
+
+        NSString *requestString = [NSString stringWithFormat:APIRequest_GetRollFrames, rollID, [SocialFacade sharedInstance].shelbyToken];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
+        ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+        [client performRequest:request ofType:type];
 
 }
 

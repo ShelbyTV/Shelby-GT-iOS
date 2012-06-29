@@ -193,7 +193,7 @@
     if ( self.type == GuideType_MyRolls || self.type == GuideType_PeopleRolls ) {
         
         [self.tableViewManager loadDataOnInitializationForTableView:self.tableView];
-        [GuideTableViewManager performAPIRequestOfType:self.type forRollID:self.rollID];
+        [GuideTableViewManager performAPIRequestOfType:GuideType_RollFrames forRollID:self.rollID];
     
     }
 

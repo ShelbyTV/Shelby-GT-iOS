@@ -106,7 +106,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return ( self.coreDataResultsArray ) ?  [self.coreDataResultsArray count] : 1;
+    return ( self.coreDataResultsArray ) ? [self.coreDataResultsArray count] : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -123,7 +123,7 @@
     [cell.followingCountLabel setText:[NSString stringWithFormat:@"%d people watching", [roll.followingCount intValue]]];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        if ( ![NSThread mainThread] ) [GuideTableViewManager performAPIRequestOfType:GuideType_MyRolls forRollID:roll.rollID];
+        if ( ![NSThread mainThread] ) [GuideTableViewManager performAPIRequestOfType:GuideType_RollFrames forRollID:roll.rollID];
     });
     
     return cell;
