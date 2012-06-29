@@ -82,6 +82,8 @@
         self.refreshDelegate = (id)self.tableViewManager;
         self.tableViewManager.refreshController = self;
         
+        // Load data
+        [self.tableViewManager loadDataFromCoreData];
     }
     
     return  self;

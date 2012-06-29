@@ -68,6 +68,12 @@
 + (DashboardEntry*)fetchDashboardEntryDataForRow:(NSUInteger)row;
 
 /**
+ Fetch Frame information stored in Core Data
+ */
+
++ (Frame*)fetchFrameWithID:(NSString*)frameID;
+
+/**
  Fetch First Message from dashboardEntry.frame.conversation
  */
 

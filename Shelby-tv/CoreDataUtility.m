@@ -268,6 +268,30 @@ static CoreDataUtility *sharedInstance = nil;
 
 }
 
++ (Frame*)fetchFrameWithID:(NSString*)frameID
+{
+    
+    // Create fetch request
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setReturnsObjectsAsFaults:NO];
+    
+    // Fetch dashboardEntry data
+    NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext];
+    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:CoreDataEntityFrame inManagedObjectContext:context];
+    [request setEntity:dashboardEntryDescription];
+    
+    // Only include the frame we're looking for
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"frameID == %@", frameID];
+    [request setPredicate:predicate];
+    
+    // Execute request that returns array of dashboardEntrys
+    NSArray *dashboardEntryArray = [context executeFetchRequest:request error:nil];
+    
+    // Return messages at a specific index
+    return [dashboardEntryArray objectAtIndex:0];
+    
+}
+
 + (Messages*)fetchFirstMessageFromConversation:(Conversation *)conversation
 {
     

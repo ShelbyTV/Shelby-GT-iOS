@@ -149,11 +149,11 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         @synchronized(self) {
             // Quickly modify Core Data values
-            ShelbyUser *shelbyUser = [CoreDataUtility fetchShelbyAuthData];
-            DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForRow:button.tag];
-            Frame *frame = dashboardEntry.frame;
+            NSString *frameID = [self.arrayOfFrameIDs objectAtIndex:button.tag];
+            Frame *frame  = [CoreDataUtility fetchFrameWithID:frameID];
             
-            UpvoteUsers *upvoteUsers = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:dashboardEntry.managedObjectContext];
+            ShelbyUser *shelbyUser = [CoreDataUtility fetchShelbyAuthData];
+            UpvoteUsers *upvoteUsers = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:frame.managedObjectContext];
             [upvoteUsers setValue:shelbyUser.shelbyID forKey:CoreDataUpvoteUserID];
             [upvoteUsers setValue:shelbyUser.nickname forKey:CoreDataUpvoteUsersNickname];
             [upvoteUsers setValue:shelbyUser.userImage forKey:CoreDataUpvoteUsersImage];
@@ -191,8 +191,8 @@
         
         @synchronized(self) {
             // Quickly modify Core Data values
-            DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForRow:button.tag];
-            Frame *frame = dashboardEntry.frame;
+            NSString *frameID = [self.arrayOfFrameIDs objectAtIndex:button.tag];
+            Frame *frame  = [CoreDataUtility fetchFrameWithID:frameID];
             
             NSMutableSet *upvoteUsers = [NSMutableSet setWithSet:frame.upvoteUsers];
             
@@ -235,9 +235,7 @@
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
         
         self.coreDataResultsArray = [CoreDataUtility fetchFramesForRoll:self.rollID];
-        
-        NSLog(@"%d", [self.coreDataResultsArray count]);
-        
+
         [self.tableView reloadData];
         
     }
@@ -307,7 +305,6 @@
         NSUInteger upvotersCount = [frame.upvotersCount intValue];
         
         if ( upvotersCount > 0 ) {
-            
             
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardExpandedCell" owner:self options:nil];
             VideoCardExpandedCell *cell = (VideoCardExpandedCell*)[nib objectAtIndex:0];
