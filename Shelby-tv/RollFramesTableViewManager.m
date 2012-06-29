@@ -235,8 +235,6 @@
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
         
         self.coreDataResultsArray = [CoreDataUtility fetchFramesForRoll:self.rollID];
-
-        NSLog(@"%d | %@", [self.coreDataResultsArray count], self.tableView);
         
         [self.tableView reloadData];
         
@@ -307,13 +305,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return ( self.coreDataResultsArray ) ?  20 : 1;
+    NSInteger count = 1;
+    
+    count = [self.coreDataResultsArray count];
+    
+    if ( count > 20) count = 20;
+    
+    return ( self.coreDataResultsArray ) ?  count : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if ( [self.coreDataResultsArray count] > 0) {
     
         // Fetch data stored in Core Data
         Frame *frame = [self.coreDataResultsArray objectAtIndex:indexPath.row];
@@ -381,13 +383,7 @@
             return cell;
             
         }
-    } else {
-        
-        UITableViewCell *cell = [[UITableViewCell alloc] init];
-        return cell;
-    }
-    
-    
+
 }
 
 #pragma mark - UITableViewDelegate Methods

@@ -94,12 +94,10 @@
     [self performAPIRequest];
 }
 
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
-
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -124,7 +122,12 @@
     [cell.frameCountLabel setText:[NSString stringWithFormat:@"%d videos", [roll.frameCount intValue]]];
     [cell.followingCountLabel setText:[NSString stringWithFormat:@"%d people watching", [roll.followingCount intValue]]];
     
-    // Perform API request for rolls ahead of time
+    /* 
+     Perform API request for each roll ahead of time, 
+     so that each RollFramesTableViewController instance 
+     is pre-populated with data ahead of time 
+     */
+    
     [GuideTableViewManager performAPIRequestForRollID:roll.rollID];
     
     return cell;
