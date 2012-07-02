@@ -20,7 +20,6 @@
 /// Creation Methods
 - (GuideTableViewManager*)createTableViewManager;
 - (void)createView;
-- (void)loadDataOnViewAppear;
 
 @end
 
@@ -82,6 +81,9 @@
         self.tableView.dataSource = (id)self.tableViewManager;
         self.refreshDelegate = (id)self.tableViewManager;
         self.tableViewManager.refreshController = self;
+     
+        // Load data
+        [self.tableViewManager loadDataOnInitializationForTableView:self.tableView andRollID:self.rollID];
         
     }
     
@@ -98,7 +100,6 @@
 {
     [super viewWillAppear:animated];  
     [self createView];
-    [self loadDataOnViewAppear];
 }
 
 #pragma mark -  Customization Methods
@@ -184,18 +185,6 @@
     
     // Call API and Core Data in section's tableViewManager
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) [self.tableViewManager loadDataOnInitializationForTableView:self.tableView];
-
-}
-
-- (void)loadDataOnViewAppear
-{
-    // Perform API Request
-    if ( self.type == GuideType_MyRolls || self.type == GuideType_PeopleRolls || self.type == GuideType_BrowseRolls ) {
-        
-        [self.tableViewManager loadDataOnInitializationForTableView:self.tableView];
-        [GuideTableViewManager performAPIRequestForRollID:self.rollID];
-    
-    }
 
 }
 

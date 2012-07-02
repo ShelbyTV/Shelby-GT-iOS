@@ -486,59 +486,77 @@ static CoreDataUtility *sharedInstance = nil;
     
     for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
         
-        Roll *roll = [self checkIfEntity:CoreDataEntityRoll
-                             withIDValue:[[resultsArray objectAtIndex:i] valueForKey:@"id"]
-                                forIDKey:CoreDataRollID
-                         existsInContext:context];
-    
-        NSString *rollID = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
-        [roll setValue:rollID forKey:CoreDataRollID];
+        // Conditions for saving entires into database
+        BOOL sourceURLExists = [[[[[resultsArray objectAtIndex:i] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"source_url"] isKindOfClass:[NSNull class]] ? NO : YES;
+        id frameReturned = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];
+        BOOL frameNull = [frameReturned isKindOfClass:([NSNull class])] ? YES : NO;
         
-        NSString *creatorID = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"creator_id"]];
-        [roll setValue:creatorID forKey:CoreDataRollCreatorID];
+        if ( YES == frameNull ) {
+            
+            // Do Nothing
         
-        NSString *nickname = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"creator_nickname"]];
-        [roll setValue:nickname forKey:CoreDataRollCreatorNickname];
+        } else if ( YES == sourceURLExists ) { // && NO == frameNull
+                    
+            Roll *roll = [self checkIfEntity:CoreDataEntityRoll
+                                 withIDValue:[[resultsArray objectAtIndex:i] valueForKey:@"id"]
+                                    forIDKey:CoreDataRollID
+                             existsInContext:context];
         
-        NSNumber *frameCount = [[resultsArray objectAtIndex:i] valueForKey:@"frame_count"];
-        [roll setValue:frameCount forKey:CoreDataRollFrameCount];
-        
-        NSNumber *followingCount = [[resultsArray objectAtIndex:i] valueForKey:@"following_user_count"];
-        [roll setValue:followingCount forKey:CoreDataRollFollowingCount];
+            NSString *rollID = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
+            [roll setValue:rollID forKey:CoreDataRollID];
+            
+            NSString *creatorID = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"creator_id"]];
+            [roll setValue:creatorID forKey:CoreDataRollCreatorID];
+            
+            NSString *nickname = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"creator_nickname"]];
+            [roll setValue:nickname forKey:CoreDataRollCreatorNickname];
+            
+            NSNumber *frameCount = [[resultsArray objectAtIndex:i] valueForKey:@"frame_count"];
+            [roll setValue:frameCount forKey:CoreDataRollFrameCount];
+            
+            NSNumber *followingCount = [[resultsArray objectAtIndex:i] valueForKey:@"following_user_count"];
+            [roll setValue:followingCount forKey:CoreDataRollFollowingCount];
+                    
+            NSString *thumbnailURL = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"first_frame_thumbnail_url"]];
+            [roll setValue:thumbnailURL forKey:CoreDataRollThumbnailURL];
+            
+            NSString *title = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"title"]];
+            [roll setValue:title forKey:CoreDataRollTitle];
+            
+            roll.isCollaborative = [[resultsArray objectAtIndex:i] valueForKey:@"collaborative"];
+            
+            roll.isGenius = [[resultsArray objectAtIndex:i] valueForKey:@"genius"];
+            
+            roll.isPublic = [[resultsArray objectAtIndex:i] valueForKey:@"public"];
+            
+            if ( [roll.isPublic boolValue] && ![roll.isCollaborative boolValue] ) {
                 
-        NSString *thumbnailURL = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"first_frame_thumbnail_url"]];
-        [roll setValue:thumbnailURL forKey:CoreDataRollThumbnailURL];
-        
-        NSString *title = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"title"]];
-        [roll setValue:title forKey:CoreDataRollTitle];
-        
-        roll.isCollaborative = [[resultsArray objectAtIndex:i] valueForKey:@"collaborative"];
-        
-        roll.isGenius = [[resultsArray objectAtIndex:i] valueForKey:@"genius"];
-        
-        roll.isPublic = [[resultsArray objectAtIndex:i] valueForKey:@"public"];
-        
-        
-        if ( [roll.isPublic boolValue] && ![roll.isCollaborative boolValue] ) {
+                roll.isPeople = [NSNumber numberWithBool:YES];
             
-            roll.isPeople = [NSNumber numberWithBool:YES];
-        
-        } else if ( [roll.isPublic boolValue] && [roll.isCollaborative boolValue] ) {
+            } else if ( [roll.isPublic boolValue] && [roll.isCollaborative boolValue] ) {
+                
+                roll.isMy = [NSNumber numberWithBool:YES];
+                
+            } else if ( ![roll.isPublic boolValue] ) {
+                
+                roll.isMy = [NSNumber numberWithBool:YES];
+                
+            } else {
+                
+                roll.isMy = [NSNumber numberWithBool:NO];
+                roll.isPeople = [NSNumber numberWithBool:NO];
+                
+            }
             
-            roll.isMy = [NSNumber numberWithBool:YES];
-            
-        } else if ( ![roll.isPublic boolValue] ) {
-            
-            roll.isMy = [NSNumber numberWithBool:YES];
             
         } else {
             
-            roll.isMy = [NSNumber numberWithBool:NO];
-            roll.isPeople = [NSNumber numberWithBool:NO];
+            // Do Nothing
             
         }
     
     }
+        
     
     [self saveContext:context];
 }

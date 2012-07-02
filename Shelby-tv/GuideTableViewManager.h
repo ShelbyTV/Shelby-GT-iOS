@@ -24,10 +24,13 @@
 
 @protocol GuideTableViewManagerDelegate <NSObject>
 
-- (void)loadDataOnInitializationForTableView:(UITableView*)tableView;
 - (void)loadDataFromCoreData;
 - (void)performAPIRequest;
 - (void)dataReturnedFromAPI:(NSNotification*)notification;
+
+@optional
+- (void)loadDataOnInitializationForTableView:(UITableView*)tableView;
+- (void)loadDataOnInitializationForTableView:(UITableView*)tableView andRollID:(NSString*)rollID;
 
 @end
 
@@ -42,7 +45,5 @@
 
 // RollFramesTableViewManager
 @property (strong, nonatomic) NSString *rollID;
-
-+ (void)performAPIRequestForRollID:(NSString*)rollID;
 
 @end

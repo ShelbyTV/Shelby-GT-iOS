@@ -217,12 +217,13 @@
     [controller downvote];
 }
 
-#pragma mark - GuideTableViewManagerDelegate Method
-- (void)loadDataOnInitializationForTableView:(UITableView *)tableView
+#pragma mark - GuideTableViewMangerDelegate Methods
+- (void)loadDataOnInitializationForTableView:(UITableView*)tableView andRollID:(NSString *)rollID
 {
-    
     // Reference Parent ViewController's UITableView (should ONLY occur on first call to this method)
     self.tableView = tableView;
+    
+    self.rollID = rollID;
     
     // Load stored data into tableView
     [self loadDataFromCoreData];
@@ -231,12 +232,21 @@
 
 - (void)loadDataFromCoreData
 {
-    // Fetch RollFrames Data from Core Data
+    // Fetch Rolls-Following Data from Core Data
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
         
         self.coreDataResultsArray = [CoreDataUtility fetchFramesForRoll:self.rollID];
         
-        [self.tableView reloadData];
+        if ( [self.coreDataResultsArray count] > 0) {
+            
+            [self.tableView reloadData];
+            
+        } else {
+            
+            // Perform API Request
+            [self performAPIRequest];
+            
+        }
         
     }
     
@@ -317,73 +327,88 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-        // Fetch data stored in Core Data
-        Frame *frame = [self.coreDataResultsArray objectAtIndex:indexPath.row];
-        
-        // Create proper cell based on number of upvotes
-        NSUInteger upvotersCount = [frame.upvotersCount intValue];
-        
-        if ( upvotersCount > 0 ) {
+    switch ( [self.coreDataResultsArray count] ) {
+        case 0:{
             
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardExpandedCell" owner:self options:nil];
-            VideoCardExpandedCell *cell = (VideoCardExpandedCell*)[nib objectAtIndex:0];
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            cell.alpha = 0.0f;
+            return cell;
             
-            NSUInteger userCounter = 0;
-            NSMutableArray *upvoteUsersarray = [NSMutableArray arrayWithArray:[frame.upvoteUsers allObjects]];
+        } break;
             
-            while ( userCounter < [upvoteUsersarray count] ) {
+        default:{
+            
+            // Fetch data stored in Core Data
+            Frame *frame = [self.coreDataResultsArray objectAtIndex:indexPath.row];
+            
+            // Create proper cell based on number of upvotes
+            NSUInteger upvotersCount = [frame.upvotersCount intValue];
+            
+            if ( upvotersCount > 0 ) {
                 
-                UpvoteUsers *user = [upvoteUsersarray objectAtIndex:userCounter];
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardExpandedCell" owner:self options:nil];
+                VideoCardExpandedCell *cell = (VideoCardExpandedCell*)[nib objectAtIndex:0];
                 
-                for (UIImageView *imageView in [cell subviews] ) {
+                NSUInteger userCounter = 0;
+                NSMutableArray *upvoteUsersarray = [NSMutableArray arrayWithArray:[frame.upvoteUsers allObjects]];
+                
+                while ( userCounter < [upvoteUsersarray count] ) {
                     
-                    if ( (imageView.tag == userCounter) && (userCounter < 10) && [imageView isMemberOfClass:[UIImageView class]] ) {
+                    UpvoteUsers *user = [upvoteUsersarray objectAtIndex:userCounter];
+                    
+                    for (UIImageView *imageView in [cell subviews] ) {
                         
-                        [AsynchronousFreeloader loadImageFromLink:user.userImage forImageView:imageView withPlaceholderView:nil];
+                        if ( (imageView.tag == userCounter) && (userCounter < 10) && [imageView isMemberOfClass:[UIImageView class]] ) {
+                            
+                            [AsynchronousFreeloader loadImageFromLink:user.userImage forImageView:imageView withPlaceholderView:nil];
+                            
+                        }
                         
                     }
                     
+                    userCounter++;
                 }
                 
-                userCounter++;
-            }
-            
-            // Pseudo-hide cell until it's populated with information
-            [cell setAlpha:0.0f];
-            
-            if ( [self.coreDataResultsArray count]  ) {
+                // Pseudo-hide cell until it's populated with information
+                [cell setAlpha:0.0f];
                 
-                if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {
+                if ( [self.coreDataResultsArray count]  ) {
                     
-                    [self populateTableViewCell:cell withContent:frame inRow:indexPath.row];
-                    
+                    if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {
+                        
+                        [self populateTableViewCell:cell withContent:frame inRow:indexPath.row];
+                        
+                    }
                 }
-            }
-            
-            
-            return cell;
-            
-        } else {
-            
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
-            VideoCardCell *cell = (VideoCardCell*)[nib objectAtIndex:0];
-            
-            // Pseudo-hide cell until it's populated with information
-            [cell setAlpha:0.0f];
-            
-            if ( [self.coreDataResultsArray count]  ) {
                 
-                if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {
+                
+                return cell;
+                
+            } else {
+                
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
+                VideoCardCell *cell = (VideoCardCell*)[nib objectAtIndex:0];
+                
+                // Pseudo-hide cell until it's populated with information
+                [cell setAlpha:0.0f];
+                
+                if ( [self.coreDataResultsArray count]  ) {
                     
-                    [self populateTableViewCell:cell withContent:frame inRow:indexPath.row];
-                    
+                    if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {
+                        
+                        [self populateTableViewCell:cell withContent:frame inRow:indexPath.row];
+                        
+                    }
                 }
+                
+                return cell;
+                
             }
             
-            return cell;
             
-        }
-
+        } break;
+    }
+       
 }
 
 #pragma mark - UITableViewDelegate Methods
