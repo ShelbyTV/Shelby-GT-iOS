@@ -43,6 +43,12 @@
 #pragma mark - UIApplicationDelegate Methods
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    for( NSString *familyName in [UIFont familyNames] ) {
+        for( NSString *fontName in [UIFont fontNamesForFamilyName:familyName] ) {
+            NSLog(@"%@", fontName);
+        }
+    }
+    
     // Instantiate UIWindow
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

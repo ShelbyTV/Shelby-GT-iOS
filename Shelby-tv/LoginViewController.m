@@ -94,7 +94,7 @@
     self.view.backgroundColor = ColorConstants_BackgroundColor;
     
     // Set font for sloganLavel
-    [self.sloganLabel setFont:[UIFont fontWithName:@"Ubuntu" size:10]];
+    [self.sloganLabel setFont:[UIFont fontWithName:@"Ubuntu" size:10.0f]];
     [self.sloganLabel setTextColor:[UIColor colorWithRed:227.0f/255.0f green:227.0f/255.0f blue:227.0f/255.0f alpha:1.0]];
     
     // Reference Social Facade Singleton
@@ -399,6 +399,7 @@
 #pragma mark - Interface Orientation Method
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+    if ( UIDeviceOrientationPortrait || UIDevice)
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
