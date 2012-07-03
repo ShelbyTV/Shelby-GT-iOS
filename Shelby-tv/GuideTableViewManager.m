@@ -15,7 +15,6 @@
 @synthesize coreDataResultsArray = _coreDataResultsArray;
 @synthesize tableView = _tableView;
 @synthesize iterationCount = _iterationCount;
-@synthesize visibleCellCount = _visibleCellCount;
 
 #pragma mark - GuideTableViewManagerDelegate methods
 - (void)loadDataOnInitializationForTableView:(UITableView *)tableView
@@ -34,6 +33,11 @@
 }
 
 - (void)performAPIRequest
+{
+    // Do nothing in GuideTableViewManager
+}
+
+- (void)performAPIRequestForMoreEntries
 {
     // Do nothing in GuideTableViewManager
 }

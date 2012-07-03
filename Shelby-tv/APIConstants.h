@@ -9,7 +9,8 @@
 // Macros for API Routes
 #define APIRequest_PostTokenFacebook        @"http://api.gt.shelby.tv/v1/token?provider_name=facebook&uid=%@&token=%@"
 #define APIRequest_PostTokenTwitter         @"http://api.gt.shelby.tv/v1/token?provider_name=twitter&uid=%@&token=%@&secret=%@"
-#define APIRequest_GetStream                @"http://api.gt.shelby.tv/v1/dashboard?auth_token=%@&limit=200"
+#define APIRequest_GetStream                @"http://api.gt.shelby.tv/v1/dashboard?auth_token=%@"
+#define APIRequest_GetStreamAgain           @"http://api.gt.shelby.tv/v1/dashboard?auth_token=%@&skip=%d"
 #define APIRequest_GetFrame                 @"http://api.gt.shelby.tv/v1/frame/%@?auth_token=%@"
 #define APIRequest_GetRollsFollowing        @"http://api.gt.shelby.tv/v1/user/%@/rolls/following?auth_token=%@"
 #define APIRequest_GetBrowseRolls           @"http://api.gt.shelby.tv/v1/roll/browse?auth_token=%@"

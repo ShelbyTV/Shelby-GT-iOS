@@ -221,9 +221,8 @@
 - (void)loadDataOnInitializationForTableView:(UITableView *)tableView
 {
 
-    // Set itertionCount and VisibleCellCount (for swipe up to refresh)
-    self.iterationCount = 0;
-    self.visibleCellCount = 0;
+    // Set itertionCount for swipe up to refresh
+    self.iterationCount = 1;
     
     // Reference Parent ViewController's UITableView (should ONLY occur on first call to this method)
     self.tableView = tableView;
@@ -239,30 +238,8 @@
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
      
         self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
-        
-        self.iterationCount++;
-        
-        if ( [self.coreDataResultsArray count] >= 20 * self.iterationCount ) {
             
-                self.visibleCellCount = 20 * self.iterationCount;
-            
-            [self.tableView reloadData];
-            
-        } else if ( [self.coreDataResultsArray count] < 20) {
-         
-            // Decrement iterationCount to go to condition that previously satisfied the if-portion of this conditional
-            self.iterationCount--;
-            
-            self.visibleCellCount = [self.coreDataResultsArray count];
-            
-        } else {
-        
-            // Decrement iterationCount to go to condition that previously satisfied the if-portion of this conditional
-            self.iterationCount--;
-            
-            self.visibleCellCount = 20 * self.iterationCount;
-            
-        }
+        [self.tableView reloadData];
         
     }
     
@@ -280,9 +257,22 @@
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
     [client performRequest:request ofType:APIRequestType_GetStream];
 
-    // Reset iteration count
-    self.iterationCount = 1;
+}
 
+- (void)performAPIRequestForMoreEntries
+{
+    
+    // Add API Observers (should ONLY occur on first call to this method)
+    if ( NO == self.observerCreated ) [self createAPIObservers];
+    
+    // Perform API Request
+    self.iterationCount++;
+    NSUInteger skipCount = 20 * self.iterationCount;
+    NSString *requestString = [NSString stringWithFormat:APIRequest_GetStreamAgain, [SocialFacade sharedInstance].shelbyToken, skipCount];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
+    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+    [client performRequest:request ofType:APIRequestType_GetStream];
+    
 }
 
 - (void)dataReturnedFromAPI:(NSNotification*)notification
@@ -301,7 +291,6 @@
 #pragma mark - ASPullToRefreshDelegate Method
 - (void)dataToRefresh
 {
-    // Perform API Request for tableView, which WILL/SHOULD/MUST exist before this method is called
     [self performAPIRequest];
 }
 
@@ -319,7 +308,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return ( self.coreDataResultsArray ) ?  self.visibleCellCount : 1;
+    return ( self.coreDataResultsArray ) ?  [self.coreDataResultsArray count] : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -364,7 +353,7 @@
             
             if ( [self.coreDataResultsArray objectAtIndex:indexPath.row] ) {
                 
-                [self populateTableViewCell:cell withContent:dashboardEntry inRow:indexPath.row];
+                if ( dashboardEntry.frame != nil ) [self populateTableViewCell:cell withContent:dashboardEntry inRow:indexPath.row];
                 
             }
         }
@@ -404,10 +393,10 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    if (indexPath.row == self.visibleCellCount-1) {
+    if (indexPath.row == ([self.coreDataResultsArray count]-1) ) {
         
         // Load more data from CoreData
-        [self loadDataFromCoreData];
+        [self performAPIRequestForMoreEntries];
 
     }
 }
