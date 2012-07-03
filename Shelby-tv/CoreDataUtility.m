@@ -10,6 +10,7 @@
 #import "NSString+NullTest.h"
 #import "NSDate+DateFromBSONString.h"
 #import "NSString+TypedefConversion.h"
+#import "ShelbyAPIClient.h"
 #import "SocialFacade.h"
 
 @interface CoreDataUtility ()
@@ -391,12 +392,48 @@ static CoreDataUtility *sharedInstance = nil;
             if ( DEBUGMODE ) NSLog(@"Core Data Updated!");
             
             // If this is the first time data has been loaded, post notification to dismiss LoginViewController
-            if ( [self sharedInstance].requestType == APIRequestType_GetBrowseRolls && [SocialFacade sharedInstance].firstTimeLogin == YES ) {
-                [[self sharedInstance] setRequestType:APIRequestType_None];
-                [[SocialFacade sharedInstance] setFirstTimeLogin:NO];
-                [[NSNotificationCenter defaultCenter] postNotificationName:TextConstants_CoreData_DidFinishLoadingDataOnLogin object:nil];
+            if ( [SocialFacade sharedInstance].firstTimeLogin == YES ) {
+
+                switch ( [CoreDataUtility sharedInstance].requestType ) {
+                        
+                    case APIRequestType_GetStream:{
+                        
+                        
+                        // Stream is saved, so get RollsFollowing
+                        [[self sharedInstance] setRequestType:APIRequestType_None];
+                        NSString *rollsFollowingRequestString = [NSString stringWithFormat:APIRequest_GetRollsFollowing, [SocialFacade sharedInstance].shelbyCreatorID, [SocialFacade sharedInstance].shelbyToken];
+                         NSMutableURLRequest *rollsFollowing = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:rollsFollowingRequestString]];
+                         ShelbyAPIClient *rollsFollowingClient = [[ShelbyAPIClient alloc] init];
+                         [rollsFollowingClient performRequest:rollsFollowing ofType:APIRequestType_GetRollsFollowing];
+                        
+                    } break;
+                        
+                    case APIRequestType_GetRollsFollowing:{
+                        
+                        // RollsFollowing is saved, so get BrowseRolls
+                        [[self sharedInstance] setRequestType:APIRequestType_None];
+                         NSString *browseRollsRequestString = [NSString stringWithFormat:APIRequest_GetBrowseRolls, [SocialFacade sharedInstance].shelbyToken];
+                         NSMutableURLRequest *browseRollsRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:browseRollsRequestString]];
+                         ShelbyAPIClient *browseRollsClient = [[ShelbyAPIClient alloc] init];
+                         [browseRollsClient performRequest:browseRollsRequest ofType:APIRequestType_GetBrowseRolls];
+                        
+                    } break;
+                        
+                    case APIRequestType_GetBrowseRolls:{
+                        
+                        // BrowseROlls is saved, so release LoginViewController
+                        [[self sharedInstance] setRequestType:APIRequestType_None];
+                        [[SocialFacade sharedInstance] setFirstTimeLogin:NO];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:TextConstants_CoreData_DidFinishLoadingDataOnLogin object:nil];
+                        
+                    } break;
+                        
+                    default:
+                        break;
+                }
                 
             }
+            
             
         }
         
@@ -435,7 +472,7 @@ static CoreDataUtility *sharedInstance = nil;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", entityIDKey, entityIDValue];
     [request setPredicate:predicate];    
     
-    // Execute request that returns array of dashboardEntrys
+    // Execute request that returns array with one object, the requested entity
     NSArray *array = [context executeFetchRequest:request error:nil];
 
     if ( [array count] ) {
@@ -638,6 +675,8 @@ static CoreDataUtility *sharedInstance = nil;
         BOOL sourceURLExists = [[[[[resultsArray objectAtIndex:i] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"source_url"] isKindOfClass:[NSNull class]] ? NO : YES;
         id frameReturned = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];
         BOOL frameNull = [frameReturned isKindOfClass:([NSNull class])] ? YES : NO;
+        
+        NSLog(@"%d, %@", i, [[resultsArray objectAtIndex:i] valueForKey:@"id"] );
         
         if ( YES == frameNull ) {
         

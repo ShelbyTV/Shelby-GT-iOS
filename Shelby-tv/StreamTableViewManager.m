@@ -221,6 +221,9 @@
 - (void)loadDataOnInitializationForTableView:(UITableView *)tableView
 {
 
+    // Set VisibleCellCount (for swipe up to refresh)
+    self.iterationCount = 0;
+    
     // Reference Parent ViewController's UITableView (should ONLY occur on first call to this method)
     self.tableView = tableView;
     
@@ -235,6 +238,27 @@
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
      
         self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
+        
+        self.iterationCount++;
+        
+        if ( [self.coreDataResultsArray count] >= 20 * self.iterationCount ) {
+            
+                    self.visibleCellCount = 20 * self.iterationCount;
+        } else if ( [self.coreDataResultsArray count] < 20) {
+         
+            // Decrement iterationCount to go to condition that previously satisfied the if-portion of this conditional
+            self.iterationCount--;
+            
+            self.visibleCellCount = [self.coreDataResultsArray count];
+            
+        } else {
+        
+            // Decrement iterationCount to go to condition that previously satisfied the if-portion of this conditional
+            self.iterationCount--;
+            
+            self.visibleCellCount = 20 * self.iterationCount;
+            
+        }
         
         [self.tableView reloadData];
         
@@ -253,7 +277,10 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
     [client performRequest:request ofType:APIRequestType_GetStream];
-    
+
+    // Reset iteration count
+    self.iterationCount = 1;
+
 }
 
 - (void)dataReturnedFromAPI:(NSNotification*)notification
@@ -290,7 +317,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return ( self.coreDataResultsArray ) ?  [self.coreDataResultsArray count] : 1;
+    return ( self.coreDataResultsArray ) ?  self.visibleCellCount : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -370,6 +397,16 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == self.visibleCellCount-2) {
+        
+        // Load more data from CoreData
+        [self loadDataFromCoreData];
+
+    }
 }
 
 @end

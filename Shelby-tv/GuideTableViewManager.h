@@ -42,6 +42,8 @@
 @property (strong, nonatomic) NSArray *parsedResultsArray;
 @property (strong, nonatomic) NSArray *coreDataResultsArray;
 @property (strong, nonatomic) UITableView *tableView;
+@property (assign, nonatomic) NSUInteger iterationCount;
+@property (assign, nonatomic) NSUInteger visibleCellCount;
 
 // RollFramesTableViewManager
 @property (strong, nonatomic) NSString *rollID;

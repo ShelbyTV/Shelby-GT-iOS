@@ -373,16 +373,6 @@
             ShelbyAPIClient *streamClient = [[ShelbyAPIClient alloc] init];
             [streamClient performRequest:streamRequest ofType:APIRequestType_GetStream];
             
-            NSString *rollsFollowingRequestString = [NSString stringWithFormat:APIRequest_GetRollsFollowing, [SocialFacade sharedInstance].shelbyCreatorID, [SocialFacade sharedInstance].shelbyToken];
-            NSMutableURLRequest *rollsFollowing = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:rollsFollowingRequestString]];
-            ShelbyAPIClient *rollsFollowingClient = [[ShelbyAPIClient alloc] init];
-            [rollsFollowingClient performRequest:rollsFollowing ofType:APIRequestType_GetRollsFollowing];
-            
-            NSString *browseRollsRequestString = [NSString stringWithFormat:APIRequest_GetBrowseRolls, [SocialFacade sharedInstance].shelbyToken];
-            NSMutableURLRequest *browseRollsRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:browseRollsRequestString]];
-            ShelbyAPIClient *browseRollsClient = [[ShelbyAPIClient alloc] init];
-            [browseRollsClient performRequest:browseRollsRequest ofType:APIRequestType_GetBrowseRolls];
-            
             [self logoutAnimationStageOne:self.twitterButton];
             
             

@@ -10,7 +10,6 @@
 #import "CoreDataUtility.h"
 #import "SocialFacade.h"
 #import "AppDelegate.h"
-#import "SBJson.h"
 #import "NSString+TypedefConversion.h"
 #import "Reachability.h"
 
@@ -21,7 +20,6 @@
 @property (strong, nonatomic) NSDictionary *parsedDictionary;
 @property (assign, nonatomic) APIRequestType requestType;
 
-- (NSDictionary*)parseData;
 - (void)postNotification;
 
 @end
@@ -83,13 +81,6 @@
     };
     
 
-}
-
-#pragma mark - Private Methods
-- (NSDictionary*)parseData
-{
-    SBJsonParser *parser = [[SBJsonParser alloc] init];
-    return [parser objectWithData:self.receivedData];
 }
 
 - (void)postNotification
@@ -173,7 +164,7 @@
     // Create reference to context
     NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
     
-    self.parsedDictionary = [self parseData];
+    self.parsedDictionary = [NSJSONSerialization JSONObjectWithData:self.receivedData options:nil error:nil];
     
     switch ( self.requestType ) {
             
