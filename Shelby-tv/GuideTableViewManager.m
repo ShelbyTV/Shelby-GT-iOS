@@ -14,7 +14,6 @@
 @synthesize parsedResultsArray = _parsedResultsArray;
 @synthesize coreDataResultsArray = _coreDataResultsArray;
 @synthesize tableView = _tableView;
-@synthesize iterationCount = _iterationCount;
 
 #pragma mark - GuideTableViewManagerDelegate methods
 - (void)loadDataOnInitializationForTableView:(UITableView *)tableView

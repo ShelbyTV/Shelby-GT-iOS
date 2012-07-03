@@ -220,9 +220,6 @@
 #pragma mark - GuideTableViewManagerDelegate Method
 - (void)loadDataOnInitializationForTableView:(UITableView *)tableView
 {
-
-    // Set itertionCount for swipe up to refresh
-    self.iterationCount = 1;
     
     // Reference Parent ViewController's UITableView (should ONLY occur on first call to this method)
     self.tableView = tableView;
@@ -266,9 +263,7 @@
     if ( NO == self.observerCreated ) [self createAPIObservers];
     
     // Perform API Request
-    self.iterationCount++;
-    NSUInteger skipCount = 20 * self.iterationCount;
-    NSString *requestString = [NSString stringWithFormat:APIRequest_GetStreamAgain, [SocialFacade sharedInstance].shelbyToken, skipCount];
+    NSString *requestString = [NSString stringWithFormat:APIRequest_GetStreamAgain, [SocialFacade sharedInstance].shelbyToken, [self.coreDataResultsArray count]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
     [client performRequest:request ofType:APIRequestType_GetStream];

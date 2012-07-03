@@ -680,7 +680,7 @@ static CoreDataUtility *sharedInstance = nil;
         
             // Do Nothing
             
-        } else if ( YES == sourceURLExists && ![[[resultsArray objectAtIndex:i] valueForKey:@"id"] isEqualToString:@"4ff3077a88ba6b3019018810"] ) { // && NO == frameNull
+        } else if ( YES == sourceURLExists ) { // && NO == frameNull
             
             // Store dashboardEntry attirubutes
             DashboardEntry *dashboardEntry = [self checkIfEntity:CoreDataEntityDashboardEntry 

@@ -30,7 +30,7 @@
         <attribute name="videoID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="conversation" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Conversation" inverseName="frame" inverseEntity="Conversation" syncable="YES"/>
         <relationship name="creator" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Creator" inverseName="frame" inverseEntity="Creator" syncable="YES"/>
-        <relationship name="dashboardEntry" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="DashboardEntry" inverseName="frame" inverseEntity="DashboardEntry" syncable="YES"/>
+        <relationship name="dashboardEntry" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="DashboardEntry" inverseName="frame" inverseEntity="DashboardEntry" syncable="YES"/>
         <relationship name="roll" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Roll" inverseName="frame" inverseEntity="Roll" syncable="YES"/>
         <relationship name="upvoteUsers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UpvoteUsers" inverseName="frame" inverseEntity="UpvoteUsers" syncable="YES"/>
         <relationship name="video" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Video" inverseName="frame" inverseEntity="Video" syncable="YES"/>
@@ -90,14 +90,14 @@
         <relationship name="frame" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Frame" inverseName="video" inverseEntity="Frame" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Conversation" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Creator" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="DashboardEntry" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Frame" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Messages" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Roll" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="ShelbyUser" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="UpvoteUsers" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Video" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Conversation" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Creator" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="DashboardEntry" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Frame" positionX="0" positionY="0" width="128" height="255"/>
+        <element name="Messages" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="Roll" positionX="0" positionY="0" width="128" height="270"/>
+        <element name="ShelbyUser" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="UpvoteUsers" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Video" positionX="0" positionY="0" width="128" height="150"/>
     </elements>
 </model>
