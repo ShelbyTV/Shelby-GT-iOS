@@ -164,7 +164,7 @@
     // Create reference to context
     NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
     
-    self.parsedDictionary = [NSJSONSerialization JSONObjectWithData:self.receivedData options:nil error:nil];
+    self.parsedDictionary = [NSJSONSerialization JSONObjectWithData:self.receivedData options:NSJSONReadingAllowFragments error:nil];
     
     switch ( self.requestType ) {
             

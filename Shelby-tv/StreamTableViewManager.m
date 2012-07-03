@@ -221,8 +221,9 @@
 - (void)loadDataOnInitializationForTableView:(UITableView *)tableView
 {
 
-    // Set VisibleCellCount (for swipe up to refresh)
+    // Set itertionCount and VisibleCellCount (for swipe up to refresh)
     self.iterationCount = 0;
+    self.visibleCellCount = 0;
     
     // Reference Parent ViewController's UITableView (should ONLY occur on first call to this method)
     self.tableView = tableView;
@@ -243,7 +244,10 @@
         
         if ( [self.coreDataResultsArray count] >= 20 * self.iterationCount ) {
             
-                    self.visibleCellCount = 20 * self.iterationCount;
+                self.visibleCellCount = 20 * self.iterationCount;
+            
+            [self.tableView reloadData];
+            
         } else if ( [self.coreDataResultsArray count] < 20) {
          
             // Decrement iterationCount to go to condition that previously satisfied the if-portion of this conditional
@@ -259,8 +263,6 @@
             self.visibleCellCount = 20 * self.iterationCount;
             
         }
-        
-        [self.tableView reloadData];
         
     }
     
@@ -401,7 +403,8 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == self.visibleCellCount-2) {
+
+    if (indexPath.row == self.visibleCellCount-1) {
         
         // Load more data from CoreData
         [self loadDataFromCoreData];
