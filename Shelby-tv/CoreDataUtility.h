@@ -65,7 +65,7 @@
  Fetch Dashboard Entry information stored in Core Data 
  */
 
-+ (DashboardEntry*)fetchDashboardEntryDataForRow:(NSUInteger)row;
++ (DashboardEntry*)fetchDashboardEntryDataForDashboardID:(NSString*)dashboardID;
 
 /**
  Fetch Frame information stored in Core Data

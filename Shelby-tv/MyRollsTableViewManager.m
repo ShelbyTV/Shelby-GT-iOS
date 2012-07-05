@@ -22,7 +22,7 @@
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString apiRequestTypeToString:APIRequestType_GetRollsFollowing] object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString requestTypeToString:APIRequestType_GetRollsFollowing] object:nil];
 }
 
 
@@ -30,7 +30,7 @@
 - (void)createAPIObservers
 {
     
-    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestType_GetRollsFollowing];
+    NSString *notificationName = [NSString requestTypeToString:APIRequestType_GetRollsFollowing];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(dataReturnedFromAPI:)
                                                  name:notificationName

@@ -10,7 +10,7 @@
 
 @implementation NSString (TypedefConversion)
 
-+ (NSString*)apiRequestTypeToString:(APIRequestType)type
++ (NSString*)requestTypeToString:(APIRequestType)type
 {
     return [NSString stringWithFormat:@"%@%d", APIRequest_Notification, type];
 }

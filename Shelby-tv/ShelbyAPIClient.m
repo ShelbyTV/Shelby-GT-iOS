@@ -85,7 +85,7 @@
 
 - (void)postNotification
 {
-    NSString *notificationName = [NSString apiRequestTypeToString:self.requestType];
+    NSString *notificationName = [NSString requestTypeToString:self.requestType];
     [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:self.parsedDictionary];
 }
 

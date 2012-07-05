@@ -10,6 +10,6 @@
 #import "StaticDeclarations.h"
 @interface NSString (TypedefConversion)
 
-+ (NSString*)apiRequestTypeToString:(APIRequestType)type;
++ (NSString*)requestTypeToString:(APIRequestType)type;
 
 @end

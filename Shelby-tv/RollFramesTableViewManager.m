@@ -30,14 +30,14 @@
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString apiRequestTypeToString:APIRequestType_GetRollFrames] object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString requestTypeToString:APIRequestType_GetRollFrames] object:nil];
 }
 
 #pragma mark - Private Methods
 - (void)createAPIObservers
 {
     
-    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestType_GetRollFrames];
+    NSString *notificationName = [NSString requestTypeToString:APIRequestType_GetRollFrames];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(dataReturnedFromAPI:)
                                                  name:notificationName

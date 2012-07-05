@@ -22,7 +22,7 @@
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString apiRequestTypeToString:APIRequestType_GetBrowseRolls] object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString requestTypeToString:APIRequestType_GetBrowseRolls] object:nil];
 }
 
 
@@ -30,7 +30,7 @@
 - (void)createAPIObservers
 {
     
-    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestType_GetBrowseRolls];
+    NSString *notificationName = [NSString requestTypeToString:APIRequestType_GetBrowseRolls];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(dataReturnedFromAPI:)
                                                  name:notificationName

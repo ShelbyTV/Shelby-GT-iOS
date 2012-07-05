@@ -12,6 +12,7 @@
 @interface StreamTableViewManager ()
 
 @property (assign, nonatomic) BOOL observerCreated;
+@property (strong, nonatomic) NSMutableArray *arrayOfDashboardIDs;
 @property (strong, nonatomic) NSMutableArray *arrayOfFrameIDs;
 
 - (void)createAPIObservers;
@@ -24,12 +25,13 @@
 
 @implementation StreamTableViewManager 
 @synthesize observerCreated = _observerCreated;
+@synthesize arrayOfDashboardIDs = _arrayOfDashboardIDs;
 @synthesize arrayOfFrameIDs = _arrayOfFrameIDs;
 
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString apiRequestTypeToString:APIRequestType_GetStream] object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString requestTypeToString:APIRequestType_GetStream] object:nil];
 }
 
 
@@ -37,7 +39,7 @@
 - (void)createAPIObservers
 {
     
-    NSString *notificationName = [NSString apiRequestTypeToString:APIRequestType_GetStream];
+    NSString *notificationName = [NSString requestTypeToString:APIRequestType_GetStream];
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(dataReturnedFromAPI:) 
                                                  name:notificationName 
@@ -53,6 +55,10 @@
         
         [cell setTag:row];
         [cell.upvoteButton setTag:row];
+        
+        // Store Dashboard ID
+        if ( ![self arrayOfDashboardIDs] ) self.arrayOfDashboardIDs = [NSMutableArray array];
+        [self.arrayOfDashboardIDs addObject:dashboardEntry.dashboardID];
         
         // Store Frame ID
         if ( ![self arrayOfFrameIDs] ) self.arrayOfFrameIDs = [NSMutableArray array];
@@ -150,7 +156,7 @@
         @synchronized(self) {
             // Quickly modify Core Data values
             ShelbyUser *shelbyUser = [CoreDataUtility fetchShelbyAuthData];
-            DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForRow:button.tag];
+            DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForDashboardID:[self.arrayOfDashboardIDs objectAtIndex:button.tag]];
             Frame *frame = dashboardEntry.frame;
             
             UpvoteUsers *upvoteUsers = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:dashboardEntry.managedObjectContext];
@@ -191,7 +197,7 @@
     
         @synchronized(self) {
             // Quickly modify Core Data values
-            DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForRow:button.tag];
+            DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForDashboardID:[self.arrayOfDashboardIDs objectAtIndex:button.tag]];
             Frame *frame = dashboardEntry.frame;
             
             NSMutableSet *upvoteUsers = [NSMutableSet setWithSet:frame.upvoteUsers];

@@ -125,7 +125,7 @@ static CoreDataUtility *sharedInstance = nil;
             break;
     }
     
-    NSString *notificationName = [NSString apiRequestTypeToString:requestType];
+    NSString *notificationName = [NSString requestTypeToString:requestType];
     [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:nil];
 
 }
@@ -236,7 +236,7 @@ static CoreDataUtility *sharedInstance = nil;
     NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityFrame inManagedObjectContext:context];
     [request setEntity:description];
     
-    // Only include messages that belond to this specific conversation
+    // Only include the frame that belongs to this specific roll
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"rollID == %@", rollID];
     [request setPredicate:predicate];
     
@@ -244,28 +244,27 @@ static CoreDataUtility *sharedInstance = nil;
     return [context executeFetchRequest:request error:nil];
 }
 
-+ (DashboardEntry*)fetchDashboardEntryDataForRow:(NSUInteger)row
++ (DashboardEntry*)fetchDashboardEntryDataForDashboardID:(NSString*)dashboardID
 {
  
     // Create fetch request
-    NSFetchRequest *dashboardEntryRequest = [[NSFetchRequest alloc] init];
-    [dashboardEntryRequest setReturnsObjectsAsFaults:NO];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setReturnsObjectsAsFaults:NO];
 
     // Fetch dashboardEntry data
     NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext]; 
-    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:CoreDataEntityDashboardEntry inManagedObjectContext:context];
-    [dashboardEntryRequest setEntity:dashboardEntryDescription];
+    NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityDashboardEntry inManagedObjectContext:context];
+    [request setEntity:description];
     
-    
-    // Sort by timestamp
-    NSSortDescriptor *dashboardTimestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-    [dashboardEntryRequest setSortDescriptors:[NSArray arrayWithObject:dashboardTimestampSorter]];
+    // Only include the frame that belongs to this specific roll
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"dashboardID == %@", dashboardID];
+    [request setPredicate:predicate];
     
     // Execute request that returns array of dashboardEntrys
-    NSArray *dashboardEntryArray = [context executeFetchRequest:dashboardEntryRequest error:nil];
+    NSArray *array = [context executeFetchRequest:request error:nil];
     
     // Return messages at a specific index
-    return [dashboardEntryArray objectAtIndex:row];
+    return [array objectAtIndex:0];
 
 }
 
@@ -671,7 +670,7 @@ static CoreDataUtility *sharedInstance = nil;
     
     for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
         
-        // Conditions for saving entires into database
+        // Conditions for saving entires into database 
         BOOL sourceURLExists = [[[[[resultsArray objectAtIndex:i] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"source_url"] isKindOfClass:[NSNull class]] ? NO : YES;
         Frame *returnedFrame = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];
         BOOL frameNull = [returnedFrame isKindOfClass:([NSNull class])] ? YES : NO;
