@@ -60,6 +60,8 @@
 		8E7256D215A7427D0052D80A /* loginButtonTwitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256CE15A7427D0052D80A /* loginButtonTwitter@2x.png */; };
 		8E7256D915A749650052D80A /* loginTopBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256D715A749650052D80A /* loginTopBar.png */; };
 		8E7256DA15A749650052D80A /* loginTopBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256D815A749650052D80A /* loginTopBar@2x.png */; };
+		8E7256DD15A758610052D80A /* navigationButtonBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256DB15A7585F0052D80A /* navigationButtonBack.png */; };
+		8E7256DE15A758610052D80A /* navigationButtonBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256DC15A758600052D80A /* navigationButtonBack@2x.png */; };
 		8E7F47B3154074130041118E /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B2154074130041118E /* Twitter.framework */; };
 		8E7F47B6154074180041118E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B5154074180041118E /* Accounts.framework */; };
 		8E7F47B81540741F0041118E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B71540741F0041118E /* QuartzCore.framework */; };
@@ -281,6 +283,8 @@
 		8E7256CE15A7427D0052D80A /* loginButtonTwitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "loginButtonTwitter@2x.png"; path = "Resources/images/login/loginButtonTwitter@2x.png"; sourceTree = SOURCE_ROOT; };
 		8E7256D715A749650052D80A /* loginTopBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loginTopBar.png; path = Resources/images/login/loginTopBar.png; sourceTree = SOURCE_ROOT; };
 		8E7256D815A749650052D80A /* loginTopBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "loginTopBar@2x.png"; path = "Resources/images/login/loginTopBar@2x.png"; sourceTree = SOURCE_ROOT; };
+		8E7256DB15A7585F0052D80A /* navigationButtonBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonBack.png; sourceTree = "<group>"; };
+		8E7256DC15A758600052D80A /* navigationButtonBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonBack@2x.png"; sourceTree = "<group>"; };
 		8E7F47B2154074130041118E /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		8E7F47B5154074180041118E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		8E7F47B71540741F0041118E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -582,6 +586,8 @@
 		8E791DE715828D3200B0E744 /* navigation */ = {
 			isa = PBXGroup;
 			children = (
+				8E7256DB15A7585F0052D80A /* navigationButtonBack.png */,
+				8E7256DC15A758600052D80A /* navigationButtonBack@2x.png */,
 				8EA238D315A6518D006C2A54 /* navigationDivider.png */,
 				8EA238D415A6518D006C2A54 /* navigationDivider@2x.png */,
 				8E917ABE1599337A0069C9A1 /* navigationLogo.png */,
@@ -1099,6 +1105,8 @@
 				8E7256D215A7427D0052D80A /* loginButtonTwitter@2x.png in Resources */,
 				8E7256D915A749650052D80A /* loginTopBar.png in Resources */,
 				8E7256DA15A749650052D80A /* loginTopBar@2x.png in Resources */,
+				8E7256DD15A758610052D80A /* navigationButtonBack.png in Resources */,
+				8E7256DE15A758610052D80A /* navigationButtonBack@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,7 +19,8 @@
 
 /// Creation Methods
 - (GuideTableViewManager*)createTableViewManager;
-- (void)createView;
+- (void)changeMenuButtonState;
+- (void)addCustomBackButton;
 
 @end
 
@@ -99,7 +100,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];  
-    [self createView];
+    [self changeMenuButtonState];
+    [self addCustomBackButton];
 }
 
 #pragma mark -  Customization Methods
@@ -143,7 +145,7 @@
     
 }
 
-- (void)createView
+- (void)changeMenuButtonState
 {
     
     // Set section-specific UI properties
@@ -186,6 +188,20 @@
     // Call API and Core Data in section's tableViewManager
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) [self.tableViewManager loadDataOnInitializationForTableView:self.tableView];
 
+}
+
+- (void)addCustomBackButton
+{
+    if ( self.type == GuideType_RollFrames ) {
+    
+        UIButton *backBarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 51, 30)];
+        [backBarButton setImage:[UIImage imageNamed:@"navigationButtonBack"] forState:UIControlStateNormal];
+        [backBarButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBarButton];
+        [self.navigationItem setHidesBackButton:YES];
+        [self.navigationItem setLeftBarButtonItem:backBarButtonItem];
+        
+    }
 }
 
 #pragma mark - ShelbyMenuDelegate Methods

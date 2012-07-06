@@ -205,7 +205,6 @@
             
             for (UIButton *button in [self.menuView subviews]) {
                 
-                NSLog(@"%d", button.tag);
                 
                 if ( button.tag == self.currentType && [button isMemberOfClass:[UIButton class]] ) {
                     
@@ -232,7 +231,7 @@
     navigationView.frame = CGRectMake(frame.origin.x,
                                       frame.origin.y,
                                       frame.size.width,
-                                      -45.0f+frame.size.height);
+                                      -45.0f + frame.size.height);
         
     }
 }

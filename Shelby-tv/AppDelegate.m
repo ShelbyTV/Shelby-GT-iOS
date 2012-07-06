@@ -127,7 +127,7 @@
     
     // UINavigationBar
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigationBar"] forBarMetrics:UIBarMetricsDefault];
-
+    
 }
 
 - (void)analytics
