@@ -23,6 +23,7 @@
 
 @implementation ShelbyMenuViewController
 @synthesize mainView = _mainView;
+@synthesize menuView = _menuView;
 @synthesize browseRollsButton = _browseRollsButton;
 @synthesize myRollsButton = _myRollsButton;
 @synthesize peopleRollsButton = _peopleRollsButton;
@@ -35,6 +36,7 @@
 - (void)dealloc
 {
     self.mainView = nil;
+    self.menuView = nil;
     self.browseRollsButton = nil;
     self.myRollsButton = nil;
     self.peopleRollsButton = nil;
@@ -209,6 +211,7 @@
                     [button setHighlighted:NO];
 
                 }
+                
             }
 
             self.currentType = GuideType_None;
@@ -221,12 +224,14 @@
 
 - (void)adjustFrame:(UIView *)navigationView
 {
+    
     CGRect frame = navigationView.frame;
     if ( 0 == navigationView.frame.origin.y ) {
     navigationView.frame = CGRectMake(frame.origin.x,
-                                      -20+frame.origin.y,
+                                      -20.0f+frame.origin.y,
                                       frame.size.width,
-                                      frame.size.height);
+                                      -45.0f+frame.size.height);
+        
     }
 }
 

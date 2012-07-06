@@ -16,7 +16,6 @@
 
 - (void)createAPIObservers;
 - (void)populateTableViewCell:(VideoCardCell*)cell withContent:(Frame*)frame inRow:(NSUInteger)row;
-
 - (void)upvote:(UIButton *)button;
 - (void)downvote:(UIButton *)button;
 
@@ -82,7 +81,6 @@
             [cell.upvoteButton addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
         }
         
-        
         // Populate Upvote Button label
         [cell.upvoteButton setTitle:[NSString stringWithFormat:@"%@", frame.upvotersCount] forState:UIControlStateNormal];
         
@@ -96,7 +94,6 @@
         [cell.createdAtLabel setText:message.createdAt];
         
         if ( message ) { // If message exists, present Facebook/Twitter/Tumblr icon for social network source of video
-            
             
             if ( [message.originNetwork isEqualToString:@"facebook"] ) {
                 
@@ -190,6 +187,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         
         @synchronized(self) {
+            
             // Quickly modify Core Data values
             NSString *frameID = [self.arrayOfFrameIDs objectAtIndex:button.tag];
             Frame *frame  = [CoreDataUtility fetchFrameWithID:frameID];
@@ -210,6 +208,7 @@
             
             [CoreDataUtility saveContext:frame.managedObjectContext];
         }
+        
     });
     
     // Ping API with new values
@@ -254,7 +253,6 @@
 
 - (void)performAPIRequest
 {
-    
     // Add API Observers (should ONLY occur on first call to this method)
     if ( NO == self.observerCreated ) [self createAPIObservers];
     
@@ -263,7 +261,6 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
     [client performRequest:request ofType:APIRequestType_GetRollFrames];
-    
 }
 
 - (void)performAPIRequestForRollID:(NSString *)rollID
@@ -283,7 +280,6 @@
 
 - (void)dataReturnedFromAPI:(NSNotification*)notification
 {
-    
     // Hide ASPullToRefreshController's HeaderView
     dispatch_async(dispatch_get_main_queue(), ^{
         
@@ -291,7 +287,6 @@
         [self loadDataFromCoreData];
         
     });
-    
 }
 
 #pragma mark - ASPullToRefreshDelegate Method

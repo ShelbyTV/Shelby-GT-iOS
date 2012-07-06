@@ -22,6 +22,7 @@
 @interface ShelbyMenuViewController : UIViewController <ShelbyMenuDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *mainView;
+@property (weak, nonatomic) IBOutlet UIView *menuView;
 @property (weak, nonatomic) IBOutlet UIButton *browseRollsButton;
 @property (weak, nonatomic) IBOutlet UIButton *myRollsButton;
 @property (weak, nonatomic) IBOutlet UIButton *peopleRollsButton;
