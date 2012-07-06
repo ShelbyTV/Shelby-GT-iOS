@@ -238,8 +238,7 @@ UITableViewDelegate
          This fixes the accessToken and expirationDate properties being set to nil 
          when the app shutsdown/restarts. Blame Facebook's SDK.
          */
-        
-        
+    
         self.facebook.accessToken = [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"];
         self.facebook.expirationDate = [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"];
 

@@ -230,7 +230,7 @@
     CGRect frame = navigationView.frame;
     if ( 0 == navigationView.frame.origin.y ) {
     navigationView.frame = CGRectMake(frame.origin.x,
-                                      -20.0f+frame.origin.y,
+                                      frame.origin.y,
                                       frame.size.width,
                                       -45.0f+frame.size.height);
         

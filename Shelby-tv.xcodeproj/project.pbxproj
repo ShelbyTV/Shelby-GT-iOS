@@ -54,6 +54,12 @@
 		8E6AF92E159B76FF00F570CF /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6AF8FE159B76FF00F570CF /* OAToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8E6AF92F159B76FF00F570CF /* OATokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6AF900159B76FF00F570CF /* OATokenManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8E6AF930159B76FF00F570CF /* README in Resources */ = {isa = PBXBuildFile; fileRef = 8E6AF902159B76FF00F570CF /* README */; };
+		8E7256CF15A7427D0052D80A /* loginButtonFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256CB15A7427D0052D80A /* loginButtonFacebook.png */; };
+		8E7256D015A7427D0052D80A /* loginButtonFacebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256CC15A7427D0052D80A /* loginButtonFacebook@2x.png */; };
+		8E7256D115A7427D0052D80A /* loginButtonTwitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256CD15A7427D0052D80A /* loginButtonTwitter.png */; };
+		8E7256D215A7427D0052D80A /* loginButtonTwitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256CE15A7427D0052D80A /* loginButtonTwitter@2x.png */; };
+		8E7256D915A749650052D80A /* loginTopBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256D715A749650052D80A /* loginTopBar.png */; };
+		8E7256DA15A749650052D80A /* loginTopBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256D815A749650052D80A /* loginTopBar@2x.png */; };
 		8E7F47B3154074130041118E /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B2154074130041118E /* Twitter.framework */; };
 		8E7F47B6154074180041118E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B5154074180041118E /* Accounts.framework */; };
 		8E7F47B81540741F0041118E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B71540741F0041118E /* QuartzCore.framework */; };
@@ -158,14 +164,6 @@
 		8EE50659155CA7A000A04F50 /* VideoPlayerViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EE50655155CA79F00A04F50 /* VideoPlayerViewController_iPhone.xib */; };
 		8EE50662155CA9E800A04F50 /* Shelby.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */; };
 		8EE50664155CAC1600A04F50 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EE50663155CAC1600A04F50 /* CoreData.framework */; };
-		8EE6738C1552E474004EA45C /* loginBlackBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673871552E474004EA45C /* loginBlackBar@2x.png */; };
-		8EE6738D1552E474004EA45C /* loginFacebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673881552E474004EA45C /* loginFacebook@2x.png */; };
-		8EE6738E1552E474004EA45C /* loginTwitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673891552E474004EA45C /* loginTwitter@2x.png */; };
-		8EE6738F1552E474004EA45C /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE6738A1552E474004EA45C /* logo@2x.png */; };
-		8EE6739B1552E6F0004EA45C /* loginBlackBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673961552E6F0004EA45C /* loginBlackBar.png */; };
-		8EE6739C1552E6F0004EA45C /* loginFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673971552E6F0004EA45C /* loginFacebook.png */; };
-		8EE6739D1552E6F0004EA45C /* loginTwitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673981552E6F0004EA45C /* loginTwitter.png */; };
-		8EE6739E1552E6F0004EA45C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673991552E6F0004EA45C /* logo.png */; };
 		8EE673A31552FCF5004EA45C /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673A01552FCF5004EA45C /* Ubuntu-B.ttf */; };
 		8EE673A41552FCF5004EA45C /* Ubuntu-M.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673A11552FCF5004EA45C /* Ubuntu-M.ttf */; };
 		8EE673A51552FCF5004EA45C /* Ubuntu-R.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673A21552FCF5004EA45C /* Ubuntu-R.ttf */; };
@@ -277,6 +275,12 @@
 		8E6AF900159B76FF00F570CF /* OATokenManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OATokenManager.m; sourceTree = "<group>"; };
 		8E6AF901159B76FF00F570CF /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
 		8E6AF902159B76FF00F570CF /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		8E7256CB15A7427D0052D80A /* loginButtonFacebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loginButtonFacebook.png; path = Resources/images/login/loginButtonFacebook.png; sourceTree = SOURCE_ROOT; };
+		8E7256CC15A7427D0052D80A /* loginButtonFacebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "loginButtonFacebook@2x.png"; path = "Resources/images/login/loginButtonFacebook@2x.png"; sourceTree = SOURCE_ROOT; };
+		8E7256CD15A7427D0052D80A /* loginButtonTwitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loginButtonTwitter.png; path = Resources/images/login/loginButtonTwitter.png; sourceTree = SOURCE_ROOT; };
+		8E7256CE15A7427D0052D80A /* loginButtonTwitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "loginButtonTwitter@2x.png"; path = "Resources/images/login/loginButtonTwitter@2x.png"; sourceTree = SOURCE_ROOT; };
+		8E7256D715A749650052D80A /* loginTopBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loginTopBar.png; path = Resources/images/login/loginTopBar.png; sourceTree = SOURCE_ROOT; };
+		8E7256D815A749650052D80A /* loginTopBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "loginTopBar@2x.png"; path = "Resources/images/login/loginTopBar@2x.png"; sourceTree = SOURCE_ROOT; };
 		8E7F47B2154074130041118E /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		8E7F47B5154074180041118E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		8E7F47B71540741F0041118E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -404,14 +408,6 @@
 		8EE50655155CA79F00A04F50 /* VideoPlayerViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayerViewController_iPhone.xib; sourceTree = "<group>"; };
 		8EE50661155CA9E800A04F50 /* Shelby.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shelby.xcdatamodel; sourceTree = "<group>"; };
 		8EE50663155CAC1600A04F50 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		8EE673871552E474004EA45C /* loginBlackBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginBlackBar@2x.png"; sourceTree = "<group>"; };
-		8EE673881552E474004EA45C /* loginFacebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginFacebook@2x.png"; sourceTree = "<group>"; };
-		8EE673891552E474004EA45C /* loginTwitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginTwitter@2x.png"; sourceTree = "<group>"; };
-		8EE6738A1552E474004EA45C /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
-		8EE673961552E6F0004EA45C /* loginBlackBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBlackBar.png; sourceTree = "<group>"; };
-		8EE673971552E6F0004EA45C /* loginFacebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginFacebook.png; sourceTree = "<group>"; };
-		8EE673981552E6F0004EA45C /* loginTwitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginTwitter.png; sourceTree = "<group>"; };
-		8EE673991552E6F0004EA45C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		8EE673A01552FCF5004EA45C /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
 		8EE673A11552FCF5004EA45C /* Ubuntu-M.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-M.ttf"; sourceTree = "<group>"; };
 		8EE673A21552FCF5004EA45C /* Ubuntu-R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-R.ttf"; sourceTree = "<group>"; };
@@ -586,6 +582,8 @@
 		8E791DE715828D3200B0E744 /* navigation */ = {
 			isa = PBXGroup;
 			children = (
+				8EA238D315A6518D006C2A54 /* navigationDivider.png */,
+				8EA238D415A6518D006C2A54 /* navigationDivider@2x.png */,
 				8E917ABE1599337A0069C9A1 /* navigationLogo.png */,
 				8E917ABF1599337C0069C9A1 /* navigationLogo@2x.png */,
 				8EA238CF15A6516E006C2A54 /* navigationBar.png */,
@@ -925,8 +923,6 @@
 			children = (
 				8EE40A431596354900559484 /* rolls */,
 				8E791DE715828D3200B0E744 /* navigation */,
-				8EA238D315A6518D006C2A54 /* navigationDivider.png */,
-				8EA238D415A6518D006C2A54 /* navigationDivider@2x.png */,
 				8EE673851552E474004EA45C /* login */,
 				8E87DEB7156C44C2004E0629 /* videocard */,
 			);
@@ -937,14 +933,12 @@
 		8EE673851552E474004EA45C /* login */ = {
 			isa = PBXGroup;
 			children = (
-				8EE673961552E6F0004EA45C /* loginBlackBar.png */,
-				8EE673971552E6F0004EA45C /* loginFacebook.png */,
-				8EE673981552E6F0004EA45C /* loginTwitter.png */,
-				8EE673991552E6F0004EA45C /* logo.png */,
-				8EE673871552E474004EA45C /* loginBlackBar@2x.png */,
-				8EE673881552E474004EA45C /* loginFacebook@2x.png */,
-				8EE673891552E474004EA45C /* loginTwitter@2x.png */,
-				8EE6738A1552E474004EA45C /* logo@2x.png */,
+				8E7256D715A749650052D80A /* loginTopBar.png */,
+				8E7256D815A749650052D80A /* loginTopBar@2x.png */,
+				8E7256CB15A7427D0052D80A /* loginButtonFacebook.png */,
+				8E7256CC15A7427D0052D80A /* loginButtonFacebook@2x.png */,
+				8E7256CD15A7427D0052D80A /* loginButtonTwitter.png */,
+				8E7256CE15A7427D0052D80A /* loginButtonTwitter@2x.png */,
 			);
 			path = login;
 			sourceTree = "<group>";
@@ -1030,14 +1024,6 @@
 				8E664D421541A6770071EC42 /* LoginViewController_iPad.xib in Resources */,
 				8E4A7732155185A0003CBA2A /* pullToRefreshArrow.png in Resources */,
 				8E4A7733155185A0003CBA2A /* pullToRefreshArrow@2x.png in Resources */,
-				8EE6738C1552E474004EA45C /* loginBlackBar@2x.png in Resources */,
-				8EE6738D1552E474004EA45C /* loginFacebook@2x.png in Resources */,
-				8EE6738E1552E474004EA45C /* loginTwitter@2x.png in Resources */,
-				8EE6738F1552E474004EA45C /* logo@2x.png in Resources */,
-				8EE6739B1552E6F0004EA45C /* loginBlackBar.png in Resources */,
-				8EE6739C1552E6F0004EA45C /* loginFacebook.png in Resources */,
-				8EE6739D1552E6F0004EA45C /* loginTwitter.png in Resources */,
-				8EE6739E1552E6F0004EA45C /* logo.png in Resources */,
 				8EE673A31552FCF5004EA45C /* Ubuntu-B.ttf in Resources */,
 				8EE673A41552FCF5004EA45C /* Ubuntu-M.ttf in Resources */,
 				8EE673A51552FCF5004EA45C /* Ubuntu-R.ttf in Resources */,
@@ -1107,6 +1093,12 @@
 				8EA238D215A6516E006C2A54 /* navigationBar@2x.png in Resources */,
 				8EA238D515A6518D006C2A54 /* navigationDivider.png in Resources */,
 				8EA238D615A6518D006C2A54 /* navigationDivider@2x.png in Resources */,
+				8E7256CF15A7427D0052D80A /* loginButtonFacebook.png in Resources */,
+				8E7256D015A7427D0052D80A /* loginButtonFacebook@2x.png in Resources */,
+				8E7256D115A7427D0052D80A /* loginButtonTwitter.png in Resources */,
+				8E7256D215A7427D0052D80A /* loginButtonTwitter@2x.png in Resources */,
+				8E7256D915A749650052D80A /* loginTopBar.png in Resources */,
+				8E7256DA15A749650052D80A /* loginTopBar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
