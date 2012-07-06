@@ -269,7 +269,8 @@
     if ( NO == self.observerCreated ) [self createAPIObservers];
     
     // Perform API Request
-    NSString *requestString = [NSString stringWithFormat:APIRequest_GetStreamAgain, [SocialFacade sharedInstance].shelbyToken, [self.coreDataResultsArray count]];
+    NSUInteger skipCount = (([self.coreDataResultsArray count]%20)+1)*20;
+    NSString *requestString = [NSString stringWithFormat:APIRequest_GetStreamAgain, [SocialFacade sharedInstance].shelbyToken, skipCount];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
     [client performRequest:request ofType:APIRequestType_GetStream];
