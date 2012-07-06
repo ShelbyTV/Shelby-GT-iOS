@@ -203,10 +203,12 @@
             
             if ( self.currentType == currentView.tag ) [currentView removeFromSuperview];
             
-            for (UIButton *button in [self.view subviews]) {
+            for (UIButton *button in [self.menuView subviews]) {
+                
+                NSLog(@"%d", button.tag);
                 
                 if ( button.tag == self.currentType && [button isMemberOfClass:[UIButton class]] ) {
-                 
+                    
                     [button setSelected:NO];
                     [button setHighlighted:NO];
 
