@@ -99,7 +99,7 @@
         [self.sloganLabel setAlpha:0.0f];
         [self.facebookButton setAlpha:0.0f];
         [self.twitterButton setAlpha:0.0f];
-        [self.view setAlpha:0.25f];
+        [self.view setAlpha:0.10f];
         
     } completion:^(BOOL finished) {
         

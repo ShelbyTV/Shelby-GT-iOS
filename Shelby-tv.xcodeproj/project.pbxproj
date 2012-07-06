@@ -12,6 +12,26 @@
 		8E068B86158843650069FD01 /* BrowseRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B85158843640069FD01 /* BrowseRollsTableViewManager.m */; };
 		8E068B89158843B40069FD01 /* PeopleRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B88158843B40069FD01 /* PeopleRollsTableViewManager.m */; };
 		8E068B8C1588444E0069FD01 /* MyRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */; };
+		8E06BCB015A7845A004B42D5 /* videoCardButtonLeftOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCA815A78459004B42D5 /* videoCardButtonLeftOff.png */; };
+		8E06BCB115A7845A004B42D5 /* videoCardButtonLeftOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCA915A78459004B42D5 /* videoCardButtonLeftOff@2x.png */; };
+		8E06BCB215A7845A004B42D5 /* videoCardButtonLeftOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCAA15A78459004B42D5 /* videoCardButtonLeftOn.png */; };
+		8E06BCB315A7845A004B42D5 /* videoCardButtonLeftOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCAB15A7845A004B42D5 /* videoCardButtonLeftOn@2x.png */; };
+		8E06BCB415A7845A004B42D5 /* videoCardButtonMiddle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCAC15A7845A004B42D5 /* videoCardButtonMiddle.png */; };
+		8E06BCB515A7845A004B42D5 /* videoCardButtonMiddle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCAD15A7845A004B42D5 /* videoCardButtonMiddle@2x.png */; };
+		8E06BCB615A7845A004B42D5 /* videoCardButtonRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCAE15A7845A004B42D5 /* videoCardButtonRight.png */; };
+		8E06BCB715A7845A004B42D5 /* videoCardButtonRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCAF15A7845A004B42D5 /* videoCardButtonRight@2x.png */; };
+		8E06BCC315A78462004B42D5 /* videoCardIconComment.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCB915A78461004B42D5 /* videoCardIconComment.png */; };
+		8E06BCC415A78462004B42D5 /* videoCardIconComment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCBA15A78461004B42D5 /* videoCardIconComment@2x.png */; };
+		8E06BCC515A78462004B42D5 /* videoCardIconRoll.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCBB15A78462004B42D5 /* videoCardIconRoll.png */; };
+		8E06BCC615A78462004B42D5 /* videoCardIconRoll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCBC15A78462004B42D5 /* videoCardIconRoll@2x.png */; };
+		8E06BCC715A78462004B42D5 /* videoCardIconShare.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCBD15A78462004B42D5 /* videoCardIconShare.png */; };
+		8E06BCC815A78462004B42D5 /* videoCardIconShare@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCBE15A78462004B42D5 /* videoCardIconShare@2x.png */; };
+		8E06BCC915A78462004B42D5 /* videoCardLikeBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCBF15A78462004B42D5 /* videoCardLikeBar.png */; };
+		8E06BCCA15A78462004B42D5 /* videoCardLikeBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCC015A78462004B42D5 /* videoCardLikeBar@2x.png */; };
+		8E06BCCB15A78462004B42D5 /* videoCardStrokeExpanded.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCC115A78462004B42D5 /* videoCardStrokeExpanded.png */; };
+		8E06BCCC15A78462004B42D5 /* videoCardStrokeExpanded@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCC215A78462004B42D5 /* videoCardStrokeExpanded@2x.png */; };
+		8E06BCCF15A7A214004B42D5 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCCD15A7A213004B42D5 /* heart.png */; };
+		8E06BCD015A7A214004B42D5 /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCCE15A7A213004B42D5 /* heart@2x.png */; };
 		8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2A8EAE159135970028712C /* StreamTableViewManager.m */; };
 		8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */; };
 		8E4A04611598CA3900E4F675 /* ShelbyMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A04601598CA3900E4F675 /* ShelbyMenuViewController.xib */; };
@@ -103,27 +123,10 @@
 		8EA238D215A6516E006C2A54 /* navigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA238D015A6516E006C2A54 /* navigationBar@2x.png */; };
 		8EA238D515A6518D006C2A54 /* navigationDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA238D315A6518D006C2A54 /* navigationDivider.png */; };
 		8EA238D615A6518D006C2A54 /* navigationDivider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA238D415A6518D006C2A54 /* navigationDivider@2x.png */; };
-		8EB6D7DD157FD1F50060202D /* videoCardButtonCommentOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7CD157FD1F50060202D /* videoCardButtonCommentOff.png */; };
-		8EB6D7DE157FD1F50060202D /* videoCardButtonCommentOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7CE157FD1F50060202D /* videoCardButtonCommentOff@2x.png */; };
-		8EB6D7DF157FD1F50060202D /* videoCardButtonCommentOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7CF157FD1F50060202D /* videoCardButtonCommentOn.png */; };
-		8EB6D7E0157FD1F50060202D /* videoCardButtonCommentOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7D0157FD1F50060202D /* videoCardButtonCommentOn@2x.png */; };
-		8EB6D7E1157FD1F50060202D /* videoCardButtonRollOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7D1157FD1F50060202D /* videoCardButtonRollOff.png */; };
-		8EB6D7E2157FD1F50060202D /* videoCardButtonRollOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7D2157FD1F50060202D /* videoCardButtonRollOff@2x.png */; };
-		8EB6D7E3157FD1F50060202D /* videoCardButtonRollOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7D3157FD1F50060202D /* videoCardButtonRollOn.png */; };
-		8EB6D7E4157FD1F50060202D /* videoCardButtonRollOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7D4157FD1F50060202D /* videoCardButtonRollOn@2x.png */; };
-		8EB6D7E5157FD1F50060202D /* videoCardButtonShareOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7D5157FD1F50060202D /* videoCardButtonShareOff.png */; };
-		8EB6D7E6157FD1F50060202D /* videoCardButtonShareOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7D6157FD1F50060202D /* videoCardButtonShareOff@2x.png */; };
-		8EB6D7E7157FD1F50060202D /* videoCardButtonShareOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7D7157FD1F50060202D /* videoCardButtonShareOn.png */; };
-		8EB6D7E8157FD1F50060202D /* videoCardButtonShareOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7D8157FD1F50060202D /* videoCardButtonShareOn@2x.png */; };
-		8EB6D7E9157FD1F50060202D /* videoCardButtonUpvoteOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7D9157FD1F50060202D /* videoCardButtonUpvoteOff.png */; };
-		8EB6D7EA157FD1F50060202D /* videoCardButtonUpvoteOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7DA157FD1F50060202D /* videoCardButtonUpvoteOff@2x.png */; };
-		8EB6D7EB157FD1F50060202D /* videoCardButtonUpvoteOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7DB157FD1F50060202D /* videoCardButtonUpvoteOn.png */; };
-		8EB6D7EC157FD1F50060202D /* videoCardButtonUpvoteOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7DC157FD1F50060202D /* videoCardButtonUpvoteOn@2x.png */; };
 		8EB6D7EF157FD3AF0060202D /* videoCardStroke.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7ED157FD3AF0060202D /* videoCardStroke.png */; };
 		8EB6D7F0157FD3AF0060202D /* videoCardStroke@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7EE157FD3AF0060202D /* videoCardStroke@2x.png */; };
 		8EB6D7F3157FD4ED0060202D /* videoCardTopBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7F1157FD4ED0060202D /* videoCardTopBar.png */; };
 		8EB6D7F4157FD4ED0060202D /* videoCardTopBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7F2157FD4ED0060202D /* videoCardTopBar@2x.png */; };
-		8EB6D7FF157FF3310060202D /* videoCardUpvotedBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7FD157FF3310060202D /* videoCardUpvotedBar.png */; };
 		8EB6D81315800F550060202D /* Creator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6D81215800F550060202D /* Creator.m */; };
 		8EB6D81615800FCF0060202D /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6D81515800FCF0060202D /* Frame.m */; };
 		8EB80E35159B943D001A274E /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB80E34159B943D001A274E /* Roll.m */; };
@@ -133,8 +136,6 @@
 		8EC9813D15950FEB00BB9227 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC9813C15950FEA00BB9227 /* SystemConfiguration.framework */; };
 		8EC981401595134700BB9227 /* VideoCardExpandedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC9813F1595134700BB9227 /* VideoCardExpandedCell.m */; };
 		8EC981421595135C00BB9227 /* VideoCardExpandedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EC981411595135C00BB9227 /* VideoCardExpandedCell.xib */; };
-		8EC981451595171800BB9227 /* videoCardExpandedStroke.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC981431595171800BB9227 /* videoCardExpandedStroke.png */; };
-		8EC981461595171800BB9227 /* videoCardExpandedStroke@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC981441595171800BB9227 /* videoCardExpandedStroke@2x.png */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
 		8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D21535F6F70009718E /* Foundation.framework */; };
 		8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D41535F6F70009718E /* CoreGraphics.framework */; };
@@ -191,6 +192,26 @@
 		8E068B88158843B40069FD01 /* PeopleRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleRollsTableViewManager.m; sourceTree = "<group>"; };
 		8E068B8A1588444D0069FD01 /* MyRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRollsTableViewManager.h; sourceTree = "<group>"; };
 		8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRollsTableViewManager.m; sourceTree = "<group>"; };
+		8E06BCA815A78459004B42D5 /* videoCardButtonLeftOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardButtonLeftOff.png; sourceTree = "<group>"; };
+		8E06BCA915A78459004B42D5 /* videoCardButtonLeftOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardButtonLeftOff@2x.png"; sourceTree = "<group>"; };
+		8E06BCAA15A78459004B42D5 /* videoCardButtonLeftOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardButtonLeftOn.png; sourceTree = "<group>"; };
+		8E06BCAB15A7845A004B42D5 /* videoCardButtonLeftOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardButtonLeftOn@2x.png"; sourceTree = "<group>"; };
+		8E06BCAC15A7845A004B42D5 /* videoCardButtonMiddle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardButtonMiddle.png; sourceTree = "<group>"; };
+		8E06BCAD15A7845A004B42D5 /* videoCardButtonMiddle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardButtonMiddle@2x.png"; sourceTree = "<group>"; };
+		8E06BCAE15A7845A004B42D5 /* videoCardButtonRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardButtonRight.png; sourceTree = "<group>"; };
+		8E06BCAF15A7845A004B42D5 /* videoCardButtonRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardButtonRight@2x.png"; sourceTree = "<group>"; };
+		8E06BCB915A78461004B42D5 /* videoCardIconComment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardIconComment.png; sourceTree = "<group>"; };
+		8E06BCBA15A78461004B42D5 /* videoCardIconComment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardIconComment@2x.png"; sourceTree = "<group>"; };
+		8E06BCBB15A78462004B42D5 /* videoCardIconRoll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardIconRoll.png; sourceTree = "<group>"; };
+		8E06BCBC15A78462004B42D5 /* videoCardIconRoll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardIconRoll@2x.png"; sourceTree = "<group>"; };
+		8E06BCBD15A78462004B42D5 /* videoCardIconShare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardIconShare.png; sourceTree = "<group>"; };
+		8E06BCBE15A78462004B42D5 /* videoCardIconShare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardIconShare@2x.png"; sourceTree = "<group>"; };
+		8E06BCBF15A78462004B42D5 /* videoCardLikeBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardLikeBar.png; sourceTree = "<group>"; };
+		8E06BCC015A78462004B42D5 /* videoCardLikeBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardLikeBar@2x.png"; sourceTree = "<group>"; };
+		8E06BCC115A78462004B42D5 /* videoCardStrokeExpanded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardStrokeExpanded.png; sourceTree = "<group>"; };
+		8E06BCC215A78462004B42D5 /* videoCardStrokeExpanded@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardStrokeExpanded@2x.png"; sourceTree = "<group>"; };
+		8E06BCCD15A7A213004B42D5 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
+		8E06BCCE15A7A213004B42D5 /* heart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart@2x.png"; sourceTree = "<group>"; };
 		8E0B3A9415813C400008B841 /* ColorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorConstants.h; sourceTree = "<group>"; };
 		8E2A8EAD159135970028712C /* StreamTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewManager.h; sourceTree = "<group>"; };
 		8E2A8EAE159135970028712C /* StreamTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamTableViewManager.m; sourceTree = "<group>"; };
@@ -333,27 +354,10 @@
 		8EA238D315A6518D006C2A54 /* navigationDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navigationDivider.png; path = Resources/images/navigation/navigationDivider.png; sourceTree = SOURCE_ROOT; };
 		8EA238D415A6518D006C2A54 /* navigationDivider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navigationDivider@2x.png"; path = "Resources/images/navigation/navigationDivider@2x.png"; sourceTree = SOURCE_ROOT; };
 		8EA87B4F156167E00029C07E /* CoreDataConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataConstants.h; sourceTree = "<group>"; };
-		8EB6D7CD157FD1F50060202D /* videoCardButtonCommentOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardButtonCommentOff.png; sourceTree = "<group>"; };
-		8EB6D7CE157FD1F50060202D /* videoCardButtonCommentOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardButtonCommentOff@2x.png"; sourceTree = "<group>"; };
-		8EB6D7CF157FD1F50060202D /* videoCardButtonCommentOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardButtonCommentOn.png; sourceTree = "<group>"; };
-		8EB6D7D0157FD1F50060202D /* videoCardButtonCommentOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardButtonCommentOn@2x.png"; sourceTree = "<group>"; };
-		8EB6D7D1157FD1F50060202D /* videoCardButtonRollOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardButtonRollOff.png; sourceTree = "<group>"; };
-		8EB6D7D2157FD1F50060202D /* videoCardButtonRollOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardButtonRollOff@2x.png"; sourceTree = "<group>"; };
-		8EB6D7D3157FD1F50060202D /* videoCardButtonRollOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardButtonRollOn.png; sourceTree = "<group>"; };
-		8EB6D7D4157FD1F50060202D /* videoCardButtonRollOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardButtonRollOn@2x.png"; sourceTree = "<group>"; };
-		8EB6D7D5157FD1F50060202D /* videoCardButtonShareOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardButtonShareOff.png; sourceTree = "<group>"; };
-		8EB6D7D6157FD1F50060202D /* videoCardButtonShareOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardButtonShareOff@2x.png"; sourceTree = "<group>"; };
-		8EB6D7D7157FD1F50060202D /* videoCardButtonShareOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardButtonShareOn.png; sourceTree = "<group>"; };
-		8EB6D7D8157FD1F50060202D /* videoCardButtonShareOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardButtonShareOn@2x.png"; sourceTree = "<group>"; };
-		8EB6D7D9157FD1F50060202D /* videoCardButtonUpvoteOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardButtonUpvoteOff.png; sourceTree = "<group>"; };
-		8EB6D7DA157FD1F50060202D /* videoCardButtonUpvoteOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardButtonUpvoteOff@2x.png"; sourceTree = "<group>"; };
-		8EB6D7DB157FD1F50060202D /* videoCardButtonUpvoteOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardButtonUpvoteOn.png; sourceTree = "<group>"; };
-		8EB6D7DC157FD1F50060202D /* videoCardButtonUpvoteOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardButtonUpvoteOn@2x.png"; sourceTree = "<group>"; };
 		8EB6D7ED157FD3AF0060202D /* videoCardStroke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardStroke.png; sourceTree = "<group>"; };
 		8EB6D7EE157FD3AF0060202D /* videoCardStroke@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardStroke@2x.png"; sourceTree = "<group>"; };
 		8EB6D7F1157FD4ED0060202D /* videoCardTopBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardTopBar.png; sourceTree = "<group>"; };
 		8EB6D7F2157FD4ED0060202D /* videoCardTopBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardTopBar@2x.png"; sourceTree = "<group>"; };
-		8EB6D7FD157FF3310060202D /* videoCardUpvotedBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardUpvotedBar.png; sourceTree = "<group>"; };
 		8EB6D81115800F550060202D /* Creator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Creator.h; sourceTree = "<group>"; };
 		8EB6D81215800F550060202D /* Creator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Creator.m; sourceTree = "<group>"; };
 		8EB6D81415800FCF0060202D /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
@@ -370,8 +374,6 @@
 		8EC9813E1595134700BB9227 /* VideoCardExpandedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCardExpandedCell.h; sourceTree = "<group>"; };
 		8EC9813F1595134700BB9227 /* VideoCardExpandedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCardExpandedCell.m; sourceTree = "<group>"; };
 		8EC981411595135C00BB9227 /* VideoCardExpandedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCardExpandedCell.xib; sourceTree = "<group>"; };
-		8EC981431595171800BB9227 /* videoCardExpandedStroke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardExpandedStroke.png; sourceTree = "<group>"; };
-		8EC981441595171800BB9227 /* videoCardExpandedStroke@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardExpandedStroke@2x.png"; sourceTree = "<group>"; };
 		8ECBA7CC1535F6F70009718E /* Shelby-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECBA7D01535F6F70009718E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8ECBA7D21535F6F70009718E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -670,29 +672,30 @@
 		8E87DEB7156C44C2004E0629 /* videocard */ = {
 			isa = PBXGroup;
 			children = (
-				8EC981431595171800BB9227 /* videoCardExpandedStroke.png */,
-				8EC981441595171800BB9227 /* videoCardExpandedStroke@2x.png */,
-				8EB6D7FD157FF3310060202D /* videoCardUpvotedBar.png */,
+				8E06BCCD15A7A213004B42D5 /* heart.png */,
+				8E06BCCE15A7A213004B42D5 /* heart@2x.png */,
+				8E06BCB915A78461004B42D5 /* videoCardIconComment.png */,
+				8E06BCBA15A78461004B42D5 /* videoCardIconComment@2x.png */,
+				8E06BCBB15A78462004B42D5 /* videoCardIconRoll.png */,
+				8E06BCBC15A78462004B42D5 /* videoCardIconRoll@2x.png */,
+				8E06BCBD15A78462004B42D5 /* videoCardIconShare.png */,
+				8E06BCBE15A78462004B42D5 /* videoCardIconShare@2x.png */,
+				8E06BCBF15A78462004B42D5 /* videoCardLikeBar.png */,
+				8E06BCC015A78462004B42D5 /* videoCardLikeBar@2x.png */,
+				8E06BCC115A78462004B42D5 /* videoCardStrokeExpanded.png */,
+				8E06BCC215A78462004B42D5 /* videoCardStrokeExpanded@2x.png */,
+				8E06BCA815A78459004B42D5 /* videoCardButtonLeftOff.png */,
+				8E06BCA915A78459004B42D5 /* videoCardButtonLeftOff@2x.png */,
+				8E06BCAA15A78459004B42D5 /* videoCardButtonLeftOn.png */,
+				8E06BCAB15A7845A004B42D5 /* videoCardButtonLeftOn@2x.png */,
+				8E06BCAC15A7845A004B42D5 /* videoCardButtonMiddle.png */,
+				8E06BCAD15A7845A004B42D5 /* videoCardButtonMiddle@2x.png */,
+				8E06BCAE15A7845A004B42D5 /* videoCardButtonRight.png */,
+				8E06BCAF15A7845A004B42D5 /* videoCardButtonRight@2x.png */,
 				8EB6D7F1157FD4ED0060202D /* videoCardTopBar.png */,
 				8EB6D7F2157FD4ED0060202D /* videoCardTopBar@2x.png */,
 				8EB6D7ED157FD3AF0060202D /* videoCardStroke.png */,
 				8EB6D7EE157FD3AF0060202D /* videoCardStroke@2x.png */,
-				8EB6D7CD157FD1F50060202D /* videoCardButtonCommentOff.png */,
-				8EB6D7CE157FD1F50060202D /* videoCardButtonCommentOff@2x.png */,
-				8EB6D7CF157FD1F50060202D /* videoCardButtonCommentOn.png */,
-				8EB6D7D0157FD1F50060202D /* videoCardButtonCommentOn@2x.png */,
-				8EB6D7D1157FD1F50060202D /* videoCardButtonRollOff.png */,
-				8EB6D7D2157FD1F50060202D /* videoCardButtonRollOff@2x.png */,
-				8EB6D7D3157FD1F50060202D /* videoCardButtonRollOn.png */,
-				8EB6D7D4157FD1F50060202D /* videoCardButtonRollOn@2x.png */,
-				8EB6D7D5157FD1F50060202D /* videoCardButtonShareOff.png */,
-				8EB6D7D6157FD1F50060202D /* videoCardButtonShareOff@2x.png */,
-				8EB6D7D7157FD1F50060202D /* videoCardButtonShareOn.png */,
-				8EB6D7D8157FD1F50060202D /* videoCardButtonShareOn@2x.png */,
-				8EB6D7D9157FD1F50060202D /* videoCardButtonUpvoteOff.png */,
-				8EB6D7DA157FD1F50060202D /* videoCardButtonUpvoteOff@2x.png */,
-				8EB6D7DB157FD1F50060202D /* videoCardButtonUpvoteOn.png */,
-				8EB6D7DC157FD1F50060202D /* videoCardButtonUpvoteOn@2x.png */,
 				8E87DEE4156C4A8A004E0629 /* videoCardTimestampFacebook.png */,
 				8E87DEE5156C4A8A004E0629 /* videoCardTimestampFacebook@2x.png */,
 				8E87DEE6156C4A8A004E0629 /* videoCardTimestampTumblr.png */,
@@ -1042,30 +1045,11 @@
 				8E87DEFF156C4A8A004E0629 /* videoCardTimestampTumblr@2x.png in Resources */,
 				8E87DF00156C4A8A004E0629 /* videoCardTimestampTwitter.png in Resources */,
 				8E87DF01156C4A8A004E0629 /* videoCardTimestampTwitter@2x.png in Resources */,
-				8EB6D7DD157FD1F50060202D /* videoCardButtonCommentOff.png in Resources */,
-				8EB6D7DE157FD1F50060202D /* videoCardButtonCommentOff@2x.png in Resources */,
-				8EB6D7DF157FD1F50060202D /* videoCardButtonCommentOn.png in Resources */,
-				8EB6D7E0157FD1F50060202D /* videoCardButtonCommentOn@2x.png in Resources */,
-				8EB6D7E1157FD1F50060202D /* videoCardButtonRollOff.png in Resources */,
-				8EB6D7E2157FD1F50060202D /* videoCardButtonRollOff@2x.png in Resources */,
-				8EB6D7E3157FD1F50060202D /* videoCardButtonRollOn.png in Resources */,
-				8EB6D7E4157FD1F50060202D /* videoCardButtonRollOn@2x.png in Resources */,
-				8EB6D7E5157FD1F50060202D /* videoCardButtonShareOff.png in Resources */,
-				8EB6D7E6157FD1F50060202D /* videoCardButtonShareOff@2x.png in Resources */,
-				8EB6D7E7157FD1F50060202D /* videoCardButtonShareOn.png in Resources */,
-				8EB6D7E8157FD1F50060202D /* videoCardButtonShareOn@2x.png in Resources */,
-				8EB6D7E9157FD1F50060202D /* videoCardButtonUpvoteOff.png in Resources */,
-				8EB6D7EA157FD1F50060202D /* videoCardButtonUpvoteOff@2x.png in Resources */,
-				8EB6D7EB157FD1F50060202D /* videoCardButtonUpvoteOn.png in Resources */,
-				8EB6D7EC157FD1F50060202D /* videoCardButtonUpvoteOn@2x.png in Resources */,
 				8EB6D7EF157FD3AF0060202D /* videoCardStroke.png in Resources */,
 				8EB6D7F0157FD3AF0060202D /* videoCardStroke@2x.png in Resources */,
 				8EB6D7F3157FD4ED0060202D /* videoCardTopBar.png in Resources */,
 				8EB6D7F4157FD4ED0060202D /* videoCardTopBar@2x.png in Resources */,
-				8EB6D7FF157FF3310060202D /* videoCardUpvotedBar.png in Resources */,
 				8EC981421595135C00BB9227 /* VideoCardExpandedCell.xib in Resources */,
-				8EC981451595171800BB9227 /* videoCardExpandedStroke.png in Resources */,
-				8EC981461595171800BB9227 /* videoCardExpandedStroke@2x.png in Resources */,
 				8EE40A461596354900559484 /* rollsOverlay.png in Resources */,
 				8EE40A471596354900559484 /* rollsOverlay@2x.png in Resources */,
 				8EE40A4D159638E000559484 /* RollsCell.xib in Resources */,
@@ -1107,6 +1091,26 @@
 				8E7256DA15A749650052D80A /* loginTopBar@2x.png in Resources */,
 				8E7256DD15A758610052D80A /* navigationButtonBack.png in Resources */,
 				8E7256DE15A758610052D80A /* navigationButtonBack@2x.png in Resources */,
+				8E06BCB015A7845A004B42D5 /* videoCardButtonLeftOff.png in Resources */,
+				8E06BCB115A7845A004B42D5 /* videoCardButtonLeftOff@2x.png in Resources */,
+				8E06BCB215A7845A004B42D5 /* videoCardButtonLeftOn.png in Resources */,
+				8E06BCB315A7845A004B42D5 /* videoCardButtonLeftOn@2x.png in Resources */,
+				8E06BCB415A7845A004B42D5 /* videoCardButtonMiddle.png in Resources */,
+				8E06BCB515A7845A004B42D5 /* videoCardButtonMiddle@2x.png in Resources */,
+				8E06BCB615A7845A004B42D5 /* videoCardButtonRight.png in Resources */,
+				8E06BCB715A7845A004B42D5 /* videoCardButtonRight@2x.png in Resources */,
+				8E06BCC315A78462004B42D5 /* videoCardIconComment.png in Resources */,
+				8E06BCC415A78462004B42D5 /* videoCardIconComment@2x.png in Resources */,
+				8E06BCC515A78462004B42D5 /* videoCardIconRoll.png in Resources */,
+				8E06BCC615A78462004B42D5 /* videoCardIconRoll@2x.png in Resources */,
+				8E06BCC715A78462004B42D5 /* videoCardIconShare.png in Resources */,
+				8E06BCC815A78462004B42D5 /* videoCardIconShare@2x.png in Resources */,
+				8E06BCC915A78462004B42D5 /* videoCardLikeBar.png in Resources */,
+				8E06BCCA15A78462004B42D5 /* videoCardLikeBar@2x.png in Resources */,
+				8E06BCCB15A78462004B42D5 /* videoCardStrokeExpanded.png in Resources */,
+				8E06BCCC15A78462004B42D5 /* videoCardStrokeExpanded@2x.png in Resources */,
+				8E06BCCF15A7A214004B42D5 /* heart.png in Resources */,
+				8E06BCD015A7A214004B42D5 /* heart@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

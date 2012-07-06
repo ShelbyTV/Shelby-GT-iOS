@@ -62,6 +62,7 @@
 {
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate presentLoginViewController];
+    
 }
 
 #pragma mark - UITableViewDataSource Methods
