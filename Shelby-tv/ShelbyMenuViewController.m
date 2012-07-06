@@ -231,7 +231,7 @@
     navigationView.frame = CGRectMake(frame.origin.x,
                                       frame.origin.y,
                                       frame.size.width,
-                                      -45.0f + frame.size.height);
+                                      -65.0f + frame.size.height);
         
     }
 }
