@@ -7,6 +7,7 @@
 //
 
 #import "StreamTableViewManager.h"
+#import "GuideTableViewController.h"
 #import "VideoCardController.h"
 #import "PSYouTubeExtractor.h"
 #import "PSYouTubeView.h"
@@ -54,7 +55,10 @@
 - (void)populateTableViewCell:(VideoCardCell *)cell withContent:(DashboardEntry *)dashboardEntry inRow:(NSUInteger)row
 {
 
-        // General Initializations
+    // TEMP
+    cell.providerName.text = dashboardEntry.frame.video.providerName;
+    
+    // General Initializations
     dispatch_async(dispatch_get_main_queue(), ^{
         
         [cell setTag:row];
@@ -407,10 +411,16 @@
     
     } else {
         
-        PSYouTubeView *youTubeView = [[PSYouTubeView alloc] initWithYouTubeURL:[NSURL URLWithString:videoLink] frame:self.tableView.frame showNativeFirst:YES];
-        youTubeView.center = self.tableView.center;
+        UIViewController *videoViewController = [[UIViewController alloc] init];
+        
+        PSYouTubeView *youTubeView = [[PSYouTubeView alloc] initWithYouTubeURL:[NSURL URLWithString:videoLink] frame:videoViewController.view.frame showNativeFirst:YES];
+        youTubeView.center = videoViewController.view.center;
         youTubeView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-        [self.tableView addSubview:youTubeView];
+        [videoViewController.view addSubview:youTubeView];
+        
+        [self.guideController.navigationController pushViewController:videoViewController animated:YES];
+        
+        
         
     }
 
