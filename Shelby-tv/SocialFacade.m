@@ -25,7 +25,7 @@
 #pragma mark - Private Macros
 
 /// Authorization Macros ///
-#define         SocialFacadeFacebookAppID                   @"349934901721555"
+#define         SocialFacadeFacebookAppID                   @"115071338568035"
 #define         SocialFacadeTwitterConsumerKey              @"5DNrVZpdIwhQthCJJXCfnQ"
 #define         SocialFacadeTwitterConsumerSecret           @"Tlb35nblFFTZRidpu36Uo3z9mfcvSVv1MuZZ19SHaU"
 
