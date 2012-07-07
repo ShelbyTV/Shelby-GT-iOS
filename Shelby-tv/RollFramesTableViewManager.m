@@ -263,6 +263,21 @@
     [client performRequest:request ofType:APIRequestType_GetRollFrames];
 }
 
+- (void)performAPIRequestForMoreEntries
+{
+    
+    // Add API Observers (should ONLY occur on first call to this method)
+    if ( NO == self.observerCreated ) [self createAPIObservers];
+    
+    // Perform API Request
+    NSUInteger skipCount = (([self.coreDataResultsArray count]%20)+1)*20;
+    NSString *requestString = [NSString stringWithFormat:APIRequest_GetRollsFollowingAgain, self.rollID, [SocialFacade sharedInstance].shelbyToken, skipCount];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
+    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+    [client performRequest:request ofType:APIRequestType_GetRollFrames];
+    
+}
+
 - (void)performAPIRequestForRollID:(NSString *)rollID
 {
     // Add API Observers (should ONLY occur on first call to this method)
@@ -410,6 +425,17 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (indexPath.row == ([self.coreDataResultsArray count]-1) ) {
+        
+        // Load more data from CoreData
+//        [self performAPIRequestForMoreEntries];
+        
+    }
 }
 
 @end

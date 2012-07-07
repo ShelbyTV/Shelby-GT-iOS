@@ -17,7 +17,7 @@
 @property (assign, nonatomic) BOOL observerCreated;
 @property (strong, nonatomic) NSMutableArray *arrayOfDashboardIDs;
 @property (strong, nonatomic) NSMutableArray *arrayOfFrameIDs;
-@property (strong, nonatomic) NSMutableArray *arrayOfVideoURLs;
+@property (strong, nonatomic) NSMutableArray *arrayOfVideoLinks;
 
 - (void)createAPIObservers;
 - (void)populateTableViewCell:(VideoCardCell*)cell withContent:(DashboardEntry*)dashboardEntry inRow:(NSUInteger)row;
@@ -31,7 +31,7 @@
 @synthesize observerCreated = _observerCreated;
 @synthesize arrayOfDashboardIDs = _arrayOfDashboardIDs;
 @synthesize arrayOfFrameIDs = _arrayOfFrameIDs;
-@synthesize arrayOfVideoURLs = _arrayOfVideoURLs;
+@synthesize arrayOfVideoLinks = _arrayOfVideoLinks;
 
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
@@ -73,8 +73,8 @@
         [self.arrayOfFrameIDs addObject:dashboardEntry.frame.frameID];
         
         // Store Video URL
-        if ( ![self arrayOfVideoURLs] ) self.arrayOfVideoURLs = [NSMutableArray array];
-        [self.arrayOfVideoURLs addObject:dashboardEntry.frame.video.sourceURL];
+        if ( ![self arrayOfVideoLinks] ) self.arrayOfVideoLinks = [NSMutableArray array];
+        [self.arrayOfVideoLinks addObject:dashboardEntry.frame.video.sourceURL];
         
         // Populate roll label
         [cell.rollLabel setText:dashboardEntry.frame.roll.title];
@@ -402,7 +402,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
  
-    NSString *videoLink = [self.arrayOfVideoURLs objectAtIndex:indexPath.row];
+    NSString *videoLink = [self.arrayOfVideoLinks objectAtIndex:indexPath.row];
     NSLog(@"Video URL: %@", videoLink);
     
     if ([videoLink rangeOfString:@"youtube"].location == NSNotFound) {
