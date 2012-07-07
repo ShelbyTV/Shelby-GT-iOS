@@ -225,9 +225,9 @@
 
 - (void)adjustFrame:(UIView *)navigationView
 {
-    
+
     CGRect frame = navigationView.frame;
-    if ( 0 == navigationView.frame.origin.y ) {
+    if ( 0 == navigationView.frame.origin.y && 480 == navigationView.frame.size.height ) {
     navigationView.frame = CGRectMake(frame.origin.x,
                                       frame.origin.y,
                                       frame.size.width,
