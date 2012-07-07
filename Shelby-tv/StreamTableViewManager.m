@@ -8,12 +8,15 @@
 
 #import "StreamTableViewManager.h"
 #import "VideoCardController.h"
+#import "PSYouTubeExtractor.h"
+#import "PSYouTubeView.h"
 
 @interface StreamTableViewManager ()
 
 @property (assign, nonatomic) BOOL observerCreated;
 @property (strong, nonatomic) NSMutableArray *arrayOfDashboardIDs;
 @property (strong, nonatomic) NSMutableArray *arrayOfFrameIDs;
+@property (strong, nonatomic) NSMutableArray *arrayOfVideoURLs;
 
 - (void)createAPIObservers;
 - (void)populateTableViewCell:(VideoCardCell*)cell withContent:(DashboardEntry*)dashboardEntry inRow:(NSUInteger)row;
@@ -27,6 +30,7 @@
 @synthesize observerCreated = _observerCreated;
 @synthesize arrayOfDashboardIDs = _arrayOfDashboardIDs;
 @synthesize arrayOfFrameIDs = _arrayOfFrameIDs;
+@synthesize arrayOfVideoURLs = _arrayOfVideoURLs;
 
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
@@ -63,6 +67,10 @@
         // Store Frame ID
         if ( ![self arrayOfFrameIDs] ) self.arrayOfFrameIDs = [NSMutableArray array];
         [self.arrayOfFrameIDs addObject:dashboardEntry.frame.frameID];
+        
+        // Store Video URL
+        if ( ![self arrayOfVideoURLs] ) self.arrayOfVideoURLs = [NSMutableArray array];
+        [self.arrayOfVideoURLs addObject:dashboardEntry.frame.video.sourceURL];
         
         // Populate roll label
         [cell.rollLabel setText:dashboardEntry.frame.roll.title];
@@ -389,7 +397,23 @@
 #pragma mark - UITableViewDelegate Methods
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+ 
+    NSString *videoLink = [self.arrayOfVideoURLs objectAtIndex:indexPath.row];
+    NSLog(@"Video URL: %@", videoLink);
     
+    if ([videoLink rangeOfString:@"youtube"].location == NSNotFound) {
+    
+        // Do Nothing
+    
+    } else {
+        
+        PSYouTubeView *youTubeView = [[PSYouTubeView alloc] initWithYouTubeURL:[NSURL URLWithString:videoLink] frame:self.tableView.frame showNativeFirst:YES];
+        youTubeView.center = self.tableView.center;
+        youTubeView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        [self.tableView addSubview:youTubeView];
+        
+    }
+
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

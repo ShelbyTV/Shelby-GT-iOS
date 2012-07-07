@@ -71,6 +71,8 @@
 		8E6AF92E159B76FF00F570CF /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6AF8FE159B76FF00F570CF /* OAToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8E6AF92F159B76FF00F570CF /* OATokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6AF900159B76FF00F570CF /* OATokenManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8E6AF930159B76FF00F570CF /* README in Resources */ = {isa = PBXBuildFile; fileRef = 8E6AF902159B76FF00F570CF /* README */; };
+		8E6CFF8A15A7E49300EFBED3 /* PSYouTubeExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CFF8715A7E49300EFBED3 /* PSYouTubeExtractor.m */; };
+		8E6CFF8B15A7E49300EFBED3 /* PSYouTubeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CFF8915A7E49300EFBED3 /* PSYouTubeView.m */; };
 		8E7256CF15A7427D0052D80A /* loginButtonFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256CB15A7427D0052D80A /* loginButtonFacebook.png */; };
 		8E7256D015A7427D0052D80A /* loginButtonFacebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256CC15A7427D0052D80A /* loginButtonFacebook@2x.png */; };
 		8E7256D115A7427D0052D80A /* loginButtonTwitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256CD15A7427D0052D80A /* loginButtonTwitter.png */; };
@@ -290,6 +292,10 @@
 		8E6AF900159B76FF00F570CF /* OATokenManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OATokenManager.m; sourceTree = "<group>"; };
 		8E6AF901159B76FF00F570CF /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
 		8E6AF902159B76FF00F570CF /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		8E6CFF8615A7E49300EFBED3 /* PSYouTubeExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSYouTubeExtractor.h; sourceTree = "<group>"; };
+		8E6CFF8715A7E49300EFBED3 /* PSYouTubeExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSYouTubeExtractor.m; sourceTree = "<group>"; };
+		8E6CFF8815A7E49300EFBED3 /* PSYouTubeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSYouTubeView.h; sourceTree = "<group>"; };
+		8E6CFF8915A7E49300EFBED3 /* PSYouTubeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSYouTubeView.m; sourceTree = "<group>"; };
 		8E7256CB15A7427D0052D80A /* loginButtonFacebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loginButtonFacebook.png; path = Resources/images/login/loginButtonFacebook.png; sourceTree = SOURCE_ROOT; };
 		8E7256CC15A7427D0052D80A /* loginButtonFacebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "loginButtonFacebook@2x.png"; path = "Resources/images/login/loginButtonFacebook@2x.png"; sourceTree = SOURCE_ROOT; };
 		8E7256CD15A7427D0052D80A /* loginButtonTwitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loginButtonTwitter.png; path = Resources/images/login/loginButtonTwitter.png; sourceTree = SOURCE_ROOT; };
@@ -575,6 +581,18 @@
 			path = Crypto;
 			sourceTree = "<group>";
 		};
+		8E6CFF8515A7E49300EFBED3 /* PSYouTubeExtractor */ = {
+			isa = PBXGroup;
+			children = (
+				8E6CFF8615A7E49300EFBED3 /* PSYouTubeExtractor.h */,
+				8E6CFF8715A7E49300EFBED3 /* PSYouTubeExtractor.m */,
+				8E6CFF8815A7E49300EFBED3 /* PSYouTubeView.h */,
+				8E6CFF8915A7E49300EFBED3 /* PSYouTubeView.m */,
+			);
+			name = PSYouTubeExtractor;
+			path = library/PSYouTubeExtractor;
+			sourceTree = SOURCE_ROOT;
+		};
 		8E791DE715828D3200B0E744 /* navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -837,6 +855,7 @@
 				8E6AF84B159B743B00F570CF /* Facebook SDK */,
 				8E6AF8D8159B76FF00F570CF /* OAuth Consumer */,
 				8EE50641155CA3D300A04F50 /* Panhandler */,
+				8E6CFF8515A7E49300EFBED3 /* PSYouTubeExtractor */,
 				8EC9813415950DF100BB9227 /* Reachability (ARC) */,
 				8E7F47EA154093890041118E /* SocialFacade */,
 			);
@@ -1184,6 +1203,8 @@
 				8E6AF92E159B76FF00F570CF /* OAToken.m in Sources */,
 				8E6AF92F159B76FF00F570CF /* OATokenManager.m in Sources */,
 				8EB80E35159B943D001A274E /* Roll.m in Sources */,
+				8E6CFF8A15A7E49300EFBED3 /* PSYouTubeExtractor.m in Sources */,
+				8E6CFF8B15A7E49300EFBED3 /* PSYouTubeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
