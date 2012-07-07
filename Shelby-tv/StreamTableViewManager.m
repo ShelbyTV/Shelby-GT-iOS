@@ -75,15 +75,15 @@
         
         if ( upvoted ) { // Make sure Heart is Red and user is able to Downvote
             
-            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonLeftOn"] forState:UIControlStateNormal];
-            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonLeftOff"] forState:UIControlStateHighlighted];
+            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
+            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
             [cell.upvoteButton removeTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
             [cell.upvoteButton addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
             
         } else { // Make sure Heart is Gray and user is able to Upvote
             
-            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonLeftOff"] forState:UIControlStateNormal];
-            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonLeftOn"] forState:UIControlStateHighlighted];
+            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
+            [cell.upvoteButton setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
             [cell.upvoteButton removeTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
             [cell.upvoteButton addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
         }
@@ -145,8 +145,8 @@
     upvoteCount++;
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonLeftOn"] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonLeftOff"] forState:UIControlStateHighlighted];
+        [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
         [button removeTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
         [button addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:[NSString stringWithFormat:@"%d", upvoteCount] forState:UIControlStateNormal];
@@ -186,8 +186,8 @@
     upvoteCount--;
     
     dispatch_async(dispatch_get_main_queue(), ^{
-            [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonLeftOff"] forState:UIControlStateNormal];
-            [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonLeftOn"] forState:UIControlStateHighlighted];
+            [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
+            [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
             [button removeTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
             [button addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
             [button setTitle:[NSString stringWithFormat:@"%d", upvoteCount] forState:UIControlStateNormal];
