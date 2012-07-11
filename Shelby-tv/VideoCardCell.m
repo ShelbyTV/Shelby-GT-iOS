@@ -51,10 +51,11 @@
     // Customize Labels (all other label customization in VideCardCell.xib)
     [self.upvoteButton.titleLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:16.0f]];
     [self.commentButton.titleLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:16.0f]];
-    [self.nicknameLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:15.0f]];
-    [self.rollLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:10.0f]];
-    [self.createdAtLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:10.0f]];
+    [self.nicknameLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.nicknameLabel.font.pointSize]];
+    [self.rollLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.rollLabel.font.pointSize]];
+    [self.createdAtLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.createdAtLabel.font.pointSize]];
 
+    // TEMP
     [self.providerName setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.providerName.font.pointSize]];
     
 }

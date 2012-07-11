@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1296</int>
-		<string key="IBDocument.SystemVersion">12A256</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2546</string>
-		<string key="IBDocument.AppKitVersion">1185</string>
-		<string key="IBDocument.HIToolboxVersion">622.00</string>
+		<string key="IBDocument.SystemVersion">12A269</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2549</string>
+		<string key="IBDocument.AppKitVersion">1187</string>
+		<string key="IBDocument.HIToolboxVersion">624.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1497</string>
+			<string key="NS.object.0">1498</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -75,13 +75,13 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="133819352">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="487977357">
 									<int key="type">2</int>
-									<double key="pointSize">12</double>
+									<double key="pointSize">15</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="402575836">
+								<object class="NSFont" key="IBUIFont" id="866138965">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">12</double>
+									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
@@ -105,8 +105,15 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<reference key="IBUIFontDescription" ref="133819352"/>
-								<reference key="IBUIFont" ref="402575836"/>
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="658478311">
+									<int key="type">2</int>
+									<double key="pointSize">10</double>
+								</object>
+								<object class="NSFont" key="IBUIFont" id="766675337">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">10</double>
+									<int key="NSfFlags">16</int>
+								</object>
 							</object>
 							<object class="IBUIImageView" id="531078807">
 								<reference key="NSNextResponder" ref="572246272"/>
@@ -149,15 +156,8 @@
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">5</float>
 								<int key="IBUITextAlignment">2</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">2</int>
-									<double key="pointSize">7</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">7</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFontDescription" ref="658478311"/>
+								<reference key="IBUIFont" ref="766675337"/>
 							</object>
 							<object class="IBUILabel" id="566424731">
 								<reference key="NSNextResponder" ref="572246272"/>
@@ -332,15 +332,8 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">videoCardButtonRoll.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="487977357">
-							<int key="type">2</int>
-							<double key="pointSize">15</double>
-						</object>
-						<object class="NSFont" key="IBUIFont" id="370414504">
-							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">15</double>
-							<int key="NSfFlags">16</int>
-						</object>
+						<reference key="IBUIFontDescription" ref="487977357"/>
+						<reference key="IBUIFont" ref="866138965"/>
 					</object>
 					<object class="IBUIButton" id="107316803">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -364,7 +357,7 @@
 							<string key="NSResourceName">videoCardButtonShare.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="487977357"/>
-						<reference key="IBUIFont" ref="370414504"/>
+						<reference key="IBUIFont" ref="866138965"/>
 					</object>
 				</array>
 				<string key="NSFrameSize">{316, 214}</string>
@@ -650,6 +643,6 @@
 			<string key="videoCardDivider.png">{1, 127}</string>
 			<string key="videoCardTopBar.png">{305, 41}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1497</string>
+		<string key="IBCocoaTouchPluginVersion">1498</string>
 	</data>
 </archive>
