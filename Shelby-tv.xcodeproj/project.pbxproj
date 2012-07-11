@@ -875,10 +875,10 @@
 				8E78C1C815ABB97900326EF9 /* RollItViewController.m */,
 				8E04DC2F159117DD0066BBA6 /* SettingsTableViewController.h */,
 				8E04DC30159117DD0066BBA6 /* SettingsTableViewController.m */,
-				8E04DC2B1590E1620066BBA6 /* ShelbyMenuViewController.h */,
-				8E04DC2C1590E1620066BBA6 /* ShelbyMenuViewController.m */,
 				8E78C1C215ABB96E00326EF9 /* ShareViewController.h */,
 				8E78C1C315ABB96E00326EF9 /* ShareViewController.m */,
+				8E04DC2B1590E1620066BBA6 /* ShelbyMenuViewController.h */,
+				8E04DC2C1590E1620066BBA6 /* ShelbyMenuViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -935,8 +935,8 @@
 				8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */,
 				8EE40A4C159638E000559484 /* RollsCell.xib */,
 				8E78C1C915ABB97900326EF9 /* RollItViewController.xib */,
-				8E4A04601598CA3900E4F675 /* ShelbyMenuViewController.xib */,
 				8E78C1C415ABB96E00326EF9 /* ShareViewController.xib */,
+				8E4A04601598CA3900E4F675 /* ShelbyMenuViewController.xib */,
 				8EEA703C155449D800B1B07F /* VideoCardCell.xib */,
 				8EC981411595135C00BB9227 /* VideoCardExpandedCell.xib */,
 				8EE50654155CA79F00A04F50 /* VideoPlayerViewController_iPad.xib */,

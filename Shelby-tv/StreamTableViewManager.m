@@ -24,6 +24,7 @@
 
 - (void)upvote:(UIButton *)button;
 - (void)downvote:(UIButton *)button;
+- (void)share:(UIButton *)button;
 
 @end
 
@@ -82,7 +83,10 @@
         // Populate nickname label
         [cell.nicknameLabel setText:dashboardEntry.frame.creator.nickname];
         
-        // Present Heart/Unheart button (depends if user already liked video)
+        // Connect Share Button
+        [cell.shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
+        
+        // Connect Heart/Unheart button (depends if user already liked video)
         BOOL upvoted = [CoreDataUtility checkIfUserUpvotedInFrame:dashboardEntry.frame];
         
         if ( upvoted ) { // Make sure Heart is Red and user is able to Downvote
@@ -153,9 +157,16 @@
 {
     if ( DEBUGMODE ) NSLog(@"Upvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
 
+    // Grab reference to dashboardEntry and frame
+    DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForDashboardID:[self.arrayOfDashboardIDs objectAtIndex:button.tag]];
+    Frame *frame = dashboardEntry.frame;
+    ShelbyUser *shelbyUser = [CoreDataUtility fetchShelbyAuthData];
+    
+    // Increase upvoteCount by 1
     NSUInteger upvoteCount = [button.titleLabel.text intValue];
     upvoteCount++;
     
+    // Change button state
     dispatch_async(dispatch_get_main_queue(), ^{
         [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
         [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
@@ -164,12 +175,10 @@
         [button setTitle:[NSString stringWithFormat:@"%d", upvoteCount] forState:UIControlStateNormal];
     });
     
+    // Store changes in Core Data
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        
         @synchronized(self) {
-            // Quickly modify Core Data values
-            ShelbyUser *shelbyUser = [CoreDataUtility fetchShelbyAuthData];
-            DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForDashboardID:[self.arrayOfDashboardIDs objectAtIndex:button.tag]];
-            Frame *frame = dashboardEntry.frame;
             
             UpvoteUsers *upvoteUsers = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:dashboardEntry.managedObjectContext];
             [upvoteUsers setValue:shelbyUser.shelbyID forKey:CoreDataUpvoteUserID];
@@ -184,7 +193,7 @@
     });
     
     // Ping API with new values
-    VideoCardController *controller = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
+    VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
     [controller upvote];
     
     
@@ -194,9 +203,15 @@
 {
     if ( DEBUGMODE ) NSLog(@"Downvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
     
+    // Grab reference to dashboardEntry and frame
+    DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForDashboardID:[self.arrayOfDashboardIDs objectAtIndex:button.tag]];
+    Frame *frame = dashboardEntry.frame;
+    
+    // Decrease upvoteCount by 1
     NSUInteger upvoteCount = [button.titleLabel.text intValue];
     upvoteCount--;
     
+    // Change button state
     dispatch_async(dispatch_get_main_queue(), ^{
             [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
             [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
@@ -205,13 +220,11 @@
             [button setTitle:[NSString stringWithFormat:@"%d", upvoteCount] forState:UIControlStateNormal];
     });
     
+    // Store changes in Core Data
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-    
+        
         @synchronized(self) {
-            // Quickly modify Core Data values
-            DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForDashboardID:[self.arrayOfDashboardIDs objectAtIndex:button.tag]];
-            Frame *frame = dashboardEntry.frame;
-            
+        
             NSMutableSet *upvoteUsers = [NSMutableSet setWithSet:frame.upvoteUsers];
             
             for (UpvoteUsers *user in [upvoteUsers allObjects]) {
@@ -231,8 +244,18 @@
     });
         
     // Ping API with new values
-    VideoCardController *controller = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
+    VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
     [controller downvote];
+}
+
+- (void)share:(UIButton *)button
+{
+    
+    DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForDashboardID:[self.arrayOfDashboardIDs objectAtIndex:button.tag]];
+    Frame *frame = dashboardEntry.frame;
+    VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
+    [controller share:self.guideController.navigationController];
+
 }
 
 #pragma mark - GuideTableViewManagerDelegate Method

@@ -132,6 +132,9 @@
 {
     if ( DEBUGMODE ) NSLog(@"Upvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
     
+    // Quickly modify Core Data values
+    Frame *frame = [CoreDataUtility fetchFrameWithID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
+    
     NSUInteger upvoteCount = [button.titleLabel.text intValue];
     upvoteCount++;
     
@@ -145,9 +148,6 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         @synchronized(self) {
-            // Quickly modify Core Data values
-            NSString *frameID = [self.arrayOfFrameIDs objectAtIndex:button.tag];
-            Frame *frame  = [CoreDataUtility fetchFrameWithID:frameID];
             
             ShelbyUser *shelbyUser = [CoreDataUtility fetchShelbyAuthData];
             UpvoteUsers *upvoteUsers = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:frame.managedObjectContext];
@@ -163,7 +163,7 @@
     });
     
     // Ping API with new values
-    VideoCardController *controller = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
+    VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
     [controller upvote];
     
     
@@ -172,6 +172,9 @@
 - (void)downvote:(UIButton *)button
 {
     if ( DEBUGMODE ) NSLog(@"Downvote row %d with value: %@", button.tag, [self.arrayOfFrameIDs objectAtIndex:button.tag]);
+    
+    // Quickly modify Core Data values
+   Frame *frame = [CoreDataUtility fetchFrameWithID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
     
     NSUInteger upvoteCount = [button.titleLabel.text intValue];
     upvoteCount--;
@@ -187,10 +190,6 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         
         @synchronized(self) {
-            
-            // Quickly modify Core Data values
-            NSString *frameID = [self.arrayOfFrameIDs objectAtIndex:button.tag];
-            Frame *frame  = [CoreDataUtility fetchFrameWithID:frameID];
             
             NSMutableSet *upvoteUsers = [NSMutableSet setWithSet:frame.upvoteUsers];
             
@@ -212,7 +211,7 @@
     });
     
     // Ping API with new values
-    VideoCardController *controller = [[VideoCardController alloc] initWithFrameID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
+    VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
     [controller downvote];
 }
 

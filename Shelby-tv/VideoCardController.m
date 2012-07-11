@@ -10,23 +10,24 @@
 #import "CoreDataUtility.h"
 #import "ShelbyAPIClient.h"
 #import "SocialFacade.h"
+#import "ShareViewController.h"
 #import "NSString+TypedefConversion.h"
 
 @interface VideoCardController ()
 
-@property (strong, nonatomic) NSString *frameID;
+@property (strong, nonatomic) Frame *frame;
 
 @end
 
 @implementation VideoCardController
-@synthesize frameID = _frameID;
+@synthesize frame = _frame;
 
 #pragma mark - Initialization Method
-- (id)initWithFrameID:(NSString *)frameID
+- (id)initWithFrame:(Frame*)frame
 {
     if ( self = [super init] ) {
         
-        self.frameID = frameID;
+        self.frame = frame;
      
     }
     
@@ -37,7 +38,7 @@
 #pragma mark - Public Methods
 - (void)upvote
 {
-    NSString *upvoteRequestString = [NSString stringWithFormat:APIRequest_PostUpvote, self.frameID, [SocialFacade sharedInstance].shelbyToken];
+    NSString *upvoteRequestString = [NSString stringWithFormat:APIRequest_PostUpvote, self.frame.frameID, [SocialFacade sharedInstance].shelbyToken];
     NSMutableURLRequest *upvoteRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:upvoteRequestString]];
     [upvoteRequest setHTTPMethod:@"POST"];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
@@ -46,7 +47,7 @@
 
 - (void)downvote
 {
-    NSString *downvoteRequestString = [NSString stringWithFormat:APIRequest_PostDownvote, self.frameID, [SocialFacade sharedInstance].shelbyToken];
+    NSString *downvoteRequestString = [NSString stringWithFormat:APIRequest_PostDownvote, self.frame.frameID, [SocialFacade sharedInstance].shelbyToken];
     NSMutableURLRequest *downvoteRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:downvoteRequestString]];
     [downvoteRequest setHTTPMethod:@"POST"];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
@@ -63,9 +64,10 @@
     
 }
 
-- (void)share
+- (void)share:(UINavigationController *)navController
 {
-    
+    ShareViewController *shareViewController = [[ShareViewController alloc] initWithNibName:@"ShareViewController" bundle:nil andFrame:self.frame];
+    [navController pushViewController:shareViewController animated:YES];
 }
 
 @end

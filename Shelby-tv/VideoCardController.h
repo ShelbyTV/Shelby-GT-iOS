@@ -11,10 +11,9 @@
 #import "VideoCardExpandedCell.h"
 #import "StaticDeclarations.h"
 
-
 @interface VideoCardController : NSObject
 
-- (id)initWithFrameID:(NSString *)frameID;
+- (id)initWithFrame:(Frame*)frame;
 
 - (void)upvote;
 
@@ -24,6 +23,6 @@
 
 - (void)roll;
 
-- (void)share;
+- (void)share:(UINavigationController*)navController;
 
 @end
