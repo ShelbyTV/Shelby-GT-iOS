@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StaticDeclarations.h"
 
 @interface ShareViewController : UIViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andRoll:(Roll*)roll;
 
 @end

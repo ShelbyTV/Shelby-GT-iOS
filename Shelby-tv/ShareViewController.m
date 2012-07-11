@@ -10,15 +10,29 @@
 
 @interface ShareViewController ()
 
+@property (strong, nonatomic) Roll *roll;
+
 @end
 
 @implementation ShareViewController
+@synthesize roll = _roll;
 
+#pragma mark - Initialization Method
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andRoll:(Roll *)roll
+{
+    if ( self == [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil] ) {
+        
+        self.roll = roll;
+        
+    }
+    
+    return self;
+}
+
+#pragma mark - View Lifecycle Methods
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (void)viewDidLoad
@@ -26,7 +40,7 @@
     [super viewDidLoad];
 }
 
-
+#pragma mark - Interface Orientation Method
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);

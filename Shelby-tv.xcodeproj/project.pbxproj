@@ -45,6 +45,18 @@
 		8E5F039915ACFA2200DAEEBE /* navigationButtonFriendsRollsOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F039115ACFA2200DAEEBE /* navigationButtonFriendsRollsOn.png */; };
 		8E5F039A15ACFA2200DAEEBE /* navigationButtonFriendsRollsOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F039215ACFA2200DAEEBE /* navigationButtonFriendsRollsOn@2x.png */; };
 		8E5F039D15AD02A800DAEEBE /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5F039C15AD02A700DAEEBE /* Roll.m */; };
+		8E5F03AB15AD119A00DAEEBE /* sharingButtonFacebookOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F039F15AD119A00DAEEBE /* sharingButtonFacebookOff.png */; };
+		8E5F03AC15AD119A00DAEEBE /* sharingButtonFacebookOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03A015AD119A00DAEEBE /* sharingButtonFacebookOff@2x.png */; };
+		8E5F03AD15AD119A00DAEEBE /* sharingButtonFacebookOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03A115AD119A00DAEEBE /* sharingButtonFacebookOn.png */; };
+		8E5F03AE15AD119A00DAEEBE /* sharingButtonFacebookOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03A215AD119A00DAEEBE /* sharingButtonFacebookOn@2x.png */; };
+		8E5F03AF15AD119A00DAEEBE /* sharingButtonShare.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03A315AD119A00DAEEBE /* sharingButtonShare.png */; };
+		8E5F03B015AD119A00DAEEBE /* sharingButtonShare@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03A415AD119A00DAEEBE /* sharingButtonShare@2x.png */; };
+		8E5F03B115AD119A00DAEEBE /* sharingButtonTwitterOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03A515AD119A00DAEEBE /* sharingButtonTwitterOff.png */; };
+		8E5F03B215AD119A00DAEEBE /* sharingButtonTwitterOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03A615AD119A00DAEEBE /* sharingButtonTwitterOff@2x.png */; };
+		8E5F03B315AD119A00DAEEBE /* sharingButtonTwitterOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03A715AD119A00DAEEBE /* sharingButtonTwitterOn.png */; };
+		8E5F03B415AD119A00DAEEBE /* sharingButtonTwitterOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03A815AD119A00DAEEBE /* sharingButtonTwitterOn@2x.png */; };
+		8E5F03B515AD119A00DAEEBE /* sharingStroke.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03A915AD119A00DAEEBE /* sharingStroke.png */; };
+		8E5F03B615AD119A00DAEEBE /* sharingStroke@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03AA15AD119A00DAEEBE /* sharingStroke@2x.png */; };
 		8E664D401541A66A0071EC42 /* LoginViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */; };
 		8E664D421541A6770071EC42 /* LoginViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */; };
 		8E664D541541B0120071EC42 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E664D531541B0120071EC42 /* LoginViewController.m */; };
@@ -234,6 +246,18 @@
 		8E5F039215ACFA2200DAEEBE /* navigationButtonFriendsRollsOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonFriendsRollsOn@2x.png"; sourceTree = "<group>"; };
 		8E5F039B15AD02A700DAEEBE /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
 		8E5F039C15AD02A700DAEEBE /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
+		8E5F039F15AD119A00DAEEBE /* sharingButtonFacebookOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharingButtonFacebookOff.png; sourceTree = "<group>"; };
+		8E5F03A015AD119A00DAEEBE /* sharingButtonFacebookOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharingButtonFacebookOff@2x.png"; sourceTree = "<group>"; };
+		8E5F03A115AD119A00DAEEBE /* sharingButtonFacebookOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharingButtonFacebookOn.png; sourceTree = "<group>"; };
+		8E5F03A215AD119A00DAEEBE /* sharingButtonFacebookOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharingButtonFacebookOn@2x.png"; sourceTree = "<group>"; };
+		8E5F03A315AD119A00DAEEBE /* sharingButtonShare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharingButtonShare.png; sourceTree = "<group>"; };
+		8E5F03A415AD119A00DAEEBE /* sharingButtonShare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharingButtonShare@2x.png"; sourceTree = "<group>"; };
+		8E5F03A515AD119A00DAEEBE /* sharingButtonTwitterOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharingButtonTwitterOff.png; sourceTree = "<group>"; };
+		8E5F03A615AD119A00DAEEBE /* sharingButtonTwitterOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharingButtonTwitterOff@2x.png"; sourceTree = "<group>"; };
+		8E5F03A715AD119A00DAEEBE /* sharingButtonTwitterOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharingButtonTwitterOn.png; sourceTree = "<group>"; };
+		8E5F03A815AD119A00DAEEBE /* sharingButtonTwitterOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharingButtonTwitterOn@2x.png"; sourceTree = "<group>"; };
+		8E5F03A915AD119A00DAEEBE /* sharingStroke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharingStroke.png; sourceTree = "<group>"; };
+		8E5F03AA15AD119A00DAEEBE /* sharingStroke@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharingStroke@2x.png"; sourceTree = "<group>"; };
 		8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_iPhone.xib; sourceTree = "<group>"; };
 		8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_iPad.xib; sourceTree = "<group>"; };
 		8E664D521541B0120071EC42 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -476,6 +500,26 @@
 			);
 			path = "Asynchronous Freeloader";
 			sourceTree = "<group>";
+		};
+		8E5F039E15AD119A00DAEEBE /* sharing */ = {
+			isa = PBXGroup;
+			children = (
+				8E5F039F15AD119A00DAEEBE /* sharingButtonFacebookOff.png */,
+				8E5F03A015AD119A00DAEEBE /* sharingButtonFacebookOff@2x.png */,
+				8E5F03A115AD119A00DAEEBE /* sharingButtonFacebookOn.png */,
+				8E5F03A215AD119A00DAEEBE /* sharingButtonFacebookOn@2x.png */,
+				8E5F03A315AD119A00DAEEBE /* sharingButtonShare.png */,
+				8E5F03A415AD119A00DAEEBE /* sharingButtonShare@2x.png */,
+				8E5F03A515AD119A00DAEEBE /* sharingButtonTwitterOff.png */,
+				8E5F03A615AD119A00DAEEBE /* sharingButtonTwitterOff@2x.png */,
+				8E5F03A715AD119A00DAEEBE /* sharingButtonTwitterOn.png */,
+				8E5F03A815AD119A00DAEEBE /* sharingButtonTwitterOn@2x.png */,
+				8E5F03A915AD119A00DAEEBE /* sharingStroke.png */,
+				8E5F03AA15AD119A00DAEEBE /* sharingStroke@2x.png */,
+			);
+			name = sharing;
+			path = Resources/images/sharing;
+			sourceTree = SOURCE_ROOT;
 		};
 		8E664D551541B0C40071EC42 /* Constants */ = {
 			isa = PBXGroup;
@@ -961,6 +1005,7 @@
 				8EE40A431596354900559484 /* rolls */,
 				8E791DE715828D3200B0E744 /* navigation */,
 				8EE673851552E474004EA45C /* login */,
+				8E5F039E15AD119A00DAEEBE /* sharing */,
 				8E87DEB7156C44C2004E0629 /* videocard */,
 			);
 			name = images;
@@ -1137,6 +1182,18 @@
 				8E5F039815ACFA2200DAEEBE /* navigationButtonFriendsRollsOff@2x.png in Resources */,
 				8E5F039915ACFA2200DAEEBE /* navigationButtonFriendsRollsOn.png in Resources */,
 				8E5F039A15ACFA2200DAEEBE /* navigationButtonFriendsRollsOn@2x.png in Resources */,
+				8E5F03AB15AD119A00DAEEBE /* sharingButtonFacebookOff.png in Resources */,
+				8E5F03AC15AD119A00DAEEBE /* sharingButtonFacebookOff@2x.png in Resources */,
+				8E5F03AD15AD119A00DAEEBE /* sharingButtonFacebookOn.png in Resources */,
+				8E5F03AE15AD119A00DAEEBE /* sharingButtonFacebookOn@2x.png in Resources */,
+				8E5F03AF15AD119A00DAEEBE /* sharingButtonShare.png in Resources */,
+				8E5F03B015AD119A00DAEEBE /* sharingButtonShare@2x.png in Resources */,
+				8E5F03B115AD119A00DAEEBE /* sharingButtonTwitterOff.png in Resources */,
+				8E5F03B215AD119A00DAEEBE /* sharingButtonTwitterOff@2x.png in Resources */,
+				8E5F03B315AD119A00DAEEBE /* sharingButtonTwitterOn.png in Resources */,
+				8E5F03B415AD119A00DAEEBE /* sharingButtonTwitterOn@2x.png in Resources */,
+				8E5F03B515AD119A00DAEEBE /* sharingStroke.png in Resources */,
+				8E5F03B615AD119A00DAEEBE /* sharingStroke@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
