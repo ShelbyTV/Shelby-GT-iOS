@@ -7,6 +7,7 @@
 //
 
 #import "RollFramesTableViewManager.h"
+#import "GuideTableViewController.h"
 #import "VideoCardController.h"
 
 @interface RollFramesTableViewManager ()
@@ -18,6 +19,7 @@
 - (void)populateTableViewCell:(VideoCardCell*)cell withContent:(Frame*)frame inRow:(NSUInteger)row;
 - (void)upvote:(UIButton *)button;
 - (void)downvote:(UIButton *)button;
+- (void)share:(UIButton *)button;
 
 @end
 
@@ -52,6 +54,7 @@
         
         [cell setTag:row];
         [cell.upvoteButton setTag:row];
+        [cell.shareButton setTag:row];
         
         // Store Frame ID
         if ( ![self arrayOfFrameIDs] ) self.arrayOfFrameIDs = [NSMutableArray array];
@@ -63,7 +66,10 @@
         // Populate nickname label
         [cell.nicknameLabel setText:frame.creator.nickname];
         
-        // Present Heart/Unheart button (depends if user already liked video)
+        // Connect Share Button
+        [cell.shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
+        
+        // Connect Heart/Unheart button (depends if user already liked video)
         BOOL upvoted = [CoreDataUtility checkIfUserUpvotedInFrame:frame];
         
         if ( upvoted ) { // Make sure Heart is Red and user is able to Downvote
@@ -215,6 +221,15 @@
     [controller downvote];
 }
 
+- (void)share:(UIButton *)button
+{
+    
+    Frame *frame = [CoreDataUtility fetchFrameWithID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
+    VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
+    [controller share:self.guideController.navigationController];
+    
+}
+
 #pragma mark - GuideTableViewMangerDelegate Methods
 - (void)loadDataOnInitializationForTableView:(UITableView*)tableView andRollID:(NSString *)rollID
 {
@@ -297,6 +312,7 @@
     // Hide ASPullToRefreshController's HeaderView
     dispatch_async(dispatch_get_main_queue(), ^{
         
+        self.arrayOfFrameIDs = nil;
         [self.refreshController didFinishRefreshing];
         [self loadDataFromCoreData];
         

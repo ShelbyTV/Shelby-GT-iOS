@@ -68,6 +68,9 @@
         // Set type of GuideTableViewController Instance
         self.type = type;
         
+        // Pass instance of this controller to manager
+        self.tableViewManager.guideController = self;
+        
         // Set rollID for API call to display videos/frames for correct roll
         self.rollID = rollID;
         
