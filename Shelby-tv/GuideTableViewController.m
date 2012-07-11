@@ -112,16 +112,16 @@
     
     switch ( self.type ) {
             
-        case GuideType_BrowseRolls:{
-           manager = [[BrowseRollsTableViewManager alloc] init];
+        case GuideType_ExploreRolls:{
+           manager = [[ExploreRollsTableViewManager alloc] init];
         } break;
             
         case GuideType_MyRolls:{
             manager = [[MyRollsTableViewManager alloc] init];
         } break;
             
-        case GuideType_PeopleRolls:{
-            manager = [[PeopleRollsTableViewManager alloc] init];
+        case GuideType_FriendsRolls:{
+            manager = [[FriendsRollsTableViewManager alloc] init];
         } break;
             
         case GuideType_Settings:{
@@ -151,9 +151,9 @@
     // Set section-specific UI properties
     switch ( self.type ) {
             
-        case GuideType_BrowseRolls:{
+        case GuideType_ExploreRolls:{
        
-            [self.menuController.browseRollsButton setHighlighted:YES];
+            [self.menuController.exploreRollsButton setHighlighted:YES];
             
         } break;
             
@@ -163,9 +163,9 @@
             
         } break;
             
-        case GuideType_PeopleRolls:{
+        case GuideType_FriendsRolls:{
             
-            [self.menuController.peopleRollsButton setHighlighted:YES];
+            [self.menuController.friendsRollsButton setHighlighted:YES];
             
         } break;
             
@@ -205,19 +205,19 @@
 }
 
 #pragma mark - ShelbyMenuDelegate Methods
-- (void)browseRollsButtonAction
+- (void)exploreRollsButtonAction
 {
-    [self.menuController browseRollsButtonAction];
+    [self.menuController exploreRollsButtonAction];
+}
+
+- (void)friendsRollsButtonAction
+{
+    [self.menuController friendsRollsButtonAction];
 }
 
 - (void)myRollsButtonAction
 {
     [self.menuController myRollsButtonAction];
-}
-
-- (void)peopleRollsButtonAction
-{
-    [self.menuController peopleRollsButtonAction];
 }
 
 - (void)settingsButtonAction
@@ -229,7 +229,6 @@
 {
     [self.menuController streamButtonAction];
 }
-
 
 #pragma mark - Interface Orientation Method
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 . All rights reserved.
 //
 
-#import "BrowseRollsTableViewManager.h"
+#import "ExploreRollsTableViewManager.h"
 #import "MyRollsTableViewManager.h"
-#import "PeopleRollsTableViewManager.h"
+#import "FriendsRollsTableViewManager.h"
 #import "RollFramesTableViewManager.h"
 #import "StreamTableViewManager.h"

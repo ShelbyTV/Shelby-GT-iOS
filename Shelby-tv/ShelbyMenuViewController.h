@@ -11,9 +11,9 @@
 
 @protocol ShelbyMenuDelegate <NSObject>
 
-- (void)browseRollsButtonAction;
+- (void)exploreRollsButtonAction;
+- (void)friendsRollsButtonAction;
 - (void)myRollsButtonAction;
-- (void)peopleRollsButtonAction;
 - (void)settingsButtonAction;
 - (void)streamButtonAction;
 
@@ -23,9 +23,9 @@
 
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UIView *menuView;
-@property (weak, nonatomic) IBOutlet UIButton *browseRollsButton;
+@property (weak, nonatomic) IBOutlet UIButton *exploreRollsButton;
+@property (weak, nonatomic) IBOutlet UIButton *friendsRollsButton;
 @property (weak, nonatomic) IBOutlet UIButton *myRollsButton;
-@property (weak, nonatomic) IBOutlet UIButton *peopleRollsButton;
 @property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 @property (weak, nonatomic) IBOutlet UIButton *streamButton;
 

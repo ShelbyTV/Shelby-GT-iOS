@@ -24,9 +24,9 @@
 @implementation ShelbyMenuViewController
 @synthesize mainView = _mainView;
 @synthesize menuView = _menuView;
-@synthesize browseRollsButton = _browseRollsButton;
+@synthesize exploreRollsButton = _exploreRollsButton;
 @synthesize myRollsButton = _myRollsButton;
-@synthesize peopleRollsButton = _peopleRollsButton;
+@synthesize friendsRollsButton = _friendsRollsButton;
 @synthesize settingsButton = _settingsButton;
 @synthesize streamButton = _streamButton;
 @synthesize viewControllers = _viewControllers;
@@ -37,9 +37,9 @@
 {
     self.mainView = nil;
     self.menuView = nil;
-    self.browseRollsButton = nil;
+    self.exploreRollsButton = nil;
     self.myRollsButton = nil;
-    self.peopleRollsButton = nil;
+    self.friendsRollsButton = nil;
     self.settingsButton = nil;
     self.streamButton = nil;
 }
@@ -82,12 +82,12 @@
     // Step 3: Present new setion's view
     switch (type) {
             
-        case GuideType_BrowseRolls:{
+        case GuideType_ExploreRolls:{
             
-            UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_Section_BrowseRolls];
+            UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_Section_ExploreRolls];
             [self adjustFrame:navigationController.view];
             [self.mainView addSubview:navigationController.view];
-            [self.browseRollsButton setSelected:YES];
+            [self.exploreRollsButton setSelected:YES];
             navigationController.visibleViewController.navigationItem.titleView = logoView;
             navigationController.view.tag = type;
             self.currentType = type;
@@ -107,12 +107,12 @@
             
         } break;
         
-        case GuideType_PeopleRolls:{
+        case GuideType_FriendsRolls:{
             
-            UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_Section_PeopleRolls];
+            UINavigationController *navigationController = (UINavigationController*)[self.viewControllers objectForKey:TextConstants_Section_FriendsRolls];
             [self adjustFrame:navigationController.view];
             [self.mainView addSubview:navigationController.view];
-            [self.peopleRollsButton setSelected:YES];
+            [self.friendsRollsButton setSelected:YES];
             navigationController.visibleViewController.navigationItem.titleView = logoView;
             navigationController.view.tag = type;
             self.currentType = type;
@@ -150,18 +150,18 @@
 
 }
 
-- (void)browseRollsButtonAction
+- (void)exploreRollsButtonAction
 {
-    [self presentSection:GuideType_BrowseRolls];
+    [self presentSection:GuideType_ExploreRolls];
 }
 - (void)myRollsButtonAction
 {
     [self presentSection:GuideType_MyRolls];
 }
 
-- (void)peopleRollsButtonAction
+- (void)friendsRollsButtonAction
 {
-    [self presentSection:GuideType_PeopleRolls];
+    [self presentSection:GuideType_FriendsRolls];
 }
 
 - (void)settingsButtonAction
@@ -179,16 +179,16 @@
 {
 
     // Add Target-Action to Buttons
-    [self.browseRollsButton addTarget:self action:@selector(browseRollsButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.exploreRollsButton addTarget:self action:@selector(exploreRollsButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [self.myRollsButton addTarget:self action:@selector(myRollsButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.peopleRollsButton addTarget:self action:@selector(peopleRollsButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.friendsRollsButton addTarget:self action:@selector(friendsRollsButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [self.settingsButton addTarget:self action:@selector(settingsButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [self.streamButton addTarget:self action:@selector(streamButtonAction) forControlEvents:UIControlEventTouchUpInside];
 
     // Add Tags to Buttons
-    self.browseRollsButton.tag = GuideType_BrowseRolls;
+    self.exploreRollsButton.tag = GuideType_ExploreRolls;
     self.myRollsButton.tag = GuideType_MyRolls;
-    self.peopleRollsButton.tag = GuideType_PeopleRolls;
+    self.friendsRollsButton.tag = GuideType_FriendsRolls;
     self.settingsButton.tag = GuideType_Settings;
     self.streamButton.tag = GuideType_Stream;
     

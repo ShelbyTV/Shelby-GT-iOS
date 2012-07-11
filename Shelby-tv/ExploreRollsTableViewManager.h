@@ -1,5 +1,5 @@
 //
-//  PeopleRollsTableViewManager.h
+//  ExploreRollsTableViewManager.h
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 6/12/12.
@@ -8,6 +8,6 @@
 
 #import "GuideTableViewManager.h"
 
-@interface PeopleRollsTableViewManager : GuideTableViewManager <GuideTableViewManagerDelegate, ASPullToRefreshDelegate>
+@interface ExploreRollsTableViewManager : GuideTableViewManager <GuideTableViewManagerDelegate, ASPullToRefreshDelegate>
 
 @end

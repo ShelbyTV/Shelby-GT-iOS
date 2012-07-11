@@ -35,8 +35,8 @@
 /// Store rollsFollowing data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forRollsFollowingInContext:(NSManagedObjectContext*)context;
 
-/// Store browseRolls data in Core Data
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary forBrowseRollsInContext:(NSManagedObjectContext*)context;
+/// Store exploreRolls data in Core Data
++ (void)storeParsedData:(NSDictionary*)parsedDictionary forExploreRollsInContext:(NSManagedObjectContext*)context;
 
 /// Store dashboardEntry data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
@@ -113,8 +113,8 @@ static CoreDataUtility *sharedInstance = nil;
             [self storeParsedData:parsedDictionary forRollsFollowingInContext:context];
             break;
             
-        case APIRequestType_GetBrowseRolls:
-            [self storeParsedData:parsedDictionary forBrowseRollsInContext:context];
+        case APIRequestType_GetExploreRolls:
+            [self storeParsedData:parsedDictionary forExploreRollsInContext:context];
             break;
             
         case APIRequestType_GetRollFrames:
@@ -168,7 +168,7 @@ static CoreDataUtility *sharedInstance = nil;
     
 }
 
-+ (NSArray*)fetchBrowseRolls
++ (NSArray*)fetchExploreRolls
 {
     // Create fetch request
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -180,7 +180,7 @@ static CoreDataUtility *sharedInstance = nil;
     [request setEntity:description];
     
     // Only include messages that belond to this specific conversation
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isBrowse == %d", YES];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isExplore == %d", YES];
     [request setPredicate:predicate];
     
     // Execute request that returns array of dashboardEntrys
@@ -206,7 +206,7 @@ static CoreDataUtility *sharedInstance = nil;
     return [context executeFetchRequest:request error:nil];
 }
 
-+ (NSArray*)fetchPeopleRolls
++ (NSArray*)fetchFriendsRolls
 {
     // Create fetch request
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -218,7 +218,7 @@ static CoreDataUtility *sharedInstance = nil;
     [request setEntity:description];
     
     // Only include messages that belond to this specific conversation
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isPeople == %d", YES];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isFriends == %d", YES];
     [request setPredicate:predicate];
     
     // Execute request that returns array of dashboardEntrys
@@ -409,18 +409,18 @@ static CoreDataUtility *sharedInstance = nil;
                         
                     case APIRequestType_GetRollsFollowing:{
                         
-                        // RollsFollowing is saved, so get BrowseRolls
+                        // RollsFollowing is saved, so get ExploreRolls
                         [[self sharedInstance] setRequestType:APIRequestType_None];
-                         NSString *browseRollsRequestString = [NSString stringWithFormat:APIRequest_GetBrowseRolls, [SocialFacade sharedInstance].shelbyToken];
-                         NSMutableURLRequest *browseRollsRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:browseRollsRequestString]];
-                         ShelbyAPIClient *browseRollsClient = [[ShelbyAPIClient alloc] init];
-                         [browseRollsClient performRequest:browseRollsRequest ofType:APIRequestType_GetBrowseRolls];
+                         NSString *rollsFollowingRequestString = [NSString stringWithFormat:APIRequest_GetExploreRolls, [SocialFacade sharedInstance].shelbyToken];
+                         NSMutableURLRequest *rollsFollowingRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:rollsFollowingRequestString]];
+                         ShelbyAPIClient *rollsFollowingClient = [[ShelbyAPIClient alloc] init];
+                         [rollsFollowingClient performRequest:rollsFollowingRequest ofType:APIRequestType_GetExploreRolls];
                         
                     } break;
                         
-                    case APIRequestType_GetBrowseRolls:{
+                    case APIRequestType_GetExploreRolls:{
                         
-                        // BrowseROlls is saved, so release LoginViewController
+                        // Explore Rolls is saved, so release LoginViewController
                         [[self sharedInstance] setRequestType:APIRequestType_None];
                         [[SocialFacade sharedInstance] setFirstTimeLogin:NO];
                         [[NSNotificationCenter defaultCenter] postNotificationName:TextConstants_CoreData_DidFinishLoadingDataOnLogin object:nil];
@@ -567,7 +567,7 @@ static CoreDataUtility *sharedInstance = nil;
             
             if ( [roll.isPublic boolValue] && ![roll.isCollaborative boolValue] ) {
                 
-                roll.isPeople = [NSNumber numberWithBool:YES];
+                roll.isFriends = [NSNumber numberWithBool:YES];
             
             } else if ( [roll.isPublic boolValue] && [roll.isCollaborative boolValue] ) {
                 
@@ -580,7 +580,7 @@ static CoreDataUtility *sharedInstance = nil;
             } else {
                 
                 roll.isMy = [NSNumber numberWithBool:NO];
-                roll.isPeople = [NSNumber numberWithBool:NO];
+                roll.isFriends = [NSNumber numberWithBool:NO];
                 
             }
             
@@ -597,7 +597,7 @@ static CoreDataUtility *sharedInstance = nil;
     [self saveContext:context];
 }
 
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary forBrowseRollsInContext:(NSManagedObjectContext *)context
++ (void)storeParsedData:(NSDictionary *)parsedDictionary forExploreRollsInContext:(NSManagedObjectContext *)context
 {
     NSArray *resultsArray = [parsedDictionary valueForKey:APIRequest_Result];
     
@@ -635,7 +635,7 @@ static CoreDataUtility *sharedInstance = nil;
         
         roll.isPublic = [[resultsArray objectAtIndex:i] valueForKey:@"public"];
         
-        roll.isBrowse = [NSNumber numberWithBool:YES];
+        roll.isExplore = [NSNumber numberWithBool:YES];
     
     }
     

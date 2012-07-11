@@ -325,13 +325,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger count = 1;
-    
-    count = [self.coreDataResultsArray count];
-    
-    if ( count > 20) count = 20;
-    
-    return ( self.coreDataResultsArray ) ?  count : 1;
+    return ( self.coreDataResultsArray ) ?  [self.coreDataResultsArray count] : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -433,7 +427,7 @@
     if (indexPath.row == ([self.coreDataResultsArray count]-1) ) {
         
         // Load more data from CoreData
-//        [self performAPIRequestForMoreEntries];
+        [self performAPIRequestForMoreEntries];
         
     }
 }

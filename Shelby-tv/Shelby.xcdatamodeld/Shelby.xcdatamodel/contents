@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1484" systemVersion="12A256" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1487" systemVersion="12A269" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Conversation" representedClassName="Conversation" syncable="YES">
         <attribute name="conversationID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="messageCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -52,11 +52,11 @@
         <attribute name="creatorNickname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="followingCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="frameCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="isBrowse" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isCollaborative" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isExplore" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isFriends" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isGenius" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isMy" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isPeople" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isPersonal" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isPublic" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="rollID" optional="YES" attributeType="String" syncable="YES"/>

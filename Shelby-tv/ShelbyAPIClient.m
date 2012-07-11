@@ -186,7 +186,7 @@
             
         } break;
             
-        case APIRequestType_GetBrowseRolls:{
+        case APIRequestType_GetExploreRolls:{
             
             [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
             

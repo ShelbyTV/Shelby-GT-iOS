@@ -109,19 +109,19 @@
 }
 
 #pragma mark - ShelbyMenuDelegate Methods
-- (void)browseRollsButtonAction
+- (void)exploreRollsButtonAction
 {
-    [self.menuController browseRollsButtonAction];
+    [self.menuController exploreRollsButtonAction];
+}
+
+- (void)friendsRollsButtonAction
+{
+    [self.menuController friendsRollsButtonAction];
 }
 
 - (void)myRollsButtonAction
 {
     [self.menuController myRollsButtonAction];
-}
-
-- (void)peopleRollsButtonAction
-{
-    [self.menuController peopleRollsButtonAction];
 }
 
 - (void)settingsButtonAction

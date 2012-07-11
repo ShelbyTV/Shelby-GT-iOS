@@ -1,28 +1,28 @@
 //
-//  PeopleRollsTableViewManager.m
+//  ExploreRollsTableViewManager.m
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 6/12/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import "PeopleRollsTableViewManager.h"
+#import "ExploreRollsTableViewManager.h"
 #import "GuideTableViewController.h"
 #import "RollsCell.h"
 
-@interface PeopleRollsTableViewManager ()
+@interface ExploreRollsTableViewManager ()
 @property (assign, nonatomic) BOOL observerCreated;
 
 - (void)createAPIObservers;
 
 @end
 
-@implementation PeopleRollsTableViewManager
+@implementation ExploreRollsTableViewManager
 
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString requestTypeToString:APIRequestType_GetRollsFollowing] object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:[NSString requestTypeToString:APIRequestType_GetExploreRolls] object:nil];
 }
 
 
@@ -30,7 +30,7 @@
 - (void)createAPIObservers
 {
     
-    NSString *notificationName = [NSString requestTypeToString:APIRequestType_GetRollsFollowing];
+    NSString *notificationName = [NSString requestTypeToString:APIRequestType_GetExploreRolls];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(dataReturnedFromAPI:)
                                                  name:notificationName
@@ -50,11 +50,11 @@
 
 - (void)loadDataFromCoreData
 {
-    // Fetch Rolls-Following Data from Core Data
+    // Fetch Explore Rolls Data from Core Data
     
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
         
-        self.coreDataResultsArray = [CoreDataUtility fetchPeopleRolls];
+        self.coreDataResultsArray = [CoreDataUtility fetchExploreRolls];
         
         [self.tableView reloadData];
         
@@ -68,10 +68,10 @@
     if ( NO == self.observerCreated ) [self createAPIObservers];
     
     // Perform API Request
-    NSString *requestString = [NSString stringWithFormat:APIRequest_GetRollsFollowing, [SocialFacade sharedInstance].shelbyCreatorID, [SocialFacade sharedInstance].shelbyToken];
+    NSString *requestString = [NSString stringWithFormat:APIRequest_GetExploreRolls, [SocialFacade sharedInstance].shelbyToken];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-    [client performRequest:request ofType:APIRequestType_GetRollsFollowing];
+    [client performRequest:request ofType:APIRequestType_GetExploreRolls];
 }
 
 - (void)dataReturnedFromAPI:(NSNotification*)notification
@@ -94,10 +94,12 @@
     [self performAPIRequest];
 }
 
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -111,7 +113,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"RollsCell" owner:self options:nil];
     RollsCell *cell = (RollsCell*)[nib objectAtIndex:0];
     
@@ -121,7 +123,7 @@
     [cell.rollNameLabel setText:roll.title];
     [cell.frameCountLabel setText:[NSString stringWithFormat:@"%d videos", [roll.frameCount intValue]]];
     [cell.followingCountLabel setText:[NSString stringWithFormat:@"%d people watching", [roll.followingCount intValue]]];
-    
+ 
     return cell;
     
 }
@@ -133,5 +135,6 @@
     GuideTableViewController *rollFramesTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_RollFrames andRollID:roll.rollID];
     [self.guideController.navigationController pushViewController:rollFramesTableViewController animated:YES];
 }
+
 
 @end

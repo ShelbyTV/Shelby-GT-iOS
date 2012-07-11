@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		8E04DC2D1590E1620066BBA6 /* ShelbyMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E04DC2C1590E1620066BBA6 /* ShelbyMenuViewController.m */; };
 		8E04DC31159117DD0066BBA6 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E04DC30159117DD0066BBA6 /* SettingsTableViewController.m */; };
-		8E068B86158843650069FD01 /* BrowseRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B85158843640069FD01 /* BrowseRollsTableViewManager.m */; };
-		8E068B89158843B40069FD01 /* PeopleRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B88158843B40069FD01 /* PeopleRollsTableViewManager.m */; };
+		8E068B86158843650069FD01 /* ExploreRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B85158843640069FD01 /* ExploreRollsTableViewManager.m */; };
+		8E068B89158843B40069FD01 /* FriendsRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B88158843B40069FD01 /* FriendsRollsTableViewManager.m */; };
 		8E068B8C1588444E0069FD01 /* MyRollsTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */; };
 		8E06BCCF15A7A214004B42D5 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCCD15A7A213004B42D5 /* heart.png */; };
 		8E06BCD015A7A214004B42D5 /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCCE15A7A213004B42D5 /* heart@2x.png */; };
@@ -36,6 +36,15 @@
 		8E4A7733155185A0003CBA2A /* pullToRefreshArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A7731155185A0003CBA2A /* pullToRefreshArrow@2x.png */; };
 		8E4A77EA1551A6E2003CBA2A /* ShelbyAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */; };
 		8E5E7F95156151B0009FC8CE /* CoreDataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5E7F94156151B0009FC8CE /* CoreDataUtility.m */; };
+		8E5F039315ACFA2200DAEEBE /* navigationButtonExploreRollsOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F038B15ACFA2200DAEEBE /* navigationButtonExploreRollsOff.png */; };
+		8E5F039415ACFA2200DAEEBE /* navigationButtonExploreRollsOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F038C15ACFA2200DAEEBE /* navigationButtonExploreRollsOff@2x.png */; };
+		8E5F039515ACFA2200DAEEBE /* navigationButtonExploreRollsOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F038D15ACFA2200DAEEBE /* navigationButtonExploreRollsOn.png */; };
+		8E5F039615ACFA2200DAEEBE /* navigationButtonExploreRollsOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F038E15ACFA2200DAEEBE /* navigationButtonExploreRollsOn@2x.png */; };
+		8E5F039715ACFA2200DAEEBE /* navigationButtonFriendsRollsOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F038F15ACFA2200DAEEBE /* navigationButtonFriendsRollsOff.png */; };
+		8E5F039815ACFA2200DAEEBE /* navigationButtonFriendsRollsOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F039015ACFA2200DAEEBE /* navigationButtonFriendsRollsOff@2x.png */; };
+		8E5F039915ACFA2200DAEEBE /* navigationButtonFriendsRollsOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F039115ACFA2200DAEEBE /* navigationButtonFriendsRollsOn.png */; };
+		8E5F039A15ACFA2200DAEEBE /* navigationButtonFriendsRollsOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F039215ACFA2200DAEEBE /* navigationButtonFriendsRollsOn@2x.png */; };
+		8E5F039D15AD02A800DAEEBE /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5F039C15AD02A700DAEEBE /* Roll.m */; };
 		8E664D401541A66A0071EC42 /* LoginViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */; };
 		8E664D421541A6770071EC42 /* LoginViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */; };
 		8E664D541541B0120071EC42 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E664D531541B0120071EC42 /* LoginViewController.m */; };
@@ -81,6 +90,12 @@
 		8E7256DA15A749650052D80A /* loginTopBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256D815A749650052D80A /* loginTopBar@2x.png */; };
 		8E7256DD15A758610052D80A /* navigationButtonBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256DB15A7585F0052D80A /* navigationButtonBack.png */; };
 		8E7256DE15A758610052D80A /* navigationButtonBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256DC15A758600052D80A /* navigationButtonBack@2x.png */; };
+		8E78C1C515ABB96E00326EF9 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E78C1C315ABB96E00326EF9 /* ShareViewController.m */; };
+		8E78C1C615ABB96E00326EF9 /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E78C1C415ABB96E00326EF9 /* ShareViewController.xib */; };
+		8E78C1CA15ABB97900326EF9 /* RollItViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E78C1C815ABB97900326EF9 /* RollItViewController.m */; };
+		8E78C1CB15ABB97900326EF9 /* RollItViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E78C1C915ABB97900326EF9 /* RollItViewController.xib */; };
+		8E78C1CF15ABB98000326EF9 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E78C1CD15ABB98000326EF9 /* CommentViewController.m */; };
+		8E78C1D015ABB98000326EF9 /* CommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E78C1CE15ABB98000326EF9 /* CommentViewController.xib */; };
 		8E7F47B3154074130041118E /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B2154074130041118E /* Twitter.framework */; };
 		8E7F47B6154074180041118E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B5154074180041118E /* Accounts.framework */; };
 		8E7F47B81540741F0041118E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B71540741F0041118E /* QuartzCore.framework */; };
@@ -89,18 +104,10 @@
 		8E7F48061540B4690041118E /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F48051540B4690041118E /* Crashlytics.framework */; };
 		8E8124D71540B92E00E1EA4B /* GuideTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124D61540B92E00E1EA4B /* GuideTableViewController.m */; };
 		8E8124F31540C2E800E1EA4B /* GuideTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */; };
-		8E8369A31598EB6600B7A22B /* navigationButtonBrowseRollsOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E83698F1598EB6600B7A22B /* navigationButtonBrowseRollsOff.png */; };
-		8E8369A41598EB6600B7A22B /* navigationButtonBrowseRollsOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8369901598EB6600B7A22B /* navigationButtonBrowseRollsOff@2x.png */; };
-		8E8369A51598EB6600B7A22B /* navigationButtonBrowseRollsOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8369911598EB6600B7A22B /* navigationButtonBrowseRollsOn.png */; };
-		8E8369A61598EB6600B7A22B /* navigationButtonBrowseRollsOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8369921598EB6600B7A22B /* navigationButtonBrowseRollsOn@2x.png */; };
 		8E8369A71598EB6600B7A22B /* navigationButtonMyRollsOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8369931598EB6600B7A22B /* navigationButtonMyRollsOff.png */; };
 		8E8369A81598EB6600B7A22B /* navigationButtonMyRollsOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8369941598EB6600B7A22B /* navigationButtonMyRollsOff@2x.png */; };
 		8E8369A91598EB6600B7A22B /* navigationButtonMyRollsOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8369951598EB6600B7A22B /* navigationButtonMyRollsOn.png */; };
 		8E8369AA1598EB6600B7A22B /* navigationButtonMyRollsOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8369961598EB6600B7A22B /* navigationButtonMyRollsOn@2x.png */; };
-		8E8369AB1598EB6600B7A22B /* navigationButtonPeopleRollsOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8369971598EB6600B7A22B /* navigationButtonPeopleRollsOff.png */; };
-		8E8369AC1598EB6600B7A22B /* navigationButtonPeopleRollsOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8369981598EB6600B7A22B /* navigationButtonPeopleRollsOff@2x.png */; };
-		8E8369AD1598EB6600B7A22B /* navigationButtonPeopleRollsOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E8369991598EB6600B7A22B /* navigationButtonPeopleRollsOn.png */; };
-		8E8369AE1598EB6600B7A22B /* navigationButtonPeopleRollsOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E83699A1598EB6600B7A22B /* navigationButtonPeopleRollsOn@2x.png */; };
 		8E8369AF1598EB6600B7A22B /* navigationButtonSettingsOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E83699B1598EB6600B7A22B /* navigationButtonSettingsOff.png */; };
 		8E8369B01598EB6600B7A22B /* navigationButtonSettingsOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E83699C1598EB6600B7A22B /* navigationButtonSettingsOff@2x.png */; };
 		8E8369B11598EB6600B7A22B /* navigationButtonSettingsOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E83699D1598EB6600B7A22B /* navigationButtonSettingsOn.png */; };
@@ -126,7 +133,6 @@
 		8EB6D7F4157FD4ED0060202D /* videoCardTopBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7F2157FD4ED0060202D /* videoCardTopBar@2x.png */; };
 		8EB6D81315800F550060202D /* Creator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6D81215800F550060202D /* Creator.m */; };
 		8EB6D81615800FCF0060202D /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6D81515800FCF0060202D /* Frame.m */; };
-		8EB80E35159B943D001A274E /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB80E34159B943D001A274E /* Roll.m */; };
 		8EC54585158F96310048FEAA /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC54584158F96310048FEAA /* Conversation.m */; };
 		8EC981321594F95900BB9227 /* ShelbyUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC981311594F95900BB9227 /* ShelbyUser.m */; };
 		8EC9813715950DF100BB9227 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC9813615950DF100BB9227 /* Reachability.m */; };
@@ -183,10 +189,10 @@
 		8E04DC2C1590E1620066BBA6 /* ShelbyMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyMenuViewController.m; sourceTree = "<group>"; };
 		8E04DC2F159117DD0066BBA6 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		8E04DC30159117DD0066BBA6 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
-		8E068B84158843640069FD01 /* BrowseRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowseRollsTableViewManager.h; sourceTree = "<group>"; };
-		8E068B85158843640069FD01 /* BrowseRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowseRollsTableViewManager.m; sourceTree = "<group>"; };
-		8E068B87158843B40069FD01 /* PeopleRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleRollsTableViewManager.h; sourceTree = "<group>"; };
-		8E068B88158843B40069FD01 /* PeopleRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleRollsTableViewManager.m; sourceTree = "<group>"; };
+		8E068B84158843640069FD01 /* ExploreRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExploreRollsTableViewManager.h; sourceTree = "<group>"; };
+		8E068B85158843640069FD01 /* ExploreRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreRollsTableViewManager.m; sourceTree = "<group>"; };
+		8E068B87158843B40069FD01 /* FriendsRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsRollsTableViewManager.h; sourceTree = "<group>"; };
+		8E068B88158843B40069FD01 /* FriendsRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsRollsTableViewManager.m; sourceTree = "<group>"; };
 		8E068B8A1588444D0069FD01 /* MyRollsTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRollsTableViewManager.h; sourceTree = "<group>"; };
 		8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRollsTableViewManager.m; sourceTree = "<group>"; };
 		8E06BCCD15A7A213004B42D5 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
@@ -218,6 +224,16 @@
 		8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbyAPIClient.m; sourceTree = "<group>"; };
 		8E5E7F93156151B0009FC8CE /* CoreDataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataUtility.h; sourceTree = "<group>"; };
 		8E5E7F94156151B0009FC8CE /* CoreDataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataUtility.m; sourceTree = "<group>"; };
+		8E5F038B15ACFA2200DAEEBE /* navigationButtonExploreRollsOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonExploreRollsOff.png; sourceTree = "<group>"; };
+		8E5F038C15ACFA2200DAEEBE /* navigationButtonExploreRollsOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonExploreRollsOff@2x.png"; sourceTree = "<group>"; };
+		8E5F038D15ACFA2200DAEEBE /* navigationButtonExploreRollsOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonExploreRollsOn.png; sourceTree = "<group>"; };
+		8E5F038E15ACFA2200DAEEBE /* navigationButtonExploreRollsOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonExploreRollsOn@2x.png"; sourceTree = "<group>"; };
+		8E5F038F15ACFA2200DAEEBE /* navigationButtonFriendsRollsOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonFriendsRollsOff.png; sourceTree = "<group>"; };
+		8E5F039015ACFA2200DAEEBE /* navigationButtonFriendsRollsOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonFriendsRollsOff@2x.png"; sourceTree = "<group>"; };
+		8E5F039115ACFA2200DAEEBE /* navigationButtonFriendsRollsOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonFriendsRollsOn.png; sourceTree = "<group>"; };
+		8E5F039215ACFA2200DAEEBE /* navigationButtonFriendsRollsOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonFriendsRollsOn@2x.png"; sourceTree = "<group>"; };
+		8E5F039B15AD02A700DAEEBE /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
+		8E5F039C15AD02A700DAEEBE /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
 		8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_iPhone.xib; sourceTree = "<group>"; };
 		8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_iPad.xib; sourceTree = "<group>"; };
 		8E664D521541B0120071EC42 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -304,6 +320,15 @@
 		8E7256D815A749650052D80A /* loginTopBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "loginTopBar@2x.png"; path = "Resources/images/login/loginTopBar@2x.png"; sourceTree = SOURCE_ROOT; };
 		8E7256DB15A7585F0052D80A /* navigationButtonBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonBack.png; sourceTree = "<group>"; };
 		8E7256DC15A758600052D80A /* navigationButtonBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonBack@2x.png"; sourceTree = "<group>"; };
+		8E78C1C215ABB96E00326EF9 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		8E78C1C315ABB96E00326EF9 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		8E78C1C415ABB96E00326EF9 /* ShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareViewController.xib; sourceTree = "<group>"; };
+		8E78C1C715ABB97900326EF9 /* RollItViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RollItViewController.h; sourceTree = "<group>"; };
+		8E78C1C815ABB97900326EF9 /* RollItViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RollItViewController.m; sourceTree = "<group>"; };
+		8E78C1C915ABB97900326EF9 /* RollItViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RollItViewController.xib; sourceTree = "<group>"; };
+		8E78C1CC15ABB98000326EF9 /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		8E78C1CD15ABB98000326EF9 /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
+		8E78C1CE15ABB98000326EF9 /* CommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentViewController.xib; sourceTree = "<group>"; };
 		8E7F47B2154074130041118E /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		8E7F47B5154074180041118E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		8E7F47B71540741F0041118E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -317,18 +342,10 @@
 		8E8124F11540C2E800E1EA4B /* GuideTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideTableViewManager.h; sourceTree = "<group>"; };
 		8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideTableViewManager.m; sourceTree = "<group>"; };
 		8E8124F41540C2F900E1EA4B /* TableViewManagers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewManagers.h; sourceTree = "<group>"; };
-		8E83698F1598EB6600B7A22B /* navigationButtonBrowseRollsOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonBrowseRollsOff.png; sourceTree = "<group>"; };
-		8E8369901598EB6600B7A22B /* navigationButtonBrowseRollsOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonBrowseRollsOff@2x.png"; sourceTree = "<group>"; };
-		8E8369911598EB6600B7A22B /* navigationButtonBrowseRollsOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonBrowseRollsOn.png; sourceTree = "<group>"; };
-		8E8369921598EB6600B7A22B /* navigationButtonBrowseRollsOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonBrowseRollsOn@2x.png"; sourceTree = "<group>"; };
 		8E8369931598EB6600B7A22B /* navigationButtonMyRollsOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonMyRollsOff.png; sourceTree = "<group>"; };
 		8E8369941598EB6600B7A22B /* navigationButtonMyRollsOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonMyRollsOff@2x.png"; sourceTree = "<group>"; };
 		8E8369951598EB6600B7A22B /* navigationButtonMyRollsOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonMyRollsOn.png; sourceTree = "<group>"; };
 		8E8369961598EB6600B7A22B /* navigationButtonMyRollsOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonMyRollsOn@2x.png"; sourceTree = "<group>"; };
-		8E8369971598EB6600B7A22B /* navigationButtonPeopleRollsOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonPeopleRollsOff.png; sourceTree = "<group>"; };
-		8E8369981598EB6600B7A22B /* navigationButtonPeopleRollsOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonPeopleRollsOff@2x.png"; sourceTree = "<group>"; };
-		8E8369991598EB6600B7A22B /* navigationButtonPeopleRollsOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonPeopleRollsOn.png; sourceTree = "<group>"; };
-		8E83699A1598EB6600B7A22B /* navigationButtonPeopleRollsOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonPeopleRollsOn@2x.png"; sourceTree = "<group>"; };
 		8E83699B1598EB6600B7A22B /* navigationButtonSettingsOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonSettingsOff.png; sourceTree = "<group>"; };
 		8E83699C1598EB6600B7A22B /* navigationButtonSettingsOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonSettingsOff@2x.png"; sourceTree = "<group>"; };
 		8E83699D1598EB6600B7A22B /* navigationButtonSettingsOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonSettingsOn.png; sourceTree = "<group>"; };
@@ -358,8 +375,6 @@
 		8EB6D81215800F550060202D /* Creator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Creator.m; sourceTree = "<group>"; };
 		8EB6D81415800FCF0060202D /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
 		8EB6D81515800FCF0060202D /* Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
-		8EB80E33159B943D001A274E /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
-		8EB80E34159B943D001A274E /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
 		8EC54583158F96310048FEAA /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
 		8EC54584158F96310048FEAA /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		8EC981301594F95900BB9227 /* ShelbyUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelbyUser.h; sourceTree = "<group>"; };
@@ -596,6 +611,14 @@
 		8E791DE715828D3200B0E744 /* navigation */ = {
 			isa = PBXGroup;
 			children = (
+				8E5F038B15ACFA2200DAEEBE /* navigationButtonExploreRollsOff.png */,
+				8E5F038C15ACFA2200DAEEBE /* navigationButtonExploreRollsOff@2x.png */,
+				8E5F038D15ACFA2200DAEEBE /* navigationButtonExploreRollsOn.png */,
+				8E5F038E15ACFA2200DAEEBE /* navigationButtonExploreRollsOn@2x.png */,
+				8E5F038F15ACFA2200DAEEBE /* navigationButtonFriendsRollsOff.png */,
+				8E5F039015ACFA2200DAEEBE /* navigationButtonFriendsRollsOff@2x.png */,
+				8E5F039115ACFA2200DAEEBE /* navigationButtonFriendsRollsOn.png */,
+				8E5F039215ACFA2200DAEEBE /* navigationButtonFriendsRollsOn@2x.png */,
 				8E7256DB15A7585F0052D80A /* navigationButtonBack.png */,
 				8E7256DC15A758600052D80A /* navigationButtonBack@2x.png */,
 				8EA238D315A6518D006C2A54 /* navigationDivider.png */,
@@ -604,18 +627,10 @@
 				8E917ABF1599337C0069C9A1 /* navigationLogo@2x.png */,
 				8EA238CF15A6516E006C2A54 /* navigationBar.png */,
 				8EA238D015A6516E006C2A54 /* navigationBar@2x.png */,
-				8E83698F1598EB6600B7A22B /* navigationButtonBrowseRollsOff.png */,
-				8E8369901598EB6600B7A22B /* navigationButtonBrowseRollsOff@2x.png */,
-				8E8369911598EB6600B7A22B /* navigationButtonBrowseRollsOn.png */,
-				8E8369921598EB6600B7A22B /* navigationButtonBrowseRollsOn@2x.png */,
 				8E8369931598EB6600B7A22B /* navigationButtonMyRollsOff.png */,
 				8E8369941598EB6600B7A22B /* navigationButtonMyRollsOff@2x.png */,
 				8E8369951598EB6600B7A22B /* navigationButtonMyRollsOn.png */,
 				8E8369961598EB6600B7A22B /* navigationButtonMyRollsOn@2x.png */,
-				8E8369971598EB6600B7A22B /* navigationButtonPeopleRollsOff.png */,
-				8E8369981598EB6600B7A22B /* navigationButtonPeopleRollsOff@2x.png */,
-				8E8369991598EB6600B7A22B /* navigationButtonPeopleRollsOn.png */,
-				8E83699A1598EB6600B7A22B /* navigationButtonPeopleRollsOn@2x.png */,
 				8E83699B1598EB6600B7A22B /* navigationButtonSettingsOff.png */,
 				8E83699C1598EB6600B7A22B /* navigationButtonSettingsOff@2x.png */,
 				8E83699D1598EB6600B7A22B /* navigationButtonSettingsOn.png */,
@@ -661,12 +676,12 @@
 				8E8124F41540C2F900E1EA4B /* TableViewManagers.h */,
 				8E8124F11540C2E800E1EA4B /* GuideTableViewManager.h */,
 				8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */,
-				8E068B84158843640069FD01 /* BrowseRollsTableViewManager.h */,
-				8E068B85158843640069FD01 /* BrowseRollsTableViewManager.m */,
+				8E068B84158843640069FD01 /* ExploreRollsTableViewManager.h */,
+				8E068B85158843640069FD01 /* ExploreRollsTableViewManager.m */,
 				8E068B8A1588444D0069FD01 /* MyRollsTableViewManager.h */,
 				8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */,
-				8E068B87158843B40069FD01 /* PeopleRollsTableViewManager.h */,
-				8E068B88158843B40069FD01 /* PeopleRollsTableViewManager.m */,
+				8E068B87158843B40069FD01 /* FriendsRollsTableViewManager.h */,
+				8E068B88158843B40069FD01 /* FriendsRollsTableViewManager.m */,
 				8EFE780A15939B0200499994 /* RollFramesTableViewManager.h */,
 				8EFE780B15939B0200499994 /* RollFramesTableViewManager.m */,
 				8E2A8EAD159135970028712C /* StreamTableViewManager.h */,
@@ -806,14 +821,20 @@
 		8ED3110215360450002614DF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8E78C1CC15ABB98000326EF9 /* CommentViewController.h */,
+				8E78C1CD15ABB98000326EF9 /* CommentViewController.m */,
 				8E8124D51540B92E00E1EA4B /* GuideTableViewController.h */,
 				8E8124D61540B92E00E1EA4B /* GuideTableViewController.m */,
 				8E664D521541B0120071EC42 /* LoginViewController.h */,
 				8E664D531541B0120071EC42 /* LoginViewController.m */,
+				8E78C1C715ABB97900326EF9 /* RollItViewController.h */,
+				8E78C1C815ABB97900326EF9 /* RollItViewController.m */,
 				8E04DC2F159117DD0066BBA6 /* SettingsTableViewController.h */,
 				8E04DC30159117DD0066BBA6 /* SettingsTableViewController.m */,
 				8E04DC2B1590E1620066BBA6 /* ShelbyMenuViewController.h */,
 				8E04DC2C1590E1620066BBA6 /* ShelbyMenuViewController.m */,
+				8E78C1C215ABB96E00326EF9 /* ShareViewController.h */,
+				8E78C1C315ABB96E00326EF9 /* ShareViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -865,10 +886,13 @@
 		8ED3110715360490002614DF /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				8E78C1CE15ABB98000326EF9 /* CommentViewController.xib */,
 				8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */,
 				8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */,
 				8EE40A4C159638E000559484 /* RollsCell.xib */,
+				8E78C1C915ABB97900326EF9 /* RollItViewController.xib */,
 				8E4A04601598CA3900E4F675 /* ShelbyMenuViewController.xib */,
+				8E78C1C415ABB96E00326EF9 /* ShareViewController.xib */,
 				8EEA703C155449D800B1B07F /* VideoCardCell.xib */,
 				8EC981411595135C00BB9227 /* VideoCardExpandedCell.xib */,
 				8EE50654155CA79F00A04F50 /* VideoPlayerViewController_iPad.xib */,
@@ -908,9 +932,9 @@
 		8EE5065B155CA90700A04F50 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				8E5F039B15AD02A700DAEEBE /* Roll.h */,
+				8E5F039C15AD02A700DAEEBE /* Roll.m */,
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
-				8EB80E33159B943D001A274E /* Roll.h */,
-				8EB80E34159B943D001A274E /* Roll.m */,
 				8EC981301594F95900BB9227 /* ShelbyUser.h */,
 				8EC981311594F95900BB9227 /* ShelbyUser.m */,
 				8EC54583158F96310048FEAA /* Conversation.h */,
@@ -1056,18 +1080,10 @@
 				8EE40A471596354900559484 /* rollsOverlay@2x.png in Resources */,
 				8EE40A4D159638E000559484 /* RollsCell.xib in Resources */,
 				8E4A04611598CA3900E4F675 /* ShelbyMenuViewController.xib in Resources */,
-				8E8369A31598EB6600B7A22B /* navigationButtonBrowseRollsOff.png in Resources */,
-				8E8369A41598EB6600B7A22B /* navigationButtonBrowseRollsOff@2x.png in Resources */,
-				8E8369A51598EB6600B7A22B /* navigationButtonBrowseRollsOn.png in Resources */,
-				8E8369A61598EB6600B7A22B /* navigationButtonBrowseRollsOn@2x.png in Resources */,
 				8E8369A71598EB6600B7A22B /* navigationButtonMyRollsOff.png in Resources */,
 				8E8369A81598EB6600B7A22B /* navigationButtonMyRollsOff@2x.png in Resources */,
 				8E8369A91598EB6600B7A22B /* navigationButtonMyRollsOn.png in Resources */,
 				8E8369AA1598EB6600B7A22B /* navigationButtonMyRollsOn@2x.png in Resources */,
-				8E8369AB1598EB6600B7A22B /* navigationButtonPeopleRollsOff.png in Resources */,
-				8E8369AC1598EB6600B7A22B /* navigationButtonPeopleRollsOff@2x.png in Resources */,
-				8E8369AD1598EB6600B7A22B /* navigationButtonPeopleRollsOn.png in Resources */,
-				8E8369AE1598EB6600B7A22B /* navigationButtonPeopleRollsOn@2x.png in Resources */,
 				8E8369AF1598EB6600B7A22B /* navigationButtonSettingsOff.png in Resources */,
 				8E8369B01598EB6600B7A22B /* navigationButtonSettingsOff@2x.png in Resources */,
 				8E8369B11598EB6600B7A22B /* navigationButtonSettingsOn.png in Resources */,
@@ -1110,6 +1126,17 @@
 				8E06BCF415A7D8B5004B42D5 /* videoCardButtonUpvoteOff@2x.png in Resources */,
 				8E06BCF515A7D8B5004B42D5 /* videoCardButtonUpvoteOn.png in Resources */,
 				8E06BCF615A7D8B5004B42D5 /* videoCardButtonUpvoteOn@2x.png in Resources */,
+				8E78C1C615ABB96E00326EF9 /* ShareViewController.xib in Resources */,
+				8E78C1CB15ABB97900326EF9 /* RollItViewController.xib in Resources */,
+				8E78C1D015ABB98000326EF9 /* CommentViewController.xib in Resources */,
+				8E5F039315ACFA2200DAEEBE /* navigationButtonExploreRollsOff.png in Resources */,
+				8E5F039415ACFA2200DAEEBE /* navigationButtonExploreRollsOff@2x.png in Resources */,
+				8E5F039515ACFA2200DAEEBE /* navigationButtonExploreRollsOn.png in Resources */,
+				8E5F039615ACFA2200DAEEBE /* navigationButtonExploreRollsOn@2x.png in Resources */,
+				8E5F039715ACFA2200DAEEBE /* navigationButtonFriendsRollsOff.png in Resources */,
+				8E5F039815ACFA2200DAEEBE /* navigationButtonFriendsRollsOff@2x.png in Resources */,
+				8E5F039915ACFA2200DAEEBE /* navigationButtonFriendsRollsOn.png in Resources */,
+				8E5F039A15ACFA2200DAEEBE /* navigationButtonFriendsRollsOn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1161,8 +1188,8 @@
 				8ECFFE46157D73BF007CCA73 /* UpvoteUsers.m in Sources */,
 				8EB6D81315800F550060202D /* Creator.m in Sources */,
 				8EB6D81615800FCF0060202D /* Frame.m in Sources */,
-				8E068B86158843650069FD01 /* BrowseRollsTableViewManager.m in Sources */,
-				8E068B89158843B40069FD01 /* PeopleRollsTableViewManager.m in Sources */,
+				8E068B86158843650069FD01 /* ExploreRollsTableViewManager.m in Sources */,
+				8E068B89158843B40069FD01 /* FriendsRollsTableViewManager.m in Sources */,
 				8E068B8C1588444E0069FD01 /* MyRollsTableViewManager.m in Sources */,
 				8EC54585158F96310048FEAA /* Conversation.m in Sources */,
 				8E04DC2D1590E1620066BBA6 /* ShelbyMenuViewController.m in Sources */,
@@ -1202,9 +1229,12 @@
 				8E6AF92C159B76FF00F570CF /* OAServiceTicket.m in Sources */,
 				8E6AF92E159B76FF00F570CF /* OAToken.m in Sources */,
 				8E6AF92F159B76FF00F570CF /* OATokenManager.m in Sources */,
-				8EB80E35159B943D001A274E /* Roll.m in Sources */,
 				8E6CFF8A15A7E49300EFBED3 /* PSYouTubeExtractor.m in Sources */,
 				8E6CFF8B15A7E49300EFBED3 /* PSYouTubeView.m in Sources */,
+				8E78C1C515ABB96E00326EF9 /* ShareViewController.m in Sources */,
+				8E78C1CA15ABB97900326EF9 /* RollItViewController.m in Sources */,
+				8E78C1CF15ABB98000326EF9 /* CommentViewController.m in Sources */,
+				8E5F039D15AD02A800DAEEBE /* Roll.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1229,7 +1259,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Arthur Sabintsev (Z4E762QSUZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arthur Sabintsev (Z4E762QSUZ)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1244,7 +1274,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PROVISIONING_PROFILE = "B09ECF02-F5E7-47A1-A176-FB36C53A0EAF";
+				PROVISIONING_PROFILE = "A6CC5FE3-9170-47F2-A539-3EDB4028F3C0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A6CC5FE3-9170-47F2-A539-3EDB4028F3C0";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1257,7 +1288,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Arthur Sabintsev (Z4E762QSUZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arthur Sabintsev (Z4E762QSUZ)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1266,7 +1297,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "B09ECF02-F5E7-47A1-A176-FB36C53A0EAF";
+				PROVISIONING_PROFILE = "A6CC5FE3-9170-47F2-A539-3EDB4028F3C0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A6CC5FE3-9170-47F2-A539-3EDB4028F3C0";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

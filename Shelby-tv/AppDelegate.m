@@ -81,20 +81,20 @@
     
     NSMutableDictionary *viewControllers = [NSMutableDictionary dictionary];
     
-    GuideTableViewController *browseRollsTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_BrowseRolls];
-    UINavigationController *browseRollsNavigationController = [[UINavigationController alloc] initWithRootViewController:browseRollsTableViewController];
-    browseRollsTableViewController.navigationController = browseRollsNavigationController;
-    [viewControllers setValue:browseRollsNavigationController forKey:TextConstants_Section_BrowseRolls];
+    GuideTableViewController *exploreRollsTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_ExploreRolls];
+    UINavigationController *exploreRollsNavigationController = [[UINavigationController alloc] initWithRootViewController:exploreRollsTableViewController];
+    exploreRollsTableViewController.navigationController = exploreRollsNavigationController;
+    [viewControllers setValue:exploreRollsNavigationController forKey:TextConstants_Section_ExploreRolls];
+    
+    GuideTableViewController *friendsRollsTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_FriendsRolls];
+    UINavigationController *friendsRollsNavigationController = [[UINavigationController alloc] initWithRootViewController:friendsRollsTableViewController];
+    friendsRollsTableViewController.navigationController = friendsRollsNavigationController;
+    [viewControllers setValue:friendsRollsNavigationController forKey:TextConstants_Section_FriendsRolls];
     
     GuideTableViewController *myRollsTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_MyRolls];
     UINavigationController *myRollsNavigationController = [[UINavigationController alloc] initWithRootViewController:myRollsTableViewController];
     myRollsTableViewController.navigationController = myRollsNavigationController;
     [viewControllers setValue:myRollsNavigationController forKey:TextConstants_Section_MyRolls];
-    
-    GuideTableViewController *peopleRollsTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_PeopleRolls];
-    UINavigationController *peopleRollsNavigationController = [[UINavigationController alloc] initWithRootViewController:peopleRollsTableViewController];
-    peopleRollsTableViewController.navigationController = peopleRollsNavigationController;
-    [viewControllers setValue:peopleRollsNavigationController forKey:TextConstants_Section_PeopleRolls];
     
     SettingsTableViewController *settingsTableViewController = [[SettingsTableViewController alloc] initWithStyle:UITableViewStylePlain];
     UINavigationController *settingsNavigationController = [[UINavigationController alloc] initWithRootViewController:settingsTableViewController];
@@ -109,9 +109,9 @@
     self.menuController = [[ShelbyMenuViewController alloc] initWithViewControllers:viewControllers];
     
     // Add reference to ShelbyMenuViewController
-    browseRollsTableViewController.menuController = self.menuController;
+    exploreRollsTableViewController.menuController = self.menuController;
+    friendsRollsTableViewController.menuController = self.menuController;
     myRollsTableViewController.menuController = self.menuController;
-    peopleRollsTableViewController.menuController = self.menuController;
     settingsTableViewController.menuController = self.menuController;
     streamTableViewController.menuController = self.menuController;
     

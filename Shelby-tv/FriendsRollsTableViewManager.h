@@ -1,5 +1,5 @@
 //
-//  BrowseRollsTableViewManager.h
+//  FriendsRollsTableViewManager.h
 //  Shelby-tv
 //
 //  Created by Arthur Ariel Sabintsev on 6/12/12.
@@ -8,6 +8,6 @@
 
 #import "GuideTableViewManager.h"
 
-@interface BrowseRollsTableViewManager : GuideTableViewManager <GuideTableViewManagerDelegate, ASPullToRefreshDelegate>
+@interface FriendsRollsTableViewManager : GuideTableViewManager <GuideTableViewManagerDelegate, ASPullToRefreshDelegate>
 
 @end

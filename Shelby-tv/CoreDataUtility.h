@@ -38,22 +38,23 @@
 + (NSArray*)fetchAllDashboardEntries;
 
 /**
- Fetch all Browse Rolls
+ Fetch all Explore Rolls
  */
 
-+ (NSArray*)fetchBrowseRolls;
++ (NSArray*)fetchExploreRolls;
+
+
+/**
+ Fetch all Friends Rolls
+ */
+
++ (NSArray*)fetchFriendsRolls;
 
 /**
  Fetch all My Rolls
  */
 
 + (NSArray*)fetchMyRolls;
-
-/**
- Fetch all People Rolls
- */
-
-+ (NSArray*)fetchPeopleRolls;
 
 /**
  Fetch frames from a specific roll
