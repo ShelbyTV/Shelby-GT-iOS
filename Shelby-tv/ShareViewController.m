@@ -137,10 +137,11 @@
 }
 
 #pragma mark - UIResponder Methods
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    if ( [self.commentTextView isFirstResponder]) [self.commentTextView resignFirstResponder];
+    if( [text isEqualToString:@"\n"] ) [textView resignFirstResponder];
     
+    return YES;
 }
 
 #pragma mark - Interface Orientation Method

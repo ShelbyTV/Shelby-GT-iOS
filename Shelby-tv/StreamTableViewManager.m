@@ -64,6 +64,9 @@
         
         [cell setTag:row];
         [cell.upvoteButton setTag:row];
+        [cell.shareButton setTag:row];
+        
+        NSLog(@"%d", cell.shareButton.tag);
         
         // Store Dashboard ID
         if ( ![self arrayOfDashboardIDs] ) self.arrayOfDashboardIDs = [NSMutableArray array];
@@ -250,7 +253,7 @@
 
 - (void)share:(UIButton *)button
 {
-    
+
     DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForDashboardID:[self.arrayOfDashboardIDs objectAtIndex:button.tag]];
     Frame *frame = dashboardEntry.frame;
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
@@ -318,6 +321,9 @@
     // Hide ASPullToRefreshController's HeaderView
     dispatch_async(dispatch_get_main_queue(), ^{
         
+        self.arrayOfDashboardIDs = nil;
+        self.arrayOfFrameIDs = nil;
+        self.arrayOfVideoLinks = nil;
         [self.refreshController didFinishRefreshing];
         [self loadDataFromCoreData];
         
