@@ -8,14 +8,16 @@
 
 #import "ShareViewController.h"
 #import "SocialFacade.h"
+#import "ShelbyAPIClient.h"
 #import "AsynchronousFreeloader.h"
+#import "NSString+TypedefConversion.h"
 
 @interface ShareViewController () <UITextViewDelegate>
 
 @property (strong, nonatomic) Frame *frame;
 
 - (void)addCustomBackButton;
-- (void)createObserver;
+- (void)createAPIObservers;
 - (void)customizeView;
 - (void)populateView;
 
@@ -103,9 +105,14 @@
     [self.navigationItem setLeftBarButtonItem:backBarButtonItem];
 }
 
-- (void)createObserver
+- (void)createAPIObservers
 {
     
+    NSString *notificationName = [NSString requestTypeToString:APIRequestType_PostShareFrame];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(dataReturnedFromAPI:)
+                                                 name:notificationName
+                                               object:nil];
 }
 
 #pragma mark - Action Methods
@@ -123,17 +130,23 @@
 {
     
     // Add Observer
-    [self createObserver];
+    [self createAPIObservers];
     
     // Create request string and add frameID and shelbyToken
     NSString *requestString = [NSString stringWithFormat:APIRequest_ShareFrame, self.frame.frameID, [SocialFacade sharedInstance].shelbyToken];
+    
+    NSString *commentsString = [[NSURL URLWithString:self.commentTextView.text] absoluteString];
+    requestString = [NSString stringWithFormat:@"%@&text=%@", requestString, commentsString];
     
     // Build string
     if ( [self.facebookButton isSelected] ) requestString = [NSString stringWithFormat:@"%@&destination[]=facebook", requestString];
     if ( [self.twitterButton isSelected] ) requestString = [NSString stringWithFormat:@"%@&destination[]=twitter", requestString];
     
-    if ( DEBUGMODE ) NSLog(@"Share Call:%@", requestString);
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
+    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+    [client performRequest:request ofType:APIRequestType_GetStream];
     
+    // Add shared successfully
 }
 
 #pragma mark - UIResponder Methods

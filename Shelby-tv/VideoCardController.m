@@ -11,6 +11,7 @@
 #import "ShelbyAPIClient.h"
 #import "SocialFacade.h"
 #import "ShareViewController.h"
+#import "CommentViewController.h"
 #import "NSString+TypedefConversion.h"
 
 @interface VideoCardController ()
@@ -54,14 +55,15 @@
     [client performRequest:downvoteRequest ofType:APIRequestType_PostDownvote];
 }
 
-- (void)comment
+- (void)comment:(UINavigationController *)navController
 {
-    
+    CommentViewController *commentViewController = [[CommentViewController alloc] initWithNibName:@"CommentViewController" bundle:nil andFrame:self.frame];
+    [navController pushViewController:commentViewController animated:YES];
 }
 
-- (void)roll
+- (void)roll:(UINavigationController *)navController
 {
-    
+
 }
 
 - (void)share:(UINavigationController *)navController

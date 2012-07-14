@@ -118,9 +118,9 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage" id="880518741">
+						<object class="NSCustomResource" key="IBUIImage" id="906944329">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">sharingStroke.png</string>
+							<string key="NSResourceName">horizontalStroke.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="28255080">
@@ -133,7 +133,7 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<reference key="IBUIImage" ref="880518741"/>
+						<reference key="IBUIImage" ref="906944329"/>
 					</object>
 					<object class="IBUIImageView" id="498773915">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -145,7 +145,7 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<reference key="IBUIImage" ref="880518741"/>
+						<reference key="IBUIImage" ref="906944329"/>
 					</object>
 					<object class="IBUITextView" id="220394295">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -295,6 +295,7 @@
 						<string key="NSFrame">{{15, 309}, {291, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -669,12 +670,12 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="horizontalStroke.png">{320, 2}</string>
 			<string key="sharingButtonFacebookOff.png">{41, 41}</string>
 			<string key="sharingButtonFacebookOn.png">{41, 41}</string>
 			<string key="sharingButtonShare.png">{291, 40}</string>
 			<string key="sharingButtonTwitterOff.png">{41, 41}</string>
 			<string key="sharingButtonTwitterOn.png">{41, 41}</string>
-			<string key="sharingStroke.png">{320, 2}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1498</string>
 	</data>

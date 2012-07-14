@@ -21,9 +21,9 @@
 
 - (void)createAPIObservers;
 - (void)populateTableViewCell:(VideoCardCell*)cell withContent:(DashboardEntry*)dashboardEntry inRow:(NSUInteger)row;
-
 - (void)upvote:(UIButton *)button;
 - (void)downvote:(UIButton *)button;
+- (void)comment:(UIButton *)button;
 - (void)share:(UIButton *)button;
 
 @end
@@ -64,6 +64,8 @@
         
         [cell setTag:row];
         [cell.upvoteButton setTag:row];
+        [cell.commentButton setTag:row];
+        [cell.rollButton setTag:row];
         [cell.shareButton setTag:row];
         
         NSLog(@"%d", cell.shareButton.tag);
@@ -85,6 +87,9 @@
         
         // Populate nickname label
         [cell.nicknameLabel setText:dashboardEntry.frame.creator.nickname];
+        
+        // Connect Comment Button
+        [cell.commentButton addTarget:self action:@selector(comment:) forControlEvents:UIControlEventTouchUpInside];
         
         // Connect Share Button
         [cell.shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
@@ -249,6 +254,16 @@
     // Ping API with new values
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
     [controller downvote];
+}
+
+- (void)comment:(UIButton *)button
+{
+    
+    DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForDashboardID:[self.arrayOfDashboardIDs objectAtIndex:button.tag]];
+    Frame *frame = dashboardEntry.frame;
+    VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
+    [controller comment:self.guideController.navigationController];
+    
 }
 
 - (void)share:(UIButton *)button

@@ -19,9 +19,9 @@
 
 - (void)downvote;
 
-- (void)comment;
+- (void)comment:(UINavigationController*)navController;
 
-- (void)roll;
+- (void)roll:(UINavigationController*)navController;
 
 - (void)share:(UINavigationController*)navController;
 

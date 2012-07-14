@@ -54,6 +54,8 @@
         
         [cell setTag:row];
         [cell.upvoteButton setTag:row];
+        [cell.commentButton setTag:row];
+        [cell.rollButton setTag:row];
         [cell.shareButton setTag:row];
         
         // Store Frame ID
