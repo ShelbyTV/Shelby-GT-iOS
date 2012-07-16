@@ -67,20 +67,18 @@
         [cell.commentButton setTag:row];
         [cell.rollButton setTag:row];
         [cell.shareButton setTag:row];
-        
-        NSLog(@"%d", cell.shareButton.tag);
-        
+  
         // Store Dashboard ID
         if ( ![self arrayOfDashboardIDs] ) self.arrayOfDashboardIDs = [NSMutableArray array];
-        [self.arrayOfDashboardIDs addObject:dashboardEntry.dashboardID];
+        [self.arrayOfDashboardIDs insertObject:dashboardEntry.dashboardID atIndex:row];
         
         // Store Frame ID
         if ( ![self arrayOfFrameIDs] ) self.arrayOfFrameIDs = [NSMutableArray array];
-        [self.arrayOfFrameIDs addObject:dashboardEntry.frame.frameID];
+        [self.arrayOfFrameIDs insertObject:dashboardEntry.frame.frameID atIndex:row];
         
         // Store Video URL
         if ( ![self arrayOfVideoLinks] ) self.arrayOfVideoLinks = [NSMutableArray array];
-        [self.arrayOfVideoLinks addObject:dashboardEntry.frame.video.sourceURL];
+        [self.arrayOfVideoLinks insertObject:dashboardEntry.frame.video.sourceURL atIndex:row];
         
         // Populate roll label
         [cell.rollLabel setText:dashboardEntry.frame.roll.title];
@@ -258,7 +256,6 @@
 
 - (void)comment:(UIButton *)button
 {
-    
     DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForDashboardID:[self.arrayOfDashboardIDs objectAtIndex:button.tag]];
     Frame *frame = dashboardEntry.frame;
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];

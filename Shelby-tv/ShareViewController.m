@@ -24,7 +24,7 @@
 @end
 
 @implementation ShareViewController
-@synthesize imageView = _imageView;
+@synthesize thumbnailImageView = _thumbnailImageView;
 @synthesize nicknameLabel = _nicknameLabel;
 @synthesize videoNameLabel = _videoNameLabel;
 @synthesize commentLabel = _commentLabel;
@@ -50,6 +50,15 @@
 #pragma mark - View Lifecycle Methods
 - (void)viewDidUnload
 {
+    self.thumbnailImageView = nil;
+    self.nicknameLabel = nil;
+    self.videoNameLabel = nil;
+    self.commentLabel = nil;
+    self.shareToLabel = nil;
+    self.commentTextView = nil;
+    self.twitterButton = nil;
+    self.facebookButton = nil;
+    self.shareButton = nil;
     [super viewDidUnload];
 }
 
@@ -87,7 +96,7 @@
 - (void)populateView
 {
     // Thumbnail
-    [AsynchronousFreeloader loadImageFromLink:self.frame.video.thumbnailURL forImageView:self.imageView withPlaceholderView:nil];
+    [AsynchronousFreeloader loadImageFromLink:self.frame.video.thumbnailURL forImageView:self.thumbnailImageView withPlaceholderView:nil];
 
     // Labels
     self.nicknameLabel.text = self.frame.creator.nickname;
@@ -135,18 +144,22 @@
     // Create request string and add frameID and shelbyToken
     NSString *requestString = [NSString stringWithFormat:APIRequest_ShareFrame, self.frame.frameID, [SocialFacade sharedInstance].shelbyToken];
     
-    NSString *commentsString = [[NSURL URLWithString:self.commentTextView.text] absoluteString];
+    NSString *commentsString = [self.commentTextView.text stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     requestString = [NSString stringWithFormat:@"%@&text=%@", requestString, commentsString];
     
     // Build string
     if ( [self.facebookButton isSelected] ) requestString = [NSString stringWithFormat:@"%@&destination[]=facebook", requestString];
     if ( [self.twitterButton isSelected] ) requestString = [NSString stringWithFormat:@"%@&destination[]=twitter", requestString];
     
+    NSLog(@"%@", requestString);
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
+    [request setHTTPMethod:@"POST"];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
     [client performRequest:request ofType:APIRequestType_GetStream];
     
     // Add shared successfully
+
 }
 
 #pragma mark - UIResponder Methods

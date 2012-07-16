@@ -319,6 +319,30 @@ static CoreDataUtility *sharedInstance = nil;
 
 }
 
++ (NSArray*)fetchAllMessagesFromConversation:(Conversation *)conversation
+{
+    
+    // Create fetch request
+    NSFetchRequest *messagesRequest = [[NSFetchRequest alloc] init];
+    [messagesRequest setReturnsObjectsAsFaults:NO];
+    
+    // Fetch messages data
+    NSManagedObjectContext *context = conversation.managedObjectContext;
+    NSEntityDescription *messagesDescription = [NSEntityDescription entityForName:CoreDataEntityMessages inManagedObjectContext:context];
+    [messagesRequest setEntity:messagesDescription];
+    
+    // Only include messages that belond to this specific conversation
+    NSPredicate *messagesPredicate = [NSPredicate predicateWithFormat:@"conversationID == %@", conversation.conversationID];
+    [messagesRequest setPredicate:messagesPredicate];
+    
+    // Sort by timestamp
+    NSSortDescriptor *messagesTimestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+    [messagesRequest setSortDescriptors:[NSArray arrayWithObject:messagesTimestampSorter]];
+    
+    return [context executeFetchRequest:messagesRequest error:nil];
+    
+}
+
 + (BOOL)checkIfUserUpvotedInFrame:(Frame *)frame
 {
     

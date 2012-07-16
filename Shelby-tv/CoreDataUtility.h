@@ -81,6 +81,12 @@
 + (Messages*)fetchFirstMessageFromConversation:(Conversation*)conversation;
 
 /**
+ Fetch All Messages from frame.conversation
+ */
+
++ (NSArray*)fetchAllMessagesFromConversation:(Conversation*)conversation;
+
+/**
 Check if user already voted for a specific frame
 */
 + (BOOL)checkIfUserUpvotedInFrame:(Frame*)frame;

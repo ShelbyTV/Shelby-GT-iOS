@@ -55,8 +55,6 @@
 		8E5F03B215AD119A00DAEEBE /* sharingButtonTwitterOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03A615AD119A00DAEEBE /* sharingButtonTwitterOff@2x.png */; };
 		8E5F03B315AD119A00DAEEBE /* sharingButtonTwitterOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03A715AD119A00DAEEBE /* sharingButtonTwitterOn.png */; };
 		8E5F03B415AD119A00DAEEBE /* sharingButtonTwitterOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03A815AD119A00DAEEBE /* sharingButtonTwitterOn@2x.png */; };
-		8E5F03B515AD119A00DAEEBE /* horizontalStroke.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03A915AD119A00DAEEBE /* horizontalStroke.png */; };
-		8E5F03B615AD119A00DAEEBE /* horizontalStroke@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03AA15AD119A00DAEEBE /* horizontalStroke@2x.png */; };
 		8E664D401541A66A0071EC42 /* LoginViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */; };
 		8E664D421541A6770071EC42 /* LoginViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */; };
 		8E664D541541B0120071EC42 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E664D531541B0120071EC42 /* LoginViewController.m */; };
@@ -118,7 +116,7 @@
 		8E79437A15B0C02A00ED4655 /* commentSendOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E79437115B0C02A00ED4655 /* commentSendOn@2x.png */; };
 		8E79437B15B0C02A00ED4655 /* REF.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E79437215B0C02A00ED4655 /* REF.png */; };
 		8E79437F15B0C27400ED4655 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E79437E15B0C27400ED4655 /* CommentCell.m */; };
-		8E79438115B0C28900ED4655 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E79438015B0C28900ED4655 /* CommentTableViewCell.xib */; };
+		8E79438115B0C28900ED4655 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E79438015B0C28900ED4655 /* CommentCell.xib */; };
 		8E7F47B3154074130041118E /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B2154074130041118E /* Twitter.framework */; };
 		8E7F47B6154074180041118E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B5154074180041118E /* Accounts.framework */; };
 		8E7F47B81540741F0041118E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7F47B71540741F0041118E /* QuartzCore.framework */; };
@@ -144,6 +142,8 @@
 		8E87DEFF156C4A8A004E0629 /* videoCardTimestampTumblr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E87DEE7156C4A8A004E0629 /* videoCardTimestampTumblr@2x.png */; };
 		8E87DF00156C4A8A004E0629 /* videoCardTimestampTwitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E87DEE8156C4A8A004E0629 /* videoCardTimestampTwitter.png */; };
 		8E87DF01156C4A8A004E0629 /* videoCardTimestampTwitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E87DEE9156C4A8A004E0629 /* videoCardTimestampTwitter@2x.png */; };
+		8E88604B15B3A9E40048FED8 /* cellDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E88604915B3A9E40048FED8 /* cellDivider.png */; };
+		8E88604C15B3A9E40048FED8 /* cellDivider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E88604A15B3A9E40048FED8 /* cellDivider@2x.png */; };
 		8E90B802156E898700C840B5 /* NSDate+DateFromBSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E90B801156E898700C840B5 /* NSDate+DateFromBSONString.m */; };
 		8E917AB3159922130069C9A1 /* navigationButtonStreamOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E917AB2159922130069C9A1 /* navigationButtonStreamOn@2x.png */; };
 		8E917AC21599337C0069C9A1 /* navigationLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E917ABE1599337A0069C9A1 /* navigationLogo.png */; };
@@ -267,8 +267,6 @@
 		8E5F03A615AD119A00DAEEBE /* sharingButtonTwitterOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharingButtonTwitterOff@2x.png"; sourceTree = "<group>"; };
 		8E5F03A715AD119A00DAEEBE /* sharingButtonTwitterOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharingButtonTwitterOn.png; sourceTree = "<group>"; };
 		8E5F03A815AD119A00DAEEBE /* sharingButtonTwitterOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharingButtonTwitterOn@2x.png"; sourceTree = "<group>"; };
-		8E5F03A915AD119A00DAEEBE /* horizontalStroke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horizontalStroke.png; sourceTree = "<group>"; };
-		8E5F03AA15AD119A00DAEEBE /* horizontalStroke@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "horizontalStroke@2x.png"; sourceTree = "<group>"; };
 		8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_iPhone.xib; sourceTree = "<group>"; };
 		8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_iPad.xib; sourceTree = "<group>"; };
 		8E664D521541B0120071EC42 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -375,7 +373,7 @@
 		8E79437215B0C02A00ED4655 /* REF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = REF.png; sourceTree = "<group>"; };
 		8E79437D15B0C27400ED4655 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		8E79437E15B0C27400ED4655 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
-		8E79438015B0C28900ED4655 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		8E79438015B0C28900ED4655 /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		8E7F47B2154074130041118E /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		8E7F47B5154074180041118E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		8E7F47B71540741F0041118E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -406,6 +404,8 @@
 		8E87DEE7156C4A8A004E0629 /* videoCardTimestampTumblr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardTimestampTumblr@2x.png"; sourceTree = "<group>"; };
 		8E87DEE8156C4A8A004E0629 /* videoCardTimestampTwitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardTimestampTwitter.png; sourceTree = "<group>"; };
 		8E87DEE9156C4A8A004E0629 /* videoCardTimestampTwitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardTimestampTwitter@2x.png"; sourceTree = "<group>"; };
+		8E88604915B3A9E40048FED8 /* cellDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cellDivider.png; sourceTree = "<group>"; };
+		8E88604A15B3A9E40048FED8 /* cellDivider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellDivider@2x.png"; sourceTree = "<group>"; };
 		8E90B800156E898700C840B5 /* NSDate+DateFromBSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateFromBSONString.h"; sourceTree = "<group>"; };
 		8E90B801156E898700C840B5 /* NSDate+DateFromBSONString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateFromBSONString.m"; sourceTree = "<group>"; };
 		8E917AB2159922130069C9A1 /* navigationButtonStreamOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonStreamOn@2x.png"; sourceTree = "<group>"; };
@@ -537,8 +537,6 @@
 				8E5F03A615AD119A00DAEEBE /* sharingButtonTwitterOff@2x.png */,
 				8E5F03A715AD119A00DAEEBE /* sharingButtonTwitterOn.png */,
 				8E5F03A815AD119A00DAEEBE /* sharingButtonTwitterOn@2x.png */,
-				8E5F03A915AD119A00DAEEBE /* horizontalStroke.png */,
-				8E5F03AA15AD119A00DAEEBE /* horizontalStroke@2x.png */,
 			);
 			name = sharing;
 			path = Resources/images/sharing;
@@ -809,6 +807,16 @@
 			path = Resources/images/videocard;
 			sourceTree = SOURCE_ROOT;
 		};
+		8E88604815B3A9E40048FED8 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				8E88604915B3A9E40048FED8 /* cellDivider.png */,
+				8E88604A15B3A9E40048FED8 /* cellDivider@2x.png */,
+			);
+			name = common;
+			path = Resources/images/common;
+			sourceTree = SOURCE_ROOT;
+		};
 		8EC9813415950DF100BB9227 /* Reachability (ARC) */ = {
 			isa = PBXGroup;
 			children = (
@@ -972,7 +980,7 @@
 		8ED3110715360490002614DF /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				8E79438015B0C28900ED4655 /* CommentTableViewCell.xib */,
+				8E79438015B0C28900ED4655 /* CommentCell.xib */,
 				8E78C1CE15ABB98000326EF9 /* CommentViewController.xib */,
 				8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */,
 				8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */,
@@ -1045,6 +1053,7 @@
 		8EE673841552E474004EA45C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8E88604815B3A9E40048FED8 /* common */,
 				8E79436915B0C02A00ED4655 /* comments */,
 				8EE673851552E474004EA45C /* login */,
 				8E791DE715828D3200B0E744 /* navigation */,
@@ -1236,8 +1245,6 @@
 				8E5F03B215AD119A00DAEEBE /* sharingButtonTwitterOff@2x.png in Resources */,
 				8E5F03B315AD119A00DAEEBE /* sharingButtonTwitterOn.png in Resources */,
 				8E5F03B415AD119A00DAEEBE /* sharingButtonTwitterOn@2x.png in Resources */,
-				8E5F03B515AD119A00DAEEBE /* horizontalStroke.png in Resources */,
-				8E5F03B615AD119A00DAEEBE /* horizontalStroke@2x.png in Resources */,
 				8E79437315B0C02A00ED4655 /* commentBar.png in Resources */,
 				8E79437415B0C02A00ED4655 /* commentBar@2x.png in Resources */,
 				8E79437515B0C02A00ED4655 /* commentReply.png in Resources */,
@@ -1247,7 +1254,9 @@
 				8E79437915B0C02A00ED4655 /* commentSendOn.png in Resources */,
 				8E79437A15B0C02A00ED4655 /* commentSendOn@2x.png in Resources */,
 				8E79437B15B0C02A00ED4655 /* REF.png in Resources */,
-				8E79438115B0C28900ED4655 /* CommentTableViewCell.xib in Resources */,
+				8E79438115B0C28900ED4655 /* CommentCell.xib in Resources */,
+				8E88604B15B3A9E40048FED8 /* cellDivider.png in Resources */,
+				8E88604C15B3A9E40048FED8 /* cellDivider@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

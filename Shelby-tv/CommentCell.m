@@ -7,23 +7,36 @@
 //
 
 #import "CommentCell.h"
+#import "StaticDeclarations.h"
 
 @implementation CommentCell
+@synthesize thumbnailImageView = _thumbnailImageView;
+@synthesize nicknameLabel = _nicknameLabel;
+@synthesize commentLabel = _commentLabel;
+@synthesize timestampLabel = _timestampLabel;
+@synthesize replyButton = _replyButton;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (void)dealloc
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    self.thumbnailImageView = nil;
+    self.nicknameLabel = nil;
+    self.commentLabel = nil;
+    self.timestampLabel = nil;
+    self.replyButton = _replyButton;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void)awakeFromNib
 {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.backgroundColor = ColorConstants_BackgroundColor;
+    
+    [self.nicknameLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.nicknameLabel.font.pointSize]];
+    [self.nicknameLabel setTextColor:[UIColor whiteColor]];
+    [self.commentLabel setFont:[UIFont fontWithName:@"Ubuntu" size:self.commentLabel.font.pointSize]];
+    [self.commentLabel setTextColor:[UIColor whiteColor]];
+    [self.timestampLabel setFont:[UIFont fontWithName:@"Ubuntu" size:self.timestampLabel.font.pointSize]];
+    [self.timestampLabel setTextColor:[UIColor whiteColor]];
+    
 }
 
 @end

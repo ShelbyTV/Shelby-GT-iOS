@@ -31,10 +31,11 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     // Customize Labels (all other label customization in VideCardCell.xib)
-    [self.creatorNameLabel setFont:[UIFont fontWithName:@"Ubuntu" size:15.0f]];
-    [self.rollNameLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:14.0f]];
-    [self.frameCountLabel setFont:[UIFont fontWithName:@"Ubuntu" size:11.0f]];
-    [self.followingCountLabel setFont:[UIFont fontWithName:@"Ubuntu" size:11.0f]];
+    [self.creatorNameLabel setFont:[UIFont fontWithName:@"Ubuntu" size:self.creatorNameLabel.font.pointSize]];
+    [self.rollNameLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.rollNameLabel.font.pointSize]];
+    [self.frameCountLabel setFont:[UIFont fontWithName:@"Ubuntu" size:self.frameCountLabel.font.pointSize]];
+    [self.followingCountLabel setFont:[UIFont fontWithName:@"Ubuntu" size:self.followingCountLabel.font.pointSize]];
+    
 }
 
 @end
