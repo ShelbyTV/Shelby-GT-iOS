@@ -2,7 +2,7 @@
 //  ShelbyUser.h
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 6/22/12.
+//  Created by Arthur Ariel Sabintsev on 7/16/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
@@ -17,7 +17,10 @@
 @property (nonatomic, retain) NSString * nickname;
 @property (nonatomic, retain) NSString * personalRollID;
 @property (nonatomic, retain) NSString * shelbyID;
-@property (nonatomic, retain) NSString * watchLaterRollID;
 @property (nonatomic, retain) NSString * userImage;
+@property (nonatomic, retain) NSString * watchLaterRollID;
+@property (nonatomic, retain) NSNumber * authenticatedWithFacebook;
+@property (nonatomic, retain) NSNumber * authenticatedWithTwitter;
+@property (nonatomic, retain) NSNumber * authenticatedWithTumblr;
 
 @end

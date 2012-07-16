@@ -546,14 +546,25 @@ static CoreDataUtility *sharedInstance = nil;
     
     NSArray *authenticationsArray = [resultsDictionary valueForKey:@"authentications"];
     
+    // Set default social network authentication values to NO
+    shelbyUser.authenticatedWithFacebook = [NSNumber numberWithBool:NO];
+    shelbyUser.authenticatedWithTwitter= [NSNumber numberWithBool:NO];
+    shelbyUser.authenticatedWithTumblr = [NSNumber numberWithBool:NO];
+    
     NSUInteger count = 0;
     while ( count < [authenticationsArray count] ) {
         
-        if ( [[[authenticationsArray objectAtIndex:count] valueForKey:@"proivder"] isEqualToString:@"facebook"] ) {
+        if ( [[[authenticationsArray objectAtIndex:count] valueForKey:@"provider"] isEqualToString:@"facebook"] ) {
             
-        } else if ( [[[authenticationsArray objectAtIndex:count] valueForKey:@"proivder"] isEqualToString:@"twitter"] ) {
+            shelbyUser.authenticatedWithFacebook = [NSNumber numberWithBool:YES];
             
-        } else if ( [[[authenticationsArray objectAtIndex:count] valueForKey:@"proivder"] isEqualToString:@"tumblr"] ) {
+        } else if ( [[[authenticationsArray objectAtIndex:count] valueForKey:@"provider"] isEqualToString:@"twitter"] ) {
+            
+            shelbyUser.authenticatedWithTwitter= [NSNumber numberWithBool:YES];
+            
+        } else if ( [[[authenticationsArray objectAtIndex:count] valueForKey:@"provider"] isEqualToString:@"tumblr"] ) {
+            
+            shelbyUser.authenticatedWithTumblr = [NSNumber numberWithBool:YES];
             
         }
         

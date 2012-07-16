@@ -40,8 +40,9 @@
 #define         SocialFacadeShelbyCreatorID                 @"SocialFacadeShelbyCreatorID"
 #define         SocialFacadeShelbyNickname                  @"SocialFacadeShelbyNickname"
 #define         SocialFacadeShelbyUserImage                 @"SocialFacadeShelbyUserImage"
-#define         SocialFacadeShelbyHasAccessToTwitter        @"SocialFacadeShelbyHasAccessToTwitter"
 #define         SocialFacadeShelbyHasAccessToFacebook       @"SocialFacadeShelbyHasAccessToFacebook"
+#define         SocialFacadeShelbyHasAccessToTwitter        @"SocialFacadeShelbyHasAccessToTwitter"
+#define         SocialFacadeShelbyHasAccessToTumblr         @"SocialFacadeShelbyHasAccessToTumblr"
 
 static SocialFacade *sharedInstance = nil;
 
@@ -155,7 +156,10 @@ UITableViewDelegate
             self.shelbyToken = nil;
             self.shelbyCreatorID = nil;
             self.shelbyNickname = nil;
-            self.shelbyUserImage = nil;;
+            self.shelbyUserImage = nil;
+            self.shelbyHasAccessToFacebook = NO;
+            self.shelbyHasAccessToTwitter = NO;
+            self.shelbyHasAccessToTumblr = NO;
             
         }
         
@@ -192,7 +196,12 @@ UITableViewDelegate
         [self setShelbyCreatorID:shelbyUser.shelbyID];
         [self setShelbyNickname:shelbyUser.nickname];
         [self setShelbyUserImage:shelbyUser.userImage];
-    
+        [self setShelbyHasAccessToFacebook:[shelbyUser.authenticatedWithFacebook boolValue]];
+        [self setShelbyHasAccessToTwitter:[shelbyUser.authenticatedWithTwitter boolValue]];
+        [self setShelbyHasAccessToTumblr:[shelbyUser.authenticatedWithTumblr boolValue]];
+        
+        NSLog(@"F:%d W:%d U:%d", self.shelbyHasAccessToFacebook, self.shelbyHasAccessToTwitter, self.shelbyHasAccessToTumblr);
+        
     }
         
     // Dismiss login window after token swap
@@ -216,6 +225,9 @@ UITableViewDelegate
     self.shelbyCreatorID = nil;
     self.shelbyNickname = nil;
     self.shelbyUserImage = nil;
+    self.shelbyHasAccessToFacebook = NO;
+    self.shelbyHasAccessToTwitter = NO;
+    self.shelbyHasAccessToTumblr = NO;
     self.shelbyAuthorized = NO;
     self.firstTimeLogin = YES;
     
@@ -926,6 +938,42 @@ UITableViewDelegate
 - (NSString*)shelbyUserImage
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeShelbyUserImage];
+}
+
+/// Shelby has access to Facebook ///
+- (void)setShelbyHasAccessToFacebook:(BOOL)shelbyHasAccessToFacebook
+{
+    [[NSUserDefaults standardUserDefaults] setBool:shelbyHasAccessToFacebook forKey:SocialFacadeShelbyHasAccessToFacebook];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)shelbyHasAccessToFacebook
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:SocialFacadeShelbyHasAccessToFacebook];
+}
+
+/// Shelby has access to Twitter ///
+- (void)setShelbyHasAccessToTwitter:(BOOL)shelbyHasAccessToTwitter
+{
+    [[NSUserDefaults standardUserDefaults] setBool:shelbyHasAccessToTwitter forKey:SocialFacadeShelbyHasAccessToTwitter];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)shelbyHasAccessToTwitter
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:SocialFacadeShelbyHasAccessToTwitter];
+}
+
+/// Shelby has access to Tumblr ///
+- (void)setShelbyHasAccessToTumblr:(BOOL)shelbyHasAccessToTumblr
+{
+    [[NSUserDefaults standardUserDefaults] setBool:shelbyHasAccessToTumblr forKey:SocialFacadeShelbyHasAccessToTumblr];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)shelbyHasAccessToTumblr
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:SocialFacadeShelbyHasAccessToTumblr];
 }
 
 @end

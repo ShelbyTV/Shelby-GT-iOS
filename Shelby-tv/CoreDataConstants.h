@@ -81,6 +81,9 @@
 // ShelbyUser Attribute Constants
 #define CoreDataShelbyUserID                    @"shelbyID"
 #define CoreDataShelbyUserAuthToken             @"authToken"
+#define CoreDataShelbyAuthenticatedFacebook     @"authenticatedWithFacebook"
+#define CoreDataShelbyAuthenticatedTwitter      @"authenticatedWithTwitter"
+#define CoreDataShelbyAuthenticatedTumblr       @"authenticatedWithTumblr"
 #define CoreDataShelbyUserHeartRollID           @"heartRollID"
 #define CoreDataShelbyUserImage                 @"userImage"
 #define CoreDataShelbyUserNickname              @"nickname"

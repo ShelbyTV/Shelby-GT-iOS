@@ -65,6 +65,9 @@
         <relationship name="frame" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Frame" inverseName="roll" inverseEntity="Frame" syncable="YES"/>
     </entity>
     <entity name="ShelbyUser" representedClassName="ShelbyUser" syncable="YES">
+        <attribute name="authenticatedWithFacebook" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="authenticatedWithTumblr" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="authenticatedWithTwitter" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="authToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="heartRollID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
