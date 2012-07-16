@@ -20,6 +20,7 @@
 - (void)populateTableViewCell:(VideoCardCell*)cell withContent:(Frame*)frame inRow:(NSUInteger)row;
 - (void)upvote:(UIButton *)button;
 - (void)downvote:(UIButton *)button;
+- (void)comment:(UIButton *)button;
 - (void)share:(UIButton *)button;
 
 @end
@@ -59,16 +60,19 @@
         [cell.commentButton setTag:row];
         [cell.rollButton setTag:row];
         [cell.shareButton setTag:row];
-        
+
         // Store Frame ID
         if ( ![self arrayOfFrameIDs] ) self.arrayOfFrameIDs = [NSMutableArray array];
-        [self.arrayOfFrameIDs addObject:frame.frameID];
+        [self.arrayOfFrameIDs insertObject:frame.frameID atIndex:row];
         
         // Populate roll label
         [cell.rollLabel setText:frame.roll.title];
         
         // Populate nickname label
         [cell.nicknameLabel setText:frame.creator.nickname];
+        
+        // Connect Comment Button
+        [cell.commentButton addTarget:self action:@selector(comment:) forControlEvents:UIControlEventTouchUpInside];
         
         // Connect Share Button
         [cell.shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
@@ -225,13 +229,20 @@
     [controller downvote];
 }
 
-- (void)share:(UIButton *)button
+- (void)comment:(UIButton *)button
 {
-    
     Frame *frame = [CoreDataUtility fetchFrameWithID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
+    [controller comment:self.guideController.navigationController];
+}
+
+
+- (void)share:(UIButton *)button
+{
+    Frame *frame = [CoreDataUtility fetchFrameWithID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
+    VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
+    NSLog(@"%@", self.guideController.navigationController);
     [controller share:self.guideController.navigationController];
-    
 }
 
 #pragma mark - GuideTableViewMangerDelegate Methods
@@ -331,7 +342,6 @@
     // Hide ASPullToRefreshController's HeaderView
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        self.arrayOfFrameIDs = nil;
         [self.refreshController didFinishRefreshing];
         [self loadDataFromCoreData];
         

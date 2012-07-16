@@ -34,6 +34,9 @@
 @property (copy, nonatomic) NSString *shelbyCreatorID;
 @property (copy, nonatomic) NSString *shelbyNickname;
 @property (copy, nonatomic) NSString *shelbyUserImage;
+@property (assign, nonatomic) BOOL shelbyHasAccessToTwitter;
+@property (assign, nonatomic) BOOL shelbyHasAccessToFacebook;
+
 
 
 /// Singleton Class Method ///

@@ -20,7 +20,7 @@
 - (id)initWithType:(GuideType)type;
 
 // For RollFramesTableViewManager
-- (id)initWithType:(GuideType)type andRollID:(NSString*)rollID;
+- (id)initWithType:(GuideType)type navigationController:(UINavigationController*)navigationController andRollID:(NSString*)rollID;
 
 
 @end

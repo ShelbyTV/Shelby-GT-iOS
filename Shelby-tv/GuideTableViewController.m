@@ -63,7 +63,7 @@
     return  self;
 }
 
-- (id)initWithType:(GuideType)type andRollID:(NSString *)rollID
+- (id)initWithType:(GuideType)type navigationController:(UINavigationController*)navigationController andRollID:(NSString*)rollID;
 {
     
     if ( self = [super init] ) {
@@ -71,14 +71,19 @@
         // Set type of GuideTableViewController Instance
         self.type = type;
         
-        // Pass instance of this controller to manager
-        self.tableViewManager.guideController = self;
-        
         // Set rollID for API call to display videos/frames for correct roll
         self.rollID = rollID;
         
         // Initialize appropriate tableViewManager
         self.tableViewManager = [self createTableViewManager];
+        
+        // Pass instance of this controller to manager
+        self.tableViewManager.guideController = self;
+        
+        // Pass instance of navigationController to manager
+        self.tableViewManager.guideController.navigationController = navigationController;
+        
+        NSLog(@"1: %@", self.tableViewManager.guideController.tableViewManager);
         
         // Customize tableView
         self.view.backgroundColor = ColorConstants_BackgroundColor;
@@ -88,9 +93,6 @@
         self.tableView.dataSource = (id)self.tableViewManager;
         self.refreshDelegate = (id)self.tableViewManager;
         self.tableViewManager.refreshController = self;
-     
-        // Reference AppDelegate
-        self.tableViewManager.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         
         // Load data
         [self.tableViewManager loadDataOnInitializationForTableView:self.tableView andRollID:self.rollID];

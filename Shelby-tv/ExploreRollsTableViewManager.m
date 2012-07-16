@@ -132,7 +132,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Roll *roll= [self.coreDataResultsArray objectAtIndex:indexPath.row];
-    GuideTableViewController *rollFramesTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_RollFrames andRollID:roll.rollID];
+    GuideTableViewController *rollFramesTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_RollFrames navigationController:self.guideController.navigationController andRollID:roll.rollID];
     [self.guideController.navigationController pushViewController:rollFramesTableViewController animated:YES];
 }
 

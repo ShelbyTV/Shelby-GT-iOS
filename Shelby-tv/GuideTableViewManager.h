@@ -41,12 +41,13 @@
 @interface GuideTableViewManager : NSObject <GuideTableViewManagerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 // All TableViewManagers
+@property (strong, nonatomic) AppDelegate *appDelegate;
 @property (strong, nonatomic) ASPullToRefreshTableViewController *refreshController;
 @property (strong, nonatomic) GuideTableViewController *guideController;
 @property (strong, nonatomic) NSArray *parsedResultsArray;
 @property (strong, nonatomic) NSArray *coreDataResultsArray;
 @property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) AppDelegate *appDelegate;
+
 
 // RollFramesTableViewManager
 @property (strong, nonatomic) NSString *rollID;

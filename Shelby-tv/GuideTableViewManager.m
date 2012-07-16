@@ -9,12 +9,12 @@
 #import "GuideTableViewManager.h"
 
 @implementation GuideTableViewManager
+@synthesize appDelegate = _appDelegate;
 @synthesize refreshController = _refreshController;
 @synthesize guideController = _guideController;
 @synthesize parsedResultsArray = _parsedResultsArray;
 @synthesize coreDataResultsArray = _coreDataResultsArray;
 @synthesize tableView = _tableView;
-@synthesize appDelegate = _appDelegate;
 
 #pragma mark - GuideTableViewManagerDelegate methods
 - (void)loadDataOnInitializationForTableView:(UITableView *)tableView

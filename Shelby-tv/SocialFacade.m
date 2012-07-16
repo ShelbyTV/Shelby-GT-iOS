@@ -40,7 +40,8 @@
 #define         SocialFacadeShelbyCreatorID                 @"SocialFacadeShelbyCreatorID"
 #define         SocialFacadeShelbyNickname                  @"SocialFacadeShelbyNickname"
 #define         SocialFacadeShelbyUserImage                 @"SocialFacadeShelbyUserImage"
-
+#define         SocialFacadeShelbyHasAccessToTwitter        @"SocialFacadeShelbyHasAccessToTwitter"
+#define         SocialFacadeShelbyHasAccessToFacebook       @"SocialFacadeShelbyHasAccessToFacebook"
 
 static SocialFacade *sharedInstance = nil;
 
