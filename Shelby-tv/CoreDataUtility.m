@@ -741,6 +741,10 @@ static CoreDataUtility *sharedInstance = nil;
     
     NSArray *messagesArray = [resultsArray valueForKey:@"messages"];
     
+    
+    // Update messageCount on conversation
+    [conversation setMessageCount:[NSNumber numberWithInt:[messagesArray count]]];
+    
     for (int i = 0; i < [messagesArray count]; i++ ) {
         
         NSManagedObjectContext *context = conversation.managedObjectContext;
@@ -750,13 +754,11 @@ static CoreDataUtility *sharedInstance = nil;
                                  existsInContext:context];
         
         [conversation addMessagesObject:messages];
-        
-        // Change messageCount on conversation
-        [conversation setMessageCount:[NSNumber numberWithInt:[messagesArray count]]];
-        
+
         // Hold reference to parent conversationID
         [messages setValue:conversation.conversationID forKey:CoreDataConversationID];
         
+        // Set values for new message
         NSString *messageID = [NSString testForNull:[[messagesArray objectAtIndex:i] valueForKey:@"id"]];
         [messages setValue:messageID forKey:CoreDataMessagesID];
         
