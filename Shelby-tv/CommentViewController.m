@@ -232,11 +232,11 @@
 
 
 #pragma mark - UIResponder Methods
--(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if( [text isEqualToString:@"\n"] ) [textView resignFirstResponder];
-    
-    return YES;
+    // Resign Keyboard if any view element is touched that isn't currently a firstResponder UITextField object
+    if ( [self.textField isFirstResponder] ) [self.textField resignFirstResponder];
+        
 }
 
 #pragma mark - Interface Orientation Method

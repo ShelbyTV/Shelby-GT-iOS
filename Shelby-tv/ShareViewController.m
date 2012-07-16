@@ -7,6 +7,7 @@
 //
 
 #import "ShareViewController.h"
+#import <QuartzCore/QuartzCore.h>
 #import "SocialFacade.h"
 #import "ShelbyAPIClient.h"
 #import "AsynchronousFreeloader.h"
@@ -29,7 +30,7 @@
 @synthesize videoNameLabel = _videoNameLabel;
 @synthesize commentLabel = _commentLabel;
 @synthesize shareToLabel = _shareToLabel;
-@synthesize commentTextView = _commentTextView;
+@synthesize textView = _textView;
 @synthesize twitterButton = _twitterButton;
 @synthesize facebookButton = _facebookButton;
 @synthesize shareButton = _shareButton;
@@ -55,7 +56,7 @@
     self.videoNameLabel = nil;
     self.commentLabel = nil;
     self.shareToLabel = nil;
-    self.commentTextView = nil;
+    self.textView = nil;
     self.twitterButton = nil;
     self.facebookButton = nil;
     self.shareButton = nil;
@@ -90,6 +91,9 @@
 
     [self.shareToLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.shareToLabel.font.pointSize]];
     [self.shareToLabel setTextColor:[UIColor whiteColor]];
+    
+    self.textView.layer.cornerRadius = 5;
+    self.textView.clipsToBounds = YES;
     
 }
 
@@ -144,7 +148,7 @@
     // Create request string and add frameID and shelbyToken
     NSString *requestString = [NSString stringWithFormat:APIRequest_ShareFrame, self.frame.frameID, [SocialFacade sharedInstance].shelbyToken];
     
-    NSString *commentsString = [self.commentTextView.text stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSString *commentsString = [self.textView.text stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     requestString = [NSString stringWithFormat:@"%@&text=%@", requestString, commentsString];
     
     // Build string
@@ -158,16 +162,16 @@
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
     [client performRequest:request ofType:APIRequestType_GetStream];
     
-    // Add shared successfully
+    // Add shared successfully mbprogresshud
 
 }
 
 #pragma mark - UIResponder Methods
--(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if( [text isEqualToString:@"\n"] ) [textView resignFirstResponder];
+    // Resign Keyboard if any view element is touched that isn't currently a firstResponder UITextField object
+    if ( [self.textView isFirstResponder] ) [self.textView resignFirstResponder];
     
-    return YES;
 }
 
 #pragma mark - Interface Orientation Method
