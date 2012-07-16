@@ -337,7 +337,7 @@ static CoreDataUtility *sharedInstance = nil;
     [messagesRequest setPredicate:messagesPredicate];
     
     // Sort by timestamp
-    NSSortDescriptor *messagesTimestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
+    NSSortDescriptor *messagesTimestampSorter = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:YES];
     [messagesRequest setSortDescriptors:[NSArray arrayWithObject:messagesTimestampSorter]];
     
     return [context executeFetchRequest:messagesRequest error:nil];

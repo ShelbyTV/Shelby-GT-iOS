@@ -17,8 +17,8 @@
 @interface CommentViewController ()
 
 @property (strong, nonatomic) Frame *frame;
-
-@property (strong, nonatomic) NSArray *arrayOfMessages;
+@property (strong, nonatomic) NSMutableArray *arrayOfMessages;
+@property (strong, nonatomic) NSMutableArray *arrayOfBullshitMessages;
 
 - (void)addCustomBackButton;
 - (void)createAPIObservers;
@@ -39,7 +39,8 @@
 @synthesize textField = _textField;
 @synthesize sendButton = _sendButton;
 @synthesize tableView = _tableView;
-@synthesize arrayOfMessages = arrayOfMessages;
+@synthesize arrayOfMessages = _arrayOfMessages;
+@synthesize arrayOfBullshitMessages = _arrayOfBullshitMessages;
 
 #pragma mark - Initialization Method
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andFrame:(Frame *)frame
@@ -67,6 +68,10 @@
 {
     [super viewDidLoad];
     
+    
+    self.arrayOfMessages = [NSMutableArray array];
+    self.arrayOfBullshitMessages = [NSMutableArray array];
+    
     [self customizeView];
     [self populateView];
 }
@@ -92,6 +97,7 @@
     [self.textFieldContainerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"commentBar"]]];
     
     [self.sendButton setEnabled:NO];
+    
 }
 
 - (void)populateView
@@ -130,21 +136,12 @@
 {
     
     Messages *message = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityMessages inManagedObjectContext:self.frame.managedObjectContext];
-    [self.frame.conversation addMessagesObject:message];
     
-    // Hold reference to parent conversationID
-    [message setValue:self.frame.conversation.conversationID forKey:CoreDataConversationID];
-    
-    NSString *messageID = [self getUUID];
-    [message setValue:messageID forKey:CoreDataMessagesID];
-    
-    NSString *createdAt = @"Just now";
+    NSString *createdAt = @"just now";
     [message setValue:createdAt forKey:CoreDataMessagesCreatedAt];
     
     NSString *nickname = [SocialFacade sharedInstance].shelbyNickname;
     [message setValue:nickname forKey:CoreDataMessagesNickname];
-    
-    [message setValue:@"" forKey:CoreDataMessagesOriginNetwork];
     
     NSDate *timestamp = [NSDate date];
     [message setValue:timestamp forKey:CoreDataMessagesTimestamp];
@@ -154,12 +151,10 @@
     
     NSString *userImage = [SocialFacade sharedInstance].shelbyUserImage;
     [message setValue:userImage forKey:CoreDataMessagesUserImage];
-    
-    NSUInteger messageCount = [self.frame.conversation.messageCount intValue];
-    messageCount++;
-    [self.frame.conversation setValue:[NSNumber numberWithInt:messageCount] forKey:CoreDataConversationMessageCount];
 
-    [CoreDataUtility saveContext:self.frame.managedObjectContext];
+    
+    [self.arrayOfBullshitMessages addObject:message];
+
 }
 
 - (NSString *)getUUID
@@ -184,7 +179,6 @@
     
     // Perform API Request
     NSString *messageString = [self.textField.text stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    
     NSString *requestString = [NSString stringWithFormat:APIRequest_PostMessage, self.frame.conversation.conversationID, messageString, [SocialFacade sharedInstance].shelbyToken];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
     [request setHTTPMethod:@"POST"];
@@ -194,8 +188,6 @@
     // Clean up
     self.textField.text = @"";
     [self.sendButton setEnabled:NO];
-    
-    NSLog(@"MSG: %@", requestString);
     
 }
 
@@ -212,7 +204,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    self.arrayOfMessages = [CoreDataUtility fetchAllMessagesFromConversation:self.frame.conversation];
+    
+    [self.arrayOfMessages removeAllObjects];
+    [self.arrayOfMessages addObjectsFromArray:[CoreDataUtility fetchAllMessagesFromConversation:self.frame.conversation]];
+    if ( [self.arrayOfBullshitMessages count] ) [self.arrayOfMessages addObject:[self.arrayOfBullshitMessages lastObject]];
     
     return ( [self.arrayOfMessages count] ) ? [self.arrayOfMessages count] : 1;
 }
@@ -232,6 +227,8 @@
         [cell.commentLabel setText:message.text];
         [cell.timestampLabel setText:message.createdAt];
         [cell.replyButton addTarget:self action:@selector(replyButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        
+        NSLog(@"%@", message);
         
         return cell;
         
