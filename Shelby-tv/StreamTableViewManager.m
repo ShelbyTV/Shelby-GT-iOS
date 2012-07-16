@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSMutableArray *arrayOfDashboardIDs;
 @property (strong, nonatomic) NSMutableArray *arrayOfFrameIDs;
 @property (strong, nonatomic) NSMutableArray *arrayOfVideoLinks;
+@property (assign, nonatomic) BOOL stopGettingOlderData;
 
 - (void)createAPIObservers;
 - (void)populateTableViewCell:(VideoCardCell*)cell withContent:(DashboardEntry*)dashboardEntry inRow:(NSUInteger)row;
@@ -33,6 +34,7 @@
 @synthesize arrayOfDashboardIDs = _arrayOfDashboardIDs;
 @synthesize arrayOfFrameIDs = _arrayOfFrameIDs;
 @synthesize arrayOfVideoLinks = _arrayOfVideoLinks;
+@synthesize stopGettingOlderData = _stopGettingOlderData;
 
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
@@ -258,6 +260,7 @@
 {
     DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForDashboardID:[self.arrayOfDashboardIDs objectAtIndex:button.tag]];
     Frame *frame = dashboardEntry.frame;
+    
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
     [controller comment:self.guideController.navigationController];
     
@@ -287,12 +290,33 @@
 
 - (void)loadDataFromCoreData
 {
-    // Fetch Stream / DashboardEntry Data from Core Data
+    // Fetch Rolls-Following Data from Core Data
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
-     
+        
+        
+        NSUInteger previousCount = [self.coreDataResultsArray count];
+        
         self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
+        
+        if ( previousCount == [self.coreDataResultsArray count] ) {
             
-        [self.tableView reloadData];
+            [self setStopGettingOlderData:YES];
+            
+        } else {
+            
+            if ( [self.coreDataResultsArray count] > 0) {
+                
+                [self.tableView reloadData];
+                
+            } else {
+                
+                // Perform API Request
+                [self performAPIRequest];
+                
+            }
+            
+        }
+        
         
     }
     
@@ -303,6 +327,9 @@
 
     // Add API Observers (should ONLY occur on first call to this method)
     if ( NO == self.observerCreated ) [self createAPIObservers];
+    
+    // Reset tableView's ability to get older data
+    [self setStopGettingOlderData:NO];
     
     // Perform API Request
     NSString *requestString = [NSString stringWithFormat:APIRequest_GetStream, [SocialFacade sharedInstance].shelbyToken];
@@ -333,9 +360,6 @@
     // Hide ASPullToRefreshController's HeaderView
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        self.arrayOfDashboardIDs = nil;
-        self.arrayOfFrameIDs = nil;
-        self.arrayOfVideoLinks = nil;
         [self.refreshController didFinishRefreshing];
         [self loadDataFromCoreData];
         
@@ -470,7 +494,7 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    if (indexPath.row == ([self.coreDataResultsArray count]-1) ) {
+    if ( (indexPath.row == ([self.coreDataResultsArray count]-1) ) && ( NO == self.stopGettingOlderData ) ) {
         
         // Load more data from CoreData
         [self performAPIRequestForMoreEntries];

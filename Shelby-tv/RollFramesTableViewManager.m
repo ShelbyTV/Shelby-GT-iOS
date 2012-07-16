@@ -14,6 +14,7 @@
 
 @property (assign, nonatomic) BOOL observerCreated;
 @property (strong, nonatomic) NSMutableArray *arrayOfFrameIDs;
+@property (assign, nonatomic) BOOL stopGettingOlderData;
 
 - (void)createAPIObservers;
 - (void)populateTableViewCell:(VideoCardCell*)cell withContent:(Frame*)frame inRow:(NSUInteger)row;
@@ -24,9 +25,10 @@
 @end
 
 @implementation RollFramesTableViewManager
+@synthesize rollID = _rollID;
 @synthesize observerCreated = _observerCreated;
 @synthesize arrayOfFrameIDs = _arrayOfFrameIDs;
-@synthesize rollID = _rollID;
+@synthesize stopGettingOlderData = _stopGettingOlderData;
 
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
@@ -250,19 +252,30 @@
     // Fetch Rolls-Following Data from Core Data
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
         
+        NSUInteger previousCount = [self.coreDataResultsArray count];
+        
         self.coreDataResultsArray = [CoreDataUtility fetchFramesForRoll:self.rollID];
         
-        if ( [self.coreDataResultsArray count] > 0) {
+        if ( previousCount == [self.coreDataResultsArray count] ) {
             
-            [self.tableView reloadData];
+            [self setStopGettingOlderData:YES];
             
         } else {
-            
-            // Perform API Request
-            [self performAPIRequest];
+                        
+            if ( [self.coreDataResultsArray count] > 0) {
+                
+                [self.tableView reloadData];
+                
+            } else {
+                
+                // Perform API Request
+                [self performAPIRequest];
+                
+            }
             
         }
         
+                
     }
     
 }
@@ -271,6 +284,9 @@
 {
     // Add API Observers (should ONLY occur on first call to this method)
     if ( NO == self.observerCreated ) [self createAPIObservers];
+    
+    // Reset tableView's ability to get older data
+    [self setStopGettingOlderData:NO];
     
     // Perform API Request
     NSString *requestString = [NSString stringWithFormat:APIRequest_GetRollFrames, self.rollID, [SocialFacade sharedInstance].shelbyToken];
@@ -441,7 +457,7 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.row == ([self.coreDataResultsArray count]-1) ) {
+    if ( (indexPath.row == ([self.coreDataResultsArray count]-1) ) && ( NO == self.stopGettingOlderData ) ) {
         
         // Load more data from CoreData
         [self performAPIRequestForMoreEntries];
