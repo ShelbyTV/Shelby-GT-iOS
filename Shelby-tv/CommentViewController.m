@@ -228,8 +228,6 @@
         [cell.timestampLabel setText:message.createdAt];
         [cell.replyButton addTarget:self action:@selector(replyButtonAction) forControlEvents:UIControlEventTouchUpInside];
         
-        NSLog(@"%@", message);
-        
         return cell;
         
     } else {

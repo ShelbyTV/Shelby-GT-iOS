@@ -468,7 +468,6 @@
 {
  
     NSString *videoLink = [self.arrayOfVideoLinks objectAtIndex:indexPath.row];
-    NSLog(@"Video URL: %@", videoLink);
     
     if ([videoLink rangeOfString:@"youtube"].location == NSNotFound) {
     

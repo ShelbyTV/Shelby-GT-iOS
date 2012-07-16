@@ -179,8 +179,6 @@
         if ( [self.facebookButton isSelected] ) requestString = [NSString stringWithFormat:@"%@&destination[]=facebook", requestString];
         if ( [self.twitterButton isSelected] ) requestString = [NSString stringWithFormat:@"%@&destination[]=twitter", requestString];
         
-        NSLog(@"%@", requestString);
-        
         // Show ProgressHUD
         AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         

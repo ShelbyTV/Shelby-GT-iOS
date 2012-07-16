@@ -83,8 +83,6 @@
         // Pass instance of navigationController to manager
         self.tableViewManager.guideController.navigationController = navigationController;
         
-        NSLog(@"1: %@", self.tableViewManager.guideController.tableViewManager);
-        
         // Customize tableView
         self.view.backgroundColor = ColorConstants_BackgroundColor;
         self.tableView.backgroundColor = ColorConstants_BackgroundColor;

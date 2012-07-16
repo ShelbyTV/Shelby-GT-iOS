@@ -732,7 +732,6 @@ static CoreDataUtility *sharedInstance = nil;
 + (void)storeParsedData:(NSDictionary *)parsedDictionary forConversationInContext:(NSManagedObjectContext *)context
 {
     NSArray *resultsArray = [parsedDictionary objectForKey:APIRequest_Result];
-    NSLog(@"%@", resultsArray);
     
     Conversation *conversation = [self checkIfEntity:CoreDataEntityConversation
                                          withIDValue:[resultsArray valueForKey:@"id"]
@@ -751,6 +750,9 @@ static CoreDataUtility *sharedInstance = nil;
                                  existsInContext:context];
         
         [conversation addMessagesObject:messages];
+        
+        // Change messageCount on conversation
+        [conversation setMessageCount:[NSNumber numberWithInt:[messagesArray count]]];
         
         // Hold reference to parent conversationID
         [messages setValue:conversation.conversationID forKey:CoreDataConversationID];
