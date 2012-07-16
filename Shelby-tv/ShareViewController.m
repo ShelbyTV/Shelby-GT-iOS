@@ -78,9 +78,13 @@
 - (void)customizeView
 {
     
+    // Add Custom Back Button
     [self addCustomBackButton];
+    
+    // Change title to Share
     [self.navigationItem setTitle:@"Share"];
     
+    // Customize UILabels (all of which are IBOutlets)
     [self.nicknameLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.nicknameLabel.font.pointSize]];
     [self.nicknameLabel setTextColor:[UIColor whiteColor]];
     
@@ -93,8 +97,15 @@
     [self.shareToLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.shareToLabel.font.pointSize]];
     [self.shareToLabel setTextColor:[UIColor whiteColor]];
     
+    // Styilize textView
     self.textView.layer.cornerRadius = 5;
     self.textView.clipsToBounds = YES;
+    
+    // Enable and select icons for social networks to which Shelby has authentication access
+    [self.facebookButton setEnabled:[SocialFacade sharedInstance].shelbyHasAccessToFacebook];
+    [self.facebookButton setSelected:[SocialFacade sharedInstance].shelbyHasAccessToFacebook];
+    [self.twitterButton setEnabled:[SocialFacade sharedInstance].shelbyHasAccessToTwitter];
+    [self.twitterButton setSelected:[SocialFacade sharedInstance].shelbyHasAccessToTwitter];
     
 }
 
