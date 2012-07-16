@@ -32,6 +32,9 @@
 @property (assign, nonatomic) BOOL shelbyAuthorized;
 @property (copy, nonatomic) NSString *shelbyToken;
 @property (copy, nonatomic) NSString *shelbyCreatorID;
+@property (copy, nonatomic) NSString *shelbyNickname;
+@property (copy, nonatomic) NSString *shelbyUserImage;
+
 
 /// Singleton Class Method ///
 +(SocialFacade *)sharedInstance;

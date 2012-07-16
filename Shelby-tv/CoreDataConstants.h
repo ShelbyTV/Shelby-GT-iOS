@@ -67,7 +67,7 @@
 #define CoreDataMessagesOriginNetwork           @"originNetwork"
 #define CoreDataMessagesText                    @"text"
 #define CoreDataMessagesTimestamp               @"timestamp"
-#define CoreDataMessagesUserImageURL            @"userImageURL"
+#define CoreDataMessagesUserImage               @"userImage"
 
 // Roll Attribute Constants
 #define CoreDataRollID                          @"rollID"

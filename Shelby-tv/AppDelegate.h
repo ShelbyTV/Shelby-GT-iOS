@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UIAppearanceContainer>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) MBProgressHUD *progressHUD;
 
 - (void)presentLoginViewController;
 

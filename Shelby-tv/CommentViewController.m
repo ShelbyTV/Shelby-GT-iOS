@@ -9,6 +9,8 @@
 #import "CommentViewController.h"
 #import "AsynchronousFreeloader.h"
 #import "CoreDataUtility.h"
+#import "SocialFacade.h"
+#import "ShelbyAPIClient.h"
 #import "NSString+TypedefConversion.h"
 #import "CommentCell.h"
 
@@ -22,6 +24,10 @@
 - (void)createAPIObservers;
 - (void)customizeView;
 - (void)populateView;
+
+- (void)replyButtonAction;
+- (void)storeMessageInCoreData;
+- (NSString *)getUUID;
 
 @end
 
@@ -74,7 +80,6 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 
-    
     [self addCustomBackButton];
     [self.navigationItem setTitle:@"Comment"];
     
@@ -121,17 +126,75 @@
 }
 
 
-#pragma mark - Action Methods
--(void)sendButtonAction:(id)sender
+- (void)storeMessageInCoreData
 {
-    // Hide keyboard when SEND button is pressed
-    if( [self.textField.text isEqualToString:@"\n"] ) [self.textField resignFirstResponder];
     
-    // Remove text
+    Messages *message = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityMessages inManagedObjectContext:self.frame.managedObjectContext];
+    [self.frame.conversation addMessagesObject:message];
+    
+    // Hold reference to parent conversationID
+    [message setValue:self.frame.conversation.conversationID forKey:CoreDataConversationID];
+    
+    NSString *messageID = [self getUUID];
+    [message setValue:messageID forKey:CoreDataMessagesID];
+    
+    NSString *createdAt = @"Just now";
+    [message setValue:createdAt forKey:CoreDataMessagesCreatedAt];
+    
+    NSString *nickname = [SocialFacade sharedInstance].shelbyNickname;
+    [message setValue:nickname forKey:CoreDataMessagesNickname];
+    
+    [message setValue:@"" forKey:CoreDataMessagesOriginNetwork];
+    
+    NSDate *timestamp = [NSDate date];
+    [message setValue:timestamp forKey:CoreDataMessagesTimestamp];
+    
+    NSString *text = self.textField.text;
+    [message setValue:text forKey:CoreDataMessagesText];
+    
+    NSString *userImage = [SocialFacade sharedInstance].shelbyUserImage;
+    [message setValue:userImage forKey:CoreDataMessagesUserImage];
+    
+    NSUInteger messageCount = [self.frame.conversation.messageCount intValue];
+    messageCount++;
+    [self.frame.conversation setValue:[NSNumber numberWithInt:messageCount] forKey:CoreDataConversationMessageCount];
+
+    [CoreDataUtility saveContext:self.frame.managedObjectContext];
+}
+
+- (NSString *)getUUID
+{
+    CFUUIDRef theUUID = CFUUIDCreate(NULL);
+    CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+    CFRelease(theUUID);
+    return (__bridge NSString *)string ;
+}
+
+#pragma mark - Action Methods
+- (IBAction)sendButtonAction:(id)sender
+{
+    // Hide keyboard when sendButton is pressed
+    [self.textField resignFirstResponder];
+ 
+    // Add Comment to Messages in Core Data
+    [self storeMessageInCoreData];
+    
+    // Remove text from textField
     self.textField.text = @"";
     
-    [self.navigationController popViewControllerAnimated:YES];
+    // Disable sendButton since the textField is empty
+    [self.sendButton setEnabled:NO];
     
+    // Refresh UITableView
+    [self.tableView reloadData];
+    
+    // Ping API
+    
+}
+
+- (void)replyButtonAction
+{
+    [self.textField becomeFirstResponder];
 }
 
 #pragma mark - UITableViewDataSource Methods
@@ -153,24 +216,27 @@
     
     Messages *message = [self.arrayOfMessages objectAtIndex:indexPath.row];
     
-    if ( message.createdAt.length ) { // Check if at least one message exists
+    if ( [self.arrayOfMessages count] ) { // Check if messages exist
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CommentCell" owner:self options:nil];
         CommentCell *cell = (CommentCell*)[nib objectAtIndex:0];
         
-        [AsynchronousFreeloader loadImageFromLink:message.userImageURL forImageView:cell.thumbnailImageView withPlaceholderView:nil];
+        [AsynchronousFreeloader loadImageFromLink:message.userImage forImageView:cell.thumbnailImageView withPlaceholderView:nil];
         [cell.nicknameLabel setText:message.nickname];
         [cell.commentLabel setText:message.text];
         [cell.timestampLabel setText:message.createdAt];
+        [cell.replyButton addTarget:self action:@selector(replyButtonAction) forControlEvents:UIControlEventTouchUpInside];
         
-            return cell;
+        return cell;
         
     } else {
         
         static NSString *CellIdentifier = @"Cell";
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewStyleGrouped reuseIdentifier:CellIdentifier];
         
-            return cell;
+        cell.textLabel.text = @"Be the first to comment";
+        
+        return cell;
     }
     
 }
@@ -183,7 +249,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 92;
+    return ( [self.arrayOfMessages count] ) ? 92.0f : 44.0f;
 }
 
 #pragma mark - UITextFieldDelefate Methods
@@ -193,29 +259,6 @@
                      animations:^{
                          self.textFieldContainerView.frame = CGRectMake(0.0f, 157.0f, self.textFieldContainerView.frame.size.width, self.textFieldContainerView.frame.size.height);
                      }];
-    
-    return YES;
-}
-
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    // Hide keyboard when SEND button is pressed
-    if( [string isEqualToString:@"\n"] ) {
-    
-        [textField resignFirstResponder];
-        [self sendButtonAction:nil];
-        
-    }
-    
-    
-    if ( range.location > 0 ) { // Enable sendButton
-        
-        [self.sendButton setEnabled:YES];
-        
-    } else { // Disable sendButton
-        
-        [self.sendButton setEnabled:YES];
-    }
     
     return YES;
 }
@@ -230,6 +273,27 @@
     return YES;
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    // Hide keyboard when SEND button is pressed
+    if( [string isEqualToString:@"\n"] ) {
+        
+        [textField resignFirstResponder];
+        [self sendButtonAction:nil];
+        
+    }
+    
+    if ( range.location > 0 ) { // Enable sendButton
+        
+        [self.sendButton setEnabled:YES];
+        
+    } else { // Disable sendButton
+        
+        [self.sendButton setEnabled:YES];
+    }
+    
+    return YES;
+}
 
 #pragma mark - UIResponder Methods
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

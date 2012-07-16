@@ -39,6 +39,7 @@
 @implementation AppDelegate
 @synthesize window = _window;
 @synthesize menuController = _menuController;
+@synthesize progressHUD = _progressHUD;
 
 #pragma mark - UIApplicationDelegate Methods
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

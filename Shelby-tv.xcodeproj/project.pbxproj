@@ -144,6 +144,8 @@
 		8E87DF01156C4A8A004E0629 /* videoCardTimestampTwitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E87DEE9156C4A8A004E0629 /* videoCardTimestampTwitter@2x.png */; };
 		8E88604B15B3A9E40048FED8 /* cellDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E88604915B3A9E40048FED8 /* cellDivider.png */; };
 		8E88604C15B3A9E40048FED8 /* cellDivider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E88604A15B3A9E40048FED8 /* cellDivider@2x.png */; };
+		8E88605415B3C5320048FED8 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E88605315B3C5320048FED8 /* MBProgressHUD.m */; };
+		8E88605715B3D4AA0048FED8 /* Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E88605615B3D4A90048FED8 /* Messages.m */; };
 		8E90B802156E898700C840B5 /* NSDate+DateFromBSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E90B801156E898700C840B5 /* NSDate+DateFromBSONString.m */; };
 		8E917AB3159922130069C9A1 /* navigationButtonStreamOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E917AB2159922130069C9A1 /* navigationButtonStreamOn@2x.png */; };
 		8E917AC21599337C0069C9A1 /* navigationLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E917ABE1599337A0069C9A1 /* navigationLogo.png */; };
@@ -201,7 +203,6 @@
 		8EEA704015544A2200B1B07F /* VideoCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA703F15544A2200B1B07F /* VideoCardCell.m */; };
 		8EF851AE1570317D002335A3 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851AD1570317D002335A3 /* Video.m */; };
 		8EF851B71570317D002335A3 /* DashboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851B61570317D002335A3 /* DashboardEntry.m */; };
-		8EF851BA1570317E002335A3 /* Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851B91570317E002335A3 /* Messages.m */; };
 		8EFD498C156435330003913D /* NSString+NullTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD498B156435330003913D /* NSString+NullTest.m */; };
 		8EFE780C15939B0200499994 /* RollFramesTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFE780B15939B0200499994 /* RollFramesTableViewManager.m */; };
 		8EFF3A9815658E2500131A97 /* AuthenticateTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF3A9715658E2500131A97 /* AuthenticateTwitterViewController.m */; };
@@ -406,6 +407,10 @@
 		8E87DEE9156C4A8A004E0629 /* videoCardTimestampTwitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardTimestampTwitter@2x.png"; sourceTree = "<group>"; };
 		8E88604915B3A9E40048FED8 /* cellDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cellDivider.png; sourceTree = "<group>"; };
 		8E88604A15B3A9E40048FED8 /* cellDivider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellDivider@2x.png"; sourceTree = "<group>"; };
+		8E88605215B3C5320048FED8 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		8E88605315B3C5320048FED8 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		8E88605515B3D4A80048FED8 /* Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Messages.h; sourceTree = "<group>"; };
+		8E88605615B3D4A90048FED8 /* Messages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Messages.m; sourceTree = "<group>"; };
 		8E90B800156E898700C840B5 /* NSDate+DateFromBSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateFromBSONString.h"; sourceTree = "<group>"; };
 		8E90B801156E898700C840B5 /* NSDate+DateFromBSONString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateFromBSONString.m"; sourceTree = "<group>"; };
 		8E917AB2159922130069C9A1 /* navigationButtonStreamOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonStreamOn@2x.png"; sourceTree = "<group>"; };
@@ -484,8 +489,6 @@
 		8EF851AD1570317D002335A3 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
 		8EF851B51570317D002335A3 /* DashboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardEntry.h; sourceTree = "<group>"; };
 		8EF851B61570317D002335A3 /* DashboardEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardEntry.m; sourceTree = "<group>"; };
-		8EF851B81570317D002335A3 /* Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Messages.h; sourceTree = "<group>"; };
-		8EF851B91570317E002335A3 /* Messages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Messages.m; sourceTree = "<group>"; };
 		8EFD498A156435330003913D /* NSString+NullTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NullTest.h"; sourceTree = "<group>"; };
 		8EFD498B156435330003913D /* NSString+NullTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NullTest.m"; sourceTree = "<group>"; };
 		8EFE780A15939B0200499994 /* RollFramesTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RollFramesTableViewManager.h; sourceTree = "<group>"; };
@@ -754,11 +757,11 @@
 				8E5E7F93156151B0009FC8CE /* CoreDataUtility.h */,
 				8E5E7F94156151B0009FC8CE /* CoreDataUtility.m */,
 				8E4A77E81551A6E2003CBA2A /* ShelbyAPIClient.h */,
-				8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */,
 				8E8124F41540C2F900E1EA4B /* TableViewManagers.h */,
 				8E8124F11540C2E800E1EA4B /* GuideTableViewManager.h */,
 				8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */,
 				8E068B84158843640069FD01 /* ExploreRollsTableViewManager.h */,
+				8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */,
 				8E068B85158843640069FD01 /* ExploreRollsTableViewManager.m */,
 				8E068B8A1588444D0069FD01 /* MyRollsTableViewManager.h */,
 				8E068B8B1588444E0069FD01 /* MyRollsTableViewManager.m */,
@@ -815,6 +818,16 @@
 			);
 			name = common;
 			path = Resources/images/common;
+			sourceTree = SOURCE_ROOT;
+		};
+		8E88605115B3C5320048FED8 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				8E88605215B3C5320048FED8 /* MBProgressHUD.h */,
+				8E88605315B3C5320048FED8 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			path = library/MBProgressHUD;
 			sourceTree = SOURCE_ROOT;
 		};
 		8EC9813415950DF100BB9227 /* Reachability (ARC) */ = {
@@ -968,6 +981,7 @@
 				8E50604115588FAB00F42933 /* Asynchronous Freeloader */,
 				8E7F47E6154093210041118E /* ASPullToRefresh */,
 				8E6AF84B159B743B00F570CF /* Facebook SDK */,
+				8E88605115B3C5320048FED8 /* MBProgressHUD */,
 				8E6AF8D8159B76FF00F570CF /* OAuth Consumer */,
 				8EE50641155CA3D300A04F50 /* Panhandler */,
 				8E6CFF8515A7E49300EFBED3 /* PSYouTubeExtractor */,
@@ -1040,8 +1054,8 @@
 				8EF851B61570317D002335A3 /* DashboardEntry.m */,
 				8EB6D81415800FCF0060202D /* Frame.h */,
 				8EB6D81515800FCF0060202D /* Frame.m */,
-				8EF851B81570317D002335A3 /* Messages.h */,
-				8EF851B91570317E002335A3 /* Messages.m */,
+				8E88605515B3D4A80048FED8 /* Messages.h */,
+				8E88605615B3D4A90048FED8 /* Messages.m */,
 				8ECFFE44157D73BF007CCA73 /* UpvoteUsers.h */,
 				8ECFFE45157D73BF007CCA73 /* UpvoteUsers.m */,
 				8EF851AC1570317D002335A3 /* Video.h */,
@@ -1303,7 +1317,6 @@
 				8E90B802156E898700C840B5 /* NSDate+DateFromBSONString.m in Sources */,
 				8EF851AE1570317D002335A3 /* Video.m in Sources */,
 				8EF851B71570317D002335A3 /* DashboardEntry.m in Sources */,
-				8EF851BA1570317E002335A3 /* Messages.m in Sources */,
 				8EDB32B115792688007D7106 /* VideoCardController.m in Sources */,
 				8ECFFE46157D73BF007CCA73 /* UpvoteUsers.m in Sources */,
 				8EB6D81315800F550060202D /* Creator.m in Sources */,
@@ -1356,6 +1369,8 @@
 				8E78C1CF15ABB98000326EF9 /* CommentViewController.m in Sources */,
 				8E5F039D15AD02A800DAEEBE /* Roll.m in Sources */,
 				8E79437F15B0C27400ED4655 /* CommentCell.m in Sources */,
+				8E88605415B3C5320048FED8 /* MBProgressHUD.m in Sources */,
+				8E88605715B3D4AA0048FED8 /* Messages.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

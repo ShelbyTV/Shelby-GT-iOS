@@ -868,8 +868,8 @@ static CoreDataUtility *sharedInstance = nil;
         NSString *text = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"text"]];
         [messages setValue:text forKey:CoreDataMessagesText];  
 
-        NSString *userImageURL = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"user_image_url"]];
-        [messages setValue:userImageURL forKey:CoreDataMessagesUserImageURL];  
+        NSString *userImage = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"user_image_url"]];
+        [messages setValue:userImage forKey:CoreDataMessagesUserImage];  
     
     }
 

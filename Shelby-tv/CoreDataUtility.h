@@ -17,6 +17,8 @@
 @property (strong, nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (assign, nonatomic) APIRequestType requestType;
 
+#pragma mak - STORE
+
 /** 
  Store JSON-parsed NSDictionary in Core Data for a specific API Request 
  */
@@ -24,6 +26,7 @@
              inCoreData:(NSManagedObjectContext*)context 
                 forType:(APIRequestType)requestType;
 
+#pragma mark - FETCH
 
 /**
  Fetch all Dashboard Entrys
@@ -91,10 +94,14 @@ Check if user already voted for a specific frame
 */
 + (BOOL)checkIfUserUpvotedInFrame:(Frame*)frame;
 
+#pragma mark - SAVE
+
 /** 
  Commit unsaved changes for a given NSManagedObjextContext instance 
  */
 + (void)saveContext:(NSManagedObjectContext *)context;
+
+#pragma mark - DELETE
 
 /** 
  Delete all stored information

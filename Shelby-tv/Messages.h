@@ -2,7 +2,7 @@
 //  Messages.h
 //  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 5/25/12.
+//  Created by Arthur Ariel Sabintsev on 7/16/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
@@ -20,7 +20,15 @@
 @property (nonatomic, retain) NSString * originNetwork;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSDate * timestamp;
-@property (nonatomic, retain) NSString * userImageURL;
-@property (nonatomic, retain) Conversation *conversation;
+@property (nonatomic, retain) NSString * userImage;
+@property (nonatomic, retain) NSSet *conversation;
+@end
+
+@interface Messages (CoreDataGeneratedAccessors)
+
+- (void)addConversationObject:(Conversation *)value;
+- (void)removeConversationObject:(Conversation *)value;
+- (void)addConversation:(NSSet *)values;
+- (void)removeConversation:(NSSet *)values;
 
 @end

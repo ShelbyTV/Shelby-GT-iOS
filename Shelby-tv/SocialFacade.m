@@ -37,6 +37,8 @@
 #define         SocialFacadeShelbyAuthorized                @"SocialFacadeShelbyAuthorized"
 #define         SocialFacadeShelbyToken                     @"SocialFacadeShelbyToken"
 #define         SocialFacadeShelbyCreatorID                 @"SocialFacadeShelbyCreatorID"
+#define         SocialFacadeShelbyNickname                  @"SocialFacadeShelbyNickname"
+#define         SocialFacadeShelbyUserImage                 @"SocialFacadeShelbyUserImage"
 
 
 static SocialFacade *sharedInstance = nil;
@@ -145,6 +147,8 @@ UITableViewDelegate
             self.shelbyAuthorized = NO;
             self.shelbyToken = nil;
             self.shelbyCreatorID = nil;
+            self.shelbyNickname = nil;
+            self.shelbyUserImage = nil;;
             
         }
         
@@ -179,6 +183,8 @@ UITableViewDelegate
     
         [self setShelbyToken:shelbyUser.authToken];
         [self setShelbyCreatorID:shelbyUser.shelbyID];
+        [self setShelbyNickname:shelbyUser.nickname];
+        [self setShelbyUserImage:shelbyUser.userImage];
     
     }
         
@@ -201,6 +207,8 @@ UITableViewDelegate
     
     self.shelbyToken = nil;
     self.shelbyCreatorID = nil;
+    self.shelbyNickname = nil;
+    self.shelbyUserImage = nil;
     self.shelbyAuthorized = NO;
     self.firstTimeLogin = YES;
     
@@ -881,6 +889,30 @@ UITableViewDelegate
 - (NSString*)shelbyCreatorID
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeShelbyCreatorID];
+}
+
+/// Shelby Nickname ///
+- (void)setShelbyNickname:(NSString *)shelbyNickname
+{
+    [[NSUserDefaults standardUserDefaults] setObject:shelbyNickname forKey:SocialFacadeShelbyNickname];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString*)shelbyNickname
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeShelbyNickname];
+}
+
+/// Shelby UserImage ///
+- (void)setShelbyUserImage:(NSString *)shelbyUserImage
+{
+    [[NSUserDefaults standardUserDefaults] setObject:shelbyUserImage forKey:SocialFacadeShelbyUserImage];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString*)shelbyUserImage
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:SocialFacadeShelbyUserImage];
 }
 
 @end
