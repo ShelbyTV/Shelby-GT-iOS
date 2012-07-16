@@ -219,8 +219,13 @@
             
             [appDelegate removeHUD];
             
-        }
+        } break;
             
+        case APIRequestType_PostMessage:{
+            
+            [appDelegate removeHUD];
+            
+        } break;
         default:
             break;
    

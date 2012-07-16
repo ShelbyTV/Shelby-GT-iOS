@@ -170,7 +170,7 @@
         [self createAPIObservers];
         
         // Create request string and add frameID and shelbyToken
-        NSString *requestString = [NSString stringWithFormat:APIRequest_ShareFrame, self.frame.frameID, [SocialFacade sharedInstance].shelbyToken];
+        NSString *requestString = [NSString stringWithFormat:APIRequest_PostShareFrame, self.frame.frameID, [SocialFacade sharedInstance].shelbyToken];
         
         NSString *commentsString = [self.textView.text stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
         requestString = [NSString stringWithFormat:@"%@&text=%@", requestString, commentsString];

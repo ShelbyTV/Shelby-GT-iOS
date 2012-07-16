@@ -33,6 +33,7 @@ typedef enum _APIRequestType
     APIRequestType_GetRollFrames,
     APIRequestType_PostUpvote,
     APIRequestType_PostDownvote,
-    APIRequestType_PostShareFrame
+    APIRequestType_PostShareFrame,
+    APIRequestType_PostMessage
     
 } APIRequestType;

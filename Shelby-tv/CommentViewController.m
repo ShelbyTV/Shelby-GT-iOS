@@ -179,16 +179,23 @@
     // Add Comment to Messages in Core Data
     [self storeMessageInCoreData];
     
-    // Remove text from textField
-    self.textField.text = @"";
-    
-    // Disable sendButton since the textField is empty
-    [self.sendButton setEnabled:NO];
-    
     // Refresh UITableView
     [self.tableView reloadData];
     
-    // Ping API
+    // Perform API Request
+    NSString *messageString = [self.textField.text stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    
+    NSString *requestString = [NSString stringWithFormat:APIRequest_PostMessage, self.frame.conversation.conversationID, messageString, [SocialFacade sharedInstance].shelbyToken];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
+    [request setHTTPMethod:@"POST"];
+    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+    [client performRequest:request ofType:APIRequestType_PostMessage];
+    
+    // Clean up
+    self.textField.text = @"";
+    [self.sendButton setEnabled:NO];
+    
+    NSLog(@"MSG: %@", requestString);
     
 }
 
@@ -202,7 +209,6 @@
 {
     return 1;
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
