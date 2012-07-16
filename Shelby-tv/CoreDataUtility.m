@@ -544,6 +544,23 @@ static CoreDataUtility *sharedInstance = nil;
     NSString *watchLaterRollID = [NSString testForNull:[resultsDictionary valueForKey:@"watch_later_roll_id"]];
     [shelbyUser setValue:watchLaterRollID forKey:CoreDataShelbyUserWatchLaterRollID];
     
+    NSArray *authenticationsArray = [resultsDictionary valueForKey:@"authentications"];
+    
+    NSUInteger count = 0;
+    while ( count < [authenticationsArray count] ) {
+        
+        if ( [[[authenticationsArray objectAtIndex:count] valueForKey:@"proivder"] isEqualToString:@"facebook"] ) {
+            
+        } else if ( [[[authenticationsArray objectAtIndex:count] valueForKey:@"proivder"] isEqualToString:@"twitter"] ) {
+            
+        } else if ( [[[authenticationsArray objectAtIndex:count] valueForKey:@"proivder"] isEqualToString:@"tumblr"] ) {
+            
+        }
+        
+        count++;
+    }
+   
+        
     [self saveContext:context];
 }
 
