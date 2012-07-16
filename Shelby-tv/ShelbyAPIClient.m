@@ -223,7 +223,7 @@
             
         case APIRequestType_PostMessage:{
             
-            [appDelegate removeHUD];
+            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
             
         } break;
         default:

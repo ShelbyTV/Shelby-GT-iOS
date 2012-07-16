@@ -45,13 +45,16 @@
 /// Store frame data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forFramesInContext:(NSManagedObjectContext*)context;
 
-/// Store dashbaordEntry.frame data in Core Data
+/// Store conversation/message data in Core Data
++ (void)storeParsedData:(NSDictionary*)parsedDictionary forConversationInContext:(NSManagedObjectContext*)context;
+
+/// Store frame data in Core Data
 + (void)storeFrame:(Frame*)frame fromFrameArray:(NSArray*)frameArray;
 
-/// Store dashboard.frame.conversations data in Core Data
+/// Store frame.conversations data in Core Data
 + (void)storeConversation:(Conversation*)conversation fromFrameArray:(NSArray*)frameArray;
 
-/// Store dashboard.frame.conversations.messages data in Core Data
+/// Store frame.conversations.messages data in Core Data
 + (void)storeMessagesFromConversation:(Conversation*)conversation withConversationsArray:(NSArray*)conversationsArray;
 
 /// Store roll data in Core Data
@@ -120,6 +123,10 @@ static CoreDataUtility *sharedInstance = nil;
             
         case APIRequestType_GetRollFrames:
             [self storeParsedData:parsedDictionary forFramesInContext:context];
+            break;
+            
+        case APIRequestType_PostMessage:
+            [self storeParsedData:parsedDictionary forConversationInContext:context];
             break;
             
         default:
@@ -720,6 +727,59 @@ static CoreDataUtility *sharedInstance = nil;
     }
     
     [self saveContext:context];
+}
+
++ (void)storeParsedData:(NSDictionary *)parsedDictionary forConversationInContext:(NSManagedObjectContext *)context
+{
+    NSArray *resultsArray = [parsedDictionary objectForKey:APIRequest_Result];
+    NSLog(@"%@", resultsArray);
+    
+    Conversation *conversation = [self checkIfEntity:CoreDataEntityConversation
+                                         withIDValue:[resultsArray valueForKey:@"id"]
+                                            forIDKey:CoreDataFrameConversationID
+                                     existsInContext:context];
+    
+    
+    NSArray *messagesArray = [resultsArray valueForKey:@"messages"];
+    
+    for (int i = 0; i < [messagesArray count]; i++ ) {
+        
+        NSManagedObjectContext *context = conversation.managedObjectContext;
+        Messages *messages = [self checkIfEntity:CoreDataEntityMessages
+                                     withIDValue:[[messagesArray objectAtIndex:i] valueForKey:@"id"]
+                                        forIDKey:CoreDataMessagesID
+                                 existsInContext:context];
+        
+        [conversation addMessagesObject:messages];
+        
+        // Hold reference to parent conversationID
+        [messages setValue:conversation.conversationID forKey:CoreDataConversationID];
+        
+        NSString *messageID = [NSString testForNull:[[messagesArray objectAtIndex:i] valueForKey:@"id"]];
+        [messages setValue:messageID forKey:CoreDataMessagesID];
+        
+        NSString *createdAt = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"created_at"]];
+        [messages setValue:createdAt forKey:CoreDataMessagesCreatedAt];
+        
+        NSString *nickname = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"nickname"]];
+        [messages setValue:nickname forKey:CoreDataMessagesNickname];
+        
+        NSString *originNetwork = [NSString testForNull:[[messagesArray objectAtIndex:i] valueForKey:@"origin_network"]];
+        [messages setValue:originNetwork forKey:CoreDataMessagesOriginNetwork];
+        
+        NSDate *timestamp = [NSDate dataFromBSONstring:messageID];
+        [messages setValue:timestamp forKey:CoreDataMessagesTimestamp];
+        
+        NSString *text = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"text"]];
+        [messages setValue:text forKey:CoreDataMessagesText];
+        
+        NSString *userImage = [NSString testForNull:[[messagesArray objectAtIndex:i]  valueForKey:@"user_image_url"]];
+        [messages setValue:userImage forKey:CoreDataMessagesUserImage];
+        
+    }
+
+    [CoreDataUtility saveContext:context];
+    
 }
 
 + (void)storeParsedData:(NSDictionary *)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext *)context
