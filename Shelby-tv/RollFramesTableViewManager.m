@@ -275,8 +275,9 @@
             
         }
         
-                
     }
+    
+    [self.appDelegate removeHUD];
     
 }
 
@@ -461,6 +462,8 @@
         
         // Load more data from CoreData
         [self performAPIRequestForMoreEntries];
+        
+        [self.appDelegate addHUDWithMessage:@"Fetching older videos..."]; 
         
     }
 }

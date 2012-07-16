@@ -120,23 +120,7 @@
     
 }
 
-#pragma mark - Private Methods
-- (void)customization
-{ 
-    // UIStatusBar 
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-    
-    // UINavigationBar
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigationBar"] forBarMetrics:UIBarMetricsDefault];
-    
-}
-
-- (void)analytics
-{
-    // Crashlytics
-    [Crashlytics startWithAPIKey:@"84a79b7ee6f2eca13877cd17b9b9a290790f99aa"];
-}
-
+#pragma mark - Public Methods
 - (void)presentLoginViewController
 {
     
@@ -154,6 +138,41 @@
         [self.window.rootViewController presentModalViewController:loginViewController animated:NO];
         [[SocialFacade sharedInstance] setLoginViewController:loginViewController];
     }
+}
+
+- (void)addHUDWithMessage:(NSString *)message
+{
+    [self removeHUD];
+    
+    self.progressHUD = [MBProgressHUD showHUDAddedTo:self.window animated:YES];
+    self.progressHUD.mode = MBProgressHUDModeText;
+    self.progressHUD.labelText = message;
+    self.progressHUD.labelFont = [UIFont fontWithName:@"Ubuntu-Bold" size:12.0f];
+    
+}
+
+- (void)removeHUD
+{
+    // If an older progressHUD is working, remove it to make room for the new HUD
+    [MBProgressHUD hideAllHUDsForView:self.window animated:YES];
+    
+}
+
+#pragma mark - Private Methods
+- (void)customization
+{ 
+    // UIStatusBar 
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+    
+    // UINavigationBar
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigationBar"] forBarMetrics:UIBarMetricsDefault];
+    
+}
+
+- (void)analytics
+{
+    // Crashlytics
+    [Crashlytics startWithAPIKey:@"84a79b7ee6f2eca13877cd17b9b9a290790f99aa"];
 }
 
 @end

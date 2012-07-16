@@ -14,6 +14,9 @@
 #import "SocialFacade.h"
 #import "AsynchronousFreeloader.h"
 
+// Model
+#import "AppDelegate.h"
+
 // Categories
 #import "NSString+TypedefConversion.h"
 
@@ -43,6 +46,7 @@
 @property (strong, nonatomic) NSArray *parsedResultsArray;
 @property (strong, nonatomic) NSArray *coreDataResultsArray;
 @property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) AppDelegate *appDelegate;
 
 // RollFramesTableViewManager
 @property (strong, nonatomic) NSString *rollID;

@@ -51,6 +51,7 @@
             // Initialize Request
             self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
             
+            // Show statusBar activity Indicator
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
             
             
@@ -157,8 +158,11 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    
+    // Reference App Delegate
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
  
-    // Hide activity indicator
+    // Hide statusBar activity indicator
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
     // Create reference to context
@@ -211,6 +215,11 @@
             
         } break;
 
+        case APIRequestType_PostShareFrame:{
+            
+            [appDelegate removeHUD];
+            
+        }
             
         default:
             break;

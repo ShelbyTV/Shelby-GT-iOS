@@ -13,6 +13,7 @@
 #import "SocialFacade.h"
 #import "ShelbyAPIClient.h"
 #import "CoreDataUtility.h"
+#import "AppDelegate.h"
 
 // Controllers
 #import "ShelbyMenuViewController.h"
@@ -24,6 +25,7 @@
 @interface LoginViewController () <SocialFacadeDelegate>
 
 @property (strong, nonatomic) SocialFacade *socialFacade;
+@property (strong, nonatomic) AppDelegate *appDelegate;
 
 - (void)initializationOnLoad;
 - (void)didFinishLoadingDataOnLogin:(NSNotification*)notification;
@@ -37,6 +39,7 @@
 @synthesize facebookButton = _facebookButton;
 @synthesize twitterButton = _twitterButton;
 @synthesize socialFacade = _socialFacade;
+@synthesize appDelegate = _appDelegate;
 
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
@@ -75,6 +78,9 @@
     // Set Background
     self.view.backgroundColor = ColorConstants_BackgroundColor;
     
+    // Reference AppDelegate
+    self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
     // Set font for sloganLavel
     [self.sloganLabel setFont:[UIFont fontWithName:@"Ubuntu" size:self.sloganLabel.font.pointSize]];
     [self.sloganLabel setTextColor:[UIColor colorWithRed:227.0f/255.0f green:227.0f/255.0f blue:227.0f/255.0f alpha:1.0]];
@@ -105,6 +111,7 @@
         
         if (finished)  {
         
+            [self.appDelegate removeHUD];
             [self.menuController presentSection:GuideType_Stream];
             [self dismissViewControllerAnimated:NO completion:nil];
         
@@ -145,6 +152,7 @@
             ShelbyAPIClient *streamClient = [[ShelbyAPIClient alloc] init];
             [streamClient performRequest:streamRequest ofType:APIRequestType_GetStream];
             
+            [self.appDelegate addHUDWithMessage:@"Getting Stream (Step 1 of 3)"];
             
         } else {                                        // If the user has logged in before, dismiss LoginViewController
             

@@ -12,6 +12,7 @@
 #import "ShelbyAPIClient.h"
 #import "AsynchronousFreeloader.h"
 #import "NSString+TypedefConversion.h"
+#import "AppDelegate.h"
 
 @interface ShareViewController () <UITextViewDelegate>
 
@@ -142,28 +143,58 @@
 - (IBAction)shareButtonAction:(id)sender
 {
     
-    // Add Observer
-    [self createAPIObservers];
+     if ( ![self.facebookButton isSelected] && ![self.twitterButton isSelected] ) {
+     
+         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No social network chosen."
+                                                             message:@"Please choose at least one social network with which to share this video."
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"Dismiss"
+                                                   otherButtonTitles:nil, nil ];
+         
+         [alertView show];
+     
+     } else {
     
-    // Create request string and add frameID and shelbyToken
-    NSString *requestString = [NSString stringWithFormat:APIRequest_ShareFrame, self.frame.frameID, [SocialFacade sharedInstance].shelbyToken];
+        // Add Observer
+        [self createAPIObservers];
+        
+        // Create request string and add frameID and shelbyToken
+        NSString *requestString = [NSString stringWithFormat:APIRequest_ShareFrame, self.frame.frameID, [SocialFacade sharedInstance].shelbyToken];
+        
+        NSString *commentsString = [self.textView.text stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        requestString = [NSString stringWithFormat:@"%@&text=%@", requestString, commentsString];
+        
+        // Build string
+        if ( [self.facebookButton isSelected] ) requestString = [NSString stringWithFormat:@"%@&destination[]=facebook", requestString];
+        if ( [self.twitterButton isSelected] ) requestString = [NSString stringWithFormat:@"%@&destination[]=twitter", requestString];
+        
+        NSLog(@"%@", requestString);
+        
+        // Show ProgressHUD
+        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        
+        if ( [self.facebookButton isSelected] && [self.twitterButton isSelected] ) {
+            
+            [appDelegate addHUDWithMessage:@"Sharing video with Facebook and Twitter"];
+            
+        } else if ( [self.facebookButton isSelected] ) {
+            
+            [appDelegate addHUDWithMessage:@"Sharing video with Facebook"];
+            
+        } else if ( [self.twitterButton isSelected] ) {
+            
+            [appDelegate addHUDWithMessage:@"Sharing video with Twitter"];
+            
+        }
+        
+        // Perform API Request
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
+        [request setHTTPMethod:@"POST"];
+        ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+        [client performRequest:request ofType:APIRequestType_PostShareFrame];
+ 
+     }
     
-    NSString *commentsString = [self.textView.text stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    requestString = [NSString stringWithFormat:@"%@&text=%@", requestString, commentsString];
-    
-    // Build string
-    if ( [self.facebookButton isSelected] ) requestString = [NSString stringWithFormat:@"%@&destination[]=facebook", requestString];
-    if ( [self.twitterButton isSelected] ) requestString = [NSString stringWithFormat:@"%@&destination[]=twitter", requestString];
-    
-    NSLog(@"%@", requestString);
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
-    [request setHTTPMethod:@"POST"];
-    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
-    [client performRequest:request ofType:APIRequestType_GetStream];
-    
-    // Add shared successfully mbprogresshud
-
 }
 
 #pragma mark - UIResponder Methods

@@ -14,6 +14,7 @@
 #import "CoreDataUtility.h"
 #import "NSString+TypedefConversion.h"
 #import "StaticDeclarations.h"
+#import "AppDelegate.h"
 
 // Third Party Libraries 
 #import "OAuthConsumer.h"
@@ -51,6 +52,9 @@ UIActionSheetDelegate,
 UITableViewDataSource,
 UITableViewDelegate
 >
+
+// Shelby
+@property (strong, nonatomic) AppDelegate *appDelegate;
 
 // Facebook
 @property (copy, nonatomic) NSString *facebookName;
@@ -106,6 +110,7 @@ UITableViewDelegate
 @end
 
 @implementation SocialFacade
+@synthesize appDelegate = _appDelegate;
 @synthesize facebook = _facebook;
 @synthesize loginViewController = _loginViewController;
 @synthesize facebookName = _facebookName;
@@ -144,6 +149,7 @@ UITableViewDelegate
             self.firstTimeLogin = YES;
             
             // Set Shelby-specific NSUserDefaults to nil on first launch
+            self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             self.shelbyAuthorized = NO;
             self.shelbyToken = nil;
             self.shelbyCreatorID = nil;
@@ -217,6 +223,7 @@ UITableViewDelegate
 #pragma mark - Facebook Authorization Methods
 - (void)facebookLogin
 {
+    
     if ( ![self.facebook isSessionValid] ) {
         
         NSArray *permissions = [[NSArray alloc] initWithObjects:@"publish_stream", @"read_stream", @"email" , @"publish_actions", @"user_about_me",  nil];
@@ -329,6 +336,8 @@ UITableViewDelegate
 
 - (void)sendFacebookTokenAndExpirationDateToServer
 {
+    
+    [self.appDelegate addHUDWithMessage:@"Authorizing your Facebook account with Shelby"];
     
     // Create Observer
     APIRequestType requestType = APIRequestType_PostToken;
@@ -718,6 +727,9 @@ UITableViewDelegate
 - (void)sendReverseAuthAccessResultsToServer
 {
 
+    
+    [self.appDelegate addHUDWithMessage:@"Authorizing your Twitter account with Shelby"];
+    
     // Create Observer
     APIRequestType requestType = APIRequestType_PostToken;
     NSString *notificationName = [NSString requestTypeToString:requestType];

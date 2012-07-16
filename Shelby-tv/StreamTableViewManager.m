@@ -293,7 +293,6 @@
     // Fetch Rolls-Following Data from Core Data
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
         
-        
         NSUInteger previousCount = [self.coreDataResultsArray count];
         
         self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
@@ -317,8 +316,9 @@
             
         }
         
-        
     }
+    
+    [self.appDelegate removeHUD];
     
 }
 
@@ -498,6 +498,8 @@
         
         // Load more data from CoreData
         [self performAPIRequestForMoreEntries];
+        
+        [self.appDelegate addHUDWithMessage:@"Fetching older videos..."]; 
 
     }
 }

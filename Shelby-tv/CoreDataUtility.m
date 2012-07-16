@@ -12,6 +12,7 @@
 #import "NSString+TypedefConversion.h"
 #import "ShelbyAPIClient.h"
 #import "SocialFacade.h"
+#import "AppDelegate.h"
 
 @interface CoreDataUtility ()
 {
@@ -429,6 +430,9 @@ static CoreDataUtility *sharedInstance = nil;
                          ShelbyAPIClient *rollsFollowingClient = [[ShelbyAPIClient alloc] init];
                          [rollsFollowingClient performRequest:rollsFollowing ofType:APIRequestType_GetRollsFollowing];
                         
+                        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+                        [appDelegate addHUDWithMessage:@"Getting Private Rolls (Step 2 of 3)"];
+                        
                     } break;
                         
                     case APIRequestType_GetRollsFollowing:{
@@ -439,6 +443,9 @@ static CoreDataUtility *sharedInstance = nil;
                          NSMutableURLRequest *rollsFollowingRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:rollsFollowingRequestString]];
                          ShelbyAPIClient *rollsFollowingClient = [[ShelbyAPIClient alloc] init];
                          [rollsFollowingClient performRequest:rollsFollowingRequest ofType:APIRequestType_GetExploreRolls];
+                        
+                        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+                        [appDelegate addHUDWithMessage:@"Getting Public Rolls (Step 3 of 3)"];
                         
                     } break;
                         

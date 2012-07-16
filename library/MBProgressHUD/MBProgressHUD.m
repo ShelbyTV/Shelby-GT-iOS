@@ -101,7 +101,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 + (MBProgressHUD *)showHUDAddedTo:(UIView *)view animated:(BOOL)animated {
 	MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:view];
 	[view addSubview:hud];
-	[hud show:animated];
+    [hud show:animated];
 	return MB_AUTORELEASE(hud);
 }
 
@@ -163,7 +163,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		self.labelFont = [UIFont boldSystemFontOfSize:kLabelFontSize];
 		self.detailsLabelFont = [UIFont boldSystemFontOfSize:kDetailsLabelFontSize];
 		self.xOffset = 0.0f;
-		self.yOffset = 0.0f;
+		self.yOffset = 150.0f;
 		self.dimBackground = NO;
 		self.margin = 20.0f;
 		self.graceTime = 0.0f;
