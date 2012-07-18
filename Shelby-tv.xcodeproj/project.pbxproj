@@ -29,8 +29,27 @@
 		8E06BCF415A7D8B5004B42D5 /* videoCardButtonUpvoteOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCF015A7D8B4004B42D5 /* videoCardButtonUpvoteOff@2x.png */; };
 		8E06BCF515A7D8B5004B42D5 /* videoCardButtonUpvoteOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCF115A7D8B5004B42D5 /* videoCardButtonUpvoteOn.png */; };
 		8E06BCF615A7D8B5004B42D5 /* videoCardButtonUpvoteOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E06BCF215A7D8B5004B42D5 /* videoCardButtonUpvoteOn@2x.png */; };
+		8E1143AA15B753DF0017F4E8 /* smallCellDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E1143A815B753DF0017F4E8 /* smallCellDivider.png */; };
+		8E1143AB15B753DF0017F4E8 /* smallCellDivider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E1143A915B753DF0017F4E8 /* smallCellDivider@2x.png */; };
+		8E1F557315B731E300C5452E /* ExistingRollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E1F557215B731E300C5452E /* ExistingRollCell.xib */; };
 		8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2A8EAE159135970028712C /* StreamTableViewManager.m */; };
 		8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */; };
+		8E44DC0A15B5E8610035B3CF /* NewRollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E44DC0815B5E8610035B3CF /* NewRollViewController.m */; };
+		8E44DC0B15B5E8610035B3CF /* NewRollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E44DC0915B5E8610035B3CF /* NewRollViewController.xib */; };
+		8E459C7515B719B000A8D6FD /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C7315B719B000A8D6FD /* backButton.png */; };
+		8E459C7615B719B000A8D6FD /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C7415B719B000A8D6FD /* backButton@2x.png */; };
+		8E459C8815B7275F00A8D6FD /* newRollButtonRollIt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C7915B7275F00A8D6FD /* newRollButtonRollIt.png */; };
+		8E459C8915B7275F00A8D6FD /* newRollButtonRollIt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C7A15B7275F00A8D6FD /* newRollButtonRollIt@2x.png */; };
+		8E459C8B15B7275F00A8D6FD /* rollItButtonNew.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C7D15B7275F00A8D6FD /* rollItButtonNew.png */; };
+		8E459C8C15B7275F00A8D6FD /* rollItButtonNew@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C7E15B7275F00A8D6FD /* rollItButtonNew@2x.png */; };
+		8E459C8E15B7275F00A8D6FD /* rollItAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C8015B7275F00A8D6FD /* rollItAvatar.png */; };
+		8E459C8F15B7275F00A8D6FD /* rollItAvatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C8115B7275F00A8D6FD /* rollItAvatar@2x.png */; };
+		8E459C9015B7275F00A8D6FD /* rollItButtonAdd.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C8215B7275F00A8D6FD /* rollItButtonAdd.png */; };
+		8E459C9115B7275F00A8D6FD /* rollItButtonAdd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C8315B7275F00A8D6FD /* rollItButtonAdd@2x.png */; };
+		8E459C9215B7275F00A8D6FD /* rollItPrivate.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C8415B7275F00A8D6FD /* rollItPrivate.png */; };
+		8E459C9315B7275F00A8D6FD /* rollItPrivate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C8515B7275F00A8D6FD /* rollItPrivate@2x.png */; };
+		8E459C9415B7275F00A8D6FD /* rollitPublic.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C8615B7275F00A8D6FD /* rollitPublic.png */; };
+		8E459C9515B7275F00A8D6FD /* rollitPublic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C8715B7275F00A8D6FD /* rollitPublic@2x.png */; };
 		8E4A04611598CA3900E4F675 /* ShelbyMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A04601598CA3900E4F675 /* ShelbyMenuViewController.xib */; };
 		8E4A7732155185A0003CBA2A /* pullToRefreshArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A7730155185A0003CBA2A /* pullToRefreshArrow.png */; };
 		8E4A7733155185A0003CBA2A /* pullToRefreshArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A7731155185A0003CBA2A /* pullToRefreshArrow@2x.png */; };
@@ -98,8 +117,6 @@
 		8E7256D215A7427D0052D80A /* loginButtonTwitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256CE15A7427D0052D80A /* loginButtonTwitter@2x.png */; };
 		8E7256D915A749650052D80A /* loginTopBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256D715A749650052D80A /* loginTopBar.png */; };
 		8E7256DA15A749650052D80A /* loginTopBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256D815A749650052D80A /* loginTopBar@2x.png */; };
-		8E7256DD15A758610052D80A /* navigationButtonBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256DB15A7585F0052D80A /* navigationButtonBack.png */; };
-		8E7256DE15A758610052D80A /* navigationButtonBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E7256DC15A758600052D80A /* navigationButtonBack@2x.png */; };
 		8E78C1C515ABB96E00326EF9 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E78C1C315ABB96E00326EF9 /* ShareViewController.m */; };
 		8E78C1C615ABB96E00326EF9 /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E78C1C415ABB96E00326EF9 /* ShareViewController.xib */; };
 		8E78C1CA15ABB97900326EF9 /* RollItViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E78C1C815ABB97900326EF9 /* RollItViewController.m */; };
@@ -159,6 +176,9 @@
 		8EB6D7F4157FD4ED0060202D /* videoCardTopBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EB6D7F2157FD4ED0060202D /* videoCardTopBar@2x.png */; };
 		8EB6D81315800F550060202D /* Creator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6D81215800F550060202D /* Creator.m */; };
 		8EB6D81615800FCF0060202D /* Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6D81515800FCF0060202D /* Frame.m */; };
+		8EC0CAA815B72F800010340B /* NewRollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC0CAA715B72F800010340B /* NewRollCell.m */; };
+		8EC0CAAC15B72F970010340B /* ExistingRollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC0CAAB15B72F970010340B /* ExistingRollCell.m */; };
+		8EC0CAAE15B730240010340B /* NewRollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EC0CAAD15B730240010340B /* NewRollCell.xib */; };
 		8EC54585158F96310048FEAA /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC54584158F96310048FEAA /* Conversation.m */; };
 		8EC9813715950DF100BB9227 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC9813615950DF100BB9227 /* Reachability.m */; };
 		8EC9813D15950FEB00BB9227 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC9813C15950FEA00BB9227 /* SystemConfiguration.framework */; };
@@ -237,10 +257,30 @@
 		8E06BCF115A7D8B5004B42D5 /* videoCardButtonUpvoteOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoCardButtonUpvoteOn.png; sourceTree = "<group>"; };
 		8E06BCF215A7D8B5004B42D5 /* videoCardButtonUpvoteOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoCardButtonUpvoteOn@2x.png"; sourceTree = "<group>"; };
 		8E0B3A9415813C400008B841 /* ColorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorConstants.h; sourceTree = "<group>"; };
+		8E1143A815B753DF0017F4E8 /* smallCellDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallCellDivider.png; sourceTree = "<group>"; };
+		8E1143A915B753DF0017F4E8 /* smallCellDivider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smallCellDivider@2x.png"; sourceTree = "<group>"; };
+		8E1F557215B731E300C5452E /* ExistingRollCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExistingRollCell.xib; sourceTree = "<group>"; };
 		8E2A8EAD159135970028712C /* StreamTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewManager.h; sourceTree = "<group>"; };
 		8E2A8EAE159135970028712C /* StreamTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamTableViewManager.m; sourceTree = "<group>"; };
 		8E3457851551BC9200FEFC9D /* NSString+TypedefConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TypedefConversion.h"; sourceTree = "<group>"; };
 		8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TypedefConversion.m"; sourceTree = "<group>"; };
+		8E44DC0715B5E8610035B3CF /* NewRollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewRollViewController.h; sourceTree = "<group>"; };
+		8E44DC0815B5E8610035B3CF /* NewRollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewRollViewController.m; sourceTree = "<group>"; };
+		8E44DC0915B5E8610035B3CF /* NewRollViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewRollViewController.xib; sourceTree = "<group>"; };
+		8E459C7315B719B000A8D6FD /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
+		8E459C7415B719B000A8D6FD /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
+		8E459C7915B7275F00A8D6FD /* newRollButtonRollIt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newRollButtonRollIt.png; sourceTree = "<group>"; };
+		8E459C7A15B7275F00A8D6FD /* newRollButtonRollIt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newRollButtonRollIt@2x.png"; sourceTree = "<group>"; };
+		8E459C7D15B7275F00A8D6FD /* rollItButtonNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollItButtonNew.png; sourceTree = "<group>"; };
+		8E459C7E15B7275F00A8D6FD /* rollItButtonNew@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rollItButtonNew@2x.png"; sourceTree = "<group>"; };
+		8E459C8015B7275F00A8D6FD /* rollItAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollItAvatar.png; sourceTree = "<group>"; };
+		8E459C8115B7275F00A8D6FD /* rollItAvatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rollItAvatar@2x.png"; sourceTree = "<group>"; };
+		8E459C8215B7275F00A8D6FD /* rollItButtonAdd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollItButtonAdd.png; sourceTree = "<group>"; };
+		8E459C8315B7275F00A8D6FD /* rollItButtonAdd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rollItButtonAdd@2x.png"; sourceTree = "<group>"; };
+		8E459C8415B7275F00A8D6FD /* rollItPrivate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollItPrivate.png; sourceTree = "<group>"; };
+		8E459C8515B7275F00A8D6FD /* rollItPrivate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rollItPrivate@2x.png"; sourceTree = "<group>"; };
+		8E459C8615B7275F00A8D6FD /* rollitPublic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollitPublic.png; sourceTree = "<group>"; };
+		8E459C8715B7275F00A8D6FD /* rollitPublic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rollitPublic@2x.png"; sourceTree = "<group>"; };
 		8E4A04601598CA3900E4F675 /* ShelbyMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShelbyMenuViewController.xib; sourceTree = "<group>"; };
 		8E4A7730155185A0003CBA2A /* pullToRefreshArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pullToRefreshArrow.png; path = library/ASPullToRefresh/ASPullToRefresh/pullToRefreshArrow.png; sourceTree = SOURCE_ROOT; };
 		8E4A7731155185A0003CBA2A /* pullToRefreshArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pullToRefreshArrow@2x.png"; path = "library/ASPullToRefresh/ASPullToRefresh/pullToRefreshArrow@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -352,8 +392,6 @@
 		8E7256CE15A7427D0052D80A /* loginButtonTwitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "loginButtonTwitter@2x.png"; path = "Resources/images/login/loginButtonTwitter@2x.png"; sourceTree = SOURCE_ROOT; };
 		8E7256D715A749650052D80A /* loginTopBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loginTopBar.png; path = Resources/images/login/loginTopBar.png; sourceTree = SOURCE_ROOT; };
 		8E7256D815A749650052D80A /* loginTopBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "loginTopBar@2x.png"; path = "Resources/images/login/loginTopBar@2x.png"; sourceTree = SOURCE_ROOT; };
-		8E7256DB15A7585F0052D80A /* navigationButtonBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonBack.png; sourceTree = "<group>"; };
-		8E7256DC15A758600052D80A /* navigationButtonBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonBack@2x.png"; sourceTree = "<group>"; };
 		8E78C1C215ABB96E00326EF9 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		8E78C1C315ABB96E00326EF9 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		8E78C1C415ABB96E00326EF9 /* ShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareViewController.xib; sourceTree = "<group>"; };
@@ -429,6 +467,11 @@
 		8EB6D81215800F550060202D /* Creator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Creator.m; sourceTree = "<group>"; };
 		8EB6D81415800FCF0060202D /* Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frame.h; sourceTree = "<group>"; };
 		8EB6D81515800FCF0060202D /* Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Frame.m; sourceTree = "<group>"; };
+		8EC0CAA615B72F800010340B /* NewRollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewRollCell.h; sourceTree = "<group>"; };
+		8EC0CAA715B72F800010340B /* NewRollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewRollCell.m; sourceTree = "<group>"; };
+		8EC0CAAA15B72F970010340B /* ExistingRollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExistingRollCell.h; sourceTree = "<group>"; };
+		8EC0CAAB15B72F970010340B /* ExistingRollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExistingRollCell.m; sourceTree = "<group>"; };
+		8EC0CAAD15B730240010340B /* NewRollCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewRollCell.xib; sourceTree = "<group>"; };
 		8EC54583158F96310048FEAA /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
 		8EC54584158F96310048FEAA /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
 		8EC9813515950DF100BB9227 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -518,6 +561,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E459C7815B7275F00A8D6FD /* newRoll */ = {
+			isa = PBXGroup;
+			children = (
+				8E459C7915B7275F00A8D6FD /* newRollButtonRollIt.png */,
+				8E459C7A15B7275F00A8D6FD /* newRollButtonRollIt@2x.png */,
+			);
+			name = newRoll;
+			path = Resources/images/newRoll;
+			sourceTree = SOURCE_ROOT;
+		};
+		8E459C7C15B7275F00A8D6FD /* rollIt */ = {
+			isa = PBXGroup;
+			children = (
+				8E1143A815B753DF0017F4E8 /* smallCellDivider.png */,
+				8E1143A915B753DF0017F4E8 /* smallCellDivider@2x.png */,
+				8E459C7D15B7275F00A8D6FD /* rollItButtonNew.png */,
+				8E459C7E15B7275F00A8D6FD /* rollItButtonNew@2x.png */,
+				8E459C8015B7275F00A8D6FD /* rollItAvatar.png */,
+				8E459C8115B7275F00A8D6FD /* rollItAvatar@2x.png */,
+				8E459C8215B7275F00A8D6FD /* rollItButtonAdd.png */,
+				8E459C8315B7275F00A8D6FD /* rollItButtonAdd@2x.png */,
+				8E459C8415B7275F00A8D6FD /* rollItPrivate.png */,
+				8E459C8515B7275F00A8D6FD /* rollItPrivate@2x.png */,
+				8E459C8615B7275F00A8D6FD /* rollitPublic.png */,
+				8E459C8715B7275F00A8D6FD /* rollitPublic@2x.png */,
+			);
+			name = rollIt;
+			path = Resources/images/rollIt;
+			sourceTree = SOURCE_ROOT;
+		};
 		8E50604115588FAB00F42933 /* Asynchronous Freeloader */ = {
 			isa = PBXGroup;
 			children = (
@@ -687,8 +760,6 @@
 				8E5F039015ACFA2200DAEEBE /* navigationButtonFriendsRollsOff@2x.png */,
 				8E5F039115ACFA2200DAEEBE /* navigationButtonFriendsRollsOn.png */,
 				8E5F039215ACFA2200DAEEBE /* navigationButtonFriendsRollsOn@2x.png */,
-				8E7256DB15A7585F0052D80A /* navigationButtonBack.png */,
-				8E7256DC15A758600052D80A /* navigationButtonBack@2x.png */,
 				8EA238D315A6518D006C2A54 /* navigationDivider.png */,
 				8EA238D415A6518D006C2A54 /* navigationDivider@2x.png */,
 				8E917ABE1599337A0069C9A1 /* navigationLogo.png */,
@@ -813,6 +884,8 @@
 		8E88604815B3A9E40048FED8 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				8E459C7315B719B000A8D6FD /* backButton.png */,
+				8E459C7415B719B000A8D6FD /* backButton@2x.png */,
 				8E88604915B3A9E40048FED8 /* cellDivider.png */,
 				8E88604A15B3A9E40048FED8 /* cellDivider@2x.png */,
 			);
@@ -940,6 +1013,8 @@
 				8E78C1C315ABB96E00326EF9 /* ShareViewController.m */,
 				8E04DC2B1590E1620066BBA6 /* ShelbyMenuViewController.h */,
 				8E04DC2C1590E1620066BBA6 /* ShelbyMenuViewController.m */,
+				8E44DC0715B5E8610035B3CF /* NewRollViewController.h */,
+				8E44DC0815B5E8610035B3CF /* NewRollViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -950,6 +1025,10 @@
 				8ED3110715360490002614DF /* Xibs */,
 				8E79437D15B0C27400ED4655 /* CommentCell.h */,
 				8E79437E15B0C27400ED4655 /* CommentCell.m */,
+				8EC0CAAA15B72F970010340B /* ExistingRollCell.h */,
+				8EC0CAAB15B72F970010340B /* ExistingRollCell.m */,
+				8EC0CAA615B72F800010340B /* NewRollCell.h */,
+				8EC0CAA715B72F800010340B /* NewRollCell.m */,
 				8EE40A491596359200559484 /* RollsCell.h */,
 				8EE40A4A1596359200559484 /* RollsCell.m */,
 				8EEA703E15544A2200B1B07F /* VideoCardCell.h */,
@@ -998,6 +1077,9 @@
 				8E78C1CE15ABB98000326EF9 /* CommentViewController.xib */,
 				8E664D3F1541A66A0071EC42 /* LoginViewController_iPhone.xib */,
 				8E664D411541A6770071EC42 /* LoginViewController_iPad.xib */,
+				8E1F557215B731E300C5452E /* ExistingRollCell.xib */,
+				8EC0CAAD15B730240010340B /* NewRollCell.xib */,
+				8E44DC0915B5E8610035B3CF /* NewRollViewController.xib */,
 				8EE40A4C159638E000559484 /* RollsCell.xib */,
 				8E78C1C915ABB97900326EF9 /* RollItViewController.xib */,
 				8E78C1C415ABB96E00326EF9 /* ShareViewController.xib */,
@@ -1067,6 +1149,8 @@
 		8EE673841552E474004EA45C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8E459C7815B7275F00A8D6FD /* newRoll */,
+				8E459C7C15B7275F00A8D6FD /* rollIt */,
 				8E88604815B3A9E40048FED8 /* common */,
 				8E79436915B0C02A00ED4655 /* comments */,
 				8EE673851552E474004EA45C /* login */,
@@ -1219,8 +1303,6 @@
 				8E7256D215A7427D0052D80A /* loginButtonTwitter@2x.png in Resources */,
 				8E7256D915A749650052D80A /* loginTopBar.png in Resources */,
 				8E7256DA15A749650052D80A /* loginTopBar@2x.png in Resources */,
-				8E7256DD15A758610052D80A /* navigationButtonBack.png in Resources */,
-				8E7256DE15A758610052D80A /* navigationButtonBack@2x.png in Resources */,
 				8E06BCCF15A7A214004B42D5 /* heart.png in Resources */,
 				8E06BCD015A7A214004B42D5 /* heart@2x.png in Resources */,
 				8E06BCDE15A7D3D1004B42D5 /* videoCardButtonComment.png in Resources */,
@@ -1271,6 +1353,25 @@
 				8E79438115B0C28900ED4655 /* CommentCell.xib in Resources */,
 				8E88604B15B3A9E40048FED8 /* cellDivider.png in Resources */,
 				8E88604C15B3A9E40048FED8 /* cellDivider@2x.png in Resources */,
+				8E44DC0B15B5E8610035B3CF /* NewRollViewController.xib in Resources */,
+				8E459C7515B719B000A8D6FD /* backButton.png in Resources */,
+				8E459C7615B719B000A8D6FD /* backButton@2x.png in Resources */,
+				8E459C8815B7275F00A8D6FD /* newRollButtonRollIt.png in Resources */,
+				8E459C8915B7275F00A8D6FD /* newRollButtonRollIt@2x.png in Resources */,
+				8E459C8B15B7275F00A8D6FD /* rollItButtonNew.png in Resources */,
+				8E459C8C15B7275F00A8D6FD /* rollItButtonNew@2x.png in Resources */,
+				8E459C8E15B7275F00A8D6FD /* rollItAvatar.png in Resources */,
+				8E459C8F15B7275F00A8D6FD /* rollItAvatar@2x.png in Resources */,
+				8E459C9015B7275F00A8D6FD /* rollItButtonAdd.png in Resources */,
+				8E459C9115B7275F00A8D6FD /* rollItButtonAdd@2x.png in Resources */,
+				8E459C9215B7275F00A8D6FD /* rollItPrivate.png in Resources */,
+				8E459C9315B7275F00A8D6FD /* rollItPrivate@2x.png in Resources */,
+				8E459C9415B7275F00A8D6FD /* rollitPublic.png in Resources */,
+				8E459C9515B7275F00A8D6FD /* rollitPublic@2x.png in Resources */,
+				8EC0CAAE15B730240010340B /* NewRollCell.xib in Resources */,
+				8E1F557315B731E300C5452E /* ExistingRollCell.xib in Resources */,
+				8E1143AA15B753DF0017F4E8 /* smallCellDivider.png in Resources */,
+				8E1143AB15B753DF0017F4E8 /* smallCellDivider@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1371,6 +1472,9 @@
 				8E88605415B3C5320048FED8 /* MBProgressHUD.m in Sources */,
 				8E88605715B3D4AA0048FED8 /* Messages.m in Sources */,
 				8E88605A15B3FC360048FED8 /* ShelbyUser.m in Sources */,
+				8E44DC0A15B5E8610035B3CF /* NewRollViewController.m in Sources */,
+				8EC0CAA815B72F800010340B /* NewRollCell.m in Sources */,
+				8EC0CAAC15B72F970010340B /* ExistingRollCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

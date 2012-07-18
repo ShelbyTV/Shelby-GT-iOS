@@ -1,6 +1,6 @@
 //
 //  VideoCardController.m
-//  Shelby-tv
+//  Shelby.tv
 //
 //  Created by Arthur Ariel Sabintsev on 6/1/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
@@ -10,8 +10,9 @@
 #import "CoreDataUtility.h"
 #import "ShelbyAPIClient.h"
 #import "SocialFacade.h"
-#import "ShareViewController.h"
 #import "CommentViewController.h"
+#import "RollItViewController.h"
+#import "ShareViewController.h"
 #import "NSString+TypedefConversion.h"
 
 @interface VideoCardController ()
@@ -63,7 +64,8 @@
 
 - (void)roll:(UINavigationController *)navController
 {
-
+    RollItViewController *rollItViewController = [[RollItViewController alloc] initWithNibName:@"RollItViewController" bundle:nil andFrame:self.frame];
+    [navController pushViewController:rollItViewController animated:YES];
 }
 
 - (void)share:(UINavigationController *)navController

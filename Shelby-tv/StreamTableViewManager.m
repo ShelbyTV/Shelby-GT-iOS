@@ -1,6 +1,6 @@
 //
 //  StreamTableViewManager.m
-//  Shelby-tv
+//  Shelby.tv
 //
 //  Created by Arthur Ariel Sabintsev on 4/19/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
@@ -25,6 +25,7 @@
 - (void)upvote:(UIButton *)button;
 - (void)downvote:(UIButton *)button;
 - (void)comment:(UIButton *)button;
+- (void)roll:(UIButton *)button;
 - (void)share:(UIButton *)button;
 
 @end
@@ -90,6 +91,9 @@
         
         // Connect Comment Button
         [cell.commentButton addTarget:self action:@selector(comment:) forControlEvents:UIControlEventTouchUpInside];
+        
+        // Connect Roll Button
+        [cell.rollButton addTarget:self action:@selector(roll:) forControlEvents:UIControlEventTouchUpInside];
         
         // Connect Share Button
         [cell.shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
@@ -260,11 +264,19 @@
 {
     DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForDashboardID:[self.arrayOfDashboardIDs objectAtIndex:button.tag]];
     Frame *frame = dashboardEntry.frame;
-    
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
     [controller comment:self.guideController.navigationController];
     
 }
+
+- (void)roll:(UIButton *)button
+{
+    DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForDashboardID:[self.arrayOfDashboardIDs objectAtIndex:button.tag]];
+    Frame *frame = dashboardEntry.frame;
+    VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
+    [controller roll:self.guideController.navigationController];
+}
+
 
 - (void)share:(UIButton *)button
 {

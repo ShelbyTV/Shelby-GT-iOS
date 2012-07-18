@@ -1,6 +1,6 @@
 //
 //  GuideTableViewController.m
-//  Shelby-tv
+//  Shelby.tv
 //
 //  Created by Arthur Ariel Sabintsev on 4/19/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
@@ -204,7 +204,7 @@
     if ( self.type == GuideType_RollFrames ) {
     
         UIButton *backBarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 51, 30)];
-        [backBarButton setImage:[UIImage imageNamed:@"navigationButtonBack"] forState:UIControlStateNormal];
+        [backBarButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
         [backBarButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBarButton];
         [self.navigationItem setHidesBackButton:YES];

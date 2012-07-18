@@ -1,6 +1,6 @@
 //
 //  CommentViewController.m
-//  Shelby-tv
+//  Shelby.tv
 //
 //  Created by Arthur Ariel Sabintsev on 7/9/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
@@ -89,7 +89,7 @@
     [self.navigationItem setTitle:@"Comment"];
     
     [self.nicknameLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.nicknameLabel.font.pointSize]];
-    [self.nicknameLabel setTextColor:[UIColor whiteColor]];
+    [self.nicknameLabel setTextColor:ColorConstants_GrayTextColor];
     
     [self.videoNameLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.videoNameLabel.font.pointSize]];
     [self.videoNameLabel setTextColor:[UIColor whiteColor]];
@@ -114,7 +114,7 @@
 - (void)addCustomBackButton
 {
     UIButton *backBarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 51, 30)];
-    [backBarButton setImage:[UIImage imageNamed:@"navigationButtonBack"] forState:UIControlStateNormal];
+    [backBarButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
     [backBarButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBarButton];
     [self.navigationItem setHidesBackButton:YES];

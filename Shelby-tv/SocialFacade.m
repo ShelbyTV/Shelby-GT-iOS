@@ -199,9 +199,7 @@ UITableViewDelegate
         [self setShelbyHasAccessToFacebook:[shelbyUser.authenticatedWithFacebook boolValue]];
         [self setShelbyHasAccessToTwitter:[shelbyUser.authenticatedWithTwitter boolValue]];
         [self setShelbyHasAccessToTumblr:[shelbyUser.authenticatedWithTumblr boolValue]];
-        
-        NSLog(@"F:%d W:%d U:%d", self.shelbyHasAccessToFacebook, self.shelbyHasAccessToTwitter, self.shelbyHasAccessToTumblr);
-        
+
     }
         
     // Dismiss login window after token swap
