@@ -11,6 +11,7 @@
 #import "NewRollCell.h"
 #import "ExistingRollCell.h"
 #import "CoreDataUtility.h"
+#import "NewRollViewController.h"
 
 @interface RollItViewController ()
 
@@ -21,6 +22,7 @@
 - (void)customizeView;
 - (void)populateView;
 - (void)fetchMyRolls;
+- (void)createNewRoll;
 
 @end
 
@@ -102,6 +104,12 @@
     self.myRolls = [CoreDataUtility fetchMyRolls];
 }
 
+- (void)createNewRoll
+{
+    NewRollViewController *newRollViewController = [[NewRollViewController alloc] initWithNibName:@"NewRollViewController" bundle:nil andFrame:self.frame];
+    [self.navigationController pushViewController:newRollViewController animated:YES];
+}
+
 - (void)addCustomBackButton
 {
     UIButton *backBarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 51, 30)];
@@ -149,10 +157,20 @@
         ExistingRollCell *cell = (ExistingRollCell*)[nib objectAtIndex:0];
         
         Roll *roll = [self.myRolls objectAtIndex:indexPath.row];
-        
         [AsynchronousFreeloader loadImageFromLink:roll.thumbnailURL forImageView:cell.userImageView withPlaceholderView:nil];
         cell.nicknameLabel.text = roll.title;
-        cell.privacyLabel.text = ( roll.isPublic ) ? @"Public" : @"Private";
+        
+        if ( roll.isPublic ) {
+        
+            cell.lockImageView.image = [UIImage imageNamed:@"rollItPublic"];
+            cell.privacyLabel.text = @"Public";
+            
+        } else {
+            
+            cell.lockImageView.image = [UIImage imageNamed:@"rollItPrivate"];
+            cell.privacyLabel.text = [NSString stringWithFormat:@"%d members", [roll.followingCount intValue]];
+            
+        }
         
         return cell;
 
@@ -160,7 +178,8 @@
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"NewRollCell" owner:self options:nil];
         NewRollCell *cell = (NewRollCell*)[nib objectAtIndex:0];
-        
+//        [cell.button setSelected:NO];
+        [cell.button addTarget:self action:@selector(createNewRoll) forControlEvents:UIControlEventTouchUpInside];
         return cell;
                
     }

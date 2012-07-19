@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StaticDeclarations.h"
 
 @interface NewRollViewController : UIViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andFrame:(Frame *)frame;
+
+@property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *videoNameLabel;
 
 @end

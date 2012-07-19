@@ -32,6 +32,9 @@
 		8E1143AA15B753DF0017F4E8 /* smallCellDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E1143A815B753DF0017F4E8 /* smallCellDivider.png */; };
 		8E1143AB15B753DF0017F4E8 /* smallCellDivider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E1143A915B753DF0017F4E8 /* smallCellDivider@2x.png */; };
 		8E1F557315B731E300C5452E /* ExistingRollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E1F557215B731E300C5452E /* ExistingRollCell.xib */; };
+		8E24E1AA15B88EB8009E3461 /* newRollButtonPeopleSelection.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1A815B88EB8009E3461 /* newRollButtonPeopleSelection.png */; };
+		8E24E1AB15B88EB8009E3461 /* newRollButtonPeopleSelection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1A915B88EB8009E3461 /* newRollButtonPeopleSelection@2x.png */; };
+		8E24E1AE15B89499009E3461 /* rollItPublic.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1AD15B89499009E3461 /* rollItPublic.png */; };
 		8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2A8EAE159135970028712C /* StreamTableViewManager.m */; };
 		8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */; };
 		8E44DC0A15B5E8610035B3CF /* NewRollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E44DC0815B5E8610035B3CF /* NewRollViewController.m */; };
@@ -48,8 +51,7 @@
 		8E459C9115B7275F00A8D6FD /* rollItButtonAdd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C8315B7275F00A8D6FD /* rollItButtonAdd@2x.png */; };
 		8E459C9215B7275F00A8D6FD /* rollItPrivate.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C8415B7275F00A8D6FD /* rollItPrivate.png */; };
 		8E459C9315B7275F00A8D6FD /* rollItPrivate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C8515B7275F00A8D6FD /* rollItPrivate@2x.png */; };
-		8E459C9415B7275F00A8D6FD /* rollitPublic.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C8615B7275F00A8D6FD /* rollitPublic.png */; };
-		8E459C9515B7275F00A8D6FD /* rollitPublic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C8715B7275F00A8D6FD /* rollitPublic@2x.png */; };
+		8E459C9515B7275F00A8D6FD /* rollItPublic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E459C8715B7275F00A8D6FD /* rollItPublic@2x.png */; };
 		8E4A04611598CA3900E4F675 /* ShelbyMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A04601598CA3900E4F675 /* ShelbyMenuViewController.xib */; };
 		8E4A7732155185A0003CBA2A /* pullToRefreshArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A7730155185A0003CBA2A /* pullToRefreshArrow.png */; };
 		8E4A7733155185A0003CBA2A /* pullToRefreshArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4A7731155185A0003CBA2A /* pullToRefreshArrow@2x.png */; };
@@ -260,6 +262,9 @@
 		8E1143A815B753DF0017F4E8 /* smallCellDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallCellDivider.png; sourceTree = "<group>"; };
 		8E1143A915B753DF0017F4E8 /* smallCellDivider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smallCellDivider@2x.png"; sourceTree = "<group>"; };
 		8E1F557215B731E300C5452E /* ExistingRollCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExistingRollCell.xib; sourceTree = "<group>"; };
+		8E24E1A815B88EB8009E3461 /* newRollButtonPeopleSelection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newRollButtonPeopleSelection.png; sourceTree = "<group>"; };
+		8E24E1A915B88EB8009E3461 /* newRollButtonPeopleSelection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newRollButtonPeopleSelection@2x.png"; sourceTree = "<group>"; };
+		8E24E1AD15B89499009E3461 /* rollItPublic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollItPublic.png; sourceTree = "<group>"; };
 		8E2A8EAD159135970028712C /* StreamTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewManager.h; sourceTree = "<group>"; };
 		8E2A8EAE159135970028712C /* StreamTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamTableViewManager.m; sourceTree = "<group>"; };
 		8E3457851551BC9200FEFC9D /* NSString+TypedefConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TypedefConversion.h"; sourceTree = "<group>"; };
@@ -279,8 +284,7 @@
 		8E459C8315B7275F00A8D6FD /* rollItButtonAdd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rollItButtonAdd@2x.png"; sourceTree = "<group>"; };
 		8E459C8415B7275F00A8D6FD /* rollItPrivate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollItPrivate.png; sourceTree = "<group>"; };
 		8E459C8515B7275F00A8D6FD /* rollItPrivate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rollItPrivate@2x.png"; sourceTree = "<group>"; };
-		8E459C8615B7275F00A8D6FD /* rollitPublic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollitPublic.png; sourceTree = "<group>"; };
-		8E459C8715B7275F00A8D6FD /* rollitPublic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rollitPublic@2x.png"; sourceTree = "<group>"; };
+		8E459C8715B7275F00A8D6FD /* rollItPublic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rollItPublic@2x.png"; sourceTree = "<group>"; };
 		8E4A04601598CA3900E4F675 /* ShelbyMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShelbyMenuViewController.xib; sourceTree = "<group>"; };
 		8E4A7730155185A0003CBA2A /* pullToRefreshArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pullToRefreshArrow.png; path = library/ASPullToRefresh/ASPullToRefresh/pullToRefreshArrow.png; sourceTree = SOURCE_ROOT; };
 		8E4A7731155185A0003CBA2A /* pullToRefreshArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pullToRefreshArrow@2x.png"; path = "library/ASPullToRefresh/ASPullToRefresh/pullToRefreshArrow@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -564,6 +568,8 @@
 		8E459C7815B7275F00A8D6FD /* newRoll */ = {
 			isa = PBXGroup;
 			children = (
+				8E24E1A815B88EB8009E3461 /* newRollButtonPeopleSelection.png */,
+				8E24E1A915B88EB8009E3461 /* newRollButtonPeopleSelection@2x.png */,
 				8E459C7915B7275F00A8D6FD /* newRollButtonRollIt.png */,
 				8E459C7A15B7275F00A8D6FD /* newRollButtonRollIt@2x.png */,
 			);
@@ -584,8 +590,8 @@
 				8E459C8315B7275F00A8D6FD /* rollItButtonAdd@2x.png */,
 				8E459C8415B7275F00A8D6FD /* rollItPrivate.png */,
 				8E459C8515B7275F00A8D6FD /* rollItPrivate@2x.png */,
-				8E459C8615B7275F00A8D6FD /* rollitPublic.png */,
-				8E459C8715B7275F00A8D6FD /* rollitPublic@2x.png */,
+				8E24E1AD15B89499009E3461 /* rollItPublic.png */,
+				8E459C8715B7275F00A8D6FD /* rollItPublic@2x.png */,
 			);
 			name = rollIt;
 			path = Resources/images/rollIt;
@@ -1005,6 +1011,8 @@
 				8E8124D61540B92E00E1EA4B /* GuideTableViewController.m */,
 				8E664D521541B0120071EC42 /* LoginViewController.h */,
 				8E664D531541B0120071EC42 /* LoginViewController.m */,
+				8E44DC0715B5E8610035B3CF /* NewRollViewController.h */,
+				8E44DC0815B5E8610035B3CF /* NewRollViewController.m */,
 				8E78C1C715ABB97900326EF9 /* RollItViewController.h */,
 				8E78C1C815ABB97900326EF9 /* RollItViewController.m */,
 				8E04DC2F159117DD0066BBA6 /* SettingsTableViewController.h */,
@@ -1013,8 +1021,6 @@
 				8E78C1C315ABB96E00326EF9 /* ShareViewController.m */,
 				8E04DC2B1590E1620066BBA6 /* ShelbyMenuViewController.h */,
 				8E04DC2C1590E1620066BBA6 /* ShelbyMenuViewController.m */,
-				8E44DC0715B5E8610035B3CF /* NewRollViewController.h */,
-				8E44DC0815B5E8610035B3CF /* NewRollViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1366,12 +1372,14 @@
 				8E459C9115B7275F00A8D6FD /* rollItButtonAdd@2x.png in Resources */,
 				8E459C9215B7275F00A8D6FD /* rollItPrivate.png in Resources */,
 				8E459C9315B7275F00A8D6FD /* rollItPrivate@2x.png in Resources */,
-				8E459C9415B7275F00A8D6FD /* rollitPublic.png in Resources */,
-				8E459C9515B7275F00A8D6FD /* rollitPublic@2x.png in Resources */,
+				8E459C9515B7275F00A8D6FD /* rollItPublic@2x.png in Resources */,
 				8EC0CAAE15B730240010340B /* NewRollCell.xib in Resources */,
 				8E1F557315B731E300C5452E /* ExistingRollCell.xib in Resources */,
 				8E1143AA15B753DF0017F4E8 /* smallCellDivider.png in Resources */,
 				8E1143AB15B753DF0017F4E8 /* smallCellDivider@2x.png in Resources */,
+				8E24E1AA15B88EB8009E3461 /* newRollButtonPeopleSelection.png in Resources */,
+				8E24E1AB15B88EB8009E3461 /* newRollButtonPeopleSelection@2x.png in Resources */,
+				8E24E1AE15B89499009E3461 /* rollItPublic.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

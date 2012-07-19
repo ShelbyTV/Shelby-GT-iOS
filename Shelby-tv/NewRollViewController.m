@@ -7,35 +7,97 @@
 //
 
 #import "NewRollViewController.h"
+#import "AsynchronousFreeloader.h"
 
 @interface NewRollViewController ()
+
+@property (strong, nonatomic) Frame *frame;
+
+- (void)addCustomBackButton;
+- (void)customizeView;
+- (void)populateView;
 
 @end
 
 @implementation NewRollViewController
+@synthesize thumbnailImageView = _thumbnailImageView;
+@synthesize nicknameLabel = _nicknameLabel;
+@synthesize videoNameLabel = _videoNameLabel;
+@synthesize frame = _frame;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+#pragma mark - Initialization Method
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andFrame:(Frame *)frame
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    if ( self == [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil] ) {
+        
+        self.frame = frame;
+        
     }
+    
     return self;
+}
+
+#pragma mark - View Lifecycle Methods
+- (void)viewDidUnload
+{
+    self.thumbnailImageView = nil;
+    self.nicknameLabel = nil;
+    self.videoNameLabel = nil;
+    [super viewDidUnload];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [self customizeView];
+    [self populateView];
 }
 
-- (void)viewDidUnload
+#pragma mark - Private Methods
+- (void)customizeView
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    // Add Custom Back Button
+    [self addCustomBackButton];
+    
+    // Customize view and tableView background and appearance
+    self.view.backgroundColor = ColorConstants_BackgroundColor;
+    
+    // Change title to Share
+    [self.navigationItem setTitle:@"Roll"];
+    
+    // Customize UILabels (all of which are IBOutlets)
+    [self.nicknameLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.nicknameLabel.font.pointSize]];
+    [self.nicknameLabel setTextColor:ColorConstants_GrayTextColor];
+    
+    [self.videoNameLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.videoNameLabel.font.pointSize]];
+    [self.videoNameLabel setTextColor:[UIColor whiteColor]];
+    
 }
 
+- (void)populateView
+{
+    // Thumbnail
+    [AsynchronousFreeloader loadImageFromLink:self.frame.video.thumbnailURL forImageView:self.thumbnailImageView withPlaceholderView:nil];
+    
+    // Labels
+    self.nicknameLabel.text = self.frame.creator.nickname;
+    self.videoNameLabel.text = self.frame.video.title;
+    
+}
+
+- (void)addCustomBackButton
+{
+    UIButton *backBarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 51, 30)];
+    [backBarButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
+    [backBarButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBarButton];
+    [self.navigationItem setHidesBackButton:YES];
+    [self.navigationItem setLeftBarButtonItem:backBarButtonItem];
+}
+
+#pragma mark - Interface Orientation Methods
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
