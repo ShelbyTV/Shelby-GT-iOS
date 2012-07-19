@@ -101,6 +101,11 @@
     } else {
         
        if ( DEBUGMODE ) NSLog(@"CONNECTION FAILED!");
+        
+        // Remove HUD
+        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [appDelegate removeHUD];
+        
     }
     
 }
@@ -129,12 +134,16 @@
         
         // Pop request-dependent error message
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Error #%d0", self.requestType]
-                                                            message:@"Please retrty your previous action"
+                                                            message:@"Please retry your previous action"
                                                            delegate:nil
                                                   cancelButtonTitle:@"Dismiss"
                                                   otherButtonTitles:nil, nil];
         [alertView show];
         
+        
+        // Remove HUD
+        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [appDelegate removeHUD];
         
         // Post notification for specific requestTypes
         switch (self.requestType) {
@@ -220,12 +229,19 @@
             [appDelegate removeHUD];
             
         } break;
+           
+        case APIRequestType_PostRollFrame:{
+        
+            [appDelegate removeHUD];
+            
+        } break;
             
         case APIRequestType_PostMessage:{
             
             [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
             
         } break;
+            
         default:
             break;
    

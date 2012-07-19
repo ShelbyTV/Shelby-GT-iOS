@@ -19,6 +19,7 @@
 #define APIRequest_PostUpvote                   @"http://api.gt.shelby.tv/v1/frame/%@/upvote?auth_token=%@"
 #define APIRequest_PostDownvote                 @"http://api.gt.shelby.tv/v1/frame/%@/upvote?undo=1&auth_token=%@"
 #define APIRequest_PostShareFrame               @"http://api.gt.shelby.tv/v1/frame/%@/share?auth_token=%@"
+#define APIRequest_PostRollFrame                @"http://api.gt.shelby.tv/v1/roll/%@/frames?frame_id=%@&url=%@&auth_token=%@"
 #define APIRequest_PostMessage                  @"http://api.gt.shelby.tv/v1/conversation/%@/messages?text=%@&auth_token=%@"
 
 // Macros for Parsed Data

@@ -12,6 +12,9 @@
 #import "ExistingRollCell.h"
 #import "CoreDataUtility.h"
 #import "NewRollViewController.h"
+#import "SocialFacade.h"
+#import "ShelbyAPIClient.h"
+#import "AppDelegate.h"
 
 @interface RollItViewController ()
 
@@ -22,7 +25,9 @@
 - (void)customizeView;
 - (void)populateView;
 - (void)fetchMyRolls;
+- (void)reRoll:(UIButton*)button;
 - (void)createNewRoll;
+
 
 @end
 
@@ -76,7 +81,7 @@
     self.tableView.backgroundColor = ColorConstants_BackgroundColor;
     self.tableView.separatorColor = [UIColor clearColor];
     
-    // Change title to Share
+    // Change title to Roll
     [self.navigationItem setTitle:@"Roll"];
     
     // Customize UILabels (all of which are IBOutlets)
@@ -102,6 +107,25 @@
 - (void)fetchMyRolls
 {
     self.myRolls = [CoreDataUtility fetchMyRolls];
+}
+
+- (void)reRoll:(UIButton*)button
+{
+    Roll *roll = [self.myRolls objectAtIndex:button.tag];
+    NSString *rollID = roll.rollID;
+    NSString *videoURL = [self.frame.video.sourceURL stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    
+    NSString *requestString = [NSString stringWithFormat:APIRequest_PostRollFrame, rollID, self.frame.frameID, videoURL, [SocialFacade sharedInstance].shelbyToken];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestString]];
+    [request setHTTPMethod:@"POST"];
+    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+    [client performRequest:request ofType:APIRequestType_PostRollFrame];
+    
+    NSLog(@"%@", requestString);
+    
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate addHUDWithMessage:@"Re-Rolling Video, Broski!"];
+    
 }
 
 - (void)createNewRoll
@@ -172,13 +196,15 @@
             
         }
         
+        cell.button.tag = indexPath.row;
+        [cell.button addTarget:self action:@selector(reRoll:) forControlEvents:UIControlEventTouchUpInside];
+        
         return cell;
 
     } else {
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"NewRollCell" owner:self options:nil];
         NewRollCell *cell = (NewRollCell*)[nib objectAtIndex:0];
-//        [cell.button setSelected:NO];
         [cell.button addTarget:self action:@selector(createNewRoll) forControlEvents:UIControlEventTouchUpInside];
         return cell;
                
