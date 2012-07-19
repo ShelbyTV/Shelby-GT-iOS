@@ -151,7 +151,7 @@
         Roll *roll = [self.myRolls objectAtIndex:indexPath.row];
         
         [AsynchronousFreeloader loadImageFromLink:roll.thumbnailURL forImageView:cell.userImageView withPlaceholderView:nil];
-        cell.nicknameLabel.text = roll.creatorNickname;
+        cell.nicknameLabel.text = roll.title;
         cell.privacyLabel.text = ( roll.isPublic ) ? @"Public" : @"Private";
         
         return cell;
