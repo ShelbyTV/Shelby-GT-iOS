@@ -19,7 +19,6 @@
 
 @property (strong, nonatomic) Frame *frame;
 @property (copy, nonatomic) NSString *postedRollTitle;
-@property (strong, nonatomic) NSMutableDictionary *contacts;
 
 - (void)addCustomBackButton;
 - (void)createAPIObservers;
@@ -42,7 +41,7 @@
 @synthesize rollButton = _rollButton;
 @synthesize frame = _frame;
 @synthesize postedRollTitle = _postedRollTitle;
-@synthesize contacts = _contacts;
+@synthesize chosenPeopleArray = _chosenPeopleArray;
 
 #pragma mark - Initialization Method
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andFrame:(Frame *)frame
@@ -206,8 +205,11 @@
 #pragma mark - Action Methods
 - (IBAction)shareButtonAction:(id)sender
 {
-    EmailSendToContactsViewController *emailViewController = [[EmailSendToContactsViewController alloc] initWithNibName:@"EmailSendToContactsViewController" bundle:nil];
+    if ( ![self chosenPeopleArray] ) self.chosenPeopleArray = [NSMutableArray array];
+    
+    EmailSendToContactsViewController *emailViewController = [[EmailSendToContactsViewController alloc] initWithNibName:@"EmailSendToContactsViewController" bundle:nil withParentVC:self];
     [self.navigationController pushViewController:emailViewController animated:YES];
+    
 }
 
 - (IBAction)rollButtonAction:(id)sender

@@ -10,6 +10,7 @@
 #import "AddContactTableViewCell.h"
 #import "RemoveContactTableViewCell.h"
 #import "StaticDeclarations.h"
+#import "NewRollViewController.h"
 
 @interface EmailSendToContactsViewController ()
 
@@ -17,9 +18,6 @@
 @property (strong, nonatomic) NSMutableArray *sortedEmailArray;                             // Array of Dictionaries organized by Email Address
 @property (strong, nonatomic) NSMutableArray *filteredResultsArray;                         // Array of Dictionaries presented upon Search Query
 @property (strong, nonatomic) NSMutableArray *chosenPeopleArray;                            // Array of Dictionaries who will receive postcard
-@property (strong, nonatomic) UIView *activityIndicatorBackgroundView;
-@property (strong, nonatomic) UILabel *activityIndicatorRefreshLabel;
-@property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 
 - (void)allocatePrivateMemory;                                                              // Allocate Private Memory
 - (void)customizeView;                                                                      // Customize view and tableView
@@ -43,19 +41,28 @@
 @synthesize chosenPeopleArray = _chosenPeopleArray;
 @synthesize tableView = _tableView;
 @synthesize arrowImageView = _arrowImageView;
-@synthesize activityIndicatorBackgroundView = _activityIndicatorBackgroundView;
-@synthesize activityIndicatorRefreshLabel = _activityIndicatorRefreshLabel;
-@synthesize activityIndicator = _activityIndicator;
+
+#pragma mark - Initialization Method
+- (id)initWithNibName:(NSString *)nibNameOrNil
+               bundle:(NSBundle *)nibBundleOrNil
+         withParentVC:(NewRollViewController *)viewController
+{
+    if ( self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil] ) {
+    
+        self.chosenPeopleArray = viewController.chosenPeopleArray;
+    
+    }
+    
+    return self;
+    
+}
 
 #pragma mark - Memory Allocation Methods
 - (void)allocatePrivateMemory
 {
-
     self.peopleArray = [NSMutableArray array];
     self.sortedEmailArray = [NSMutableArray array];
     self.filteredResultsArray = [NSMutableArray array];
-    self.chosenPeopleArray = [NSMutableArray array];
-
 }
 
 #pragma mark - View Lifecycle Methods
@@ -351,7 +358,9 @@
 #pragma mark - Action Methods
 - (void)addCustomDoneButton
 {
-    UIBarButtonItem *doneBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self.navigationController action:@selector(popViewControllerAnimated:)];
+    UIBarButtonItem *doneBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                       target:self.navigationController
+                                                                                       action:@selector(popViewControllerAnimated:)];
     [self.navigationItem setRightBarButtonItem:doneBarButtonItem];
 }
 

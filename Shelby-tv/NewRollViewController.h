@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet CustomSwitch *privacySwitch;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak, nonatomic) IBOutlet UIButton *rollButton;
+@property (strong, nonatomic) NSMutableArray *chosenPeopleArray;
 
 - (IBAction)shareButtonAction:(id)sender;
 - (IBAction)rollButtonAction:(id)sender;

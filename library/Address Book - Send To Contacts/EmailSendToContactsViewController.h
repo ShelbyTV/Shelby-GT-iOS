@@ -10,6 +10,7 @@
 #import <AddressBook/AddressBook.h>
 #import <MessageUI/MessageUI.h>
 
+@class NewRollViewController;
 @interface EmailSendToContactsViewController : UIViewController
 <
 
@@ -19,6 +20,10 @@ UISearchBarDelegate,
 UISearchDisplayDelegate
 
 >
+
+- (id)initWithNibName:(NSString *)nibNameOrNil
+               bundle:(NSBundle *)nibBundleOrNil
+         withParentVC:(NewRollViewController*)viewController;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIImageView *arrowImageView;
