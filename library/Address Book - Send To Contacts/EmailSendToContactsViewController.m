@@ -374,16 +374,6 @@
     [self.navigationItem setLeftBarButtonItem:backBarButtonItem];
 }
 
-- (void)sendButtonAction
-{
-//    for (NSDictionary *dictionary in self.chosenPeopleArray)
-//        recipientsString = [recipientsString stringByAppendingFormat:@"%@,",[dictionary valueForKey:@"email"]];
-//    
-//    if ([recipientsString characterAtIndex:recipientsString.length - 1] == ',') 
-//        recipientsString = [recipientsString substringToIndex:recipientsString.length - 1];
-}
-
-
 #pragma mark - Interface Rotation Methods
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

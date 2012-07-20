@@ -214,8 +214,21 @@
     NSString *textString = [rollTitle stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     requestString = [NSString stringWithFormat:@"%@&text=%@", requestString, textString];
     
-    NSString *emailString = [@"arthur@sabintsev.com" stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    requestString = [NSString stringWithFormat:@"%@&destination[]=email&addresses[]=%@", requestString, emailString];
+    if ( [self.chosenPeopleArray count] ) {
+        
+        requestString = [NSString stringWithFormat:@"%@&destination[]=email",requestString];
+        
+        for ( int i = 0; i<[self.chosenPeopleArray count]; i++) {
+            
+            NSString *recipient = [[self.chosenPeopleArray objectAtIndex:i] valueForKey:@"email"];
+            NSString *addressString = [recipient stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+            requestString = [NSString stringWithFormat:@"%@&addresses[]=%@", requestString, addressString];
+            
+        }
+            
+        NSLog(@"%@", requestString);
+        
+    }
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestString]];
     [request setHTTPMethod:@"POST"];
@@ -223,7 +236,7 @@
     [client performRequest:request ofType:APIRequestType_PostShareRoll];
     
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [appDelegate addHUDWithMessage:[NSString stringWithFormat:@"Sharing roll with %d contact(s), comrade!", 1]];
+    [appDelegate addHUDWithMessage:[NSString stringWithFormat:@"Sharing roll, comrade!"]];
     
     [self.navigationController popToRootViewControllerAnimated:YES];
     
