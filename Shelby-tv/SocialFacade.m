@@ -348,7 +348,7 @@ UITableViewDelegate
 - (void)sendFacebookTokenAndExpirationDateToServer
 {
     
-    [self.appDelegate addHUDWithMessage:@"Authorizing your Facebook account with Shelby"];
+    [self.appDelegate addHUDWithMessage:@"Authorizing with Shelby"];
     
     // Create Observer
     APIRequestType requestType = APIRequestType_PostToken;
@@ -739,7 +739,7 @@ UITableViewDelegate
 {
 
     
-    [self.appDelegate addHUDWithMessage:@"Authorizing your Twitter account with Shelby"];
+    [self.appDelegate addHUDWithMessage:@"Authorizing with Shelby"];
     
     // Create Observer
     APIRequestType requestType = APIRequestType_PostToken;

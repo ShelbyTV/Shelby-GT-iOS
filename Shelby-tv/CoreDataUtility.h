@@ -78,6 +78,12 @@
 + (Frame*)fetchFrameWithID:(NSString*)frameID;
 
 /**
+ Fetch Roll information stored in Core Data
+ */
+
++ (Roll*)fetchRollWithTitle:(NSString*)title;
+
+/**
  Fetch First Message from dashboardEntry.frame.conversation
  */
 
@@ -107,7 +113,6 @@ Check if user already voted for a specific frame
  Delete all stored information
  */
 + (void)dumpAllData;
-
 
 /** 
  CoreDataUtility's Singleton Method 

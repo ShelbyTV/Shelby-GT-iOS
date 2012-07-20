@@ -39,17 +39,20 @@
 /// Store exploreRolls data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forExploreRollsInContext:(NSManagedObjectContext*)context;
 
+/// Store new/created roll data in Core Data
++ (void)storeParsedData:(NSDictionary*)parsedDictionary forCreatedRollInContext:(NSManagedObjectContext*)context;
+
 /// Store dashboardEntry data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
 
 /// Store frame data in Core Data
++ (void)storeFrame:(Frame*)frame fromFrameArray:(NSArray*)frameArray;
+
+/// Store multiples frame data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forFramesInContext:(NSManagedObjectContext*)context;
 
 /// Store conversation/message data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forConversationInContext:(NSManagedObjectContext*)context;
-
-/// Store frame data in Core Data
-+ (void)storeFrame:(Frame*)frame fromFrameArray:(NSArray*)frameArray;
 
 /// Store frame.conversations data in Core Data
 + (void)storeConversation:(Conversation*)conversation fromFrameArray:(NSArray*)frameArray;
@@ -124,6 +127,10 @@ static CoreDataUtility *sharedInstance = nil;
         case APIRequestType_GetRollFrames:
             [self storeParsedData:parsedDictionary forFramesInContext:context];
             break;
+       
+        case APIRequestType_PostCreateRoll:
+            [self storeParsedData:parsedDictionary forCreatedRollInContext:context];
+            break;
             
         case APIRequestType_PostMessage:
             [self storeParsedData:parsedDictionary forConversationInContext:context];
@@ -133,8 +140,6 @@ static CoreDataUtility *sharedInstance = nil;
             break;
     }
     
-    NSString *notificationName = [NSString requestTypeToString:requestType];
-    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:nil];
 
 }
 
@@ -283,7 +288,7 @@ static CoreDataUtility *sharedInstance = nil;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setReturnsObjectsAsFaults:NO];
     
-    // Fetch dashboardEntry data
+    // Fetch frame data
     NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext];
     NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:CoreDataEntityFrame inManagedObjectContext:context];
     [request setEntity:dashboardEntryDescription];
@@ -293,10 +298,34 @@ static CoreDataUtility *sharedInstance = nil;
     [request setPredicate:predicate];
     
     // Execute request that returns array of dashboardEntrys
-    NSArray *dashboardEntryArray = [context executeFetchRequest:request error:nil];
+    NSArray *array = [context executeFetchRequest:request error:nil];
     
     // Return messages at a specific index
-    return [dashboardEntryArray objectAtIndex:0];
+    return [array objectAtIndex:0];
+    
+}
+
++ (Roll*)fetchRollWithTitle:(NSString *)title
+{
+    
+    // Create fetch request
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setReturnsObjectsAsFaults:NO];
+    
+    // Fetch roll data
+    NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext];
+    NSEntityDescription *dashboardEntryDescription = [NSEntityDescription entityForName:CoreDataEntityRoll inManagedObjectContext:context];
+    [request setEntity:dashboardEntryDescription];
+    
+    // Only include the frame we're looking for
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@ AND creatorID == %@", title, [SocialFacade sharedInstance].shelbyCreatorID];
+    [request setPredicate:predicate];
+    
+    // Execute request that returns array of dashboardEntrys
+    NSArray *array = [context executeFetchRequest:request error:nil];
+    
+    // Return messages at a specific index
+    return [array objectAtIndex:0];
     
 }
 
@@ -421,6 +450,9 @@ static CoreDataUtility *sharedInstance = nil;
             
         } else {
             if ( DEBUGMODE ) NSLog(@"Core Data Updated!");
+
+            NSString *notificationName = [NSString requestTypeToString:[CoreDataUtility sharedInstance].requestType];
+            [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:nil];
             
             // If this is the first time data has been loaded, post notification to dismiss LoginViewController
             if ( [SocialFacade sharedInstance].firstTimeLogin == YES ) {
@@ -713,6 +745,70 @@ static CoreDataUtility *sharedInstance = nil;
     
     }
     
+    [self saveContext:context];
+    
+}
+
++ (void)storeParsedData:(NSDictionary *)parsedDictionary forCreatedRollInContext:(NSManagedObjectContext *)context
+{
+    NSArray *resultsArray = [parsedDictionary valueForKey:APIRequest_Result];
+    
+    Roll *roll = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityRoll inManagedObjectContext:context];
+    
+    NSString *rollID = [NSString testForNull:[resultsArray valueForKey:@"id"]];
+    [roll setValue:rollID forKey:CoreDataRollID];
+
+    NSString *creatorID = [NSString testForNull:[resultsArray valueForKey:@"creator_id"]];
+    [roll setValue:creatorID forKey:CoreDataRollCreatorID];
+    
+    NSString *nickname = [NSString testForNull:[resultsArray  valueForKey:@"creator_nickname"]];
+    [roll setValue:nickname forKey:CoreDataRollCreatorNickname];
+    
+    NSNumber *frameCount = [resultsArray  valueForKey:@"frame_count"];
+    [roll setValue:frameCount forKey:CoreDataRollFrameCount];
+    
+    NSNumber *followingCount = [resultsArray valueForKey:@"following_user_count"];
+    [roll setValue:followingCount forKey:CoreDataRollFollowingCount];
+    
+    NSString *thumbnailURL = [NSString testForNull:[resultsArray valueForKey:@"first_frame_thumbnail_url"]];
+    [roll setValue:thumbnailURL forKey:CoreDataRollThumbnailURL];
+    
+    NSString *title = [NSString testForNull:[resultsArray valueForKey:@"title"]];
+    [roll setValue:title forKey:CoreDataRollTitle];
+    
+    roll.isCollaborative = [resultsArray valueForKey:@"collaborative"];
+    roll.isGenius = [resultsArray valueForKey:@"genius"];
+    roll.isPublic = [resultsArray valueForKey:@"public"];
+    
+    // Set Initial Values
+    roll.isMy = [NSNumber numberWithBool:NO];
+    roll.isFriends = [NSNumber numberWithBool:NO];
+    
+    // Set Separated Conditional Values
+    if ( [roll.isPublic boolValue] && ![roll.isCollaborative boolValue] ) { // Public and Non-Collaborative
+        
+        roll.isFriends = [NSNumber numberWithBool:YES];
+        
+    }
+    
+    if ( [roll.isPublic boolValue] && [roll.isCollaborative boolValue] ) { // Public and Collaborative
+        
+        roll.isMy = [NSNumber numberWithBool:YES];
+        
+    }
+    
+    if ( ![roll.isPublic boolValue] ) { // Private
+        
+        roll.isMy = [NSNumber numberWithBool:YES];
+        
+    }
+    
+    if ( [creatorID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) { //
+        
+        roll.isMy = [NSNumber numberWithBool:YES];
+        
+    }
+
     [self saveContext:context];
     
 }

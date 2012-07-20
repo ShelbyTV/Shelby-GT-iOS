@@ -10,15 +10,20 @@
 #import "AsynchronousFreeloader.h"
 #import "SocialFacade.h"
 #import "ShelbyAPIClient.h"
+#import "CoreDataUtility.h"
 #import "AppDelegate.h"
+#import "NSString+TypedefConversion.h"
 
 @interface NewRollViewController ()
 
 @property (strong, nonatomic) Frame *frame;
+@property (copy, nonatomic) NSString *postedRollTitle;
 
 - (void)addCustomBackButton;
+- (void)createAPIObservers;
 - (void)customizeView;
 - (void)populateView;
+- (void)newRollCreated;
 
 @end
 
@@ -33,6 +38,7 @@
 @synthesize shareButton = _shareButton;
 @synthesize rollButton = _rollButton;
 @synthesize frame = _frame;
+@synthesize postedRollTitle = _postedRollTitle;
 
 #pragma mark - Initialization Method
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andFrame:(Frame *)frame
@@ -63,12 +69,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self createAPIObservers];
     [self customizeView];
     [self populateView];
 }
 
 #pragma mark - Private Methods
+- (void)createAPIObservers
+{
+    
+    NSString *notificationName = [NSString requestTypeToString:APIRequestType_PostCreateRoll];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(newRollCreated)
+                                                 name:notificationName
+                                               object:nil];
+}
+
 - (void)customizeView
 {
     
@@ -131,6 +147,26 @@
     [self.navigationItem setLeftBarButtonItem:backBarButtonItem];
 }
 
+- (void)newRollCreated
+{
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate removeHUD];
+    
+    Roll *roll = [CoreDataUtility fetchRollWithTitle:self.postedRollTitle];
+    NSString *rollID = roll.rollID;
+    NSString *videoURL = [self.frame.video.sourceURL stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    
+    NSString *requestString = [NSString stringWithFormat:APIRequest_PostRollFrame, rollID, self.frame.frameID, videoURL, [SocialFacade sharedInstance].shelbyToken];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestString]];
+    [request setHTTPMethod:@"POST"];
+    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+    [client performRequest:request ofType:APIRequestType_PostRollFrame];
+    
+    [appDelegate addHUDWithMessage:@"Adding video to roll, broski!"];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 #pragma mark - Action Methods
 - (IBAction)shareButtonAction:(id)sender
 {
@@ -151,6 +187,9 @@
         
     } else {
     
+        // Store value
+        self.postedRollTitle = self.titleTextField.text;
+        
         NSString *titleString = [self.titleTextField.text stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
         BOOL public;
         BOOL collaborative;
@@ -175,10 +214,6 @@
         
         AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         [appDelegate addHUDWithMessage:@"Creating roll, homeslice!"];
-        
-        NSLog(@"%@",requestString);
-        
-        [self.navigationController popViewControllerAnimated:YES];
         
     }
     
