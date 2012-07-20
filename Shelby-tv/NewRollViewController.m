@@ -23,6 +23,7 @@
 - (void)addCustomBackButton;
 - (void)createAPIObservers;
 - (void)customizeView;
+- (void)customizeShareButtonWithTitle:(NSString*)title;
 - (void)populateView;
 - (void)postCreateRollWasSuccessful;
 - (void)postRollFrameWasSuccessful;
@@ -77,6 +78,29 @@
     [self populateView];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    
+    [super viewWillAppear:animated];
+    
+    switch ( [self.chosenPeopleArray count] ) {
+        case 0:
+            
+            [self customizeShareButtonWithTitle:@"Share with Contacts"];
+            break;
+            
+        case 1:
+            [self customizeShareButtonWithTitle:[NSString stringWithFormat:@"1 Contact"]];
+            break;
+        
+        default:
+            [self customizeShareButtonWithTitle:[NSString stringWithFormat:@"%d Contacts", [self.chosenPeopleArray count]]];
+            break;
+    }
+    
+    
+}
+
 #pragma mark - Private Methods
 - (void)createAPIObservers
 {
@@ -120,13 +144,6 @@
     [self.rollNameLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.rollNameLabel.font.pointSize]];
     [self.rollNameLabel setTextColor:[UIColor whiteColor]];
     
-    [self.shareButton setTitle:@"Share with Contacts" forState:UIControlStateNormal];
-    [self.shareButton setTitle:@"Share with Contacts" forState:UIControlStateSelected];
-    [self.shareButton setTitle:@"Share with Contacts" forState:UIControlStateHighlighted];
-    [self.shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [self.shareButton.titleLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:17.0f]];
-    
     [self.rollButton setTitle:@"Roll It" forState:UIControlStateNormal];
     [self.rollButton setTitle:@"Roll It" forState:UIControlStateSelected];
     [self.rollButton setTitle:@"Roll It" forState:UIControlStateHighlighted];
@@ -134,6 +151,16 @@
     [self.rollButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [self.rollButton.titleLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:17.0f]];
     
+}
+
+- (void)customizeShareButtonWithTitle:(NSString *)title
+{
+    [self.shareButton setTitle:title forState:UIControlStateNormal];
+    [self.shareButton setTitle:title forState:UIControlStateSelected];
+    [self.shareButton setTitle:title forState:UIControlStateHighlighted];
+    [self.shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [self.shareButton.titleLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:17.0f]];
 }
 
 - (void)populateView
