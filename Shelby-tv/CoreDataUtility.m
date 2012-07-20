@@ -449,10 +449,8 @@ static CoreDataUtility *sharedInstance = nil;
             }
             
         } else {
+            
             if ( DEBUGMODE ) NSLog(@"Core Data Updated!");
-
-            NSString *notificationName = [NSString requestTypeToString:[CoreDataUtility sharedInstance].requestType];
-            [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:nil];
             
             // If this is the first time data has been loaded, post notification to dismiss LoginViewController
             if ( [SocialFacade sharedInstance].firstTimeLogin == YES ) {
@@ -503,9 +501,11 @@ static CoreDataUtility *sharedInstance = nil;
                 
             }
             
-            
         }
         
+        // Post notification to observers
+        NSString *notificationName = [NSString requestTypeToString:[CoreDataUtility sharedInstance].requestType];
+        [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:nil];
     }
     
 }

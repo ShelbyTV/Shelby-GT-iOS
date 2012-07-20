@@ -18,12 +18,14 @@
 
 @property (strong, nonatomic) Frame *frame;
 @property (copy, nonatomic) NSString *postedRollTitle;
+@property (strong, nonatomic) NSMutableArray *arrayOfContacts;
 
 - (void)addCustomBackButton;
 - (void)createAPIObservers;
 - (void)customizeView;
 - (void)populateView;
-- (void)newRollCreated;
+- (void)postCreateRollWasSuccessful;
+- (void)postRollFrameWasSuccessful;
 
 @end
 
@@ -39,6 +41,7 @@
 @synthesize rollButton = _rollButton;
 @synthesize frame = _frame;
 @synthesize postedRollTitle = _postedRollTitle;
+@synthesize arrayOfContacts = _arrayOfContacts;
 
 #pragma mark - Initialization Method
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andFrame:(Frame *)frame
@@ -78,11 +81,18 @@
 - (void)createAPIObservers
 {
     
-    NSString *notificationName = [NSString requestTypeToString:APIRequestType_PostCreateRoll];
+    NSString *createRollNotification = [NSString requestTypeToString:APIRequestType_PostCreateRoll];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(newRollCreated)
-                                                 name:notificationName
+                                             selector:@selector(postCreateRollWasSuccessful)
+                                                 name:createRollNotification
                                                object:nil];
+    
+    NSString *shareRollNotification = [NSString requestTypeToString:APIRequestType_PostRollFrame];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(postRollFrameWasSuccessful)
+                                                 name:shareRollNotification
+                                               object:nil];
+
 }
 
 - (void)customizeView
@@ -147,11 +157,9 @@
     [self.navigationItem setLeftBarButtonItem:backBarButtonItem];
 }
 
-- (void)newRollCreated
+- (void)postCreateRollWasSuccessful
 {
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [appDelegate removeHUD];
-    
+
     Roll *roll = [CoreDataUtility fetchRollWithTitle:self.postedRollTitle];
     NSString *rollID = roll.rollID;
     NSString *videoURL = [self.frame.video.sourceURL stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
@@ -162,14 +170,43 @@
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
     [client performRequest:request ofType:APIRequestType_PostRollFrame];
     
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate addHUDWithMessage:@"Adding video to roll, broski!"];
     
+
+}
+
+- (void)postRollFrameWasSuccessful
+{
+
+    Roll *roll = [CoreDataUtility fetchRollWithTitle:self.postedRollTitle];
+    NSString *rollID = roll.rollID;
+    NSString *rollTitle = roll.title;
+
+    NSString *requestString = [NSString stringWithFormat:APIRequest_PostShareRoll, rollID, [SocialFacade sharedInstance].shelbyToken];
+    NSString *textString = [rollTitle stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    requestString = [NSString stringWithFormat:@"%@&text=%@", requestString, textString];
+    NSString *emailString = [@"arthur@sabintsev.com" stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    requestString = [NSString stringWithFormat:@"%@&destination[]=email&addresses[]=%@", requestString, emailString];
+    
+    NSLog(@"ROLL SHARE: %@", requestString);
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestString]];
+    [request setHTTPMethod:@"POST"];
+    ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+    [client performRequest:request ofType:APIRequestType_PostShareRoll];
+    
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate addHUDWithMessage:[NSString stringWithFormat:@"Sharing roll with %d contact(s), comrade!", 1]];
+    
     [self.navigationController popToRootViewControllerAnimated:YES];
+    
 }
 
 #pragma mark - Action Methods
 - (IBAction)shareButtonAction:(id)sender
 {
+    
     
 }
 
@@ -207,6 +244,7 @@
         }
         
         NSString *requestString = [NSString stringWithFormat:APIRequest_PostCreateRoll, titleString, public, collaborative, [SocialFacade sharedInstance].shelbyToken];
+        
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
         [request setHTTPMethod:@"POST"];
         ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];

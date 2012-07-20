@@ -232,13 +232,24 @@
            
         case APIRequestType_PostRollFrame:{
         
+            // For RollItViewController
             [appDelegate removeHUD];
+            
+            // For NewRollViewController
+            NSString *notificationName = [NSString requestTypeToString:self.requestType];
+            [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil userInfo:nil];
             
         } break;
             
         case APIRequestType_PostCreateRoll:{
             
            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
+            
+        } break;
+            
+        case APIRequestType_PostShareRoll:{
+            
+            [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
             
         } break;
             
