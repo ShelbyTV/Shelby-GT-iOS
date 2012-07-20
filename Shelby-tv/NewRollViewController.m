@@ -13,12 +13,13 @@
 #import "CoreDataUtility.h"
 #import "AppDelegate.h"
 #import "NSString+TypedefConversion.h"
+#import "EmailSendToContactsViewController.h"
 
 @interface NewRollViewController ()
 
 @property (strong, nonatomic) Frame *frame;
 @property (copy, nonatomic) NSString *postedRollTitle;
-@property (strong, nonatomic) NSMutableArray *arrayOfContacts;
+@property (strong, nonatomic) NSMutableDictionary *contacts;
 
 - (void)addCustomBackButton;
 - (void)createAPIObservers;
@@ -41,7 +42,7 @@
 @synthesize rollButton = _rollButton;
 @synthesize frame = _frame;
 @synthesize postedRollTitle = _postedRollTitle;
-@synthesize arrayOfContacts = _arrayOfContacts;
+@synthesize contacts = _contacts;
 
 #pragma mark - Initialization Method
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andFrame:(Frame *)frame
@@ -186,10 +187,9 @@
     NSString *requestString = [NSString stringWithFormat:APIRequest_PostShareRoll, rollID, [SocialFacade sharedInstance].shelbyToken];
     NSString *textString = [rollTitle stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     requestString = [NSString stringWithFormat:@"%@&text=%@", requestString, textString];
+    
     NSString *emailString = [@"arthur@sabintsev.com" stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     requestString = [NSString stringWithFormat:@"%@&destination[]=email&addresses[]=%@", requestString, emailString];
-    
-    NSLog(@"ROLL SHARE: %@", requestString);
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestString]];
     [request setHTTPMethod:@"POST"];
@@ -206,8 +206,8 @@
 #pragma mark - Action Methods
 - (IBAction)shareButtonAction:(id)sender
 {
-    
-    
+    EmailSendToContactsViewController *emailViewController = [[EmailSendToContactsViewController alloc] initWithNibName:@"EmailSendToContactsViewController" bundle:nil];
+    [self.navigationController pushViewController:emailViewController animated:YES];
 }
 
 - (IBAction)rollButtonAction:(id)sender

@@ -194,6 +194,23 @@
 		8EC9813D15950FEB00BB9227 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC9813C15950FEA00BB9227 /* SystemConfiguration.framework */; };
 		8EC981401595134700BB9227 /* VideoCardExpandedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC9813F1595134700BB9227 /* VideoCardExpandedCell.m */; };
 		8EC981421595135C00BB9227 /* VideoCardExpandedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EC981411595135C00BB9227 /* VideoCardExpandedCell.xib */; };
+		8ECAA78315B9DFCF007F4F8E /* AddContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECAA77A15B9DFCF007F4F8E /* AddContactTableViewCell.m */; };
+		8ECAA78415B9DFCF007F4F8E /* AddContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA77B15B9DFCF007F4F8E /* AddContactTableViewCell.xib */; };
+		8ECAA78515B9DFCF007F4F8E /* EmailSendToContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECAA77D15B9DFCF007F4F8E /* EmailSendToContactsViewController.m */; };
+		8ECAA78615B9DFCF007F4F8E /* EmailSendToContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA77E15B9DFCF007F4F8E /* EmailSendToContactsViewController.xib */; };
+		8ECAA78715B9DFCF007F4F8E /* RemoveContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECAA78015B9DFCF007F4F8E /* RemoveContactTableViewCell.m */; };
+		8ECAA78815B9DFCF007F4F8E /* RemoveContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA78115B9DFCF007F4F8E /* RemoveContactTableViewCell.xib */; };
+		8ECAA78915B9DFCF007F4F8E /* zeroEmailContactsArrowMessage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA78215B9DFCF007F4F8E /* zeroEmailContactsArrowMessage@2x.png */; };
+		8ECAA78B15B9E004007F4F8E /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECAA78A15B9E004007F4F8E /* AddressBook.framework */; };
+		8ECAA78D15B9E00B007F4F8E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECAA78C15B9E00B007F4F8E /* MessageUI.framework */; };
+		8ECAA79715B9FFED007F4F8E /* searchContactsAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA78F15B9FFED007F4F8E /* searchContactsAvatar.png */; };
+		8ECAA79815B9FFED007F4F8E /* searchContactsAvatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA79015B9FFED007F4F8E /* searchContactsAvatar@2x.png */; };
+		8ECAA79915B9FFED007F4F8E /* searchContactsButtonAdd.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA79115B9FFED007F4F8E /* searchContactsButtonAdd.png */; };
+		8ECAA79A15B9FFED007F4F8E /* searchContactsButtonAdd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA79215B9FFED007F4F8E /* searchContactsButtonAdd@2x.png */; };
+		8ECAA79B15B9FFED007F4F8E /* searchContactsButtonRemove.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA79315B9FFED007F4F8E /* searchContactsButtonRemove.png */; };
+		8ECAA79C15B9FFED007F4F8E /* searchContactsButtonRemove@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA79415B9FFED007F4F8E /* searchContactsButtonRemove@2x.png */; };
+		8ECAA79D15B9FFED007F4F8E /* searchContactsCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA79515B9FFED007F4F8E /* searchContactsCell.png */; };
+		8ECAA79E15B9FFED007F4F8E /* searchContactsCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA79615B9FFED007F4F8E /* searchContactsCell@2x.png */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
 		8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D21535F6F70009718E /* Foundation.framework */; };
 		8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D41535F6F70009718E /* CoreGraphics.framework */; };
@@ -502,6 +519,26 @@
 		8EC9813E1595134700BB9227 /* VideoCardExpandedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCardExpandedCell.h; sourceTree = "<group>"; };
 		8EC9813F1595134700BB9227 /* VideoCardExpandedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCardExpandedCell.m; sourceTree = "<group>"; };
 		8EC981411595135C00BB9227 /* VideoCardExpandedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCardExpandedCell.xib; sourceTree = "<group>"; };
+		8ECAA77915B9DFCF007F4F8E /* AddContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactTableViewCell.h; sourceTree = "<group>"; };
+		8ECAA77A15B9DFCF007F4F8E /* AddContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactTableViewCell.m; sourceTree = "<group>"; };
+		8ECAA77B15B9DFCF007F4F8E /* AddContactTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddContactTableViewCell.xib; sourceTree = "<group>"; };
+		8ECAA77C15B9DFCF007F4F8E /* EmailSendToContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailSendToContactsViewController.h; sourceTree = "<group>"; };
+		8ECAA77D15B9DFCF007F4F8E /* EmailSendToContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailSendToContactsViewController.m; sourceTree = "<group>"; };
+		8ECAA77E15B9DFCF007F4F8E /* EmailSendToContactsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmailSendToContactsViewController.xib; sourceTree = "<group>"; };
+		8ECAA77F15B9DFCF007F4F8E /* RemoveContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveContactTableViewCell.h; sourceTree = "<group>"; };
+		8ECAA78015B9DFCF007F4F8E /* RemoveContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveContactTableViewCell.m; sourceTree = "<group>"; };
+		8ECAA78115B9DFCF007F4F8E /* RemoveContactTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemoveContactTableViewCell.xib; sourceTree = "<group>"; };
+		8ECAA78215B9DFCF007F4F8E /* zeroEmailContactsArrowMessage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zeroEmailContactsArrowMessage@2x.png"; sourceTree = "<group>"; };
+		8ECAA78A15B9E004007F4F8E /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		8ECAA78C15B9E00B007F4F8E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		8ECAA78F15B9FFED007F4F8E /* searchContactsAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchContactsAvatar.png; sourceTree = "<group>"; };
+		8ECAA79015B9FFED007F4F8E /* searchContactsAvatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchContactsAvatar@2x.png"; sourceTree = "<group>"; };
+		8ECAA79115B9FFED007F4F8E /* searchContactsButtonAdd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchContactsButtonAdd.png; sourceTree = "<group>"; };
+		8ECAA79215B9FFED007F4F8E /* searchContactsButtonAdd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchContactsButtonAdd@2x.png"; sourceTree = "<group>"; };
+		8ECAA79315B9FFED007F4F8E /* searchContactsButtonRemove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchContactsButtonRemove.png; sourceTree = "<group>"; };
+		8ECAA79415B9FFED007F4F8E /* searchContactsButtonRemove@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchContactsButtonRemove@2x.png"; sourceTree = "<group>"; };
+		8ECAA79515B9FFED007F4F8E /* searchContactsCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchContactsCell.png; sourceTree = "<group>"; };
+		8ECAA79615B9FFED007F4F8E /* searchContactsCell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchContactsCell@2x.png"; sourceTree = "<group>"; };
 		8ECBA7CC1535F6F70009718E /* Shelby-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECBA7D01535F6F70009718E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8ECBA7D21535F6F70009718E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -567,6 +604,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ECAA78D15B9E00B007F4F8E /* MessageUI.framework in Frameworks */,
+				8ECAA78B15B9E004007F4F8E /* AddressBook.framework in Frameworks */,
 				8EC9813D15950FEB00BB9227 /* SystemConfiguration.framework in Frameworks */,
 				8E7F47B6154074180041118E /* Accounts.framework in Frameworks */,
 				8E7F47B3154074130041118E /* Twitter.framework in Frameworks */,
@@ -951,6 +990,40 @@
 			path = "../library/Reachability (ARC)";
 			sourceTree = "<group>";
 		};
+		8ECAA77815B9DFCF007F4F8E /* Address Book - Send To Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				8ECAA78E15B9FFEC007F4F8E /* images */,
+				8ECAA77915B9DFCF007F4F8E /* AddContactTableViewCell.h */,
+				8ECAA77A15B9DFCF007F4F8E /* AddContactTableViewCell.m */,
+				8ECAA77B15B9DFCF007F4F8E /* AddContactTableViewCell.xib */,
+				8ECAA77C15B9DFCF007F4F8E /* EmailSendToContactsViewController.h */,
+				8ECAA77D15B9DFCF007F4F8E /* EmailSendToContactsViewController.m */,
+				8ECAA77E15B9DFCF007F4F8E /* EmailSendToContactsViewController.xib */,
+				8ECAA77F15B9DFCF007F4F8E /* RemoveContactTableViewCell.h */,
+				8ECAA78015B9DFCF007F4F8E /* RemoveContactTableViewCell.m */,
+				8ECAA78115B9DFCF007F4F8E /* RemoveContactTableViewCell.xib */,
+				8ECAA78215B9DFCF007F4F8E /* zeroEmailContactsArrowMessage@2x.png */,
+			);
+			name = "Address Book - Send To Contacts";
+			path = "library/Address Book - Send To Contacts";
+			sourceTree = SOURCE_ROOT;
+		};
+		8ECAA78E15B9FFEC007F4F8E /* images */ = {
+			isa = PBXGroup;
+			children = (
+				8ECAA78F15B9FFED007F4F8E /* searchContactsAvatar.png */,
+				8ECAA79015B9FFED007F4F8E /* searchContactsAvatar@2x.png */,
+				8ECAA79115B9FFED007F4F8E /* searchContactsButtonAdd.png */,
+				8ECAA79215B9FFED007F4F8E /* searchContactsButtonAdd@2x.png */,
+				8ECAA79315B9FFED007F4F8E /* searchContactsButtonRemove.png */,
+				8ECAA79415B9FFED007F4F8E /* searchContactsButtonRemove@2x.png */,
+				8ECAA79515B9FFED007F4F8E /* searchContactsCell.png */,
+				8ECAA79615B9FFED007F4F8E /* searchContactsCell@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		8ECBA7C11535F6F70009718E = {
 			isa = PBXGroup;
 			children = (
@@ -973,11 +1046,13 @@
 			isa = PBXGroup;
 			children = (
 				8E7F47B5154074180041118E /* Accounts.framework */,
+				8ECAA78A15B9E004007F4F8E /* AddressBook.framework */,
 				8E7F48051540B4690041118E /* Crashlytics.framework */,
 				8EE50663155CAC1600A04F50 /* CoreData.framework */,
 				8ECBA7D41535F6F70009718E /* CoreGraphics.framework */,
 				8ECBA7D21535F6F70009718E /* Foundation.framework */,
 				8EE5063E155CA39E00A04F50 /* MediaPlayer.framework */,
+				8ECAA78C15B9E00B007F4F8E /* MessageUI.framework */,
 				8E7F47B71540741F0041118E /* QuartzCore.framework */,
 				8EC9813C15950FEA00BB9227 /* SystemConfiguration.framework */,
 				8E7F47B2154074130041118E /* Twitter.framework */,
@@ -997,7 +1072,7 @@
 				8ED3110215360450002614DF /* View Controllers */,
 				8ED311031536045A002614DF /* Views */,
 				8ECBA7D71535F6F70009718E /* Supporting Files */,
-				8ED3110615360475002614DF /* Third Party Libraries */,
+				8ED3110615360475002614DF /* External Libraries */,
 			);
 			path = "Shelby-tv";
 			sourceTree = "<group>";
@@ -1096,9 +1171,10 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		8ED3110615360475002614DF /* Third Party Libraries */ = {
+		8ED3110615360475002614DF /* External Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8ECAA77815B9DFCF007F4F8E /* Address Book - Send To Contacts */,
 				8E50604115588FAB00F42933 /* Asynchronous Freeloader */,
 				8E7F47E6154093210041118E /* ASPullToRefresh */,
 				8E6AF84B159B743B00F570CF /* Facebook SDK */,
@@ -1109,7 +1185,7 @@
 				8EC9813415950DF100BB9227 /* Reachability (ARC) */,
 				8E7F47EA154093890041118E /* SocialFacade */,
 			);
-			name = "Third Party Libraries";
+			name = "External Libraries";
 			sourceTree = "<group>";
 		};
 		8ED3110715360490002614DF /* Xibs */ = {
@@ -1423,6 +1499,18 @@
 				8E24E1C715B8FA33009E3461 /* switchLock@2x.png in Resources */,
 				8E24E1C815B8FA33009E3461 /* switchUnlock.png in Resources */,
 				8E24E1C915B8FA33009E3461 /* switchUnlock@2x.png in Resources */,
+				8ECAA78415B9DFCF007F4F8E /* AddContactTableViewCell.xib in Resources */,
+				8ECAA78615B9DFCF007F4F8E /* EmailSendToContactsViewController.xib in Resources */,
+				8ECAA78815B9DFCF007F4F8E /* RemoveContactTableViewCell.xib in Resources */,
+				8ECAA78915B9DFCF007F4F8E /* zeroEmailContactsArrowMessage@2x.png in Resources */,
+				8ECAA79715B9FFED007F4F8E /* searchContactsAvatar.png in Resources */,
+				8ECAA79815B9FFED007F4F8E /* searchContactsAvatar@2x.png in Resources */,
+				8ECAA79915B9FFED007F4F8E /* searchContactsButtonAdd.png in Resources */,
+				8ECAA79A15B9FFED007F4F8E /* searchContactsButtonAdd@2x.png in Resources */,
+				8ECAA79B15B9FFED007F4F8E /* searchContactsButtonRemove.png in Resources */,
+				8ECAA79C15B9FFED007F4F8E /* searchContactsButtonRemove@2x.png in Resources */,
+				8ECAA79D15B9FFED007F4F8E /* searchContactsCell.png in Resources */,
+				8ECAA79E15B9FFED007F4F8E /* searchContactsCell@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1528,6 +1616,9 @@
 				8EC0CAAC15B72F970010340B /* ExistingRollCell.m in Sources */,
 				8E24E1B515B8F614009E3461 /* CustomTextField.m in Sources */,
 				8E24E1BC15B8F8C5009E3461 /* CustomSwitch.m in Sources */,
+				8ECAA78315B9DFCF007F4F8E /* AddContactTableViewCell.m in Sources */,
+				8ECAA78515B9DFCF007F4F8E /* EmailSendToContactsViewController.m in Sources */,
+				8ECAA78715B9DFCF007F4F8E /* RemoveContactTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

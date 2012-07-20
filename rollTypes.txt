@@ -1,0 +1,11 @@
+Roll Types
+
+-Friends
+special_type* && !=user.public_roll
+
+-My Rolls
+!special_* || user.public_roll
+
+-Explore
+isBrowse
+
