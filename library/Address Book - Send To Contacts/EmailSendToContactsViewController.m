@@ -30,7 +30,6 @@
 
 - (void)addCustomBackButton;
 - (void)addCustomDoneButton;
-- (void)sendButtonAction;
 
 @end
 
@@ -238,6 +237,9 @@
 {
     
     if (tableView == self.searchDisplayController.searchResultsTableView) { /// If front-most tableView is due to search performed by user
+        
+        tableView.backgroundColor = ColorConstants_BackgroundColor;
+        tableView.separatorColor = [UIColor clearColor];
         
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"AddContactTableViewCell" owner:nil options:nil];
         AddContactTableViewCell *cell = [topLevelObjects objectAtIndex:0];
