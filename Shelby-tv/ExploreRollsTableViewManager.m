@@ -122,7 +122,10 @@
     [cell.creatorNameLabel setText:roll.creatorNickname];
     [cell.rollNameLabel setText:roll.title];
     [cell.frameCountLabel setText:[NSString stringWithFormat:@"%d videos", [roll.frameCount intValue]]];
-    [cell.followingCountLabel setText:[NSString stringWithFormat:@"%d people watching", [roll.followingCount intValue]]];
+    
+    NSString *personWatching = @"1 person watching";
+    NSString *peopleWatching = [NSString stringWithFormat:@"%d people watching", [roll.followingCount intValue]];
+    cell.followingCountLabel.text = ( 1 == [roll.followingCount intValue] ) ? personWatching : peopleWatching;
  
     return cell;
     

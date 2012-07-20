@@ -21,6 +21,7 @@
 - (void)upvote:(UIButton *)button;
 - (void)downvote:(UIButton *)button;
 - (void)comment:(UIButton *)button;
+- (void)roll:(UIButton *)button;
 - (void)share:(UIButton *)button;
 
 @end
@@ -73,6 +74,9 @@
         
         // Connect Comment Button
         [cell.commentButton addTarget:self action:@selector(comment:) forControlEvents:UIControlEventTouchUpInside];
+        
+        // Connect Roll Button
+        [cell.rollButton addTarget:self action:@selector(roll:) forControlEvents:UIControlEventTouchUpInside];
         
         // Connect Share Button
         [cell.shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
@@ -236,12 +240,17 @@
     [controller comment:self.guideController.navigationController];
 }
 
+- (void)roll:(UIButton *)button
+{
+    Frame *frame = [CoreDataUtility fetchFrameWithID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
+    VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
+    [controller roll:self.guideController.navigationController];
+}
 
 - (void)share:(UIButton *)button
 {
     Frame *frame = [CoreDataUtility fetchFrameWithID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
-    NSLog(@"%@", self.guideController.navigationController);
     [controller share:self.guideController.navigationController];
 }
 
