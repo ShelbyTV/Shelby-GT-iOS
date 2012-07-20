@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "StaticDeclarations.h"
 
-@interface ShareViewController : UIViewController
+@interface ShareViewController : UIViewController <UITextViewDelegate>
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andFrame:(Frame*)frame;
 

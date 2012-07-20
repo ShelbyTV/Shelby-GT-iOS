@@ -14,7 +14,7 @@
 #import "NSString+TypedefConversion.h"
 #import "AppDelegate.h"
 
-@interface ShareViewController () <UITextViewDelegate>
+@interface ShareViewController ()
 
 @property (strong, nonatomic) Frame *frame;
 

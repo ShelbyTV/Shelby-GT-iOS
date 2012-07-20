@@ -25,4 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak, nonatomic) IBOutlet UIButton *rollButton;
 
+- (IBAction)shareButtonAction:(id)sender;
+- (IBAction)rollButtonAction:(id)sender;
+
 @end

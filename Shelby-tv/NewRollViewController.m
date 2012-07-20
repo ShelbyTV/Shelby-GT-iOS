@@ -8,6 +8,9 @@
 
 #import "NewRollViewController.h"
 #import "AsynchronousFreeloader.h"
+#import "SocialFacade.h"
+#import "ShelbyAPIClient.h"
+#import "AppDelegate.h"
 
 @interface NewRollViewController ()
 
@@ -127,6 +130,73 @@
     [self.navigationItem setHidesBackButton:YES];
     [self.navigationItem setLeftBarButtonItem:backBarButtonItem];
 }
+
+#pragma mark - Action Methods
+- (IBAction)shareButtonAction:(id)sender
+{
+    
+}
+
+- (IBAction)rollButtonAction:(id)sender
+{
+    
+    if ( ![self.titleTextField.text length] ) {
+
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Missing Roll Title"
+                                                            message:@"Please give your roll a title and try again."
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Dismiss"
+                                                   otherButtonTitles:nil, nil];
+        [alertView show];
+        
+    } else {
+    
+        NSString *titleString = [self.titleTextField.text stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        BOOL public;
+        BOOL collaborative;
+        
+        if ( [self.privacySwitch isOn] ) { // Private, Collaborative
+            
+            public = NO;
+            collaborative = YES;
+            
+        } else { // Public, Non-Collaborative
+            
+            public = YES;
+            collaborative = NO;
+        
+        }
+        
+        NSString *requestString = [NSString stringWithFormat:APIRequest_PostCreateRoll, titleString, public, collaborative, [SocialFacade sharedInstance].shelbyToken];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
+        [request setHTTPMethod:@"POST"];
+        ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
+        [client performRequest:request ofType:APIRequestType_PostCreateRoll];
+        
+        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [appDelegate addHUDWithMessage:@"Creating roll, homeslice!"];
+        
+        NSLog(@"%@",requestString);
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }
+    
+}
+
+#pragma mark - UITextFieldDelegate Methods
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    // Hide keyboard when DONE button is pressed
+    if( [string isEqualToString:@"\n"] ) {
+    
+        [textField resignFirstResponder];
+        
+    }
+    
+    return YES;
+}
+
 
 #pragma mark - UIResponder Methods
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

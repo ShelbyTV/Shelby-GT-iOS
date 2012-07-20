@@ -236,6 +236,12 @@
             
         } break;
             
+        case APIRequestType_PostCreateRoll:{
+            
+            [appDelegate removeHUD];
+            
+        } break;
+            
         case APIRequestType_PostMessage:{
             
             [CoreDataUtility storeParsedData:self.parsedDictionary inCoreData:context forType:self.requestType];
