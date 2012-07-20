@@ -47,7 +47,7 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage" id="538692001">
+						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">smallCellDivider.png</string>
 						</object>
@@ -93,7 +93,7 @@
 					<object class="IBUIImageView" id="154113975">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{10, 7}, {41, 41}}</string>
+						<string key="NSFrame">{{10, 6}, {41, 41}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="264602450"/>
@@ -140,14 +140,17 @@
 					<object class="IBUIImageView" id="405028998">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 51}, {266, 2}}</string>
+						<string key="NSFrame">{{0, 51}, {320, 2}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="341665265"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<reference key="IBUIImage" ref="538692001"/>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">cellDivider.png</string>
+						</object>
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 53}</string>
@@ -287,6 +290,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="cellDivider.png">{320, 2}</string>
 			<string key="rollItAvatar.png">{41, 41}</string>
 			<string key="rollItButtonNew.png">{54, 53}</string>
 			<string key="smallCellDivider.png">{266, 2}</string>

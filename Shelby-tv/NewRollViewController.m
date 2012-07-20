@@ -23,6 +23,12 @@
 @synthesize thumbnailImageView = _thumbnailImageView;
 @synthesize nicknameLabel = _nicknameLabel;
 @synthesize videoNameLabel = _videoNameLabel;
+@synthesize createNewRollLabel = _createNewRollLabel;
+@synthesize rollNameLabel = _rollNameLabel;
+@synthesize titleTextField = _titleTextField;
+@synthesize privacySwitch = _privacySwitch;
+@synthesize shareButton = _shareButton;
+@synthesize rollButton = _rollButton;
 @synthesize frame = _frame;
 
 #pragma mark - Initialization Method
@@ -43,6 +49,11 @@
     self.thumbnailImageView = nil;
     self.nicknameLabel = nil;
     self.videoNameLabel = nil;
+    self.createNewRollLabel = nil;
+    self.rollNameLabel = nil;
+    self.titleTextField = nil;
+    self.shareButton = nil;
+    self.rollButton = nil;
     [super viewDidUnload];
 }
 
@@ -74,6 +85,26 @@
     [self.videoNameLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.videoNameLabel.font.pointSize]];
     [self.videoNameLabel setTextColor:[UIColor whiteColor]];
     
+    [self.createNewRollLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.createNewRollLabel.font.pointSize]];
+    [self.createNewRollLabel setTextColor:[UIColor whiteColor]];
+    
+    [self.rollNameLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.rollNameLabel.font.pointSize]];
+    [self.rollNameLabel setTextColor:[UIColor whiteColor]];
+    
+    [self.shareButton setTitle:@"Share with Contacts" forState:UIControlStateNormal];
+    [self.shareButton setTitle:@"Share with Contacts" forState:UIControlStateSelected];
+    [self.shareButton setTitle:@"Share with Contacts" forState:UIControlStateHighlighted];
+    [self.shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.shareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [self.shareButton.titleLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:17.0f]];
+    
+    [self.rollButton setTitle:@"Roll It" forState:UIControlStateNormal];
+    [self.rollButton setTitle:@"Roll It" forState:UIControlStateSelected];
+    [self.rollButton setTitle:@"Roll It" forState:UIControlStateHighlighted];
+    [self.rollButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.rollButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [self.rollButton.titleLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:17.0f]];
+    
 }
 
 - (void)populateView
@@ -95,6 +126,12 @@
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBarButton];
     [self.navigationItem setHidesBackButton:YES];
     [self.navigationItem setLeftBarButtonItem:backBarButtonItem];
+}
+
+#pragma mark - UIResponder Methods
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if ( [self.titleTextField isFirstResponder] ) [self.titleTextField resignFirstResponder];
 }
 
 #pragma mark - Interface Orientation Methods

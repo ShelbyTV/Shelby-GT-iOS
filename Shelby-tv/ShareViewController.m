@@ -195,9 +195,7 @@
 #pragma mark - UIResponder Methods
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    // Resign Keyboard if any view element is touched that isn't currently a firstResponder UITextField object
     if ( [self.textView isFirstResponder] ) [self.textView resignFirstResponder];
-    
 }
 
 #pragma mark - Interface Orientation Method

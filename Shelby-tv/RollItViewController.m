@@ -28,7 +28,6 @@
 - (void)reRoll:(UIButton*)button;
 - (void)createNewRoll;
 
-
 @end
 
 @implementation RollItViewController
@@ -121,11 +120,10 @@
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
     [client performRequest:request ofType:APIRequestType_PostRollFrame];
     
-    NSLog(@"%@", requestString);
-    
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [appDelegate addHUDWithMessage:@"Re-Rolling Video, Broski!"];
+    [appDelegate addHUDWithMessage:@"Re-Rolling video, broski!"];
     
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)createNewRoll
@@ -184,7 +182,7 @@
         [AsynchronousFreeloader loadImageFromLink:roll.thumbnailURL forImageView:cell.userImageView withPlaceholderView:nil];
         cell.nicknameLabel.text = roll.title;
         
-        if ( roll.isPublic ) {
+        if ( [roll.isPublic boolValue] ) {
         
             cell.lockImageView.image = [UIImage imageNamed:@"rollItPublic"];
             cell.privacyLabel.text = @"Public";
@@ -192,7 +190,10 @@
         } else {
             
             cell.lockImageView.image = [UIImage imageNamed:@"rollItPrivate"];
-            cell.privacyLabel.text = [NSString stringWithFormat:@"%d members", [roll.followingCount intValue]];
+            
+            NSString *oneMember = [NSString stringWithFormat:@"1 member"];
+            NSString *manyMembers = [NSString stringWithFormat:@"%d members", [roll.followingCount intValue]];
+            cell.privacyLabel.text =  ( 1 == [roll.followingCount intValue] ) ? oneMember : manyMembers;
             
         }
         
@@ -213,11 +214,6 @@
 }
 
 #pragma mark - UITableViewDelegate Methods
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 22.0f;

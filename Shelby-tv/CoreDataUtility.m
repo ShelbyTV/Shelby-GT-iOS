@@ -633,21 +633,25 @@ static CoreDataUtility *sharedInstance = nil;
             roll.isMy = [NSNumber numberWithBool:NO];
             roll.isFriends = [NSNumber numberWithBool:NO];
             
+            // Set Separated Conditional Values
             if ( [roll.isPublic boolValue] && ![roll.isCollaborative boolValue] ) { // Public and Non-Collaborative
                 
                 roll.isFriends = [NSNumber numberWithBool:YES];
+                
+            }
             
-            } else if ( [roll.isPublic boolValue] && [roll.isCollaborative boolValue] ) { // Public and Collaborative
+            if ( [roll.isPublic boolValue] && [roll.isCollaborative boolValue] ) { // Public and Collaborative
                 
                 roll.isMy = [NSNumber numberWithBool:YES];
-                
-            } else if ( ![roll.isPublic boolValue] ) { // Private
+             
+            }
+            
+            if ( ![roll.isPublic boolValue] ) { // Private
                 
                 roll.isMy = [NSNumber numberWithBool:YES];
                 
             }
-            
-            // Auxillary Condition to catch logged-in user's rolls
+                
             if ( [creatorID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) { //
                 
                 roll.isMy = [NSNumber numberWithBool:YES];

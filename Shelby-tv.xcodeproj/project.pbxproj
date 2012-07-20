@@ -32,9 +32,17 @@
 		8E1143AA15B753DF0017F4E8 /* smallCellDivider.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E1143A815B753DF0017F4E8 /* smallCellDivider.png */; };
 		8E1143AB15B753DF0017F4E8 /* smallCellDivider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E1143A915B753DF0017F4E8 /* smallCellDivider@2x.png */; };
 		8E1F557315B731E300C5452E /* ExistingRollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E1F557215B731E300C5452E /* ExistingRollCell.xib */; };
-		8E24E1AA15B88EB8009E3461 /* newRollButtonPeopleSelection.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1A815B88EB8009E3461 /* newRollButtonPeopleSelection.png */; };
-		8E24E1AB15B88EB8009E3461 /* newRollButtonPeopleSelection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1A915B88EB8009E3461 /* newRollButtonPeopleSelection@2x.png */; };
+		8E24E1AA15B88EB8009E3461 /* newRollButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1A815B88EB8009E3461 /* newRollButton.png */; };
+		8E24E1AB15B88EB8009E3461 /* newRollButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1A915B88EB8009E3461 /* newRollButton@2x.png */; };
 		8E24E1AE15B89499009E3461 /* rollItPublic.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1AD15B89499009E3461 /* rollItPublic.png */; };
+		8E24E1B515B8F614009E3461 /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E24E1B415B8F614009E3461 /* CustomTextField.m */; };
+		8E24E1BC15B8F8C5009E3461 /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E24E1BB15B8F8C4009E3461 /* CustomSwitch.m */; };
+		8E24E1C415B8FA33009E3461 /* switchBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1BE15B8FA33009E3461 /* switchBackground.png */; };
+		8E24E1C515B8FA33009E3461 /* switchBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1BF15B8FA33009E3461 /* switchBackground@2x.png */; };
+		8E24E1C615B8FA33009E3461 /* switchLock.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1C015B8FA33009E3461 /* switchLock.png */; };
+		8E24E1C715B8FA33009E3461 /* switchLock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1C115B8FA33009E3461 /* switchLock@2x.png */; };
+		8E24E1C815B8FA33009E3461 /* switchUnlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1C215B8FA33009E3461 /* switchUnlock.png */; };
+		8E24E1C915B8FA33009E3461 /* switchUnlock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1C315B8FA33009E3461 /* switchUnlock@2x.png */; };
 		8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2A8EAE159135970028712C /* StreamTableViewManager.m */; };
 		8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */; };
 		8E44DC0A15B5E8610035B3CF /* NewRollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E44DC0815B5E8610035B3CF /* NewRollViewController.m */; };
@@ -262,9 +270,19 @@
 		8E1143A815B753DF0017F4E8 /* smallCellDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallCellDivider.png; sourceTree = "<group>"; };
 		8E1143A915B753DF0017F4E8 /* smallCellDivider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smallCellDivider@2x.png"; sourceTree = "<group>"; };
 		8E1F557215B731E300C5452E /* ExistingRollCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExistingRollCell.xib; sourceTree = "<group>"; };
-		8E24E1A815B88EB8009E3461 /* newRollButtonPeopleSelection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newRollButtonPeopleSelection.png; sourceTree = "<group>"; };
-		8E24E1A915B88EB8009E3461 /* newRollButtonPeopleSelection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newRollButtonPeopleSelection@2x.png"; sourceTree = "<group>"; };
+		8E24E1A815B88EB8009E3461 /* newRollButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newRollButton.png; sourceTree = "<group>"; };
+		8E24E1A915B88EB8009E3461 /* newRollButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newRollButton@2x.png"; sourceTree = "<group>"; };
 		8E24E1AD15B89499009E3461 /* rollItPublic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollItPublic.png; sourceTree = "<group>"; };
+		8E24E1B315B8F614009E3461 /* CustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextField.h; sourceTree = "<group>"; };
+		8E24E1B415B8F614009E3461 /* CustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextField.m; sourceTree = "<group>"; };
+		8E24E1BA15B8F8C4009E3461 /* CustomSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSwitch.h; sourceTree = "<group>"; };
+		8E24E1BB15B8F8C4009E3461 /* CustomSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSwitch.m; sourceTree = "<group>"; };
+		8E24E1BE15B8FA33009E3461 /* switchBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switchBackground.png; sourceTree = "<group>"; };
+		8E24E1BF15B8FA33009E3461 /* switchBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switchBackground@2x.png"; sourceTree = "<group>"; };
+		8E24E1C015B8FA33009E3461 /* switchLock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switchLock.png; sourceTree = "<group>"; };
+		8E24E1C115B8FA33009E3461 /* switchLock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switchLock@2x.png"; sourceTree = "<group>"; };
+		8E24E1C215B8FA33009E3461 /* switchUnlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switchUnlock.png; sourceTree = "<group>"; };
+		8E24E1C315B8FA33009E3461 /* switchUnlock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switchUnlock@2x.png"; sourceTree = "<group>"; };
 		8E2A8EAD159135970028712C /* StreamTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewManager.h; sourceTree = "<group>"; };
 		8E2A8EAE159135970028712C /* StreamTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamTableViewManager.m; sourceTree = "<group>"; };
 		8E3457851551BC9200FEFC9D /* NSString+TypedefConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TypedefConversion.h"; sourceTree = "<group>"; };
@@ -565,11 +583,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E24E1BD15B8FA33009E3461 /* customSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				8E24E1BE15B8FA33009E3461 /* switchBackground.png */,
+				8E24E1BF15B8FA33009E3461 /* switchBackground@2x.png */,
+				8E24E1C015B8FA33009E3461 /* switchLock.png */,
+				8E24E1C115B8FA33009E3461 /* switchLock@2x.png */,
+				8E24E1C215B8FA33009E3461 /* switchUnlock.png */,
+				8E24E1C315B8FA33009E3461 /* switchUnlock@2x.png */,
+			);
+			name = customSwitch;
+			path = Resources/images/customSwitch;
+			sourceTree = SOURCE_ROOT;
+		};
 		8E459C7815B7275F00A8D6FD /* newRoll */ = {
 			isa = PBXGroup;
 			children = (
-				8E24E1A815B88EB8009E3461 /* newRollButtonPeopleSelection.png */,
-				8E24E1A915B88EB8009E3461 /* newRollButtonPeopleSelection@2x.png */,
+				8E24E1A815B88EB8009E3461 /* newRollButton.png */,
+				8E24E1A915B88EB8009E3461 /* newRollButton@2x.png */,
 				8E459C7915B7275F00A8D6FD /* newRollButtonRollIt.png */,
 				8E459C7A15B7275F00A8D6FD /* newRollButtonRollIt@2x.png */,
 			);
@@ -1031,6 +1063,10 @@
 				8ED3110715360490002614DF /* Xibs */,
 				8E79437D15B0C27400ED4655 /* CommentCell.h */,
 				8E79437E15B0C27400ED4655 /* CommentCell.m */,
+				8E24E1B315B8F614009E3461 /* CustomTextField.h */,
+				8E24E1B415B8F614009E3461 /* CustomTextField.m */,
+				8E24E1BA15B8F8C4009E3461 /* CustomSwitch.h */,
+				8E24E1BB15B8F8C4009E3461 /* CustomSwitch.m */,
 				8EC0CAAA15B72F970010340B /* ExistingRollCell.h */,
 				8EC0CAAB15B72F970010340B /* ExistingRollCell.m */,
 				8EC0CAA615B72F800010340B /* NewRollCell.h */,
@@ -1159,6 +1195,7 @@
 				8E459C7C15B7275F00A8D6FD /* rollIt */,
 				8E88604815B3A9E40048FED8 /* common */,
 				8E79436915B0C02A00ED4655 /* comments */,
+				8E24E1BD15B8FA33009E3461 /* customSwitch */,
 				8EE673851552E474004EA45C /* login */,
 				8E791DE715828D3200B0E744 /* navigation */,
 				8EE40A431596354900559484 /* rolls */,
@@ -1377,9 +1414,15 @@
 				8E1F557315B731E300C5452E /* ExistingRollCell.xib in Resources */,
 				8E1143AA15B753DF0017F4E8 /* smallCellDivider.png in Resources */,
 				8E1143AB15B753DF0017F4E8 /* smallCellDivider@2x.png in Resources */,
-				8E24E1AA15B88EB8009E3461 /* newRollButtonPeopleSelection.png in Resources */,
-				8E24E1AB15B88EB8009E3461 /* newRollButtonPeopleSelection@2x.png in Resources */,
+				8E24E1AA15B88EB8009E3461 /* newRollButton.png in Resources */,
+				8E24E1AB15B88EB8009E3461 /* newRollButton@2x.png in Resources */,
 				8E24E1AE15B89499009E3461 /* rollItPublic.png in Resources */,
+				8E24E1C415B8FA33009E3461 /* switchBackground.png in Resources */,
+				8E24E1C515B8FA33009E3461 /* switchBackground@2x.png in Resources */,
+				8E24E1C615B8FA33009E3461 /* switchLock.png in Resources */,
+				8E24E1C715B8FA33009E3461 /* switchLock@2x.png in Resources */,
+				8E24E1C815B8FA33009E3461 /* switchUnlock.png in Resources */,
+				8E24E1C915B8FA33009E3461 /* switchUnlock@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1483,6 +1526,8 @@
 				8E44DC0A15B5E8610035B3CF /* NewRollViewController.m in Sources */,
 				8EC0CAA815B72F800010340B /* NewRollCell.m in Sources */,
 				8EC0CAAC15B72F970010340B /* ExistingRollCell.m in Sources */,
+				8E24E1B515B8F614009E3461 /* CustomTextField.m in Sources */,
+				8E24E1BC15B8F8C5009E3461 /* CustomSwitch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

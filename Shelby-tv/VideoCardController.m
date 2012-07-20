@@ -36,7 +36,6 @@
     return self;
 }
 
-
 #pragma mark - Public Methods
 - (void)upvote
 {
