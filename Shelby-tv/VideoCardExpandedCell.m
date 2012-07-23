@@ -7,7 +7,6 @@
 //
 
 #import "VideoCardExpandedCell.h"
-#import "StaticDeclarations.h"
 #import <CoreGraphics/CoreGraphics.h>
 
 @interface VideoCardExpandedCell ()

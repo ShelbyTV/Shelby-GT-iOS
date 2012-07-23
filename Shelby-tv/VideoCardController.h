@@ -6,10 +6,8 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "VideoCardCell.h"
 #import "VideoCardExpandedCell.h"
-#import "StaticDeclarations.h"
 
 @interface VideoCardController : NSObject
 
@@ -19,10 +17,10 @@
 
 - (void)downvote;
 
-- (void)comment:(UINavigationController*)navController;
+- (void)comment:(UINavigationController*)navigationController;
 
-- (void)roll:(UINavigationController*)navController;
+- (void)roll:(UINavigationController*)navigationController;
 
-- (void)share:(UINavigationController*)navController;
+- (void)share:(UINavigationController*)navigationController;
 
 @end

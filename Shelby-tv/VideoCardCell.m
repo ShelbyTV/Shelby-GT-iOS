@@ -7,8 +7,6 @@
 //
 
 #import "VideoCardCell.h"
-#import "StaticDeclarations.h"
-#import <CoreGraphics/CoreGraphics.h>
 
 @interface VideoCardCell ()
 

@@ -6,16 +6,10 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "StaticDeclarations.h"
+#import "ShelbySocialViewController.h"
 
-@interface ShareViewController : UIViewController <UITextViewDelegate>
+@interface ShareViewController : ShelbySocialViewController <UITextViewDelegate>
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andFrame:(Frame*)frame;
-
-@property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
-@property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *videoNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *shareToLabel;
 @property (weak, nonatomic) IBOutlet UITextView *textView;

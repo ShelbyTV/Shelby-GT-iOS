@@ -6,16 +6,10 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "StaticDeclarations.h"
+#import "ShelbySocialViewController.h"
 
-@interface RollItViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface RollItViewController : ShelbySocialViewController <UITableViewDataSource, UITableViewDelegate>
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andFrame:(Frame *)frame;
-
-@property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
-@property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *videoNameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

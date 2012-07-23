@@ -9,7 +9,6 @@
 #import "EmailSendToContactsViewController.h"
 #import "AddContactTableViewCell.h"
 #import "RemoveContactTableViewCell.h"
-#import "StaticDeclarations.h"
 #import "NewRollViewController.h"
 
 @interface EmailSendToContactsViewController ()

@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 ArtSabintsev. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "FBConnect.h"
 
 /// NSNotificationCenter Macros ///

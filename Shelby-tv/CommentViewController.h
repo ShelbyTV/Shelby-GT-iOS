@@ -6,27 +6,15 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "StaticDeclarations.h"
+#import "ShelbySocialViewController.h"
 
-@interface CommentViewController : UIViewController
-<
+@interface CommentViewController : ShelbySocialViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
-UITableViewDataSource,
-UITableViewDelegate,
-UITextFieldDelegate
-
->
-
-@property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
-@property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *videoNameLabel;
 @property (weak, nonatomic) IBOutlet UIView *textFieldContainerView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andFrame:(Frame*)frame;
 - (IBAction)sendButtonAction:(id)sender;
 
 @end

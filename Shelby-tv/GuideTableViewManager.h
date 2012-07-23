@@ -20,8 +20,6 @@
 // Categories
 #import "NSString+TypedefConversion.h"
 
-// Constants
-#import "StaticDeclarations.h"
 
 @class GuideTableViewController;
 

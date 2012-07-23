@@ -20,7 +20,6 @@
 @property (strong, nonatomic) Frame *frame;
 @property (copy, nonatomic) NSString *postedRollTitle;
 
-- (void)addCustomBackButton;
 - (void)createAPIObservers;
 - (void)customizeView;
 - (void)customizeShareButtonWithTitle:(NSString*)title;
@@ -31,9 +30,6 @@
 @end
 
 @implementation NewRollViewController
-@synthesize thumbnailImageView = _thumbnailImageView;
-@synthesize nicknameLabel = _nicknameLabel;
-@synthesize videoNameLabel = _videoNameLabel;
 @synthesize createNewRollLabel = _createNewRollLabel;
 @synthesize rollNameLabel = _rollNameLabel;
 @synthesize titleTextField = _titleTextField;
@@ -172,16 +168,6 @@
     self.nicknameLabel.text = self.frame.creator.nickname;
     self.videoNameLabel.text = self.frame.video.title;
     
-}
-
-- (void)addCustomBackButton
-{
-    UIButton *backBarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 51, 30)];
-    [backBarButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
-    [backBarButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBarButton];
-    [self.navigationItem setHidesBackButton:YES];
-    [self.navigationItem setLeftBarButtonItem:backBarButtonItem];
 }
 
 - (void)postCreateRollWasSuccessful

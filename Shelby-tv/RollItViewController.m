@@ -7,21 +7,16 @@
 //
 
 #import "RollItViewController.h"
-#import "AsynchronousFreeloader.h"
 #import "NewRollCell.h"
 #import "ExistingRollCell.h"
-#import "CoreDataUtility.h"
 #import "NewRollViewController.h"
-#import "SocialFacade.h"
-#import "ShelbyAPIClient.h"
-#import "AppDelegate.h"
 
 @interface RollItViewController ()
 
 @property (strong, nonatomic) Frame *frame;
 @property (strong, nonatomic) NSArray *myRolls;
 
-- (void)addCustomBackButton;
+
 - (void)customizeView;
 - (void)populateView;
 - (void)fetchMyRolls;
@@ -31,9 +26,6 @@
 @end
 
 @implementation RollItViewController
-@synthesize thumbnailImageView = _thumbnailImageView;
-@synthesize nicknameLabel = _nicknameLabel;
-@synthesize videoNameLabel = _videoNameLabel;
 @synthesize tableView = _tableView;
 @synthesize frame = _frame;
 @synthesize myRolls = _myRolls;
@@ -130,16 +122,6 @@
 {
     NewRollViewController *newRollViewController = [[NewRollViewController alloc] initWithNibName:@"NewRollViewController" bundle:nil andFrame:self.frame];
     [self.navigationController pushViewController:newRollViewController animated:YES];
-}
-
-- (void)addCustomBackButton
-{
-    UIButton *backBarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 51, 30)];
-    [backBarButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
-    [backBarButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBarButton];
-    [self.navigationItem setHidesBackButton:YES];
-    [self.navigationItem setLeftBarButtonItem:backBarButtonItem];
 }
 
 #pragma mark - UITableViewDataSource Methods

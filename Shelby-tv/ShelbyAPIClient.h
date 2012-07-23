@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "StaticDeclarations.h"
 
 @interface ShelbyAPIClient : NSObject <NSURLConnectionDataDelegate>
 

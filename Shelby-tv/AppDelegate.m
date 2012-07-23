@@ -9,18 +9,17 @@
 // AppDelegate
 #import "AppDelegate.h"
 
-// Models
-#import "SocialFacade.h"
-
 // Analytics
 #import <Crashlytics/Crashlytics.h>
 
-// Controllers
-#import "GuideTableViewController.h"
-#import "LoginViewController.h"
-
-#import "SettingsTableViewController.h"
+// ViewControllers
 #import "ShelbyMenuViewController.h"
+#import "LoginViewController.h"
+#import "GuideTableViewController.h"
+#import "SettingsTableViewController.h"
+
+// Controllers
+#import "SocialFacade.h"
 
 // Core Data
 #import <CoreData/CoreData.h>

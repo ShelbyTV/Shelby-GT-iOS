@@ -6,9 +6,7 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "StaticDeclarations.h"
 
 @interface CoreDataUtility : NSObject
 

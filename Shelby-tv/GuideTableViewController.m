@@ -17,7 +17,6 @@
 @property (assign, nonatomic) BOOL firstLoad;
 @property (strong, nonatomic) NSString *rollID;
 
-/// Creation Methods
 - (GuideTableViewManager*)createTableViewManager;
 - (void)changeMenuButtonState;
 - (void)addCustomBackButton;

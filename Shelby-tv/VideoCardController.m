@@ -55,22 +55,22 @@
     [client performRequest:downvoteRequest ofType:APIRequestType_PostDownvote];
 }
 
-- (void)comment:(UINavigationController *)navController
+- (void)comment:(UINavigationController *)navigationController
 {
     CommentViewController *commentViewController = [[CommentViewController alloc] initWithNibName:@"CommentViewController" bundle:nil andFrame:self.frame];
-    [navController pushViewController:commentViewController animated:YES];
+    [navigationController pushViewController:commentViewController animated:YES];
 }
 
-- (void)roll:(UINavigationController *)navController
+- (void)roll:(UINavigationController *)navigationController
 {
     RollItViewController *rollItViewController = [[RollItViewController alloc] initWithNibName:@"RollItViewController" bundle:nil andFrame:self.frame];
-    [navController pushViewController:rollItViewController animated:YES];
+    [navigationController pushViewController:rollItViewController animated:YES];
 }
 
-- (void)share:(UINavigationController *)navController
+- (void)share:(UINavigationController *)navigationController
 {
     ShareViewController *shareViewController = [[ShareViewController alloc] initWithNibName:@"ShareViewController" bundle:nil andFrame:self.frame];
-    [navController pushViewController:shareViewController animated:YES];
+    [navigationController pushViewController:shareViewController animated:YES];
 }
 
 @end

@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "VideoCardCell.h"
 
 @interface VideoCardExpandedCell : VideoCardCell

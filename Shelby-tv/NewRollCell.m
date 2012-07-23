@@ -7,7 +7,6 @@
 //
 
 #import "NewRollCell.h"
-#import "StaticDeclarations.h"
 
 @implementation NewRollCell
 @synthesize button = _button;

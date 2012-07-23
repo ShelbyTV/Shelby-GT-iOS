@@ -7,11 +7,6 @@
 //
 
 #import "CommentViewController.h"
-#import "AsynchronousFreeloader.h"
-#import "CoreDataUtility.h"
-#import "SocialFacade.h"
-#import "ShelbyAPIClient.h"
-#import "NSString+TypedefConversion.h"
 #import "CommentCell.h"
 
 @interface CommentViewController ()
@@ -20,7 +15,6 @@
 @property (strong, nonatomic) NSMutableArray *arrayOfMessages;
 @property (strong, nonatomic) NSMutableArray *arrayOfBullshitMessages;
 
-- (void)addCustomBackButton;
 - (void)createAPIObservers;
 - (void)customizeView;
 - (void)populateView;
@@ -109,16 +103,6 @@
     self.nicknameLabel.text = self.frame.creator.nickname;
     self.videoNameLabel.text = self.frame.video.title;
     
-}
-
-- (void)addCustomBackButton
-{
-    UIButton *backBarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 51, 30)];
-    [backBarButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
-    [backBarButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBarButton];
-    [self.navigationItem setHidesBackButton:YES];
-    [self.navigationItem setLeftBarButtonItem:backBarButtonItem];
 }
 
 - (void)createAPIObservers
@@ -215,9 +199,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    Messages *message = [self.arrayOfMessages objectAtIndex:indexPath.row];
-    
     if ( [self.arrayOfMessages count] ) { // Check if messages exist
+        
+        Messages *message = [self.arrayOfMessages objectAtIndex:indexPath.row];
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CommentCell" owner:self options:nil];
         CommentCell *cell = (CommentCell*)[nib objectAtIndex:0];
@@ -234,8 +218,10 @@
         
         static NSString *CellIdentifier = @"Cell";
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewStyleGrouped reuseIdentifier:CellIdentifier];
-        
         cell.textLabel.text = @"Be the first to comment";
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.font = [UIFont fontWithName:@"Ubuntu-Bold" size:15.0f];
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
         
         return cell;
     }
@@ -243,11 +229,6 @@
 }
 
 #pragma mark - UITableViewDelegate Methods
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return ( [self.arrayOfMessages count] ) ? 92.0f : 44.0f;

@@ -18,7 +18,7 @@
 
 @property (strong, nonatomic) Frame *frame;
 
-- (void)addCustomBackButton;
+
 - (void)customizeView;
 - (void)populateView;
 
@@ -117,16 +117,6 @@
     self.nicknameLabel.text = self.frame.creator.nickname;
     self.videoNameLabel.text = self.frame.video.title;
     
-}
-
-- (void)addCustomBackButton
-{
-    UIButton *backBarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 51, 30)];
-    [backBarButton setImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal];
-    [backBarButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBarButton];
-    [self.navigationItem setHidesBackButton:YES];
-    [self.navigationItem setLeftBarButtonItem:backBarButtonItem];
 }
 
 #pragma mark - Action Methods

@@ -213,7 +213,6 @@
 		8ECAA79E15B9FFED007F4F8E /* searchContactsCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA79615B9FFED007F4F8E /* searchContactsCell@2x.png */; };
 		8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D01535F6F70009718E /* UIKit.framework */; };
 		8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D21535F6F70009718E /* Foundation.framework */; };
-		8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECBA7D41535F6F70009718E /* CoreGraphics.framework */; };
 		8ECBA7DB1535F6F70009718E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECBA7D91535F6F70009718E /* InfoPlist.strings */; };
 		8ECBA7DD1535F6F70009718E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECBA7DC1535F6F70009718E /* main.m */; };
 		8ECBA7E11535F6F70009718E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECBA7E01535F6F70009718E /* AppDelegate.m */; };
@@ -230,6 +229,7 @@
 		8ED310FF153601A2002614DF /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED310F3153601A2002614DF /* Icon.png */; };
 		8ED31100153601A2002614DF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED310F4153601A2002614DF /* Icon@2x.png */; };
 		8ED31101153601A2002614DF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 8ED310F5153601A2002614DF /* iTunesArtwork */; };
+		8ED420FF15BDB4550032589B /* ShelbySocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED420FE15BDB4550032589B /* ShelbySocialViewController.m */; };
 		8EDB32B115792688007D7106 /* VideoCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB32B015792688007D7106 /* VideoCardController.m */; };
 		8EE40A461596354900559484 /* rollsOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE40A441596354900559484 /* rollsOverlay.png */; };
 		8EE40A471596354900559484 /* rollsOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE40A451596354900559484 /* rollsOverlay@2x.png */; };
@@ -250,6 +250,7 @@
 		8EEA704015544A2200B1B07F /* VideoCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA703F15544A2200B1B07F /* VideoCardCell.m */; };
 		8EF851AE1570317D002335A3 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851AD1570317D002335A3 /* Video.m */; };
 		8EF851B71570317D002335A3 /* DashboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851B61570317D002335A3 /* DashboardEntry.m */; };
+		8EFC969015BDC84E004EADAA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EFC968F15BDC84E004EADAA /* CoreGraphics.framework */; };
 		8EFD498C156435330003913D /* NSString+NullTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD498B156435330003913D /* NSString+NullTest.m */; };
 		8EFE780C15939B0200499994 /* RollFramesTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFE780B15939B0200499994 /* RollFramesTableViewManager.m */; };
 		8EFF3A9815658E2500131A97 /* AuthenticateTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF3A9715658E2500131A97 /* AuthenticateTwitterViewController.m */; };
@@ -542,7 +543,6 @@
 		8ECBA7CC1535F6F70009718E /* Shelby-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECBA7D01535F6F70009718E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8ECBA7D21535F6F70009718E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		8ECBA7D41535F6F70009718E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8ECBA7D81535F6F70009718E /* Shelby-tv-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Shelby-tv-Info.plist"; sourceTree = "<group>"; };
 		8ECBA7DA1535F6F70009718E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8ECBA7DC1535F6F70009718E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -563,6 +563,8 @@
 		8ED310F3153601A2002614DF /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		8ED310F4153601A2002614DF /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		8ED310F5153601A2002614DF /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		8ED420FD15BDB4550032589B /* ShelbySocialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelbySocialViewController.h; sourceTree = "<group>"; };
+		8ED420FE15BDB4550032589B /* ShelbySocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbySocialViewController.m; sourceTree = "<group>"; };
 		8EDB32AF15792688007D7106 /* VideoCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCardController.h; sourceTree = "<group>"; };
 		8EDB32B015792688007D7106 /* VideoCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCardController.m; sourceTree = "<group>"; };
 		8EE40A441596354900559484 /* rollsOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollsOverlay.png; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 		8EF851AD1570317D002335A3 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
 		8EF851B51570317D002335A3 /* DashboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardEntry.h; sourceTree = "<group>"; };
 		8EF851B61570317D002335A3 /* DashboardEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardEntry.m; sourceTree = "<group>"; };
+		8EFC968F15BDC84E004EADAA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = ../../../../../../System/Library/Frameworks/CoreGraphics.framework; sourceTree = "<group>"; };
 		8EFD498A156435330003913D /* NSString+NullTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NullTest.h"; sourceTree = "<group>"; };
 		8EFD498B156435330003913D /* NSString+NullTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NullTest.m"; sourceTree = "<group>"; };
 		8EFE780A15939B0200499994 /* RollFramesTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RollFramesTableViewManager.h; sourceTree = "<group>"; };
@@ -611,11 +614,11 @@
 				8E7F47B3154074130041118E /* Twitter.framework in Frameworks */,
 				8EE50664155CAC1600A04F50 /* CoreData.framework in Frameworks */,
 				8EE5063F155CA39E00A04F50 /* MediaPlayer.framework in Frameworks */,
-				8ECBA7D51535F6F70009718E /* CoreGraphics.framework in Frameworks */,
 				8ECBA7D31535F6F70009718E /* Foundation.framework in Frameworks */,
 				8ECBA7D11535F6F70009718E /* UIKit.framework in Frameworks */,
 				8E7F47B81540741F0041118E /* QuartzCore.framework in Frameworks */,
 				8E7F48061540B4690041118E /* Crashlytics.framework in Frameworks */,
+				8EFC969015BDC84E004EADAA /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -902,10 +905,6 @@
 		8E8124DB1540C07400E1EA4B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8E5E7F93156151B0009FC8CE /* CoreDataUtility.h */,
-				8E5E7F94156151B0009FC8CE /* CoreDataUtility.m */,
-				8E4A77E81551A6E2003CBA2A /* ShelbyAPIClient.h */,
-				8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */,
 				8E8124F41540C2F900E1EA4B /* TableViewManagers.h */,
 				8E8124F11540C2E800E1EA4B /* GuideTableViewManager.h */,
 				8E8124F21540C2E800E1EA4B /* GuideTableViewManager.m */,
@@ -1049,7 +1048,7 @@
 				8ECAA78A15B9E004007F4F8E /* AddressBook.framework */,
 				8E7F48051540B4690041118E /* Crashlytics.framework */,
 				8EE50663155CAC1600A04F50 /* CoreData.framework */,
-				8ECBA7D41535F6F70009718E /* CoreGraphics.framework */,
+				8EFC968F15BDC84E004EADAA /* CoreGraphics.framework */,
 				8ECBA7D21535F6F70009718E /* Foundation.framework */,
 				8EE5063E155CA39E00A04F50 /* MediaPlayer.framework */,
 				8ECAA78C15B9E00B007F4F8E /* MessageUI.framework */,
@@ -1070,6 +1069,7 @@
 				8EE5065B155CA90700A04F50 /* Core Data */,
 				8E8124DB1540C07400E1EA4B /* Controllers */,
 				8ED3110215360450002614DF /* View Controllers */,
+				8ED420FC15BDA2C10032589B /* Utilities */,
 				8ED311031536045A002614DF /* Views */,
 				8ECBA7D71535F6F70009718E /* Supporting Files */,
 				8ED3110615360475002614DF /* External Libraries */,
@@ -1112,20 +1112,13 @@
 		8ED3110215360450002614DF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8E78C1CC15ABB98000326EF9 /* CommentViewController.h */,
-				8E78C1CD15ABB98000326EF9 /* CommentViewController.m */,
+				8ED4210015BDC4BE0032589B /* Video Card */,
 				8E8124D51540B92E00E1EA4B /* GuideTableViewController.h */,
 				8E8124D61540B92E00E1EA4B /* GuideTableViewController.m */,
 				8E664D521541B0120071EC42 /* LoginViewController.h */,
 				8E664D531541B0120071EC42 /* LoginViewController.m */,
-				8E44DC0715B5E8610035B3CF /* NewRollViewController.h */,
-				8E44DC0815B5E8610035B3CF /* NewRollViewController.m */,
-				8E78C1C715ABB97900326EF9 /* RollItViewController.h */,
-				8E78C1C815ABB97900326EF9 /* RollItViewController.m */,
 				8E04DC2F159117DD0066BBA6 /* SettingsTableViewController.h */,
 				8E04DC30159117DD0066BBA6 /* SettingsTableViewController.m */,
-				8E78C1C215ABB96E00326EF9 /* ShareViewController.h */,
-				8E78C1C315ABB96E00326EF9 /* ShareViewController.m */,
 				8E04DC2B1590E1620066BBA6 /* ShelbyMenuViewController.h */,
 				8E04DC2C1590E1620066BBA6 /* ShelbyMenuViewController.m */,
 			);
@@ -1217,6 +1210,34 @@
 				8ECBA7E01535F6F70009718E /* AppDelegate.m */,
 			);
 			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		8ED420FC15BDA2C10032589B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				8E5E7F93156151B0009FC8CE /* CoreDataUtility.h */,
+				8E5E7F94156151B0009FC8CE /* CoreDataUtility.m */,
+				8E4A77E81551A6E2003CBA2A /* ShelbyAPIClient.h */,
+				8E4A77E91551A6E2003CBA2A /* ShelbyAPIClient.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		8ED4210015BDC4BE0032589B /* Video Card */ = {
+			isa = PBXGroup;
+			children = (
+				8E78C1CC15ABB98000326EF9 /* CommentViewController.h */,
+				8E78C1CD15ABB98000326EF9 /* CommentViewController.m */,
+				8E44DC0715B5E8610035B3CF /* NewRollViewController.h */,
+				8E44DC0815B5E8610035B3CF /* NewRollViewController.m */,
+				8E78C1C715ABB97900326EF9 /* RollItViewController.h */,
+				8E78C1C815ABB97900326EF9 /* RollItViewController.m */,
+				8E78C1C215ABB96E00326EF9 /* ShareViewController.h */,
+				8E78C1C315ABB96E00326EF9 /* ShareViewController.m */,
+				8ED420FD15BDB4550032589B /* ShelbySocialViewController.h */,
+				8ED420FE15BDB4550032589B /* ShelbySocialViewController.m */,
+			);
+			name = "Video Card";
 			sourceTree = "<group>";
 		};
 		8EE40A431596354900559484 /* rolls */ = {
@@ -1619,6 +1640,7 @@
 				8ECAA78315B9DFCF007F4F8E /* AddContactTableViewCell.m in Sources */,
 				8ECAA78515B9DFCF007F4F8E /* EmailSendToContactsViewController.m in Sources */,
 				8ECAA78715B9DFCF007F4F8E /* RemoveContactTableViewCell.m in Sources */,
+				8ED420FF15BDB4550032589B /* ShelbySocialViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

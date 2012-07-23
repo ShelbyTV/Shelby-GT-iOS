@@ -13,7 +13,6 @@
 #import "ShelbyAPIClient.h"
 #import "CoreDataUtility.h"
 #import "NSString+TypedefConversion.h"
-#import "StaticDeclarations.h"
 #import "AppDelegate.h"
 
 // Third Party Libraries 

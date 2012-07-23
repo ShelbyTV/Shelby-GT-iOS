@@ -7,7 +7,6 @@
 //
 
 #import "CommentCell.h"
-#import "StaticDeclarations.h"
 
 @implementation CommentCell
 @synthesize thumbnailImageView = _thumbnailImageView;

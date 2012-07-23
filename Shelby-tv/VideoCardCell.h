@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface VideoCardCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;

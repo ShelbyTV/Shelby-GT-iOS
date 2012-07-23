@@ -18,8 +18,6 @@
 // Controllers
 #import "ShelbyMenuViewController.h"
 
-// Constants
-#import "StaticDeclarations.h"
 
 
 @interface LoginViewController () <SocialFacadeDelegate>
