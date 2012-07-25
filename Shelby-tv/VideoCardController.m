@@ -17,6 +17,7 @@
 
 @interface VideoCardController ()
 
+@property (strong, nonatomic) AppDelegate *appDelegate;
 @property (strong, nonatomic) Frame *frame;
 
 @end
@@ -30,7 +31,7 @@
     if ( self = [super init] ) {
         
         self.frame = frame;
-     
+        self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     }
     
     return self;
@@ -55,25 +56,25 @@
     [client performRequest:downvoteRequest ofType:APIRequestType_PostDownvote];
 }
 
-- (void)comment:(UINavigationController *)navigationController
+- (void)comment
 {
     CommentViewController *commentViewController = [[CommentViewController alloc] initWithNibName:@"CommentViewController" bundle:nil andFrame:self.frame];
-    [navigationController pushViewController:commentViewController animated:YES];
-    [navigationController setNavigationBarHidden:NO];
+    [self.appDelegate.menuController.navigationController pushViewController:commentViewController animated:YES];
+    [self.appDelegate.menuController.navigationController setNavigationBarHidden:NO];
 }
 
-- (void)roll:(UINavigationController *)navigationController
+- (void)roll
 {
     RollItViewController *rollItViewController = [[RollItViewController alloc] initWithNibName:@"RollItViewController" bundle:nil andFrame:self.frame];
-    [navigationController pushViewController:rollItViewController animated:YES];
-    [navigationController setNavigationBarHidden:NO];
+    [self.appDelegate.menuController.navigationController pushViewController:rollItViewController animated:YES];
+    [self.appDelegate.menuController.navigationController setNavigationBarHidden:NO];
 }
 
-- (void)share:(UINavigationController *)navigationController
+- (void)share
 {
     ShareViewController *shareViewController = [[ShareViewController alloc] initWithNibName:@"ShareViewController" bundle:nil andFrame:self.frame];
-    [navigationController pushViewController:shareViewController animated:YES];
-    [navigationController setNavigationBarHidden:NO];
+    [self.appDelegate.menuController.navigationController pushViewController:shareViewController animated:YES];
+    [self.appDelegate.menuController.navigationController setNavigationBarHidden:NO];
 }
 
 @end

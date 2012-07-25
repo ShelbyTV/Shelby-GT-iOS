@@ -6,27 +6,23 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-// AppDelegate
 #import "AppDelegate.h"
 
 // Analytics
 #import <Crashlytics/Crashlytics.h>
 
+// Controllers
+#import "SocialFacade.h"
+#import "CoreDataUtility.h"
+
+// View Controllers
 #import "LoginViewController.h"
 #import "GuideTableViewController.h"
 #import "SettingsTableViewController.h"
 
-// Controllers
-#import "SocialFacade.h"
-
-// Core Data
-#import <CoreData/CoreData.h>
-#import "CoreDataUtility.h"
-
 @interface AppDelegate ()
 
 @property (strong, nonatomic) UIView *progressView;
-
 
 - (void)analytics;
 - (void)customization;

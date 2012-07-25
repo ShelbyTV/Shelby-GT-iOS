@@ -237,21 +237,21 @@
 {
     Frame *frame = [CoreDataUtility fetchFrameWithID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
-    [controller comment:self.guideController.menuController.navigationController];
+    [controller comment];
 }
 
 - (void)roll:(UIButton *)button
 {
     Frame *frame = [CoreDataUtility fetchFrameWithID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
-    [controller roll:self.guideController.menuController.navigationController];
+    [controller roll];
 }
 
 - (void)share:(UIButton *)button
 {
     Frame *frame = [CoreDataUtility fetchFrameWithID:[self.arrayOfFrameIDs objectAtIndex:button.tag]];
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
-    [controller share:self.guideController.menuController.navigationController];
+    [controller share];
 }
 
 #pragma mark - GuideTableViewMangerDelegate Methods

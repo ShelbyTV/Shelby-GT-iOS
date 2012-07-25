@@ -17,10 +17,10 @@
 
 - (void)downvote;
 
-- (void)comment:(UINavigationController*)navigationController;
+- (void)comment;
 
-- (void)roll:(UINavigationController*)navigationController;
+- (void)roll;
 
-- (void)share:(UINavigationController*)navigationController;
+- (void)share;
 
 @end
