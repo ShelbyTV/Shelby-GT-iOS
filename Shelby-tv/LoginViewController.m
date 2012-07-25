@@ -143,6 +143,9 @@
                                                          name:TextConstants_CoreData_DidFinishLoadingDataOnLogin 
                                                        object:nil];
 
+            // Disable buttons when login is being performed
+            [self.twitterButton setEnabled:NO];
+            [self.facebookButton setEnabled:NO];
             
             // Perform Initial API Request
             NSString *stremRequestString = [NSString stringWithFormat:APIRequest_GetStream, [SocialFacade sharedInstance].shelbyToken];

@@ -208,16 +208,7 @@ UITableViewDelegate
 
 - (void)shelbyLogout
 {
-    if ( [[NSUserDefaults standardUserDefaults] objectForKey:@"FBAccessTokenKey"] ) {
-        
-        [self facebookLogout];
-        
-    } else {
-        
-        [self twitterLogout];
-        
-    }
-    
+    // Clear NSUserDefaults
     self.shelbyToken = nil;
     self.shelbyCreatorID = nil;
     self.shelbyNickname = nil;
@@ -227,6 +218,17 @@ UITableViewDelegate
     self.shelbyHasAccessToTumblr = NO;
     self.shelbyAuthorized = NO;
     self.firstTimeLogin = YES;
+    
+    // Logout of social network
+    if ( [[NSUserDefaults standardUserDefaults] objectForKey:@"FBAccessTokenKey"] ) {
+        
+        [self facebookLogout];
+        
+    } else {
+        
+        [self twitterLogout];
+        
+    }
     
 }
 
