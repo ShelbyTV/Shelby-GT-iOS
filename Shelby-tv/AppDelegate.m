@@ -28,16 +28,19 @@
 @interface AppDelegate ()
 
 @property (strong, nonatomic) ShelbyMenuViewController *menuController;
+@property (strong, nonatomic) UIView *progressView;
 
 - (void)analytics;
 - (void)customization;
 - (void)createRootView;
+- (void)createProgressView;
 
 @end
 
 @implementation AppDelegate
 @synthesize window = _window;
 @synthesize menuController = _menuController;
+@synthesize progressView = _progressView;
 @synthesize progressHUD = _progressHUD;
 
 #pragma mark - UIApplicationDelegate Methods
@@ -141,19 +144,24 @@
 
 - (void)addHUDWithMessage:(NSString *)message
 {
+    // Remove HUD (if it exists)
     [self removeHUD];
     
-    self.progressHUD = [MBProgressHUD showHUDAddedTo:self.window animated:YES];
+    // Create new view to hold HUD in window
+    [self createProgressView];
+    
+    self.progressHUD = [MBProgressHUD showHUDAddedTo:self.progressView animated:YES];
     self.progressHUD.mode = MBProgressHUDModeText;
     self.progressHUD.labelText = message;
     self.progressHUD.labelFont = [UIFont fontWithName:@"Ubuntu-Bold" size:12.0f];
-    
+
 }
 
 - (void)removeHUD
 {
-    // If an older progressHUD is working, remove it to make room for the new HUD
+    // If an older progressHUD exists, remove it to make room for the new HUD
     [MBProgressHUD hideAllHUDsForView:self.window animated:YES];
+    [self.progressView removeFromSuperview];
     
 }
 
@@ -166,6 +174,12 @@
     // UINavigationBar
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigationBar"] forBarMetrics:UIBarMetricsDefault];
     
+}
+
+- (void)createProgressView
+{
+    self.progressView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 350.0f, 320.0f, 70.0f)];
+    [self.window addSubview:self.progressView];
 }
 
 - (void)analytics

@@ -16,4 +16,5 @@
 - (void)presentLoginViewController;
 - (void)addHUDWithMessage:(NSString*)message;
 - (void)removeHUD;
+
 @end
