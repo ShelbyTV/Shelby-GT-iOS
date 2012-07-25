@@ -31,6 +31,7 @@
 @synthesize streamButton = _streamButton;
 @synthesize viewControllers = _viewControllers;
 @synthesize currentType = _currentType;
+@synthesize navigationController = _navigationController;
 
 #pragma mark - Deallocation Method
 - (void)dealloc

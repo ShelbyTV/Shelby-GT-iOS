@@ -8,6 +8,10 @@
 
 #import "ShelbySocialViewController.h"
 
+@interface ShelbySocialViewController ()
+
+@end
+
 @implementation ShelbySocialViewController
 @synthesize thumbnailImageView = _thumbnailImageView;
 @synthesize nicknameLabel = _nicknameLabel;
@@ -21,6 +25,20 @@
     }
     
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // Required only for pushing NewRollViewController from RollItViewController
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void)addCustomBackButton

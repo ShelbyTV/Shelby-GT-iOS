@@ -265,7 +265,7 @@
     DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForDashboardID:[self.arrayOfDashboardIDs objectAtIndex:button.tag]];
     Frame *frame = dashboardEntry.frame;
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
-    [controller comment:self.guideController.navigationController];
+    [controller comment:self.guideController.menuController.navigationController];
 }
 
 - (void)roll:(UIButton *)button
@@ -273,7 +273,7 @@
     DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForDashboardID:[self.arrayOfDashboardIDs objectAtIndex:button.tag]];
     Frame *frame = dashboardEntry.frame;
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
-    [controller roll:self.guideController.navigationController];
+    [controller roll:self.guideController.menuController.navigationController];
 }
 
 
@@ -282,7 +282,7 @@
     DashboardEntry *dashboardEntry = [CoreDataUtility fetchDashboardEntryDataForDashboardID:[self.arrayOfDashboardIDs objectAtIndex:button.tag]];
     Frame *frame = dashboardEntry.frame;
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
-    [controller share:self.guideController.navigationController];
+    [controller share:self.guideController.menuController.navigationController];
 }
 
 #pragma mark - GuideTableViewManagerDelegate Method

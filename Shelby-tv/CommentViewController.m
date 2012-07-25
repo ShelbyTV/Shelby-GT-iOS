@@ -39,7 +39,7 @@
 #pragma mark - Initialization Method
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andFrame:(Frame *)frame
 {
-    if ( self == [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil] ) {
+    if ( self == [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil andFrame:frame] ) {
         
         self.frame = frame;
         
@@ -249,7 +249,7 @@
 {
     [UIView animateWithDuration:0.25
                      animations:^{
-                         self.textFieldContainerView.frame = CGRectMake(0.0f, 328.0f, self.textFieldContainerView.frame.size.width, self.textFieldContainerView.frame.size.height);
+                         self.textFieldContainerView.frame = CGRectMake(0.0f, 371.0f, self.textFieldContainerView.frame.size.width, self.textFieldContainerView.frame.size.height);
                      }];
 
     return YES;

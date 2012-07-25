@@ -59,18 +59,21 @@
 {
     CommentViewController *commentViewController = [[CommentViewController alloc] initWithNibName:@"CommentViewController" bundle:nil andFrame:self.frame];
     [navigationController pushViewController:commentViewController animated:YES];
+    [navigationController setNavigationBarHidden:NO];
 }
 
 - (void)roll:(UINavigationController *)navigationController
 {
     RollItViewController *rollItViewController = [[RollItViewController alloc] initWithNibName:@"RollItViewController" bundle:nil andFrame:self.frame];
     [navigationController pushViewController:rollItViewController animated:YES];
+    [navigationController setNavigationBarHidden:NO];
 }
 
 - (void)share:(UINavigationController *)navigationController
 {
     ShareViewController *shareViewController = [[ShareViewController alloc] initWithNibName:@"ShareViewController" bundle:nil andFrame:self.frame];
     [navigationController pushViewController:shareViewController animated:YES];
+    [navigationController setNavigationBarHidden:NO];
 }
 
 @end

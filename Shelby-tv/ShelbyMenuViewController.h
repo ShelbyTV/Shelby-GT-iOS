@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *myRollsButton;
 @property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 @property (weak, nonatomic) IBOutlet UIButton *streamButton;
+@property (strong, nonatomic) UINavigationController *navigationController;
 
 - (id)initWithViewControllers:(NSMutableDictionary*)dictionary;
 - (void)presentSection:(GuideType)type;

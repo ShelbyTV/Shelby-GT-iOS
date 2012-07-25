@@ -12,8 +12,6 @@
 // Analytics
 #import <Crashlytics/Crashlytics.h>
 
-// ViewControllers
-#import "ShelbyMenuViewController.h"
 #import "LoginViewController.h"
 #import "GuideTableViewController.h"
 #import "SettingsTableViewController.h"
@@ -27,8 +25,8 @@
 
 @interface AppDelegate ()
 
-@property (strong, nonatomic) ShelbyMenuViewController *menuController;
 @property (strong, nonatomic) UIView *progressView;
+
 
 - (void)analytics;
 - (void)customization;
@@ -82,6 +80,7 @@
 - (void)createRootView
 {
     
+    // Create list of viewControllers
     NSMutableDictionary *viewControllers = [NSMutableDictionary dictionary];
     
     GuideTableViewController *exploreRollsTableViewController = [[GuideTableViewController alloc] initWithType:GuideType_ExploreRolls];
@@ -118,7 +117,13 @@
     settingsTableViewController.menuController = self.menuController;
     streamTableViewController.menuController = self.menuController;
     
-    self.window.rootViewController = self.menuController;
+    // Create invisible navigationController (used for pushing CommentVC, RollItVC, and ShareVC)
+    UINavigationController *menuNavigationController = [[UINavigationController alloc] initWithRootViewController:self.menuController];
+    self.menuController.navigationController = menuNavigationController;
+    [menuNavigationController setNavigationBarHidden:YES];
+ 
+    // Set rootViewController
+    self.window.rootViewController = menuNavigationController;
     
 }
 

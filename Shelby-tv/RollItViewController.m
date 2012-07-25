@@ -16,7 +16,6 @@
 @property (strong, nonatomic) Frame *frame;
 @property (strong, nonatomic) NSArray *myRolls;
 
-
 - (void)customizeView;
 - (void)populateView;
 - (void)fetchMyRolls;

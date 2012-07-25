@@ -97,6 +97,12 @@
     
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
 #pragma mark - Private Methods
 - (void)createAPIObservers
 {

@@ -7,11 +7,13 @@
 //
 
 #import "MBProgressHUD.h"
+#import "ShelbyMenuViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UIAppearanceContainer>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) MBProgressHUD *progressHUD;
+@property (strong, nonatomic) ShelbyMenuViewController *menuController;
 
 - (void)presentLoginViewController;
 - (void)addHUDWithMessage:(NSString*)message;
