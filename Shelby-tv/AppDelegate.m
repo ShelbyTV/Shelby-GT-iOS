@@ -106,13 +106,6 @@
 
     self.menuController = [[ShelbyMenuViewController alloc] initWithViewControllers:viewControllers];
     
-    // Add reference to ShelbyMenuViewController
-    exploreRollsTableViewController.menuController = self.menuController;
-    friendsRollsTableViewController.menuController = self.menuController;
-    myRollsTableViewController.menuController = self.menuController;
-    settingsTableViewController.menuController = self.menuController;
-    streamTableViewController.menuController = self.menuController;
-    
     // Create invisible navigationController (used for pushing CommentVC, RollItVC, and ShareVC)
     UINavigationController *menuNavigationController = [[UINavigationController alloc] initWithRootViewController:self.menuController];
     self.menuController.navigationController = menuNavigationController;
@@ -130,14 +123,12 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         
         LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController_iPhone" bundle:nil];
-        loginViewController.menuController = self.menuController;
         [self.window.rootViewController presentModalViewController:loginViewController animated:NO];
         [[SocialFacade sharedInstance] setLoginViewController:loginViewController];
         
     } else {
         
         LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController_iPad" bundle:nil];
-        loginViewController.menuController = self.menuController;
         [self.window.rootViewController presentModalViewController:loginViewController animated:NO];
         [[SocialFacade sharedInstance] setLoginViewController:loginViewController];
     }

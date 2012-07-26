@@ -11,7 +11,6 @@
 @class ShelbyMenuViewController;
 @interface LoginViewController : UIViewController
 
-@property (strong, nonatomic) ShelbyMenuViewController *menuController;
 @property (weak, nonatomic) IBOutlet UIImageView *topBarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *sloganLabel;
 @property (weak, nonatomic) IBOutlet UIButton *facebookButton;

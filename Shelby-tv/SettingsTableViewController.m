@@ -13,12 +13,13 @@
 
 @interface SettingsTableViewController ()
 
+@property (strong, nonatomic) AppDelegate *appDelegate;
+
 - (void)logout;
 
 @end
 
 @implementation SettingsTableViewController
-@synthesize menuController = _menuController;
 @synthesize navigationController = _navigationController;
 
 #pragma mark - Deallocation Method
@@ -45,6 +46,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -109,27 +111,27 @@
 #pragma mark - ShelbyMenuDelegate Methods
 - (void)exploreRollsButtonAction
 {
-    [self.menuController exploreRollsButtonAction];
+    [self.appDelegate.menuController exploreRollsButtonAction];
 }
 
 - (void)friendsRollsButtonAction
 {
-    [self.menuController friendsRollsButtonAction];
+    [self.appDelegate.menuController friendsRollsButtonAction];
 }
 
 - (void)myRollsButtonAction
 {
-    [self.menuController myRollsButtonAction];
+    [self.appDelegate.menuController myRollsButtonAction];
 }
 
 - (void)settingsButtonAction
 {
-    [self.menuController settingsButtonAction];
+    [self.appDelegate.menuController settingsButtonAction];
 }
 
 - (void)streamButtonAction
 {
-    [self.menuController streamButtonAction];
+    [self.appDelegate.menuController streamButtonAction];
 }
 
 #pragma mark - Interface Orientation Method

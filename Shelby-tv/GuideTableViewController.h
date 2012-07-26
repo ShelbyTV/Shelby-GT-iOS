@@ -7,12 +7,12 @@
 //
 
 #import "ASPullToRefreshTableViewController.h"
-#import "ShelbyMenuViewController.h"
+#import "AppDelegate.h"
 
 @interface GuideTableViewController : ASPullToRefreshTableViewController <ShelbyMenuDelegate>
 
-@property (strong, nonatomic) ShelbyMenuViewController *menuController;
 @property (strong, nonatomic) UINavigationController *navigationController;
+@property (strong, nonatomic) AppDelegate *appDelegate;
 
 // For most GuideTableViewManagers
 - (id)initWithType:(GuideType)type;

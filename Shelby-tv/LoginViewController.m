@@ -31,7 +31,6 @@
 @end
 
 @implementation LoginViewController
-@synthesize menuController = _menuController;
 @synthesize topBarImageView = _topBarImageView;
 @synthesize sloganLabel = _sloganLabel;
 @synthesize facebookButton = _facebookButton;
@@ -110,7 +109,7 @@
         if (finished)  {
         
             [self.appDelegate removeHUD];
-            [self.menuController presentSection:GuideType_Stream];
+            [self.appDelegate.menuController presentSection:GuideType_Stream];
             [self dismissViewControllerAnimated:NO completion:nil];
         
         }

@@ -24,10 +24,10 @@
 @end
 
 @implementation GuideTableViewController
-@synthesize menuController = menuController;
 @synthesize type = _guideType;
 @synthesize tableViewManager = _tableViewManager;
 @synthesize rollID = _rollID;
+@synthesize appDelegate = _appDelegate;
 @synthesize navigationController = _navigationController;
 
 #pragma mark - Initialization Method
@@ -101,8 +101,9 @@
 
 #pragma mark - View Lifecycle Methods
 - (void)viewDidLoad
-{                           
+{
     [super viewDidLoad];
+    self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -161,31 +162,31 @@
             
         case GuideType_ExploreRolls:{
        
-            [self.menuController.exploreRollsButton setHighlighted:YES];
+            [self.appDelegate.menuController.exploreRollsButton setHighlighted:YES];
             
         } break;
             
         case GuideType_MyRolls:{
             
-            [self.menuController.myRollsButton setHighlighted:YES];
+            [self.appDelegate.menuController.myRollsButton setHighlighted:YES];
             
         } break;
             
         case GuideType_FriendsRolls:{
             
-            [self.menuController.friendsRollsButton setHighlighted:YES];
+            [self.appDelegate.menuController.friendsRollsButton setHighlighted:YES];
             
         } break;
             
         case GuideType_Settings:{
             
-            [self.menuController.settingsButton setHighlighted:YES];
+            [self.appDelegate.menuController.settingsButton setHighlighted:YES];
             
         } break;
             
         case GuideType_Stream:{
             
-            [self.menuController.streamButton setHighlighted:YES];
+            [self.appDelegate.menuController.streamButton setHighlighted:YES];
             
         } break;
             
@@ -215,27 +216,27 @@
 #pragma mark - ShelbyMenuDelegate Methods
 - (void)exploreRollsButtonAction
 {
-    [self.menuController exploreRollsButtonAction];
+    [self.appDelegate.menuController exploreRollsButtonAction];
 }
 
 - (void)friendsRollsButtonAction
 {
-    [self.menuController friendsRollsButtonAction];
+    [self.appDelegate.menuController friendsRollsButtonAction];
 }
 
 - (void)myRollsButtonAction
 {
-    [self.menuController myRollsButtonAction];
+    [self.appDelegate.menuController myRollsButtonAction];
 }
 
 - (void)settingsButtonAction
 {
-    [self.menuController settingsButtonAction];
+    [self.appDelegate.menuController settingsButtonAction];
 }
 
 - (void)streamButtonAction
 {
-    [self.menuController streamButtonAction];
+    [self.appDelegate.menuController streamButtonAction];
 }
 
 #pragma mark - Interface Orientation Method
