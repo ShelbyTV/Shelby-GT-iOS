@@ -25,7 +25,8 @@ UISearchDisplayDelegate
                bundle:(NSBundle *)nibBundleOrNil
          withParentVC:(NewRollViewController*)viewController;
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) IBOutlet UIImageView *arrowImageView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end

@@ -10,6 +10,7 @@
 #import "AddContactTableViewCell.h"
 #import "RemoveContactTableViewCell.h"
 #import "NewRollViewController.h"
+#import "CustomTextField.h"
 
 @interface EmailSendToContactsViewController ()
 
@@ -17,6 +18,7 @@
 @property (strong, nonatomic) NSMutableArray *sortedEmailArray;                             // Array of Dictionaries organized by Email Address
 @property (strong, nonatomic) NSMutableArray *filteredResultsArray;                         // Array of Dictionaries presented upon Search Query
 @property (strong, nonatomic) NSMutableArray *chosenPeopleArray;                            // Array of Dictionaries who will receive postcard
+
 
 - (void)allocatePrivateMemory;                                                              // Allocate Private Memory
 - (void)customizeView;                                                                      // Customize view and tableView
@@ -39,6 +41,7 @@
 @synthesize chosenPeopleArray = _chosenPeopleArray;
 @synthesize tableView = _tableView;
 @synthesize arrowImageView = _arrowImageView;
+@synthesize searchBar = _searchBar;
 
 #pragma mark - Initialization Method
 - (id)initWithNibName:(NSString *)nibNameOrNil
@@ -48,7 +51,7 @@
     if ( self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil] ) {
     
         self.chosenPeopleArray = viewController.chosenPeopleArray;
-    
+
     }
     
     return self;
@@ -83,6 +86,8 @@
 {
     [super viewWillAppear:animated];
     [self arrayPopulator];
+
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -94,11 +99,17 @@
 #pragma mark - Private Methods
 - (void)customizeView
 {
+    // Basic setup
     self.view.backgroundColor = ColorConstants_BackgroundColor;
     self.tableView.backgroundColor = ColorConstants_BackgroundColor;
     self.tableView.separatorColor = [UIColor clearColor];
     self.title = @"Select Contacts";
     
+    // Customize SearchBar Textfield
+    UITextField *textField = [[self.searchBar subviews] objectAtIndex:1];
+    [textField setFont:[UIFont fontWithName:@"Ubuntu" size:14.0f]];
+    
+    // Add UIBarButtonItems
     [self addCustomDoneButton];
     [self addCustomBackButton];
 }
