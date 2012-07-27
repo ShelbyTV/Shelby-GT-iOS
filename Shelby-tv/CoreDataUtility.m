@@ -143,6 +143,14 @@ static CoreDataUtility *sharedInstance = nil;
 
 }
 
++ (void)storeVideoURL:(NSString *)videoURL forVideo:(Video *)video
+{
+
+    [video setValue:videoURL forKey:CoreDataVideoVideoURL];
+    [CoreDataUtility saveContext:video.managedObjectContext];
+    
+}
+
 + (ShelbyUser*)fetchShelbyAuthData
 {
     

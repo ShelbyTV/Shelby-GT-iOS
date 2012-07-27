@@ -24,6 +24,11 @@
              inCoreData:(NSManagedObjectContext*)context 
                 forType:(APIRequestType)requestType;
 
+/** 
+ Store link to mp4 
+ */
++ (void)storeVideoURL:(NSString*)videoURL forVideo:(Video*)video;
+
 #pragma mark - FETCH
 
 /**

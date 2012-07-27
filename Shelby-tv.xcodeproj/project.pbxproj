@@ -44,6 +44,7 @@
 		8E24E1C815B8FA33009E3461 /* switchUnlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1C215B8FA33009E3461 /* switchUnlock.png */; };
 		8E24E1C915B8FA33009E3461 /* switchUnlock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1C315B8FA33009E3461 /* switchUnlock@2x.png */; };
 		8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2A8EAE159135970028712C /* StreamTableViewManager.m */; };
+		8E2AFB4715C2555A00788DF5 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2AFB4615C2555A00788DF5 /* Video.m */; };
 		8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */; };
 		8E44DC0A15B5E8610035B3CF /* NewRollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E44DC0815B5E8610035B3CF /* NewRollViewController.m */; };
 		8E44DC0B15B5E8610035B3CF /* NewRollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E44DC0915B5E8610035B3CF /* NewRollViewController.xib */; };
@@ -249,7 +250,6 @@
 		8EEA703D155449D800B1B07F /* VideoCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA703C155449D800B1B07F /* VideoCardCell.xib */; };
 		8EEA704015544A2200B1B07F /* VideoCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA703F15544A2200B1B07F /* VideoCardCell.m */; };
 		8EF2DD0E15C1E0A400E77F0F /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF2DD0D15C1E0A400E77F0F /* VideoPlayerViewController.m */; };
-		8EF2DD1615C2040600E77F0F /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF2DD1515C2040600E77F0F /* Video.m */; };
 		8EF851B71570317D002335A3 /* DashboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851B61570317D002335A3 /* DashboardEntry.m */; };
 		8EFC969015BDC84E004EADAA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EFC968F15BDC84E004EADAA /* CoreGraphics.framework */; };
 		8EFD498C156435330003913D /* NSString+NullTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD498B156435330003913D /* NSString+NullTest.m */; };
@@ -304,6 +304,8 @@
 		8E24E1C315B8FA33009E3461 /* switchUnlock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switchUnlock@2x.png"; sourceTree = "<group>"; };
 		8E2A8EAD159135970028712C /* StreamTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewManager.h; sourceTree = "<group>"; };
 		8E2A8EAE159135970028712C /* StreamTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamTableViewManager.m; sourceTree = "<group>"; };
+		8E2AFB4515C2555A00788DF5 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
+		8E2AFB4615C2555A00788DF5 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
 		8E3457851551BC9200FEFC9D /* NSString+TypedefConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TypedefConversion.h"; sourceTree = "<group>"; };
 		8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TypedefConversion.m"; sourceTree = "<group>"; };
 		8E44DC0715B5E8610035B3CF /* NewRollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewRollViewController.h; sourceTree = "<group>"; };
@@ -592,8 +594,6 @@
 		8EEA703F15544A2200B1B07F /* VideoCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCardCell.m; sourceTree = "<group>"; };
 		8EF2DD0C15C1E0A400E77F0F /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
 		8EF2DD0D15C1E0A400E77F0F /* VideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
-		8EF2DD1415C2040600E77F0F /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
-		8EF2DD1515C2040600E77F0F /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
 		8EF851B51570317D002335A3 /* DashboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardEntry.h; sourceTree = "<group>"; };
 		8EF851B61570317D002335A3 /* DashboardEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardEntry.m; sourceTree = "<group>"; };
 		8EFC968F15BDC84E004EADAA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = ../../../../../../System/Library/Frameworks/CoreGraphics.framework; sourceTree = "<group>"; };
@@ -1268,8 +1268,8 @@
 			isa = PBXGroup;
 			children = (
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
-				8EF2DD1415C2040600E77F0F /* Video.h */,
-				8EF2DD1515C2040600E77F0F /* Video.m */,
+				8E2AFB4515C2555A00788DF5 /* Video.h */,
+				8E2AFB4615C2555A00788DF5 /* Video.m */,
 				8E5F039B15AD02A700DAEEBE /* Roll.h */,
 				8E5F039C15AD02A700DAEEBE /* Roll.m */,
 				8E88605815B3FC360048FED8 /* ShelbyUser.h */,
@@ -1646,7 +1646,7 @@
 				8ECAA78715B9DFCF007F4F8E /* RemoveContactTableViewCell.m in Sources */,
 				8ED420FF15BDB4550032589B /* ShelbySocialViewController.m in Sources */,
 				8EF2DD0E15C1E0A400E77F0F /* VideoPlayerViewController.m in Sources */,
-				8EF2DD1615C2040600E77F0F /* Video.m in Sources */,
+				8E2AFB4715C2555A00788DF5 /* Video.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

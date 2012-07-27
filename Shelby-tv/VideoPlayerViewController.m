@@ -8,13 +8,16 @@
 
 #import "VideoPlayerViewController.h"
 #import "AppDelegate.h"
+#import "CoreDataUtility.h"
 
-@interface VideoPlayerViewController () <UIWebViewDelegate>
+@interface VideoPlayerViewController ()
 
 @property (strong, nonatomic) AppDelegate *appDelegate;
 @property (strong, nonatomic) Video *video;
 @property (assign, nonatomic) VideoProvider provider;
+@property (strong, nonatomic) UIWebView *webView;
 
+- (UIWebView*)createWebView;
 - (void)loadYouTubePage;
 - (void)loadVimeoPage;
 - (void)processNotification:(NSNotification*)notification;
@@ -25,6 +28,7 @@
 @synthesize appDelegate = _appDelegate;
 @synthesize video = _video;
 @synthesize provider = _provider;
+@synthesize webView = _webView;
 
 #pragma mark - Initialization
 - (id)initWithVideo:(Video*)video;
@@ -32,19 +36,34 @@
     
     if ( self = [super init]) {
         
-        self.video = video;
         
-        if ( [self.video.providerName isEqualToString:@"vimeo"] ) {
+        if ( video.videoURL.length ) { // If videoURL exists, dismissViewController
+
+            NSLog(@"VideoURL: %@", video.videoURL);
+            [self dismissModalViewControllerAnimated:YES];
             
-            [self setProvider:VideoProvider_Vimeo];
-//            [self loadVimeoPage];
+        } else { // If videoURL does not exist, get videoURL
             
-        } else if ( [self.video.providerName isEqualToString:@"youtube"] ) {
+            self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             
-            [self setProvider:VideoProvider_YouTube];
-//            [self loadYouTubePage];
+            self.video = video;
+            
+            self.webView = [self createWebView];
+            
+            if ( [self.video.providerName isEqualToString:@"vimeo"] ) {
+                
+                [self setProvider:VideoProvider_Vimeo];
+                [self loadVimeoPage];
+                
+            } else if ( [self.video.providerName isEqualToString:@"youtube"] ) {
+                
+                [self setProvider:VideoProvider_YouTube];
+                [self loadYouTubePage];
+                
+            }
             
         }
+        
         
     }
     
@@ -52,21 +71,24 @@
 }
 
 #pragma mark - View Lifecycle Methods
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
 
-    self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+#pragma mark - Private Methods
+- (UIWebView*)createWebView
 {
-    [super viewDidAppear:animated];
-    
-    [self loadYouTubePage];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.frame];
+    webView.allowsInlineMediaPlayback = YES;
+    webView.mediaPlaybackRequiresUserAction = NO;
+    webView.mediaPlaybackAllowsAirPlay = NO;
+    webView.hidden = YES;
+    webView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+
+    return webView;
 }
 
-#pragma mark - Load Video WebView Methods
 - (void)loadVimeoPage
 {
     
@@ -81,18 +103,10 @@
     static NSString *youtubeExtractor = @"<html><body><div id=\"player\"></div><script>var tag = document.createElement('script'); tag.src = \"http://www.youtube.com/player_api\"; var firstScriptTag = document.getElementsByTagName('script')[0]; firstScriptTag.parentNode.insertBefore(tag, firstScriptTag); var player; function onYouTubePlayerAPIReady() { player = new YT.Player('player', { height: '1', width: '1', videoId: '%@', events: { 'onReady': onPlayerReady, } }); } function onPlayerReady(event) { event.target.playVideo(); } </script></body></html>​";
         
     NSString *youtubeRequestString = [NSString stringWithFormat:youtubeExtractor, self.video.providerID];
-
-    NSLog(@"%@", youtubeRequestString);
     
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.frame];
-    webView.delegate = self;
-    webView.allowsInlineMediaPlayback = YES;
-    webView.mediaPlaybackRequiresUserAction = NO;
-    webView.mediaPlaybackAllowsAirPlay = NO;
-    webView.hidden = NO;
-    webView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-    [self.view addSubview:webView];
-    [webView loadHTMLString:youtubeRequestString baseURL:[NSURL URLWithString:@"http://shelby.tv"]];
+
+    [self.view addSubview:self.webView];
+    [self.webView loadHTMLString:youtubeRequestString baseURL:[NSURL URLWithString:@"http://shelby.tv"]];
     
 }
 
@@ -102,21 +116,29 @@
         
         if ( ![notification.userInfo isKindOfClass:[NSNull class]] ) {
             
-            
-            SEL sel = NSSelectorFromString([NSString stringWithFormat:@"%@%@%@%@", @"p",@"a",@"t",@"h"]);
             NSArray *allValues = [notification.userInfo allValues];
-            for (id i in allValues) {
+            
+            for (NSString *value in allValues) {
                 
-                if (![i respondsToSelector:sel]) {
-                    continue;
+                SEL pathSelector = @selector(path);
+                
+                if ([value respondsToSelector:pathSelector]) {
+                    
+                    NSString *path = [value performSelector:pathSelector];
+                    
+                    // Save to CoreData
+                    [CoreDataUtility storeVideoURL:path forVideo:self.video];
+                    
+                    // Remove webView
+                    [self.webView removeFromSuperview];
+                  
+                    // Remove viewController
+                    [self dismissModalViewControllerAnimated:NO];
                 }
-                NSString *path = [i performSelector:sel];
-                NSURL *contentURL = [NSURL URLWithString:path];
-                
             }
             
         }
-            
+        
     }
 }
 
