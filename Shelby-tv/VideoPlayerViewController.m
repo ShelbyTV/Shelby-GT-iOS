@@ -147,13 +147,15 @@
 {
 
     [self.indicator stopAnimating];
-    NSLog(@"PlayVideo");
-    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:self.video.videoURL]];
+    [self.indicator removeFromSuperview];
+
+    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:nil]];
     [player prepareToPlay];
-    [player setFullscreen:YES animated:YES];
-    [player setControlStyle:MPMovieControlStyleFullscreen];
+    [player setFullscreen:NO];
+    [player setControlStyle:MPMovieControlStyleDefault];
     [player.view setFrame:self.view.bounds];
     [self.view addSubview:player.view];
+    NSLog(@"%@", self.video.videoURL);
     NSLog(@"%@", self.view.subviews);
     [player play];
     
