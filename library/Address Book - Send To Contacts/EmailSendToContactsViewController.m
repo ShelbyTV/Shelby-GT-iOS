@@ -69,10 +69,9 @@
 #pragma mark - View Lifecycle Methods
 - (void)dealloc
 {
-    //    self.backButton = nil;
-    //    self.sendButton = nil;
-    //    self.tableView = nil;
-    //    self.arrowImageView = nil;
+    self.tableView = nil;
+    self.arrowImageView = nil;
+    self.searchBar = nil; 
 }
 
 - (void)viewDidLoad

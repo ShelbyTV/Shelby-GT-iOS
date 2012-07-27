@@ -14,6 +14,7 @@
 
 @property (assign, nonatomic) BOOL observerCreated;
 @property (strong, nonatomic) NSMutableArray *arrayOfFrameIDs;
+@property (assign, nonatomic) BOOL didPullToRefresh;
 @property (assign, nonatomic) BOOL stopGettingOlderData;
 
 - (void)createAPIObservers;
@@ -30,6 +31,7 @@
 @synthesize rollID = _rollID;
 @synthesize observerCreated = _observerCreated;
 @synthesize arrayOfFrameIDs = _arrayOfFrameIDs;
+@synthesize didPullToRefresh = _didPullToRefresh;
 @synthesize stopGettingOlderData = _stopGettingOlderData;
 
 #pragma mark - Memory Deallocation Method
@@ -276,12 +278,14 @@
         
         self.coreDataResultsArray = [CoreDataUtility fetchFramesForRoll:self.rollID];
         
-        if ( previousCount == [self.coreDataResultsArray count] ) {
+        if ( previousCount == [self.coreDataResultsArray count] && NO == self.didPullToRefresh ) {
             
             [self setStopGettingOlderData:YES];
             
         } else {
-                        
+                     
+            self.didPullToRefresh = NO;
+            
             if ( [self.coreDataResultsArray count] > 0) {
                 
                 [self.tableView reloadData];
@@ -360,7 +364,7 @@
 #pragma mark - ASPullToRefreshDelegate Method
 - (void)dataToRefresh
 {
-    // Perform API Request for tableView, which WILL/SHOULD/MUST exist before this method is called
+    [self setDidPullToRefresh:YES];
     [self performAPIRequest];
 }
 

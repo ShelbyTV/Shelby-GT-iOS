@@ -85,6 +85,7 @@
     </entity>
     <entity name="Video" representedClassName="Video" syncable="YES">
         <attribute name="caption" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="providerID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="providerName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sourceURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnailURL" optional="YES" attributeType="String" syncable="YES"/>

@@ -40,3 +40,13 @@ typedef enum _APIRequestType
     APIRequestType_PostMessage
     
 } APIRequestType;
+
+// Structure that distinguishes video providers
+typedef enum _VideoProvider
+{
+    
+    VideoProvider_None = 0,
+    VideoProvider_YouTube,
+    VideoProvider_Vimeo
+    
+} VideoProvider;

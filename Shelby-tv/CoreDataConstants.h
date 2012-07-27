@@ -101,6 +101,7 @@
 #define CoreDataVideoID                         @"videoID"
 #define CoreDataVideoCaption                    @"caption"
 #define CoreDataVideoProviderName               @"providerName"
+#define CoreDataVideoProviderID                 @"providerID"
 #define CoreDataVideoSourceURL                  @"sourceURL"
 #define CoreDataVideoTitle                      @"title"
 #define CoreDataVideoThumbnailURL               @"thumbnailURL"

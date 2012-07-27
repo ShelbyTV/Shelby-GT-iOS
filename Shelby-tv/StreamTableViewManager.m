@@ -9,15 +9,18 @@
 #import "StreamTableViewManager.h"
 #import "GuideTableViewController.h"
 #import "VideoCardController.h"
+#import "VideoPlayerViewController.h"
 #import "PSYouTubeExtractor.h"
 #import "PSYouTubeView.h"
+
 
 @interface StreamTableViewManager ()
 
 @property (assign, nonatomic) BOOL observerCreated;
 @property (strong, nonatomic) NSMutableArray *arrayOfDashboardIDs;
 @property (strong, nonatomic) NSMutableArray *arrayOfFrameIDs;
-@property (strong, nonatomic) NSMutableArray *arrayOfVideoLinks;
+@property (strong, nonatomic) NSMutableArray *arrayOfVideos;
+@property (assign, nonatomic) BOOL didPullToRefresh;;
 @property (assign, nonatomic) BOOL stopGettingOlderData;
 
 - (void)createAPIObservers;
@@ -34,7 +37,8 @@
 @synthesize observerCreated = _observerCreated;
 @synthesize arrayOfDashboardIDs = _arrayOfDashboardIDs;
 @synthesize arrayOfFrameIDs = _arrayOfFrameIDs;
-@synthesize arrayOfVideoLinks = _arrayOfVideoLinks;
+@synthesize arrayOfVideos = _arrayOfVideos;
+@synthesize didPullToRefresh = _didPullToRefresh;
 @synthesize stopGettingOlderData = _stopGettingOlderData;
 
 #pragma mark - Memory Deallocation Method
@@ -80,8 +84,8 @@
         [self.arrayOfFrameIDs insertObject:dashboardEntry.frame.frameID atIndex:row];
         
         // Store Video URL
-        if ( ![self arrayOfVideoLinks] ) self.arrayOfVideoLinks = [NSMutableArray array];
-        [self.arrayOfVideoLinks insertObject:dashboardEntry.frame.video.sourceURL atIndex:row];
+        if ( ![self arrayOfVideos] ) self.arrayOfVideos = [NSMutableArray array];
+        [self.arrayOfVideos insertObject:dashboardEntry.frame.video atIndex:row];
         
         // Populate roll label
         [cell.rollLabel setText:dashboardEntry.frame.roll.title];
@@ -306,14 +310,16 @@
         
         self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
         
-        if ( previousCount == [self.coreDataResultsArray count] ) {
+        if ( previousCount == [self.coreDataResultsArray count] && NO == self.didPullToRefresh ) {
             
             [self setStopGettingOlderData:YES];
             
         } else {
             
+            self.didPullToRefresh = NO;
+            
             if ( [self.coreDataResultsArray count] > 0) {
-                
+             
                 [self.tableView reloadData];
                 
             } else {
@@ -379,6 +385,7 @@
 #pragma mark - ASPullToRefreshDelegate Method
 - (void)dataToRefresh
 {
+    [self setDidPullToRefresh:YES];
     [self performAPIRequest];
 }
 
@@ -476,7 +483,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
  
-    NSString *videoLink = [self.arrayOfVideoLinks objectAtIndex:indexPath.row];
+    Video *video = [self.arrayOfVideos objectAtIndex:indexPath.row];
+    NSString *videoLink = video.sourceURL;
     
     if ([videoLink rangeOfString:@"youtube"].location == NSNotFound) {
     
@@ -484,16 +492,17 @@
     
     } else {
         
-        UIViewController *videoViewController = [[UIViewController alloc] init];
+//        UIViewController *videoViewController = [[UIViewController alloc] init];
+//        
+//        PSYouTubeView *youTubeView = [[PSYouTubeView alloc] initWithYouTubeURL:[NSURL URLWithString:videoLink] frame:videoViewController.view.frame showNativeFirst:YES];
+//        youTubeView.center = videoViewController.view.center;
+//        youTubeView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+//        [videoViewController.view addSubview:youTubeView];
+//        
+//        [self.guideController.navigationController pushViewController:videoViewController animated:YES];
         
-        PSYouTubeView *youTubeView = [[PSYouTubeView alloc] initWithYouTubeURL:[NSURL URLWithString:videoLink] frame:videoViewController.view.frame showNativeFirst:YES];
-        youTubeView.center = videoViewController.view.center;
-        youTubeView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-        [videoViewController.view addSubview:youTubeView];
-        
-        [self.guideController.navigationController pushViewController:videoViewController animated:YES];
-        
-        
+        VideoPlayerViewController *videoPlayer = [[VideoPlayerViewController alloc] initWithVideo:video];
+        [self.guideController.navigationController pushViewController:videoPlayer animated:YES];
         
     }
 

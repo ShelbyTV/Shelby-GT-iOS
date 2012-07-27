@@ -248,7 +248,8 @@
 		8EE673AC15531124004EA45C /* UINavigationItem+CustomTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE673AB15531124004EA45C /* UINavigationItem+CustomTitleView.m */; };
 		8EEA703D155449D800B1B07F /* VideoCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA703C155449D800B1B07F /* VideoCardCell.xib */; };
 		8EEA704015544A2200B1B07F /* VideoCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA703F15544A2200B1B07F /* VideoCardCell.m */; };
-		8EF851AE1570317D002335A3 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851AD1570317D002335A3 /* Video.m */; };
+		8EF2DD0E15C1E0A400E77F0F /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF2DD0D15C1E0A400E77F0F /* VideoPlayerViewController.m */; };
+		8EF2DD1615C2040600E77F0F /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF2DD1515C2040600E77F0F /* Video.m */; };
 		8EF851B71570317D002335A3 /* DashboardEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF851B61570317D002335A3 /* DashboardEntry.m */; };
 		8EFC969015BDC84E004EADAA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EFC968F15BDC84E004EADAA /* CoreGraphics.framework */; };
 		8EFD498C156435330003913D /* NSString+NullTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EFD498B156435330003913D /* NSString+NullTest.m */; };
@@ -589,8 +590,10 @@
 		8EEA703C155449D800B1B07F /* VideoCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCardCell.xib; sourceTree = "<group>"; };
 		8EEA703E15544A2200B1B07F /* VideoCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCardCell.h; sourceTree = "<group>"; };
 		8EEA703F15544A2200B1B07F /* VideoCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCardCell.m; sourceTree = "<group>"; };
-		8EF851AC1570317D002335A3 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
-		8EF851AD1570317D002335A3 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
+		8EF2DD0C15C1E0A400E77F0F /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
+		8EF2DD0D15C1E0A400E77F0F /* VideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
+		8EF2DD1415C2040600E77F0F /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
+		8EF2DD1515C2040600E77F0F /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
 		8EF851B51570317D002335A3 /* DashboardEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardEntry.h; sourceTree = "<group>"; };
 		8EF851B61570317D002335A3 /* DashboardEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardEntry.m; sourceTree = "<group>"; };
 		8EFC968F15BDC84E004EADAA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = ../../../../../../System/Library/Frameworks/CoreGraphics.framework; sourceTree = "<group>"; };
@@ -1067,9 +1070,9 @@
 				8E664D551541B0C40071EC42 /* Constants */,
 				8ED3110515360464002614DF /* Categories */,
 				8EE5065B155CA90700A04F50 /* Core Data */,
+				8ED420FC15BDA2C10032589B /* Utilities */,
 				8E8124DB1540C07400E1EA4B /* Controllers */,
 				8ED3110215360450002614DF /* View Controllers */,
-				8ED420FC15BDA2C10032589B /* Utilities */,
 				8ED311031536045A002614DF /* Views */,
 				8ECBA7D71535F6F70009718E /* Supporting Files */,
 				8ED3110615360475002614DF /* External Libraries */,
@@ -1121,6 +1124,8 @@
 				8E04DC30159117DD0066BBA6 /* SettingsTableViewController.m */,
 				8E04DC2B1590E1620066BBA6 /* ShelbyMenuViewController.h */,
 				8E04DC2C1590E1620066BBA6 /* ShelbyMenuViewController.m */,
+				8EF2DD0C15C1E0A400E77F0F /* VideoPlayerViewController.h */,
+				8EF2DD0D15C1E0A400E77F0F /* VideoPlayerViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1263,6 +1268,8 @@
 			isa = PBXGroup;
 			children = (
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
+				8EF2DD1415C2040600E77F0F /* Video.h */,
+				8EF2DD1515C2040600E77F0F /* Video.m */,
 				8E5F039B15AD02A700DAEEBE /* Roll.h */,
 				8E5F039C15AD02A700DAEEBE /* Roll.m */,
 				8E88605815B3FC360048FED8 /* ShelbyUser.h */,
@@ -1279,8 +1286,6 @@
 				8E88605615B3D4A90048FED8 /* Messages.m */,
 				8ECFFE44157D73BF007CCA73 /* UpvoteUsers.h */,
 				8ECFFE45157D73BF007CCA73 /* UpvoteUsers.m */,
-				8EF851AC1570317D002335A3 /* Video.h */,
-				8EF851AD1570317D002335A3 /* Video.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -1576,7 +1581,6 @@
 				8EFD498C156435330003913D /* NSString+NullTest.m in Sources */,
 				8EFF3A9815658E2500131A97 /* AuthenticateTwitterViewController.m in Sources */,
 				8E90B802156E898700C840B5 /* NSDate+DateFromBSONString.m in Sources */,
-				8EF851AE1570317D002335A3 /* Video.m in Sources */,
 				8EF851B71570317D002335A3 /* DashboardEntry.m in Sources */,
 				8EDB32B115792688007D7106 /* VideoCardController.m in Sources */,
 				8ECFFE46157D73BF007CCA73 /* UpvoteUsers.m in Sources */,
@@ -1641,6 +1645,8 @@
 				8ECAA78515B9DFCF007F4F8E /* EmailSendToContactsViewController.m in Sources */,
 				8ECAA78715B9DFCF007F4F8E /* RemoveContactTableViewCell.m in Sources */,
 				8ED420FF15BDB4550032589B /* ShelbySocialViewController.m in Sources */,
+				8EF2DD0E15C1E0A400E77F0F /* VideoPlayerViewController.m in Sources */,
+				8EF2DD1615C2040600E77F0F /* Video.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1146,15 +1146,58 @@ static CoreDataUtility *sharedInstance = nil;
     
     NSString *providerName = [NSString testForNull:[videoArray valueForKey:@"provider_name"] ];
     [video setValue:providerName forKey:CoreDataVideoProviderName];
-    
-    NSString *sourceURL = [NSString testForNull:[videoArray valueForKey:@"source_url"]];
-    [video setValue:sourceURL forKey:CoreDataVideoSourceURL];
-    
+        
     NSString *thumbnailURL = [NSString testForNull:[videoArray valueForKey:@"thumbnail_url"]];
     [video setValue:thumbnailURL forKey:CoreDataVideoThumbnailURL];
     
     NSString *title = [NSString testForNull:[videoArray valueForKey:@"title"]];
     [video setValue:title forKey:CoreDataVideoTitle];
+    
+    if ( [providerName isEqualToString:@"youtube"] ) {
+
+        // sourceURL
+        NSString *sourceURL = [NSString testForNull:[videoArray valueForKey:@"source_url"]];
+        [video setValue:sourceURL forKey:CoreDataVideoSourceURL];
+        
+        // provider ID
+        NSString *providerID;
+        NSScanner *providerIDScanner = [NSScanner scannerWithString:sourceURL];
+        [providerIDScanner scanUpToString:@"=" intoString:nil];
+        [providerIDScanner scanUpToString:@"&" intoString:&providerID];
+        providerID = [providerID stringByReplacingOccurrencesOfString:@"=" withString:@""];
+        
+        [video setValue:providerID forKey:CoreDataVideoProviderID];
+        
+    } else if ( [providerName isEqualToString:@"vimeo"] ) {
+        
+        // Extract vimeo source_url from embed_url
+        NSString *embedURL = [NSString testForNull:[videoArray valueForKey:@"embed_url"]];
+        
+        NSString *sourceURL;
+        NSScanner *scanner = [NSScanner scannerWithString:embedURL];
+        [scanner scanUpToString:@"<iframe src=\"" intoString:nil];
+        [scanner scanUpToString:@"\"" intoString:&sourceURL];
+        
+        // sourceURL
+        [video setValue:sourceURL forKey:CoreDataVideoSourceURL];
+        
+        // provider ID
+        NSString *providerID;
+        NSScanner *providerIDScanner = [NSScanner scannerWithString:sourceURL];
+        [providerIDScanner scanUpToString:@"/video/" intoString:nil];
+        [providerIDScanner scanUpToString:@"\"" intoString:&providerID];
+        
+        [video setValue:providerID forKey:CoreDataVideoProviderID];
+        
+        NSLog(@"Vim: %@ | %@", sourceURL, providerID);
+        
+        
+    } else {
+        
+        // Do nothing
+        
+    }
+    
     
 }
 
