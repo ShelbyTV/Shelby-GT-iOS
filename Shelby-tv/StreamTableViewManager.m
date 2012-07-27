@@ -490,7 +490,7 @@
     } else {
         
         VideoPlayerViewController *videoPlayer = [[VideoPlayerViewController alloc] initWithVideo:video];
-        [self.guideController.navigationController pushViewController:videoPlayer animated:YES];
+        [self.appDelegate.menuController.navigationController pushViewController:videoPlayer animated:YES];
         
     }
 
