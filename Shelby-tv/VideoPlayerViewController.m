@@ -149,7 +149,7 @@
     [self.indicator stopAnimating];
     [self.indicator removeFromSuperview];
 
-    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:nil]];
+    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:self.video.videoURL]];
     [player prepareToPlay];
     [player setFullscreen:NO];
     [player setControlStyle:MPMovieControlStyleDefault];
