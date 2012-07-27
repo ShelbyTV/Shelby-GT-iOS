@@ -23,7 +23,7 @@
 - (void)loadYouTubePage;
 - (void)loadVimeoPage;
 - (void)processNotification:(NSNotification*)notification;
-- (void)playMovie;
+- (void)playVideo;
 
 @end
 
@@ -40,16 +40,17 @@
     
     if ( self = [super init]) {
         
+        self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         self.video = video;
         
         if ( self.video.videoURL.length ) { // If videoURL exists, dismissViewController
 
-                NSLog(@"%@", self.video.videoURL);
-            [self playMovie];
+            NSLog(@"Exists Already");
+            [self playVideo];
             
         } else { // If videoURL does not exist, get videoURL
             
-            self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            NSLog(@"Doesn't Exist");
             
             self.webView = [self createWebView];
             
@@ -130,16 +131,15 @@
     
 }
 
-- (void)playMovie
+- (void)playVideo
 {
     [self.indicator stopAnimating];
     [self.indicator removeFromSuperview];
-    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:self.video.videoURL]];
-    player.controlStyle = MPMovieControlStyleFullscreen;
-    player.view.frame = self.view.bounds;
-    player.view.transform = CGAffineTransformConcat(player.view.transform, CGAffineTransformMakeRotation(M_PI_2));
-    [self.view addSubview:player.view];
-    [player play];
+    MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL URLWithString:self.video.videoURL]];
+    [player.moviePlayer play];
+    [self presentMoviePlayerViewControllerAnimated:player];
+    
+    
 }
 
 
@@ -165,7 +165,7 @@
                 [self.webView removeFromSuperview];
                 
                 // Launch MPMoviePlayer
-                [self playMovie];
+                [self playVideo];
               
             }
         }

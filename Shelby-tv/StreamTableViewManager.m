@@ -10,9 +10,6 @@
 #import "GuideTableViewController.h"
 #import "VideoCardController.h"
 #import "VideoPlayerViewController.h"
-#import "PSYouTubeExtractor.h"
-#import "PSYouTubeView.h"
-
 
 @interface StreamTableViewManager ()
 
