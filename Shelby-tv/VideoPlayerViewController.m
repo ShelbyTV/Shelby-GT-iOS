@@ -9,18 +9,21 @@
 #import "VideoPlayerViewController.h"
 #import "AppDelegate.h"
 #import "CoreDataUtility.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface VideoPlayerViewController ()
 
 @property (strong, nonatomic) AppDelegate *appDelegate;
 @property (strong, nonatomic) Video *video;
 @property (assign, nonatomic) VideoProvider provider;
+@property (strong, nonatomic) UIActivityIndicatorView *indicator;
 @property (strong, nonatomic) UIWebView *webView;
 
 - (UIWebView*)createWebView;
 - (void)loadYouTubePage;
 - (void)loadVimeoPage;
 - (void)processNotification:(NSNotification*)notification;
+- (void)playMovie;
 
 @end
 
@@ -28,6 +31,7 @@
 @synthesize appDelegate = _appDelegate;
 @synthesize video = _video;
 @synthesize provider = _provider;
+@synthesize indicator = _indicator;
 @synthesize webView = _webView;
 
 #pragma mark - Initialization
@@ -36,17 +40,16 @@
     
     if ( self = [super init]) {
         
+        self.video = video;
         
-        if ( video.videoURL.length ) { // If videoURL exists, dismissViewController
+        if ( self.video.videoURL.length ) { // If videoURL exists, dismissViewController
 
-            NSLog(@"VideoURL: %@", video.videoURL);
-            [self dismissModalViewControllerAnimated:YES];
+                NSLog(@"%@", self.video.videoURL);
+            [self playMovie];
             
         } else { // If videoURL does not exist, get videoURL
             
             self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-            
-            self.video = video;
             
             self.webView = [self createWebView];
             
@@ -71,15 +74,32 @@
 }
 
 #pragma mark - View Lifecycle Methods
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self.view setBackgroundColor:[UIColor blackColor]];
+    
+    self.indicator = [[UIActivityIndicatorView alloc] initWithFrame:self.view.frame];
+    self.indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    [self.view addSubview:self.indicator];
+    [self.indicator startAnimating];
+    
+}
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
+}
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
 }
 
 #pragma mark - Private Methods
 - (UIWebView*)createWebView
 {
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.frame];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(1.0f, 1.0f, 1.0f, 1.0f)];
     webView.allowsInlineMediaPlayback = YES;
     webView.mediaPlaybackRequiresUserAction = NO;
     webView.mediaPlaybackAllowsAirPlay = NO;
@@ -110,57 +130,47 @@
     
 }
 
+- (void)playMovie
+{
+    [self.indicator stopAnimating];
+    [self.indicator removeFromSuperview];
+    MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:self.video.videoURL]];
+    player.controlStyle = MPMovieControlStyleFullscreen;
+    player.view.frame = self.view.bounds;
+    player.view.transform = CGAffineTransformConcat(player.view.transform, CGAffineTransformMakeRotation(M_PI_2));
+    [self.view addSubview:player.view];
+    [player play];
+}
+
+
+#pragma mark - Observer Methods
 - (void)processNotification:(NSNotification *)notification
 {
-    @synchronized(self) {
+    if ( ![notification.userInfo isKindOfClass:[NSNull class]] ) {
         
-        if ( ![notification.userInfo isKindOfClass:[NSNull class]] ) {
+        NSArray *allValues = [notification.userInfo allValues];
+        
+        for (NSString *value in allValues) {
             
-            NSArray *allValues = [notification.userInfo allValues];
+            SEL pathSelector = @selector(path);
             
-            for (NSString *value in allValues) {
+            if ([value respondsToSelector:pathSelector]) {
                 
-                SEL pathSelector = @selector(path);
+                NSString *path = [value performSelector:pathSelector];
                 
-                if ([value respondsToSelector:pathSelector]) {
-                    
-                    NSString *path = [value performSelector:pathSelector];
-                    
-                    // Save to CoreData
-                    [CoreDataUtility storeVideoURL:path forVideo:self.video];
-                    
-                    // Remove webView
-                    [self.webView removeFromSuperview];
-                  
-                    // Remove viewController
-                    [self dismissModalViewControllerAnimated:NO];
-                }
+                // Save to CoreData
+                [CoreDataUtility storeVideoURL:path forVideo:self.video];
+                
+                // Remove webView
+                [self.webView removeFromSuperview];
+                
+                // Launch MPMoviePlayer
+                [self playMovie];
+              
             }
-            
         }
         
     }
-}
-
-#pragma mark - UIWebViewDelegate Methods
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    return YES;
-}
-
-- (void)webViewDidStartLoad:(UIWebView *)webView
-{
-    
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-
-}
-
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
-    
 }
 
 

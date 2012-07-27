@@ -11,4 +11,5 @@
 @interface VideoPlayerViewController : UIViewController
 
 - (id)initWithVideo:(Video*)video;
+
 @end

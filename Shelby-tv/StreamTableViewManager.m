@@ -492,15 +492,6 @@
     
     } else {
         
-//        UIViewController *videoViewController = [[UIViewController alloc] init];
-//        
-//        PSYouTubeView *youTubeView = [[PSYouTubeView alloc] initWithYouTubeURL:[NSURL URLWithString:videoLink] frame:videoViewController.view.frame showNativeFirst:YES];
-//        youTubeView.center = videoViewController.view.center;
-//        youTubeView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-//        [videoViewController.view addSubview:youTubeView];
-//        
-//        [self.guideController.navigationController pushViewController:videoViewController animated:YES];
-        
         VideoPlayerViewController *videoPlayer = [[VideoPlayerViewController alloc] initWithVideo:video];
         [self.guideController.navigationController pushViewController:videoPlayer animated:YES];
         
