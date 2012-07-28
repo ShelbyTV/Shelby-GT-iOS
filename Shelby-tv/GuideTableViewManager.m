@@ -9,7 +9,6 @@
 #import "GuideTableViewManager.h"
 
 @implementation GuideTableViewManager
-@synthesize appDelegate = _appDelegate;
 @synthesize refreshController = _refreshController;
 @synthesize guideController = _guideController;
 @synthesize parsedResultsArray = _parsedResultsArray;

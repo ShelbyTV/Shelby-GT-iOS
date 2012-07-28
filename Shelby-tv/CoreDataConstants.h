@@ -105,4 +105,3 @@
 #define CoreDataVideoSourceURL                  @"sourceURL"
 #define CoreDataVideoTitle                      @"title"
 #define CoreDataVideoThumbnailURL               @"thumbnailURL"
-#define CoreDataVideoVideoURL                   @"videoURL"

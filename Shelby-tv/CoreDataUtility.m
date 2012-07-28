@@ -143,14 +143,6 @@ static CoreDataUtility *sharedInstance = nil;
 
 }
 
-+ (void)storeVideoURL:(NSString *)videoURL forVideo:(Video *)video
-{
-
-    [video setValue:videoURL forKey:CoreDataVideoVideoURL];
-    [CoreDataUtility saveContext:video.managedObjectContext];
-    
-}
-
 + (ShelbyUser*)fetchShelbyAuthData
 {
     
@@ -630,6 +622,7 @@ static CoreDataUtility *sharedInstance = nil;
         
         // Conditions for saving entires into database
         BOOL sourceURLExists = [[[[[resultsArray objectAtIndex:i] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"source_url"] isKindOfClass:[NSNull class]] ? NO : YES;
+        BOOL embedURLExists = [[[[[resultsArray objectAtIndex:i] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"embed_url"] isKindOfClass:[NSNull class]] ? NO : YES;
         id frameReturned = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];
         BOOL frameNull = [frameReturned isKindOfClass:([NSNull class])] ? YES : NO;
         
@@ -637,7 +630,7 @@ static CoreDataUtility *sharedInstance = nil;
             
             // Do Nothing
         
-        } else if ( YES == sourceURLExists ) { // && NO == frameNull
+        } else if ( YES == sourceURLExists || YES == embedURLExists ) { // && NO == frameNull
                     
             Roll *roll = [self checkIfEntity:CoreDataEntityRoll
                                  withIDValue:[[resultsArray objectAtIndex:i] valueForKey:@"id"]
@@ -905,7 +898,9 @@ static CoreDataUtility *sharedInstance = nil;
     for (NSUInteger i = 0; i < [resultsArray count]; i++ ) {
         
         // Conditions for saving entires into database 
+        
         BOOL sourceURLExists = [[[[[resultsArray objectAtIndex:i] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"source_url"] isKindOfClass:[NSNull class]] ? NO : YES;
+        BOOL embedURLExists = [[[[[resultsArray objectAtIndex:i] valueForKey:@"frame"] valueForKey:@"video"] valueForKey:@"embed_url"] isKindOfClass:[NSNull class]] ? NO : YES;
         Frame *returnedFrame = [[resultsArray objectAtIndex:i] valueForKey:@"frame"];
         BOOL frameNull = [returnedFrame isKindOfClass:([NSNull class])] ? YES : NO;
         
@@ -913,7 +908,7 @@ static CoreDataUtility *sharedInstance = nil;
         
             // Do Nothing
             
-        } else if ( YES == sourceURLExists ) { // && NO == frameNull
+        } else if ( YES == sourceURLExists || YES == embedURLExists ) { // && NO == frameNull
             
             // Store dashboardEntry attirubutes
             DashboardEntry *dashboardEntry = [self checkIfEntity:CoreDataEntityDashboardEntry 
@@ -1183,8 +1178,9 @@ static CoreDataUtility *sharedInstance = nil;
         
         NSString *sourceURL;
         NSScanner *scanner = [NSScanner scannerWithString:embedURL];
-        [scanner scanUpToString:@"<iframe src=\"" intoString:nil];
+        [scanner scanUpToString:@"http://" intoString:nil];
         [scanner scanUpToString:@"\"" intoString:&sourceURL];
+        sourceURL = [sourceURL stringByReplacingOccurrencesOfString:@"=" withString:@""];
         
         // sourceURL
         [video setValue:sourceURL forKey:CoreDataVideoSourceURL];
@@ -1194,6 +1190,7 @@ static CoreDataUtility *sharedInstance = nil;
         NSScanner *providerIDScanner = [NSScanner scannerWithString:sourceURL];
         [providerIDScanner scanUpToString:@"/video/" intoString:nil];
         [providerIDScanner scanUpToString:@"\"" intoString:&providerID];
+        providerID = [providerID stringByReplacingOccurrencesOfString:@"/video/" withString:@""];
         
         [video setValue:providerID forKey:CoreDataVideoProviderID];
         

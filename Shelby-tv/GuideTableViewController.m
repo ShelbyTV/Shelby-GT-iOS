@@ -55,7 +55,7 @@
         self.tableViewManager.refreshController = self;
         
         // Reference AppDelegate
-        self.tableViewManager.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         
     }
     
@@ -90,6 +90,9 @@
         self.tableView.dataSource = (id)self.tableViewManager;
         self.refreshDelegate = (id)self.tableViewManager;
         self.tableViewManager.refreshController = self;
+        
+        // Reference AppDelegate
+        self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         
         // Load data
         [self.tableViewManager loadDataOnInitializationForTableView:self.tableView andRollID:self.rollID];

@@ -39,7 +39,6 @@
 @interface GuideTableViewManager : NSObject <GuideTableViewManagerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 // All TableViewManagers
-@property (strong, nonatomic) AppDelegate *appDelegate;
 @property (strong, nonatomic) ASPullToRefreshTableViewController *refreshController;
 @property (strong, nonatomic) GuideTableViewController *guideController;
 @property (strong, nonatomic) NSArray *parsedResultsArray;

@@ -330,7 +330,7 @@
         
     }
     
-    [self.appDelegate removeHUD];
+    [self.guideController.appDelegate removeHUD];
     
 }
 
@@ -481,18 +481,10 @@
 {
  
     Video *video = [self.arrayOfVideos objectAtIndex:indexPath.row];
-    NSString *videoLink = video.sourceURL;
+    NSLog(@"%@", video.sourceURL);
+    VideoPlayerViewController *videoPlayerViewController = [[VideoPlayerViewController alloc] initWithVideo:video];
+    [self.guideController.appDelegate.menuController.navigationController presentModalViewController:videoPlayerViewController animated:YES];
     
-    if ([videoLink rangeOfString:@"youtube"].location == NSNotFound) {
-    
-        // Do Nothing
-    
-    } else {
-        
-        VideoPlayerViewController *videoPlayer = [[VideoPlayerViewController alloc] initWithVideo:video];
-        [self.appDelegate.menuController.navigationController pushViewController:videoPlayer animated:YES];
-        
-    }
 
 }
 
@@ -504,7 +496,7 @@
         // Load more data from CoreData
         [self performAPIRequestForMoreEntries];
         
-        [self.appDelegate addHUDWithMessage:@"Fetching older videos..."]; 
+        [self.guideController.appDelegate addHUDWithMessage:@"Fetching older videos..."];
 
     }
 }

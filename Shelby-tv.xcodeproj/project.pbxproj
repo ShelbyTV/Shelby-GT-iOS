@@ -44,7 +44,6 @@
 		8E24E1C815B8FA33009E3461 /* switchUnlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1C215B8FA33009E3461 /* switchUnlock.png */; };
 		8E24E1C915B8FA33009E3461 /* switchUnlock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1C315B8FA33009E3461 /* switchUnlock@2x.png */; };
 		8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2A8EAE159135970028712C /* StreamTableViewManager.m */; };
-		8E2AFB4715C2555A00788DF5 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2AFB4615C2555A00788DF5 /* Video.m */; };
 		8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */; };
 		8E44DC0A15B5E8610035B3CF /* NewRollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E44DC0815B5E8610035B3CF /* NewRollViewController.m */; };
 		8E44DC0B15B5E8610035B3CF /* NewRollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E44DC0915B5E8610035B3CF /* NewRollViewController.xib */; };
@@ -245,6 +244,7 @@
 		8EE673A41552FCF5004EA45C /* Ubuntu-M.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673A11552FCF5004EA45C /* Ubuntu-M.ttf */; };
 		8EE673A51552FCF5004EA45C /* Ubuntu-R.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673A21552FCF5004EA45C /* Ubuntu-R.ttf */; };
 		8EE673AC15531124004EA45C /* UINavigationItem+CustomTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE673AB15531124004EA45C /* UINavigationItem+CustomTitleView.m */; };
+		8EE9BBCE15C47CED00A62267 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE9BBCD15C47CED00A62267 /* Video.m */; };
 		8EEA703D155449D800B1B07F /* VideoCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EEA703C155449D800B1B07F /* VideoCardCell.xib */; };
 		8EEA704015544A2200B1B07F /* VideoCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA703F15544A2200B1B07F /* VideoCardCell.m */; };
 		8EF2DD0E15C1E0A400E77F0F /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF2DD0D15C1E0A400E77F0F /* VideoPlayerViewController.m */; };
@@ -302,8 +302,6 @@
 		8E24E1C315B8FA33009E3461 /* switchUnlock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switchUnlock@2x.png"; sourceTree = "<group>"; };
 		8E2A8EAD159135970028712C /* StreamTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewManager.h; sourceTree = "<group>"; };
 		8E2A8EAE159135970028712C /* StreamTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamTableViewManager.m; sourceTree = "<group>"; };
-		8E2AFB4515C2555A00788DF5 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
-		8E2AFB4615C2555A00788DF5 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
 		8E3457851551BC9200FEFC9D /* NSString+TypedefConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TypedefConversion.h"; sourceTree = "<group>"; };
 		8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TypedefConversion.m"; sourceTree = "<group>"; };
 		8E44DC0715B5E8610035B3CF /* NewRollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewRollViewController.h; sourceTree = "<group>"; };
@@ -583,6 +581,8 @@
 		8EE673A21552FCF5004EA45C /* Ubuntu-R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-R.ttf"; sourceTree = "<group>"; };
 		8EE673AA15531124004EA45C /* UINavigationItem+CustomTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+CustomTitleView.h"; sourceTree = "<group>"; };
 		8EE673AB15531124004EA45C /* UINavigationItem+CustomTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+CustomTitleView.m"; sourceTree = "<group>"; };
+		8EE9BBCC15C47CED00A62267 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
+		8EE9BBCD15C47CED00A62267 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
 		8EEA703C155449D800B1B07F /* VideoCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCardCell.xib; sourceTree = "<group>"; };
 		8EEA703E15544A2200B1B07F /* VideoCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCardCell.h; sourceTree = "<group>"; };
 		8EEA703F15544A2200B1B07F /* VideoCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCardCell.m; sourceTree = "<group>"; };
@@ -1248,9 +1248,9 @@
 		8EE5065B155CA90700A04F50 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				8EE9BBCC15C47CED00A62267 /* Video.h */,
+				8EE9BBCD15C47CED00A62267 /* Video.m */,
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
-				8E2AFB4515C2555A00788DF5 /* Video.h */,
-				8E2AFB4615C2555A00788DF5 /* Video.m */,
 				8E5F039B15AD02A700DAEEBE /* Roll.h */,
 				8E5F039C15AD02A700DAEEBE /* Roll.m */,
 				8E88605815B3FC360048FED8 /* ShelbyUser.h */,
@@ -1625,7 +1625,7 @@
 				8ECAA78715B9DFCF007F4F8E /* RemoveContactTableViewCell.m in Sources */,
 				8ED420FF15BDB4550032589B /* ShelbySocialViewController.m in Sources */,
 				8EF2DD0E15C1E0A400E77F0F /* VideoPlayerViewController.m in Sources */,
-				8E2AFB4715C2555A00788DF5 /* Video.m in Sources */,
+				8EE9BBCE15C47CED00A62267 /* Video.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

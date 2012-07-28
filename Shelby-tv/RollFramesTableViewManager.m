@@ -9,11 +9,13 @@
 #import "RollFramesTableViewManager.h"
 #import "GuideTableViewController.h"
 #import "VideoCardController.h"
+#import "VideoPlayerViewController.h"
 
 @interface RollFramesTableViewManager ()
 
 @property (assign, nonatomic) BOOL observerCreated;
 @property (strong, nonatomic) NSMutableArray *arrayOfFrameIDs;
+@property (strong, nonatomic) NSMutableArray *arrayOfVideos;
 @property (assign, nonatomic) BOOL didPullToRefresh;
 @property (assign, nonatomic) BOOL stopGettingOlderData;
 
@@ -31,6 +33,7 @@
 @synthesize rollID = _rollID;
 @synthesize observerCreated = _observerCreated;
 @synthesize arrayOfFrameIDs = _arrayOfFrameIDs;
+@synthesize arrayOfVideos = _arrayOfVideos;
 @synthesize didPullToRefresh = _didPullToRefresh;
 @synthesize stopGettingOlderData = _stopGettingOlderData;
 
@@ -67,6 +70,10 @@
         // Store Frame ID
         if ( ![self arrayOfFrameIDs] ) self.arrayOfFrameIDs = [NSMutableArray array];
         [self.arrayOfFrameIDs insertObject:frame.frameID atIndex:row];
+        
+        // Store Video URL
+        if ( ![self arrayOfVideos] ) self.arrayOfVideos = [NSMutableArray array];
+        [self.arrayOfVideos insertObject:frame.video atIndex:row];
         
         // Populate roll label
         [cell.rollLabel setText:frame.roll.title];
@@ -301,7 +308,7 @@
         
     }
     
-    [self.appDelegate removeHUD];
+    [self.guideController.appDelegate removeHUD];
     
 }
 
@@ -473,8 +480,14 @@
 }
 
 #pragma mark - UITableViewDelegate Methods
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+ 
+    Video *video = [self.arrayOfVideos objectAtIndex:indexPath.row];
+    NSLog(@"push: %@", video.sourceURL);
+    
+    VideoPlayerViewController *videoPlayerViewController = [[VideoPlayerViewController alloc] initWithVideo:video];
+    [self.guideController.appDelegate.menuController.navigationController presentModalViewController:videoPlayerViewController animated:YES];
     
 }
 
@@ -486,7 +499,7 @@
         // Load more data from CoreData
         [self performAPIRequestForMoreEntries];
         
-        [self.appDelegate addHUDWithMessage:@"Fetching older videos..."]; 
+        [self.guideController.appDelegate addHUDWithMessage:@"Fetching older videos..."];
         
     }
 }
