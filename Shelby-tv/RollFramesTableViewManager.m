@@ -484,9 +484,8 @@
 {
  
     Video *video = [self.arrayOfVideos objectAtIndex:indexPath.row];
-    NSLog(@"push: %@", video.sourceURL);
-    
     VideoPlayerViewController *videoPlayerViewController = [[VideoPlayerViewController alloc] initWithVideo:video];
+    videoPlayerViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self.guideController.appDelegate.menuController.navigationController presentModalViewController:videoPlayerViewController animated:YES];
     
 }

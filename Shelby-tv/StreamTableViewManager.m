@@ -481,10 +481,8 @@
 {
  
     Video *video = [self.arrayOfVideos objectAtIndex:indexPath.row];
-    NSLog(@"%@", video.sourceURL);
     VideoPlayerViewController *videoPlayerViewController = [[VideoPlayerViewController alloc] initWithVideo:video];
-    [self.guideController.appDelegate.menuController.navigationController presentModalViewController:videoPlayerViewController animated:YES];
-    
+    [self.guideController.appDelegate.menuController.navigationController pushViewController:videoPlayerViewController animated:YES];
 
 }
 

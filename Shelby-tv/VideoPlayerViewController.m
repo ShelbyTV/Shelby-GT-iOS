@@ -10,11 +10,14 @@
 #import "AppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
 
+#define kProcessNotification    @"processNotification"
+
 @interface VideoPlayerViewController ()
 
 @property (strong, nonatomic) AppDelegate *appDelegate;
 @property (strong, nonatomic) Video *video;
 @property (assign, nonatomic) VideoProvider provider;
+@property (strong, nonatomic) MPMoviePlayerController *moviePlayer;
 @property (strong, nonatomic) UIActivityIndicatorView *indicator;
 @property (strong, nonatomic) UIWebView *webView;
 
@@ -23,7 +26,8 @@
 - (void)loadYouTubePage;
 - (void)loadVimeoPage;
 - (void)processNotification:(NSNotification*)notification;
-- (void)playVideo:(NSString*)videoURL;
+- (void)playVideo:(NSString*)link;
+- (void)destroy;
 
 @end
 
@@ -31,6 +35,7 @@
 @synthesize appDelegate = _appDelegate;
 @synthesize video = _video;
 @synthesize provider = _provider;
+@synthesize moviePlayer = _moviePlayer;
 @synthesize indicator = _indicator;
 @synthesize webView = _webView;
 
@@ -42,6 +47,7 @@
         
         self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         self.video = video;
+        self.indicator = [self createActivityIndicator];
         self.webView = [self createWebView];
         
         if ( [self.video.providerName isEqualToString:@"vimeo"] ) {
@@ -67,8 +73,6 @@
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor blackColor]];
-    
-    self.indicator = [self createActivityIndicator];
     
 }
 
@@ -100,7 +104,7 @@
 - (void)loadVimeoPage
 {
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processNotification:) name:nil object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processNotification:) name:kProcessNotification object:nil];
     
     static NSString *vimeoExtractor = @"<html><body><center><iframe id=\"player_1\" src=\"http://player.vimeo.com/video/%@?api=1&amp;player_id=player_1\" webkit-playsinline ></iframe><script src=\"http://a.vimeocdn.com/js/froogaloop2.min.js?cdbdb\"></script><script>(function(){var vimeoPlayers = document.querySelectorAll('iframe');$f(vimeoPlayers[0]).addEvent('ready', ready);function ready(player_id) {$f(player_id).api('play');}})();</script></center></body></html>";
     
@@ -114,7 +118,7 @@
 - (void)loadYouTubePage
 {
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processNotification:) name:nil object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processNotification:) name:kProcessNotification object:nil];
     
     static NSString *youtubeExtractor = @"<html><body><div id=\"player\"></div><script>var tag = document.createElement('script'); tag.src = \"http://www.youtube.com/player_api\"; var firstScriptTag = document.getElementsByTagName('script')[0]; firstScriptTag.parentNode.insertBefore(tag, firstScriptTag); var player; function onYouTubePlayerAPIReady() { player = new YT.Player('player', { height: '1', width: '1', videoId: '%@', events: { 'onReady': onPlayerReady, } }); } function onPlayerReady(event) { event.target.playVideo(); }</script></body></html>​";
         
@@ -125,20 +129,35 @@
     
 }
 
-- (void)playVideo:(NSURL *)videoURL
+- (void)playVideo:(NSString *)link
 {
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(destroy)
+                                                 name:MPMoviePlayerDidExitFullscreenNotification
+                                               object:nil];
+    
+        
+    NSLog(@"playVideo");
+    
     [self.indicator stopAnimating];
     [self.indicator removeFromSuperview];
+    
+    self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:link]];
+    [self.moviePlayer setFullscreen:YES animated:NO];
+    [self.moviePlayer setFullscreen:YES];
+    [self.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+    [self.moviePlayer setShouldAutoplay:YES];
+    [self.moviePlayer prepareToPlay];
+    [self.view addSubview:self.moviePlayer.view];
+    [self.moviePlayer play];
+        
+}
 
-        MPMoviePlayerController *player = [[MPMoviePlayerController alloc] initWithContentURL:videoURL];
-    [player.view setFrame:self.view.bounds];
-    [player setFullscreen:NO];
-    [player setControlStyle:MPMovieControlStyleFullscreen];
-    [player setShouldAutoplay:YES];
-    [player prepareToPlay];
-    [self.view addSubview:player.view];
-    [player play];
+- (void)destroy
+{
+        NSLog(@"dismiss!");
+        [self dismissModalViewControllerAnimated:YES];
 
 }
 
@@ -156,11 +175,13 @@
             
             if ([value respondsToSelector:pathSelector]) {
                 
-                // Remove Observer
-                [[NSNotificationCenter defaultCenter] removeObserver:self];
-                
                 // Remove webView
                 [self.webView removeFromSuperview];
+                [self.webView stopLoading];
+                [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
+                
+                // Remove Observer
+                [[NSNotificationCenter defaultCenter] removeObserver:self name:kProcessNotification object:nil];
                 
                 // Get URL
                 NSString *path = [value performSelector:pathSelector];
@@ -179,7 +200,7 @@
 #pragma mark - Interface Orientation Method
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return interfaceOrientation;
 }
 
 @end

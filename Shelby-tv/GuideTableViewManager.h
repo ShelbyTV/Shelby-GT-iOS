@@ -24,7 +24,6 @@
 @class GuideTableViewController;
 
 @protocol GuideTableViewManagerDelegate <NSObject>
-
 - (void)loadDataFromCoreData;
 - (void)performAPIRequest;
 - (void)performAPIRequestForMoreEntries;
