@@ -20,13 +20,14 @@
 @property (strong, nonatomic) MPMoviePlayerController *moviePlayer;
 @property (strong, nonatomic) UIActivityIndicatorView *indicator;
 @property (strong, nonatomic) UIWebView *webView;
+@property (assign, nonatomic) BOOL videoWillBegin;
 
 - (UIWebView*)createWebView;
 - (UIActivityIndicatorView*)createActivityIndicator;
 - (void)loadYouTubePage;
 - (void)loadVimeoPage;
 - (void)processNotification:(NSNotification*)notification;
-- (void)playVideo:(NSString*)link;
+- (void)playVideo:(NSString *)link;
 - (void)destroy;
 
 @end
@@ -38,6 +39,7 @@
 @synthesize moviePlayer = _moviePlayer;
 @synthesize indicator = _indicator;
 @synthesize webView = _webView;
+@synthesize videoWillBegin = _videoWillBegin;
 
 #pragma mark - Initialization
 - (id)initWithVideo:(Video*)video;
@@ -47,6 +49,7 @@
         
         self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         self.video = video;
+        self.videoWillBegin = NO;
         self.indicator = [self createActivityIndicator];
         self.webView = [self createWebView];
         
@@ -118,10 +121,10 @@
 - (void)loadYouTubePage
 {
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processNotification:) name:kProcessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processNotification:) name:nil object:nil];
     
-    static NSString *youtubeExtractor = @"<html><body><div id=\"player\"></div><script>var tag = document.createElement('script'); tag.src = \"http://www.youtube.com/player_api\"; var firstScriptTag = document.getElementsByTagName('script')[0]; firstScriptTag.parentNode.insertBefore(tag, firstScriptTag); var player; function onYouTubePlayerAPIReady() { player = new YT.Player('player', { height: '1', width: '1', videoId: '%@', events: { 'onReady': onPlayerReady, } }); } function onPlayerReady(event) { event.target.playVideo(); }</script></body></html>​";
-        
+    static NSString *youtubeExtractor = @"<html><body><div id=\"player\"></div><script>var tag = document.createElement('script'); tag.src = \"http://www.youtube.com/player_api\"; var firstScriptTag = document.getElementsByTagName('script')[0]; firstScriptTag.parentNode.insertBefore(tag, firstScriptTag); var player; function onYouTubePlayerAPIReady() { player = new YT.Player('player', { height: '1', width: '1', videoId: '%@', events: { 'onReady': onPlayerReady, } }); } function onPlayerReady(event) { event.target.playVideo(); } </script></body></html>​";
+    
     NSString *youtubeRequestString = [NSString stringWithFormat:youtubeExtractor, self.video.providerID];
     
     [self.view addSubview:self.webView];
@@ -131,27 +134,35 @@
 
 - (void)playVideo:(NSString *)link
 {
+    
+    
+    if ( ![self videoWillBegin]) {
 
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(destroy)
-                                                 name:MPMoviePlayerDidExitFullscreenNotification
-                                               object:nil];
-    
+        self.videoWillBegin = YES;
+
+//        [[NSNotificationCenter defaultCenter] addObserver:self
+//                                                 selector:@selector(destroy)
+//                                                     name:MPMoviePlayerDidExitFullscreenNotification
+//                                                   object:nil];
         
-    NSLog(@"playVideo");
-    
-    [self.indicator stopAnimating];
-    [self.indicator removeFromSuperview];
-    
-    self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:link]];
-    [self.moviePlayer setFullscreen:YES animated:NO];
-    [self.moviePlayer setFullscreen:YES];
-    [self.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
-    [self.moviePlayer setShouldAutoplay:YES];
-    [self.moviePlayer prepareToPlay];
-    [self.view addSubview:self.moviePlayer.view];
-    [self.moviePlayer play];
         
+        [self.indicator stopAnimating];
+        [self.indicator removeFromSuperview];
+        
+        self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:link]];
+        [self.moviePlayer.view setFrame:self.appDelegate.window.frame];
+        [self.moviePlayer setFullscreen:YES animated:NO];
+        [self.moviePlayer setFullscreen:YES];
+        [self.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+        [self.moviePlayer setShouldAutoplay:YES];
+        [self.moviePlayer prepareToPlay];
+        [self.view addSubview:self.moviePlayer.view];
+        
+        [self.moviePlayer play];
+        
+        NSLog(@"%@", self.view.subviews);
+
+    }
 }
 
 - (void)destroy
@@ -165,7 +176,7 @@
 - (void)processNotification:(NSNotification *)notification
 {
     
-    if ( ![notification.userInfo isKindOfClass:[NSNull class]] && NO ) {
+    if ( ![notification.userInfo isKindOfClass:[NSNull class]] ) {
         
         NSArray *allValues = [notification.userInfo allValues];
         
@@ -176,9 +187,9 @@
             if ([value respondsToSelector:pathSelector]) {
                 
                 // Remove webView
-                [self.webView removeFromSuperview];
                 [self.webView stopLoading];
                 [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
+                [self.webView removeFromSuperview];
                 
                 // Remove Observer
                 [[NSNotificationCenter defaultCenter] removeObserver:self name:kProcessNotification object:nil];
@@ -188,6 +199,7 @@
                 
                 // Launch MPMoviePlayer
                 [self playVideo:path];
+                
               
             }
         }
