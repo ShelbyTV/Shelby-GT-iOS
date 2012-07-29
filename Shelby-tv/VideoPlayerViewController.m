@@ -10,8 +10,6 @@
 #import "AppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-#define kProcessNotification    @"processNotification"
-
 @interface VideoPlayerViewController ()
 
 @property (strong, nonatomic) AppDelegate *appDelegate;
@@ -107,7 +105,7 @@
 - (void)loadVimeoPage
 {
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processNotification:) name:kProcessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processNotification:) name:nil object:nil];
     
     static NSString *vimeoExtractor = @"<html><body><center><iframe id=\"player_1\" src=\"http://player.vimeo.com/video/%@?api=1&amp;player_id=player_1\" webkit-playsinline ></iframe><script src=\"http://a.vimeocdn.com/js/froogaloop2.min.js?cdbdb\"></script><script>(function(){var vimeoPlayers = document.querySelectorAll('iframe');$f(vimeoPlayers[0]).addEvent('ready', ready);function ready(player_id) {$f(player_id).api('play');}})();</script></center></body></html>";
     
@@ -189,9 +187,6 @@
                 [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
                 [self.webView removeFromSuperview];
                 
-                // Remove Observer
-                [[NSNotificationCenter defaultCenter] removeObserver:self name:kProcessNotification object:nil];
-                
                 // Get URL
                 NSString *path = [value performSelector:pathSelector];
                 
@@ -207,10 +202,10 @@
 }
 
 
-#pragma mark - Interface Orientation Method
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return interfaceOrientation;
-}
+//#pragma mark - Interface Orientation Method
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+//{
+//    return interfaceOrientation;
+//}
 
 @end

@@ -480,12 +480,11 @@
 }
 
 #pragma mark - UITableViewDelegate Methods
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
- 
+    
     Video *video = [self.arrayOfVideos objectAtIndex:indexPath.row];
     VideoPlayerViewController *videoPlayerViewController = [[VideoPlayerViewController alloc] initWithVideo:video];
-    videoPlayerViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self.guideController.appDelegate.menuController.navigationController presentModalViewController:videoPlayerViewController animated:YES];
     
 }
