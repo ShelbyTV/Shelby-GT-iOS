@@ -155,7 +155,6 @@
         [self.moviePlayer setShouldAutoplay:YES];
         [self.moviePlayer prepareToPlay];
         [self.appDelegate.window addSubview:self.moviePlayer.view];
-    
         [self.moviePlayer play];
 
     }
@@ -201,11 +200,10 @@
 
 }
 
-
-//#pragma mark - Interface Orientation Method
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-//{
-//    return interfaceOrientation;
-//}
+#pragma mark - Interface Orientation Method
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
 
 @end
