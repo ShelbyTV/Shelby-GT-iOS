@@ -140,10 +140,10 @@
 
         self.videoWillBegin = YES;
 
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                 selector:@selector(destroy)
-//                                                     name:MPMoviePlayerDidExitFullscreenNotification
-//                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(destroy)
+                                                     name:MPMoviePlayerPlaybackDidFinishNotification
+                                                   object:nil];
         
         
         [self.indicator stopAnimating];
@@ -156,19 +156,17 @@
         [self.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
         [self.moviePlayer setShouldAutoplay:YES];
         [self.moviePlayer prepareToPlay];
-        [self.view addSubview:self.moviePlayer.view];
-        
+        [self.appDelegate.window addSubview:self.moviePlayer.view];
+    
         [self.moviePlayer play];
-        
-        NSLog(@"%@", self.view.subviews);
 
     }
 }
 
 - (void)destroy
 {
-        NSLog(@"dismiss!");
-        [self dismissModalViewControllerAnimated:YES];
+    [self.moviePlayer.view removeFromSuperview];
+    [self dismissModalViewControllerAnimated:YES];
 
 }
 
