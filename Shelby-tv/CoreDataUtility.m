@@ -849,7 +849,7 @@ static CoreDataUtility *sharedInstance = nil;
     // Update messageCount on conversation
     [conversation setMessageCount:[NSNumber numberWithInt:[messagesArray count]]];
     
-    for (int i = 0; i < [messagesArray count]; i++ ) {
+    for ( NSUInteger i = 0; i < [messagesArray count]; i++ ) {
         
         NSManagedObjectContext *context = conversation.managedObjectContext;
         Messages *messages = [self checkIfEntity:CoreDataEntityMessages
@@ -1042,7 +1042,7 @@ static CoreDataUtility *sharedInstance = nil;
 
     [conversation setValue:[NSNumber numberWithInt:[messagesArray count]] forKey:CoreDataConversationMessageCount];
     
-    for (int i = 0; i < [messagesArray count]; i++ ) {
+    for ( NSUInteger i = 0; i < [messagesArray count]; i++ ) {
        
         NSManagedObjectContext *context = conversation.managedObjectContext;
         Messages *messages = [self checkIfEntity:CoreDataEntityMessages 
@@ -1112,7 +1112,7 @@ static CoreDataUtility *sharedInstance = nil;
    
     NSArray *upvoteUsersArray = [frameArray valueForKey:@"upvote_users"];
     
-    for (int i = 0; i < [upvoteUsersArray count]; i++ ) {
+    for ( NSUInteger i = 0; i < [upvoteUsersArray count]; i++ ) {
         
         NSManagedObjectContext *context = frame.managedObjectContext;
         UpvoteUsers *upvoteUsers  = [self checkIfEntity:CoreDataEntityUpvoteUsers 

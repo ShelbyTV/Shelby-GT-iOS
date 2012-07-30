@@ -60,9 +60,6 @@
 - (void)populateTableViewCell:(VideoCardCell *)cell withContent:(DashboardEntry *)dashboardEntry inRow:(NSUInteger)row
 {
 
-    // TEMP
-    cell.providerName.text = dashboardEntry.frame.video.providerName;
-    
     // General Initializations
     dispatch_async(dispatch_get_main_queue(), ^{
         

@@ -182,7 +182,7 @@
     
     
     // Reorganize Dictionary in terms of Email
-    for (int i = 0; i < [self.peopleArray count]; i++) {
+    for ( NSUInteger i = 0; i < [self.peopleArray count]; i++ ) {
         
         NSDictionary *peopleDictionary = [self.peopleArray objectAtIndex:i];
         NSMutableArray *emailsArray = [peopleDictionary valueForKey:@"emails"];

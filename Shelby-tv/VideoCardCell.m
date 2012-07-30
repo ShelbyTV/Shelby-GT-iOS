@@ -24,8 +24,6 @@
 @synthesize rollLabel = _rollLabel;
 @synthesize createdAtLabel = _createdAtLabel;
 
-@synthesize providerName = _providerName;
-
 #pragma mark - Memory Deallocation Methods
 - (void)dealloc
 {
@@ -53,9 +51,6 @@
     [self.rollLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.rollLabel.font.pointSize]];
     [self.createdAtLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.createdAtLabel.font.pointSize]];
 
-    // TEMP
-    [self.providerName setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:self.providerName.font.pointSize]];
-    
 }
 
 @end

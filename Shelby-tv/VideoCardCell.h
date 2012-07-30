@@ -19,6 +19,4 @@
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rollLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *providerName;
-
 @end

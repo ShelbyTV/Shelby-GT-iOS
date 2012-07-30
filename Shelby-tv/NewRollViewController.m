@@ -210,7 +210,7 @@
         
         requestString = [NSString stringWithFormat:@"%@&destination[]=email",requestString];
         
-        for ( int i = 0; i<[self.chosenPeopleArray count]; i++) {
+        for ( NSUInteger i = 0; i<[self.chosenPeopleArray count]; i++) {
             
             NSString *recipient = [[self.chosenPeopleArray objectAtIndex:i] valueForKey:@"email"];
             NSString *addressString = [recipient stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
