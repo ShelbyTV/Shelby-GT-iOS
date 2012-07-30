@@ -1194,9 +1194,6 @@ static CoreDataUtility *sharedInstance = nil;
         
         [video setValue:providerID forKey:CoreDataVideoProviderID];
         
-        NSLog(@"Vim: %@ | %@", sourceURL, providerID);
-        
-        
     } else {
         
         // Do nothing

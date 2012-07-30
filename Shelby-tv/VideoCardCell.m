@@ -13,6 +13,7 @@
 @end
 
 @implementation VideoCardCell
+@synthesize shelbyFrame = _shelbyFrame;
 @synthesize originNetworkImageView = _originNetworkImageView;
 @synthesize userImageView = _userImageView;
 @synthesize thumbnailImageView = _thumbnailImageView;

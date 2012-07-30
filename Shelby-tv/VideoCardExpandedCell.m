@@ -14,6 +14,7 @@
 @end
 
 @implementation VideoCardExpandedCell
+@synthesize shelbyFrame = _shelbyFrame;
 @synthesize originNetworkImageView = _originNetworkImageView;
 @synthesize userImageView = _userImageView;
 @synthesize thumbnailImageView = _thumbnailImageView;
@@ -35,7 +36,7 @@
 @synthesize upvotedUserEight = _upvotedUserEight;
 @synthesize upvotedUserNine = _upvotedUserNine;
 
-#pragma mark - Memory Deallocation Methods
+#pragma mark - Memory Deallocation Method
 - (void)dealloc
 {
     self.userImageView = nil;

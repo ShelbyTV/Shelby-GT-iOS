@@ -8,6 +8,8 @@
 
 @interface VideoCardCell : UITableViewCell
 
+@property (strong, nonatomic) Frame *shelbyFrame;
+
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *originNetworkImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;

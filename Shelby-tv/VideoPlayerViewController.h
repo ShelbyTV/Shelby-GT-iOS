@@ -10,6 +10,6 @@
 
 @interface VideoPlayerViewController : UIViewController
 
-- (id)initWithVideo:(Video*)video;
+- (id)initWithFrame:(Frame*)frame;
 
 @end
