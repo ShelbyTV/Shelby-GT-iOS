@@ -15,7 +15,7 @@
 #import "NSString+TypedefConversion.h"
 #import "EmailSendToContactsViewController.h"
 
-@interface NewRollViewController ()
+@interface NewRollViewController () <UIAlertViewDelegate>
 
 @property (strong, nonatomic) Frame *frame;
 @property (copy, nonatomic) NSString *postedRollTitle;
@@ -237,10 +237,25 @@
 #pragma mark - Action Methods
 - (IBAction)shareButtonAction:(id)sender
 {
-    if ( ![self chosenPeopleArray] ) self.chosenPeopleArray = [NSMutableArray array];
     
-    EmailSendToContactsViewController *emailViewController = [[EmailSendToContactsViewController alloc] initWithNibName:@"EmailSendToContactsViewController" bundle:nil withParentVC:self];
-    [self.navigationController pushViewController:emailViewController animated:YES];
+    if ( [SocialFacade sharedInstance].firstTimeScanningAddressBook ) {
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Shelby wants to access your Address Book"
+                                                            message:@"Will you let her in!?"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"HELL NAH!"
+                                                  otherButtonTitles:@"Let her at it!", nil];
+        
+        [alertView show];
+        
+    } else {
+     
+        if ( ![self chosenPeopleArray] ) self.chosenPeopleArray = [NSMutableArray array];
+        
+        EmailSendToContactsViewController *emailViewController = [[EmailSendToContactsViewController alloc] initWithNibName:@"EmailSendToContactsViewController" bundle:nil withParentVC:self];
+        [self.navigationController pushViewController:emailViewController animated:YES];
+        
+    }
     
 }
 
@@ -304,6 +319,31 @@
     return YES;
 }
 
+#pragma mark - UIAlertViewDelegate Method
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        
+        case 0:
+            // Do nothing
+            break;
+        
+        case 1:{
+            
+            // Make sure this popup never appears again
+            [[SocialFacade sharedInstance] setFirstTimeScanningAddressBook:NO];
+            
+            if ( ![self chosenPeopleArray] ) self.chosenPeopleArray = [NSMutableArray array];
+            
+            EmailSendToContactsViewController *emailViewController = [[EmailSendToContactsViewController alloc] initWithNibName:@"EmailSendToContactsViewController" bundle:nil withParentVC:self];
+            [self.navigationController pushViewController:emailViewController animated:YES];
+            
+        } break;
+            
+        default:
+            break;
+    }
+}
 
 #pragma mark - UIResponder Methods
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

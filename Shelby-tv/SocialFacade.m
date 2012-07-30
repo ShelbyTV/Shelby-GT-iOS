@@ -32,6 +32,7 @@
 /// General Macros ///
 #define         SocialFacadePreviouslyLaunched              @"SocialFacadePreviouslyLaunched"
 #define         SocialFacadeFirstTimeLogin                  @"SocialFacadeFirstTimeLogin"
+#define         SocialFacadeFirstTimeScanningAddressBook    @"SocialFacadeFirstTimeScanningAddressBook"
 
 /// Shelby Macros ///
 #define         SocialFacadeShelbyAuthorized                @"SocialFacadeShelbyAuthorized"
@@ -148,6 +149,7 @@ UITableViewDelegate
             // Set to YES, so this condition is never again satisfied
             self.previouslyLaunched = YES;
             self.firstTimeLogin = YES;
+            self.firstTimeScanningAddressBook = YES;
             
             // Set Shelby-specific NSUserDefaults to nil on first launch
             self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -877,6 +879,17 @@ UITableViewDelegate
 - (BOOL)firstTimeLogin
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:SocialFacadeFirstTimeLogin];
+}
+
+- (void)setFirstTimeScanningAddressBook:(BOOL)firstTimeScanningAddressBook
+{
+    [[NSUserDefaults standardUserDefaults] setBool:firstTimeScanningAddressBook forKey:SocialFacadeFirstTimeScanningAddressBook];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)firstTimeScanningAddressBook
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:SocialFacadeFirstTimeScanningAddressBook];
 }
 
 /// Shelby Authorization Flag /// 

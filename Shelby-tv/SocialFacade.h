@@ -9,7 +9,7 @@
 #import "FBConnect.h"
 
 /// NSNotificationCenter Macros ///
-#define         SocialFacadeAuthorizationStatus     @"SocialFacadeAuthorizationStatus"
+#define         SocialFacadeAuthorizationStatus                 @"SocialFacadeAuthorizationStatus"
 
 /// SocialFacadeDelegate - Delegate Method for Login Screens ///
 @protocol SocialFacadeDelegate <NSObject>
@@ -26,6 +26,8 @@
 // General
 @property (assign, nonatomic) BOOL previouslyLaunched;
 @property (assign, nonatomic) BOOL firstTimeLogin;
+@property (assign, nonatomic) BOOL firstTimeScanningAddressBook;
+
 
 // Shelby
 @property (assign, nonatomic) BOOL shelbyAuthorized;

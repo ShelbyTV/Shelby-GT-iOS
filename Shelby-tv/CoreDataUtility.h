@@ -71,12 +71,6 @@
 + (DashboardEntry*)fetchDashboardEntryDataForDashboardID:(NSString*)dashboardID;
 
 /**
- Fetch Frame information stored in Core Data
- */
-
-+ (Frame*)fetchFrameWithID:(NSString*)frameID;
-
-/**
  Fetch Roll information stored in Core Data
  */
 
