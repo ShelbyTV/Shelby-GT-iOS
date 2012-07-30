@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
 @interface ShelbyAPIClient : NSObject <NSURLConnectionDataDelegate>
 
 // Request Methods

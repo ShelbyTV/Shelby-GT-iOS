@@ -10,8 +10,10 @@
 #import "CoreDataUtility.h"
 #import "SocialFacade.h"
 #import "AppDelegate.h"
-#import "NSString+TypedefConversion.h"
+#import "Panhandler.h"
 #import "Reachability.h"
+#import "NSString+TypedefConversion.h"
+
 
 @interface ShelbyAPIClient ()
 
@@ -176,6 +178,9 @@
     
     // Create reference to context
     NSManagedObjectContext *context = [CoreDataUtility sharedInstance].managedObjectContext;
+    
+    // Record event for Panhandler
+    [[Panhandler sharedInstance] recordEvent];
     
     self.parsedDictionary = [NSJSONSerialization JSONObjectWithData:self.receivedData options:NSJSONReadingAllowFragments error:nil];
     
