@@ -10,10 +10,8 @@
 #import "CoreDataUtility.h"
 #import "SocialFacade.h"
 #import "AppDelegate.h"
-#import "Panhandler.h"
 #import "Reachability.h"
 #import "NSString+TypedefConversion.h"
-
 
 @interface ShelbyAPIClient ()
 

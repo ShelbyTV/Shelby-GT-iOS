@@ -267,6 +267,7 @@
     // General Initializations
     dispatch_async(dispatch_get_main_queue(), ^{
         
+        // Reference video frame
         cell.shelbyFrame = dashboardEntry.frame;
         
         // Populate roll label

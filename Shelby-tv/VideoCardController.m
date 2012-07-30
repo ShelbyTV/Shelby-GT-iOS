@@ -32,6 +32,9 @@
         
         self.frame = frame;
         self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        
+        [[Panhandler sharedInstance] recordEvent];
+        
     }
     
     return self;

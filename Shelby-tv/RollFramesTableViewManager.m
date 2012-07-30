@@ -291,6 +291,9 @@
     // General Initializations
     dispatch_async(dispatch_get_main_queue(), ^{
         
+        // Reference video frame
+        cell.shelbyFrame = frame;
+        
         // Populate roll label
         [cell.rollLabel setText:frame.roll.title];
         
