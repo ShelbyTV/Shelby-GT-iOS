@@ -132,7 +132,12 @@
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 
         
-        // Pop request-dependent error message
+        /*
+         Pop request-dependent error message if an API Request 
+         is being performed (if requestType != APIRequestType_None)
+         */
+        if ( self.requestType != APIRequestType_None ) {
+        
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Error #%d0", self.requestType]
                                                             message:@"Please retry your previous action"
                                                            delegate:nil
@@ -140,6 +145,7 @@
                                                   otherButtonTitles:nil, nil];
         [alertView show];
         
+        }
         
         // Remove HUD
         AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
