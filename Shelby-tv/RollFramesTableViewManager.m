@@ -373,19 +373,19 @@
     });
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        @synchronized(self) {
             
-            ShelbyUser *shelbyUser = [CoreDataUtility fetchShelbyAuthData];
-            UpvoteUsers *upvoteUsers = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:frame.managedObjectContext];
-            [upvoteUsers setValue:shelbyUser.shelbyID forKey:CoreDataUpvoteUserID];
-            [upvoteUsers setValue:shelbyUser.nickname forKey:CoreDataUpvoteUsersNickname];
-            [upvoteUsers setValue:shelbyUser.userImage forKey:CoreDataUpvoteUsersImage];
-            [upvoteUsers setValue:frame.rollID forKey:CoreDataUpvoteUsersRollID];
-            [frame addUpvoteUsersObject:upvoteUsers];
-            [frame setValue:[NSNumber numberWithInt:upvoteCount] forKey:CoreDataFrameUpvotersCount];
-            
-            [CoreDataUtility saveContext:frame.managedObjectContext];
-        }
+        ShelbyUser *shelbyUser = [CoreDataUtility fetchShelbyAuthData];
+        UpvoteUsers *upvoteUsers = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:frame.managedObjectContext];
+        [upvoteUsers setValue:shelbyUser.shelbyID forKey:CoreDataUpvoteUserID];
+        [upvoteUsers setValue:shelbyUser.nickname forKey:CoreDataUpvoteUsersNickname];
+        [upvoteUsers setValue:shelbyUser.userImage forKey:CoreDataUpvoteUsersImage];
+        [upvoteUsers setValue:frame.rollID forKey:CoreDataUpvoteUsersRollID];
+        [upvoteUsers setValue:frame forKey:CoreDataUpvoteUsersRollID];
+        [frame addUpvoteUsersObject:upvoteUsers];
+        [frame setValue:[NSNumber numberWithInt:upvoteCount] forKey:CoreDataFrameUpvotersCount];
+        
+        [CoreDataUtility saveContext:frame.managedObjectContext];
+        
     });
     
     // Ping API with new values

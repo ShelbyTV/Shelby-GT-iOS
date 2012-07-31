@@ -1095,22 +1095,41 @@ static CoreDataUtility *sharedInstance = nil;
                                             withIDValue:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"id"]
                                                forIDKey:CoreDataUpvoteUserID
                                         existsInContext:context];
-        [frame addUpvoteUsersObject:upvoteUsers];
         
-        NSString *upvoterID = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"id"]];
-        [upvoteUsers setValue:upvoterID forKey:CoreDataUpvoteUserID];
+            
+        // If user ALREADY EXISTS, update the nickName, rollID, and userImage, BUT NOT the upvoterID
+        if ( [upvoteUsers.upvoterID isEqualToString:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"id"]] ) {
+            
+            NSString *nickname = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"nickname"]];
+            [upvoteUsers setValue:nickname forKey:CoreDataUpvoteUsersNickname];
+            
+            NSString *rollID = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"public_roll_id"]];
+            [upvoteUsers setValue:rollID forKey:CoreDataUpvoteUsersRollID];
+            
+            NSString *userImage = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"user_image"]];
+            [upvoteUsers setValue:userImage forKey:CoreDataUpvoteUsersImage];
+            
         
-        NSString *nickname = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"nickname"]];
-        [upvoteUsers setValue:nickname forKey:CoreDataUpvoteUsersNickname];
-        
-        NSString *rollID = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"public_roll_id"]];
-        [upvoteUsers setValue:rollID forKey:CoreDataUpvoteUsersRollID];
-        
-        NSString *userImage = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"user_image"]];
-        [upvoteUsers setValue:userImage forKey:CoreDataUpvoteUsersImage];
-        
+        } else { // If user DOES NOT EXIST,populate new object with all values, INCLUDING the upvoterID
+            
+            NSString *upvoterID = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"id"]];
+            [upvoteUsers setValue:upvoterID forKey:CoreDataUpvoteUserID];
+            
+            NSString *nickname = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"nickname"]];
+            [upvoteUsers setValue:nickname forKey:CoreDataUpvoteUsersNickname];
+            
+            NSString *rollID = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"public_roll_id"]];
+            [upvoteUsers setValue:rollID forKey:CoreDataUpvoteUsersRollID];
+            
+            NSString *userImage = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"user_image"]];
+            [upvoteUsers setValue:userImage forKey:CoreDataUpvoteUsersImage];
+            
+            [frame addUpvoteUsersObject:upvoteUsers];
+            
+        }
     
     }
+
 }
 
 + (void)storeVideo:(Video *)video fromFrameArray:(NSArray *)frameArray
