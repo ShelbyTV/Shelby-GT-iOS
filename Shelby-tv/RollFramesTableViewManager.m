@@ -392,13 +392,15 @@
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
     [controller upvote];
     
+    // Add image through reload
+    [self.tableView reloadData];
     
 }
 
 - (void)downvote:(UIButton *)button
 {
     
-    VideoCardCell *cell = (VideoCardCell*)[button superview];
+    VideoCardExpandedCell *cell = (VideoCardExpandedCell*)[button superview];
     Frame *frame = cell.shelbyFrame;
     
     NSUInteger upvoteCount = [button.titleLabel.text intValue];
@@ -438,6 +440,10 @@
     // Ping API with new values
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
     [controller downvote];
+
+    // Remove image through reload
+    [self.tableView reloadData];
+    
 }
 
 - (void)comment:(UIButton *)button
