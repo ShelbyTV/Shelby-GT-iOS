@@ -236,8 +236,6 @@
 		8EE5063F155CA39E00A04F50 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EE5063E155CA39E00A04F50 /* MediaPlayer.framework */; };
 		8EE50650155CA75500A04F50 /* Panhandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE5064F155CA75500A04F50 /* Panhandler.m */; };
 		8EE50653155CA76200A04F50 /* AsynchronousFreeloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE50652155CA76200A04F50 /* AsynchronousFreeloader.m */; };
-		8EE50658155CA7A000A04F50 /* VideoPlayerViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EE50654155CA79F00A04F50 /* VideoPlayerViewController_iPad.xib */; };
-		8EE50659155CA7A000A04F50 /* VideoPlayerViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EE50655155CA79F00A04F50 /* VideoPlayerViewController_iPhone.xib */; };
 		8EE50662155CA9E800A04F50 /* Shelby.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */; };
 		8EE50664155CAC1600A04F50 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EE50663155CAC1600A04F50 /* CoreData.framework */; };
 		8EE673A31552FCF5004EA45C /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE673A01552FCF5004EA45C /* Ubuntu-B.ttf */; };
@@ -572,8 +570,6 @@
 		8EE5064F155CA75500A04F50 /* Panhandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Panhandler.m; path = library/Panhandler/Panhandler.m; sourceTree = SOURCE_ROOT; };
 		8EE50651155CA76200A04F50 /* AsynchronousFreeloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsynchronousFreeloader.h; path = "library/Asynchronous Freeloader/AsynchronousFreeloader.h"; sourceTree = SOURCE_ROOT; };
 		8EE50652155CA76200A04F50 /* AsynchronousFreeloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsynchronousFreeloader.m; path = "library/Asynchronous Freeloader/AsynchronousFreeloader.m"; sourceTree = SOURCE_ROOT; };
-		8EE50654155CA79F00A04F50 /* VideoPlayerViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayerViewController_iPad.xib; sourceTree = "<group>"; };
-		8EE50655155CA79F00A04F50 /* VideoPlayerViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayerViewController_iPhone.xib; sourceTree = "<group>"; };
 		8EE50661155CA9E800A04F50 /* Shelby.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shelby.xcdatamodel; sourceTree = "<group>"; };
 		8EE50663155CAC1600A04F50 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8EE673A01552FCF5004EA45C /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
@@ -1183,8 +1179,6 @@
 				8E4A04601598CA3900E4F675 /* ShelbyMenuViewController.xib */,
 				8EEA703C155449D800B1B07F /* VideoCardCell.xib */,
 				8EC981411595135C00BB9227 /* VideoCardExpandedCell.xib */,
-				8EE50654155CA79F00A04F50 /* VideoPlayerViewController_iPad.xib */,
-				8EE50655155CA79F00A04F50 /* VideoPlayerViewController_iPhone.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -1387,8 +1381,6 @@
 				8EE673A41552FCF5004EA45C /* Ubuntu-M.ttf in Resources */,
 				8EE673A51552FCF5004EA45C /* Ubuntu-R.ttf in Resources */,
 				8EEA703D155449D800B1B07F /* VideoCardCell.xib in Resources */,
-				8EE50658155CA7A000A04F50 /* VideoPlayerViewController_iPad.xib in Resources */,
-				8EE50659155CA7A000A04F50 /* VideoPlayerViewController_iPhone.xib in Resources */,
 				8E87DEFC156C4A8A004E0629 /* videoCardTimestampFacebook.png in Resources */,
 				8E87DEFD156C4A8A004E0629 /* videoCardTimestampFacebook@2x.png in Resources */,
 				8E87DEFE156C4A8A004E0629 /* videoCardTimestampTumblr.png in Resources */,

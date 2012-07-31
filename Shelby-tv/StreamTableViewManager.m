@@ -380,12 +380,13 @@
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
     [controller upvote];
     
-    
+    // Add image through reload
+    [self.tableView reloadData];
 }
 
 - (void)downvote:(UIButton *)button
 {
-    VideoCardCell *cell = (VideoCardCell*)[button superview];
+    VideoCardExpandedCell *cell = (VideoCardExpandedCell*)[button superview];
     Frame *frame = cell.shelbyFrame;
     
     // Decrease upvoteCount by 1
@@ -404,20 +405,16 @@
     // Store changes in Core Data
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         
-        @synchronized(self) {
+        NSMutableSet *upvoteUsers = [NSMutableSet setWithSet:frame.upvoteUsers];
+        
+        for (UpvoteUsers *user in [upvoteUsers allObjects]) {
             
-            NSMutableSet *upvoteUsers = [NSMutableSet setWithSet:frame.upvoteUsers];
-            
-            for (UpvoteUsers *user in [upvoteUsers allObjects]) {
+            if ( [user.upvoterID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) {
                 
-                if ( [user.upvoterID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) {
-                    
-                    [frame removeUpvoteUsersObject:user];
-                    
-                }
+                [frame removeUpvoteUsersObject:user];
                 
             }
-            
+                
             [frame setValue:[NSNumber numberWithInt:upvoteCount] forKey:CoreDataFrameUpvotersCount];
             
             [CoreDataUtility saveContext:frame.managedObjectContext];
@@ -427,6 +424,9 @@
     // Ping API with new values
     VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
     [controller downvote];
+    
+    // Remove image through reload
+    [self.tableView reloadData];
 }
 
 - (void)comment:(UIButton *)button
