@@ -20,7 +20,6 @@
 // Categories
 #import "NSString+TypedefConversion.h"
 
-
 @class GuideTableViewController;
 
 @protocol GuideTableViewManagerDelegate <NSObject>

@@ -181,9 +181,8 @@
 
     Roll *roll = [CoreDataUtility fetchRollWithTitle:self.postedRollTitle];
     NSString *rollID = roll.rollID;
-    NSString *videoURL = [self.frame.video.sourceURL stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     
-    NSString *requestString = [NSString stringWithFormat:APIRequest_PostRollFrame, rollID, self.frame.frameID, videoURL, [SocialFacade sharedInstance].shelbyToken];
+    NSString *requestString = [NSString stringWithFormat:APIRequest_PostRollFrame, rollID, self.frame.frameID,[SocialFacade sharedInstance].shelbyToken];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestString]];
     [request setHTTPMethod:@"POST"];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];

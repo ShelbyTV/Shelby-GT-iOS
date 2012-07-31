@@ -15,7 +15,6 @@
 
 @property (assign, nonatomic) BOOL observerCreated;
 @property (assign, nonatomic) BOOL didPullToRefresh;;
-@property (assign, nonatomic) BOOL stopGettingOlderData;
 
 - (void)createAPIObservers;
 
@@ -24,7 +23,6 @@
 @implementation StreamTableViewManager 
 @synthesize observerCreated = _observerCreated;
 @synthesize didPullToRefresh = _didPullToRefresh;
-@synthesize stopGettingOlderData = _stopGettingOlderData;
 
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
@@ -65,28 +63,15 @@
     // Fetch Rolls-Following Data from Core Data
     if ( [SocialFacade sharedInstance].shelbyAuthorized ) {
         
-        NSUInteger previousCount = [self.coreDataResultsArray count];
-        
         self.coreDataResultsArray = [CoreDataUtility fetchAllDashboardEntries];
         
-        if ( previousCount == [self.coreDataResultsArray count] && NO == self.didPullToRefresh ) {
-            
-            [self setStopGettingOlderData:YES];
+        if ( [self.coreDataResultsArray count] > 0) {
+         
+            [self.tableView reloadData];
             
         } else {
             
-            self.didPullToRefresh = NO;
-            
-            if ( [self.coreDataResultsArray count] > 0) {
-             
-                [self.tableView reloadData];
-                
-            } else {
-                
-                // Perform API Request
-                [self performAPIRequest];
-                
-            }
+            [self performAPIRequest];
             
         }
         
@@ -101,9 +86,6 @@
 
     // Add API Observers (should ONLY occur on first call to this method)
     if ( NO == self.observerCreated ) [self createAPIObservers];
-    
-    // Reset tableView's ability to get older data
-    [self setStopGettingOlderData:NO];
     
     // Perform API Request
     NSString *requestString = [NSString stringWithFormat:APIRequest_GetStream, [SocialFacade sharedInstance].shelbyToken];
@@ -120,7 +102,7 @@
     if ( NO == self.observerCreated ) [self createAPIObservers];
     
     // Perform API Request
-    NSUInteger skipCount = (([self.coreDataResultsArray count]%20)+1)*20;
+    NSUInteger skipCount = (([self.coreDataResultsArray count]/20)+1)*20;
     NSString *requestString = [NSString stringWithFormat:APIRequest_GetStreamAgain, [SocialFacade sharedInstance].shelbyToken, skipCount];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
     ShelbyAPIClient *client = [[ShelbyAPIClient alloc] init];
@@ -249,7 +231,9 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    if ( (indexPath.row == ([self.coreDataResultsArray count]-1) ) && ( NO == self.stopGettingOlderData ) ) {
+    NSUInteger resultsCount = [self.coreDataResultsArray count];
+    
+    if ( (indexPath.row == (resultsCount-1)) && (resultsCount > TextConstants_SwipeUpToRefreshMinimum) ) {
         
         // Load more data from CoreData
         [self performAPIRequestForMoreEntries];
