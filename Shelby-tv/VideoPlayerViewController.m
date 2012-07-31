@@ -77,9 +77,10 @@
     
 }
 
-#pragma mark - Private Methods
+#pragma mark - View and Subview Creation Methods
 - (UIWebView*)createWebView
 {
+    
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(159.0f, 239.0f, 2.0f, 2.0f)];
     webView.allowsInlineMediaPlayback = YES;
     webView.mediaPlaybackRequiresUserAction = NO;
@@ -87,6 +88,8 @@
     webView.hidden = YES;
     webView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    
     return webView;
 }
 
@@ -100,8 +103,15 @@
     
     return indicator;
 }
-                      
 
+- (void)destroy
+{
+    [self.moviePlayer.view removeFromSuperview];
+    [self dismissModalViewControllerAnimated:YES];
+    
+}
+                      
+#pragma mark - Video Playback Methods
 - (void)loadVimeoPage
 {
     
@@ -160,30 +170,22 @@
     }
 }
 
-- (void)destroy
-{
-    [self.moviePlayer.view removeFromSuperview];
-    [self dismissModalViewControllerAnimated:YES];
-
-}
-
 #pragma mark - Observer Methods
 - (void)processNotification:(NSNotification *)notification
 {
     
-    if ( ![notification.userInfo isKindOfClass:[NSNull class]] ) {
+    if ( notification.userInfo && ![notification.userInfo isKindOfClass:[NSNull class]] ) {
         
         NSArray *allValues = [notification.userInfo allValues];
         
         for (NSString *value in allValues) {
             
-            SEL pathSelector = NSSelectorFromString([NSString stringWithFormat:@"%@%@%@%@", @"p",@"a",@"t",@"h"]);
+            SEL pathSelector = @selector(path);
             
             if ([value respondsToSelector:pathSelector]) {
                 
                 // Remove webView
                 [self.webView stopLoading];
-                [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
                 [self.webView removeFromSuperview];
                 
                 // Get URL
