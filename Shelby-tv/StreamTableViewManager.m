@@ -137,9 +137,30 @@
 }
 
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 246.0f;
+    /*
+     Since heightForRowAtIndexPath is called before cellForRowAtIndexPath (e.g., no cells are drawn),
+     I need to use a discriminating value to figure out how to draw the cells. The vallue that discriminates between 
+     VideoCardCell and VideoCardExpandedCell is the upvotersCount. Therefore, I've employed the method below to 
+     calclate the height.
+     */
+    
+    // Fetch data stored in Core Data
+    DashboardEntry *dashboardEntry = [self.coreDataResultsArray objectAtIndex:indexPath.row];
+    
+    // Create proper cell based on number of upvotes
+    NSUInteger upvotersCount = [dashboardEntry.frame.upvotersCount intValue];
+
+    if ( upvotersCount ) {
+        
+        return 246.0f;
+        
+    } else {
+        
+        return 214.0f;
+    }
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -361,19 +382,17 @@
     
     // Store changes in Core Data
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            
+        UpvoteUsers *upvoteUsers = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:frame.managedObjectContext];
+        [upvoteUsers setValue:shelbyUser.shelbyID forKey:CoreDataUpvoteUserID];
+        [upvoteUsers setValue:shelbyUser.nickname forKey:CoreDataUpvoteUsersNickname];
+        [upvoteUsers setValue:shelbyUser.userImage forKey:CoreDataUpvoteUsersImage];
+        [upvoteUsers setValue:frame.rollID forKey:CoreDataUpvoteUsersRollID];
+        [frame addUpvoteUsersObject:upvoteUsers];
+        [frame setValue:[NSNumber numberWithInt:upvoteCount] forKey:CoreDataFrameUpvotersCount];
         
-        @synchronized(self) {
-            
-            UpvoteUsers *upvoteUsers = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:frame.managedObjectContext];
-            [upvoteUsers setValue:shelbyUser.shelbyID forKey:CoreDataUpvoteUserID];
-            [upvoteUsers setValue:shelbyUser.nickname forKey:CoreDataUpvoteUsersNickname];
-            [upvoteUsers setValue:shelbyUser.userImage forKey:CoreDataUpvoteUsersImage];
-            [upvoteUsers setValue:frame.rollID forKey:CoreDataUpvoteUsersRollID];
-            [frame addUpvoteUsersObject:upvoteUsers];
-            [frame setValue:[NSNumber numberWithInt:upvoteCount] forKey:CoreDataFrameUpvotersCount];
-            
-            [CoreDataUtility saveContext:frame.managedObjectContext];
-        }
+        [CoreDataUtility saveContext:frame.managedObjectContext];
+
     });
     
     // Ping API with new values

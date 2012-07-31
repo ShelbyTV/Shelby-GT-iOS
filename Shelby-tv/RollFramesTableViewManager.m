@@ -146,9 +146,30 @@
 }
 
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 243.0f;
+    /*
+     Since heightForRowAtIndexPath is called before cellForRowAtIndexPath (e.g., no cells are drawn),
+     I need to use a discriminating value to figure out how to draw the cells. The vallue that discriminates between
+     VideoCardCell and VideoCardExpandedCell is the upvotersCount. Therefore, I've employed the method below to
+     calclate the height.
+     */
+    
+    // Fetch data stored in Core Data
+    Frame *frame = [self.coreDataResultsArray objectAtIndex:indexPath.row];
+    
+    // Create proper cell based on number of upvotes
+    NSUInteger upvotersCount = [frame.upvotersCount intValue];
+    
+    if ( upvotersCount ) {
+        
+        return 246.0f;
+        
+    } else {
+        
+        return 214.0f;
+    }
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -423,25 +444,22 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         
-        @synchronized(self) {
+        NSMutableSet *upvoteUsers = [NSMutableSet setWithSet:frame.upvoteUsers];
+        
+        for (UpvoteUsers *user in [upvoteUsers allObjects]) {
             
-            NSMutableSet *upvoteUsers = [NSMutableSet setWithSet:frame.upvoteUsers];
-            
-            for (UpvoteUsers *user in [upvoteUsers allObjects]) {
+            if ( [user.upvoterID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) {
                 
-                if ( [user.upvoterID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) {
-                    
-                    [frame removeUpvoteUsersObject:user];
-                    
-                }
+                [frame removeUpvoteUsersObject:user];
                 
             }
             
-            [frame setValue:[NSNumber numberWithInt:upvoteCount] forKey:CoreDataFrameUpvotersCount];
-            
-            [CoreDataUtility saveContext:frame.managedObjectContext];
         }
         
+        [frame setValue:[NSNumber numberWithInt:upvoteCount] forKey:CoreDataFrameUpvotersCount];
+        
+        [CoreDataUtility saveContext:frame.managedObjectContext];
+
     });
     
     // Ping API with new values
