@@ -380,7 +380,6 @@
         [upvoteUsers setValue:shelbyUser.nickname forKey:CoreDataUpvoteUsersNickname];
         [upvoteUsers setValue:shelbyUser.userImage forKey:CoreDataUpvoteUsersImage];
         [upvoteUsers setValue:frame.rollID forKey:CoreDataUpvoteUsersRollID];
-        [upvoteUsers setValue:frame forKey:CoreDataUpvoteUsersRollID];
         [frame addUpvoteUsersObject:upvoteUsers];
         [frame setValue:[NSNumber numberWithInt:upvoteCount] forKey:CoreDataFrameUpvotersCount];
         
