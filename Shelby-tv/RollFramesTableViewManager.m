@@ -48,6 +48,7 @@
 {
     // Reference Parent ViewController's UITableView (should ONLY occur on first call to this method)
     self.tableView = tableView;
+    NSLog(@"%@", self.tableView);
     
     self.rollID = rollID;
     
@@ -392,7 +393,14 @@
     [controller upvote];
     
     // Add image through reload
-    [self.tableView reloadData];
+    VideoCardCell *currentCell = (VideoCardCell*)[button superview];
+    UITableView *table = (UITableView *)[currentCell superview];
+    NSIndexPath *pathOfTheCell = [table indexPathForCell:cell];
+    NSInteger sectionOfTheCell = [pathOfTheCell section];
+    NSInteger rowOfTheCell = [pathOfTheCell row];
+    NSIndexPath *rowToReload = [NSIndexPath indexPathForRow:rowOfTheCell inSection:sectionOfTheCell];
+    NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
+    [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
     
 }
 
@@ -441,7 +449,14 @@
     [controller downvote];
 
     // Remove image through reload
-    [self.tableView reloadData];
+    VideoCardExpandedCell *currentCell = (VideoCardExpandedCell*)[button superview];
+    UITableView *table = (UITableView *)[currentCell superview];
+    NSIndexPath *pathOfTheCell = [table indexPathForCell:cell];
+    NSInteger sectionOfTheCell = [pathOfTheCell section];
+    NSInteger rowOfTheCell = [pathOfTheCell row];
+    NSIndexPath *rowToReload = [NSIndexPath indexPathForRow:rowOfTheCell inSection:sectionOfTheCell];
+    NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
+    [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
     
 }
 
