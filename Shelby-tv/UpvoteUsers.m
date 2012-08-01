@@ -1,8 +1,8 @@
 //
 //  UpvoteUsers.m
-//  Shelby.tv
+//  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 6/4/12.
+//  Created by Arthur Ariel Sabintsev on 8/1/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
@@ -12,10 +12,11 @@
 
 @implementation UpvoteUsers
 
-@dynamic upvoterID;
 @dynamic nickname;
-@dynamic userImage;
 @dynamic rollID;
+@dynamic upvoterID;
+@dynamic userImage;
+@dynamic frameID;
 @dynamic frame;
 
 @end

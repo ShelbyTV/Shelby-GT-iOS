@@ -6,13 +6,13 @@
 //  Copyright (c) 2011 Fueled. All rights reserved.
 //
 
-#import "EmailSendToContactsViewController.h"
+#import "ShareWithContactsViewController.h"
 #import "AddContactTableViewCell.h"
 #import "RemoveContactTableViewCell.h"
 #import "NewRollViewController.h"
 #import "CustomTextField.h"
 
-@interface EmailSendToContactsViewController ()
+@interface ShareWithContactsViewController ()
 
 @property (strong, nonatomic) NSMutableArray *peopleArray;                                  // Array of Dictionaries organized by Address Book Contacts
 @property (strong, nonatomic) NSMutableArray *sortedEmailArray;                             // Array of Dictionaries organized by Email Address
@@ -34,7 +34,7 @@
 
 @end
 
-@implementation EmailSendToContactsViewController
+@implementation ShareWithContactsViewController
 @synthesize peopleArray = _peopleArray;
 @synthesize sortedEmailArray = _sortedEmailArray;
 @synthesize filteredResultsArray = _filteredResultsArray;

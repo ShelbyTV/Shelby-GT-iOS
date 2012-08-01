@@ -43,6 +43,7 @@
 		8E24E1C715B8FA33009E3461 /* switchLock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1C115B8FA33009E3461 /* switchLock@2x.png */; };
 		8E24E1C815B8FA33009E3461 /* switchUnlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1C215B8FA33009E3461 /* switchUnlock.png */; };
 		8E24E1C915B8FA33009E3461 /* switchUnlock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1C315B8FA33009E3461 /* switchUnlock@2x.png */; };
+		8E2996F915C9CF8D0047B07F /* UpvoteUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2996F815C9CF8D0047B07F /* UpvoteUsers.m */; };
 		8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2A8EAE159135970028712C /* StreamTableViewManager.m */; };
 		8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */; };
 		8E44DC0A15B5E8610035B3CF /* NewRollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E44DC0815B5E8610035B3CF /* NewRollViewController.m */; };
@@ -195,8 +196,8 @@
 		8EC981421595135C00BB9227 /* VideoCardExpandedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EC981411595135C00BB9227 /* VideoCardExpandedCell.xib */; };
 		8ECAA78315B9DFCF007F4F8E /* AddContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECAA77A15B9DFCF007F4F8E /* AddContactTableViewCell.m */; };
 		8ECAA78415B9DFCF007F4F8E /* AddContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA77B15B9DFCF007F4F8E /* AddContactTableViewCell.xib */; };
-		8ECAA78515B9DFCF007F4F8E /* EmailSendToContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECAA77D15B9DFCF007F4F8E /* EmailSendToContactsViewController.m */; };
-		8ECAA78615B9DFCF007F4F8E /* EmailSendToContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA77E15B9DFCF007F4F8E /* EmailSendToContactsViewController.xib */; };
+		8ECAA78515B9DFCF007F4F8E /* ShareWithContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECAA77D15B9DFCF007F4F8E /* ShareWithContactsViewController.m */; };
+		8ECAA78615B9DFCF007F4F8E /* ShareWithContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA77E15B9DFCF007F4F8E /* ShareWithContactsViewController.xib */; };
 		8ECAA78715B9DFCF007F4F8E /* RemoveContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECAA78015B9DFCF007F4F8E /* RemoveContactTableViewCell.m */; };
 		8ECAA78815B9DFCF007F4F8E /* RemoveContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA78115B9DFCF007F4F8E /* RemoveContactTableViewCell.xib */; };
 		8ECAA78915B9DFCF007F4F8E /* zeroEmailContactsArrowMessage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ECAA78215B9DFCF007F4F8E /* zeroEmailContactsArrowMessage@2x.png */; };
@@ -215,7 +216,6 @@
 		8ECBA7DB1535F6F70009718E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8ECBA7D91535F6F70009718E /* InfoPlist.strings */; };
 		8ECBA7DD1535F6F70009718E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECBA7DC1535F6F70009718E /* main.m */; };
 		8ECBA7E11535F6F70009718E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECBA7E01535F6F70009718E /* AppDelegate.m */; };
-		8ECFFE46157D73BF007CCA73 /* UpvoteUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECFFE45157D73BF007CCA73 /* UpvoteUsers.m */; };
 		8ED310F6153601A2002614DF /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED310EA153601A2002614DF /* Default-Landscape~ipad.png */; };
 		8ED310F7153601A2002614DF /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED310EB153601A2002614DF /* Default-Portrait~ipad.png */; };
 		8ED310F8153601A2002614DF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED310EC153601A2002614DF /* Default.png */; };
@@ -299,6 +299,8 @@
 		8E24E1C115B8FA33009E3461 /* switchLock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switchLock@2x.png"; sourceTree = "<group>"; };
 		8E24E1C215B8FA33009E3461 /* switchUnlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switchUnlock.png; sourceTree = "<group>"; };
 		8E24E1C315B8FA33009E3461 /* switchUnlock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switchUnlock@2x.png"; sourceTree = "<group>"; };
+		8E2996F715C9CF8D0047B07F /* UpvoteUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpvoteUsers.h; sourceTree = "<group>"; };
+		8E2996F815C9CF8D0047B07F /* UpvoteUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpvoteUsers.m; sourceTree = "<group>"; };
 		8E2A8EAD159135970028712C /* StreamTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewManager.h; sourceTree = "<group>"; };
 		8E2A8EAE159135970028712C /* StreamTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamTableViewManager.m; sourceTree = "<group>"; };
 		8E3457851551BC9200FEFC9D /* NSString+TypedefConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TypedefConversion.h"; sourceTree = "<group>"; };
@@ -518,9 +520,9 @@
 		8ECAA77915B9DFCF007F4F8E /* AddContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactTableViewCell.h; sourceTree = "<group>"; };
 		8ECAA77A15B9DFCF007F4F8E /* AddContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactTableViewCell.m; sourceTree = "<group>"; };
 		8ECAA77B15B9DFCF007F4F8E /* AddContactTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddContactTableViewCell.xib; sourceTree = "<group>"; };
-		8ECAA77C15B9DFCF007F4F8E /* EmailSendToContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailSendToContactsViewController.h; sourceTree = "<group>"; };
-		8ECAA77D15B9DFCF007F4F8E /* EmailSendToContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailSendToContactsViewController.m; sourceTree = "<group>"; };
-		8ECAA77E15B9DFCF007F4F8E /* EmailSendToContactsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmailSendToContactsViewController.xib; sourceTree = "<group>"; };
+		8ECAA77C15B9DFCF007F4F8E /* ShareWithContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareWithContactsViewController.h; sourceTree = "<group>"; };
+		8ECAA77D15B9DFCF007F4F8E /* ShareWithContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareWithContactsViewController.m; sourceTree = "<group>"; };
+		8ECAA77E15B9DFCF007F4F8E /* ShareWithContactsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareWithContactsViewController.xib; sourceTree = "<group>"; };
 		8ECAA77F15B9DFCF007F4F8E /* RemoveContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveContactTableViewCell.h; sourceTree = "<group>"; };
 		8ECAA78015B9DFCF007F4F8E /* RemoveContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveContactTableViewCell.m; sourceTree = "<group>"; };
 		8ECAA78115B9DFCF007F4F8E /* RemoveContactTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RemoveContactTableViewCell.xib; sourceTree = "<group>"; };
@@ -544,8 +546,6 @@
 		8ECBA7DE1535F6F70009718E /* Shelby-tv-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Shelby-tv-Prefix.pch"; sourceTree = "<group>"; };
 		8ECBA7DF1535F6F70009718E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8ECBA7E01535F6F70009718E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8ECFFE44157D73BF007CCA73 /* UpvoteUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpvoteUsers.h; sourceTree = "<group>"; };
-		8ECFFE45157D73BF007CCA73 /* UpvoteUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpvoteUsers.m; sourceTree = "<group>"; };
 		8ED310EA153601A2002614DF /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		8ED310EB153601A2002614DF /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		8ED310EC153601A2002614DF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -634,6 +634,29 @@
 			name = customSwitch;
 			path = Resources/images/customSwitch;
 			sourceTree = SOURCE_ROOT;
+		};
+		8E2996F515C9A19C0047B07F /* Arthur's Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				8E50604115588FAB00F42933 /* Asynchronous Freeloader */,
+				8E7F47E6154093210041118E /* ASPullToRefresh */,
+				8EE50641155CA3D300A04F50 /* Panhandler */,
+				8ECAA77815B9DFCF007F4F8E /* ShareWithContacts */,
+				8E7F47EA154093890041118E /* SocialFacade */,
+			);
+			name = "Arthur's Libraries";
+			sourceTree = "<group>";
+		};
+		8E2996F615C9A1AB0047B07F /* Third Party Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				8E6AF84B159B743B00F570CF /* Facebook SDK */,
+				8E88605115B3C5320048FED8 /* MBProgressHUD */,
+				8E6AF8D8159B76FF00F570CF /* OAuth Consumer */,
+				8EC9813415950DF100BB9227 /* Reachability (ARC) */,
+			);
+			name = "Third Party Libraries";
+			sourceTree = "<group>";
 		};
 		8E459C7815B7275F00A8D6FD /* newRoll */ = {
 			isa = PBXGroup;
@@ -973,22 +996,22 @@
 			path = "../library/Reachability (ARC)";
 			sourceTree = "<group>";
 		};
-		8ECAA77815B9DFCF007F4F8E /* Address Book - Send To Contacts */ = {
+		8ECAA77815B9DFCF007F4F8E /* ShareWithContacts */ = {
 			isa = PBXGroup;
 			children = (
 				8ECAA78E15B9FFEC007F4F8E /* images */,
 				8ECAA77915B9DFCF007F4F8E /* AddContactTableViewCell.h */,
 				8ECAA77A15B9DFCF007F4F8E /* AddContactTableViewCell.m */,
 				8ECAA77B15B9DFCF007F4F8E /* AddContactTableViewCell.xib */,
-				8ECAA77C15B9DFCF007F4F8E /* EmailSendToContactsViewController.h */,
-				8ECAA77D15B9DFCF007F4F8E /* EmailSendToContactsViewController.m */,
-				8ECAA77E15B9DFCF007F4F8E /* EmailSendToContactsViewController.xib */,
+				8ECAA77C15B9DFCF007F4F8E /* ShareWithContactsViewController.h */,
+				8ECAA77D15B9DFCF007F4F8E /* ShareWithContactsViewController.m */,
+				8ECAA77E15B9DFCF007F4F8E /* ShareWithContactsViewController.xib */,
 				8ECAA77F15B9DFCF007F4F8E /* RemoveContactTableViewCell.h */,
 				8ECAA78015B9DFCF007F4F8E /* RemoveContactTableViewCell.m */,
 				8ECAA78115B9DFCF007F4F8E /* RemoveContactTableViewCell.xib */,
 				8ECAA78215B9DFCF007F4F8E /* zeroEmailContactsArrowMessage@2x.png */,
 			);
-			name = "Address Book - Send To Contacts";
+			name = ShareWithContacts;
 			path = "library/Address Book - Send To Contacts";
 			sourceTree = SOURCE_ROOT;
 		};
@@ -1154,15 +1177,8 @@
 		8ED3110615360475002614DF /* External Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				8ECAA77815B9DFCF007F4F8E /* Address Book - Send To Contacts */,
-				8E50604115588FAB00F42933 /* Asynchronous Freeloader */,
-				8E7F47E6154093210041118E /* ASPullToRefresh */,
-				8E6AF84B159B743B00F570CF /* Facebook SDK */,
-				8E88605115B3C5320048FED8 /* MBProgressHUD */,
-				8E6AF8D8159B76FF00F570CF /* OAuth Consumer */,
-				8EE50641155CA3D300A04F50 /* Panhandler */,
-				8EC9813415950DF100BB9227 /* Reachability (ARC) */,
-				8E7F47EA154093890041118E /* SocialFacade */,
+				8E2996F515C9A19C0047B07F /* Arthur's Libraries */,
+				8E2996F615C9A1AB0047B07F /* Third Party Libraries */,
 			);
 			name = "External Libraries";
 			sourceTree = "<group>";
@@ -1249,6 +1265,8 @@
 				8EE9BBCC15C47CED00A62267 /* Video.h */,
 				8EE9BBCD15C47CED00A62267 /* Video.m */,
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
+				8E2996F715C9CF8D0047B07F /* UpvoteUsers.h */,
+				8E2996F815C9CF8D0047B07F /* UpvoteUsers.m */,
 				8E5F039B15AD02A700DAEEBE /* Roll.h */,
 				8E5F039C15AD02A700DAEEBE /* Roll.m */,
 				8E88605815B3FC360048FED8 /* ShelbyUser.h */,
@@ -1263,8 +1281,6 @@
 				8EB6D81515800FCF0060202D /* Frame.m */,
 				8E88605515B3D4A80048FED8 /* Messages.h */,
 				8E88605615B3D4A90048FED8 /* Messages.m */,
-				8ECFFE44157D73BF007CCA73 /* UpvoteUsers.h */,
-				8ECFFE45157D73BF007CCA73 /* UpvoteUsers.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -1503,7 +1519,7 @@
 				8E24E1C815B8FA33009E3461 /* switchUnlock.png in Resources */,
 				8E24E1C915B8FA33009E3461 /* switchUnlock@2x.png in Resources */,
 				8ECAA78415B9DFCF007F4F8E /* AddContactTableViewCell.xib in Resources */,
-				8ECAA78615B9DFCF007F4F8E /* EmailSendToContactsViewController.xib in Resources */,
+				8ECAA78615B9DFCF007F4F8E /* ShareWithContactsViewController.xib in Resources */,
 				8ECAA78815B9DFCF007F4F8E /* RemoveContactTableViewCell.xib in Resources */,
 				8ECAA78915B9DFCF007F4F8E /* zeroEmailContactsArrowMessage@2x.png in Resources */,
 				8ECAA79715B9FFED007F4F8E /* searchContactsAvatar.png in Resources */,
@@ -1560,7 +1576,6 @@
 				8E90B802156E898700C840B5 /* NSDate+DateFromBSONString.m in Sources */,
 				8EF851B71570317D002335A3 /* DashboardEntry.m in Sources */,
 				8EDB32B115792688007D7106 /* VideoCardController.m in Sources */,
-				8ECFFE46157D73BF007CCA73 /* UpvoteUsers.m in Sources */,
 				8EB6D81315800F550060202D /* Creator.m in Sources */,
 				8EB6D81615800FCF0060202D /* Frame.m in Sources */,
 				8E068B86158843650069FD01 /* ExploreRollsTableViewManager.m in Sources */,
@@ -1617,11 +1632,12 @@
 				8E24E1B515B8F614009E3461 /* CustomTextField.m in Sources */,
 				8E24E1BC15B8F8C5009E3461 /* CustomSwitch.m in Sources */,
 				8ECAA78315B9DFCF007F4F8E /* AddContactTableViewCell.m in Sources */,
-				8ECAA78515B9DFCF007F4F8E /* EmailSendToContactsViewController.m in Sources */,
+				8ECAA78515B9DFCF007F4F8E /* ShareWithContactsViewController.m in Sources */,
 				8ECAA78715B9DFCF007F4F8E /* RemoveContactTableViewCell.m in Sources */,
 				8ED420FF15BDB4550032589B /* ShelbySocialViewController.m in Sources */,
 				8EF2DD0E15C1E0A400E77F0F /* VideoPlayerViewController.m in Sources */,
 				8EE9BBCE15C47CED00A62267 /* Video.m in Sources */,
+				8E2996F915C9CF8D0047B07F /* UpvoteUsers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

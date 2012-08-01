@@ -11,7 +11,7 @@
 #import <MessageUI/MessageUI.h>
 
 @class NewRollViewController;
-@interface EmailSendToContactsViewController : UIViewController
+@interface ShareWithContactsViewController : UIViewController
 <
 
 UITableViewDataSource,

@@ -1,8 +1,8 @@
 //
 //  UpvoteUsers.h
-//  Shelby.tv
+//  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 6/4/12.
+//  Created by Arthur Ariel Sabintsev on 8/1/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
@@ -13,10 +13,19 @@
 
 @interface UpvoteUsers : NSManagedObject
 
-@property (nonatomic, retain) NSString * upvoterID;
 @property (nonatomic, retain) NSString * nickname;
-@property (nonatomic, retain) NSString * userImage;
 @property (nonatomic, retain) NSString * rollID;
-@property (nonatomic, retain) Frame *frame;
+@property (nonatomic, retain) NSString * upvoterID;
+@property (nonatomic, retain) NSString * userImage;
+@property (nonatomic, retain) NSString * frameID;
+@property (nonatomic, retain) NSSet *frame;
+@end
+
+@interface UpvoteUsers (CoreDataGeneratedAccessors)
+
+- (void)addFrameObject:(Frame *)value;
+- (void)removeFrameObject:(Frame *)value;
+- (void)addFrame:(NSSet *)values;
+- (void)removeFrame:(NSSet *)values;
 
 @end
