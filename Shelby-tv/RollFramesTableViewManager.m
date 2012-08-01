@@ -301,7 +301,7 @@
         [cell.rollLabel setText:frame.roll.title];
         
         // Populate nickname label
-        [cell.nicknameLabel setText:frame.creator.nickname];
+        [cell.videoTitleLabel setText:frame.video.title];
         
         // Connect Comment Button
         [cell.commentButton addTarget:self action:@selector(comment:) forControlEvents:UIControlEventTouchUpInside];

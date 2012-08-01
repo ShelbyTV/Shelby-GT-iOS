@@ -58,7 +58,7 @@
 							<object class="IBUILabel" id="905471054">
 								<reference key="NSNextResponder" ref="572246272"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{46, 3}, {110, 21}}</string>
+								<string key="NSFrame">{{46, 3}, {160, 21}}</string>
 								<reference key="NSSuperview" ref="572246272"/>
 								<reference key="NSNextKeyView" ref="956925977"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -90,7 +90,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{46, 16}, {110, 20}}</string>
 								<reference key="NSSuperview" ref="572246272"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="237541641"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -199,6 +199,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{309, 40}, {1, 132}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -338,14 +339,6 @@
 			<array class="NSMutableArray" key="connectionRecords">
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">nicknameLabel</string>
-						<reference key="source" ref="191373211"/>
-						<reference key="destination" ref="905471054"/>
-					</object>
-					<int key="connectionID">47</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">userImageView</string>
 						<reference key="source" ref="191373211"/>
 						<reference key="destination" ref="531078807"/>
@@ -416,6 +409,14 @@
 					</object>
 					<int key="connectionID">56</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">videoTitleLabel</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="905471054"/>
+					</object>
+					<int key="connectionID">72</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -476,7 +477,7 @@
 						<int key="objectID">46</int>
 						<reference key="object" ref="905471054"/>
 						<reference key="parent" ref="572246272"/>
-						<string key="objectName">nicknameLabel</string>
+						<string key="objectName">videoTitleLabel</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">45</int>
@@ -575,7 +576,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">70</int>
+			<int key="maxID">72</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

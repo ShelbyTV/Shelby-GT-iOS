@@ -279,7 +279,7 @@
         [cell.rollLabel setText:dashboardEntry.frame.roll.title];
         
         // Populate nickname label
-        [cell.nicknameLabel setText:dashboardEntry.frame.creator.nickname];
+        [cell.videoTitleLabel setText:dashboardEntry.frame.video.title];
         
         // Connect Comment Button
         [cell.commentButton addTarget:self action:@selector(comment:) forControlEvents:UIControlEventTouchUpInside];

@@ -22,7 +22,7 @@
 @synthesize commentButton = _commentButton;
 @synthesize rollButton = _rollButton;
 @synthesize shareButton = _shareButton;
-@synthesize nicknameLabel = _nicknameLabel;
+@synthesize videoTitleLabel = _videoTitleLabel;
 @synthesize rollLabel = _rollLabel;
 @synthesize createdAtLabel = _createdAtLabel;
 @synthesize upvotedUserZero = _upvotedUserZero;
@@ -46,7 +46,7 @@
     self.commentButton = nil;
     self.rollButton = nil;
     self.shareButton = nil;
-    self.nicknameLabel = nil;
+    self.videoTitleLabel = nil;
     self.rollLabel = nil;
     self.createdAtLabel = nil;
     self.upvotedUserZero = nil;
@@ -69,7 +69,7 @@
     // Customize Labels (all other label customization in VideCardCell.xib)
     [self.upvoteButton.titleLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:16.0f]];
     [self.commentButton.titleLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:16.0f]];
-    [self.nicknameLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:15.0f]];
+    [self.videoTitleLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:15.0f]];
     [self.rollLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:10.0f]];
     [self.createdAtLabel setFont:[UIFont fontWithName:@"Ubuntu-Bold" size:10.0f]];
     
