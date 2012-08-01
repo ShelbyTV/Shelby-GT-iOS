@@ -8,7 +8,8 @@
 
 #import "AppDelegate.h"
 
-// Analytics
+// Frameworks
+#import <AVFoundation/AVFoundation.h>
 #import <Crashlytics/Crashlytics.h>
 
 // Controllers
@@ -64,6 +65,11 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     return [[[SocialFacade sharedInstance] facebook] handleOpenURL:url];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

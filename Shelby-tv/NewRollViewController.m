@@ -239,11 +239,11 @@
     
     if ( [SocialFacade sharedInstance].firstTimeScanningAddressBook ) {
         
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Shelby wants to access your Address Book"
-                                                            message:@"Will you let her in!?"
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Allow Access to Contacts?"
+                                                            message:@"To invite friends to this Roll, Shelby needs to send the chosen contacts email addresses to its server.\n\nEmail addreses are sent securely and never saved."
                                                            delegate:self
-                                                  cancelButtonTitle:@"HELL NAH!"
-                                                  otherButtonTitles:@"Let her at it!", nil];
+                                                  cancelButtonTitle:@"Don't Allow"
+                                                  otherButtonTitles:@"Allow", nil];
         
         [alertView show];
         
