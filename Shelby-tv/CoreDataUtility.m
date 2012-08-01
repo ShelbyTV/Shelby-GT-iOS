@@ -30,10 +30,6 @@
            forIDKey:(NSString*)entityIDKey 
     existsInContext:(NSManagedObjectContext*)context;
 
-+ (id)checkIfUpvoteUserWithIDValue:(NSString*)upvoterID
-                    forFrameWithID:(NSString*)frameID
-                   existsInContext:(NSManagedObjectContext*)context;
-
 /// Store shelbyUser data in Core Data
 + (void)storeParsedData:(NSDictionary*)parsedDictionary forShelbyUserInContext:(NSManagedObjectContext*)context;
 
@@ -529,33 +525,6 @@ static CoreDataUtility *sharedInstance = nil;
     }
 
     return [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
-}
-
-+ (id)checkIfUpvoteUserWithIDValue:(NSString *)upvoterID
-                    forFrameWithID:(NSString *)frameID
-                   existsInContext:(NSManagedObjectContext *)context
-{
-    
-    // Create fetch request
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setReturnsObjectsAsFaults:NO];
-    
-    // Fetch messages data
-    NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:context];
-    [request setEntity:description];
-    
-    // Only include objects that exist (i.e. entityIDKey and entityIDValue's must exist)
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@ AND %K == %@", CoreDataUpvoteUserID, upvoterID, CoreDataUpvoteUserFrameID, frameID];
-    [request setPredicate:predicate];
-    
-    // Execute request that returns array with one object, the requested entity
-    NSArray *array = [context executeFetchRequest:request error:nil];
-    
-    if ( [array count] ) {
-        return [array objectAtIndex:0];
-    }
-    
-    return [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:context];
 }
 
 #pragma mark - Private Methods
@@ -1121,21 +1090,14 @@ static CoreDataUtility *sharedInstance = nil;
     
     for ( NSUInteger i = 0; i < [upvoteUsersArray count]; i++ ) {
         
-        NSManagedObjectContext *context = frame.managedObjectContext;
-        
         BOOL voted = [CoreDataUtility checkIfUserUpvotedInFrame:frame];
         
         if ( NO == voted ) {
-            
-            UpvoteUsers *upvoteUsers  = [self checkIfUpvoteUserWithIDValue:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"id"]
-                                                            forFrameWithID:frame.frameID
-                                                           existsInContext:context];
+        
+            UpvoteUsers *upvoteUsers  = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:frame.managedObjectContext];
             
             NSString *upvoterID = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"id"]];
             [upvoteUsers setValue:upvoterID forKey:CoreDataUpvoteUserID];
-            
-            NSString *frameID = frame.frameID;
-            [upvoteUsers setValue:frameID forKey:CoreDataUpvoteUserFrameID];
             
             NSString *nickname = [NSString testForNull:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"nickname"]];
             [upvoteUsers setValue:nickname forKey:CoreDataUpvoteUsersNickname];

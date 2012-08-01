@@ -93,7 +93,6 @@
 
 // UpvoteUsers Attribute Constants
 #define CoreDataUpvoteUserID                    @"upvoterID"
-#define CoreDataUpvoteUserFrameID               @"frameID"
 #define CoreDataUpvoteUsersNickname             @"nickname"
 #define CoreDataUpvoteUsersRollID               @"rollID"
 #define CoreDataUpvoteUsersImage                @"userImage"

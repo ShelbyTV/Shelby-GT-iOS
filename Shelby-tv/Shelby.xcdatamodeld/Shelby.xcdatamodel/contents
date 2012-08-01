@@ -77,7 +77,6 @@
         <attribute name="watchLaterRollID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="UpvoteUsers" representedClassName="UpvoteUsers" syncable="YES">
-        <attribute name="frameID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rollID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="upvoterID" optional="YES" attributeType="String" syncable="YES"/>

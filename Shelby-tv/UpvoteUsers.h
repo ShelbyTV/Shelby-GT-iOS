@@ -17,7 +17,6 @@
 @property (nonatomic, retain) NSString * rollID;
 @property (nonatomic, retain) NSString * upvoterID;
 @property (nonatomic, retain) NSString * userImage;
-@property (nonatomic, retain) NSString * frameID;
 @property (nonatomic, retain) NSSet *frame;
 @end
 

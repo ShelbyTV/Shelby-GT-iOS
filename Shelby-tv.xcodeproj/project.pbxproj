@@ -43,7 +43,7 @@
 		8E24E1C715B8FA33009E3461 /* switchLock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1C115B8FA33009E3461 /* switchLock@2x.png */; };
 		8E24E1C815B8FA33009E3461 /* switchUnlock.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1C215B8FA33009E3461 /* switchUnlock.png */; };
 		8E24E1C915B8FA33009E3461 /* switchUnlock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E1C315B8FA33009E3461 /* switchUnlock@2x.png */; };
-		8E2996F915C9CF8D0047B07F /* UpvoteUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2996F815C9CF8D0047B07F /* UpvoteUsers.m */; };
+		8E2996FC15C9D54D0047B07F /* UpvoteUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2996FB15C9D54D0047B07F /* UpvoteUsers.m */; };
 		8E2A8EAF159135970028712C /* StreamTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2A8EAE159135970028712C /* StreamTableViewManager.m */; };
 		8E3457871551BC9200FEFC9D /* NSString+TypedefConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3457861551BC9200FEFC9D /* NSString+TypedefConversion.m */; };
 		8E44DC0A15B5E8610035B3CF /* NewRollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E44DC0815B5E8610035B3CF /* NewRollViewController.m */; };
@@ -299,8 +299,8 @@
 		8E24E1C115B8FA33009E3461 /* switchLock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switchLock@2x.png"; sourceTree = "<group>"; };
 		8E24E1C215B8FA33009E3461 /* switchUnlock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switchUnlock.png; sourceTree = "<group>"; };
 		8E24E1C315B8FA33009E3461 /* switchUnlock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switchUnlock@2x.png"; sourceTree = "<group>"; };
-		8E2996F715C9CF8D0047B07F /* UpvoteUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpvoteUsers.h; sourceTree = "<group>"; };
-		8E2996F815C9CF8D0047B07F /* UpvoteUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpvoteUsers.m; sourceTree = "<group>"; };
+		8E2996FA15C9D54D0047B07F /* UpvoteUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpvoteUsers.h; sourceTree = "<group>"; };
+		8E2996FB15C9D54D0047B07F /* UpvoteUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpvoteUsers.m; sourceTree = "<group>"; };
 		8E2A8EAD159135970028712C /* StreamTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamTableViewManager.h; sourceTree = "<group>"; };
 		8E2A8EAE159135970028712C /* StreamTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamTableViewManager.m; sourceTree = "<group>"; };
 		8E3457851551BC9200FEFC9D /* NSString+TypedefConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TypedefConversion.h"; sourceTree = "<group>"; };
@@ -1264,9 +1264,9 @@
 			children = (
 				8EE9BBCC15C47CED00A62267 /* Video.h */,
 				8EE9BBCD15C47CED00A62267 /* Video.m */,
+				8E2996FA15C9D54D0047B07F /* UpvoteUsers.h */,
+				8E2996FB15C9D54D0047B07F /* UpvoteUsers.m */,
 				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
-				8E2996F715C9CF8D0047B07F /* UpvoteUsers.h */,
-				8E2996F815C9CF8D0047B07F /* UpvoteUsers.m */,
 				8E5F039B15AD02A700DAEEBE /* Roll.h */,
 				8E5F039C15AD02A700DAEEBE /* Roll.m */,
 				8E88605815B3FC360048FED8 /* ShelbyUser.h */,
@@ -1637,7 +1637,7 @@
 				8ED420FF15BDB4550032589B /* ShelbySocialViewController.m in Sources */,
 				8EF2DD0E15C1E0A400E77F0F /* VideoPlayerViewController.m in Sources */,
 				8EE9BBCE15C47CED00A62267 /* Video.m in Sources */,
-				8E2996F915C9CF8D0047B07F /* UpvoteUsers.m in Sources */,
+				8E2996FC15C9D54D0047B07F /* UpvoteUsers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

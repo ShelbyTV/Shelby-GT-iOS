@@ -16,7 +16,6 @@
 @dynamic rollID;
 @dynamic upvoterID;
 @dynamic userImage;
-@dynamic frameID;
 @dynamic frame;
 
 @end
