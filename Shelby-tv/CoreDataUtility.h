@@ -91,7 +91,7 @@
 /**
 Check if user already voted for a specific frame
 */
-+ (BOOL)checkIfUserUpvotedInFrame:(Frame*)frame;
++ (BOOL)checkIfUser:(NSString*)userID upvotedInFrame:(Frame*)frame;
 
 #pragma mark - SAVE
 

@@ -313,7 +313,7 @@
         [cell.shareButton addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
         
         // Connect Heart/Unheart button (depends if user already liked video)
-        BOOL upvoted = [CoreDataUtility checkIfUserUpvotedInFrame:frame];
+        BOOL upvoted = [CoreDataUtility checkIfUser:[SocialFacade sharedInstance].shelbyCreatorID upvotedInFrame:frame];
         
         if ( upvoted ) { // Make sure Heart is Red and user is able to Downvote
             

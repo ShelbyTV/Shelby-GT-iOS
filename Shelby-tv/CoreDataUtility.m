@@ -356,7 +356,7 @@ static CoreDataUtility *sharedInstance = nil;
     
 }
 
-+ (BOOL)checkIfUserUpvotedInFrame:(Frame *)frame
++ (BOOL)checkIfUser:(NSString *)userID upvotedInFrame:(Frame *)frame
 {
     
     BOOL upvoted = NO;
@@ -382,7 +382,7 @@ static CoreDataUtility *sharedInstance = nil;
             
             for (UpvoteUsers *upvoteUsers in [fetchedframe upvoteUsers]) {
                 
-                if ( [upvoteUsers.upvoterID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) {
+                if ( [upvoteUsers.upvoterID isEqualToString:userID] ) {
                     
                     upvoted = YES;
                     
@@ -1090,7 +1090,8 @@ static CoreDataUtility *sharedInstance = nil;
     
     for ( NSUInteger i = 0; i < [upvoteUsersArray count]; i++ ) {
         
-        BOOL voted = [CoreDataUtility checkIfUserUpvotedInFrame:frame];
+        BOOL voted = [CoreDataUtility checkIfUser:[[upvoteUsersArray objectAtIndex:i] valueForKey:@"id"]
+                                   upvotedInFrame:frame];
         
         if ( NO == voted ) {
         
