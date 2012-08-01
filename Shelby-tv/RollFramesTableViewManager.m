@@ -385,6 +385,7 @@
     
     NSUInteger upvoteCount = [button.titleLabel.text intValue];
     upvoteCount++;
+    frame.upvotersCount = [NSNumber numberWithInt:upvoteCount];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
@@ -433,6 +434,7 @@
     
     NSUInteger upvoteCount = [button.titleLabel.text intValue];
     upvoteCount--;
+    frame.upvotersCount = [NSNumber numberWithInt:upvoteCount];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
@@ -474,7 +476,7 @@
     NSInteger rowOfTheCell = [pathOfTheCell row];
     NSIndexPath *rowToReload = [NSIndexPath indexPathForRow:rowOfTheCell inSection:sectionOfTheCell];
     NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
-    [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationTop];
     
 }
 

@@ -370,6 +370,7 @@
     // Increase upvoteCount by 1
     NSUInteger upvoteCount = [button.titleLabel.text intValue];
     upvoteCount++;
+    frame.upvotersCount = [NSNumber numberWithInt:upvoteCount];
     
     // Change button state
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -418,6 +419,7 @@
     // Decrease upvoteCount by 1
     NSUInteger upvoteCount = [button.titleLabel.text intValue];
     upvoteCount--;
+    frame.upvotersCount = [NSNumber numberWithInt:upvoteCount];
     
     // Change button state
     dispatch_async(dispatch_get_main_queue(), ^{
