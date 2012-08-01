@@ -31,34 +31,34 @@
     existsInContext:(NSManagedObjectContext*)context;
 
 /// Store shelbyUser data in Core Data
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary forShelbyUserInContext:(NSManagedObjectContext*)context;
++ (void)storeParsedDataForShelbyUser:(NSDictionary*)parsedDictionary;
 
 /// Store rollsFollowing data in Core Data
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary forRollsFollowingInContext:(NSManagedObjectContext*)context;
++ (void)storeParsedDataForRollsFollowing:(NSDictionary*)parsedDictionary;
 
 /// Store exploreRolls data in Core Data
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary forExploreRollsInContext:(NSManagedObjectContext*)context;
++ (void)storeParsedDataForExploreRolls:(NSDictionary*)parsedDictionary;
 
 /// Store new/created roll data in Core Data
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary forCreatedRollInContext:(NSManagedObjectContext*)context;
++ (void)storeParsedDataForCreatedRoll:(NSDictionary*)parsedDictionary;
 
 /// Store dashboardEntry data in Core Data
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext*)context;
++ (void)storeParsedDataForDashboardEntry:(NSDictionary*)parsedDictionary;
 
-/// Store frame data in Core Data
-+ (void)storeFrame:(Frame*)frame fromFrameArray:(NSArray*)frameArray;
+/// Store multiple frames in Core Data
++ (void)storeParsedDataForFrames:(NSDictionary*)parsedDictionary;
 
-/// Store multiples frame data in Core Data
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary forFramesInContext:(NSManagedObjectContext*)context;
-
-/// Store conversation/message data in Core Data
-+ (void)storeParsedData:(NSDictionary*)parsedDictionary forConversationInContext:(NSManagedObjectContext*)context;
+/// Store conversation and message data in Core Data
++ (void)storeParsedDataForConversation:(NSDictionary*)parsedDictionary;
 
 /// Store frame.conversations data in Core Data
 + (void)storeConversation:(Conversation*)conversation fromFrameArray:(NSArray*)frameArray;
 
 /// Store frame.conversations.messages data in Core Data
 + (void)storeMessagesFromConversation:(Conversation*)conversation withConversationsArray:(NSArray*)conversationsArray;
+
+/// Store frame data in Core Data
++ (void)storeFrame:(Frame*)frame fromFrameArray:(NSArray*)frameArray;
 
 /// Store roll data in Core Data
 + (void)storeRoll:(Roll*)roll fromFrameArray:(NSArray*)frameArray;
@@ -109,31 +109,31 @@ static CoreDataUtility *sharedInstance = nil;
     switch ( requestType ) {
             
         case APIRequestType_PostToken:
-            [self storeParsedData:parsedDictionary forShelbyUserInContext:context];
+            [self storeParsedDataForShelbyUser:parsedDictionary];
             break;
             
         case APIRequestType_GetStream:
-            [self storeParsedData:parsedDictionary forDashboardEntryInContext:context];
+            [self storeParsedDataForDashboardEntry:parsedDictionary];
             break;
             
         case APIRequestType_GetRollsFollowing:
-            [self storeParsedData:parsedDictionary forRollsFollowingInContext:context];
+            [self storeParsedDataForRollsFollowing:parsedDictionary];
             break;
             
         case APIRequestType_GetExploreRolls:
-            [self storeParsedData:parsedDictionary forExploreRollsInContext:context];
+            [self storeParsedDataForExploreRolls:parsedDictionary];
             break;
             
         case APIRequestType_GetRollFrames:
-            [self storeParsedData:parsedDictionary forFramesInContext:context];
+            [self storeParsedDataForFrames:parsedDictionary];
             break;
        
         case APIRequestType_PostCreateRoll:
-            [self storeParsedData:parsedDictionary forCreatedRollInContext:context];
+            [self storeParsedDataForCreatedRoll:parsedDictionary];
             break;
             
         case APIRequestType_PostMessage:
-            [self storeParsedData:parsedDictionary forConversationInContext:context];
+            [self storeParsedDataForConversation:parsedDictionary];
             break;
             
         default:
@@ -528,13 +528,13 @@ static CoreDataUtility *sharedInstance = nil;
 }
 
 #pragma mark - Private Methods
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary forShelbyUserInContext:(NSManagedObjectContext *)context
++ (void)storeParsedDataForShelbyUser:(NSDictionary *)parsedDictionary
 {
     
     ShelbyUser *shelbyUser = [self checkIfEntity:CoreDataEntityShelbyUser
                                              withIDValue:[parsedDictionary valueForKey:@"id"]
                                                 forIDKey:CoreDataShelbyUserID
-                                         existsInContext:context];
+                                         existsInContext:[CoreDataUtility sharedInstance].managedObjectContext];
     
     NSDictionary *resultsDictionary = [parsedDictionary valueForKey:APIRequest_Result];
     
@@ -587,10 +587,10 @@ static CoreDataUtility *sharedInstance = nil;
     }
    
         
-    [self saveContext:context];
+    [self saveContext:[CoreDataUtility sharedInstance].managedObjectContext];
 }
 
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary forRollsFollowingInContext:(NSManagedObjectContext *)context
++ (void)storeParsedDataForRollsFollowing:(NSDictionary *)parsedDictionary
 {
     NSArray *resultsArray = [parsedDictionary valueForKey:APIRequest_Result];
     
@@ -611,7 +611,7 @@ static CoreDataUtility *sharedInstance = nil;
             Roll *roll = [self checkIfEntity:CoreDataEntityRoll
                                  withIDValue:[[resultsArray objectAtIndex:i] valueForKey:@"id"]
                                     forIDKey:CoreDataRollID
-                             existsInContext:context];
+                             existsInContext:[CoreDataUtility sharedInstance].managedObjectContext];
         
             NSString *rollID = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
             [roll setValue:rollID forKey:CoreDataRollID];
@@ -677,10 +677,10 @@ static CoreDataUtility *sharedInstance = nil;
     }
         
     
-    [self saveContext:context];
+    [self saveContext:[CoreDataUtility sharedInstance].managedObjectContext];
 }
 
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary forExploreRollsInContext:(NSManagedObjectContext *)context
++ (void)storeParsedDataForExploreRolls:(NSDictionary *)parsedDictionary
 {
     NSArray *resultsArray = [parsedDictionary valueForKey:APIRequest_Result];
     
@@ -689,7 +689,7 @@ static CoreDataUtility *sharedInstance = nil;
         Roll *roll = [self checkIfEntity:CoreDataEntityRoll
                              withIDValue:[[resultsArray objectAtIndex:i] valueForKey:@"id"]
                                 forIDKey:CoreDataRollID
-                         existsInContext:context];
+                         existsInContext:[CoreDataUtility sharedInstance].managedObjectContext];
         
         NSString *rollID = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
         [roll setValue:rollID forKey:CoreDataRollID];
@@ -722,15 +722,15 @@ static CoreDataUtility *sharedInstance = nil;
     
     }
     
-    [self saveContext:context];
+    [self saveContext:[CoreDataUtility sharedInstance].managedObjectContext];
     
 }
 
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary forCreatedRollInContext:(NSManagedObjectContext *)context
++ (void)storeParsedDataForCreatedRoll:(NSDictionary *)parsedDictionary
 {
     NSArray *resultsArray = [parsedDictionary valueForKey:APIRequest_Result];
     
-    Roll *roll = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityRoll inManagedObjectContext:context];
+    Roll *roll = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityRoll inManagedObjectContext:[CoreDataUtility sharedInstance].managedObjectContext];
     
     NSString *rollID = [NSString testForNull:[resultsArray valueForKey:@"id"]];
     [roll setValue:rollID forKey:CoreDataRollID];
@@ -786,11 +786,11 @@ static CoreDataUtility *sharedInstance = nil;
         
     }
 
-    [self saveContext:context];
+    [self saveContext:[CoreDataUtility sharedInstance].managedObjectContext];
     
 }
 
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary forFramesInContext:(NSManagedObjectContext *)context
++ (void)storeParsedDataForFrames:(NSDictionary *)parsedDictionary
 {
     
     NSArray *resultsArray = [[parsedDictionary objectForKey:APIRequest_Result] valueForKey:@"frames"];
@@ -802,22 +802,22 @@ static CoreDataUtility *sharedInstance = nil;
         Frame *frame = [CoreDataUtility checkIfEntity:CoreDataEntityFrame
                                           withIDValue:[frameArray valueForKey:@"id"]
                                              forIDKey:CoreDataFrameID
-                                      existsInContext:context];
+                                      existsInContext:[CoreDataUtility sharedInstance].managedObjectContext];
         
         [self storeFrame:frame fromFrameArray:frameArray];
     }
     
-    [self saveContext:context];
+    [self saveContext:[CoreDataUtility sharedInstance].managedObjectContext];
 }
 
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary forConversationInContext:(NSManagedObjectContext *)context
++ (void)storeParsedDataForConversation:(NSDictionary *)parsedDictionary
 {
     NSArray *resultsArray = [parsedDictionary objectForKey:APIRequest_Result];
     
     Conversation *conversation = [self checkIfEntity:CoreDataEntityConversation
                                          withIDValue:[resultsArray valueForKey:@"id"]
                                             forIDKey:CoreDataFrameConversationID
-                                     existsInContext:context];
+                                     existsInContext:[CoreDataUtility sharedInstance].managedObjectContext];
     
     
     NSArray *messagesArray = [resultsArray valueForKey:@"messages"];
@@ -862,11 +862,11 @@ static CoreDataUtility *sharedInstance = nil;
         
     }
 
-    [CoreDataUtility saveContext:context];
+    [CoreDataUtility saveContext:[CoreDataUtility sharedInstance].managedObjectContext];
     
 }
 
-+ (void)storeParsedData:(NSDictionary *)parsedDictionary forDashboardEntryInContext:(NSManagedObjectContext *)context
++ (void)storeParsedDataForDashboardEntry:(NSDictionary *)parsedDictionary
 {
  
     NSArray *resultsArray = [parsedDictionary objectForKey:APIRequest_Result];
@@ -890,7 +890,7 @@ static CoreDataUtility *sharedInstance = nil;
             DashboardEntry *dashboardEntry = [self checkIfEntity:CoreDataEntityDashboardEntry 
                                                      withIDValue:[[resultsArray objectAtIndex:i] valueForKey:@"id"]
                                                         forIDKey:CoreDataDashboardEntryID 
-                                                 existsInContext:context];
+                                                 existsInContext:[CoreDataUtility sharedInstance].managedObjectContext];
             
             NSString *dashboardID = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"id"]];
             [dashboardEntry setValue:dashboardID forKey:CoreDataDashboardEntryID];
@@ -903,7 +903,7 @@ static CoreDataUtility *sharedInstance = nil;
             Frame *frame = [self checkIfEntity:CoreDataEntityFrame
                                    withIDValue:[frameArray valueForKey:@"id"]
                                       forIDKey:CoreDataFrameID  
-                               existsInContext:context];
+                               existsInContext:[CoreDataUtility sharedInstance].managedObjectContext];
             dashboardEntry.frame = frame;
             
             // Check to make sure messages exist
@@ -917,7 +917,7 @@ static CoreDataUtility *sharedInstance = nil;
         
     }
     
-    [self saveContext:context];
+    [self saveContext:[CoreDataUtility sharedInstance].managedObjectContext];
 }
 
 + (void)storeFrame:(Frame *)frame fromFrameArray:(NSArray *)frameArray
