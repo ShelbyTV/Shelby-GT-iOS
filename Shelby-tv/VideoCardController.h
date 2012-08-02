@@ -9,6 +9,8 @@
 #import "VideoCardCell.h"
 #import "VideoCardExpandedCell.h"
 
+@class GuideTableViewController;
+
 @protocol VideoCardDelegate <NSObject>
 - (void)upvote:(UIButton *)button;
 - (void)downvote:(UIButton *)button;
@@ -23,12 +25,12 @@
 
 @interface VideoCardController : NSObject
 
-- (id)initWithShelbyFrame:(Frame*)frame;
+- (id)initWithShelbyFrame:(Frame*)frame andGuideTableViewController:(GuideTableViewController*)guideController;
 
 - (void)upvote:(UIButton *)button;
 - (void)downvote:(UIButton *)button;
-- (void)comment:(UIButton *)button;
-- (void)roll:(UIButton *)button;
-- (void)share:(UIButton *)button;
+- (void)comment;
+- (void)roll;
+- (void)share;
 
 @end

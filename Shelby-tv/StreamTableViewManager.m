@@ -179,7 +179,6 @@
     
     if ( upvotersCount > 0 ) {
 
-        
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardExpandedCell" owner:self options:nil];
         VideoCardExpandedCell *cell = (VideoCardExpandedCell*)[nib objectAtIndex:0];
         
@@ -277,10 +276,14 @@
         cell.shelbyFrame = dashboardEntry.frame;
         
         // Initialize VideoCardController
-        VideoCardController *videoCardController = [[VideoCardController alloc] initWithShelbyFrame:cell.shelbyFrame];
+        VideoCardController *videoCardController = [[VideoCardController alloc] initWithShelbyFrame:cell.shelbyFrame
+                                                                        andGuideTableViewController:self.guideController];
         
         // Add reference to VideoCardController
         cell.videoCardController = videoCardController;
+        
+        // Add reference to GuideTableViewController
+        cell.guideController = self.guideController;
         
         // Populate roll label
         [cell.rollLabel setText:dashboardEntry.frame.roll.title];
@@ -379,19 +382,19 @@
 - (void)comment:(UIButton *)button
 {
     VideoCardCell *cell = (VideoCardCell*)[button superview];
-    [cell.videoCardController comment:button];
+    [cell.videoCardController comment];
 }
 
 - (void)roll:(UIButton *)button
 {
     VideoCardCell *cell = (VideoCardCell*)[button superview];
-    [cell.videoCardController roll:button];
+    [cell.videoCardController roll];
 }
 
 - (void)share:(UIButton *)button
 {
     VideoCardCell *cell = (VideoCardCell*)[button superview];
-    [cell.videoCardController share:button];
+    [cell.videoCardController share];
 }
 
 @end

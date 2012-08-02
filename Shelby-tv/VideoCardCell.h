@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
-@class VideoCardController;
+@class VideoCardController, GuideTableViewController;
 
 @interface VideoCardCell : UITableViewCell
 
@@ -23,5 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *videoTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rollLabel;
 @property (strong, nonatomic) VideoCardController *videoCardController;
+@property (strong, nonatomic) GuideTableViewController *guideController;
 
 @end

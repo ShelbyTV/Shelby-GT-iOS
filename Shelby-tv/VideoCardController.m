@@ -14,6 +14,7 @@
 #import "SocialFacade.h"
 
 // View Controllers
+#import "GuideTableViewController.h"
 #import "CommentViewController.h"
 #import "RollItViewController.h"
 #import "ShareViewController.h"
@@ -28,6 +29,7 @@
 @interface VideoCardController ()
 
 @property (strong, nonatomic) AppDelegate *appDelegate;
+@property (strong, nonatomic) GuideTableViewController *guideController;
 @property (strong, nonatomic) Frame *shelbyFrame;
 
 @end
@@ -37,11 +39,12 @@
 @synthesize shelbyFrame = _shelbyFrame;
 
 #pragma mark - Initialization Method
-- (id)initWithShelbyFrame:(Frame*)frame
+- (id)initWithShelbyFrame:(Frame*)frame andGuideTableViewController:(GuideTableViewController *)guideController
 {
     if ( self = [super init] ) {
         
         self.shelbyFrame = frame;
+        self.guideController = guideController;
         self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         
     }
@@ -166,28 +169,25 @@
     
 }
 
-- (void)comment:(UIButton*)button
+- (void)comment
 {
     [[Panhandler sharedInstance] recordEvent];
     CommentViewController *commentViewController = [[CommentViewController alloc] initWithNibName:@"CommentViewController" bundle:nil andFrame:self.shelbyFrame];
-    [self.appDelegate.menuController.navigationController pushViewController:commentViewController animated:YES];
-    [self.appDelegate.menuController.navigationController setNavigationBarHidden:NO];
+    [self.guideController.navigationController pushViewController:commentViewController animated:YES];
 }
 
-- (void)roll:(UIButton*)button
+- (void)roll
 {
     [[Panhandler sharedInstance] recordEvent];
     RollItViewController *rollItViewController = [[RollItViewController alloc] initWithNibName:@"RollItViewController" bundle:nil andFrame:self.shelbyFrame];
-    [self.appDelegate.menuController.navigationController pushViewController:rollItViewController animated:YES];
-    [self.appDelegate.menuController.navigationController setNavigationBarHidden:NO];
+    [self.guideController.navigationController pushViewController:rollItViewController animated:YES];
 }
 
-- (void)share:(UIButton*)button
+- (void)share
 {
     [[Panhandler sharedInstance] recordEvent];
     ShareViewController *shareViewController = [[ShareViewController alloc] initWithNibName:@"ShareViewController" bundle:nil andFrame:self.shelbyFrame];
-    [self.appDelegate.menuController.navigationController pushViewController:shareViewController animated:YES];
-    [self.appDelegate.menuController.navigationController setNavigationBarHidden:NO];
+    [self.guideController.navigationController pushViewController:shareViewController animated:YES];
 }
 
 @end

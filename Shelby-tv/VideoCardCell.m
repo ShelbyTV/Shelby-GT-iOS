@@ -25,6 +25,7 @@
 @synthesize rollLabel = _rollLabel;
 @synthesize createdAtLabel = _createdAtLabel;
 @synthesize videoCardController = _videoCardController;
+@synthesize guideController = _guideController;
 
 #pragma mark - Memory Deallocation Methods
 - (void)dealloc

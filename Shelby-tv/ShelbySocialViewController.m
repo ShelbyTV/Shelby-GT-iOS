@@ -27,20 +27,6 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    // Required only for pushing NewRollViewController from RollItViewController
-    [self.navigationController setNavigationBarHidden:NO];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
-}
-
 - (void)addCustomBackButton
 {
     UIButton *backBarButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 51, 30)];
