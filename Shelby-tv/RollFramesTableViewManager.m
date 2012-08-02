@@ -234,7 +234,7 @@
                     }
                 }
                 
-                
+                [cell setNeedsLayout];
                 return cell;
                 
             } else {
@@ -254,6 +254,7 @@
                     }
                 }
                 
+                [cell setNeedsLayout];
                 return cell;
                 
             }
