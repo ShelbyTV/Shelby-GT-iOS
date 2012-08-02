@@ -166,7 +166,7 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrame">{{5, 4}, {305, 78}}</string>
+						<string key="NSFrame">{{5, 4}, {305, 37}}</string>
 						<reference key="NSSuperview" ref="1025707317"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="267738234"/>
@@ -181,7 +181,7 @@
 					<object class="IBUIImageView" id="223644521">
 						<reference key="NSNextResponder" ref="1025707317"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{5, 44}, {305, 127}}</string>
+						<string key="NSFrame">{{5, 41}, {305, 130}}</string>
 						<reference key="NSSuperview" ref="1025707317"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="784593721"/>
@@ -941,7 +941,6 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="commentButton">UIButton</string>
 						<string key="createdAtLabel">UILabel</string>
-						<string key="nicknameLabel">UILabel</string>
 						<string key="originNetworkImageView">UIImageView</string>
 						<string key="rollButton">UIButton</string>
 						<string key="rollLabel">UILabel</string>
@@ -958,10 +957,6 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="createdAtLabel">
 							<string key="name">createdAtLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="nicknameLabel">
-							<string key="name">nicknameLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="originNetworkImageView">
@@ -1008,7 +1003,6 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="commentButton">UIButton</string>
 						<string key="createdAtLabel">UILabel</string>
-						<string key="nicknameLabel">UILabel</string>
 						<string key="originNetworkImageView">UIImageView</string>
 						<string key="rollButton">UIButton</string>
 						<string key="rollLabel">UILabel</string>
@@ -1035,10 +1029,6 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="createdAtLabel">
 							<string key="name">createdAtLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="nicknameLabel">
-							<string key="name">nicknameLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="originNetworkImageView">

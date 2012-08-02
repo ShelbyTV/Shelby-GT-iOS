@@ -105,10 +105,12 @@
     NSIndexPath *pathOfTheCell = [tableView indexPathForCell:cell];
     NSInteger sectionOfTheCell = [pathOfTheCell section];
     NSInteger rowOfTheCell = [pathOfTheCell row];
+    NSInteger nextRowOfTheCell = [pathOfTheCell row]+1;
     NSIndexPath *rowToReload = [NSIndexPath indexPathForRow:rowOfTheCell inSection:sectionOfTheCell];
-    NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
-    [tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
-    
+    NSIndexPath *nextRowToReload = [NSIndexPath indexPathForRow:nextRowOfTheCell inSection:sectionOfTheCell];
+    NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload,nextRowToReload, nil];
+    [tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationFade];
+
 }
 
 - (void)downvote:(UIButton*)button
@@ -163,10 +165,11 @@
     NSIndexPath *pathOfTheCell = [tableView indexPathForCell:cell];
     NSInteger sectionOfTheCell = [pathOfTheCell section];
     NSInteger rowOfTheCell = [pathOfTheCell row];
+    NSInteger nextRowOfTheCell = [pathOfTheCell row]+1;
     NSIndexPath *rowToReload = [NSIndexPath indexPathForRow:rowOfTheCell inSection:sectionOfTheCell];
-    NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
-    [tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
-    
+    NSIndexPath *nextRowToReload = [NSIndexPath indexPathForRow:nextRowOfTheCell inSection:sectionOfTheCell];
+    NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload,nextRowToReload, nil];
+    [tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationFade];;
 }
 
 - (void)comment

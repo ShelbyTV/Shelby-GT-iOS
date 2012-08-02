@@ -174,13 +174,17 @@
     // Fetch data stored in Core Data
     DashboardEntry *dashboardEntry = [self.coreDataResultsArray objectAtIndex:indexPath.row];
     
+    NSLog(@"Row %d | Count %d", indexPath.row, [self.coreDataResultsArray count]);
+    
     // Create proper cell based on number of upvotes
     NSUInteger upvotersCount = [dashboardEntry.frame.upvotersCount intValue];
     
     if ( upvotersCount > 0 ) {
 
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardExpandedCell" owner:self options:nil];
-        VideoCardExpandedCell *cell = (VideoCardExpandedCell*)[nib objectAtIndex:0];
+        VideoCardExpandedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if ( nil == cell ) cell = (VideoCardExpandedCell*)[nib objectAtIndex:0];
+        
         
         NSUInteger userCounter = 0;
         NSMutableArray *upvoteUsersarray = [NSMutableArray arrayWithArray:[dashboardEntry.frame.upvoteUsers allObjects]];
@@ -214,13 +218,13 @@
             }
         }
         
-        [cell setNeedsLayout];
         return cell;
         
     } else {
         
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"VideoCardCell" owner:self options:nil];
-        VideoCardCell *cell = (VideoCardCell*)[nib objectAtIndex:0];
+        VideoCardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if ( nil == cell ) cell = (VideoCardCell*)[nib objectAtIndex:0];
     
         // Pseudo-hide cell until it's populated with information
         [cell setAlpha:0.0f];
@@ -234,7 +238,6 @@
             }
         }
         
-        [cell setNeedsLayout];
         return cell;
         
     }
