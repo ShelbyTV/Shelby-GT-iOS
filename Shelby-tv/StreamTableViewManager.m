@@ -272,8 +272,14 @@
     // General Initializations
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        // Reference video frame
+        // Add reference to video's frame
         cell.shelbyFrame = dashboardEntry.frame;
+        
+        // Initialize VideoCardController
+        VideoCardController *videoCardController = [[VideoCardController alloc] initWithShelbyFrame:cell.shelbyFrame];
+        
+        // Add reference to VideoCardController
+        cell.videoCardController = videoCardController;
         
         // Populate roll label
         [cell.rollLabel setText:dashboardEntry.frame.roll.title];
@@ -357,134 +363,34 @@
     
 }
 
-
 - (void)upvote:(UIButton *)button
 {
-    
     VideoCardCell *cell = (VideoCardCell*)[button superview];
-    Frame *frame = cell.shelbyFrame;
-    
-    // Grab reference to dashboardEntry and frame
-    ShelbyUser *shelbyUser = [CoreDataUtility fetchShelbyAuthData];
-    
-    // Increase upvoteCount by 1
-    NSUInteger upvoteCount = [button.titleLabel.text intValue];
-    upvoteCount++;
-    frame.upvotersCount = [NSNumber numberWithInt:upvoteCount];
-    
-    // Change button state
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateHighlighted];
-        [button removeTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
-        [button addTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
-        [button setTitle:[NSString stringWithFormat:@"%d", upvoteCount] forState:UIControlStateNormal];
-    });
-    
-    // Store changes in Core Data
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            
-        UpvoteUsers *upvoteUsers = [NSEntityDescription insertNewObjectForEntityForName:CoreDataEntityUpvoteUsers inManagedObjectContext:frame.managedObjectContext];
-        [upvoteUsers setValue:shelbyUser.shelbyID forKey:CoreDataUpvoteUserID];
-        [upvoteUsers setValue:shelbyUser.nickname forKey:CoreDataUpvoteUsersNickname];
-        [upvoteUsers setValue:shelbyUser.userImage forKey:CoreDataUpvoteUsersImage];
-        [upvoteUsers setValue:frame.rollID forKey:CoreDataUpvoteUsersRollID];
-        [frame addUpvoteUsersObject:upvoteUsers];
-        [frame setValue:[NSNumber numberWithInt:upvoteCount] forKey:CoreDataFrameUpvotersCount];
-        
-        [CoreDataUtility saveContext:frame.managedObjectContext];
-
-    });
-    
-    // Ping API with new values
-    VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
-    [controller upvote];
-    
-    // Add image through reload
-    VideoCardCell *currentCell = (VideoCardCell*)[button superview];
-    UITableView *table = (UITableView *)[currentCell superview];
-    NSIndexPath *pathOfTheCell = [table indexPathForCell:cell];
-    NSInteger sectionOfTheCell = [pathOfTheCell section];
-    NSInteger rowOfTheCell = [pathOfTheCell row];
-    NSIndexPath *rowToReload = [NSIndexPath indexPathForRow:rowOfTheCell inSection:sectionOfTheCell];
-    NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
-    [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
+    [cell.videoCardController upvote:button];
 }
 
 - (void)downvote:(UIButton *)button
 {
-    VideoCardExpandedCell *cell = (VideoCardExpandedCell*)[button superview];
-    Frame *frame = cell.shelbyFrame;
-    
-    // Decrease upvoteCount by 1
-    NSUInteger upvoteCount = [button.titleLabel.text intValue];
-    upvoteCount--;
-    frame.upvotersCount = [NSNumber numberWithInt:upvoteCount];
-    
-    // Change button state
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOff"] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageNamed:@"videoCardButtonUpvoteOn"] forState:UIControlStateHighlighted];
-        [button removeTarget:self action:@selector(downvote:) forControlEvents:UIControlEventTouchUpInside];
-        [button addTarget:self action:@selector(upvote:) forControlEvents:UIControlEventTouchUpInside];
-        [button setTitle:[NSString stringWithFormat:@"%d", upvoteCount] forState:UIControlStateNormal];
-    });
-    
-    // Store changes in Core Data
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        
-        NSMutableSet *upvoteUsers = [NSMutableSet setWithSet:frame.upvoteUsers];
-        
-        for (UpvoteUsers *user in [upvoteUsers allObjects]) {
-            
-            if ( [user.upvoterID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) {
-                
-                [frame removeUpvoteUsersObject:user];
-                
-            }
-                
-            [frame setValue:[NSNumber numberWithInt:upvoteCount] forKey:CoreDataFrameUpvotersCount];
-            
-            [CoreDataUtility saveContext:frame.managedObjectContext];
-        }
-    });
-    
-    // Ping API with new values
-    VideoCardController *controller = [[VideoCardController alloc] initWithFrame:frame];
-    [controller downvote];
-    
-    // Remove image through reload
-    VideoCardExpandedCell *currentCell = (VideoCardExpandedCell*)[button superview];
-    UITableView *table = (UITableView *)[currentCell superview];
-    NSIndexPath *pathOfTheCell = [table indexPathForCell:cell];
-    NSInteger sectionOfTheCell = [pathOfTheCell section];
-    NSInteger rowOfTheCell = [pathOfTheCell row];
-    NSIndexPath *rowToReload = [NSIndexPath indexPathForRow:rowOfTheCell inSection:sectionOfTheCell];
-    NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
-    [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationNone];
-    
+    VideoCardCell *cell = (VideoCardCell*)[button superview];
+    [cell.videoCardController downvote:button];
 }
 
 - (void)comment:(UIButton *)button
 {
     VideoCardCell *cell = (VideoCardCell*)[button superview];
-    VideoCardController *controller = [[VideoCardController alloc] initWithFrame:cell.shelbyFrame];
-    [controller comment];
+    [cell.videoCardController comment:button];
 }
 
 - (void)roll:(UIButton *)button
 {
     VideoCardCell *cell = (VideoCardCell*)[button superview];
-    VideoCardController *controller = [[VideoCardController alloc] initWithFrame:cell.shelbyFrame];
-    [controller roll];
+    [cell.videoCardController roll:button];
 }
-
 
 - (void)share:(UIButton *)button
 {
     VideoCardCell *cell = (VideoCardCell*)[button superview];
-    VideoCardController *controller = [[VideoCardController alloc] initWithFrame:cell.shelbyFrame];
-    [controller share];
+    [cell.videoCardController share:button];
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import "VideoCardCell.h"
 
+@class VideoCardController;
+
 @interface VideoCardExpandedCell : VideoCardCell
 
 @property (strong, nonatomic) Frame *shelbyFrame;
@@ -34,5 +36,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *upvotedUserEight;
 @property (weak, nonatomic) IBOutlet UIImageView *upvotedUserNine;
 
+@property (strong, nonatomic) VideoCardController *videoCardController;
 
 @end

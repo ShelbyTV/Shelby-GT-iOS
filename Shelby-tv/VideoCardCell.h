@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
+@class VideoCardController;
+
 @interface VideoCardCell : UITableViewCell
 
 @property (strong, nonatomic) Frame *shelbyFrame;
@@ -20,5 +22,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *createdAtLabel;
 @property (weak, nonatomic) IBOutlet UILabel *videoTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *rollLabel;
+@property (strong, nonatomic) VideoCardController *videoCardController;
 
 @end

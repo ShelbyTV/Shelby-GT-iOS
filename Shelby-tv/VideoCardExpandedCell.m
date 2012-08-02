@@ -35,6 +35,7 @@
 @synthesize upvotedUserSeven = _upvotedUserSeven;
 @synthesize upvotedUserEight = _upvotedUserEight;
 @synthesize upvotedUserNine = _upvotedUserNine;
+@synthesize videoCardController = _videoCardController;
 
 #pragma mark - Memory Deallocation Method
 - (void)dealloc
