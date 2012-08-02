@@ -100,25 +100,15 @@
     [client performRequest:upvoteRequest ofType:APIRequestType_PostUpvote];
     
     // Add image through reload
-    VideoCardCell *currentCell = (VideoCardCell*)[button superview];
-    UITableView *tableView = (UITableView *)[currentCell superview];
-    NSIndexPath *pathOfTheCell = [tableView indexPathForCell:cell];
-    NSInteger sectionOfTheCell = [pathOfTheCell section];
-    NSInteger rowOfTheCell = [pathOfTheCell row];
-    NSInteger nextRowOfTheCell = [pathOfTheCell row]+1;
-    NSIndexPath *rowToReload = [NSIndexPath indexPathForRow:rowOfTheCell inSection:sectionOfTheCell];
-    NSIndexPath *nextRowToReload = [NSIndexPath indexPathForRow:nextRowOfTheCell inSection:sectionOfTheCell];
-    NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload,nextRowToReload, nil];
-    [tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationFade];
-
+    UITableView *tableView = (UITableView *)[cell superview];
+    [tableView reloadData];
 }
 
 - (void)downvote:(UIButton*)button
 {
     
     [[Panhandler sharedInstance] recordEvent];
-    
-    VideoCardExpandedCell *cell = (VideoCardExpandedCell*)[button superview];
+    VideoCardCell *cell = (VideoCardCell*)[button superview];
     
     // Decrease upvoteCount by 1
     NSUInteger upvoteCount = [button.titleLabel.text intValue];
@@ -160,16 +150,8 @@
     [client performRequest:downvoteRequest ofType:APIRequestType_PostDownvote];
     
     // Remove image through reload
-    VideoCardExpandedCell *currentCell = (VideoCardExpandedCell*)[button superview];
-    UITableView *tableView = (UITableView *)[currentCell superview];
-    NSIndexPath *pathOfTheCell = [tableView indexPathForCell:cell];
-    NSInteger sectionOfTheCell = [pathOfTheCell section];
-    NSInteger rowOfTheCell = [pathOfTheCell row];
-    NSInteger nextRowOfTheCell = [pathOfTheCell row]+1;
-    NSIndexPath *rowToReload = [NSIndexPath indexPathForRow:rowOfTheCell inSection:sectionOfTheCell];
-    NSIndexPath *nextRowToReload = [NSIndexPath indexPathForRow:nextRowOfTheCell inSection:sectionOfTheCell];
-    NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload,nextRowToReload, nil];
-    [tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationFade];;
+    UITableView *tableView = (UITableView *)[cell superview];
+    [tableView reloadData];
 }
 
 - (void)comment
