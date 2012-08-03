@@ -168,7 +168,7 @@ static CoreDataUtility *sharedInstance = nil;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setReturnsObjectsAsFaults:NO];
     
-    // Fetch dashboardEntry data
+    // Search dashboardEntry data
     NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext]; 
     NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityDashboardEntry inManagedObjectContext:context];
     [request setEntity:description];
@@ -188,16 +188,16 @@ static CoreDataUtility *sharedInstance = nil;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setReturnsObjectsAsFaults:NO];
     
-    // Fetch dashboardEntry data
+    // Search roll data
     NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext];
     NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityRoll inManagedObjectContext:context];
     [request setEntity:description];
     
-    // Only include messages that belond to this specific conversation
+    // Filter for isExplore daya
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isExplore == %d", YES];
     [request setPredicate:predicate];
     
-    // Execute request that returns array of dashboardEntrys
+    // Execute request that returns array of rolls
     return [context executeFetchRequest:request error:nil];
 }
 
@@ -207,17 +207,86 @@ static CoreDataUtility *sharedInstance = nil;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setReturnsObjectsAsFaults:NO];
     
-    // Fetch dashboardEntry data
+    // Search roll data
     NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext];
     NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityRoll inManagedObjectContext:context];
     [request setEntity:description];
     
-    // Only include messages that belond to this specific conversation
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isMy == %d OR isPersonal == %d", YES, YES];
+    // Filter for isPersonal
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isMy == %d", YES];
     [request setPredicate:predicate];
     
-    // Execute request that returns array of dashboardEntrys
-    return [context executeFetchRequest:request error:nil];
+    // Fetch isMy
+    NSArray *fetchedArray = [context executeFetchRequest:request error:nil];
+    
+    // Create Mutable array with fetchedArray
+    NSMutableArray *sortedArray = [NSMutableArray arrayWithArray:fetchedArray];
+    
+    // Logged in user's Public/'Self-titled' roll
+    NSUInteger publicSwapIndex;
+    Roll *publicSwapRoll;
+    Roll *publicRoll;
+    for (Roll *roll in sortedArray) {
+        
+        if ( [roll.title isEqualToString:[SocialFacade sharedInstance].shelbyNickname] && [roll.creatorID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) {
+            
+            publicRoll = roll;
+            publicSwapIndex = [sortedArray indexOfObject:roll];
+            publicSwapRoll = [sortedArray objectAtIndex:1];
+            
+        }
+        
+    }
+    
+    if (0 != publicSwapIndex) {
+        [sortedArray replaceObjectAtIndex:0 withObject:publicRoll];
+        [sortedArray replaceObjectAtIndex:publicSwapIndex withObject:publicSwapRoll];
+    }
+    
+    // Logged in user's 'Heart' roll
+    NSUInteger heartSwapIndex;
+    Roll *heartSwapRoll;
+    Roll *heartRoll;
+    for (Roll *roll in sortedArray) {
+        
+        if ( [roll.title isEqualToString:@"♥'d Roll"] && [roll.creatorID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) {
+            
+            heartRoll = roll;
+            heartSwapIndex = [sortedArray indexOfObject:roll];
+            heartSwapRoll = [sortedArray objectAtIndex:1];
+
+        }
+        
+    }
+    
+    if (1 != heartSwapIndex) {
+        [sortedArray replaceObjectAtIndex:1 withObject:heartRoll];
+        [sortedArray replaceObjectAtIndex:heartSwapIndex withObject:heartSwapRoll];
+    }
+        
+    
+    // Logged in user's 'Watch Later' roll
+    NSUInteger laterSwapIndex;
+    Roll *laterSwapRoll;
+    Roll *laterRoll;
+    for (Roll *roll in sortedArray) {
+        
+        if ( [roll.title isEqualToString:@"Watch Later"] && [roll.creatorID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) {
+            
+            laterRoll = roll;
+            laterSwapIndex = [sortedArray indexOfObject:roll];
+            laterSwapRoll = [sortedArray objectAtIndex:2];
+            
+        }
+        
+    }
+    
+    if (2 != laterSwapIndex) {
+        [sortedArray replaceObjectAtIndex:2 withObject:laterRoll];
+        [sortedArray replaceObjectAtIndex:laterSwapIndex withObject:laterSwapRoll];
+    }
+    
+    return sortedArray;
 }
 
 + (NSArray*)fetchFriendsRolls
@@ -226,16 +295,16 @@ static CoreDataUtility *sharedInstance = nil;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setReturnsObjectsAsFaults:NO];
     
-    // Fetch dashboardEntry data
+    // Search roll data
     NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext];
     NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityRoll inManagedObjectContext:context];
     [request setEntity:description];
     
-    // Only include messages that belond to this specific conversation
+    // filter for isFriends
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isFriends == %d", YES];
     [request setPredicate:predicate];
     
-    // Execute request that returns array of dashboardEntrys
+    // Execute request that returns array of rolls
     return [context executeFetchRequest:request error:nil];
 }
 
@@ -245,16 +314,16 @@ static CoreDataUtility *sharedInstance = nil;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setReturnsObjectsAsFaults:NO];
     
-    // Fetch dashboardEntry data
+    // Search frames data
     NSManagedObjectContext *context = [[self sharedInstance] managedObjectContext];
     NSEntityDescription *description = [NSEntityDescription entityForName:CoreDataEntityFrame inManagedObjectContext:context];
     [request setEntity:description];
     
-    // Only include the frame that belongs to this specific roll
+    // Filter for rollID
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"rollID == %@", rollID];
     [request setPredicate:predicate];
     
-    // Execute request that returns array of dashboardEntrys
+    // Execute request that returns array of frames
     return [context executeFetchRequest:request error:nil];
 }
 
@@ -1120,7 +1189,7 @@ static CoreDataUtility *sharedInstance = nil;
     if ( rollType == 30 || rollType == 31 || rollType == 50 || rollType == 70) roll.isMy = [NSNumber numberWithBool:YES];
     
     // isPersonal
-    if ( [creatorID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) roll.isPersonal = [NSNumber numberWithBool:YES];
+    if ( [creatorID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) roll.isMy = [NSNumber numberWithBool:YES];
 
 }
 
