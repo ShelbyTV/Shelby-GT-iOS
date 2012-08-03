@@ -74,7 +74,6 @@
 		8E5F039815ACFA2200DAEEBE /* navigationButtonFriendsRollsOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F039015ACFA2200DAEEBE /* navigationButtonFriendsRollsOff@2x.png */; };
 		8E5F039915ACFA2200DAEEBE /* navigationButtonFriendsRollsOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F039115ACFA2200DAEEBE /* navigationButtonFriendsRollsOn.png */; };
 		8E5F039A15ACFA2200DAEEBE /* navigationButtonFriendsRollsOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F039215ACFA2200DAEEBE /* navigationButtonFriendsRollsOn@2x.png */; };
-		8E5F039D15AD02A800DAEEBE /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E5F039C15AD02A700DAEEBE /* Roll.m */; };
 		8E5F03AB15AD119A00DAEEBE /* sharingButtonFacebookOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F039F15AD119A00DAEEBE /* sharingButtonFacebookOff.png */; };
 		8E5F03AC15AD119A00DAEEBE /* sharingButtonFacebookOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03A015AD119A00DAEEBE /* sharingButtonFacebookOff@2x.png */; };
 		8E5F03AD15AD119A00DAEEBE /* sharingButtonFacebookOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5F03A115AD119A00DAEEBE /* sharingButtonFacebookOn.png */; };
@@ -230,6 +229,7 @@
 		8ED31101153601A2002614DF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 8ED310F5153601A2002614DF /* iTunesArtwork */; };
 		8ED420FF15BDB4550032589B /* ShelbySocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED420FE15BDB4550032589B /* ShelbySocialViewController.m */; };
 		8EDB32B115792688007D7106 /* VideoCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB32B015792688007D7106 /* VideoCardController.m */; };
+		8EE337F015CC629300BB5207 /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE337EF15CC629300BB5207 /* Roll.m */; };
 		8EE40A461596354900559484 /* rollsOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE40A441596354900559484 /* rollsOverlay.png */; };
 		8EE40A471596354900559484 /* rollsOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE40A451596354900559484 /* rollsOverlay@2x.png */; };
 		8EE40A4B1596359200559484 /* RollsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE40A4A1596359200559484 /* RollsCell.m */; };
@@ -336,8 +336,6 @@
 		8E5F039015ACFA2200DAEEBE /* navigationButtonFriendsRollsOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonFriendsRollsOff@2x.png"; sourceTree = "<group>"; };
 		8E5F039115ACFA2200DAEEBE /* navigationButtonFriendsRollsOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationButtonFriendsRollsOn.png; sourceTree = "<group>"; };
 		8E5F039215ACFA2200DAEEBE /* navigationButtonFriendsRollsOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonFriendsRollsOn@2x.png"; sourceTree = "<group>"; };
-		8E5F039B15AD02A700DAEEBE /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
-		8E5F039C15AD02A700DAEEBE /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
 		8E5F039F15AD119A00DAEEBE /* sharingButtonFacebookOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharingButtonFacebookOff.png; sourceTree = "<group>"; };
 		8E5F03A015AD119A00DAEEBE /* sharingButtonFacebookOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharingButtonFacebookOff@2x.png"; sourceTree = "<group>"; };
 		8E5F03A115AD119A00DAEEBE /* sharingButtonFacebookOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharingButtonFacebookOn.png; sourceTree = "<group>"; };
@@ -562,6 +560,8 @@
 		8ED420FE15BDB4550032589B /* ShelbySocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbySocialViewController.m; sourceTree = "<group>"; };
 		8EDB32AF15792688007D7106 /* VideoCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCardController.h; sourceTree = "<group>"; };
 		8EDB32B015792688007D7106 /* VideoCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCardController.m; sourceTree = "<group>"; };
+		8EE337EE15CC629300BB5207 /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
+		8EE337EF15CC629300BB5207 /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
 		8EE40A441596354900559484 /* rollsOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollsOverlay.png; sourceTree = "<group>"; };
 		8EE40A451596354900559484 /* rollsOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rollsOverlay@2x.png"; sourceTree = "<group>"; };
 		8EE40A491596359200559484 /* RollsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RollsCell.h; sourceTree = "<group>"; };
@@ -1262,13 +1262,13 @@
 		8EE5065B155CA90700A04F50 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				8EE337EE15CC629300BB5207 /* Roll.h */,
+				8EE337EF15CC629300BB5207 /* Roll.m */,
+				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
 				8EE9BBCC15C47CED00A62267 /* Video.h */,
 				8EE9BBCD15C47CED00A62267 /* Video.m */,
 				8E2996FA15C9D54D0047B07F /* UpvoteUsers.h */,
 				8E2996FB15C9D54D0047B07F /* UpvoteUsers.m */,
-				8EE50660155CA9E800A04F50 /* Shelby.xcdatamodeld */,
-				8E5F039B15AD02A700DAEEBE /* Roll.h */,
-				8E5F039C15AD02A700DAEEBE /* Roll.m */,
 				8E88605815B3FC360048FED8 /* ShelbyUser.h */,
 				8E88605915B3FC360048FED8 /* ShelbyUser.m */,
 				8EC54583158F96310048FEAA /* Conversation.h */,
@@ -1621,7 +1621,6 @@
 				8E78C1C515ABB96E00326EF9 /* ShareViewController.m in Sources */,
 				8E78C1CA15ABB97900326EF9 /* RollItViewController.m in Sources */,
 				8E78C1CF15ABB98000326EF9 /* CommentViewController.m in Sources */,
-				8E5F039D15AD02A800DAEEBE /* Roll.m in Sources */,
 				8E79437F15B0C27400ED4655 /* CommentCell.m in Sources */,
 				8E88605415B3C5320048FED8 /* MBProgressHUD.m in Sources */,
 				8E88605715B3D4AA0048FED8 /* Messages.m in Sources */,
@@ -1638,6 +1637,7 @@
 				8EF2DD0E15C1E0A400E77F0F /* VideoPlayerViewController.m in Sources */,
 				8EE9BBCE15C47CED00A62267 /* Video.m in Sources */,
 				8E2996FC15C9D54D0047B07F /* UpvoteUsers.m in Sources */,
+				8EE337F015CC629300BB5207 /* Roll.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

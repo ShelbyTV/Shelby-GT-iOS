@@ -71,6 +71,8 @@
 /// Store dashboard.frame.video data in Core Data
 + (void)storeVideo:(Video*)video fromFrameArray:(NSArray*)frameArray;
 
++ (void)storeRoll:(Roll*)roll withRollType:(NSUInteger)rollType creatorID:(NSString*)creatorID andPrivacyType:(BOOL)public;
+
 @end
 
 @implementation CoreDataUtility
@@ -211,7 +213,7 @@ static CoreDataUtility *sharedInstance = nil;
     [request setEntity:description];
     
     // Only include messages that belond to this specific conversation
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isMy == %d", YES];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isMy == %d OR isPersonal == %d", YES, YES];
     [request setPredicate:predicate];
     
     // Execute request that returns array of dashboardEntrys
@@ -631,49 +633,14 @@ static CoreDataUtility *sharedInstance = nil;
             NSString *title = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"title"]];
             [roll setValue:title forKey:CoreDataRollTitle];
             
-            roll.isCollaborative = [[resultsArray objectAtIndex:i] valueForKey:@"collaborative"];
-            roll.isGenius = [[resultsArray objectAtIndex:i] valueForKey:@"genius"];
-            roll.isPublic = [[resultsArray objectAtIndex:i] valueForKey:@"public"];
+            NSUInteger rollType = [[[resultsArray objectAtIndex:i] valueForKey:@"roll_type"] intValue];
+            BOOL public = [[[resultsArray objectAtIndex:i] valueForKey:@"public"] boolValue];
             
-            // Set Initial Values
-            roll.isMy = [NSNumber numberWithBool:NO];
-            roll.isFriends = [NSNumber numberWithBool:NO];
-            
-            // Set Separated Conditional Values
-            if ( [roll.isPublic boolValue] && ![roll.isCollaborative boolValue] ) { // Public and Non-Collaborative
-                
-                roll.isFriends = [NSNumber numberWithBool:YES];
-                
-            }
-            
-            if ( [roll.isPublic boolValue] && [roll.isCollaborative boolValue] ) { // Public and Collaborative
-                
-                roll.isMy = [NSNumber numberWithBool:YES];
-             
-            }
-            
-            if ( ![roll.isPublic boolValue] ) { // Private
-                
-                roll.isMy = [NSNumber numberWithBool:YES];
-                
-            }
-                
-            if ( [creatorID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) { //
-                
-                roll.isMy = [NSNumber numberWithBool:YES];
-                
-            }
-            
-            
-        } else {
-            
-            // Do Nothing
-            
+            [CoreDataUtility storeRoll:roll withRollType:rollType creatorID:creatorID andPrivacyType:public];
         }
-    
+        
     }
         
-    
     [self saveContext:[CoreDataUtility sharedInstance].managedObjectContext];
 }
 
@@ -707,12 +674,6 @@ static CoreDataUtility *sharedInstance = nil;
         
         NSString *title = [NSString testForNull:[[resultsArray objectAtIndex:i] valueForKey:@"title"]];
         [roll setValue:title forKey:CoreDataRollTitle];
-        
-        roll.isCollaborative = [[resultsArray objectAtIndex:i] valueForKey:@"collaborative"];
-        
-        roll.isGenius = [[resultsArray objectAtIndex:i] valueForKey:@"genius"];
-        
-        roll.isPublic = [[resultsArray objectAtIndex:i] valueForKey:@"public"];
         
         roll.isExplore = [NSNumber numberWithBool:YES];
     
@@ -749,39 +710,11 @@ static CoreDataUtility *sharedInstance = nil;
     NSString *title = [NSString testForNull:[resultsArray valueForKey:@"title"]];
     [roll setValue:title forKey:CoreDataRollTitle];
     
-    roll.isCollaborative = [resultsArray valueForKey:@"collaborative"];
-    roll.isGenius = [resultsArray valueForKey:@"genius"];
-    roll.isPublic = [resultsArray valueForKey:@"public"];
+    NSUInteger rollType = [[resultsArray valueForKey:@"roll_type"] intValue];
+    BOOL public = [[resultsArray valueForKey:@"public"] boolValue];
     
-    // Set Initial Values
-    roll.isMy = [NSNumber numberWithBool:NO];
-    roll.isFriends = [NSNumber numberWithBool:NO];
+    [CoreDataUtility storeRoll:roll withRollType:rollType creatorID:creatorID andPrivacyType:public];
     
-    // Set Separated Conditional Values
-    if ( [roll.isPublic boolValue] && ![roll.isCollaborative boolValue] ) { // Public and Non-Collaborative
-        
-        roll.isFriends = [NSNumber numberWithBool:YES];
-        
-    }
-    
-    if ( [roll.isPublic boolValue] && [roll.isCollaborative boolValue] ) { // Public and Collaborative
-        
-        roll.isMy = [NSNumber numberWithBool:YES];
-        
-    }
-    
-    if ( ![roll.isPublic boolValue] ) { // Private
-        
-        roll.isMy = [NSNumber numberWithBool:YES];
-        
-    }
-    
-    if ( [creatorID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) { //
-        
-        roll.isMy = [NSNumber numberWithBool:YES];
-        
-    }
-
     [self saveContext:[CoreDataUtility sharedInstance].managedObjectContext];
     
 }
@@ -1169,6 +1102,26 @@ static CoreDataUtility *sharedInstance = nil;
     }
     
     
+}
+
++ (void)storeRoll:(Roll*)roll withRollType:(NSUInteger)rollType creatorID:creatorID andPrivacyType:(BOOL)public
+{
+
+    // Check  and set Public/Private 
+    roll.isPublic = (public) ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO];
+    
+    // isFriends (!public AND special)
+    if ( (public) && (10 <= rollType <= 14) ) roll.isFriends = [NSNumber numberWithBool:YES];
+    
+     // isMy (public || !special)
+    if ( !(public) || !(10 <= rollType <= 14) ) roll.isMy = [NSNumber numberWithBool:YES];
+    
+    // isMy (global_public or genius)
+    if ( rollType == 30 || rollType == 31 || rollType == 50 || rollType == 70) roll.isMy = [NSNumber numberWithBool:YES];
+    
+    // isPersonal
+    if ( [creatorID isEqualToString:[SocialFacade sharedInstance].shelbyCreatorID] ) roll.isPersonal = [NSNumber numberWithBool:YES];
+
 }
 
 #pragma mark - Accessor Methods

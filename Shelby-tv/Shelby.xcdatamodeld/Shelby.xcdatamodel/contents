@@ -52,10 +52,8 @@
         <attribute name="creatorNickname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="followingCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="frameCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="isCollaborative" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isExplore" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isFriends" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isGenius" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isMy" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isPersonal" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isPublic" optional="YES" attributeType="Boolean" syncable="YES"/>

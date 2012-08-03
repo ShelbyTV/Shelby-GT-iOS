@@ -1,8 +1,8 @@
 //
 //  Roll.h
-//  Shelby.tv
+//  Shelby-tv
 //
-//  Created by Arthur Ariel Sabintsev on 7/10/12.
+//  Created by Arthur Ariel Sabintsev on 8/3/12.
 //  Copyright (c) 2012 Shelby.tv. All rights reserved.
 //
 
@@ -18,15 +18,13 @@
 @property (nonatomic, retain) NSNumber * followingCount;
 @property (nonatomic, retain) NSNumber * frameCount;
 @property (nonatomic, retain) NSNumber * isExplore;
-@property (nonatomic, retain) NSNumber * isCollaborative;
-@property (nonatomic, retain) NSNumber * isGenius;
-@property (nonatomic, retain) NSNumber * isMy;
 @property (nonatomic, retain) NSNumber * isFriends;
+@property (nonatomic, retain) NSNumber * isMy;
 @property (nonatomic, retain) NSNumber * isPersonal;
-@property (nonatomic, retain) NSNumber * isPublic;
 @property (nonatomic, retain) NSString * rollID;
 @property (nonatomic, retain) NSString * thumbnailURL;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSNumber * isPublic;
 @property (nonatomic, retain) NSSet *frame;
 @end
 
