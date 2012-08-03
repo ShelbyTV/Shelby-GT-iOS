@@ -274,7 +274,7 @@ UITableViewDelegate
         // Perform graph request with updated token and send results to Shelby
         [self.facebook requestWithGraphPath:@"me" andDelegate:self];
         
-        if (DEBUGMODE)  NSLog(@"\nPersisted Token: %@\nExpiration Date: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"], [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]);
+        DLog(@"\nPersisted Token: %@\nExpiration Date: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"], [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]);
         
     }
     
@@ -297,7 +297,7 @@ UITableViewDelegate
     [defaults setObject:[self.facebook expirationDate] forKey:@"FBExpirationDateKey"];
     [defaults synchronize];
     
-    if (DEBUGMODE)  NSLog(@"\nOriginal Token: %@\nExpiration Date: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"], [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]);
+    DLog(@"\nOriginal Token: %@\nExpiration Date: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"], [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]);
     
     // Extend Token for 60 Days
     [self.facebook extendAccessToken];
@@ -339,7 +339,7 @@ UITableViewDelegate
     [defaults setObject:expiresAt forKey:@"FBExpirationDateKey"];
     [defaults synchronize];
     
-    if (DEBUGMODE) NSLog(@"\nExtended Token: %@\nExpiration Date: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"], [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]);
+    DLog(@"\nExtended Token: %@\nExpiration Date: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"FBAccessTokenKey"], [[NSUserDefaults standardUserDefaults] valueForKey:@"FBExpirationDateKey"]);
     
 }
 
@@ -364,7 +364,7 @@ UITableViewDelegate
     // Perform Shelby Token Swap
     dispatch_async(dispatch_get_main_queue(), ^{
     
-        if ( DEBUGMODE )NSLog(@"Perform Facebook Token Swap with Shelby");
+        DLog(@"Perform Facebook Token Swap with Shelby");
         NSString *shelbyRequestString = [NSString stringWithFormat:APIRequest_PostTokenFacebook, self.facebookID, self.facebook.accessToken];
         NSMutableURLRequest *shelbyRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:shelbyRequestString]]; 
         [shelbyRequest setHTTPMethod:@"POST"];
@@ -436,18 +436,18 @@ UITableViewDelegate
                 switch ( [accounts count] ) {
                         
                     case 0: // No stored Twitter accounts
-                        if (DEBUGMODE) NSLog(@"User has zero stored accounts");
+                        DLog(@"User has zero stored accounts");
                         [self getRequestToken];
                         break;
                         
                     case 1: // One stored Twitter account
-                        if (DEBUGMODE) NSLog(@"User has one stored account");
+                        DLog(@"User has one stored account");
                         self.twitterAccount = [accounts objectAtIndex:0];
                         [self userHasOneStoredTwitterAccount];
                         break;
                         
                     default: // Multiple stored Twitter accounts
-                       if (DEBUGMODE) NSLog(@"User has multiple stored accounts");
+                       DLog(@"User has multiple stored accounts");
                         [self userHasMultipleStoredTwitterAccounts];
                         break;
                         
@@ -534,7 +534,7 @@ UITableViewDelegate
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSData *)data
 {
     // Failed
-    if (DEBUGMODE) NSLog(@"Request Token - Fetch Failure");
+    DLog(@"Request Token - Fetch Failure");
 }
 
 - (void)authenticateTwitterAccount
@@ -598,7 +598,7 @@ UITableViewDelegate
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSData *)data
 {
     // Failed
-    if (DEBUGMODE) NSLog(@"Access Token - Fetch Failure");
+    DLog(@"Access Token - Fetch Failure");
 }
 
 - (void)saveTwitterAccountWithAccessToken:(OAToken *)accessToken
@@ -616,7 +616,7 @@ UITableViewDelegate
         // This completionHandler block is NOT performed on the main thread
         if ( success ) {
 
-            if (DEBUGMODE) NSLog(@"New Account Saved to Store: %@", newAccount.username);
+            DLog(@"New Account Saved to Store: %@", newAccount.username);
             
             // Reverse Auth must be performed on Main Thread.
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -667,7 +667,7 @@ UITableViewDelegate
 - (void)reverseAuthRequestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSData *)data
 {
     // Failed
-    if (DEBUGMODE) NSLog(@"Reverse Auth Request Token - Fetch Failure");
+    DLog(@"Reverse Auth Request Token - Fetch Failure");
 }
 
 
@@ -679,7 +679,7 @@ UITableViewDelegate
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:SocialFacadeTwitterConsumerKey, @"x_reverse_auth_target", reverseAuthRequestResults, @"x_reverse_auth_parameters", nil];
     TWRequest *reverseAuthAccessTokenRequest = [[TWRequest alloc] initWithURL:accessTokenURL parameters:parameters requestMethod:TWRequestMethodPOST];
 
-    if ( DEBUGMODE ) NSLog(@"Request Results: %@",reverseAuthRequestResults);
+    DLog(@"Request Results: %@",reverseAuthRequestResults);
     
     ACAccountType *twitterType = [self.twitterAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     [self.twitterAccountStore requestAccessToAccountsWithType:twitterType withCompletionHandler:^(BOOL granted, NSError *error) {
@@ -694,7 +694,7 @@ UITableViewDelegate
                             // Get results string (e.g., Access Token, Access Token Secret, Twitter Handle)
                             NSString *reverseAuthAccessResults = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
                         
-                            if ( DEBUGMODE ) NSLog(@"Access Results: %@",reverseAuthAccessResults);
+                            DLog(@"Access Results: %@",reverseAuthAccessResults);
                             
                             // Parse string for Acces Token and Access Token Secret
                             NSString *token = nil;
@@ -717,8 +717,8 @@ UITableViewDelegate
                             
                             // Store Reverse Auth Access Token and Access Token Secret
                             
-                            if ( DEBUGMODE ) NSLog(@"ReverseAuth-Token: %@", token);
-                            if ( DEBUGMODE ) NSLog(@"ReverseAuth-Secret: %@", secret);
+                            DLog(@"ReverseAuth-Token: %@", token);
+                            DLog(@"ReverseAuth-Secret: %@", secret);
                             
                             [self setTwitterReverseAuthToken:token];
                             [self setTwitterReverseAuthSecret:secret];
@@ -755,7 +755,7 @@ UITableViewDelegate
     // Perform Shelby Token Swap
     dispatch_async(dispatch_get_main_queue(), ^{
     
-        if ( DEBUGMODE )NSLog(@"Perform Twitter Token Swap with Shelby");
+        DLog(@"Perform Twitter Token Swap with Shelby");
         NSString *shelbyRequestString = [NSString stringWithFormat:APIRequest_PostTokenTwitter, self.twitterID, self.twitterReverseAuthToken, self.twitterReverseAuthSecret];
         NSMutableURLRequest *shelbyRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:shelbyRequestString]]; 
         

@@ -412,20 +412,20 @@ static CoreDataUtility *sharedInstance = nil;
         
         if(![context save:&error]) {
 
-            if ( DEBUGMODE ) NSLog(@"Failed to save to data store: %@", [error localizedDescription]);
+            DLog(@"Failed to save to data store: %@", [error localizedDescription]);
             NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
             if(detailedErrors != nil && [detailedErrors count] > 0) {
                 for(NSError* detailedError in detailedErrors) {
-                    if ( DEBUGMODE ) NSLog(@"  DetailedError: %@", [detailedError userInfo]);
+                    DLog(@"  DetailedError: %@", [detailedError userInfo]);
                 }
             }
             else {
-                if ( DEBUGMODE ) NSLog(@"%@", [error userInfo]);
+                DLog(@"%@", [error userInfo]);
             }
             
         } else {
             
-            if ( DEBUGMODE ) NSLog(@"Core Data Updated!");
+            DLog(@"Core Data Updated!");
             
             // If this is the first time data has been loaded, post notification to dismiss LoginViewController
             if ( [SocialFacade sharedInstance].firstTimeLogin == YES ) {
@@ -1243,7 +1243,7 @@ static CoreDataUtility *sharedInstance = nil;
         // Retry
         if ( ![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error] )
         {
-           if (DEBUGMODE) NSLog(@"Could not save changes to Core Data. Error: %@, %@", error, [error userInfo]);
+           DLog(@"Could not save changes to Core Data. Error: %@, %@", error, [error userInfo]);
         }
     }
     

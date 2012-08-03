@@ -46,7 +46,7 @@
     
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            if ( DEBUGMODE ) NSLog(@"Internet Connection Available");
+            DLog(@"Internet Connection Available");
             
             // Initialize Request
             self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -62,7 +62,7 @@
     // If internet connection is UNAVAILABLE, execute this block of code.
     reach.unreachableBlock = ^(Reachability *reach){
         
-    if ( DEBUGMODE ) NSLog(@"Internet Connection Unavailable");
+    DLog(@"Internet Connection Unavailable");
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -100,7 +100,7 @@
 
     } else {
         
-       if ( DEBUGMODE ) NSLog(@"CONNECTION FAILED!");
+       DLog(@"CONNECTION FAILED!");
         
         // Remove HUD
         AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -126,7 +126,7 @@
     
     if ( connection == self.connection ) {
         
-        if ( DEBUGMODE ) NSLog(@"CONNECTION ERROR for APIRequestType #%d!", self.requestType);
+        DLog(@"CONNECTION ERROR for APIRequestType #%d!", self.requestType);
 
         // Hide activity indicator
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -222,14 +222,14 @@
             
         case APIRequestType_PostUpvote:{
             
-            if ( DEBUGMODE ) NSLog(@"Upvoted posted successfully");
+            DLog(@"Upvoted posted successfully");
             
         } break;
             
         
         case APIRequestType_PostDownvote:{
             
-            if ( DEBUGMODE ) NSLog(@"Downvote posted successfully");
+            DLog(@"Downvote posted successfully");
             
         } break;
 

@@ -174,8 +174,6 @@
     // Fetch data stored in Core Data
     DashboardEntry *dashboardEntry = [self.coreDataResultsArray objectAtIndex:indexPath.row];
     
-    NSLog(@"Row %d | Count %d", indexPath.row, [self.coreDataResultsArray count]);
-    
     // Create proper cell based on number of upvotes
     NSUInteger upvotersCount = [dashboardEntry.frame.upvotersCount intValue];
     
