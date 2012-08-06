@@ -101,7 +101,7 @@
     
     // Add image through reload
     UITableView *tableView = (UITableView *)[cell superview];
-    [tableView reloadRowsAtIndexPaths:tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
+    [tableView reloadRowsAtIndexPaths:tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationMiddle];
     [[tableView superview] setNeedsDisplay];
 }
 
@@ -152,7 +152,7 @@
     
     // Remove image through reload
     UITableView *tableView = (UITableView *)[cell superview];
-    [tableView reloadRowsAtIndexPaths:tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
+    [tableView reloadRowsAtIndexPaths:tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationMiddle];
     [[tableView superview] setNeedsDisplay];
 }
 
