@@ -11,6 +11,6 @@
 
 // Request Methods
 - (void)performRequest:(NSMutableURLRequest*)request ofType:(APIRequestType)type;
-
+- (void)performAsynchronousRequest:(NSMutableURLRequest*)request ofType:(APIRequestType)type;
 
 @end

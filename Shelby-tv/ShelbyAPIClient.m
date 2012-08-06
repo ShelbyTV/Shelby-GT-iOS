@@ -80,8 +80,59 @@
         });
 
     };
-    
 
+}
+
+- (void)performAsynchronousRequest:(NSMutableURLRequest *)request ofType:(APIRequestType)type
+{
+    
+    // Set Request Type
+    self.requestType = type;
+    
+    // Initialize Reachability
+    Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+    [reach startNotifier];
+    
+    // If internet connection is AVAILABLE, execute this block of code.
+    reach.reachableBlock = ^(Reachability *reach){
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            DLog(@"Internet Connection Available");
+            
+            // Initialize Request
+            [NSURLConnection sendAsynchronousRequest:request queue:nil completionHandler:nil];
+            
+            // Show statusBar activity Indicator
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+            
+            
+        });
+        
+    };
+    
+    // If internet connection is UNAVAILABLE, execute this block of code.
+    reach.unreachableBlock = ^(Reachability *reach){
+        
+        DLog(@"Internet Connection Unavailable");
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // Post notification to force UI changes, like pull-to-refresh to finish
+            [self postNotification];
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Internet Connection Unavailable"
+                                                                message:@"Please make sure you're connected to WiFi or 3G and try again."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"Dismiss"
+                                                      otherButtonTitles:nil, nil];
+            [alertView show];
+            
+            
+        });
+        
+    };
+    
 }
 
 - (void)postNotification

@@ -101,7 +101,8 @@
     
     // Add image through reload
     UITableView *tableView = (UITableView *)[cell superview];
-    [tableView reloadData];
+    [tableView reloadRowsAtIndexPaths:tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
+    [[tableView superview] setNeedsDisplay];
 }
 
 - (void)downvote:(UIButton*)button
@@ -151,7 +152,8 @@
     
     // Remove image through reload
     UITableView *tableView = (UITableView *)[cell superview];
-    [tableView reloadData];
+    [tableView reloadRowsAtIndexPaths:tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
+    [[tableView superview] setNeedsDisplay];
 }
 
 - (void)comment
