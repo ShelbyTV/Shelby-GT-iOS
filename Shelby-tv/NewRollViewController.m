@@ -251,7 +251,7 @@
      
         if ( ![self chosenPeopleArray] ) self.chosenPeopleArray = [NSMutableArray array];
         
-        ShareWithContactsViewController *emailViewController = [[ShareWithContactsViewController alloc] initWithNibName:@"EmailSendToContactsViewController" bundle:nil withParentVC:self];
+        ShareWithContactsViewController *emailViewController = [[ShareWithContactsViewController alloc] initWithNibName:@"ShareWithContactsViewController" bundle:nil withParentVC:self];
         [self.navigationController pushViewController:emailViewController animated:YES];
         
     }
@@ -334,7 +334,7 @@
             
             if ( ![self chosenPeopleArray] ) self.chosenPeopleArray = [NSMutableArray array];
             
-            ShareWithContactsViewController *emailViewController = [[ShareWithContactsViewController alloc] initWithNibName:@"EmailSendToContactsViewController" bundle:nil withParentVC:self];
+            ShareWithContactsViewController *emailViewController = [[ShareWithContactsViewController alloc] initWithNibName:@"ShareWithContactsViewController" bundle:nil withParentVC:self];
             [self.navigationController pushViewController:emailViewController animated:YES];
             
         } break;

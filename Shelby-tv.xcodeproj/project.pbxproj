@@ -658,6 +658,13 @@
 			name = "Third Party Libraries";
 			sourceTree = "<group>";
 		};
+		8E32BC3A15D0DCB500594E64 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Analytics;
+			sourceTree = "<group>";
+		};
 		8E459C7815B7275F00A8D6FD /* newRoll */ = {
 			isa = PBXGroup;
 			children = (
@@ -1177,6 +1184,7 @@
 		8ED3110615360475002614DF /* External Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8E32BC3A15D0DCB500594E64 /* Analytics */,
 				8E2996F515C9A19C0047B07F /* Arthur's Libraries */,
 				8E2996F615C9A1AB0047B07F /* Third Party Libraries */,
 			);
