@@ -18,8 +18,6 @@
 // Controllers
 #import "ShelbyMenuViewController.h"
 
-
-
 @interface LoginViewController () <SocialFacadeDelegate>
 
 @property (strong, nonatomic) SocialFacade *socialFacade;
@@ -134,7 +132,7 @@
     
     if ( [self.socialFacade shelbyAuthorized] ) {       // If user is authorized with Shelby
      
-        if ( [self.socialFacade firstTimeLogin] ) {     // If this is the first time the user has loggedin, show the animation
+        if ( [self.socialFacade firstTimeLogin] ) {     // If this is the first time the user has loggedin
             
             
             [[NSNotificationCenter defaultCenter] addObserver:self 

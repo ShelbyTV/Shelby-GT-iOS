@@ -229,6 +229,8 @@
 		8ED31101153601A2002614DF /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 8ED310F5153601A2002614DF /* iTunesArtwork */; };
 		8ED420FF15BDB4550032589B /* ShelbySocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED420FE15BDB4550032589B /* ShelbySocialViewController.m */; };
 		8EDB32B115792688007D7106 /* VideoCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDB32B015792688007D7106 /* VideoCardController.m */; };
+		8EDE5FA115D2BA4600F94331 /* UDPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EDE5FA015D2BA4600F94331 /* UDPClient.m */; };
+		8EDE5FA415D2C1E900F94331 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDE5FA315D2C1E900F94331 /* CoreFoundation.framework */; };
 		8EE337F015CC629300BB5207 /* Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE337EF15CC629300BB5207 /* Roll.m */; };
 		8EE40A461596354900559484 /* rollsOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE40A441596354900559484 /* rollsOverlay.png */; };
 		8EE40A471596354900559484 /* rollsOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE40A451596354900559484 /* rollsOverlay@2x.png */; };
@@ -490,6 +492,7 @@
 		8E917AB2159922130069C9A1 /* navigationButtonStreamOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationButtonStreamOn@2x.png"; sourceTree = "<group>"; };
 		8E917ABE1599337A0069C9A1 /* navigationLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationLogo.png; sourceTree = "<group>"; };
 		8E917ABF1599337C0069C9A1 /* navigationLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationLogo@2x.png"; sourceTree = "<group>"; };
+		8E9806A015D1BCCF00705B96 /* Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
 		8EA238CF15A6516E006C2A54 /* navigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationBar.png; sourceTree = "<group>"; };
 		8EA238D015A6516E006C2A54 /* navigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBar@2x.png"; sourceTree = "<group>"; };
 		8EA238D315A6518D006C2A54 /* navigationDivider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = navigationDivider.png; path = Resources/images/navigation/navigationDivider.png; sourceTree = SOURCE_ROOT; };
@@ -560,6 +563,9 @@
 		8ED420FE15BDB4550032589B /* ShelbySocialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelbySocialViewController.m; sourceTree = "<group>"; };
 		8EDB32AF15792688007D7106 /* VideoCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCardController.h; sourceTree = "<group>"; };
 		8EDB32B015792688007D7106 /* VideoCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCardController.m; sourceTree = "<group>"; };
+		8EDE5F9F15D2BA4600F94331 /* UDPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPClient.h; sourceTree = SOURCE_ROOT; };
+		8EDE5FA015D2BA4600F94331 /* UDPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDPClient.m; sourceTree = SOURCE_ROOT; };
+		8EDE5FA315D2C1E900F94331 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		8EE337EE15CC629300BB5207 /* Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Roll.h; sourceTree = "<group>"; };
 		8EE337EF15CC629300BB5207 /* Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Roll.m; sourceTree = "<group>"; };
 		8EE40A441596354900559484 /* rollsOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollsOverlay.png; sourceTree = "<group>"; };
@@ -602,6 +608,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EDE5FA415D2C1E900F94331 /* CoreFoundation.framework in Frameworks */,
 				8EC5CEF915C8C07B00A8954B /* AVFoundation.framework in Frameworks */,
 				8ECAA78D15B9E00B007F4F8E /* MessageUI.framework in Frameworks */,
 				8ECAA78B15B9E004007F4F8E /* AddressBook.framework in Frameworks */,
@@ -621,6 +628,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E004D0215D1AF8E0010524E /* Graphite */ = {
+			isa = PBXGroup;
+			children = (
+				8EDE5F9F15D2BA4600F94331 /* UDPClient.h */,
+				8EDE5FA015D2BA4600F94331 /* UDPClient.m */,
+			);
+			name = Graphite;
+			path = ../../../../../Desktop/Graphite;
+			sourceTree = "<group>";
+		};
 		8E24E1BD15B8FA33009E3461 /* customSwitch */ = {
 			isa = PBXGroup;
 			children = (
@@ -661,6 +678,7 @@
 		8E32BC3A15D0DCB500594E64 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
+				8E004D0215D1AF8E0010524E /* Graphite */,
 			);
 			name = Analytics;
 			sourceTree = "<group>";
@@ -728,6 +746,7 @@
 			isa = PBXGroup;
 			children = (
 				8E664D561541B1040071EC42 /* StaticDeclarations.h */,
+				8E9806A015D1BCCF00705B96 /* Analytics.h */,
 				8E664D571541B10D0071EC42 /* APIConstants.h */,
 				8E0B3A9415813C400008B841 /* ColorConstants.h */,
 				8EA87B4F156167E00029C07E /* CoreDataConstants.h */,
@@ -1063,6 +1082,7 @@
 				8EC5CEF815C8C07B00A8954B /* AVFoundation.framework */,
 				8E7F48051540B4690041118E /* Crashlytics.framework */,
 				8EE50663155CAC1600A04F50 /* CoreData.framework */,
+				8EDE5FA315D2C1E900F94331 /* CoreFoundation.framework */,
 				8EFC968F15BDC84E004EADAA /* CoreGraphics.framework */,
 				8ECBA7D21535F6F70009718E /* Foundation.framework */,
 				8EE5063E155CA39E00A04F50 /* MediaPlayer.framework */,
@@ -1646,6 +1666,7 @@
 				8EE9BBCE15C47CED00A62267 /* Video.m in Sources */,
 				8E2996FC15C9D54D0047B07F /* UpvoteUsers.m in Sources */,
 				8EE337F015CC629300BB5207 /* Roll.m in Sources */,
+				8EDE5FA115D2BA4600F94331 /* UDPClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,6 @@
 
 // Frameworks
 #import <AVFoundation/AVFoundation.h>
-#import <Crashlytics/Crashlytics.h>
 
 // Controllers
 #import "SocialFacade.h"
@@ -70,6 +69,9 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
+    // test
+    [UDPClient incrementGraphiteForStatistic:@"userLoggedIn"];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
